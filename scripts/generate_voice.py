@@ -57,6 +57,11 @@ from pathlib import Path
 
 import edge_tts
 
+TTS_ENGINE = os.getenv("TTS_ENGINE", "edge").strip().lower()
+BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "v2/ar_speaker_0").strip()
+BARK_TEXT_TEMP = float(os.getenv("BARK_TEXT_TEMP", "0.7"))
+BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
+
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
 STATE_DIR = ROOT_DIR / "state"
@@ -146,7 +151,7 @@ def apply_phonetic_hints(text: str, hints: list[dict]) -> str:
     الأطول للأقصر أولاً عشان عبارة من كذا كلمة (زي اسم مكان مركّب)
     تتستبدل كوحدة واحدة قبل ما أي كلمة مفردة جواها تتستبدل غلط لو ظهرت
     في مدخل تاني. المفروض phonetic تكون نفس الكلمة بالحروف الأساسية
-    بالظبط مع إضافة تشكيل بس (شوف islamic_history_system_prompt.md)، فـ
+    بالظبط مع إضافة تشكيل بس (شوف history_strategy_system_prompt.md)، فـ
     strip_diacritics() بترجّعها زي الأصل تمامًا في الترجمة."""
     for hint in sorted(hints, key=lambda h: len(str(h.get("word", ""))), reverse=True):
         word = str(hint.get("word", "")).strip()
@@ -194,9 +199,59 @@ def build_silence_clip(duration: float, path: Path) -> None:
     ])
 
 
+def synthesize_sentences_bark(sentences: list[str]) -> list[dict]:
+    """ينتج مقاطع WAV عبر Bark من Suno. Bark لا يعيد WordBoundary؛ لذلك
+    تُستخرج المحاذاة لاحقًا عبر Whisper مثل خطة الاحتياط الحالية."""
+    try:
+        from bark import generate_audio, preload_models
+        from scipy.io import wavfile
+    except ImportError as exc:
+        raise RuntimeError("تعذر استيراد Bark/Scipy؛ ثبّت suno-bark وscipy") from exc
+
+    print(f"🦜 تحميل نماذج Bark من Suno (history_prompt={BARK_HISTORY_PROMPT})...")
+    preload_models()
+    segments = []
+    for index, raw_sentence in enumerate(sentences):
+        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
+        if not sentence:
+            continue
+        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.wav"
+        print(f"   🦜 Bark: الجملة {index + 1}/{len(sentences)}")
+        audio = generate_audio(
+            sentence,
+            history_prompt=BARK_HISTORY_PROMPT or None,
+            text_temp=BARK_TEXT_TEMP,
+            waveform_temp=BARK_WAVEFORM_TEMP,
+        )
+        wavfile.write(str(seg_path), 24000, audio)
+        duration = probe_duration(seg_path)
+        if duration <= 0:
+            raise RuntimeError("Bark أعاد ملفًا صوتيًا فارغًا")
+        segments.append({
+            "path": seg_path, "duration": duration, "events": None,
+            "sentence": sentence, "is_silence": False,
+        })
+        if index < len(sentences) - 1:
+            pause = pause_duration_for(sentence)
+            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
+            build_silence_clip(pause, pause_path)
+            segments.append({
+                "path": pause_path, "duration": pause, "events": None,
+                "sentence": None, "is_silence": True,
+            })
+    return segments
+
+
 async def synthesize_sentences(sentences: list[str]) -> list[dict]:
-    """يحوّل الجمل واحدة واحدة مع إعادة المحاولة وتبديل الصوت عند فشل
-    Edge TTS. فشل جملة مؤقت لا يسقط الحلقة كلها بلا تشخيص."""
+    """يختار Bark من Suno عند TTS_ENGINE=bark، وإلا يستخدم Edge TTS."""
+    if TTS_ENGINE == "bark":
+        try:
+            return synthesize_sentences_bark(sentences)
+        except Exception as exc:  # Bark اختياري؛ لا نسقط النشر بالكامل
+            if os.getenv("BARK_FALLBACK_TO_EDGE", "true").lower() == "true":
+                print(f"⚠️ تعذر Bark ({exc}) — الرجوع إلى Edge TTS.")
+            else:
+                raise
     segments = []
     for index, raw_sentence in enumerate(sentences):
         sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
@@ -516,7 +571,7 @@ def main() -> None:
     print(f"✅ صوت كامل: {FINAL_AUDIO}")
     print(f"✅ ترجمة عربية متزامنة بالكلمة فقط: {SUBTITLES}")
     print(f"✅ تلميحات نطق مُطبّقة: {len(phonetic_hints)}")
-    print(f"✅ أصوات Edge TTS المستخدمة/المتاحة: {VOICE_CANDIDATES}")
+    print(f"✅ محرك النطق: {TTS_ENGINE} | أصوات Edge الاحتياطية: {VOICE_CANDIDATES}")
 
 
 if __name__ == "__main__":

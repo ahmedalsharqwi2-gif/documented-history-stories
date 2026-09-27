@@ -112,7 +112,7 @@ def load_title_and_description() -> tuple[str, str]:
     if not EPISODE_PATH.exists():
         sys.exit(f"state/current_episode.json غير موجود: {EPISODE_PATH}")
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    title = str(episode.get("title", "Islamic History Episode")).strip()[:100]
+    title = str(episode.get("title", "Historical Strategy Episode")).strip()[:100]
     caption = str(episode.get("caption", "")).strip()
     if not caption:
         sys.exit("current_episode.json لا يحتوي caption.")
@@ -136,7 +136,7 @@ def upload_video(youtube, video_path: Path, title: str, description: str) -> str
 
     body = {
         "snippet": {
-            "title": title or "Islamic History Episode",
+            "title": title or "Historical Strategy Episode",
             "description": description,
             "categoryId": YT_CATEGORY_ID,
         },

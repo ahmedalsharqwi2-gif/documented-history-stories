@@ -26,7 +26,7 @@ MODERN_EXCLUDE_TERMS. ده حل تقريبي معقول لكنه مش مضمون
   3) رفض أي كليب يظهر في وصف رابطه مؤشر على عنصر حديث/معاصر.
   4) رفض الكليب إذا لم يوجد له وصف قابل للفحص في رابط Pexels، لأن عدم القدرة
      على التحقق لا يُعتبر موافقة.
-  5) عند عدم وجود نتائج، البحث فقط في قائمة لقطات إسلامية عامة خالية من البشر
+  5) عند عدم وجود نتائج، البحث فقط في قائمة لقطات تاريخية عامة خالية من البشر
      وبنفس الفلترة الصارمة. لا توجد أبدًا نتيجة احتياطية غير مفلترة.
 
 === تعديل سابق: تسجيل region في الهيستوري ===
@@ -140,19 +140,17 @@ REJECT_UNVERIFIABLE_SLUG = True
 # بالكلمة الأصلية (حتى بعد إلغاء الفلترة الصارمة) — يعني آخر خط دفاع
 # قبل ما نضطر نتخطى الكلمة دي خالص. كلها كلمات محايدة زمنيًا (عمارة/
 # طبيعة/مخطوطات) عشان تناسب أي عصر إسلامي تقريبًا.
-ISLAMIC_FALLBACK_KEYWORDS = [
-    "empty ancient islamic architecture no people",
-    "empty historic mosque courtyard no people",
-    "arabic calligraphy manuscript close up no people",
-    "old quran manuscript close up no people",
-    "empty ancient stone archway no people",
-    "islamic geometric ornament close up no people",
-    "empty historic fortress no people",
-    "desert dunes ancient atmosphere no people",
-    "ancient mosque exterior empty no people",
-    "historic desert landscape no people",
+HISTORICAL_FALLBACK_KEYWORDS = [
+    "ancient stone fortress empty no people",
+    "historic map parchment close up no people",
+    "old wooden sailing ship ocean no people",
+    "ancient battlefield landscape no people",
+    "desert dunes historic atmosphere no people",
+    "old manuscript writing close up no people",
     "ancient city ruins empty no people",
-    "old arabian architecture empty no people",
+    "historic mountain pass landscape no people",
+    "old compass and map close up no people",
+    "ancient weapons museum display no people",
 ]
 
 
@@ -301,12 +299,12 @@ def search_with_fallback(
 
     print(
         f"⚠️  '{keyword}': لا توجد لقطة موثوقة مطابقة — "
-        "سيتم البحث في لقطات إسلامية عامة خالية من البشر"
+        "سيتم البحث في لقطات تاريخية عامة خالية من البشر"
     )
 
     collected: list[dict] = []
     already_used_this_call = set(used_ids)
-    for fallback_keyword in ISLAMIC_FALLBACK_KEYWORDS:
+    for fallback_keyword in HISTORICAL_FALLBACK_KEYWORDS:
         if len(collected) >= count:
             break
         remaining = count - len(collected)

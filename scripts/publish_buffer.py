@@ -255,7 +255,7 @@ def metadata_for(channel_id: str, asset_type: str, title: str) -> dict | None:
         # ملحوظة: بدون "type" — YoutubePostMetadataInput مفيهوش الحقل ده
         # أصلًا (شوف الشرح في أعلى الملف).
         return {"youtube": {
-            "title": title[:100] or "Islamic History Episode",
+            "title": title[:100] or "Historical Strategy Episode",
             "categoryId": "24",
             "privacy": "public",
             "madeForKids": False,
@@ -347,7 +347,7 @@ def main() -> None:
         sys.exit("state/current_episode.json غير موجود.")
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    title = str(episode.get("title", "Islamic History Episode")).strip()
+    title = str(episode.get("title", "Historical Strategy Episode")).strip()
     caption = str(episode.get("caption", "")).strip()
     if not caption:
         sys.exit("current_episode.json لا يحتوي caption.")
