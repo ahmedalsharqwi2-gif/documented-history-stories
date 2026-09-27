@@ -347,7 +347,9 @@ def parse_labeled_response(text: str) -> dict:
     cleaned = text.strip()
     cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
     cleaned = _strip_label_markup(cleaned)
-    labels = "HOOK|REGION|SOURCE_TYPE|SOURCE_REFERENCE|NARRATION"
+    # بعض الردود تكرر SOURCE بالخطأ وتكتب SOURCE_SOURCE_TYPE بدل SOURCE_TYPE.
+    # نقبل الصيغتين ونطبع تنبيهًا بدل إسقاط قصة سليمة بسبب خطأ تسمية فقط.
+    labels = "HOOK|REGION|SOURCE_SOURCE_TYPE|SOURCE_TYPE|SOURCE_REFERENCE|NARRATION"
     pattern = re.compile(
         rf"(?:^|\n)\s*({labels})\s*:\s*(.*?)(?=\n\s*(?:{labels})\s*:|\Z)",
         re.DOTALL,
@@ -355,6 +357,9 @@ def parse_labeled_response(text: str) -> dict:
     result: dict = {}
     for match in pattern.finditer(cleaned):
         key = match.group(1).strip().lower()
+        if key == "source_source_type":
+            key = "source_type"
+            print("   ⚠️ تم تصحيح تسمية SOURCE_SOURCE_TYPE إلى SOURCE_TYPE تلقائيًا.")
         value = match.group(2).strip()
         result[key] = value
     return result
