@@ -65,7 +65,21 @@ ASSETS_DIR = ROOT_DIR / "assets"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
 BACKGROUND_MUSIC = ASSETS_DIR / "background_music.mp3"
 
-VOICE = "ar-EG-ShakirNeural"
+# الصوت الأساسي ثم أصوات احتياطية. يمكن تغييرها من GitHub Actions عبر
+# EDGE_TTS_VOICES="ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"
+VOICE = os.getenv("EDGE_TTS_VOICE", "ar-EG-ShakirNeural")
+VOICE_CANDIDATES = list(dict.fromkeys([
+    item.strip()
+    for item in os.getenv(
+        "EDGE_TTS_VOICES",
+        "ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural",
+    ).split(",")
+    if item.strip()
+]))
+if VOICE not in VOICE_CANDIDATES:
+    VOICE_CANDIDATES.insert(0, VOICE)
+EDGE_TTS_RETRIES = int(os.getenv("EDGE_TTS_RETRIES", "3"))
+EDGE_TTS_RETRY_DELAY = float(os.getenv("EDGE_TTS_RETRY_DELAY", "2"))
 RATE = "-15%"
 PITCH = "-9Hz"
 VOLUME = "+0%"
@@ -181,24 +195,83 @@ def build_silence_clip(duration: float, path: Path) -> None:
 
 
 async def synthesize_sentences(sentences: list[str]) -> list[dict]:
+    """يحوّل الجمل واحدة واحدة مع إعادة المحاولة وتبديل الصوت عند فشل
+    Edge TTS. فشل جملة مؤقت لا يسقط الحلقة كلها بلا تشخيص."""
     segments = []
-    for index, sentence in enumerate(sentences):
+    for index, raw_sentence in enumerate(sentences):
+        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
+        if not sentence:
+            print(f"⚠️ تم تجاهل جملة فارغة رقم {index + 1}.")
+            continue
+
         seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.mp3"
         events = []
-        communicate = edge_tts.Communicate(sentence, VOICE, rate=RATE, pitch=PITCH, volume=VOLUME)
-        with seg_path.open("wb") as audio_file:
-            async for chunk in communicate.stream():
-                if chunk["type"] == "audio":
-                    audio_file.write(chunk["data"])
-                elif chunk["type"] == "WordBoundary":
-                    events.append(chunk)
-        duration = probe_duration(seg_path)
-        segments.append({"path": seg_path, "duration": duration, "events": events, "sentence": sentence, "is_silence": False})
+        last_error: Exception | None = None
+        succeeded = False
+
+        for voice in VOICE_CANDIDATES:
+            for retry in range(1, EDGE_TTS_RETRIES + 1):
+                seg_path.unlink(missing_ok=True)
+                events = []
+                try:
+                    communicate = edge_tts.Communicate(
+                        sentence, voice, rate=RATE, pitch=PITCH, volume=VOLUME
+                    )
+                    with seg_path.open("wb") as audio_file:
+                        async for chunk in communicate.stream():
+                            if chunk["type"] == "audio":
+                                audio_file.write(chunk["data"])
+                            elif chunk["type"] == "WordBoundary":
+                                events.append(chunk)
+                    if not seg_path.exists() or seg_path.stat().st_size == 0:
+                        raise RuntimeError("Edge TTS أعاد ملفًا صوتيًا فارغًا")
+                    duration = probe_duration(seg_path)
+                    if duration <= 0:
+                        raise RuntimeError("Edge TTS أعاد مدة صوت تساوي صفرًا")
+                    succeeded = True
+                    print(
+                        f"   🔊 الجملة {index + 1}/{len(sentences)}: "
+                        f"الصوت {voice}، المحاولة {retry}، {duration:.2f} ثانية"
+                    )
+                    break
+                except Exception as exc:  # noqa: BLE001
+                    last_error = exc
+                    seg_path.unlink(missing_ok=True)
+                    print(
+                        f"   ⚠️ فشل Edge TTS في الجملة {index + 1}/{len(sentences)} "
+                        f"بالصوت {voice}، المحاولة {retry}/{EDGE_TTS_RETRIES}: {exc}"
+                    )
+                    if retry < EDGE_TTS_RETRIES:
+                        await asyncio.sleep(EDGE_TTS_RETRY_DELAY * retry)
+            if succeeded:
+                break
+            print(f"   🔁 الانتقال إلى صوت Edge TTS احتياطي بعد فشل {voice}.")
+
+        if not succeeded:
+            preview = sentence[:160].replace("\n", " ")
+            raise RuntimeError(
+                f"تعذر توليد الجملة رقم {index + 1} بكل أصوات Edge TTS. "
+                f"النص: {preview!r}. آخر خطأ: {last_error}"
+            ) from last_error
+
+        segments.append({
+            "path": seg_path,
+            "duration": duration,
+            "events": events,
+            "sentence": sentence,
+            "is_silence": False,
+        })
         if index < len(sentences) - 1:
             pause = pause_duration_for(sentence)
             pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
             build_silence_clip(pause, pause_path)
-            segments.append({"path": pause_path, "duration": pause, "events": None, "sentence": None, "is_silence": True})
+            segments.append({
+                "path": pause_path,
+                "duration": pause,
+                "events": None,
+                "sentence": None,
+                "is_silence": True,
+            })
     return segments
 
 
@@ -510,6 +583,7 @@ def main() -> None:
     print(f"✅ صوت كامل: {FINAL_AUDIO}")
     print(f"✅ ترجمة ثنائية اللغة (عربي متزامن بالكلمة + إنجليزي متزامن بالجملة): {SUBTITLES}")
     print(f"✅ تلميحات نطق مُطبّقة: {len(phonetic_hints)}")
+    print(f"✅ أصوات Edge TTS المستخدمة/المتاحة: {VOICE_CANDIDATES}")
 
 
 if __name__ == "__main__":
