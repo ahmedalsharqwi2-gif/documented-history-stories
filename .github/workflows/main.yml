@@ -2,16 +2,7 @@ name: Create and Publish Islamic History Episode
 
 on:
   schedule:
-    # الـ workflow بيتشغّل الساعة 08:00 UTC (11ص القاهرة، UTC+3) —
-    # ده معاد بدء التوليد بس، مش معاد النشر الفعلي؛ النشر نفسه مجدول
-    # (dueAt عند Buffer، publishAt عند يوتيوب) على مواعيد منفصلة تحت.
-    #
-    # الفيديو الكامل والريل (شورت واحد بس، مقتطف من أول الفيديو، وفي
-    # آخره تنويه أعلى الشاشة "شاهد بقية الفيديو على الصفحة") بينشروا
-    # معًا في نفس التوقيت: مساءً الساعة ~7م نفس يوم التشغيل (تأخير 8
-    # ساعات من معاد التشغيل صباحًا). القيمتين FULL_VIDEO_DELAY_HOURS
-    # وFULL_TO_SHORT_1_HOURS في خطوة النشر تحت متساويتين عمدًا (8) عشان
-    # ينشروا مع بعض بالظبط.
+    # يبدأ التوليد الساعة 08:00 UTC، والنشر مساءً بعد 8 ساعات.
     - cron: "0 8 * * *"
   workflow_dispatch:
 
@@ -50,27 +41,18 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r scripts/requirements.txt
 
-      # فشل الـ import هنا صامت لو حصل من غير السطر ده — pip منفصل عن
-      # "python -m pip" ممكن يثبّت الحزم على تفسير Python مختلف عن اللي
-      # بيشغّل main.py فعليًا، فيرجع realign_subtitles_with_whisper()
-      # بصمت لتوقيتات edge-tts الأقل دقة (سبب عدم تزامن الترجمة اللي
-      # ظهر قبل كده). السطر ده بيفشل الـ run فورًا وبوضوح لو تكرر نفس
-      # الخطأ، بدل ما يتخبى جوه try/except ويكمّل بجودة أقل من غير تنبيه.
       - name: Verify faster-whisper is importable on the same interpreter
         run: python -c "import faster_whisper; print('faster-whisper OK:', faster_whisper.__file__)"
 
       - name: Generate complete episode script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # اترفعت من 0 عشان الهدف الجديد (970+ كلمة مع ترجمة متزامنة
-          # جملة بجملة) مهمة تخطيط أعقد بكتير من توليد JSON بسيط، وبقيمة
-          # صفر كان الموديل بيتسرّع ويقطع القصة قبل ما يخلصها (شوف
-          # previous_truncated في generate_script.py).
+          # النموذج الأساسي. عند نفاد حصته ينتقل السكربت تلقائيًا للبديل.
+          GEMINI_MODEL: "gemini-2.5-flash"
+          # مهم: لا تستخدم gemini-2.5-flash-lite؛ Google أعلن أنه غير متاح
+          # للمستخدمين الجدد. استخدم النموذج الذي أوصى به رد API.
+          GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
           GEMINI_THINKING_BUDGET: "2048"
-          # مرفوعين عشان الفيديو الكامل يتخطى 5 دقايق (300 ثانية) دايمًا:
-          # حسب النسبة الموثقة في generate_script.py (300 كلمة ≈ 94-150
-          # ثانية حسب سرعة النطق)، MIN_NARRATION_WORDS=970 بيضمن تخطي 5
-          # دقايق حتى في أسرع سيناريو نطق محتمل (970×0.313≈304 ثانية).
           TARGET_WORDS: "1050"
           MIN_NARRATION_WORDS: "970"
         run: python scripts/generate_script.py
@@ -94,18 +76,13 @@ jobs:
           BUFFER_FACEBOOK_CHANNEL_ID: ${{ secrets.BUFFER_FACEBOOK_CHANNEL_ID }}
           BUFFER_INSTAGRAM_CHANNEL_ID: ${{ secrets.BUFFER_INSTAGRAM_CHANNEL_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # نفس القيمة للاتنين عمدًا: الفيديو الكامل والريل ينشروا معًا
-          # الساعة 7 مساءً بالظبط (شوف تعليق cron فوق).
           FULL_VIDEO_DELAY_HOURS: "8"
           FULL_TO_SHORT_1_HOURS: "8"
           CHANNEL_PENDING_LIMIT: "10"
         run: python scripts/publish_buffer.py
 
-      # Buffer لا يدعم فيديوهات يوتيوب الطويلة (Long-form) إطلاقًا — يدعم
-      # YouTube Shorts فقط، لذلك الفيديو الكامل يُنشر ليوتيوب هنا بشكل
-      # منفصل عبر YouTube Data API مباشرة (شوف publish_youtube_direct.py).
-      # FULL_VIDEO_DELAY_HOURS لازم تكون نفس قيمة الخطوة اللي فاتت، عشان
-      # يوتيوب ينشر في نفس توقيت باقي المنصات مساءً بدل النشر الفوري.
+      # Buffer لا يدعم فيديوهات YouTube الطويلة؛ يتم نشر الفيديو الكامل
+      # مباشرة عبر YouTube Data API.
       - name: Publish full video directly to YouTube
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -114,10 +91,6 @@ jobs:
           FULL_VIDEO_DELAY_HOURS: "8"
         run: python scripts/publish_youtube_direct.py
 
-      # تحذير مبكر قبل انتهاء صلاحية YT_REFRESH_TOKEN (7 أيام لتطبيق في
-      # وضع Testing عند Google) — بيفتح GitHub Issue قبل الموعد بأيام
-      # أمان بدل ما ننتظر فشل النشر فعليًا. يشتغل دايمًا (always())، حتى
-      # لو الخطوة اللي فاتت فشلت، عشان يفضل يقرأ آخر تاريخ نجاح معروف.
       - name: Check YouTube token age
         if: always()
         env:
