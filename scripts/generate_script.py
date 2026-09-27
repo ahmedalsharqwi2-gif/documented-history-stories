@@ -82,14 +82,23 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 TEMPERATURE = 0.75
 # سقف التوكنز لنداءات النص الحر (كل مرحلة/توسيع بيكتب جزء من القصة بس،
-# مش القصة كلها، فمحتاج سقف أصغر من نداء finalize).
-PHASE_MAX_TOKENS = 4000
+# مش القصة كلها، فمحتاج سقف أصغر من نداء finalize). اترفعت من 4000
+# لـ 6000 عشان تستوعب THINKING_BUDGET + النص الظاهر مع بعض من غير ما
+# تحتاج نداء "توسيع سقف" إضافي في الحالة العادية — انظر ملاحظة الحصة
+# (quota) تحت، كل نداء زيادة بيستهلك من الحصة اليومية المحدودة.
+PHASE_MAX_TOKENS = 6000
 # سقف نداء finalize (JSON فيه narration_en كمصفوفة بعدد جمل القصة كاملة
 # + باقي الحقول) — سيبناه سخي زي الأصل عشان القصص الطويلة (900+ كلمة
 # ممكن تبقى 60-90 جملة).
 FINALIZE_MAX_TOKENS = 9000
-# انظر الملاحظة فوق. 0 = من غير تفكير داخلي إضافي. اترفعت افتراضيًا عبر
-# GEMINI_THINKING_BUDGET في الـ workflow لمهمة التخطيط السردي.
+# ⚠️ مهم: thinking_budget بياكل من نفس سقف max_output_tokens بتاع
+# النداء (مش سقف منفصل) — يعني لو THINKING_BUDGET=2048 وPHASE_MAX_TOKENS
+# =4000، يفضل ~2000 توكن بس للنص الظاهر قبل ما يترفض بـ MAX_TOKENS. ده
+# كان بيسبب تكرار قطع/إعادة نداء (استهلاك حصة يومية إضافي من غير داعي).
+# بما إن التصميم الجديد بيقسّم المهمة لخطوات أصغر وأبسط (مرحلة واحدة في
+# كل نداء بدل قصة كاملة في نداء واحد)، الحاجة لـ thinking budget عالي
+# قلّت كتير — انصح تخفّض GEMINI_THINKING_BUDGET في الـ workflow لحوالي
+# 256-512 بدل 2048 الحالية، عشان تقلل عدد نداءات الإعادة.
 THINKING_BUDGET = int(os.getenv("GEMINI_THINKING_BUDGET", "0"))
 
 # === فيديو كامل فوق 5 دقايق، ريل واحد بس (مقتطف من أول الفيديو) ===
@@ -106,20 +115,30 @@ MIN_NARRATION_WORDS = int(MIN_NARRATION_WORDS) if MIN_NARRATION_WORDS else None
 PHASE1_TARGET_RATIO = 0.55
 # حد أقصى لعدد نداءات "التوسيع" الإضافية المسموح بيها داخل كل مرحلة
 # (لو المرحلة طلعت قصيرة عن هدفها). كل توسيع بيضيف تفاصيل حسية لنفس
-# الأحداث، مش أحداث جديدة.
-MAX_PHASE_EXPANSIONS = 2
+# الأحداث، مش أحداث جديدة. نزلت من 2 لـ 1 عشان ترشيد استهلاك الحصة
+# اليومية المحدودة (Free Tier) — انظر ملاحظة MAX_ATTEMPTS تحت.
+MAX_PHASE_EXPANSIONS = 1
 # لو نداء واحد اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف
-# ونعيد نفس النداء (مش المحاولة كلها) — نفس منطق الأصل بس على مستوى
-# النداء الواحد بدل المحاولة الكاملة.
-BUDGET_RETRIES = 2
+# ونعيد نفس النداء (مش المحاولة كلها). نزلت من 2 لـ 1 لنفس سبب ترشيد
+# الحصة — ورفع PHASE_MAX_TOKENS الأساسي فوق قلل الحاجة لده أصلاً.
+BUDGET_RETRIES = 1
 LENGTH_ESCALATION = 1.5
 
-# === إعادة محاولة كاملة من الصفر (محادثة جديدة تمامًا) ===
-# دلوقتي ده خط دفاع أخير بس لمشاكل غير متعلقة بالطول (حجب أمان، رد JSON
-# تالف، فشل تحليل الحقول الأساسية من رد المرحلة 1، إلخ) — مشكلة الطول
-# نفسها بقت بتتحل داخل المحاولة الواحدة عبر آلية المرحلتين+التوسيع فوق،
-# فمحتاجناش عدد محاولات كامل كبير زي الأصل (كان 4).
-MAX_ATTEMPTS = 2
+# === ⚠️ حصة Gemini المجانية (Free Tier) محدودة جدًا: 20 نداء/يوم بس
+# لموديل gemini-2.5-flash (شوف رسالة الخطأ 429 RESOURCE_EXHAUSTED،
+# quotaId: GenerateRequestsPerDayPerProjectPerModel-FreeTier). كل محاولة
+# كاملة (attempt) دلوقتي بتستخدم عدة نداءات (مرحلة 1 + توسيعها المحتمل +
+# مرحلة 2 + توسيعها المحتمل + finalize)، مش نداء واحد زي التصميم القديم
+# — فأسوأ سيناريو لمحاولة واحدة (كل خطوة بتاخد إعادة MAX_TOKENS كمان):
+# 5 خطوات منطقية × (1 + BUDGET_RETRIES) = حتى 10 نداءات. إعادة محاولة
+# كاملة تانية (MAX_ATTEMPTS=2) كانت بتوصل بالحسبة دي لـ 20 نداء في
+# تشغيلة واحدة بس — يعني ممكن تستهلك الحصة اليومية كلها في تشغيلة واحدة
+# فاشلة (زي ما حصل فعليًا). عشان كده MAX_ATTEMPTS بقت 1 افتراضيًا: لو
+# فشلت المحاولة، الأولى نخليها تفشل بوضوح (ونعيد التشغيل من الـ workflow
+# لاحقًا أو في اليوم التالي) بدل ما نضمن استهلاك الحصة بالكامل. لو
+# حسابك مدفوع (Pay-as-you-go) أو الحصة اترفعت، اضبط MAX_FULL_ATTEMPTS
+# في الـ workflow لأي رقم أعلى.
+MAX_ATTEMPTS = int(os.getenv("MAX_FULL_ATTEMPTS", "1"))
 
 HISTORY_LIMIT = 8
 REGION_HISTORY_LIMIT = 6
@@ -301,8 +320,22 @@ def clean_continuation_text(text: str) -> str:
     cleaned = text.strip()
     cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
     cleaned = re.sub(r"^(NARRATION|narration)\s*:\s*", "", cleaned).strip()
+    # narration نص هيتقرأ بصوت (TTS) ويتحط كترجمة على الشاشة، فأي زخرفة
+    # markdown (** أو __) لازم تتشال منه — مش بس من التسميات زي فوق.
+    cleaned = cleaned.replace("**", "").replace("__", "").strip()
     if len(cleaned) >= 2 and cleaned[0] == cleaned[-1] and cleaned[0] in ('"', "”", "'"):
         cleaned = cleaned[1:-1].strip()
+    return cleaned
+
+
+def _strip_label_markup(text: str) -> str:
+    """يشيل زخرفة markdown شائعة ممكن الموديل يحطها حوالين تسميات
+    الحقول رغم إننا مطلبناهاش (زي **HOOK:** أو ### HOOK: أو - HOOK:)،
+    عشان regex التحليل في parse_labeled_response ميفشلش بسبب الزخرفة
+    دي بس. ملحوظة: ده سبب فشل حقيقي حصل فعليًا ('ناقص حقل hook') لما
+    الموديل زوّق التسمية بـ ** من غير ما يتغيّر أي حاجة تانية في الرد."""
+    cleaned = text.replace("**", "").replace("__", "")
+    cleaned = re.sub(r"(?m)^[ \t]*[#>\-*]+[ \t]*", "", cleaned)
     return cleaned
 
 
@@ -312,6 +345,7 @@ def parse_labeled_response(text: str) -> dict:
     lowercase. بيرجع قاموس فاضي لو مقدرش يلاقي أي حقل."""
     cleaned = text.strip()
     cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
+    cleaned = _strip_label_markup(cleaned)
     labels = "HOOK|REGION|SOURCE_TYPE|SOURCE_REFERENCE|NARRATION"
     pattern = re.compile(
         rf"(?:^|\n)\s*({labels})\s*:\s*(.*?)(?=\n\s*(?:{labels})\s*:|\Z)",
@@ -643,10 +677,10 @@ def run_single_attempt(
         if not fields.get(key, "").strip():
             raise AttemptFailed(f"رد المرحلة 1 ناقص حقل '{key}' أو فاضي")
 
-    hook = fields["hook"]
-    region = fields["region"]
-    source_type = fields["source_type"]
-    source_reference = fields["source_reference"]
+    hook = fields["hook"].replace("**", "").replace("__", "").strip()
+    region = fields["region"].replace("**", "").replace("__", "").strip()
+    source_type = fields["source_type"].replace("**", "").replace("__", "").strip()
+    source_reference = fields["source_reference"].replace("**", "").replace("__", "").strip()
     narration = clean_continuation_text(fields["narration"])
 
     print(f"   📝 مرحلة 1: {count_words(narration)} كلمة (هدف تقريبي {phase1_target})")
