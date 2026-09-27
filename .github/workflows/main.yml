@@ -67,11 +67,12 @@ jobs:
         run: |
           if [ -z "$SILMA_REFERENCE_AUDIO_B64" ]; then
             echo "Missing SILMA_REFERENCE_AUDIO_B64 GitHub secret."
-            echo "Add a base64-encoded, consented human reference WAV before running production."
+            echo "Add a base64-encoded, consented human reference OGG/Opus before running production."
             exit 1
           fi
           mkdir -p assets
-          printf '%s' "$SILMA_REFERENCE_AUDIO_B64" | base64 --decode > assets/voice_reference_human.wav
+          printf '%s' "$SILMA_REFERENCE_AUDIO_B64" | base64 --decode > assets/voice_reference_human.ogg
+          ffmpeg -y -i assets/voice_reference_human.ogg -ac 1 -ar 24000 -sample_fmt s16 assets/voice_reference_human.wav
 
       - name: Generate narration with SILMA and subtitles
         env:
