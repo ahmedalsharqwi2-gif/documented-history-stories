@@ -62,6 +62,12 @@ jobs:
         run: python scripts/fetch_clips.py
 
       - name: Generate complete narration and landscape subtitles
+        env:
+          # الصوت الأساسي ثم أصوات احتياطية عند NoAudioReceived من Edge TTS.
+          EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
+          EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"
+          EDGE_TTS_RETRIES: "3"
+          EDGE_TTS_RETRY_DELAY: "2"
         run: python scripts/generate_voice.py
 
       - name: Assemble full landscape video and platform reel
