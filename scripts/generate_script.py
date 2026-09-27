@@ -3,60 +3,47 @@ generate_script.py
 يستدعي Gemini API عشان يولّد سيناريو القصة الدينية/التاريخية الإسلامية +
 الترجمة الإنجليزية الموازية + كلمات البحث البصرية + مرجع التوثيق الشرعي.
 
-=== تعديل جديد: توليد narration على مرحلتين داخل محادثة واحدة (حل مشكلة القفل المبكر) ===
-المشكلة اللي ظهرت في التشغيل الفعلي: أربع محاولات متتالية طلعت كلها
-narration أقصر من الحد الأدنى (639-875 كلمة بدل 970+)، رغم إن
-finish_reason في كل المحاولات كان طبيعي (مش MAX_TOKENS) — يعني الموديل
-معاه مساحة توكنز فاضية كتير (استخدم أقل من نص MAX_OUTPUT_TOKENS في كل
-مرة) ومع ذلك اختار يقفل القصة بنفسه. السبب: البرومبت القديم كان فيه
-تعليمتين بيتصادموا مع بعض داخل نفس الرسالة — "لازم 970+ كلمة" مقابل
-"لازم تقفل بخاتمة حقيقية تنتهي بعلامة ترقيم واضحة" — والموديل كان بيفضّل
-الاكتمال السردي على الطول كل مرة، وإعادة المحاولة القديمة كانت بتبدأ
-القصة من الصفر تاني (بنفس الصراع الداخلي)، فمكانش في تراكم حقيقي.
+=== تعديل جديد: الرجوع لنداء واحد للقصة كاملة + قبول طول "مقارب" بدل الإجبار ===
+التصميم اللي فات (تقسيم narration لمرحلتين + توسيعات لكل مرحلة) كان حل
+مشكلة القفل المبكر فعلاً، لكنه رفع عدد نداءات الـ API لكل محاولة كاملة
+لغاية 5-10 نداء (مرحلة1 + توسيعها المحتمل + مرحلة2 + توسيعها المحتمل +
+finalize، وكل واحدة فيهم ممكن تتكرر بسبب BUDGET_RETRIES). وده معناه إن
+احتمال إن أي نداء واحد وسط السلسلة دي يقابل مشكلة عرضية (503
+UNAVAILABLE، ضغط مؤقت على سيرفرات Gemini، إلخ) وتفشل التشغيلة كلها كان
+بيكبر مع كل نداء إضافي، حتى لو المشكلة مالهاش أي علاقة بالمنطق أو
+بالمحتوى نفسه.
 
-الحل الجديد: تقسيم كتابة narration لمرحلتين منفصلتين داخل نفس المحادثة
-(نفس الـ conversation history)، بحيث الموديل في كل رسالة يركّز على مهمة
-واحدة بس ومفيش تصادم بين تعليمتين:
+الحل الجديد أبسط ومحاله أقل نقط فشل:
+  1) نطلب من الموديل يكتب القصة *كاملة* (تمهيد + تصعيد + ذروة + خاتمة)
+     في نداء واحد بس، بهدف طول تقريبي (مش صارم) حوالي TARGET_WORDS كلمة.
+  2) لو القصة طلعت "قصيرة شوية" عن الهدف لكنها متماسكة ومنتهية بخاتمة
+     حقيقية — بنقبلها زي ما هي، من غير ما نعيد الكرّة أو نطلب توسيع.
+     الطول المثالي مفيدش لو كلفنا فشل التشغيلة كلها؛ الأولوية دلوقتي
+     لقصة كاملة ومتماسكة على طول مضبوط بالظبط.
+  3) الفشل الحقيقي الوحيد بخصوص الطول بقى حالة واحدة بس: القصة قصيرة
+     *جدًا* (أقل من ACCEPTABLE_MIN_WORDS، حد أدنى منخفض يكشف عن مشكلة
+     حقيقية في التوليد، مش مجرد تفاوت طبيعي في الطول).
+  4) لو النداء اتقطع فعلاً قبل خاتمة حقيقية (looks_truncated) بعد كل
+     محاولات رفع سقف التوكنز، بنعمل نداء "إكمال خاتمة" واحد بس (مش حلقة
+     توسيعات) يطلب الجملة/الجمل الختامية فقط.
 
-  المرحلة 1 (الهوك + التمهيد + تصعيد أول): تعليمة صريحة إنه *ممنوع* يقفل
-  القصة أو يكتب الذروة أو الخاتمة دلوقتي — بس يوصف لحد نقطة تصعيد قوية.
-  هدف تقريبي: PHASE1_TARGET_RATIO من الحد الأدنى الكلي.
+النتيجة: نداءان بس في الغالب لكل محاولة كاملة (القصة + finalize)، وثلاثة
+كحد أقصى نادرًا (لو احتاج نداء إكمال خاتمة). ده بيقلل احتمال التعطل
+بسبب مشاكل عرضية بشكل كبير، وبيرشّد استهلاك الحصة اليومية المحدودة برضو.
 
-  المرحلة 2 (الذروة + الخاتمة): بعد ما المرحلة 1 توصل لطول كافٍ، نطلب من
-  الموديل يكمل *بالظبط* من حيث وقف (نفس المحادثة، فشايف نص نفسه الفعلي)
-  ويكتب الذروة والخاتمة الحقيقية.
+=== إعادة محاولة تلقائية عند أخطاء السيرفر المؤقتة (503 وما شابه) ===
+أي نداء API ممكن يفشل بسبب ضغط مؤقت على سيرفرات Gemini (503
+UNAVAILABLE) أو مشاكل شبكة عابرة (500 INTERNAL) من غير أي علاقة
+بمحتوى الطلب نفسه. قبل كده كنا بنعتبر أي استثناء زي ده فشل نهائي
+للمحاولة الكاملة فورًا. دلوقتي بنميّز هذه الأخطاء (_is_transient_error)
+ونعيد نفس النداء بعد انتظار قصير متصاعد (exponential backoff) لغاية
+TRANSIENT_RETRIES مرة، قبل ما نعتبرها فشل حقيقي يوقف المحاولة.
 
-لو أي مرحلة طلعت قصيرة عن هدفها، بنبعت رسالة "توسيع" إضافية (حد أقصى
-MAX_PHASE_EXPANSIONS لكل مرحلة) تطلب تفاصيل حسية إضافية من نفس الأحداث
-(مش أحداث جديدة)، من غير ما نطلب منه يعيد القصة من الأول.
-
-بعد ما narration الكاملة (تمهيد+تصعيد+ذروة+خاتمة) تتجمّع وتكون سليمة
-(طول كافٍ + منتهية بعلامة ترقيم واضحة)، بنعمل نداء أخير "finalize" بس
-عشان يبني باقي الحقول (title/narration_en/visual_keywords/caption/
-phonetic_hints) بناءً على نص narration النهائي المُعطى له حرفيًا —
-وممنوع عليه يعدّل فيه حرف واحد. الحقول hook/region/source_type/
-source_reference بناخدها زي ما هي من رد المرحلة 1 (مش بنطلب منه يعيدها
-تاني في الآخر، عشان نضمن تطابقها ومنعطيش الموديل فرصة يغيّرها لاحقًا).
-
-⚠️ ملاحظة SDK مهمة: جلسة client.chats.create() في مكتبة google-genai
-لبايثون (بعكس نسخة JavaScript) بتثبّت الـ config وقت إنشاء الجلسة ومفيش
-override لكل رسالة — يعني معندناش طريقة نطلب بيها نص حر في رسايل
-ونطلب JSON schema في رسالة تانية جوه نفس الـ chat session. البديل
-(المستخدم هنا) هو إدارة الـ history يدويًا: قائمة من types.Content
-بنمررها كاملة في contents= مع كل نداء client.models.generate_content،
-ونضيفلها دور المستخدم ورد الموديل بعد كل خطوة — بالظبط زي ما Chat.
-send_message شغّالة جواها، لكن مع حرية تغيير الـ config (نص حر أو JSON
-schema) في كل نداء على حدة.
-
-=== تعديل سابق: الانتقال من Groq إلى Gemini ===
-كانت النسخة السابقة بتستخدم Groq (نموذج openai/gpt-oss-120b). دلوقتي
-بتستخدم Google Gemini عبر حزمة "google-genai" الرسمية (pip install
--U google-genai)، وده غيّر 3 حاجات جوهرية:
-1) مفتاح البيئة بقى GEMINI_API_KEY بدل GROQ_API_KEY.
-2) الـ JSON Schema بتتبع صيغة Gemini (uppercase types)، عبر دالة
-   to_gemini_schema() اللي بتحوّل تعريف JSON Schema عادي تلقائيًا.
-3) مفيش reasoning_effort زي Groq's gpt-oss — البديل ThinkingConfig
-   (thinking_budget=...)، متحكم فيه عبر GEMINI_THINKING_BUDGET.
+=== ملخص التعديل الأسبق: الانتقال من Groq إلى Gemini ===
+بتستخدم Google Gemini عبر حزمة "google-genai" الرسمية (pip install -U
+google-genai). مفتاح البيئة GEMINI_API_KEY، والـ JSON Schema بتتبع صيغة
+Gemini (uppercase types) عبر to_gemini_schema()، والتحكم في مساحة
+التفكير عبر GEMINI_THINKING_BUDGET (ThinkingConfig).
 
 ⚠️ تنويه مهم وصادق (باقٍ كما هو مع أي مزوّد API): الموديل مايقدرش
 "يتحقق" فعليًا من صحة أي حديث أو نسبة رواية بشكل قاطع — مفيش أداة بحث
@@ -68,6 +55,7 @@ import os
 import re
 import json
 import sys
+import time
 from pathlib import Path
 
 from google import genai
@@ -81,64 +69,43 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 TEMPERATURE = 0.75
-# سقف التوكنز لنداءات النص الحر (كل مرحلة/توسيع بيكتب جزء من القصة بس،
-# مش القصة كلها، فمحتاج سقف أصغر من نداء finalize). اترفعت من 4000
-# لـ 6000 عشان تستوعب THINKING_BUDGET + النص الظاهر مع بعض من غير ما
-# تحتاج نداء "توسيع سقف" إضافي في الحالة العادية — انظر ملاحظة الحصة
-# (quota) تحت، كل نداء زيادة بيستهلك من الحصة اليومية المحدودة.
-PHASE_MAX_TOKENS = 6000
+
+# سقف التوكنز لنداء القصة الكاملة (نداء واحد بس بيكتب narration من الهوك
+# لحد الخاتمة). سخي عشان القصة كلها + مساحة تفكير في نفس النداء.
+STORY_MAX_TOKENS = 8000
 # سقف نداء finalize (JSON فيه narration_en كمصفوفة بعدد جمل القصة كاملة
-# + باقي الحقول) — سيبناه سخي زي الأصل عشان القصص الطويلة (900+ كلمة
-# ممكن تبقى 60-90 جملة).
+# + باقي الحقول) — قصص طويلة (800+ كلمة) ممكن تبقى 50-80 جملة.
 FINALIZE_MAX_TOKENS = 9000
 # ⚠️ مهم: thinking_budget بياكل من نفس سقف max_output_tokens بتاع
-# النداء (مش سقف منفصل) — يعني لو THINKING_BUDGET=2048 وPHASE_MAX_TOKENS
-# =4000، يفضل ~2000 توكن بس للنص الظاهر قبل ما يترفض بـ MAX_TOKENS. ده
-# كان بيسبب تكرار قطع/إعادة نداء (استهلاك حصة يومية إضافي من غير داعي).
-# بما إن التصميم الجديد بيقسّم المهمة لخطوات أصغر وأبسط (مرحلة واحدة في
-# كل نداء بدل قصة كاملة في نداء واحد)، الحاجة لـ thinking budget عالي
-# قلّت كتير — انصح تخفّض GEMINI_THINKING_BUDGET في الـ workflow لحوالي
-# 256-512 بدل 2048 الحالية، عشان تقلل عدد نداءات الإعادة.
+# النداء (مش سقف منفصل). خليه منخفض (0-512) إلا لو محتاج تفكير أعمق.
 THINKING_BUDGET = int(os.getenv("GEMINI_THINKING_BUDGET", "0"))
 
 # === فيديو كامل فوق 5 دقايق، ريل واحد بس (مقتطف من أول الفيديو) ===
 # النسبة الموثقة تجريبيًا لسرعة نطق edge-tts (بعد وقفات الجمل): 300
-# كلمة ≈ 94-150 ثانية. القيمة الافتراضية هنا 1050 كلمة (مع
-# MIN_NARRATION_WORDS=970 في الـ workflow كحد أدنى صارم) لضمان تخطي
-# الـ300 ثانية حتى في أسرع سيناريو نطق محتمل.
-TARGET_WORDS = int(os.getenv("TARGET_WORDS", "1050"))
-MIN_NARRATION_WORDS = os.environ.get("MIN_NARRATION_WORDS")
-MIN_NARRATION_WORDS = int(MIN_NARRATION_WORDS) if MIN_NARRATION_WORDS else None
+# كلمة ≈ 94-150 ثانية. الهدف هنا تقريبي (مش صارم) — انظر ACCEPTABLE_MIN_WORDS
+# تحت للحد الأدنى المقبول فعليًا.
+TARGET_WORDS = int(os.getenv("TARGET_WORDS", "900"))
 
-# نسبة الحد الأدنى الكلي اللي المرحلة 1 (تمهيد+تصعيد، من غير ذروة أو
-# خاتمة) لازم توصلها تقريبًا قبل ما ننتقل للمرحلة 2 (ذروة+خاتمة).
-PHASE1_TARGET_RATIO = 0.55
-# حد أقصى لعدد نداءات "التوسيع" الإضافية المسموح بيها داخل كل مرحلة
-# (لو المرحلة طلعت قصيرة عن هدفها). كل توسيع بيضيف تفاصيل حسية لنفس
-# الأحداث، مش أحداث جديدة. نزلت من 2 لـ 1 عشان ترشيد استهلاك الحصة
-# اليومية المحدودة (Free Tier) — انظر ملاحظة MAX_ATTEMPTS تحت.
-MAX_PHASE_EXPANSIONS = 1
-# لو نداء واحد اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف
-# ونعيد نفس النداء (مش المحاولة كلها). نزلت من 2 لـ 1 لنفس سبب ترشيد
-# الحصة — ورفع PHASE_MAX_TOKENS الأساسي فوق قلل الحاجة لده أصلاً.
-BUDGET_RETRIES = 1
+# الحد الأدنى المقبول فعليًا للطول النهائي. ده مش هدف نطمح له — ده خط
+# دفاع بس ضد قصة قصيرة *جدًا* (علامة على مشكلة حقيقية في التوليد، زي
+# قفل مبكر جدًا أو رفض جزئي). أي طول فوق الرقم ده بيتقبل زي ما هو من
+# غير أي محاولة توسيع أو إعادة، حتى لو أقل من TARGET_WORDS.
+ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", "650"))
+
+# لو نداء اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف ونعيد
+# نفس النداء (مش المحاولة كلها).
+BUDGET_RETRIES = 2
 LENGTH_ESCALATION = 1.5
 
-# === ⚠️ حصة Gemini المجانية (Free Tier) محدودة جدًا: 20 نداء/يوم بس
-# لموديل gemini-2.5-flash (شوف رسالة الخطأ 429 RESOURCE_EXHAUSTED،
-# quotaId: GenerateRequestsPerDayPerProjectPerModel-FreeTier). كل محاولة
-# كاملة (attempt) دلوقتي بتستخدم عدة نداءات (مرحلة 1 + توسيعها المحتمل +
-# مرحلة 2 + توسيعها المحتمل + finalize)، مش نداء واحد زي التصميم القديم
-# — فأسوأ سيناريو لمحاولة واحدة (كل خطوة بتاخد إعادة MAX_TOKENS كمان):
-# 5 خطوات منطقية × (1 + BUDGET_RETRIES) = حتى 10 نداءات. إعادة محاولة
-# كاملة تانية (MAX_ATTEMPTS=2) كانت بتوصل بالحسبة دي لـ 20 نداء في
-# تشغيلة واحدة بس — يعني ممكن تستهلك الحصة اليومية كلها في تشغيلة واحدة
-# فاشلة (زي ما حصل فعليًا). عشان كده MAX_ATTEMPTS بقت 1 افتراضيًا: لو
-# فشلت المحاولة، الأولى نخليها تفشل بوضوح (ونعيد التشغيل من الـ workflow
-# لاحقًا أو في اليوم التالي) بدل ما نضمن استهلاك الحصة بالكامل. لو
-# حسابك مدفوع (Pay-as-you-go) أو الحصة اترفعت، اضبط MAX_FULL_ATTEMPTS
-# في الـ workflow لأي رقم أعلى.
-MAX_ATTEMPTS = int(os.getenv("MAX_FULL_ATTEMPTS", "1"))
+# عدد إعادات المحاولة لنفس النداء عند خطأ سيرفر مؤقت (503 UNAVAILABLE،
+# 500 INTERNAL، إلخ) قبل ما نعتبره فشل حقيقي. الانتظار بيتصاعد
+# (TRANSIENT_BACKOFF_BASE * 2^المحاولة) عشان نديله فرصة الضغط يقل.
+TRANSIENT_RETRIES = 3
+TRANSIENT_BACKOFF_BASE = 3  # ثواني
+
+# بما إن كل محاولة كاملة بقت تستهلك نداءين (نادرًا 3) بدل 5-10، ممكن
+# نسمح بمحاولة كاملة تانية من غير ما نخاطر باستهلاك الحصة اليومية كلها.
+MAX_ATTEMPTS = int(os.getenv("MAX_FULL_ATTEMPTS", "2"))
 
 HISTORY_LIMIT = 8
 REGION_HISTORY_LIMIT = 6
@@ -180,8 +147,9 @@ EPISODE_SCHEMA = {
 REQUIRED_KEYS = set(EPISODE_SCHEMA["required"])
 
 # schema نداء finalize بس — من غير narration (بنحطها إحنا يدويًا من نص
-# المرحلتين المُجمَّع) ومن غير hook/region/source_type/source_reference
-# (بناخدها زي ما هي من رد المرحلة 1 بدل ما نطلب من الموديل يعيدها).
+# القصة النهائي) ومن غير hook/region/source_type/source_reference (بناخدها
+# زي ما هي من رد نداء القصة، بدل ما نطلب من الموديل يعيدها تاني في
+# الآخر، عشان نضمن تطابقها ومنعطيش الموديل فرصة يغيّرها لاحقًا).
 FINALIZE_SCHEMA = {
     "type": "object",
     "properties": {
@@ -281,9 +249,7 @@ _TRAILING_PAREN_GROUP = re.compile(r"[\(（][^()（）]*[\)）]\s*$")
 def looks_truncated(narration: str) -> bool:
     """بيعتبر النص متقطوع لو آخر جزء "حقيقي" فيه (بعد تجاهل أي ملحق
     استشهاد كامل بين قوسين في الآخر، وبعد تجاهل أي أقواس/علامات اقتباس
-    ختامية مفردة) مش منتهي بعلامة نهاية جملة حقيقية. ده بيمنع false
-    positive شائع لما الجملة الأخيرة تنتهي باستشهاد حديث بين قوسين، أو
-    آية قرآنية بين قوسين مزخرفين، بدل نقطة عادية مباشرة بعد النص."""
+    ختامية مفردة) مش منتهي بعلامة نهاية جملة حقيقية."""
     stripped = narration.strip()
     if not stripped:
         return True
@@ -302,9 +268,7 @@ def looks_truncated(narration: str) -> bool:
 
 def split_arabic_sentences(narration: str) -> list[str]:
     """نفس منطق split_sentences() في generate_voice.py بالضبط، عشان
-    التقسيم هنا يطابق التقسيم وقت المزامنة مع الصوت حرفيًا. بنستخدمها
-    عشان نقسّم narration بأنفسنا (بدل ما نسيب الموديل يخمّن التقسيم) قبل
-    ما نطلب narration_en في نداء finalize."""
+    التقسيم هنا يطابق التقسيم وقت المزامنة مع الصوت حرفيًا."""
     parts = re.split(r"(?<=[.!؟…])\s+", narration.strip())
     return [part.strip() for part in parts if part.strip()]
 
@@ -314,14 +278,12 @@ def count_arabic_sentences(narration: str) -> int:
 
 
 def clean_continuation_text(text: str) -> str:
-    """بينضّف رد المراحل/التوسيعات (نص حر) من أي تسمية أو تنسيق زايد لو
-    الموديل حط حاجة زي 'NARRATION:' أو أسوار markdown بالغلط، ومن أي
-    علامات اقتباس محيطة بالنص كله."""
+    """بينضّف رد النداءات (نص حر) من أي تسمية أو تنسيق زايد لو الموديل
+    حط حاجة زي 'NARRATION:' أو أسوار markdown بالغلط، ومن أي علامات
+    اقتباس محيطة بالنص كله."""
     cleaned = text.strip()
     cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
     cleaned = re.sub(r"^(NARRATION|narration)\s*:\s*", "", cleaned).strip()
-    # narration نص هيتقرأ بصوت (TTS) ويتحط كترجمة على الشاشة، فأي زخرفة
-    # markdown (** أو __) لازم تتشال منه — مش بس من التسميات زي فوق.
     cleaned = cleaned.replace("**", "").replace("__", "").strip()
     if len(cleaned) >= 2 and cleaned[0] == cleaned[-1] and cleaned[0] in ('"', "”", "'"):
         cleaned = cleaned[1:-1].strip()
@@ -330,17 +292,14 @@ def clean_continuation_text(text: str) -> str:
 
 def _strip_label_markup(text: str) -> str:
     """يشيل زخرفة markdown شائعة ممكن الموديل يحطها حوالين تسميات
-    الحقول رغم إننا مطلبناهاش (زي **HOOK:** أو ### HOOK: أو - HOOK:)،
-    عشان regex التحليل في parse_labeled_response ميفشلش بسبب الزخرفة
-    دي بس. ملحوظة: ده سبب فشل حقيقي حصل فعليًا ('ناقص حقل hook') لما
-    الموديل زوّق التسمية بـ ** من غير ما يتغيّر أي حاجة تانية في الرد."""
+    الحقول رغم إننا مطلبناهاش (زي **HOOK:** أو ### HOOK: أو - HOOK:)."""
     cleaned = text.replace("**", "").replace("__", "")
     cleaned = re.sub(r"(?m)^[ \t]*[#>\-*]+[ \t]*", "", cleaned)
     return cleaned
 
 
 def parse_labeled_response(text: str) -> dict:
-    """يحلّل رد المرحلة 1 (نص حر بصيغة HOOK:/REGION:/SOURCE_TYPE:/
+    """يحلّل رد نداء القصة (نص حر بصيغة HOOK:/REGION:/SOURCE_TYPE:/
     SOURCE_REFERENCE:/NARRATION: كل حقل في سطر بعنوانه) لقاموس بمفاتيح
     lowercase. بيرجع قاموس فاضي لو مقدرش يلاقي أي حقل."""
     cleaned = text.strip()
@@ -369,13 +328,12 @@ def validate_episode(episode: dict) -> str | None:
     if looks_truncated(narration):
         return "نص narration النهائي شكله متقطوع (مش منتهي بعلامة ترقيم واضحة)"
 
-    if MIN_NARRATION_WORDS is not None:
-        word_count = count_words(narration)
-        if word_count < MIN_NARRATION_WORDS:
-            return (
-                f"نص narration النهائي قصير جدًا ({word_count} كلمة، "
-                f"الحد الأدنى المطلوب {MIN_NARRATION_WORDS})"
-            )
+    word_count = count_words(narration)
+    if word_count < ACCEPTABLE_MIN_WORDS:
+        return (
+            f"نص narration النهائي قصير جدًا ({word_count} كلمة، "
+            f"الحد الأدنى المقبول {ACCEPTABLE_MIN_WORDS})"
+        )
 
     if not episode.get("visual_keywords"):
         return "حقل visual_keywords فاضي"
@@ -414,8 +372,16 @@ def log_usage(response, label: str) -> None:
     )
 
 
+def _is_transient_error(exc: Exception) -> bool:
+    """بيحدّد لو الاستثناء ده مشكلة عرضية (ضغط مؤقت على السيرفر/شبكة)
+    يستاهل إعادة محاولة، مقابل خطأ حقيقي (مفتاح غلط، حصة خلصت نهائيًا،
+    محتوى اتحجب، إلخ) مفيش داعي نعيد المحاولة فيه."""
+    text = str(exc).upper()
+    transient_markers = ("503", "UNAVAILABLE", "500", "INTERNAL", "OVERLOADED", "DEADLINE_EXCEEDED", "TIMEOUT")
+    return any(marker in text for marker in transient_markers)
+
+
 # ─────────────────────── إدارة المحادثة يدويًا ───────────────────────
-# (انظر الملاحظة في أعلى الملف عن سبب عدم استخدام client.chats.create)
 
 def make_content(role: str, text: str) -> types.Content:
     return types.Content(role=role, parts=[types.Part(text=text)])
@@ -450,36 +416,56 @@ def call_model(
     budget: int,
     label: str,
 ):
-    """بيبعت prompt_text كدور مستخدم جديد فوق الـ history الحالي، مع
-    إعادة نفس النداء (بسقف توكنز أعلى) لو اتقطع بسبب MAX_TOKENS. بيضيف
-    الدور (مستخدم + رد الموديل) للـ history مرة واحدة بس، بعد ما يستقر
-    على رد نهائي، عشان مايتلوثش الـ history بمحاولات فاشلة وسط الطريق.
-    بيرجّع (نص الرد, finish_reason)."""
+    """بيبعت prompt_text كدور مستخدم جديد فوق الـ history الحالي.
+    بيعالج نوعين من المشاكل بشكل منفصل:
+      - MAX_TOKENS (النداء اتقطع بسبب سقف التوكنز): بيرفع السقف ويعيد
+        نفس النداء (BUDGET_RETRIES مرة).
+      - خطأ سيرفر مؤقت (503/500/إلخ): بينتظر فترة متصاعدة ويعيد نفس
+        النداء بنفس السقف (TRANSIENT_RETRIES مرة) قبل ما يستسلم.
+    بيضيف الدور (مستخدم + رد الموديل) للـ history مرة واحدة بس، بعد ما
+    يستقر على رد نهائي. بيرجّع (نص الرد, finish_reason)."""
     attempt_budget = budget
     response = None
     finish_reason = ""
-    for retry in range(BUDGET_RETRIES + 1):
+    for length_retry in range(BUDGET_RETRIES + 1):
         contents = history + [make_content("user", prompt_text)]
-        try:
-            response = client.models.generate_content(
-                model=MODEL, contents=contents,
-                config=config_builder(system_prompt, attempt_budget),
-            )
-        except Exception as exc:  # noqa: BLE001 — أخطاء شبكة/حصة/حجب أمان
-            raise AttemptFailed(f"فشل استدعاء Gemini API في مرحلة {label} ({exc})") from exc
+        last_exc: Exception | None = None
+        response = None
+        for transient_retry in range(TRANSIENT_RETRIES + 1):
+            try:
+                response = client.models.generate_content(
+                    model=MODEL, contents=contents,
+                    config=config_builder(system_prompt, attempt_budget),
+                )
+                last_exc = None
+                break
+            except Exception as exc:  # noqa: BLE001 — أخطاء شبكة/حصة/حجب أمان
+                last_exc = exc
+                if _is_transient_error(exc) and transient_retry < TRANSIENT_RETRIES:
+                    wait = TRANSIENT_BACKOFF_BASE * (2 ** transient_retry)
+                    print(
+                        f"   ⏳ {label}: خطأ مؤقت من السيرفر ({exc}) — "
+                        f"إعادة المحاولة بعد {wait} ثانية..."
+                    )
+                    time.sleep(wait)
+                    continue
+                break
+
+        if response is None:
+            raise AttemptFailed(f"فشل استدعاء Gemini API في {label} ({last_exc})") from last_exc
 
         log_usage(response, label)
         candidates = getattr(response, "candidates", None) or []
         finish_reason = str(candidates[0].finish_reason) if candidates else ""
 
-        if "MAX_TOKENS" in finish_reason and retry < BUDGET_RETRIES:
+        if "MAX_TOKENS" in finish_reason and length_retry < BUDGET_RETRIES:
             attempt_budget = int(attempt_budget * LENGTH_ESCALATION)
             print(f"   ⚠️ {label}: اتقطع بسبب حد التوكنز — هرفع السقف لـ {attempt_budget} وأعيد نفس النداء...")
             continue
         break
 
     if "SAFETY" in finish_reason or "PROHIBITED" in finish_reason or "BLOCKLIST" in finish_reason:
-        raise AttemptFailed(f"الرد اتحجب من Gemini في مرحلة {label} (finish_reason={finish_reason})")
+        raise AttemptFailed(f"الرد اتحجب من Gemini في {label} (finish_reason={finish_reason})")
 
     reply_text = response.text or ""
     history.append(make_content("user", prompt_text))
@@ -489,16 +475,13 @@ def call_model(
 
 # ─────────────────────────── نصوص البرومبت ───────────────────────────
 
-def build_phase1_prompt(
+def build_story_prompt(
     recent_titles: list[str], recent_regions: list[str], recent_hooks: list[str],
-    phase1_target: int,
+    target_words: int,
 ) -> str:
     message = (
-        "اكتب المرحلة الأولى فقط من حلقة جديدة تمامًا — التمهيد وتصعيد "
-        "الأحداث بس. 🚫 ممنوع منعًا باتًا في هذه الرسالة إنك تكتب الذروة "
-        "أو الحل أو الخاتمة أو أي عبرة ختامية — توقف عند نقطة تصعيد قوية "
-        "قبل الذروة مباشرة، وسأطلب منك كتابة الذروة والخاتمة في رسالة "
-        "منفصلة بعد كده.\n\n"
+        "اكتب حلقة جديدة تمامًا — قصة دينية/تاريخية إسلامية كاملة من "
+        "الهوك للتمهيد للتصعيد للذروة للخاتمة، في رد واحد.\n\n"
         "⚠️ اللغة: narration بالكامل باللغة العربية الفصحى المبسّطة "
         "(Modern Standard Arabic) فقط، ممنوع أي لهجة عامية.\n\n"
         "⚠️ التوثيق الشرعي/التاريخي: الواقعة لازم تكون ثابتة من القرآن "
@@ -517,10 +500,18 @@ def build_phase1_prompt(
         "مثير، أو تفصيلة تاريخية مدهشة وحقيقية، أو مشهد لحظة الذروة قبل "
         "ما تُروى)، من غير أي تهويل يخالف وقار الموضوع الديني.\n\n"
         "⚠️ التنويع: اختار عصرًا/شخصية محورية مختلفة عن اللي اتذكرت تحت.\n\n"
-        f"⚠️ الطول: اكتب هذه المرحلة (تمهيد+تصعيد بس) في حدود "
-        f"{phase1_target} كلمة عربية تقريبًا (يزيد أو ينقص 20%). أضف "
-        "تفاصيل حسّية ووصفية واردة في المصدر نفسه (المكان، الأجواء، "
-        "ردود الأفعال) بدل الاختصار، من غير اختراع أي تفصيلة غير موثقة.\n\n"
+        f"⚠️ الطول: اكتب narration كاملة (تمهيد+تصعيد+ذروة+خاتمة) في حدود "
+        f"{target_words} كلمة عربية تقريبًا. لو المصدر مش فيه تفاصيل كافية "
+        "توصلك للرقم ده بالظبط، اقفل القصة بخاتمة حقيقية بدل ما تحشو "
+        "تفاصيل غير موثقة — القصة الكاملة والمتماسكة أهم من الوصول لرقم "
+        "كلمات بعينه. لازم آخر جملة تنتهي بعلامة ترقيم واضحة (نقطة أو "
+        "علامة تعجب أو علامة استفهام أو علامات حذف) تدل فعليًا على اكتمال "
+        "القصة.\n\n"
+        "⚠️ مهم جدًا بخصوص آخر حرف في ردك: لو ختمت القصة باستشهاد بحديث "
+        "بين قوسين مثل (رواه البخاري) أو بآية قرآنية بين قوسين مزخرفين "
+        "﴿...﴾، لازم تحط نقطة \".\" فورًا بعد القوس الختامي مباشرة (من "
+        "غير مسافة قبلها). آخر حرف حرفيًا في ردك يجب أن يكون واحدًا من: "
+        "نقطة (.) أو علامة تعجب (!) أو علامة استفهام (؟) — ولا شيء بعده.\n\n"
         "اكتب ردك بالضبط بهذا الشكل (كل حقل في سطر بعنوانه، ومفيش أي "
         "نص أو تعليق إضافي خارج الحقول دي):\n\n"
         "HOOK: <جملة الهوك>\n"
@@ -528,8 +519,7 @@ def build_phase1_prompt(
         "SOURCE_TYPE: <نوع المصدر (قرآن/حديث صحيح/حديث حسن/مصدر تاريخي "
         "معتمد)>\n"
         "SOURCE_REFERENCE: <المرجع الدقيق>\n"
-        "NARRATION:\n<نص المرحلة الأولى بالكامل — تمهيد وتصعيد بس، من "
-        "غير ذروة أو خاتمة>"
+        "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
     )
     if recent_titles:
         message += "\n\nالعناوين اللي اتستخدمت قبل كده (تجنب أي تشابه معاها):\n- " + "\n- ".join(recent_titles)
@@ -543,52 +533,9 @@ def build_phase1_prompt(
     return message
 
 
-def build_phase1_expand_prompt(remaining_words: int) -> str:
-    return (
-        f"لسه في مرحلة التمهيد والتصعيد بس (مش الذروة ولا الخاتمة بعد). "
-        f"وسّع فيما كتبته بتفاصيل حسّية إضافية واردة في المصدر نفسه "
-        "(المكان، الأصوات، ردود الأفعال، المشاعر) من غير ما تتقدم للذروة "
-        "أو تلمّح لنهاية القصة، ومن غير اختراع أي تفصيلة جديدة غير "
-        f"موثقة. أضف حوالي {remaining_words} كلمة إضافية. اكتب استكمال "
-        "نص narration مباشرة من حيث توقفت بالظبط — من غير أي تسمية أو "
-        "تعليق أو إعادة لأي جزء سبق كتابته."
-    )
-
-
-def build_phase2_prompt(phase2_target: int) -> str:
-    return (
-        "دلوقتي اكتب الجزء الأخير من القصة: الذروة (لحظة الحسم الفعلية "
-        "للواقعة كما ثبتت في المصدر) ثم خاتمة حقيقية فيها عبرة أو حكمة "
-        "واضحة تقفل القصة تمامًا. لازم آخر جملة في ردك تنتهي بعلامة "
-        "ترقيم واضحة (نقطة أو علامة تعجب أو علامة استفهام أو علامات "
-        "حذف) تدل فعليًا على اكتمال القصة — القطع قبل الوصول لخاتمة "
-        "حقيقية غير مقبول إطلاقًا. ممنوع اختراع أي حدث أو تفصيلة غير "
-        f"واردة في المصدر. اكتب هذا الجزء في حدود {phase2_target} إلى "
-        f"{int(phase2_target * 1.6)} كلمة تقريبًا (لا تقل عن الحد الأدنى، "
-        "ولا تُطِل أكتر من كده من غير داعٍ)، بتفاصيل حسّية كافية من غير "
-        "استعجال للخاتمة. اكتب "
-        "استكمال نص narration مباشرة من حيث توقفت آخر مرة — من غير "
-        "إعادة أي جزء سبق كتابته ومن غير أي تسمية أو تعليق.\n\n"
-        "⚠️ مهم جدًا بخصوص آخر حرف في ردك: لو ختمت القصة باستشهاد بحديث "
-        "بين قوسين مثل (رواه البخاري) أو بآية قرآنية بين قوسين مزخرفين "
-        "﴿...﴾، لازم تحط نقطة \".\" فورًا بعد القوس الختامي مباشرة (من "
-        "غير مسافة قبلها). آخر حرف حرفيًا في ردك يجب أن يكون واحدًا من: "
-        "نقطة (.) أو علامة تعجب (!) أو علامة استفهام (؟) — ولا شيء بعده."
-    )
-
-
-def build_phase2_expand_short_prompt(remaining_words: int) -> str:
-    return (
-        "القصة وصلت لخاتمتها لكن عدد الكلمات لسه أقل من المطلوب بحوالي "
-        f"{remaining_words} كلمة. وسّع في وصف مشهد الذروة أو الخاتمة "
-        "نفسها بتفاصيل حسّية ووصفية إضافية من المصدر (المشاعر، الأصوات، "
-        "رد الفعل، السياق المكاني والزمني)، من غير إضافة أي حدث جديد لم "
-        "يثبت فعلاً ومن غير تكرار أي جملة سابقة. حافظ على إن آخر جملة "
-        "في استكمالك لسه تنتهي بعلامة ترقيم واضحة تدل على اكتمال القصة."
-    )
-
-
-def build_phase2_expand_truncated_prompt() -> str:
+def build_finish_ending_prompt() -> str:
+    """نداء واحد بس (مش حلقة) لو القصة اتقطعت قبل خاتمة حقيقية بعد كل
+    محاولات رفع سقف التوكنز في نداء القصة الأساسي."""
     return (
         "النص اتقطع قبل ما يوصل لخاتمة حقيقية. اكتب دلوقتي فقط الجملة "
         "أو الجمل الختامية اللي تقفل القصة بعبرة أو حكمة واضحة مبنية "
@@ -603,20 +550,15 @@ def build_phase2_expand_truncated_prompt() -> str:
 
 def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str:
     # نقسّم narration بأنفسنا (بنفس منطق التقسيم اللي هيُستخدم لاحقًا في
-    # المزامنة مع الصوت) بدل ما نسيب الموديل يخمّن تقسيمه بنفسه. في نص
-    # طويل، الموديل بيميل يدمج جمل كتير في وحدة ترجمة واحدة (فقرة) بدل
-    # ما يتبع نفس تقسيم الجمل الدقيق المطلوب، فبيطلع narration_en بعدد
-    # عناصر أقل من عدد الجمل الفعلي. تمرير الجمل مرقّمة صراحة بيلغي
-    # الحاجة لأي "تخمين" من الموديل للتقسيم نفسه.
+    # المزامنة مع الصوت) بدل ما نسيب الموديل يخمّن تقسيمه بنفسه.
     sentences = split_arabic_sentences(final_narration)
     numbered_sentences = "\n".join(f"{i + 1}. {s}" for i, s in enumerate(sentences))
     sentence_count = len(sentences)
 
     message = (
-        "هذا هو نص narration النهائي والمعتمد بالكامل للحلقة (تجميع كل "
-        "ما كتبته في الرسائل السابقة). لا تُعدّل فيه أو تُعِد صياغته أو "
-        "تختصره أو تُطِله بأي شكل — دورك الآن بس إنك تبني باقي حقول "
-        "الحلقة بناءً عليه:\n\n"
+        "هذا هو نص narration النهائي والمعتمد بالكامل للحلقة. لا تُعدّل "
+        "فيه أو تُعِد صياغته أو تختصره أو تُطِله بأي شكل — دورك الآن بس "
+        "إنك تبني باقي حقول الحلقة بناءً عليه:\n\n"
         f"--- بداية narration النهائي ---\n{final_narration}\n"
         "--- نهاية narration النهائي ---\n\n"
         f"⚠️ narration أعلاه مقسّم يدويًا وبشكل نهائي إلى {sentence_count} "
@@ -659,23 +601,22 @@ def run_single_attempt(
     recent_titles: list[str],
     recent_regions: list[str],
     recent_hooks: list[str],
-    effective_min: int,
-    phase1_target: int,
+    target_words: int,
     attempt_label: str,
 ) -> dict:
     history: list[types.Content] = []
 
-    # ── المرحلة 1: الهوك + التمهيد + تصعيد أول ──
+    # ── نداء القصة الكاملة (هوك + تمهيد + تصعيد + ذروة + خاتمة) ──
     reply, _ = call_model(
         client, history,
-        build_phase1_prompt(recent_titles, recent_regions, recent_hooks, phase1_target),
-        free_text_config, system_prompt, PHASE_MAX_TOKENS,
-        f"{attempt_label} | مرحلة 1",
+        build_story_prompt(recent_titles, recent_regions, recent_hooks, target_words),
+        free_text_config, system_prompt, STORY_MAX_TOKENS,
+        f"{attempt_label} | القصة",
     )
     fields = parse_labeled_response(reply)
     for key in ("hook", "region", "source_type", "source_reference", "narration"):
         if not fields.get(key, "").strip():
-            raise AttemptFailed(f"رد المرحلة 1 ناقص حقل '{key}' أو فاضي")
+            raise AttemptFailed(f"رد نداء القصة ناقص حقل '{key}' أو فاضي")
 
     hook = fields["hook"].replace("**", "").replace("__", "").strip()
     region = fields["region"].replace("**", "").replace("__", "").strip()
@@ -683,58 +624,33 @@ def run_single_attempt(
     source_reference = fields["source_reference"].replace("**", "").replace("__", "").strip()
     narration = clean_continuation_text(fields["narration"])
 
-    print(f"   📝 مرحلة 1: {count_words(narration)} كلمة (هدف تقريبي {phase1_target})")
+    print(f"   📝 القصة: {count_words(narration)} كلمة (هدف تقريبي {target_words})")
 
-    # توسيع المرحلة 1 لو لسه قصيرة عن هدفها
-    for expansion in range(1, MAX_PHASE_EXPANSIONS + 1):
-        if count_words(narration) >= phase1_target:
-            break
-        remaining = phase1_target - count_words(narration)
+    # لو اتقطعت قبل خاتمة حقيقية، نداء واحد بس يكمّل الخاتمة (مش حلقة
+    # توسيعات) — لو لسه متقطوعة بعده، نعتبرها فشل حقيقي للمحاولة.
+    if looks_truncated(narration):
         reply, _ = call_model(
-            client, history, build_phase1_expand_prompt(remaining),
-            free_text_config, system_prompt, PHASE_MAX_TOKENS,
-            f"{attempt_label} | مرحلة 1 - توسيع {expansion}",
+            client, history, build_finish_ending_prompt(),
+            free_text_config, system_prompt, STORY_MAX_TOKENS,
+            f"{attempt_label} | إكمال الخاتمة",
         )
         narration += " " + clean_continuation_text(reply)
-        print(f"   📝 مرحلة 1 بعد توسيع {expansion}: {count_words(narration)} كلمة")
+        print(f"   📝 بعد إكمال الخاتمة: {count_words(narration)} كلمة")
 
-    # ── المرحلة 2: الذروة + الخاتمة ──
-    phase2_target = max(effective_min - count_words(narration), 150)
-    reply, _ = call_model(
-        client, history, build_phase2_prompt(phase2_target),
-        free_text_config, system_prompt, PHASE_MAX_TOKENS,
-        f"{attempt_label} | مرحلة 2",
-    )
-    narration += " " + clean_continuation_text(reply)
-    print(f"   📝 مرحلة 2: الإجمالي بقى {count_words(narration)} كلمة (الحد الأدنى الكلي {effective_min})")
-
-    # توسيع المرحلة 2 لو لسه قصيرة أو متقطوعة
-    for expansion in range(1, MAX_PHASE_EXPANSIONS + 1):
-        short = count_words(narration) < effective_min
-        truncated = looks_truncated(narration)
-        if not short and not truncated:
-            break
-        if short:
-            remaining = effective_min - count_words(narration)
-            prompt = build_phase2_expand_short_prompt(remaining)
-        else:
-            prompt = build_phase2_expand_truncated_prompt()
-        reply, _ = call_model(
-            client, history, prompt,
-            free_text_config, system_prompt, PHASE_MAX_TOKENS,
-            f"{attempt_label} | مرحلة 2 - توسيع {expansion}",
-        )
-        narration += " " + clean_continuation_text(reply)
-        print(f"   📝 مرحلة 2 بعد توسيع {expansion}: {count_words(narration)} كلمة")
+    if looks_truncated(narration):
+        raise AttemptFailed("narration لسه متقطوعة بعد محاولة إكمال الخاتمة (مش منتهية بعلامة ترقيم واضحة)")
 
     final_word_count = count_words(narration)
-    if final_word_count < effective_min:
+    if final_word_count < ACCEPTABLE_MIN_WORDS:
         raise AttemptFailed(
-            f"narration لسه قصيرة بعد كل التوسيعات ({final_word_count} كلمة، "
-            f"الحد الأدنى {effective_min})"
+            f"narration قصيرة جدًا ({final_word_count} كلمة، "
+            f"الحد الأدنى المقبول {ACCEPTABLE_MIN_WORDS})"
         )
-    if looks_truncated(narration):
-        raise AttemptFailed("narration لسه متقطوعة بعد كل التوسيعات (مش منتهية بعلامة ترقيم واضحة)")
+    if final_word_count < target_words:
+        print(
+            f"   ℹ️ الطول ({final_word_count} كلمة) أقل من الهدف "
+            f"({target_words}) لكنه فوق الحد الأدنى المقبول — هيتقبل من غير إعادة."
+        )
 
     # ── نداء finalize: باقي الحقول بناءً على narration النهائي ──
     reply, _ = call_model(
@@ -778,14 +694,9 @@ def generate_episode() -> dict:
     recent_regions = load_used_regions()
     recent_hooks = load_used_hooks()
 
-    effective_min = TARGET_WORDS
-    if MIN_NARRATION_WORDS is not None:
-        effective_min = max(effective_min, MIN_NARRATION_WORDS)
-    phase1_target = int(effective_min * PHASE1_TARGET_RATIO)
-
     print(
         f"🕌 الموديل: {MODEL} | thinking_budget: {THINKING_BUDGET} | "
-        f"الحد الأدنى الكلي: {effective_min} كلمة | هدف مرحلة 1: {phase1_target} كلمة"
+        f"هدف الطول: {TARGET_WORDS} كلمة | الحد الأدنى المقبول: {ACCEPTABLE_MIN_WORDS} كلمة"
     )
 
     last_error = "لا يوجد"
@@ -794,7 +705,7 @@ def generate_episode() -> dict:
         try:
             return run_single_attempt(
                 client, system_prompt, recent_titles, recent_regions, recent_hooks,
-                effective_min, phase1_target, f"محاولة {attempt}",
+                TARGET_WORDS, f"محاولة {attempt}",
             )
         except AttemptFailed as exc:
             last_error = str(exc)
