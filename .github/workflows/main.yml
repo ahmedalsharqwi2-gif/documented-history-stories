@@ -61,18 +61,24 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python scripts/fetch_clips.py
 
-      - name: Generate narration with Bark/Edge fallback and subtitles
+      - name: Prepare SILMA human reference audio
         env:
-          # الصوت الأساسي ثم أصوات احتياطية عند NoAudioReceived من Edge TTS.
-          TTS_ENGINE: "edge"
-          BARK_HISTORY_PROMPT: ""
-          BARK_FALLBACK_TO_EDGE: "true"
-          XTTS_SPEAKER_WAV: "assets/voice_reference.wav"
-          XTTS_FALLBACK_TO_EDGE: "true"
-          EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
-          EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"
-          EDGE_TTS_RETRIES: "3"
-          EDGE_TTS_RETRY_DELAY: "2"
+          SILMA_REFERENCE_AUDIO_B64: ${{ secrets.SILMA_REFERENCE_AUDIO_B64 }}
+        run: |
+          if [ -z "$SILMA_REFERENCE_AUDIO_B64" ]; then
+            echo "Missing SILMA_REFERENCE_AUDIO_B64 GitHub secret."
+            echo "Add a base64-encoded, consented human reference WAV before running production."
+            exit 1
+          fi
+          mkdir -p assets
+          printf '%s' "$SILMA_REFERENCE_AUDIO_B64" | base64 --decode > assets/voice_reference_human.wav
+
+      - name: Generate narration with SILMA and subtitles
+        env:
+          TTS_ENGINE: "silma"
+          SILMA_REFERENCE_WAV: "assets/voice_reference_human.wav"
+          SILMA_REFERENCE_TEXT: ${{ secrets.SILMA_REFERENCE_TEXT }}
+          SILMA_SPEED: "1.0"
         run: python scripts/generate_voice.py
 
       - name: Assemble full landscape video and platform reel

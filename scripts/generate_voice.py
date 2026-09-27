@@ -57,13 +57,16 @@ from pathlib import Path
 
 import edge_tts
 
-TTS_ENGINE = os.getenv("TTS_ENGINE", "edge").strip().lower()
+TTS_ENGINE = os.getenv("TTS_ENGINE", "silma").strip().lower()
 BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
 BARK_TEXT_TEMP = float(os.getenv("BARK_TEXT_TEMP", "0.7"))
 BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
 XTTS_MODEL = os.getenv("XTTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
 XTTS_SPEAKER_WAV = Path(os.getenv("XTTS_SPEAKER_WAV", "assets/voice_reference.wav"))
 XTTS_USE_GPU = os.getenv("XTTS_USE_GPU", "false").lower() == "true"
+SILMA_REFERENCE_WAV = Path(os.getenv("SILMA_REFERENCE_WAV", "assets/voice_reference_human.wav"))
+SILMA_REFERENCE_TEXT = os.getenv("SILMA_REFERENCE_TEXT", "").strip()
+SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.0"))
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -306,8 +309,58 @@ def synthesize_sentences_xtts(sentences: list[str]) -> list[dict]:
     return segments
 
 
+def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
+    """ينتج الصوت العربي عبر SILMA TTS v1 باستخدام مرجع بشري واحد.
+    يُحمّل النموذج مرة واحدة ثم يولّد ملف WAV لكل جملة."""
+    reference_wav = SILMA_REFERENCE_WAV
+    if not reference_wav.is_absolute():
+        reference_wav = ROOT_DIR / reference_wav
+    if not reference_wav.exists():
+        raise RuntimeError(
+            f"ملف مرجع SILMA غير موجود: {reference_wav}. "
+            "أضف ملفاً بشرياً مأذوناً به أو اضبط SILMA_REFERENCE_WAV."
+        )
+    try:
+        from silma_tts.api import SilmaTTS
+    except ImportError as exc:
+        raise RuntimeError("تعذر استيراد SILMA؛ ثبّت silma-tts في بيئة التشغيل") from exc
+
+    print(f"🟣 تحميل SILMA TTS v1 (speed={SILMA_SPEED})...")
+    silma = SilmaTTS()
+    segments = []
+    for index, raw_sentence in enumerate(sentences):
+        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
+        if not sentence:
+            continue
+        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.wav"
+        seg_path.unlink(missing_ok=True)
+        print(f"   🟣 SILMA: الجملة {index + 1}/{len(sentences)}")
+        silma.infer(
+            ref_file=str(reference_wav),
+            ref_text=SILMA_REFERENCE_TEXT or None,
+            gen_text=sentence,
+            file_wave=str(seg_path),
+            seed=None,
+            speed=SILMA_SPEED,
+        )
+        duration = probe_duration(seg_path)
+        if duration <= 0:
+            raise RuntimeError("SILMA أعاد ملفاً صوتياً فارغاً")
+        segments.append({"path": seg_path, "duration": duration, "events": None,
+                         "sentence": sentence, "is_silence": False})
+        if index < len(sentences) - 1:
+            pause = pause_duration_for(sentence)
+            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
+            build_silence_clip(pause, pause_path)
+            segments.append({"path": pause_path, "duration": pause, "events": None,
+                             "sentence": None, "is_silence": True})
+    return segments
+
+
 async def synthesize_sentences(sentences: list[str]) -> list[dict]:
-    """يختار Bark من Suno عند TTS_ENGINE=bark، وإلا يستخدم Edge TTS."""
+    """يختار محرك الصوت صراحةً؛ SILMA لا يرجع إلى Edge تلقائياً."""
+    if TTS_ENGINE == "silma":
+        return synthesize_sentences_silma(sentences)
     if TTS_ENGINE == "xtts":
         try:
             return synthesize_sentences_xtts(sentences)
