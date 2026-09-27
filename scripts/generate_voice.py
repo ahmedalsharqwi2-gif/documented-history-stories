@@ -315,19 +315,11 @@ def wrap_lines_en(text: str, max_chars: int = WRAP_MAX_CHARS_EN) -> str:
 
 
 def build_ass_header() -> str:
-    """يعرّف خطّين للترجمة: Caption (عربي، أسفل الشاشة، متزامن مع كل
-    كلمة عبر Whisper) وTranslation (إنجليزي، أعلى خط Caption مباشرة،
-    متزامن على مستوى الجملة الكاملة). ScaledBorderAndShadow + Outline
-    يضمنان وضوح القراءة فوق أي خلفية فيديو."""
+    """يعرّف تنسيق الترجمة العربية فقط، متزامنة مع الصوت عبر Whisper.
+    لا يتم إنشاء Style أو Dialogue باللغة الإنجليزية."""
     style_ar = (
         "Style: Caption,Arial,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
         "1,0,0,0,100,100,0,0,1,3,0,2,70,70,90,1"
-    )
-    # لون أصفر ذهبي خفيف (&H0000D7FF بترتيب BGR) لتمييز السطر الإنجليزي
-    # بصريًا عن السطر العربي من غير تشتيت الانتباه عن الصوت المسموع.
-    style_en = (
-        "Style: Translation,Arial,58,&H0000D7FF,&H0000D7FF,&H00000000,&H00000000,"
-        "1,0,0,0,100,100,0,0,1,3,0,2,70,70,260,1"
     )
     return (
         "[Script Info]\nScriptType: v4.00+\n"
@@ -336,7 +328,7 @@ def build_ass_header() -> str:
         "[V4+ Styles]\nFormat: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, "
         "OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, "
         "Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
-        + style_ar + "\n" + style_en
+        + style_ar
         + "\n\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     )
 
@@ -451,58 +443,7 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     return timings
 
 
-def build_english_dialogue_lines(
-    sentences: list[str],
-    narration_en: list[str],
-    all_word_events: list[dict],
-) -> list[str]:
-    """يبني أسطر ترجمة إنجليزية متزامنة على مستوى الجملة الكاملة، عبر
-    اشتقاق بداية/نهاية كل جملة من أول وآخر كلمة عربية فيها ضمن
-    all_word_events (المحسوبة فعليًا بمحاذاة Whisper أو الاحتياطي).
-    متسامح مع أي اختلاف طفيف بين عدد جمل narration_en وsentences (رغم
-    إن generate_script.py بيتحقق من التطابق قبل الحفظ) بدل ما يفشل
-    السكريبت كله بسبب مشكلة في نص الترجمة بس."""
-    if not narration_en:
-        return []
-
-    word_counts = [len(re.findall(r"\S+", sentence)) for sentence in sentences]
-    total_words = sum(word_counts)
-    if total_words != len(all_word_events):
-        print(
-            f"⚠️ عدد كلمات الجمل ({total_words}) لا يطابق عدد أحداث التوقيت "
-            f"({len(all_word_events)}) — التزامن الإنجليزي قد يكون تقريبيًا."
-        )
-
-    lines: list[str] = []
-    cursor = 0
-    for index, count in enumerate(word_counts):
-        if count <= 0:
-            continue
-        start_idx = min(cursor, max(len(all_word_events) - 1, 0))
-        end_idx = min(cursor + count, len(all_word_events)) - 1
-        end_idx = max(end_idx, start_idx)
-        cursor += count
-
-        if not all_word_events:
-            break
-        start = all_word_events[start_idx]["offset"]
-        end = all_word_events[end_idx]["offset"] + all_word_events[end_idx]["duration"]
-
-        # لو narration_en فيها عناصر أقل من عدد الجمل الفعلي (اختلاف
-        # طارئ لم يمنعه validate_episode)، بنكرر آخر ترجمة متاحة بدل ما
-        # نسيب الجملة من غير ترجمة إنجليزية على الشاشة إطلاقًا.
-        translation = narration_en[min(index, len(narration_en) - 1)]
-        text = wrap_lines_en(str(translation).strip())
-        if not text:
-            continue
-        lines.append(
-            f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.25))},"
-            f"Translation,,0,0,0,,{text}"
-        )
-    return lines
-
-
-def synthesize_voice(voice_text: str, narration_en: list[str]) -> None:
+def synthesize_voice(voice_text: str) -> None:
     sentences = split_sentences(voice_text)
     if not sentences:
         sys.exit("❌ النص فارغ ولا يمكن إنشاء صوت.")
@@ -533,9 +474,6 @@ def synthesize_voice(voice_text: str, narration_en: list[str]) -> None:
         end = group[-1]["offset"] + group[-1]["duration"]
         dialogue_lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.25))},Caption,,0,0,0,,{two_lines_ar([e['text'] for e in group])}")
 
-    # === سطر الترجمة الإنجليزية المتزامن جملة بجملة (تحويل القناة) ===
-    dialogue_lines += build_english_dialogue_lines(sentences, narration_en, all_word_events)
-
     SUBTITLES.write_text(build_ass_header() + "\n".join(dialogue_lines) + "\n", encoding="utf-8")
     for segment in segments:
         Path(segment["path"]).unlink(missing_ok=True)
@@ -560,18 +498,13 @@ def main() -> None:
     if not narration:
         sys.exit("❌ حقل narration غير موجود أو فارغ.")
 
-    narration_en = episode.get("narration_en") or []
-    if not isinstance(narration_en, list) or not narration_en:
-        print("⚠️ حقل narration_en فاضي أو غير موجود — هيتم إنتاج ترجمة عربية بس من غير إنجليزي.")
-        narration_en = []
-
     CLIPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
     phonetic_hints = episode.get("phonetic_hints") or []
     voice_text = apply_phonetic_hints(narration, phonetic_hints)
     voice_text = apply_light_diacritics(voice_text)
-    synthesize_voice(voice_text, [str(item).strip() for item in narration_en])
+    synthesize_voice(voice_text)
     mix_music_into_voice()
 
     episode.pop("parts", None)
@@ -581,7 +514,7 @@ def main() -> None:
     episode["subtitles"] = str(SUBTITLES)
     EPISODE_PATH.write_text(json.dumps(episode, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"✅ صوت كامل: {FINAL_AUDIO}")
-    print(f"✅ ترجمة ثنائية اللغة (عربي متزامن بالكلمة + إنجليزي متزامن بالجملة): {SUBTITLES}")
+    print(f"✅ ترجمة عربية متزامنة بالكلمة فقط: {SUBTITLES}")
     print(f"✅ تلميحات نطق مُطبّقة: {len(phonetic_hints)}")
     print(f"✅ أصوات Edge TTS المستخدمة/المتاحة: {VOICE_CANDIDATES}")
 
