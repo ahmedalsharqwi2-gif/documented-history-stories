@@ -22,25 +22,32 @@ UNAVAILABLE) أو مشاكل شبكة عابرة (500 INTERNAL). بنميّز ه
 (_is_transient_error) ونعيد نفس النداء بعد انتظار متصاعد (exponential
 backoff) لغاية TRANSIENT_RETRIES مرة، قبل ما نعتبرها فشل حقيقي.
 
-=== تعديل جديد: تمييز نفاد الحصة اليومية (429 RESOURCE_EXHAUSTED/PerDay) عن أي خطأ عابر ===
-ظهر فعليًا في التشغيل: محاولة كاملة أولى فشلت (رد الموديل ناقص تنسيق)،
-وبعدين المحاولة الكاملة الثانية ضربت 429 RESOURCE_EXHAUSTED بسبب انتهاء
-الحصة اليومية المجانية (quotaId: GenerateRequestsPerDayPerProjectPerModel-
-FreeTier). ده خطأ مختلف جوهريًا عن 503/500 العابر: الحصة اليومية مش
-هترجع في ثواني ولا حتى دقايق، فإعادة المحاولة (سواء على مستوى النداء أو
-على مستوى محاولة كاملة جديدة) مالهاش أي معنى ومجرد إضاعة وقت. دلوقتي
-بنكتشف الحالة دي تحديدًا (_is_daily_quota_exhausted) ونرفع استثناء
-منفصل (QuotaExhausted) بيوقف التشغيلة بالكامل فورًا من غير ما يستهلك
-باقي المحاولات الكاملة (MAX_ATTEMPTS) على الفاضي.
+=== تمييز نفاد الحصة اليومية (429 RESOURCE_EXHAUSTED/PerDay) عن أي خطأ عابر ===
+429 مع quotaId فيه "PerDay" مختلف جوهريًا عن 503/500 العابر: الحصة
+اليومية مش هترجع في ثواني ولا دقايق، فإعادة المحاولة (نداء أو محاولة
+كاملة) مالهاش معنى. بنكتشف الحالة دي تحديدًا (_is_daily_quota_exhausted)
+ونرفع استثناء منفصل (QuotaExhausted) بيوقف التشغيلة فورًا.
 
-=== تعديل جديد: تسجيل الرد الخام عند فشل تحليل الحقول ===
-لو رد نداء القصة جه "ناقص حقل" (مش متبع لفورمات HOOK:/REGION:/... اللي
-اتطلب)، كنا قبل كده بنرفض الرد ونعتبره فشل من غير أي طريقة نعرف بيها
-*ليه* فشل التحليل (تنسيق مختلف؟ تسمية بلغة تانية؟ ناقص فعلاً؟). دلوقتي
-بنطبع أول جزء من النص الخام في اللوج وقت الفشل عشان يبقى قابل للتشخيص.
-كمان أضفنا جملة توضيح صريحة في نص البرومبت نفسه إن التسميات لازم تفضل
-بالإنجليزية بالحروف الكبيرة زي ما هي بالظبط، تقليلاً لاحتمال حصول
-المشكلة دي من الأول.
+=== تعديل جديد: قبول رد نداء القصة لو جه JSON بدل الفورمات المسمّى ===
+ظهر فعليًا في التشغيل: رد نداء القصة جه بصيغة JSON كاملة (```json
+{"title": ..., "hook": ..., "narration": ..., ...}```) بدل الفورمات
+النصي المطلوب (HOOK:/REGION:/SOURCE_TYPE:/SOURCE_REFERENCE:/NARRATION:)
+رغم تعليمة صريحة في رسالة المستخدم بالالتزام بالفورمات ده — على الأغلب
+بسبب تأثير من البرومبت النظامي (islamic_history_system_prompt.md) اللي
+يمكن فيه مثال أو إشارة لصيغة JSON. قبل كده كان أي رد مش متبع للفورمات
+المسمّى بالظبط بيترفض بالكامل ويعتبر فشل محاولة، حتى لو الرد فعليًا
+فيه كل المعلومات المطلوبة بس بصيغة تانية. دلوقتي parse_labeled_response
+لو فشل، بنجرّب try_parse_json_episode() كخطة بديلة: بتحاول تفكّ الرد
+كـ JSON وتطلّع منه نفس الحقول الخمسة (hook/region/source_type/
+source_reference/narration) بس — باقي حقول الـ JSON (title/narration_en/
+visual_keywords/إلخ لو موجودة) بنتجاهلها عمدًا وهنولّدها زي العادة من
+نداء finalize، عشان نضمن تطابق narration_en مع تقسيم الجمل بتاعنا نفسه
+(split_arabic_sentences)، مش تقسيم الموديل الخاص بيه.
+
+=== تسجيل الرد الخام عند فشل تحليل الحقول بكل الطرق ===
+لو الفورمات المسمّى وJSON الاتنين فشلوا، بنطبع أول جزء من الرد الخام في
+اللوج قبل رفع AttemptFailed، عشان يبقى قابل للتشخيص بدل ما يبقى فشل
+عمياني.
 
 === ملخص التعديل الأسبق: الانتقال من Groq إلى Gemini ===
 بتستخدم Google Gemini عبر حزمة "google-genai" الرسمية (pip install -U
@@ -331,6 +338,32 @@ def parse_labeled_response(text: str) -> dict:
     return result
 
 
+def try_parse_json_episode(text: str) -> dict | None:
+    """خطة بديلة لو الموديل رد بصيغة JSON كاملة (زي EPISODE_SCHEMA) بدل
+    الفورمات المسمّى المطلوب. بتحاول تفكّ الرد كـ JSON وتطلّع منه بس
+    الحقول الخمسة اللي محتاجينها (hook/region/source_type/
+    source_reference/narration). باقي حقول الـ JSON (title/narration_en/
+    visual_keywords/caption/phonetic_hints لو موجودة) بتتجاهل عمدًا —
+    هنولّدها من نداء finalize زي العادة عشان نضمن تطابق narration_en مع
+    تقسيم الجمل بتاعنا (split_arabic_sentences)، مش تقسيم الموديل.
+    بترجع None لو الرد مش JSON صالح، أو JSON صالح بس من غير أي حقل
+    مفيد من الخمسة."""
+    cleaned = text.strip()
+    cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
+    try:
+        data = json.loads(cleaned)
+    except json.JSONDecodeError:
+        return None
+    if not isinstance(data, dict):
+        return None
+    result: dict = {}
+    for key in ("hook", "region", "source_type", "source_reference", "narration"):
+        value = data.get(key)
+        if isinstance(value, str) and value.strip():
+            result[key] = value.strip()
+    return result or None
+
+
 def validate_episode(episode: dict) -> str | None:
     """يرجّع رسالة الخطأ لو الحلقة النهائية (بعد الدمج) فيها مشكلة، أو
     None لو سليمة. خط دفاع أخير حتى لو المفروض كل حقل اتبنى صح لوحده."""
@@ -546,10 +579,12 @@ def build_story_prompt(
         "﴿...﴾، لازم تحط نقطة \".\" فورًا بعد القوس الختامي مباشرة (من "
         "غير مسافة قبلها). آخر حرف حرفيًا في ردك يجب أن يكون واحدًا من: "
         "نقطة (.) أو علامة تعجب (!) أو علامة استفهام (؟) — ولا شيء بعده.\n\n"
-        "⚠️ الفورمات: التزم بالضبط بالشكل تحت. اكتب كل تسمية حرفيًا "
-        "بالإنجليزية بالحروف الكبيرة كما هي (HOOK: بدون أي ترجمة أو "
-        "تغيير أو زخرفة markdown حواليها)، كل تسمية في بداية سطر جديد، "
-        "ومفيش أي نص أو مقدمة أو تعليق خارج الحقول دي:\n\n"
+        "⚠️ الفورمات — التزم بيه حرفيًا: ردك كله لازم يكون نص عادي "
+        "(plain text) وليس JSON، بالشكل بالضبط تحت. اكتب كل تسمية "
+        "حرفيًا بالإنجليزية بالحروف الكبيرة كما هي (HOOK: بدون أي ترجمة "
+        "أو تغيير أو زخرفة markdown حواليها، ومن غير أقواس {} أو علامات "
+        "اقتباس \" حوالين القيم)، كل تسمية في بداية سطر جديد، ومفيش أي "
+        "نص أو مقدمة أو أسوار كود ```json أو تعليق خارج الحقول دي:\n\n"
         "HOOK: <جملة الهوك>\n"
         "REGION: <وصف العصر/المكان>\n"
         "SOURCE_TYPE: <نوع المصدر (قرآن/حديث صحيح/حديث حسن/مصدر تاريخي "
@@ -611,7 +646,7 @@ def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str
         "كل عنصر هو الترجمة الإنجليزية الأمينة لجملته المقابلة فقط. "
         "ممنوع دمج جملتين مرقّمتين في عنصر واحد، وممنوع تقسيم جملة "
         f"مرقّمة واحدة لعنصرين. عدّ الجمل المرقّمة أعلاه بنفسك ({sentence_count} "
-        "جملة) وتأكد إن طول مصفوفة narration_en يساويه بالضبط قبل ما "
+        "جملة) وتأكد إن طول مصفوفة narration_en يساويه بالظبط قبل ما "
         "تُنهي ردك.\n\n"
         "3) visual_keywords: كل كلمة بحث لازم تكون مشتقة من تفصيلة "
         "ملموسة ومحددة مذكورة فعليًا في narration أعلاه، وممنوع منعًا "
@@ -650,13 +685,22 @@ def run_single_attempt(
         f"{attempt_label} | القصة",
     )
     fields = parse_labeled_response(reply)
-    for key in ("hook", "region", "source_type", "source_reference", "narration"):
-        if not fields.get(key, "").strip():
-            # مهم للتشخيص: من غير الطباعة دي، فشل "ناقص حقل" كان بيبقى
-            # عمياني تمامًا (منعرفش الموديل رد بإيه فعليًا). بنطبع أول
-            # جزء بس (500 حرف) عشان اللوج ميتملّاش برد طويل.
-            print(f"   🔎 رد {attempt_label} | القصة الخام (أول 500 حرف):\n{reply[:500]!r}")
-            raise AttemptFailed(f"رد نداء القصة ناقص حقل '{key}' أو فاضي")
+    required_fields = ("hook", "region", "source_type", "source_reference", "narration")
+    if any(not fields.get(key, "").strip() for key in required_fields):
+        # الفورمات المسمّى فشل — نجرّب خطة بديلة (الموديل أحيانًا بيرد
+        # JSON كامل بدل الفورمات ده، رغم التعليمة الصريحة).
+        json_fields = try_parse_json_episode(reply)
+        if json_fields and all(json_fields.get(key, "").strip() for key in required_fields):
+            print(f"   ℹ️ {attempt_label} | القصة: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
+            fields = json_fields
+
+    missing = [key for key in required_fields if not fields.get(key, "").strip()]
+    if missing:
+        # مهم للتشخيص: من غير الطباعة دي، فشل "ناقص حقل" كان بيبقى
+        # عمياني تمامًا (منعرفش الموديل رد بإيه فعليًا). بنطبع أول جزء
+        # بس (500 حرف) عشان اللوج ميتملّاش برد طويل.
+        print(f"   🔎 رد {attempt_label} | القصة الخام (أول 500 حرف):\n{reply[:500]!r}")
+        raise AttemptFailed(f"رد نداء القصة ناقص حقل '{missing[0]}' أو فاضي (بكل الطرق المتاحة للتحليل)")
 
     hook = fields["hook"].replace("**", "").replace("__", "").strip()
     region = fields["region"].replace("**", "").replace("__", "").strip()
