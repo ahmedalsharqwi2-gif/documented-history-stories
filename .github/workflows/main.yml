@@ -62,7 +62,11 @@ jobs:
       - name: Generate complete episode script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_THINKING_BUDGET: "0"
+          # اترفعت من 0 عشان الهدف الجديد (970+ كلمة مع ترجمة متزامنة
+          # جملة بجملة) مهمة تخطيط أعقد بكتير من توليد JSON بسيط، وبقيمة
+          # صفر كان الموديل بيتسرّع ويقطع القصة قبل ما يخلصها (شوف
+          # previous_truncated في generate_script.py).
+          GEMINI_THINKING_BUDGET: "2048"
           # مرفوعين عشان الفيديو الكامل يتخطى 5 دقايق (300 ثانية) دايمًا:
           # حسب النسبة الموثقة في generate_script.py (300 كلمة ≈ 94-150
           # ثانية حسب سرعة النطق)، MIN_NARRATION_WORDS=970 بيضمن تخطي 5
