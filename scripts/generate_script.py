@@ -86,7 +86,7 @@ MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 # GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash-lite
 FALLBACK_MODELS = [
     item.strip()
-    for item in os.getenv("GEMINI_FALLBACK_MODELS", "").split(",")
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash-lite").split(",")
     if item.strip()
 ]
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
@@ -116,7 +116,7 @@ TARGET_WORDS = int(os.getenv("TARGET_WORDS", "900"))
 # غير أي محاولة توسيع أو إعادة، حتى لو أقل من TARGET_WORDS. لو الطول
 # أقل من الرقم ده، بنعمل نداء توسيع واحد بس (شوف build_expand_story_prompt)
 # قبل ما نستسلم.
-ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", "650"))
+ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARRATION_WORDS", "650")))
 
 # لو نداء اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف ونعيد
 # نفس النداء (مش المحاولة كلها).
