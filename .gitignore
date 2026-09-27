@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+assets/voice_reference.wav
+assets/*.mp3
+assets/*.m4a
+assets/*.webm
+output/
+downloaded_clips/
+scripts/__pycache__/
