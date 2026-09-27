@@ -54,7 +54,6 @@ jobs:
           GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
           GEMINI_THINKING_BUDGET: "2048"
           TARGET_WORDS: "1050"
-          MIN_NARRATION_WORDS: "970"
         run: python scripts/generate_script.py
 
       - name: Fetch landscape stock clips
