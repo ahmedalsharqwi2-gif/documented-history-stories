@@ -83,10 +83,10 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 # نماذج احتياطية اختيارية، مفصولة بفاصلة. لن تُستخدم إلا إذا نفدت
 # حصة النموذج الأساسي. مثال:
-# GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash-lite
+# GEMINI_FALLBACK_MODELS=gemini-3.5-flash-lite
 FALLBACK_MODELS = [
     item.strip()
-    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash-lite").split(",")
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-3.5-flash-lite").split(",")
     if item.strip()
 ]
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
@@ -116,12 +116,15 @@ TARGET_WORDS = int(os.getenv("TARGET_WORDS", "900"))
 # غير أي محاولة توسيع أو إعادة، حتى لو أقل من TARGET_WORDS. لو الطول
 # أقل من الرقم ده، بنعمل نداء توسيع واحد بس (شوف build_expand_story_prompt)
 # قبل ما نستسلم.
-ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARRATION_WORDS", "650")))
+ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARRATION_WORDS", "0")))
 
 # لو نداء اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف ونعيد
 # نفس النداء (مش المحاولة كلها).
 BUDGET_RETRIES = 2
 LENGTH_ESCALATION = 1.5
+
+# عدد جولات التوسعة الإضافية للقصة المكتملة لكنها أقصر من الحد الأدنى.
+MAX_EXPANSION_ROUNDS = int(os.getenv("MAX_EXPANSION_ROUNDS", "2"))
 
 # عدد إعادات المحاولة لنفس النداء عند خطأ سيرفر مؤقت (503 UNAVAILABLE،
 # 500 INTERNAL، إلخ) قبل ما نعتبره فشل حقيقي. الانتظار بيتصاعد
@@ -227,9 +230,11 @@ class AttemptFailed(Exception):
 
 
 class QuotaExhausted(Exception):
-    """نفاد الحصة اليومية لنموذج معيّن. يمكن للمشغّل تجربة نموذج احتياطي
-    مرة واحدة إذا تم ضبط GEMINI_FALLBACK_MODELS؛ أما إذا نفدت حصة كل
-    النماذج، يتوقف البرنامج برسالة واضحة."""
+    """نفاد الحصة اليومية لنموذج معيّن."""
+
+
+class ModelUnavailable(Exception):
+    """النموذج غير موجود أو لم يعد متاحًا (404 NOT_FOUND)."""
 
 
 # ─────────────────────────── مساعدات عامة ───────────────────────────
@@ -442,7 +447,7 @@ def validate_episode(episode: dict) -> str | None:
         return "نص narration النهائي شكله متقطوع (مش منتهي بعلامة ترقيم واضحة)"
 
     word_count = count_words(narration)
-    if word_count < ACCEPTABLE_MIN_WORDS:
+    if ACCEPTABLE_MIN_WORDS > 0 and word_count < ACCEPTABLE_MIN_WORDS:
         return (
             f"نص narration النهائي قصير جدًا ({word_count} كلمة، "
             f"الحد الأدنى المقبول {ACCEPTABLE_MIN_WORDS})"
@@ -506,6 +511,13 @@ def switch_to_next_model() -> bool:
     ACTIVE_MODEL_INDEX += 1
     ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
     return True
+
+
+def _is_model_unavailable(exc: Exception) -> bool:
+    """يكتشف 404 الذي يعني أن معرّف النموذج غير متاح، حتى لا نعيد
+    المحاولة على نفس النموذج مرتين بلا فائدة."""
+    text = str(exc).upper()
+    return "404" in text and "NOT_FOUND" in text
 
 
 def _is_daily_quota_exhausted(exc: Exception) -> bool:
@@ -585,6 +597,10 @@ def call_model(
                 if _is_daily_quota_exhausted(exc):
                     raise QuotaExhausted(
                         f"نفدت الحصة اليومية المجانية لموديل {ACTIVE_MODEL} أثناء {label} ({exc})"
+                    ) from exc
+                if _is_model_unavailable(exc):
+                    raise ModelUnavailable(
+                        f"الموديل {ACTIVE_MODEL} غير متاح أو لم يعد موجودًا أثناء {label} ({exc})"
                     ) from exc
                 if _is_transient_error(exc) and transient_retry < TRANSIENT_RETRIES:
                     wait = TRANSIENT_BACKOFF_BASE * (2 ** transient_retry)
@@ -796,29 +812,37 @@ def run_single_attempt(
     if looks_truncated(narration):
         raise AttemptFailed("narration لسه متقطوعة بعد محاولة إكمال الخاتمة (مش منتهية بعلامة ترقيم واضحة)")
 
-    # لو القصة خلصت طبيعي (مش متقطوعة) بس طولها أقل من الحد الأدنى
-    # المقبول، نداء توسيع واحد بس قبل ما نستسلم — انظر الملاحظة في أعلى
-    # الملف عن سبب إضافة الخطوة دي.
-    if count_words(narration) < ACCEPTABLE_MIN_WORDS:
+    # لو القصة مكتملة لكنها أقصر من الحد الأدنى، نطلب توسعة تدريجية.
+    # هذا يمنع إسقاط قصة سليمة مثل 891 كلمة لمجرد أنها تحتاج كلمات إضافية.
+    for expansion_round in range(1, MAX_EXPANSION_ROUNDS + 1):
+        if count_words(narration) >= ACCEPTABLE_MIN_WORDS:
+            break
         current_count = count_words(narration)
-        print(f"   ℹ️ الطول ({current_count} كلمة) أقل من الحد الأدنى المقبول ({ACCEPTABLE_MIN_WORDS}) — هعمل نداء توسيع واحد.")
+        print(
+            f"   ℹ️ الطول ({current_count} كلمة) أقل من الحد الأدنى المقبول "
+            f"({ACCEPTABLE_MIN_WORDS}) — توسعة {expansion_round}/"
+            f"{MAX_EXPANSION_ROUNDS}."
+        )
         reply, _ = call_model(
             client, history, build_expand_story_prompt(current_count, target_words),
             free_text_config, system_prompt, STORY_MAX_TOKENS,
-            f"{attempt_label} | توسيع القصة",
+            f"{attempt_label} | توسيع القصة {expansion_round}",
         )
         expanded = parse_story_reply(reply, attempt_label, "توسيع القصة")
         hook, region = expanded["hook"], expanded["region"]
         source_type, source_reference = expanded["source_type"], expanded["source_reference"]
         narration = expanded["narration"]
-        print(f"   📝 بعد التوسيع: {count_words(narration)} كلمة")
+        print(f"   📝 بعد التوسيع {expansion_round}: {count_words(narration)} كلمة")
 
         narration = ensure_complete_ending(client, history, narration, system_prompt, attempt_label)
         if looks_truncated(narration):
-            raise AttemptFailed("narration لسه متقطوعة بعد توسيع القصة ومحاولة إكمال الخاتمة")
+            raise AttemptFailed(
+                f"narration لسه متقطوعة بعد التوسعة {expansion_round} "
+                "ومحاولة إكمال الخاتمة"
+            )
 
     final_word_count = count_words(narration)
-    if final_word_count < ACCEPTABLE_MIN_WORDS:
+    if ACCEPTABLE_MIN_WORDS > 0 and final_word_count < ACCEPTABLE_MIN_WORDS:
         raise AttemptFailed(
             f"narration قصيرة جدًا حتى بعد نداء التوسيع ({final_word_count} كلمة، "
             f"الحد الأدنى المقبول {ACCEPTABLE_MIN_WORDS})"
@@ -874,7 +898,7 @@ def generate_episode() -> dict:
     print(
         f"🕌 الموديل الأساسي: {MODEL} | النماذج المتاحة: {MODEL_CANDIDATES} | "
         f"thinking_budget: {THINKING_BUDGET} | "
-        f"هدف الطول: {TARGET_WORDS} كلمة | الحد الأدنى المقبول: {ACCEPTABLE_MIN_WORDS} كلمة"
+        f"هدف الطول التقريبي: {TARGET_WORDS} كلمة | الحد الأدنى الإلزامي: {ACCEPTABLE_MIN_WORDS or 'غير محدد'}"
     )
 
     last_error = "لا يوجد"
@@ -885,22 +909,21 @@ def generate_episode() -> dict:
                 client, system_prompt, recent_titles, recent_regions, recent_hooks,
                 TARGET_WORDS, f"محاولة {attempt}",
             )
-        except QuotaExhausted as exc:
-            # لا نعيد نفس الطلب على النموذج نفسه. نجرّب نموذجًا احتياطيًا
-            # مضبوطًا من البيئة، ثم نعيد المحاولة الكاملة مرة واحدة بهذا النموذج.
+        except (QuotaExhausted, ModelUnavailable) as exc:
+            # لا نعيد نفس الطلب على النموذج نفسه. ننتقل فورًا للنموذج التالي.
             if switch_to_next_model():
                 print(
                     f"⚠️ {exc}\n"
-                    f"🔁 انتقلت إلى النموذج الاحتياطي: {ACTIVE_MODEL}. "
+                    f"🔁 انتقلت إلى النموذج التالي: {ACTIVE_MODEL}. "
                     "سيُعاد تشغيل المحاولة الكاملة من البداية."
                 )
                 continue
             sys.exit(
-                f"❌ توقف: نفدت الحصة اليومية لكل النماذج المتاحة.\n"
+                f"❌ توقف: لا يوجد نموذج متاح في القائمة الحالية.\n"
                 f"النماذج التي جُرّبت: {MODEL_CANDIDATES}\n"
                 f"آخر خطأ: {exc}\n"
-                "الحل: انتظر إعادة ضبط الحصة أو استخدم مشروع Google API آخر "
-                "بصلاحيات وحصة متاحة."
+                "الحل: حدّث قائمة النماذج في GEMINI_FALLBACK_MODELS "
+                "أو استخدم مشروع Google API لديه حصة متاحة."
             )
         except AttemptFailed as exc:
             last_error = str(exc)
