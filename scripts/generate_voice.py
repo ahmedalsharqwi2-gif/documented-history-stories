@@ -70,6 +70,8 @@ SILMA_REFERENCE_TEXT = os.getenv(
     "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة.",
 ).strip()
 SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.0"))
+SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
+SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -312,6 +314,30 @@ def synthesize_sentences_xtts(sentences: list[str]) -> list[dict]:
     return segments
 
 
+def _norm_arabic_words(text: str) -> list[str]:
+    text = re.sub(r"[\u064B-\u065F\u0670]", "", text or "")
+    text = re.sub(r"[^\w\u0600-\u06FF]+", " ", text, flags=re.UNICODE)
+    return [w for w in text.lower().split() if w]
+
+
+def detect_silma_reference_leak(audio_path: Path) -> str | None:
+    """Transcribe audio and reject a contiguous phrase copied from SILMA reference."""
+    if not SILMA_GUARD_ENABLED or not SILMA_REFERENCE_TEXT:
+        return None
+    from faster_whisper import WhisperModel
+    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
+    segments, _ = model.transcribe(str(audio_path), language="ar", word_timestamps=False, vad_filter=False)
+    heard = _norm_arabic_words(" ".join(seg.text or "" for seg in segments))
+    ref = _norm_arabic_words(SILMA_REFERENCE_TEXT)
+    minimum = max(2, min(SILMA_GUARD_MIN_MATCH_WORDS, len(ref)))
+    for size in range(len(ref), minimum - 1, -1):
+        phrase = ref[-size:]
+        for i in range(len(heard) - size + 1):
+            if heard[i:i + size] == phrase:
+                return " ".join(phrase)
+    return None
+
+
 def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
     """ينتج الصوت العربي عبر SILMA TTS v1 باستخدام مرجع بشري واحد.
     يُحمّل النموذج مرة واحدة ثم يولّد ملف WAV لكل جملة."""
@@ -360,10 +386,17 @@ def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
     return segments
 
 
-async def synthesize_sentences(sentences: list[str]) -> list[dict]:
+async def synthesize_sentences(sentences: list[str], engine_override: str | None = None) -> list[dict]:
     """يختار محرك الصوت صراحةً؛ SILMA لا يرجع إلى Edge تلقائياً."""
-    if TTS_ENGINE == "silma":
-        return synthesize_sentences_silma(sentences)
+    engine = engine_override or TTS_ENGINE
+    if engine == "silma":
+        try:
+            return synthesize_sentences_silma(sentences)
+        except Exception as exc:
+            if engine_override is None and os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() == "true":
+                print(f"⚠️ تعذر SILMA ({exc}) — الرجوع إلى Edge TTS.")
+                return await synthesize_sentences(sentences, "edge")
+            raise
     if TTS_ENGINE == "xtts":
         try:
             return synthesize_sentences_xtts(sentences)
@@ -636,6 +669,18 @@ def synthesize_voice(voice_text: str) -> None:
         inputs += ["-i", str(segment["path"])]
     concat_filter = "".join(f"[{i}:a]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=0:a=1[aout]"
     run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
+    if TTS_ENGINE == "silma":
+        leak = detect_silma_reference_leak(VOICE_AUDIO)
+        if leak:
+            print(f"⚠️ تسرّب مرجع SILMA في الصوت ({leak}) — إعادة التوليد بـEdge TTS.")
+            for segment in segments:
+                Path(segment["path"]).unlink(missing_ok=True)
+            segments = asyncio.run(synthesize_sentences(sentences, "edge"))
+            inputs = []
+            for segment in segments:
+                inputs += ["-i", str(segment["path"])]
+            concat_filter = "".join(f"[{i}:a]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=0:a=1[aout]"
+            run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
 
     # نفس ترتيب/شكل الكلمات المعروضة كما كانت قبل التعديل (بلا تشكيل،
     # وبعلامات الترقيم لا تزال ملتصقة — two_lines_ar() تحذفها وقت العرض).
