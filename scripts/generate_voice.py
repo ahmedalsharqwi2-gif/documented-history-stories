@@ -670,9 +670,13 @@ def synthesize_voice(voice_text: str) -> None:
     concat_filter = "".join(f"[{i}:a]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=0:a=1[aout]"
     run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
     if TTS_ENGINE == "silma":
-        leak = detect_silma_reference_leak(VOICE_AUDIO)
+        try:
+            leak = detect_silma_reference_leak(VOICE_AUDIO)
+        except Exception as exc:  # Whisper unavailable/download failure: fail safe to Edge.
+            print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}) — إعادة التوليد بـEdge TTS.")
+            leak = "whisper_guard_error"
         if leak:
-            print(f"⚠️ تسرّب مرجع SILMA في الصوت ({leak}) — إعادة التوليد بـEdge TTS.")
+            print(f"⚠️ تسرّب/خلل في صوت SILMA ({leak}) — إعادة التوليد بـEdge TTS.")
             for segment in segments:
                 Path(segment["path"]).unlink(missing_ok=True)
             segments = asyncio.run(synthesize_sentences(sentences, "edge"))
