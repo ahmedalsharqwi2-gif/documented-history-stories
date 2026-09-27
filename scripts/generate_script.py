@@ -81,6 +81,17 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 # ─────────────────────────── الإعدادات ───────────────────────────
 
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+# نماذج احتياطية اختيارية، مفصولة بفاصلة. لن تُستخدم إلا إذا نفدت
+# حصة النموذج الأساسي. مثال:
+# GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash-lite
+FALLBACK_MODELS = [
+    item.strip()
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "").split(",")
+    if item.strip()
+]
+MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
+ACTIVE_MODEL_INDEX = 0
+ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
 TEMPERATURE = 0.75
 
 # سقف التوكنز لأي نداء نص حر بيكتب/يعيد كتابة/يوسّع narration. سخي عشان
@@ -216,11 +227,9 @@ class AttemptFailed(Exception):
 
 
 class QuotaExhausted(Exception):
-    """نفاد الحصة اليومية المجانية بشكل نهائي (429 RESOURCE_EXHAUSTED +
-    quotaId يحتوي PerDay). مختلف عن AttemptFailed: بيوقف التشغيلة كلها
-    فورًا (مش بس المحاولة الحالية)، لأن إعادة المحاولة — سواء على مستوى
-    النداء أو على مستوى محاولة كاملة جديدة — مالهاش أي معنى؛ الحصة مش
-    هترجع في ثواني ولا حتى دقايق."""
+    """نفاد الحصة اليومية لنموذج معيّن. يمكن للمشغّل تجربة نموذج احتياطي
+    مرة واحدة إذا تم ضبط GEMINI_FALLBACK_MODELS؛ أما إذا نفدت حصة كل
+    النماذج، يتوقف البرنامج برسالة واضحة."""
 
 
 # ─────────────────────────── مساعدات عامة ───────────────────────────
@@ -488,6 +497,17 @@ def _is_transient_error(exc: Exception) -> bool:
     return any(marker in text for marker in transient_markers)
 
 
+def switch_to_next_model() -> bool:
+    """ينتقل إلى النموذج الاحتياطي التالي مرة واحدة عند نفاد حصة النموذج
+    الحالي. لا يتحايل على الحصة؛ ينجح فقط إذا كان للنموذج الآخر حصة متاحة."""
+    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL
+    if ACTIVE_MODEL_INDEX + 1 >= len(MODEL_CANDIDATES):
+        return False
+    ACTIVE_MODEL_INDEX += 1
+    ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
+    return True
+
+
 def _is_daily_quota_exhausted(exc: Exception) -> bool:
     """بيحدّد لو الاستثناء ده تحديدًا نفاد الحصة اليومية المجانية (429
     RESOURCE_EXHAUSTED مع quotaId فيه "PerDay"). ده الفرق الجوهري عن أي
@@ -555,7 +575,7 @@ def call_model(
         for transient_retry in range(TRANSIENT_RETRIES + 1):
             try:
                 response = client.models.generate_content(
-                    model=MODEL, contents=contents,
+                    model=ACTIVE_MODEL, contents=contents,
                     config=config_builder(system_prompt, attempt_budget),
                 )
                 last_exc = None
@@ -564,7 +584,7 @@ def call_model(
                 last_exc = exc
                 if _is_daily_quota_exhausted(exc):
                     raise QuotaExhausted(
-                        f"نفدت الحصة اليومية المجانية لموديل {MODEL} أثناء {label} ({exc})"
+                        f"نفدت الحصة اليومية المجانية لموديل {ACTIVE_MODEL} أثناء {label} ({exc})"
                     ) from exc
                 if _is_transient_error(exc) and transient_retry < TRANSIENT_RETRIES:
                     wait = TRANSIENT_BACKOFF_BASE * (2 ** transient_retry)
@@ -852,7 +872,8 @@ def generate_episode() -> dict:
     recent_hooks = load_used_hooks()
 
     print(
-        f"🕌 الموديل: {MODEL} | thinking_budget: {THINKING_BUDGET} | "
+        f"🕌 الموديل الأساسي: {MODEL} | النماذج المتاحة: {MODEL_CANDIDATES} | "
+        f"thinking_budget: {THINKING_BUDGET} | "
         f"هدف الطول: {TARGET_WORDS} كلمة | الحد الأدنى المقبول: {ACCEPTABLE_MIN_WORDS} كلمة"
     )
 
@@ -865,8 +886,22 @@ def generate_episode() -> dict:
                 TARGET_WORDS, f"محاولة {attempt}",
             )
         except QuotaExhausted as exc:
-            # مفيش أي فايدة من محاولة كاملة تانية — الحصة اليومية نفدت.
-            sys.exit(f"❌ توقف فوري: {exc}")
+            # لا نعيد نفس الطلب على النموذج نفسه. نجرّب نموذجًا احتياطيًا
+            # مضبوطًا من البيئة، ثم نعيد المحاولة الكاملة مرة واحدة بهذا النموذج.
+            if switch_to_next_model():
+                print(
+                    f"⚠️ {exc}\n"
+                    f"🔁 انتقلت إلى النموذج الاحتياطي: {ACTIVE_MODEL}. "
+                    "سيُعاد تشغيل المحاولة الكاملة من البداية."
+                )
+                continue
+            sys.exit(
+                f"❌ توقف: نفدت الحصة اليومية لكل النماذج المتاحة.\n"
+                f"النماذج التي جُرّبت: {MODEL_CANDIDATES}\n"
+                f"آخر خطأ: {exc}\n"
+                "الحل: انتظر إعادة ضبط الحصة أو استخدم مشروع Google API آخر "
+                "بصلاحيات وحصة متاحة."
+            )
         except AttemptFailed as exc:
             last_error = str(exc)
             print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{MAX_ATTEMPTS}: {last_error}")
