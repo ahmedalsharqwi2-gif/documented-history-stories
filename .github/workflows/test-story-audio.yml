@@ -1,0 +1,63 @@
+name: Test Historical Story and Arabic Audio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install generation dependencies
+        run: python -m pip install -r scripts/requirements.txt
+
+      - name: Generate first historical story with Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: "gemini-2.5-flash"
+          GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
+          GEMINI_THINKING_BUDGET: "0"
+          TARGET_WORDS: "300"
+          ACCEPTABLE_MIN_WORDS: "0"
+          MAX_FULL_ATTEMPTS: "1"
+        run: python scripts/generate_script.py
+
+      - name: Generate test narration without publishing
+        env:
+          # XTTS يتطلب assets/voice_reference.wav؛ عند غيابه يعود السكربت إلى Edge.
+          TTS_ENGINE: "xtts"
+          XTTS_SPEAKER_WAV: "assets/voice_reference.wav"
+          XTTS_FALLBACK_TO_EDGE: "true"
+          EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
+          EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural"
+          EDGE_TTS_RETRIES: "2"
+          WHISPER_MODEL: "tiny"
+        run: python scripts/generate_voice.py
+
+      - name: Upload story and audio test artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: historical-story-audio-test-${{ github.run_id }}
+          path: |
+            state/current_episode.json
+            downloaded_clips/narration_voice.mp3
+            downloaded_clips/narration_with_music.mp3
+            downloaded_clips/narration.ass
+          if-no-files-found: error
+          retention-days: 14
