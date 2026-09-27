@@ -153,7 +153,6 @@ EPISODE_SCHEMA = {
         "hook": {"type": "string"},
         "region": {"type": "string"},
         "narration": {"type": "string"},
-        "narration_en": {"type": "array", "items": {"type": "string"}},
         "visual_keywords": {"type": "array", "items": {"type": "string"}},
         "caption": {"type": "string"},
         "phonetic_hints": {
@@ -171,7 +170,7 @@ EPISODE_SCHEMA = {
         "source_reference": {"type": "string"},
     },
     "required": [
-        "title", "hook", "region", "narration", "narration_en",
+        "title", "hook", "region", "narration",
         "visual_keywords", "caption", "phonetic_hints",
         "source_type", "source_reference",
     ],
@@ -186,7 +185,6 @@ FINALIZE_SCHEMA = {
     "type": "object",
     "properties": {
         "title": {"type": "string"},
-        "narration_en": {"type": "array", "items": {"type": "string"}},
         "visual_keywords": {"type": "array", "items": {"type": "string"}},
         "caption": {"type": "string"},
         "phonetic_hints": {
@@ -201,7 +199,7 @@ FINALIZE_SCHEMA = {
             },
         },
     },
-    "required": ["title", "narration_en", "visual_keywords", "caption", "phonetic_hints"],
+    "required": ["title", "visual_keywords", "caption", "phonetic_hints"],
 }
 
 STORY_REQUIRED_FIELDS = ("hook", "region", "source_type", "source_reference", "narration")
@@ -466,20 +464,6 @@ def validate_episode(episode: dict) -> str | None:
         return "حقل source_type فاضي — كل حلقة دينية لازم توثيق لنوع المصدر"
     if not str(episode.get("source_reference", "")).strip():
         return "حقل source_reference فاضي — كل حلقة دينية لازم مرجع دقيق"
-
-    narration_en = episode.get("narration_en")
-    if not isinstance(narration_en, list) or not narration_en:
-        return "حقل narration_en فاضي أو مش قائمة (array)"
-    if any(not str(item).strip() for item in narration_en):
-        return "حقل narration_en فيه عنصر فاضي"
-
-    expected_sentences = count_arabic_sentences(narration)
-    if len(narration_en) != expected_sentences:
-        return (
-            f"عدد جمل narration_en ({len(narration_en)}) لا يطابق عدد "
-            f"جمل narration الفعلي ({expected_sentences}) — لازم يتطابقوا "
-            "بالظبط عشان تزامن الترجمة على الشاشة"
-        )
 
     return None
 
@@ -761,16 +745,6 @@ def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str
         "المطلوب منك الآن:\n\n"
         "1) title: عنوان جذّاب ومختصر للحلقة، غير مكرر مع العناوين "
         "السابقة المذكورة تحت.\n\n"
-        "2) narration_en: مصفوفة (array) تحتوي على "
-        f"{sentence_count} عنصرًا بالضبط لا أكثر ولا أقل — عنصر واحد "
-        "لكل جملة مرقّمة أعلاه، بنفس ترتيب الأرقام (العنصر الأول هو "
-        "ترجمة الجملة رقم 1، والعنصر الثاني ترجمة الجملة رقم 2، وهكذا). "
-        "كل عنصر هو الترجمة الإنجليزية الأمينة لجملته المقابلة فقط. "
-        "ممنوع دمج جملتين مرقّمتين في عنصر واحد، وممنوع تقسيم جملة "
-        f"مرقّمة واحدة لعنصرين. عدّ الجمل المرقّمة أعلاه بنفسك ({sentence_count} "
-        "جملة) وتأكد إن طول مصفوفة narration_en يساويه بالظبط قبل ما "
-        "تُنهي ردك.\n\n"
-        "3) visual_keywords: كل كلمة بحث لازم تكون مشتقة من تفصيلة "
         "ملموسة ومحددة مذكورة فعليًا في narration أعلاه، وممنوع منعًا "
         "باتًا أي كلمة بحث ممكن تنتج لقطة فيها تجسيد بشري لنبي أو خليفة "
         "راشد أو صحابي بعينه — طبيعة/عمارة إسلامية تاريخية/مخطوطات وخط "
@@ -778,6 +752,7 @@ def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str
         "4) caption: وصف قصير جذّاب للفيديو (لمنصات التواصل).\n\n"
         "5) phonetic_hints: تلميحات نطق للكلمات الصعبة أو غير الشائعة "
         "الواردة في narration (لو وجدت).\n\n"
+        "لا تنشئ narration_en أو أي ترجمة إنجليزية؛ المطلوب فيديو وصوت وترجمة عربية فقط. "
         "اكتب الرد بصيغة JSON فقط حسب الـ schema المحدد، من غير أي نص "
         "خارج الـ JSON."
     )
@@ -874,7 +849,7 @@ def run_single_attempt(
         "hook": hook,
         "region": region,
         "narration": narration,
-        "narration_en": finalize_data.get("narration_en", []),
+        "narration_en": [],
         "visual_keywords": finalize_data.get("visual_keywords", []),
         "caption": finalize_data.get("caption", ""),
         "phonetic_hints": finalize_data.get("phonetic_hints", []),
