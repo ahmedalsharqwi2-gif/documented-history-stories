@@ -61,24 +61,22 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python scripts/fetch_clips.py
 
-      - name: Prepare SILMA human reference audio
-        env:
-          SILMA_REFERENCE_AUDIO_B64: ${{ secrets.SILMA_REFERENCE_AUDIO_B64 }}
+      - name: Prepare synthetic SILMA reference audio
         run: |
-          if [ -z "$SILMA_REFERENCE_AUDIO_B64" ]; then
-            echo "Missing SILMA_REFERENCE_AUDIO_B64 GitHub secret."
-            echo "Add a base64-encoded, consented human reference OGG/Opus before running production."
-            exit 1
-          fi
           mkdir -p assets
-          printf '%s' "$SILMA_REFERENCE_AUDIO_B64" | base64 --decode > assets/voice_reference_human.ogg
-          ffmpeg -y -i assets/voice_reference_human.ogg -ac 1 -ar 24000 -sample_fmt s16 assets/voice_reference_human.wav
+          edge-tts \
+            --voice ar-EG-ShakirNeural \
+            --text "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة." \
+            --write-media assets/voice_reference_synthetic.mp3
+          ffmpeg -y -i assets/voice_reference_synthetic.mp3 \
+            -ac 1 -ar 24000 -sample_fmt s16 -t 8 \
+            assets/voice_reference_synthetic.wav
 
       - name: Generate narration with SILMA and subtitles
         env:
           TTS_ENGINE: "silma"
-          SILMA_REFERENCE_WAV: "assets/voice_reference_human.wav"
-          SILMA_REFERENCE_TEXT: ${{ secrets.SILMA_REFERENCE_TEXT }}
+          SILMA_REFERENCE_WAV: "assets/voice_reference_synthetic.wav"
+          SILMA_REFERENCE_TEXT: "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة."
           SILMA_SPEED: "1.0"
         run: python scripts/generate_voice.py
 

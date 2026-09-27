@@ -64,8 +64,11 @@ BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
 XTTS_MODEL = os.getenv("XTTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
 XTTS_SPEAKER_WAV = Path(os.getenv("XTTS_SPEAKER_WAV", "assets/voice_reference.wav"))
 XTTS_USE_GPU = os.getenv("XTTS_USE_GPU", "false").lower() == "true"
-SILMA_REFERENCE_WAV = Path(os.getenv("SILMA_REFERENCE_WAV", "assets/voice_reference_human.wav"))
-SILMA_REFERENCE_TEXT = os.getenv("SILMA_REFERENCE_TEXT", "").strip()
+SILMA_REFERENCE_WAV = Path(os.getenv("SILMA_REFERENCE_WAV", "assets/voice_reference_synthetic.wav"))
+SILMA_REFERENCE_TEXT = os.getenv(
+    "SILMA_REFERENCE_TEXT",
+    "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة.",
+).strip()
 SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.0"))
 
 SCRIPT_DIR = Path(__file__).parent
@@ -318,7 +321,7 @@ def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
     if not reference_wav.exists():
         raise RuntimeError(
             f"ملف مرجع SILMA غير موجود: {reference_wav}. "
-            "أضف ملفاً بشرياً مأذوناً به أو اضبط SILMA_REFERENCE_WAV."
+            "شغّل خطوة إنشاء المرجع الاصطناعي أولاً أو اضبط SILMA_REFERENCE_WAV."
         )
     try:
         from silma_tts.api import SilmaTTS
