@@ -94,7 +94,10 @@ MIN_NARRATION_WORDS = os.environ.get("MIN_NARRATION_WORDS")
 MIN_NARRATION_WORDS = int(MIN_NARRATION_WORDS) if MIN_NARRATION_WORDS else None
 # رفعناها من 2 لـ 3 عشان نديله فرصة تصعيد إضافية (شوف build_user_message
 # وقسم "تصعيد حقيقي عند قِصر narration" فوق).
-MAX_ATTEMPTS = 3
+# رفعناها من 3 لـ 4: الهدف الجديد (970+ كلمة) أصعب 3 أضعاف تقريبًا من
+# القديم (220)، فمحتاج فرص أكتر عشان آلية التصعيد (قصر النص + القطع)
+# تقدر توصل بالموديل للنتيجة المطلوبة.
+MAX_ATTEMPTS = 4
 HISTORY_LIMIT = 8
 LENGTH_ESCALATION = 1.5
 
@@ -310,6 +313,7 @@ def build_user_message(
     recent_regions: list[str],
     recent_hooks: list[str],
     short_attempt_word_count: int | None = None,
+    previous_truncated: bool = False,
 ) -> str:
     # الحد الأدنى الفعّال اللي بنخاطب بيه الموديل: لو فيه MIN_NARRATION_WORDS
     # محدد في الـ workflow، بناخد الأكبر بينه وبين TARGET_WORDS عشان الرسالة
@@ -364,9 +368,19 @@ def build_user_message(
         "إضافية واردة في المصدر نفسه (المكان، الأجواء، ردود الأفعال) "
         "بدل الاختصار، بدل اختراع أي تفصيلة غير موثقة. النصوص القصيرة "
         "سترفض تلقائيًا.\n"
+        "⚠️ عشان تضمن الوصول للطول المطلوب من غير ما تقطع القصة فجأة "
+        "أو تستعجل الخاتمة: قسّم القصة ذهنيًا لأربع مراحل متقاربة في "
+        "الطول تقريبًا (نحو ربع عدد الكلمات المطلوب لكل مرحلة): "
+        "(1) الهوك والتمهيد للموقف، (2) تصعيد أول بتفاصيل حسّية من "
+        "المصدر، (3) تصعيد إضافي نحو نقطة الذروة، (4) الذروة والخاتمة "
+        "والعبرة. اكتب كل مرحلة بتفصيل كافٍ قبل الانتقال للتي بعدها، "
+        "ولا تختصر أي مرحلة عشان توفر وقت أو مساحة.\n"
         "لازم القصة تكون مكتملة: بداية واضحة (الهوك)، تصاعد حقيقي مبني "
         "على المصدر نفسه، وخاتمة فيها عبرة أو حكمة تقفل القصة من غير "
-        "تقطيع.\n"
+        "تقطيع. لازم آخر جملة في narration تنتهي بعلامة ترقيم واضحة "
+        "(نقطة أو علامة تعجب أو علامة استفهام أو علامات حذف) تدل على "
+        "اكتمال القصة فعليًا — أي قطع للنص قبل ذلك (حتى لو الـ JSON "
+        "نفسه سليم الصياغة) يُعتبر خطأً جسيمًا ويُرفض تلقائيًا.\n"
         "اكتب النص النهائي مباشرة: من غير أي تمهيد أو شرح أو تعليق."
     )
     if recent_titles:
@@ -395,6 +409,18 @@ def build_user_message(
             f"من أن العدد النهائي للكلمات {effective_min} أو أكثر قبل أن "
             "تُنهي الرد."
         )
+    if previous_truncated:
+        message += (
+            "\n\n🚨 تحذير عاجل: في محاولة سابقة انقطع نص narration فجأة "
+            "قبل ما يخلص (ماكانش منتهي بعلامة ترقيم واضحة)، رغم إن الـ "
+            "JSON نفسه كان سليم الصياغة — يعني القصة اتقطعت وسط الأحداث "
+            "أو حتى وسط جملة بدل ما تتقفل بخاتمة حقيقية. هذه المرة لازم "
+            "تخطط للقصة كاملة قبل ما تبدأ تكتب: قسّمها للمراحل الأربع "
+            "المذكورة فوق بوضوح في ذهنك، واكتب كل مرحلة بهدوء وتفصيل من "
+            "غير استعجال، وتأكد إنك وصلت فعلاً لخاتمة القصة (عبرة أو "
+            "حكمة تقفل الأحداث) قبل ما تنهي narration وتنتقل لباقي "
+            "حقول الـ JSON."
+        )
     return message
 
 
@@ -414,6 +440,10 @@ def generate_episode() -> dict:
     # آخر عدد كلمات طلع قصير، بيُستخدم عشان نبني رسالة تصعيد للمحاولة
     # التالية (شوف قسم "تصعيد حقيقي عند قِصر narration" أعلى الملف).
     last_short_word_count: int | None = None
+    # True لو المحاولة اللي فاتت اتقطعت (narration مش منتهي بعلامة
+    # ترقيم واضحة)، عشان المحاولة الجاية تتبني بتحذير صريح عن المشكلة
+    # دي تحديدًا (شوف previous_truncated في build_user_message).
+    last_truncated = False
 
     print(f"🕌 الموديل: {MODEL} | thinking_budget: {THINKING_BUDGET}")
 
@@ -421,7 +451,13 @@ def generate_episode() -> dict:
         user_message = build_user_message(
             recent_titles, recent_regions, recent_hooks,
             short_attempt_word_count=last_short_word_count,
+            previous_truncated=last_truncated,
         )
+        # نصفّر التحذيرات قبل كل محاولة ونعيد ملأها بس لو نفس المشكلة
+        # تكررت في المحاولة الحالية، عشان محاولة نجحت في تجاوز مشكلة
+        # معينة ميفضلش معاها تحذير قديم غير لازم.
+        last_short_word_count = None
+        last_truncated = False
 
         try:
             response = create_completion(client, system_prompt, user_message, budget)
@@ -439,6 +475,7 @@ def generate_episode() -> dict:
             budget = int(budget * LENGTH_ESCALATION)
             last_error = "الرد اتقطع بسبب حد التوكنز (finish_reason=MAX_TOKENS)"
             print(f"⚠️ {last_error} — هرفع السقف لـ {budget} وأعيد المحاولة...")
+            last_truncated = True
             continue
 
         if "SAFETY" in finish_reason or "PROHIBITED" in finish_reason or "BLOCKLIST" in finish_reason:
@@ -463,6 +500,8 @@ def generate_episode() -> dict:
             narration_text = str(episode.get("narration", "")).strip()
             if narration_text and "قصير جدًا" in error:
                 last_short_word_count = len(narration_text.split())
+            if "متقطوع" in error:
+                last_truncated = True
             print(f"⚠️ محاولة {attempt}/{MAX_ATTEMPTS}: {last_error} — هعيد المحاولة...")
             continue
 
