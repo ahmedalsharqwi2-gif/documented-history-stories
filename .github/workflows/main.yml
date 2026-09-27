@@ -63,8 +63,12 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_THINKING_BUDGET: "0"
-          TARGET_WORDS: "300"
-          MIN_NARRATION_WORDS: "220"
+          # مرفوعين عشان الفيديو الكامل يتخطى 5 دقايق (300 ثانية) دايمًا:
+          # حسب النسبة الموثقة في generate_script.py (300 كلمة ≈ 94-150
+          # ثانية حسب سرعة النطق)، MIN_NARRATION_WORDS=970 بيضمن تخطي 5
+          # دقايق حتى في أسرع سيناريو نطق محتمل (970×0.313≈304 ثانية).
+          TARGET_WORDS: "1050"
+          MIN_NARRATION_WORDS: "970"
         run: python scripts/generate_script.py
 
       - name: Fetch landscape stock clips
