@@ -3,6 +3,7 @@
 الترتيب:
 - الفيديو الكامل الأفقي والريل (شورت واحد فقط، من أول الفيديو) بينشروا
   معًا في نفس التوقيت: الفيديو عند FULL_VIDEO_DELAY_HOURS، والريل عند
+
   FULL_TO_SHORT_1_HOURS. اضبط القيمتين على نفس الرقم في main.yml (مثلاً
   "8" للنشر الساعة 7 مساءً) عشان ينشروا مع بعض بالظبط.
 
@@ -78,6 +79,7 @@ import re
 import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import requests
@@ -104,6 +106,19 @@ FULL_TO_SHORT_1_HOURS = float(os.environ.get("FULL_TO_SHORT_1_HOURS", "8"))
 # صباحًا وتؤجل النشر الفعلي لنفس اليوم مساءً؛ لو غيّرت معاد الـ cron،
 # اضبط القيمة دي معاه.
 FULL_VIDEO_DELAY_HOURS = float(os.environ.get("FULL_VIDEO_DELAY_HOURS", "0"))
+
+def publish_target_utc(hour: int = 19) -> datetime:
+    """Return the next 19:00 Africa/Cairo converted to UTC.
+    This is absolute scheduling, so SILMA duration does not shift the post.
+    """
+    now = datetime.now(timezone.utc)
+    cairo = now.astimezone(ZoneInfo("Africa/Cairo"))
+    target = cairo.replace(hour=hour, minute=0, second=0, microsecond=0)
+    if target <= cairo:
+        target += timedelta(days=1)
+    return target.astimezone(timezone.utc)
+
+
 
 # يوتيوب بيعامل أي فيديو نصّه فيه #Shorts/#Short كـ Short تلقائيًا بغض النظر
 # عن أبعاده الحقيقية. لازم نشيله من نص الفيديو الكامل حتى لا يُرفض برسالة
@@ -304,7 +319,7 @@ def build_post_text(service: str, asset_type: str, title: str, caption: str, ful
 
 
 def iso_after(hours: float) -> str:
-    due = datetime.now(timezone.utc) + timedelta(hours=hours, minutes=1 if hours == 0 else 0)
+    due = publish_target_utc(19)
     return due.isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 

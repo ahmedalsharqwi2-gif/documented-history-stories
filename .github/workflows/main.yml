@@ -3,7 +3,7 @@ name: Create and Publish Historical Strategy Episode
 on:
   schedule:
     # يبدأ التوليد الساعة 08:00 UTC، والنشر مساءً بعد 8 ساعات.
-    - cron: "0 8 * * *"
+    - cron: "30 13 * * *"
   workflow_dispatch:
 
 # يمنع تشغيل حلقتين في الوقت نفسه، ولا يلغي التشغيل الجاري.

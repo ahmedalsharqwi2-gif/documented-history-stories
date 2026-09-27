@@ -23,6 +23,7 @@ import json
 import os
 import sys
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from google.auth.transport.requests import Request
@@ -52,9 +53,23 @@ YT_MADE_FOR_KIDS = os.environ.get("YT_MADE_FOR_KIDS", "false").lower() == "true"
 # الشورتس اللي أداؤها أفضل صبحًا/ضهرًا. لو الـ workflow بيشتغل صباحًا،
 # القيمة دي بتأجل النشر الفعلي على يوتيوب لنفس اليوم مساءً بدل النشر
 # الفوري وقت الرفع — بنفس منطق FULL_VIDEO_DELAY_HOURS في
+
 # publish_buffer.py، ولازم تتظبط بنفس القيمة عشان يوتيوب وباقي المنصات
 # ينشروا في نفس التوقيت تقريبًا.
 FULL_VIDEO_DELAY_HOURS = float(os.environ.get("FULL_VIDEO_DELAY_HOURS", "0"))
+
+def publish_target_utc(hour: int = 19) -> datetime:
+    """Return the next 19:00 Africa/Cairo converted to UTC.
+    This is absolute scheduling, so SILMA duration does not shift the post.
+    """
+    now = datetime.now(timezone.utc)
+    cairo = now.astimezone(ZoneInfo("Africa/Cairo"))
+    target = cairo.replace(hour=hour, minute=0, second=0, microsecond=0)
+    if target <= cairo:
+        target += timedelta(days=1)
+    return target.astimezone(timezone.utc)
+
+
 
 
 def load_credentials() -> Credentials:
@@ -127,7 +142,7 @@ def upload_video(youtube, video_path: Path, title: str, description: str) -> str
         # جدولة نشر مؤجَّلة: يوتيوب بيطلب privacyStatus="private" مع
         # publishAt (ISO 8601)، وبيحوّل الفيديو تلقائيًا لـpublic في
         # الموعد المحدد بالظبط — الفيديو مش هيكون مرئي لحد ده الموعد.
-        publish_at = (datetime.now(timezone.utc) + timedelta(hours=FULL_VIDEO_DELAY_HOURS))
+        publish_at = publish_target_utc(19)
         status["privacyStatus"] = "private"
         status["publishAt"] = publish_at.isoformat(timespec="seconds").replace("+00:00", "Z")
         print(f"⏰ الفيديو مجدول ينشر تلقائيًا عند: {status['publishAt']} UTC")
