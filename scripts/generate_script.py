@@ -28,21 +28,24 @@ backoff) لغاية TRANSIENT_RETRIES مرة، قبل ما نعتبرها فشل
 كاملة) مالهاش معنى. بنكتشف الحالة دي تحديدًا (_is_daily_quota_exhausted)
 ونرفع استثناء منفصل (QuotaExhausted) بيوقف التشغيلة فورًا.
 
-=== تعديل جديد: قبول رد نداء القصة لو جه JSON بدل الفورمات المسمّى ===
-ظهر فعليًا في التشغيل: رد نداء القصة جه بصيغة JSON كاملة (```json
-{"title": ..., "hook": ..., "narration": ..., ...}```) بدل الفورمات
-النصي المطلوب (HOOK:/REGION:/SOURCE_TYPE:/SOURCE_REFERENCE:/NARRATION:)
-رغم تعليمة صريحة في رسالة المستخدم بالالتزام بالفورمات ده — على الأغلب
-بسبب تأثير من البرومبت النظامي (islamic_history_system_prompt.md) اللي
-يمكن فيه مثال أو إشارة لصيغة JSON. قبل كده كان أي رد مش متبع للفورمات
-المسمّى بالظبط بيترفض بالكامل ويعتبر فشل محاولة، حتى لو الرد فعليًا
-فيه كل المعلومات المطلوبة بس بصيغة تانية. دلوقتي parse_labeled_response
-لو فشل، بنجرّب try_parse_json_episode() كخطة بديلة: بتحاول تفكّ الرد
-كـ JSON وتطلّع منه نفس الحقول الخمسة (hook/region/source_type/
-source_reference/narration) بس — باقي حقول الـ JSON (title/narration_en/
-visual_keywords/إلخ لو موجودة) بنتجاهلها عمدًا وهنولّدها زي العادة من
-نداء finalize، عشان نضمن تطابق narration_en مع تقسيم الجمل بتاعنا نفسه
-(split_arabic_sentences)، مش تقسيم الموديل الخاص بيه.
+=== قبول رد نداء القصة لو جه JSON بدل الفورمات المسمّى ===
+لو الموديل رد بصيغة JSON كاملة بدل الفورمات النصي المطلوب،
+try_parse_json_episode() بتحاول تطلّع منه نفس الحقول الخمسة اللي
+محتاجينها (hook/region/source_type/source_reference/narration) بدل ما
+نرفض الرد كله. المنطق ده وتسجيل الرد الخام عند الفشل اتلمّوا في دالة
+مشتركة parse_story_reply() بيستخدمها نداء القصة الأول ونداء التوسيع
+(اتنين) عشان مايتكررش الكود.
+
+=== تعديل جديد: نداء "توسيع" واحد بس لو القصة خلصت طبيعي لكن قصيرة ===
+ظهر فعليًا في التشغيل: القصة خلصت بعلامة ترقيم واضحة (مش متقطوعة،
+finish_reason طبيعي) لكن بطول 594 كلمة بس — أقل من ACCEPTABLE_MIN_WORDS
+(650) بمسافة حقيقية. التصميم قبل كده كان بيتعامل مع الحالة دي كفشل
+كامل للمحاولة فورًا، رغم إن القصة نفسها متماسكة ومكتملة وممكن جدًا
+تتحسن بنداء واحد بس. دلوقتي لو الطول أقل من ACCEPTABLE_MIN_WORDS (ومش
+متقطوعة)، بنعمل نداء "توسيع" واحد بس (build_expand_story_prompt) بيطلب
+من الموديل يعيد كتابة نفس القصة بتفاصيل حسّية إضافية عشان توصل للهدف،
+قبل ما نستسلم ونرفع AttemptFailed. ده نداء إضافي واحد بس (مش حلقة)،
+فبرضو بيحافظ على فلسفة "أقل عدد نداءات ممكن لكل محاولة".
 
 === تسجيل الرد الخام عند فشل تحليل الحقول بكل الطرق ===
 لو الفورمات المسمّى وJSON الاتنين فشلوا، بنطبع أول جزء من الرد الخام في
@@ -80,8 +83,8 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 TEMPERATURE = 0.75
 
-# سقف التوكنز لنداء القصة الكاملة (نداء واحد بس بيكتب narration من الهوك
-# لحد الخاتمة). سخي عشان القصة كلها + مساحة تفكير في نفس النداء.
+# سقف التوكنز لأي نداء نص حر بيكتب/يعيد كتابة/يوسّع narration. سخي عشان
+# القصة كلها + مساحة تفكير في نفس النداء.
 STORY_MAX_TOKENS = 8000
 # سقف نداء finalize (JSON فيه narration_en كمصفوفة بعدد جمل القصة كاملة
 # + باقي الحقول) — قصص طويلة (800+ كلمة) ممكن تبقى 50-80 جملة.
@@ -99,7 +102,9 @@ TARGET_WORDS = int(os.getenv("TARGET_WORDS", "900"))
 # الحد الأدنى المقبول فعليًا للطول النهائي. ده مش هدف نطمح له — ده خط
 # دفاع بس ضد قصة قصيرة *جدًا* (علامة على مشكلة حقيقية في التوليد، زي
 # قفل مبكر جدًا أو رفض جزئي). أي طول فوق الرقم ده بيتقبل زي ما هو من
-# غير أي محاولة توسيع أو إعادة، حتى لو أقل من TARGET_WORDS.
+# غير أي محاولة توسيع أو إعادة، حتى لو أقل من TARGET_WORDS. لو الطول
+# أقل من الرقم ده، بنعمل نداء توسيع واحد بس (شوف build_expand_story_prompt)
+# قبل ما نستسلم.
 ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", "650"))
 
 # لو نداء اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف ونعيد
@@ -115,8 +120,9 @@ LENGTH_ESCALATION = 1.5
 TRANSIENT_RETRIES = 3
 TRANSIENT_BACKOFF_BASE = 3  # ثواني
 
-# بما إن كل محاولة كاملة بقت تستهلك نداءين (نادرًا 3) بدل 5-10، ممكن
-# نسمح بمحاولة كاملة تانية من غير ما نخاطر باستهلاك الحصة اليومية كلها.
+# بما إن كل محاولة كاملة بقت تستهلك 2-3 نداءات في الغالب (نادرًا لغاية
+# 5 لو احتاجت توسيع طول + إكمال خاتمة الاتنين)، ممكن نسمح بمحاولة كاملة
+# تانية من غير ما نخاطر باستهلاك الحصة اليومية كلها.
 MAX_ATTEMPTS = int(os.getenv("MAX_FULL_ATTEMPTS", "2"))
 
 HISTORY_LIMIT = 8
@@ -183,6 +189,8 @@ FINALIZE_SCHEMA = {
     },
     "required": ["title", "narration_en", "visual_keywords", "caption", "phonetic_hints"],
 }
+
+STORY_REQUIRED_FIELDS = ("hook", "region", "source_type", "source_reference", "narration")
 
 
 def to_gemini_schema(schema: dict) -> dict:
@@ -357,11 +365,61 @@ def try_parse_json_episode(text: str) -> dict | None:
     if not isinstance(data, dict):
         return None
     result: dict = {}
-    for key in ("hook", "region", "source_type", "source_reference", "narration"):
+    for key in STORY_REQUIRED_FIELDS:
         value = data.get(key)
         if isinstance(value, str) and value.strip():
             result[key] = value.strip()
     return result or None
+
+
+def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
+    """بتحلّل رد أي نداء بيكتب/يعيد كتابة narration كاملة (نداء القصة
+    الأول أو نداء التوسيع) — تجرّب الفورمات المسمّى الأول، وبعدين خطة
+    JSON البديلة لو الأول فشل. لو الاتنين فشلوا، بتطبع الرد الخام
+    وترفع AttemptFailed برسالة واضحة بتحدد الحقل الناقص."""
+    fields = parse_labeled_response(reply)
+    if any(not fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
+        json_fields = try_parse_json_episode(reply)
+        if json_fields and all(json_fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
+            print(f"   ℹ️ {attempt_label} | {step_label}: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
+            fields = json_fields
+
+    missing = [key for key in STORY_REQUIRED_FIELDS if not fields.get(key, "").strip()]
+    if missing:
+        # مهم للتشخيص: من غير الطباعة دي، فشل "ناقص حقل" كان بيبقى
+        # عمياني تمامًا (منعرفش الموديل رد بإيه فعليًا).
+        print(f"   🔎 رد {attempt_label} | {step_label} الخام (أول 500 حرف):\n{reply[:500]!r}")
+        raise AttemptFailed(f"رد {step_label} ناقص حقل '{missing[0]}' أو فاضي (بكل الطرق المتاحة للتحليل)")
+
+    return {
+        "hook": fields["hook"].replace("**", "").replace("__", "").strip(),
+        "region": fields["region"].replace("**", "").replace("__", "").strip(),
+        "source_type": fields["source_type"].replace("**", "").replace("__", "").strip(),
+        "source_reference": fields["source_reference"].replace("**", "").replace("__", "").strip(),
+        "narration": clean_continuation_text(fields["narration"]),
+    }
+
+
+def ensure_complete_ending(
+    client: genai.Client,
+    history: list[types.Content],
+    narration: str,
+    system_prompt: str,
+    attempt_label: str,
+) -> str:
+    """لو narration متقطوعة (مش منتهية بعلامة ترقيم واضحة)، بتعمل نداء
+    واحد بس "إكمال خاتمة" وترجّع narration مع الإضافة. لو مش متقطوعة
+    أصلاً، بترجعها زي ما هي من غير أي نداء إضافي."""
+    if not looks_truncated(narration):
+        return narration
+    reply, _ = call_model(
+        client, history, build_finish_ending_prompt(),
+        free_text_config, system_prompt, STORY_MAX_TOKENS,
+        f"{attempt_label} | إكمال الخاتمة",
+    )
+    narration = narration + " " + clean_continuation_text(reply)
+    print(f"   📝 بعد إكمال الخاتمة: {count_words(narration)} كلمة")
+    return narration
 
 
 def validate_episode(episode: dict) -> str | None:
@@ -542,6 +600,16 @@ def call_model(
 
 # ─────────────────────────── نصوص البرومبت ───────────────────────────
 
+_STORY_FORMAT_BLOCK = (
+    "HOOK: <جملة الهوك>\n"
+    "REGION: <وصف العصر/المكان>\n"
+    "SOURCE_TYPE: <نوع المصدر (قرآن/حديث صحيح/حديث حسن/مصدر تاريخي "
+    "معتمد)>\n"
+    "SOURCE_REFERENCE: <المرجع الدقيق>\n"
+    "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
+)
+
+
 def build_story_prompt(
     recent_titles: list[str], recent_regions: list[str], recent_hooks: list[str],
     target_words: int,
@@ -585,12 +653,7 @@ def build_story_prompt(
         "أو تغيير أو زخرفة markdown حواليها، ومن غير أقواس {} أو علامات "
         "اقتباس \" حوالين القيم)، كل تسمية في بداية سطر جديد، ومفيش أي "
         "نص أو مقدمة أو أسوار كود ```json أو تعليق خارج الحقول دي:\n\n"
-        "HOOK: <جملة الهوك>\n"
-        "REGION: <وصف العصر/المكان>\n"
-        "SOURCE_TYPE: <نوع المصدر (قرآن/حديث صحيح/حديث حسن/مصدر تاريخي "
-        "معتمد)>\n"
-        "SOURCE_REFERENCE: <المرجع الدقيق>\n"
-        "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
+        f"{_STORY_FORMAT_BLOCK}"
     )
     if recent_titles:
         message += "\n\nالعناوين اللي اتستخدمت قبل كده (تجنب أي تشابه معاها):\n- " + "\n- ".join(recent_titles)
@@ -604,9 +667,27 @@ def build_story_prompt(
     return message
 
 
+def build_expand_story_prompt(current_word_count: int, target_words: int) -> str:
+    """نداء واحد بس (مش حلقة) لو القصة خلصت بخاتمة حقيقية لكن طولها
+    أقل من ACCEPTABLE_MIN_WORDS. بيطلب إعادة كتابة القصة كلها من جديد
+    (نفس الواقعة والهوك والمصدر) بتفاصيل حسّية إضافية عشان توصل للهدف،
+    بنفس الفورمات المسمّى بالظبط."""
+    return (
+        f"القصة اللي كتبتها قبل كده قصيرة شوية ({current_word_count} كلمة "
+        f"بس، والهدف حوالي {target_words} كلمة). أعد كتابة نفس القصة "
+        "بالكامل من جديد — نفس الواقعة، نفس الهوك، نفس المصدر — لكن "
+        "بتفاصيل حسّية ووصفية إضافية واردة في المصدر نفسه (الأصوات، "
+        "المشاعر، السياق المكاني والزمني، ردود الأفعال)، من غير اختراع "
+        f"أي حدث أو تفصيلة جديدة غير موثقة، عشان توصل لحوالي {target_words} "
+        "كلمة. اكتب الرد الجديد بنفس الفورمات بالضبط من الأول (نص عادي "
+        "وليس JSON):\n\n"
+        f"{_STORY_FORMAT_BLOCK}"
+    )
+
+
 def build_finish_ending_prompt() -> str:
     """نداء واحد بس (مش حلقة) لو القصة اتقطعت قبل خاتمة حقيقية بعد كل
-    محاولات رفع سقف التوكنز في نداء القصة الأساسي."""
+    محاولات رفع سقف التوكنز في نداء القصة الأساسي أو نداء التوسيع."""
     return (
         "النص اتقطع قبل ما يوصل لخاتمة حقيقية. اكتب دلوقتي فقط الجملة "
         "أو الجمل الختامية اللي تقفل القصة بعبرة أو حكمة واضحة مبنية "
@@ -684,50 +765,42 @@ def run_single_attempt(
         free_text_config, system_prompt, STORY_MAX_TOKENS,
         f"{attempt_label} | القصة",
     )
-    fields = parse_labeled_response(reply)
-    required_fields = ("hook", "region", "source_type", "source_reference", "narration")
-    if any(not fields.get(key, "").strip() for key in required_fields):
-        # الفورمات المسمّى فشل — نجرّب خطة بديلة (الموديل أحيانًا بيرد
-        # JSON كامل بدل الفورمات ده، رغم التعليمة الصريحة).
-        json_fields = try_parse_json_episode(reply)
-        if json_fields and all(json_fields.get(key, "").strip() for key in required_fields):
-            print(f"   ℹ️ {attempt_label} | القصة: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
-            fields = json_fields
-
-    missing = [key for key in required_fields if not fields.get(key, "").strip()]
-    if missing:
-        # مهم للتشخيص: من غير الطباعة دي، فشل "ناقص حقل" كان بيبقى
-        # عمياني تمامًا (منعرفش الموديل رد بإيه فعليًا). بنطبع أول جزء
-        # بس (500 حرف) عشان اللوج ميتملّاش برد طويل.
-        print(f"   🔎 رد {attempt_label} | القصة الخام (أول 500 حرف):\n{reply[:500]!r}")
-        raise AttemptFailed(f"رد نداء القصة ناقص حقل '{missing[0]}' أو فاضي (بكل الطرق المتاحة للتحليل)")
-
-    hook = fields["hook"].replace("**", "").replace("__", "").strip()
-    region = fields["region"].replace("**", "").replace("__", "").strip()
-    source_type = fields["source_type"].replace("**", "").replace("__", "").strip()
-    source_reference = fields["source_reference"].replace("**", "").replace("__", "").strip()
-    narration = clean_continuation_text(fields["narration"])
+    story = parse_story_reply(reply, attempt_label, "القصة")
+    hook, region = story["hook"], story["region"]
+    source_type, source_reference = story["source_type"], story["source_reference"]
+    narration = story["narration"]
 
     print(f"   📝 القصة: {count_words(narration)} كلمة (هدف تقريبي {target_words})")
 
-    # لو اتقطعت قبل خاتمة حقيقية، نداء واحد بس يكمّل الخاتمة (مش حلقة
-    # توسيعات) — لو لسه متقطوعة بعده، نعتبرها فشل حقيقي للمحاولة.
-    if looks_truncated(narration):
-        reply, _ = call_model(
-            client, history, build_finish_ending_prompt(),
-            free_text_config, system_prompt, STORY_MAX_TOKENS,
-            f"{attempt_label} | إكمال الخاتمة",
-        )
-        narration += " " + clean_continuation_text(reply)
-        print(f"   📝 بعد إكمال الخاتمة: {count_words(narration)} كلمة")
-
+    narration = ensure_complete_ending(client, history, narration, system_prompt, attempt_label)
     if looks_truncated(narration):
         raise AttemptFailed("narration لسه متقطوعة بعد محاولة إكمال الخاتمة (مش منتهية بعلامة ترقيم واضحة)")
+
+    # لو القصة خلصت طبيعي (مش متقطوعة) بس طولها أقل من الحد الأدنى
+    # المقبول، نداء توسيع واحد بس قبل ما نستسلم — انظر الملاحظة في أعلى
+    # الملف عن سبب إضافة الخطوة دي.
+    if count_words(narration) < ACCEPTABLE_MIN_WORDS:
+        current_count = count_words(narration)
+        print(f"   ℹ️ الطول ({current_count} كلمة) أقل من الحد الأدنى المقبول ({ACCEPTABLE_MIN_WORDS}) — هعمل نداء توسيع واحد.")
+        reply, _ = call_model(
+            client, history, build_expand_story_prompt(current_count, target_words),
+            free_text_config, system_prompt, STORY_MAX_TOKENS,
+            f"{attempt_label} | توسيع القصة",
+        )
+        expanded = parse_story_reply(reply, attempt_label, "توسيع القصة")
+        hook, region = expanded["hook"], expanded["region"]
+        source_type, source_reference = expanded["source_type"], expanded["source_reference"]
+        narration = expanded["narration"]
+        print(f"   📝 بعد التوسيع: {count_words(narration)} كلمة")
+
+        narration = ensure_complete_ending(client, history, narration, system_prompt, attempt_label)
+        if looks_truncated(narration):
+            raise AttemptFailed("narration لسه متقطوعة بعد توسيع القصة ومحاولة إكمال الخاتمة")
 
     final_word_count = count_words(narration)
     if final_word_count < ACCEPTABLE_MIN_WORDS:
         raise AttemptFailed(
-            f"narration قصيرة جدًا ({final_word_count} كلمة، "
+            f"narration قصيرة جدًا حتى بعد نداء التوسيع ({final_word_count} كلمة، "
             f"الحد الأدنى المقبول {ACCEPTABLE_MIN_WORDS})"
         )
     if final_word_count < target_words:
