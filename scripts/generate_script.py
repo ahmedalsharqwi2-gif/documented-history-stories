@@ -439,6 +439,13 @@ def ensure_complete_ending(
     return narration
 
 
+CONTENT_RED_FLAGS = ("السيلينس", "الشهرات الجوية", "المحتلة بالدقيق", "البركان الثلجي")
+
+def find_content_red_flag(text: str) -> str | None:
+    plain = re.sub(r"[\u064B-\u065F\u0670]", "", text or "")
+    return next((flag for flag in CONTENT_RED_FLAGS if flag in plain), None)
+
+
 def validate_episode(episode: dict) -> str | None:
     """يرجّع رسالة الخطأ لو الحلقة النهائية (بعد الدمج) فيها مشكلة، أو
     None لو سليمة. خط دفاع أخير حتى لو المفروض كل حقل اتبنى صح لوحده."""
@@ -446,6 +453,9 @@ def validate_episode(episode: dict) -> str | None:
         return f"الحلقة النهائية ناقصة حقول مطلوبة: {sorted(episode.keys())}"
 
     narration = str(episode.get("narration", "")).strip()
+    red_flag = find_content_red_flag(narration)
+    if red_flag:
+        return f"النص يحتوي مصطلحًا علميًا مرفوضًا أو مختلقًا: {red_flag}"
     if looks_truncated(narration):
         return "نص narration النهائي شكله متقطوع (مش منتهي بعلامة ترقيم واضحة)"
 
