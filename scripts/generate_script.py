@@ -83,10 +83,10 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 # نماذج احتياطية اختيارية، مفصولة بفاصلة. لن تُستخدم إلا إذا نفدت
 # حصة النموذج الأساسي. مثال:
-# GEMINI_FALLBACK_MODELS=gemini-2.5-flash-lite
+# GEMINI_FALLBACK_MODELS=gemini-3.5-flash-lite
 FALLBACK_MODELS = [
     item.strip()
-    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash-lite").split(",")
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-3.5-flash-lite").split(",")
     if item.strip()
 ]
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
