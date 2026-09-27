@@ -64,8 +64,8 @@ jobs:
       - name: Generate narration with Bark/Edge fallback and subtitles
         env:
           # الصوت الأساسي ثم أصوات احتياطية عند NoAudioReceived من Edge TTS.
-          TTS_ENGINE: "bark"
-          BARK_HISTORY_PROMPT: "v2/ar_speaker_0"
+          TTS_ENGINE: "edge"
+          BARK_HISTORY_PROMPT: ""
           BARK_FALLBACK_TO_EDGE: "true"
           EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
           EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"

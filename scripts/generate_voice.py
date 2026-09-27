@@ -58,7 +58,7 @@ from pathlib import Path
 import edge_tts
 
 TTS_ENGINE = os.getenv("TTS_ENGINE", "edge").strip().lower()
-BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "v2/ar_speaker_0").strip()
+BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
 BARK_TEXT_TEMP = float(os.getenv("BARK_TEXT_TEMP", "0.7"))
 BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
 
@@ -203,6 +203,16 @@ def synthesize_sentences_bark(sentences: list[str]) -> list[dict]:
     """ينتج مقاطع WAV عبر Bark من Suno. Bark لا يعيد WordBoundary؛ لذلك
     تُستخرج المحاذاة لاحقًا عبر Whisper مثل خطة الاحتياط الحالية."""
     try:
+        # Bark 0.1.5 يستخدم torch.load بالطريقة القديمة. ابتداءً من
+        # PyTorch 2.6 أصبح weights_only=True هو الافتراضي، ما يمنع تحميل
+        # checkpoints الرسمية. نمرر False صراحةً للملفات التي ينزلها Bark
+        # من مستودع النماذج الرسمي، وهو ما يتوافق مع واجهة Bark الحالية.
+        import torch
+        _torch_load = torch.load
+        def _bark_torch_load(*args, **kwargs):
+            kwargs.setdefault("weights_only", False)
+            return _torch_load(*args, **kwargs)
+        torch.load = _bark_torch_load
         from bark import generate_audio, preload_models
         from scipy.io import wavfile
     except ImportError as exc:
