@@ -61,6 +61,9 @@ TTS_ENGINE = os.getenv("TTS_ENGINE", "edge").strip().lower()
 BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
 BARK_TEXT_TEMP = float(os.getenv("BARK_TEXT_TEMP", "0.7"))
 BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
+XTTS_MODEL = os.getenv("XTTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
+XTTS_SPEAKER_WAV = Path(os.getenv("XTTS_SPEAKER_WAV", "assets/voice_reference.wav"))
+XTTS_USE_GPU = os.getenv("XTTS_USE_GPU", "false").lower() == "true"
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -252,8 +255,67 @@ def synthesize_sentences_bark(sentences: list[str]) -> list[dict]:
     return segments
 
 
+def synthesize_sentences_xtts(sentences: list[str]) -> list[dict]:
+    """ينتج الصوت العربي عبر Coqui XTTS-v2 باستخدام عينة صوت مرجعية واحدة.
+    يتم تحميل النموذج مرة واحدة ثم توليد كل جملة في ملف WAV مستقل."""
+    if not XTTS_SPEAKER_WAV.is_absolute():
+        speaker_wav = ROOT_DIR / XTTS_SPEAKER_WAV
+    else:
+        speaker_wav = XTTS_SPEAKER_WAV
+    if not speaker_wav.exists():
+        raise RuntimeError(
+            f"ملف الصوت المرجعي غير موجود: {speaker_wav}. "
+            "أضف assets/voice_reference.wav أو اضبط XTTS_SPEAKER_WAV."
+        )
+    try:
+        from TTS.api import TTS
+    except ImportError as exc:
+        raise RuntimeError("تعذر استيراد Coqui TTS؛ ثبّت coqui-tts") from exc
+
+    print(f"🐸 تحميل Coqui XTTS-v2: {XTTS_MODEL} (GPU={XTTS_USE_GPU})...")
+    tts = TTS(model_name=XTTS_MODEL, progress_bar=True, gpu=XTTS_USE_GPU)
+    segments = []
+    for index, raw_sentence in enumerate(sentences):
+        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
+        if not sentence:
+            continue
+        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.wav"
+        print(f"   🐸 XTTS: الجملة {index + 1}/{len(sentences)}")
+        tts.tts_to_file(
+            text=sentence,
+            speaker_wav=str(speaker_wav),
+            language="ar",
+            file_path=str(seg_path),
+            split_sentences=False,
+        )
+        duration = probe_duration(seg_path)
+        if duration <= 0:
+            raise RuntimeError("XTTS أعاد ملفًا صوتيًا فارغًا")
+        segments.append({
+            "path": seg_path, "duration": duration, "events": None,
+            "sentence": sentence, "is_silence": False,
+        })
+        if index < len(sentences) - 1:
+            pause = pause_duration_for(sentence)
+            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
+            build_silence_clip(pause, pause_path)
+            segments.append({
+                "path": pause_path, "duration": pause, "events": None,
+                "sentence": None, "is_silence": True,
+            })
+    return segments
+
+
 async def synthesize_sentences(sentences: list[str]) -> list[dict]:
     """يختار Bark من Suno عند TTS_ENGINE=bark، وإلا يستخدم Edge TTS."""
+    if TTS_ENGINE == "xtts":
+        try:
+            return synthesize_sentences_xtts(sentences)
+        except Exception as exc:  # XTTS اختياري؛ لا نسقط النشر بالكامل
+            if os.getenv("XTTS_FALLBACK_TO_EDGE", "true").lower() == "true":
+                print(f"⚠️ تعذر XTTS ({exc}) — الرجوع إلى Edge TTS.")
+            else:
+                raise
     if TTS_ENGINE == "bark":
         try:
             return synthesize_sentences_bark(sentences)

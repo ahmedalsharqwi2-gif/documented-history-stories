@@ -8,3 +8,4 @@ google-api-python-client
 faster-whisper
 suno-bark==0.1.5
 scipy>=1.11
+coqui-tts>=0.27.0

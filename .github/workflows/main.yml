@@ -67,6 +67,8 @@ jobs:
           TTS_ENGINE: "edge"
           BARK_HISTORY_PROMPT: ""
           BARK_FALLBACK_TO_EDGE: "true"
+          XTTS_SPEAKER_WAV: "assets/voice_reference.wav"
+          XTTS_FALLBACK_TO_EDGE: "true"
           EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
           EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"
           EDGE_TTS_RETRIES: "3"
