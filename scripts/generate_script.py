@@ -69,6 +69,8 @@ import re
 import json
 import sys
 import time
+import requests
+from types import SimpleNamespace
 from pathlib import Path
 
 from google import genai
@@ -92,6 +94,10 @@ FALLBACK_MODELS = [
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
 ACTIVE_MODEL_INDEX = 0
 ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free")
+OPENROUTER_TIMEOUT = int(os.getenv("OPENROUTER_TIMEOUT", "90"))
+ACTIVE_PROVIDER = "gemini"
 TEMPERATURE = 0.75
 
 # سقف التوكنز لأي نداء نص حر بيكتب/يعيد كتابة/يوسّع narration. سخي عشان
@@ -501,10 +507,77 @@ def _is_transient_error(exc: Exception) -> bool:
     return any(marker in text for marker in transient_markers)
 
 
+class OpenRouterModels:
+    def generate_content(self, *, model: str, contents, config):
+        messages = []
+        system = getattr(config, "system_instruction", None)
+        if system:
+            messages.append({"role": "system", "content": str(system)})
+        for content in contents:
+            text = "".join(getattr(part, "text", "") for part in (content.parts or []))
+            messages.append({
+                "role": "assistant" if content.role == "model" else "user",
+                "content": text,
+            })
+        payload = {
+            "model": OPENROUTER_MODEL,
+            "messages": messages,
+            "temperature": getattr(config, "temperature", TEMPERATURE),
+            "max_tokens": getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
+        }
+        if getattr(config, "response_mime_type", "") == "application/json":
+            payload["response_format"] = {"type": "json_object"}
+        response = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/islamic-reminder1",
+                "X-Title": "Islamic Reminder Auto Publisher",
+            },
+            json=payload,
+            timeout=OPENROUTER_TIMEOUT,
+        )
+        if response.status_code != 200:
+            raise RuntimeError(f"OpenRouter HTTP {response.status_code}: {response.text[:300]}")
+        data = response.json()
+        choice = (data.get("choices") or [{}])[0]
+        text = ((choice.get("message") or {}).get("content") or "").strip()
+        if not text:
+            raise RuntimeError("OpenRouter returned an empty response")
+        finish_reason = str(choice.get("finish_reason") or "STOP")
+        usage = data.get("usage") or {}
+        usage_metadata = SimpleNamespace(
+            prompt_token_count=usage.get("prompt_tokens", 0),
+            candidates_token_count=usage.get("completion_tokens", 0),
+            total_token_count=usage.get("total_tokens", 0),
+        )
+        return SimpleNamespace(
+            text=text,
+            usage_metadata=usage_metadata,
+            candidates=[SimpleNamespace(finish_reason=finish_reason)],
+        )
+
+
+class ProviderClient:
+    def __init__(self, gemini_client):
+        self._gemini_client = gemini_client
+        self._openrouter_models = OpenRouterModels()
+
+    @property
+    def models(self):
+        return self._openrouter_models if ACTIVE_PROVIDER == "openrouter" else self._gemini_client.models
+
+
 def switch_to_next_model() -> bool:
     """ينتقل إلى النموذج الاحتياطي التالي مرة واحدة عند نفاد حصة النموذج
     الحالي. لا يتحايل على الحصة؛ ينجح فقط إذا كان للنموذج الآخر حصة متاحة."""
-    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL
+    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER
+    if ACTIVE_PROVIDER == "gemini" and OPENROUTER_API_KEY:
+        ACTIVE_PROVIDER = "openrouter"
+        ACTIVE_MODEL = OPENROUTER_MODEL
+        print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية: {OPENROUTER_MODEL}")
+        return True
     if ACTIVE_MODEL_INDEX + 1 >= len(MODEL_CANDIDATES):
         return False
     ACTIVE_MODEL_INDEX += 1
@@ -612,6 +685,10 @@ def call_model(
                 break
 
         if response is None:
+            if ACTIVE_PROVIDER == "gemini" and OPENROUTER_API_KEY:
+                raise QuotaExhausted(
+                    f"تعذر إكمال نداء Gemini في {label}؛ سيتم التحويل إلى OpenRouter ({last_exc})"
+                ) from last_exc
             raise AttemptFailed(f"فشل استدعاء Gemini API في {label} ({last_exc})") from last_exc
 
         log_usage(response, label)
@@ -871,18 +948,23 @@ def run_single_attempt(
 
 
 def generate_episode() -> dict:
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        sys.exit("خطأ: لازم تضيف GEMINI_API_KEY في GitHub Secrets")
-
-    client = genai.Client(api_key=api_key)
+    global ACTIVE_PROVIDER, ACTIVE_MODEL
+    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not api_key and not OPENROUTER_API_KEY:
+        sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY إلى GitHub Secrets")
+    if api_key:
+        client = ProviderClient(genai.Client(api_key=api_key))
+    else:
+        ACTIVE_PROVIDER = "openrouter"
+        ACTIVE_MODEL = OPENROUTER_MODEL
+        client = ProviderClient(None)
     system_prompt = load_system_prompt()
     recent_titles = load_used_history()
     recent_regions = load_used_regions()
     recent_hooks = load_used_hooks()
 
     print(
-        f"🕌 الموديل الأساسي: {MODEL} | النماذج المتاحة: {MODEL_CANDIDATES} | "
+        f"🕌 المزود الأساسي: {ACTIVE_PROVIDER} | Gemini: {MODEL} | OpenRouter: {OPENROUTER_MODEL} | "
         f"thinking_budget: {THINKING_BUDGET} | "
         f"هدف الطول التقريبي: {TARGET_WORDS} كلمة | الحد الأدنى الإلزامي: {ACCEPTABLE_MIN_WORDS or 'غير محدد'}"
     )

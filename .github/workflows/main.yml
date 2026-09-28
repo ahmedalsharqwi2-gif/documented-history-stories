@@ -63,12 +63,13 @@ jobs:
       - name: Generate complete historical strategy episode script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # النموذج الأساسي. عند نفاد حصته ينتقل السكربت تلقائيًا للبديل.
+          # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
           GEMINI_MODEL: "gemini-2.5-flash"
-          # مهم: لا تستخدم gemini-3.5-flash-lite؛ Google أعلن أنه غير متاح
-          # للمستخدمين الجدد. استخدم النموذج الذي أوصى به رد API.
-          GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
-          GEMINI_THINKING_BUDGET: "2048"
+          GEMINI_FALLBACK_MODELS: ""
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: "nvidia/nemotron-3-super-120b-a12b:free"
+          OPENROUTER_TIMEOUT: "90"
+          GEMINI_THINKING_BUDGET: "512"
           TARGET_WORDS: "1050"
         run: python scripts/generate_script.py
 
