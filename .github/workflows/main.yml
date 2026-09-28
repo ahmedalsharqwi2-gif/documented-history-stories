@@ -5,6 +5,21 @@ on:
     # يبدأ التوليد الساعة 13:30 UTC (16:30 القاهرة)، والنشر يُحسب ثابتًا عند 19:00 القاهرة.
     - cron: "30 13 * * *"
   workflow_dispatch:
+    inputs:
+      voice_profile:
+        description: "اختر صوت الراوي لهذا الفيديو"
+        required: true
+        type: choice
+        default: mohamed_elbed
+        options:
+          - mohamed_elbed
+          - rafik_sa
+          - egyptian_female
+          - hossam
+          - hossam_uploaded
+          - marwan
+          - nassim
+          - ahmed_z
 
 # يمنع تشغيل حلقتين في الوقت نفسه، ولا يلغي التشغيل الجاري.
 concurrency:
@@ -61,25 +76,15 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python scripts/fetch_clips.py
 
-      - name: Prepare synthetic SILMA reference audio
-        run: |
-          mkdir -p assets
-          edge-tts \
-            --voice ar-EG-ShakirNeural \
-            --text "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة." \
-            --write-media assets/voice_reference_synthetic.mp3
-          ffmpeg -y -i assets/voice_reference_synthetic.mp3 \
-            -ac 1 -ar 24000 -sample_fmt s16 -t 8 \
-            assets/voice_reference_synthetic.wav
-
-      - name: Generate narration with SILMA and subtitles
+      - name: Generate narration with the selected SILMA reference voice
         env:
           TTS_ENGINE: "silma"
-          SILMA_REFERENCE_WAV: "assets/voice_reference_synthetic.wav"
-          SILMA_REFERENCE_TEXT: "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة."
+          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'mohamed_elbed' }}
+          SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
           SILMA_SPEED: "1.0"
           SILMA_GUARD_ENABLED: "true"
-          SILMA_FALLBACK_TO_EDGE: "true"
+          SILMA_GUARD_MIN_MATCH_WORDS: "4"
+          SILMA_FALLBACK_TO_EDGE: "false"
           EDGE_TTS_RATE: "-8%"
           EDGE_TTS_PITCH: "-5Hz"
         run: python scripts/generate_voice.py

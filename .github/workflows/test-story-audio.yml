@@ -2,6 +2,21 @@ name: Test Historical Story and Arabic Audio
 
 on:
   workflow_dispatch:
+    inputs:
+      voice_profile:
+        description: "اختر صوت الراوي لاختبار الصوت فقط"
+        required: true
+        type: choice
+        default: mohamed_elbed
+        options:
+          - mohamed_elbed
+          - rafik_sa
+          - egyptian_female
+          - hossam
+          - hossam_uploaded
+          - marwan
+          - nassim
+          - ahmed_z
 
 permissions:
   contents: read
@@ -41,10 +56,12 @@ jobs:
 
       - name: Generate test narration without publishing
         env:
-          # XTTS يتطلب assets/voice_reference.wav؛ عند غيابه يعود السكربت إلى Edge.
-          TTS_ENGINE: "xtts"
-          XTTS_SPEAKER_WAV: "assets/voice_reference.wav"
-          XTTS_FALLBACK_TO_EDGE: "true"
+          TTS_ENGINE: "silma"
+          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'mohamed_elbed' }}
+          SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
+          SILMA_FALLBACK_TO_EDGE: "false"
+          SILMA_GUARD_ENABLED: "true"
+          SILMA_GUARD_MIN_MATCH_WORDS: "4"
           EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
           EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural"
           EDGE_TTS_RETRIES: "2"

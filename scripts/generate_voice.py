@@ -56,6 +56,7 @@ import sys
 from pathlib import Path
 
 import edge_tts
+from voice_profiles import resolve_reference_profile
 
 TTS_ENGINE = os.getenv("TTS_ENGINE", "silma").strip().lower()
 BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
@@ -69,6 +70,10 @@ SILMA_REFERENCE_TEXT = os.getenv(
     "SILMA_REFERENCE_TEXT",
     "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة.",
 ).strip()
+SILMA_REFERENCE_PROFILE = os.getenv("SILMA_REFERENCE_PROFILE", "").strip()
+SILMA_VOICE_PROFILES_FILE = Path(
+    os.getenv("SILMA_VOICE_PROFILES_FILE", "assets/voices/voice_profiles.json")
+)
 SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.0"))
 SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
 SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
@@ -146,6 +151,20 @@ def run(command: list[str]) -> subprocess.CompletedProcess[str]:
     if result.returncode != 0:
         sys.exit("❌ فشل الأمر:\n" + " ".join(command) + "\n\n" + result.stderr)
     return result
+
+
+def configure_silma_voice_profile() -> str:
+    """Resolve the chosen bundled WAV and its exact reference transcript."""
+    global SILMA_REFERENCE_WAV, SILMA_REFERENCE_TEXT
+    selected, label, wav, transcript = resolve_reference_profile(
+        SILMA_REFERENCE_PROFILE,
+        SILMA_VOICE_PROFILES_FILE,
+        ROOT_DIR,
+    )
+    SILMA_REFERENCE_WAV = wav
+    SILMA_REFERENCE_TEXT = transcript
+    print(f"🎙️ ملف الصوت المختار: {label} ({selected})")
+    return selected
 
 
 def strip_diacritics(text: str) -> str:
@@ -672,10 +691,14 @@ def synthesize_voice(voice_text: str) -> None:
     if TTS_ENGINE == "silma":
         try:
             leak = detect_silma_reference_leak(VOICE_AUDIO)
-        except Exception as exc:  # Whisper unavailable/download failure: fail safe to Edge.
-            print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}) — إعادة التوليد بـEdge TTS.")
+        except Exception as exc:  # Whisper unavailable/download failure: respect the configured fallback policy.
+            print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}).")
             leak = "whisper_guard_error"
         if leak:
+            if os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
+                raise RuntimeError(
+                    f"تعذر اعتماد ملف SILMA للصوت المختار ({leak})، ولن أستبدله بصوت Edge مختلف."
+                )
             print(f"⚠️ تسرّب/خلل في صوت SILMA ({leak}) — إعادة التوليد بـEdge TTS.")
             for segment in segments:
                 Path(segment["path"]).unlink(missing_ok=True)
@@ -733,6 +756,10 @@ def main() -> None:
     CLIPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
+    selected_voice_profile = ""
+    if TTS_ENGINE == "silma":
+        selected_voice_profile = configure_silma_voice_profile()
+
     phonetic_hints = episode.get("phonetic_hints") or []
     voice_text = apply_phonetic_hints(narration, phonetic_hints)
     voice_text = apply_light_diacritics(voice_text)
@@ -741,6 +768,7 @@ def main() -> None:
 
     episode.pop("parts", None)
     episode["narration"] = narration
+    episode["voice_profile"] = selected_voice_profile or TTS_ENGINE
     episode["voice_audio"] = str(VOICE_AUDIO)
     episode["final_audio"] = str(FINAL_AUDIO)
     episode["subtitles"] = str(SUBTITLES)
