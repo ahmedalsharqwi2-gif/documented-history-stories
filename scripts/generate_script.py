@@ -82,7 +82,7 @@ OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 
 # ─────────────────────────── الإعدادات ───────────────────────────
 
-MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 # نماذج احتياطية اختيارية، مفصولة بفاصلة. لن تُستخدم إلا إذا نفدت
 # حصة النموذج الأساسي. مثال:
 # GEMINI_FALLBACK_MODELS=gemini-3.5-flash-lite
@@ -206,6 +206,13 @@ FINALIZE_SCHEMA = {
         },
     },
     "required": ["title", "visual_keywords", "caption", "phonetic_hints"],
+}
+
+TASHKEEL_SCHEMA = {
+    "type": "object",
+    "properties": {"corrected_narration": {"type": "string"}},
+    "required": ["corrected_narration"],
+    "additionalProperties": False,
 }
 
 STORY_REQUIRED_FIELDS = ("hook", "region", "source_type", "source_reference", "narration")
@@ -524,6 +531,7 @@ class OpenRouterModels:
             "messages": messages,
             "temperature": getattr(config, "temperature", TEMPERATURE),
             "max_tokens": getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
+            "reasoning": {"effort": "none", "exclude": True},
         }
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
@@ -542,7 +550,16 @@ class OpenRouterModels:
             raise RuntimeError(f"OpenRouter HTTP {response.status_code}: {response.text[:300]}")
         data = response.json()
         choice = (data.get("choices") or [{}])[0]
-        text = ((choice.get("message") or {}).get("content") or "").strip()
+        message = choice.get("message") or {}
+        content = message.get("content") or ""
+        if isinstance(content, list):
+            content = "".join(
+                item.get("text", "") if isinstance(item, dict) else str(item)
+                for item in content
+            )
+        text = str(content).strip()
+        if not text and message.get("reasoning"):
+            raise RuntimeError("OpenRouter returned reasoning but no answer content")
         if not text:
             raise RuntimeError("OpenRouter returned an empty response")
         finish_reason = str(choice.get("finish_reason") or "STOP")
@@ -627,6 +644,17 @@ def finalize_json_config(system_prompt: str, budget: int) -> types.GenerateConte
         response_mime_type="application/json",
         response_schema=to_gemini_schema(FINALIZE_SCHEMA),
         thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET),
+    )
+
+
+def tashkeel_json_config(system_prompt: str, budget: int) -> types.GenerateContentConfig:
+    return types.GenerateContentConfig(
+        system_instruction=system_prompt,
+        temperature=0.1,
+        max_output_tokens=budget,
+        response_mime_type="application/json",
+        response_schema=to_gemini_schema(TASHKEEL_SCHEMA),
+        thinking_config=types.ThinkingConfig(thinking_budget=0),
     )
 
 
@@ -844,6 +872,46 @@ def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str
     return message
 
 
+TASHKEEL_SYSTEM_PROMPT = (
+    "أنت مدقق لغوي عربي متخصص في ضبط نصوص النطق. صحح النص المرسل دون حذف "
+    "أو إضافة معلومة أو تغيير ترتيب الكلمات. راجع الفاعل والمفعول وعائد كل ضمير، "
+    "وطابق الأفعال مع الفاعل في التذكير والتأنيث والإفراد والتثنية والجمع، واضبط "
+    "زمن الفعل. أضف التشكيل الكامل للكلمات، خصوصًا الأفعال والضمائر وأواخر الكلمات "
+    "والكلمات التي تحتمل قراءتين. حافظ على علامات الوقف، وأعد JSON فقط بالمفتاح "
+    "corrected_narration."
+)
+
+
+def _word_signature(text: str) -> list[str]:
+    plain = re.sub(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]", "", text)
+    return re.findall(r"[\u0621-\u064A\u0671]+", plain)
+
+
+def proofread_narration_for_tts(
+    client: genai.Client,
+    history: list[types.Content],
+    narration: str,
+    attempt_label: str,
+) -> str:
+    prompt = (
+        "راجع النص التالي للنطق العربي. لا تغيّر الكلمات أو المعلومات أو ترتيبها؛ "
+        "أصلح التشكيل والنحو فقط. إذا كان الضمير أو الفعل ملتبسًا فاضبطه بما يوافق "
+        "السياق. النص:\n\n" + narration
+    )
+    reply, _ = call_model(
+        client, history, prompt, tashkeel_json_config, TASHKEEL_SYSTEM_PROMPT,
+        max(FINALIZE_MAX_TOKENS, count_words(narration) * 8),
+        f"{attempt_label} | التدقيق النحوي والتشكيل",
+    )
+    try:
+        corrected = str(json.loads(reply).get("corrected_narration", "")).strip()
+    except (json.JSONDecodeError, AttributeError) as exc:
+        raise AttemptFailed("رد التدقيق النحوي ليس JSON صالحًا") from exc
+    if not corrected or _word_signature(corrected) != _word_signature(narration):
+        raise AttemptFailed("التدقيق النحوي غيّر كلمات النص أو أعاد نصًا فارغًا")
+    return corrected
+
+
 # ─────────────────────────── تنفيذ محاولة واحدة ───────────────────────────
 
 def run_single_attempt(
@@ -915,6 +983,8 @@ def run_single_attempt(
             f"   ℹ️ الطول ({final_word_count} كلمة) أقل من الهدف "
             f"({target_words}) لكنه فوق الحد الأدنى المقبول — هيتقبل من غير إعادة."
         )
+
+    narration = proofread_narration_for_tts(client, history, narration, attempt_label)
 
     # ── نداء finalize: باقي الحقول بناءً على narration النهائي ──
     reply, _ = call_model(

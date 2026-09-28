@@ -187,7 +187,9 @@ def strip_diacritics(text: str) -> str:
 
 
 def normalize_text(text: str) -> str:
-    return re.sub(r"\s+", " ", strip_diacritics(text)).strip()
+    # احتفظ بالتشكيل الذي أضافه مدقق Gemini/OpenRouter؛ حذفه هنا يجعل SILMA
+    # يخمّن الضمائر والأفعال والحركات من جديد، وهو سبب رئيسي للنطق الخاطئ.
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def apply_phonetic_hints(text: str, hints: list[dict]) -> str:
@@ -202,7 +204,14 @@ def apply_phonetic_hints(text: str, hints: list[dict]) -> str:
         word = str(hint.get("word", "")).strip()
         phonetic = str(hint.get("phonetic", "")).strip()
         if word and phonetic:
-            text = text.replace(word, phonetic)
+            if word in text:
+                text = text.replace(word, phonetic)
+            else:
+                pattern = "".join(
+                    re.escape(char) + r"[\u0610-\u061A\u064B-\u065F\u0670]*"
+                    for char in strip_diacritics(word)
+                )
+                text = re.sub(pattern, phonetic, text)
     return text
 
 
