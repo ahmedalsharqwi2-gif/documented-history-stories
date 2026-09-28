@@ -8,10 +8,11 @@ on:
     inputs:
       voice_profile:
         description: "اختر صوت الراوي لهذا الفيديو"
-        required: true
+        required: false
         type: choice
-        default: mohamed_elbed
+        default: auto
         options:
+          - auto
           - mohamed_elbed
           - rafik_sa
           - egyptian_female
@@ -79,7 +80,7 @@ jobs:
       - name: Generate narration with the selected SILMA reference voice
         env:
           TTS_ENGINE: "silma"
-          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'mohamed_elbed' }}
+          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
           SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
           SILMA_SPEED: "1.0"
           SILMA_GUARD_ENABLED: "true"

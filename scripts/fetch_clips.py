@@ -413,6 +413,7 @@ def main():
         # تكرار نفس المنطقة الجغرافية في حلقات متتالية. .get() بأمان عشان
         # حلقات قديمة اتعملت قبل إضافة الحقل ده ميحصلش فيها KeyError.
         "region": episode.get("region", ""),
+        "voice_profile": episode.get("voice_profile", ""),
         "clips": [c["pexels_id"] for c in fetched_clips],
     })
     # خلي الهيستوري آخر 100 حلقة بس عشان الملف مايكبرش أوي

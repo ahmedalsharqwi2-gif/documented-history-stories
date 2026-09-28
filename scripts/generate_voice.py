@@ -167,6 +167,21 @@ def configure_silma_voice_profile() -> str:
     return selected
 
 
+def save_voice_to_history(episode: dict, selected_voice: str) -> None:
+    history_path = ROOT_DIR / "state" / "used_clips.json"
+    if not history_path.exists():
+        return
+    try:
+        data = json.loads(history_path.read_text(encoding="utf-8"))
+        for item in reversed(data.get("history", [])):
+            if item.get("title") == episode.get("title"):
+                item["voice_profile"] = selected_voice
+                break
+        history_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    except (OSError, json.JSONDecodeError):
+        print("⚠️ تعذر حفظ اختيار الصوت في سجل الحلقات")
+
+
 def strip_diacritics(text: str) -> str:
     return ARABIC_DIACRITICS_PATTERN.sub("", text)
 
@@ -773,6 +788,8 @@ def main() -> None:
     episode["final_audio"] = str(FINAL_AUDIO)
     episode["subtitles"] = str(SUBTITLES)
     EPISODE_PATH.write_text(json.dumps(episode, ensure_ascii=False, indent=2), encoding="utf-8")
+    if selected_voice_profile:
+        save_voice_to_history(episode, selected_voice_profile)
     print(f"✅ صوت كامل: {FINAL_AUDIO}")
     print(f"✅ ترجمة عربية متزامنة بالكلمة فقط: {SUBTITLES}")
     print(f"✅ تلميحات نطق مُطبّقة: {len(phonetic_hints)}")

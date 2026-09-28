@@ -3,8 +3,39 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import os
+import re
 from pathlib import Path
 from typing import Any
+
+
+def choose_auto_profile(profiles: dict[str, Any], root: Path) -> str:
+    """Select a suitable bundled voice and avoid the last few selections."""
+    episode_path = root / "state" / "current_episode.json"
+    episode: dict[str, Any] = {}
+    if episode_path.is_file():
+        try:
+            episode = json.loads(episode_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    text = f"{episode.get('title', '')} {episode.get('narration', '')}"
+    female = bool(re.search(r"(ملكة|امرأة|فتاة|طفلة|زوجة|أميرة|أم )", text))
+    configured = [p.strip() for p in os.getenv("AUTO_VOICE_PROFILES", "").split(",") if p.strip()]
+    candidates = [p for p in configured if p in profiles] or list(profiles)
+    if female and "egyptian_female" in candidates:
+        candidates = ["egyptian_female"]
+    history_path = root / "state" / "used_clips.json"
+    recent: list[str] = []
+    if history_path.is_file():
+        try:
+            data = json.loads(history_path.read_text(encoding="utf-8"))
+            recent = [str(item.get("voice_profile", "")) for item in data.get("history", [])[-3:]]
+        except (OSError, json.JSONDecodeError):
+            pass
+    available = [p for p in candidates if p not in recent] or candidates
+    seed = f"{episode.get('title', '')}|{episode.get('region', '')}".encode()
+    return available[int.from_bytes(hashlib.sha256(seed).digest()[:4], "big") % len(available)]
 
 
 def resolve_reference_profile(
@@ -22,7 +53,10 @@ def resolve_reference_profile(
 
     data: dict[str, Any] = json.loads(catalog_path.read_text(encoding="utf-8"))
     profiles = data.get("profiles") or {}
-    selected = profile.strip() or str(data.get("default", "")).strip()
+    requested = profile.strip()
+    selected = choose_auto_profile(profiles, root) if requested.lower() == "auto" else (
+        requested or str(data.get("default", "")).strip()
+    )
     if selected not in profiles:
         available = ", ".join(sorted(profiles)) or "none"
         raise ValueError(f"Unknown voice profile '{selected}'. Available: {available}")
