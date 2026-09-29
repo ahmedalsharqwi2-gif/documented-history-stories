@@ -1010,15 +1010,21 @@ def run_single_attempt(
     narration = proofread_narration_for_tts(client, history, narration, attempt_label)
 
     # ── نداء finalize: باقي الحقول بناءً على narration النهائي ──
-    reply, _ = call_model(
-        client, history, build_finalize_prompt(narration, recent_titles),
-        finalize_json_config, system_prompt, FINALIZE_MAX_TOKENS,
-        f"{attempt_label} | finalize",
-    )
     try:
+        reply, _ = call_model(
+            client, history, build_finalize_prompt(narration, recent_titles),
+            finalize_json_config, system_prompt, FINALIZE_MAX_TOKENS,
+            f"{attempt_label} | finalize",
+        )
         finalize_data = json.loads(reply)
-    except json.JSONDecodeError as exc:
-        raise AttemptFailed(f"رد finalize غير صالح JSON ({exc})") from exc
+    except Exception as exc:  # noqa: BLE001 - metadata is optional, narration is not
+        print(f"   ⚠️ تعذر finalize الاختياري ({exc})؛ استخدام بيانات الحلقة الأساسية")
+        finalize_data = {
+            "title": hook[:80].strip(" .؟!،"),
+            "visual_keywords": DEFAULT_VISUAL_KEYWORDS.copy(),
+            "caption": hook,
+            "phonetic_hints": [],
+        }
 
     visual_keywords = finalize_data.get("visual_keywords")
     if not isinstance(visual_keywords, list):
