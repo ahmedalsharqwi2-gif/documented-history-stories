@@ -98,7 +98,7 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_MODELS = [
     item.strip() for item in os.getenv(
         "OPENROUTER_MODEL",
-        "openai/gpt-oss-120b:free,google/gemma-3-27b-it:free,nvidia/nemotron-3-super-120b-a12b:free",
+        "nvidia/nemotron-3-super-120b-a12b:free",
     ).split(",") if item.strip()
 ]
 OPENROUTER_MODEL = OPENROUTER_MODELS[0] if OPENROUTER_MODELS else ""
@@ -919,8 +919,12 @@ def proofread_narration_for_tts(
         corrected = str(json.loads(reply).get("corrected_narration", "")).strip()
     except (json.JSONDecodeError, AttributeError) as exc:
         raise AttemptFailed("رد التدقيق النحوي ليس JSON صالحًا") from exc
-    if not corrected or _word_signature(corrected) != _word_signature(narration):
-        raise AttemptFailed("التدقيق النحوي غيّر كلمات النص أو أعاد نصًا فارغًا")
+    original_words = _word_signature(narration)
+    corrected_words = _word_signature(corrected)
+    if not corrected or len(corrected_words) < max(20, int(len(original_words) * 0.85)):
+        raise AttemptFailed("التدقيق النحوي أعاد نصًا فارغًا أو مختصرًا بشدة")
+    if corrected_words != original_words:
+        print("   ⚠️ التدقيق غيّر بعض صيغ الكلمات؛ تم قبول التصحيح لأنه حافظ على معظم النص")
     return corrected
 
 
