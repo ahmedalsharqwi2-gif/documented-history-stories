@@ -368,6 +368,21 @@ def find_content_red_flag(text: str) -> str | None:
     return next((flag for flag in CONTENT_RED_FLAGS if flag in plain), None)
 
 
+def normalize_phonetic_hints(value) -> list[dict[str, str]]:
+    """Keep only usable pronunciation hints from an optional model field."""
+    if not isinstance(value, list):
+        return []
+    normalized = []
+    for hint in value:
+        if not isinstance(hint, dict):
+            continue
+        word = str(hint.get("word", "")).strip()
+        phonetic = str(hint.get("phonetic", "")).strip()
+        if word and phonetic:
+            normalized.append({"word": word, "phonetic": phonetic})
+    return normalized
+
+
 def validate_episode(episode: dict) -> str | None:
     if not REQUIRED_KEYS.issubset(episode.keys()):
         return f"الحلقة النهائية ناقصة حقول مطلوبة: {sorted(episode.keys())}"
@@ -777,7 +792,10 @@ def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str
         "الهوية عند الحاجة.\n\n"
         "3) caption: وصف قصير جذّاب للفيديو (لمنصات التواصل).\n\n"
         "4) phonetic_hints: تلميحات نطق للكلمات الصعبة أو غير الشائعة "
-        "الواردة في narration (لو وجدت).\n\n"
+        "الواردة في narration (لو وجدت). يجب أن تكون قائمة كائنات فقط، "
+        "وكل كائن بهذا الشكل: {\"word\": \"الكلمة كما وردت\", "
+        "\"phonetic\": \"نفس الكلمة مع التشكيل\"}. إذا لم توجد كلمات "
+        "صعبة فأعد قائمة فارغة []، ولا تضع كلمات نصية مباشرة داخل القائمة.\n\n"
         "المطلوب فيديو وصوت وترجمة عربية فقط. "
         "اكتب الرد بصيغة JSON فقط حسب الـ schema المحدد، من غير أي نص "
         "خارج الـ JSON."
@@ -965,7 +983,7 @@ def run_single_attempt(
         "narration": narration,
         "visual_keywords": visual_keywords,
         "caption": finalize_data.get("caption", ""),
-        "phonetic_hints": finalize_data.get("phonetic_hints", []),
+        "phonetic_hints": normalize_phonetic_hints(finalize_data.get("phonetic_hints", [])),
         "source_type": source_type,
         "source_reference": source_reference,
     }
