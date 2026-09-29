@@ -38,6 +38,8 @@ from types import SimpleNamespace
 from pathlib import Path
 
 from google import genai
+
+from arabic_guard import validate_narration
 from google.genai import types
 
 SCRIPT_DIR = Path(__file__).parent
@@ -388,6 +390,9 @@ def validate_episode(episode: dict) -> str | None:
         return f"الحلقة النهائية ناقصة حقول مطلوبة: {sorted(episode.keys())}"
 
     narration = str(episode.get("narration", "")).strip()
+    arabic_issues = validate_narration(narration)
+    if arabic_issues:
+        return "بوابة العربية رفضت narration: " + "; ".join(f"{i.kind}: {i.sample}" for i in arabic_issues)
     red_flag = find_content_red_flag(narration)
     if red_flag:
         return f"النص يحتوي مصطلحًا علميًا مرفوضًا أو مختلقًا: {red_flag}"
