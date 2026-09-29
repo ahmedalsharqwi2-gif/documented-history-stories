@@ -67,10 +67,10 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
-          GEMINI_MODEL: "gemini-3.8-flash"
-          GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
+          GEMINI_MODEL: "gemini-2.5-flash"
+          GEMINI_FALLBACK_MODELS: "gemini-2.5-flash-lite"
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OPENROUTER_MODEL: "qwen/qwen3.8-27b:free,nvidia/nemotron-3-super-120b-a12b:free"
+          OPENROUTER_MODEL: "google/gemini-2.5-flash,qwen/qwen3-32b"
           OPENROUTER_TIMEOUT: "90"
           GEMINI_THINKING_BUDGET: "0"
           TARGET_WORDS: "850"
