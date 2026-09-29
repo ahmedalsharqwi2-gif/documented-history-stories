@@ -157,7 +157,10 @@ def apply_phonetic_hints(text: str, hints: list[dict]) -> str:
     في مدخل تاني. المفروض phonetic تكون نفس الكلمة بالحروف الأساسية
     بالظبط مع إضافة تشكيل بس (شوف history_strategy_system_prompt.md)، فـ
     strip_diacritics() بترجّعها زي الأصل تمامًا في الترجمة."""
-    for hint in sorted(hints, key=lambda h: len(str(h.get("word", ""))), reverse=True):
+    # phonetic_hints اختيارية وقد تأتي من حلقة قديمة أو من رد finalize غير منضبط.
+    # تجاهل العناصر غير الصحيحة بدل إسقاط الـworkflow كاملًا قبل توليد الصوت.
+    valid_hints = [hint for hint in hints if isinstance(hint, dict)]
+    for hint in sorted(valid_hints, key=lambda h: len(str(h.get("word", ""))), reverse=True):
         word = str(hint.get("word", "")).strip()
         phonetic = str(hint.get("phonetic", "")).strip()
         if word and phonetic:

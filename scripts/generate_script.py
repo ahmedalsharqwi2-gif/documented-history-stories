@@ -396,6 +396,15 @@ def validate_episode(episode: dict) -> str | None:
     if not str(episode.get("source_reference", "")).strip():
         return "حقل source_reference فاضي — كل حلقة تاريخية لازم مرجع دقيق"
 
+    phonetic_hints = episode.get("phonetic_hints")
+    if not isinstance(phonetic_hints, list):
+        return "حقل phonetic_hints لازم يكون قائمة"
+    for hint in phonetic_hints:
+        if not isinstance(hint, dict):
+            return "كل عنصر في phonetic_hints لازم يكون كائنًا فيه word وphonetic"
+        if not str(hint.get("word", "")).strip() or not str(hint.get("phonetic", "")).strip():
+            return "كل عنصر في phonetic_hints لازم يحتوي word وphonetic غير فارغين"
+
     return None
 
 
