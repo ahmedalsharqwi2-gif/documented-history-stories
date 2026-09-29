@@ -60,6 +60,9 @@ jobs:
       - name: Verify faster-whisper is importable on the same interpreter
         run: python -c "import faster_whisper; print('faster-whisper OK:', faster_whisper.__file__)"
 
+      - name: Verify Arabic narration guard
+        run: python -m unittest tests.test_arabic_guard -v
+
       - name: Generate complete historical strategy episode script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
