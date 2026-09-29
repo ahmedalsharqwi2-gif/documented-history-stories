@@ -26,7 +26,9 @@ TARGET_WORDS = max(100, int(os.getenv("TARGET_WORDS", "850")))
 ACCEPTABLE_MIN_WORDS = max(
     0, int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARRATION_WORDS", "300")))
 )
-OPENROUTER_MIN_WORDS = max(0, int(os.getenv("OPENROUTER_MIN_WORDS", "300")))
+OPENROUTER_MIN_WORDS = max(
+    0, int(os.getenv("OPENROUTER_MIN_WORDS", str(ACCEPTABLE_MIN_WORDS)))
+)
 positive_minima = [n for n in (ACCEPTABLE_MIN_WORDS, OPENROUTER_MIN_WORDS) if n > 0]
 MIN_NARRATION_WORDS = min(positive_minima) if positive_minima else 0
 MAX_NARRATION_WORDS = max(
