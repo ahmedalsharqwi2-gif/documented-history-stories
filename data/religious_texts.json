@@ -1,0 +1,27 @@
+{
+  "quran_baqarah_2_201": {
+    "kind": "quran",
+    "reference": "البقرة: 201",
+    "text_ar": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    "source_url": "https://quran.com/al-baqarah/201"
+  },
+  "quran_ali_imran_3_8": {
+    "kind": "quran",
+    "reference": "آل عمران: 8",
+    "text_ar": "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ الْوَهَّابُ",
+    "source_url": "https://quran.com/ali-imran/8"
+  },
+  "quran_taha_20_114": {
+    "kind": "quran",
+    "reference": "طه: 114",
+    "text_ar": "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
+    "source_url": "https://quran.com/taha/114"
+  },
+  "hadith_abu_dawud_5088": {
+    "kind": "hadith",
+    "reference": "سنن أبي داود: 5088",
+    "text_ar": "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+    "source_url": "https://sunnah.com/abudawud:5088",
+    "grading": "صححه الألباني كما تعرض الصفحة"
+  }
+}

@@ -7,10 +7,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import generate_script  # noqa: E402
 from llm_gateway import OutputError  # noqa: E402
+from religious_texts import RELIGIOUS_TEXTS, get_religious_text  # noqa: E402
 
 
 def sample_episode(word_count=310):
-    narration = " ".join(["الحملة" for _ in range(word_count)]) + "."
+    narration = " ".join(["الحملة"] * word_count) + "."
     return {
         "title": "قرار غيّر مسار المعركة",
         "hook": "كيف غيّر قرار واحد مسار المعركة؟",
@@ -85,6 +86,72 @@ class IslamicGeneratorTests(unittest.TestCase):
         raw["source_reference"] = "  "
         with self.assertRaisesRegex(OutputError, "source_reference فارغ"):
             generate_script.validate_episode(generate_script.normalize_episode(raw))
+
+    def test_rejects_non_arabic_letters_in_arabic_narration_and_metadata(self):
+        raw = sample_episode()
+        raw["narration"] += " waveform."
+        with self.assertRaisesRegex(OutputError, "narration.*أحرفًا"):
+            generate_script.validate_episode(generate_script.normalize_episode(raw))
+
+        raw = sample_episode()
+        raw["title"] += " title"
+        with self.assertRaisesRegex(OutputError, "title.*أحرفًا"):
+            generate_script.validate_episode(generate_script.normalize_episode(raw))
+
+    def test_allows_arabic_diacritics_and_keeps_english_visual_keywords(self):
+        raw = sample_episode()
+        raw["narration"] = "قِصَّةٌ " + raw["narration"]
+        normalized = generate_script.normalize_episode(raw)
+        generate_script.validate_episode(normalized)
+        self.assertTrue(all(" " in item for item in normalized["visual_keywords"]))
+
+    def test_rejects_ascii_or_arabic_digits_in_narration(self):
+        for digits in ("2023", "٢٠٢٣"):
+            with self.subTest(digits=digits):
+                raw = sample_episode()
+                raw["narration"] += f" سنة {digits}."
+                with self.assertRaisesRegex(OutputError, "اكتب الأعداد بالحروف"):
+                    generate_script.validate_episode(generate_script.normalize_episode(raw))
+
+    def test_rejects_latin_phonetic_hints_instead_of_silently_dropping_them(self):
+        raw = sample_episode()
+        raw["phonetic_hints"] = [{"word": "الحملة", "phonetic": "al-hamla"}]
+        with self.assertRaisesRegex(OutputError, "phonetic_hints.phonetic.*غير عربية"):
+            generate_script.normalize_episode(raw)
+
+    def test_approved_religious_marker_is_replaced_verbatim_and_cited(self):
+        raw = sample_episode()
+        raw["narration"] = " ".join(["الحملة"] * 310) + " [[RELIGIOUS_TEXT:quran_taha_20_114]]."
+        normalized = generate_script.normalize_episode(raw)
+        entry = get_religious_text("quran_taha_20_114")
+        self.assertIn(f"«{entry.text_ar}»", normalized["narration"])
+        self.assertNotIn("[[RELIGIOUS_TEXT:", normalized["narration"])
+        self.assertIn(entry.reference, normalized["source_reference"])
+        self.assertIn(entry.source_url, normalized["source_reference"])
+        generate_script.validate_episode(normalized)
+
+    def test_unknown_or_multiple_religious_markers_are_rejected(self):
+        raw = sample_episode()
+        raw["narration"] += " [[RELIGIOUS_TEXT:unknown_id]]."
+        with self.assertRaisesRegex(OutputError, "غير موجود في المكتبة"):
+            generate_script.normalize_episode(raw)
+
+        raw = sample_episode()
+        raw["narration"] += (
+            " [[RELIGIOUS_TEXT:quran_baqarah_2_201]]"
+            " [[RELIGIOUS_TEXT:quran_taha_20_114]]."
+        )
+        with self.assertRaisesRegex(OutputError, "نص شرعي معتمد واحد فقط"):
+            generate_script.normalize_episode(raw)
+
+    def test_reviewed_religious_catalog_has_exact_references_and_arabic_text(self):
+        self.assertEqual(len(RELIGIOUS_TEXTS), 4)
+        self.assertEqual(get_religious_text("quran_baqarah_2_201").reference, "البقرة: 201")
+        self.assertEqual(get_religious_text("quran_ali_imran_3_8").reference, "آل عمران: 8")
+        self.assertEqual(get_religious_text("quran_taha_20_114").reference, "طه: 114")
+        hadith = get_religious_text("hadith_abu_dawud_5088")
+        self.assertEqual(hadith.reference, "سنن أبي داود: 5088")
+        self.assertIn("الألباني", hadith.grading)
 
     def test_json_output_order_matches_downstream_contract(self):
         normalized = generate_script.normalize_episode(sample_episode())
