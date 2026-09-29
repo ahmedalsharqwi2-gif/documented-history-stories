@@ -69,8 +69,13 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: "nvidia/nemotron-3-super-120b-a12b:free"
           OPENROUTER_TIMEOUT: "90"
-          GEMINI_THINKING_BUDGET: "512"
-          TARGET_WORDS: "1050"
+          GEMINI_THINKING_BUDGET: "0"
+          TARGET_WORDS: "850"
+          SINGLE_PASS_GENERATION: "true"
+          MAX_FULL_ATTEMPTS: "1"
+          MAX_EXPANSION_ROUNDS: "0"
+          TRANSIENT_RETRIES: "1"
+          BUDGET_RETRIES: "0"
         run: python scripts/generate_script.py
 
       - name: Fetch landscape stock clips

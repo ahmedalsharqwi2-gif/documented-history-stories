@@ -132,18 +132,19 @@ ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARR
 
 # لو نداء اتقطع فعليًا بسبب حد التوكنز (MAX_TOKENS)، نرفع السقف ونعيد
 # نفس النداء (مش المحاولة كلها).
-BUDGET_RETRIES = 2
+BUDGET_RETRIES = int(os.getenv("BUDGET_RETRIES", "2"))
 LENGTH_ESCALATION = 1.5
 
 # عدد جولات التوسعة الإضافية للقصة المكتملة لكنها أقصر من الحد الأدنى.
 MAX_EXPANSION_ROUNDS = int(os.getenv("MAX_EXPANSION_ROUNDS", "2"))
+SINGLE_PASS_GENERATION = os.getenv("SINGLE_PASS_GENERATION", "false").lower() == "true"
 
 # عدد إعادات المحاولة لنفس النداء عند خطأ سيرفر مؤقت (503 UNAVAILABLE،
 # 500 INTERNAL، إلخ) قبل ما نعتبره فشل حقيقي. الانتظار بيتصاعد
 # (TRANSIENT_BACKOFF_BASE * 2^المحاولة) عشان نديله فرصة الضغط يقل.
 # ⚠️ ده منفصل تمامًا عن نفاد الحصة اليومية (429/PerDay) — شوف
 # _is_daily_quota_exhausted تحت، ده بيوقف التشغيلة فورًا من غير إعادة.
-TRANSIENT_RETRIES = 3
+TRANSIENT_RETRIES = int(os.getenv("TRANSIENT_RETRIES", "3"))
 TRANSIENT_BACKOFF_BASE = 3  # ثواني
 
 # بما إن كل محاولة كاملة بقت تستهلك 2-3 نداءات في الغالب (نادرًا لغاية
@@ -777,7 +778,8 @@ def build_story_prompt(
         "الهوك للتمهيد للتصعيد للذروة للخاتمة، في رد واحد.\n\n"
         "⚠️ نطاق القناة: لا تختر قصة دينية أو وعظية أو عن نبي أو صحابي أو حديث؛ اختر تاريخًا عالميًا أو عسكريًا أو إنسانيًا أو غريبًا موثقًا.\n\n"
         "⚠️ اللغة: narration بالكامل باللغة العربية الفصحى المبسّطة "
-        "(Modern Standard Arabic) فقط، ممنوع أي لهجة عامية.\n\n"
+        "(Modern Standard Arabic) فقط، ممنوع أي لهجة عامية. شكّل النص كاملًا "
+        "لتوجيه النطق، وراجع مطابقة الضمائر والأفعال والتذكير والتأنيث قبل الرد.\n\n"
         "⚠️ التوثيق التاريخي: اختر واقعة قابلة للمراجعة من أرشيف أو متحف "
         "أو موسوعة أو كتاب تاريخي موثوق. ممنوع اختلاق أي حوار أو تفصيلة أو "
         "اسم أو رقم أو نتيجة. إذا اختلفت الروايات، اذكر ذلك بوضوح ولا تقدم "
@@ -961,6 +963,27 @@ def run_single_attempt(
     narration = story["narration"]
 
     print(f"   📝 القصة: {count_words(narration)} كلمة (هدف تقريبي {target_words})")
+
+    if SINGLE_PASS_GENERATION:
+        if looks_truncated(narration):
+            raise AttemptFailed("النص ذو المرور الواحد انتهى قبل خاتمة واضحة")
+        episode = {
+            "title": hook[:80].strip(" .؟!،"),
+            "hook": hook,
+            "region": region,
+            "narration": narration,
+            "narration_en": [],
+            "visual_keywords": DEFAULT_VISUAL_KEYWORDS.copy(),
+            "caption": hook,
+            "phonetic_hints": [],
+            "source_type": source_type,
+            "source_reference": source_reference,
+        }
+        error = validate_episode(episode)
+        if error:
+            raise AttemptFailed(error)
+        print("   ⚡ وضع المرور الواحد: تم تخطي التوسيع والتدقيق وfinalize لتوفير التوكنز")
+        return episode
 
     narration = ensure_complete_ending(client, history, narration, system_prompt, attempt_label)
     if looks_truncated(narration):
