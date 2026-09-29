@@ -1,161 +1,1017 @@
-name: Create and Publish Historical Strategy Episode
+"""
+generate_script.py — النسخة 3
 
-on:
-  schedule:
-    # يبدأ التوليد الساعة 13:30 UTC (16:30 القاهرة)، والنشر يُحسب ثابتًا عند 19:00 القاهرة.
-    - cron: "30 13 * * *"
-  workflow_dispatch:
-    inputs:
-      voice_profile:
-        description: "اختر صوت الراوي لهذا الفيديو"
-        required: false
-        type: choice
-        default: auto
-        options:
-          - auto
-          - mohamed_elbed
-          - rafik_sa
-          - egyptian_female
-          - hossam
-          - hossam_uploaded
-          - marwan
-          - nassim
-          - ahmed_z
+يولّد حلقة تاريخية كاملة (قصة + عنوان + وصف + كلمات بحث بصرية + تلميحات
+نطق + مرجع توثيق) بنداء واحد لـ Gemini، مع OpenRouter كخطة احتياطية.
 
-# يمنع تشغيل حلقتين في الوقت نفسه، ولا يلغي التشغيل الجاري.
-concurrency:
-  group: historical-strategy-episode-pipeline
-  cancel-in-progress: false
+ما الجديد في هذه النسخة:
+  1) نداء واحد يبني كل حقول الحلقة. حقل NARRATION آخر حقل في الرد، فلو
+     اتقطع الرد بيضيع من القصة بس، مش من باقي الحقول. ألغينا نداء
+     finalize، فالعنوان والوصف وكلمات البحث بقت من نفس السياق اللي كتب
+     القصة (جودة أعلى) وبتكلفة أقل.
+  2) سقف صريح للطول في البرومبت + نداء "اختصار" لو الرد طلع أطول بكثير
+     من الهدف (زي 3378 كلمة والهدف 850).
+  3) اعتبار finish_reason=length (OpenRouter) قطعًا بسبب التوكنز زي
+     MAX_TOKENS تمامًا.
+  4) تحويل المزوّد (Gemini -> نموذج احتياطي -> OpenRouter) لا يستهلك من
+     MAX_FULL_ATTEMPTS.
+  5) إعادة محاولة أذكى لأخطاء 429/5xx المؤقتة، وباك-أوف قابل للضبط من
+     البيئة، وفصل نفاد الحصة اليومية عن الأخطاء العابرة.
+  6) زاوية قصة مقترحة تتبدّل يوميًا لتنويع القناة، وفحص تشابه الهوك مع
+     الحلقات السابقة.
+  7) إسكات تحذير AFC عبر AutomaticFunctionCallingConfig(disable=True).
+  8) التدقيق بالتشكيل اختياري (PROOFREAD_TASHKEEL) وبيشتغل بسياق نظيف.
 
-permissions:
-  contents: write
-  issues: write
+⚠️ الموديل لا يستطيع التحقق من صحة أي رواية تاريخية بشكل قاطع. حقلا
+source_type وsource_reference يجبرانه على التصريح بمرجعه لتسهيل
+المراجعة البشرية، خصوصًا في الوقائع الإسلامية.
 
-jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
+متغيرات البيئة (كلها اختيارية): GEMINI_API_KEY, GEMINI_MODEL,
+GEMINI_FALLBACK_MODELS, OPENROUTER_API_KEY, OPENROUTER_MODEL,
+OPENROUTER_TIMEOUT, GEMINI_THINKING_BUDGET, TARGET_WORDS,
+ACCEPTABLE_MIN_WORDS, MAX_FULL_ATTEMPTS, MAX_EXPANSION_ROUNDS,
+TRANSIENT_RETRIES, TRANSIENT_BACKOFF_BASE, BUDGET_RETRIES,
+STORY_MAX_TOKENS, PROOFREAD_TASHKEEL, TEMPERATURE.
+"""
+import difflib
+import json
+import os
+import re
+import sys
+import time
+from datetime import date
+from pathlib import Path
+from types import SimpleNamespace
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+import requests
+from google import genai
+from google.genai import types
 
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
+SCRIPT_DIR = Path(__file__).parent
+PROMPT_PATH = SCRIPT_DIR.parent / "prompts" / "history_strategy_system_prompt.md"
+OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 
-      - name: Install ffmpeg
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          ffmpeg -version
-          ffprobe -version
 
-      - name: Install dependencies
-        run: python -m pip install -r scripts/requirements.txt
+# ─────────────────────────── مساعدات البيئة ───────────────────────────
 
-      - name: Verify faster-whisper is importable on the same interpreter
-        run: python -c "import faster_whisper; print('faster-whisper OK:', faster_whisper.__file__)"
+def _env_int(name: str, default: int) -> int:
+    raw = os.getenv(name, "").strip()
+    if not raw:
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        return default
 
-      - name: Generate complete historical strategy episode script
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
-          GEMINI_MODEL: "gemini-3.8-flash"
-          GEMINI_FALLBACK_MODELS: ""
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OPENROUTER_MODEL: "nvidia/nemotron-3-super-120b-a12b:free"
-          OPENROUTER_TIMEOUT: "90"
-          GEMINI_THINKING_BUDGET: "0"
-          TARGET_WORDS: "850"
-          # وضع المرور الواحد لا يفرض حدًا أدنى حتى لا يعيد التوليد ويستهلك التوكنز.
-          # يتم قبول النص المكتمل مع تسجيل تحذير إذا كان أقصر من الهدف.
-          ACCEPTABLE_MIN_WORDS: "0"
-          SINGLE_PASS_GENERATION: "true"
-          MAX_FULL_ATTEMPTS: "1"
-          MAX_EXPANSION_ROUNDS: "0"
-          TRANSIENT_RETRIES: "1"
-          BUDGET_RETRIES: "0"
-        run: python scripts/generate_script.py
 
-      - name: Fetch landscape stock clips
-        env:
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-        run: python scripts/fetch_clips.py
+def _env_float(name: str, default: float) -> float:
+    raw = os.getenv(name, "").strip()
+    if not raw:
+        return default
+    try:
+        return float(raw)
+    except ValueError:
+        return default
 
-      - name: Generate narration with the selected SILMA reference voice
-        env:
-          TTS_ENGINE: "silma"
-          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
-          SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
-          SILMA_SPEED: "1.15"
-          SILMA_GUARD_ENABLED: "true"
-          SILMA_GUARD_MIN_MATCH_WORDS: "4"
-          SILMA_FALLBACK_TO_EDGE: "false"
-          EDGE_TTS_RATE: "+10%"
-          EDGE_TTS_PITCH: "-5Hz"
-        run: python scripts/generate_voice.py
 
-      - name: Assemble full landscape video and platform reel
-        run: python scripts/assemble_video.py
+def _env_bool(name: str, default: bool = False) -> bool:
+    raw = os.getenv(name, "").strip().lower()
+    if not raw:
+        return default
+    return raw in ("1", "true", "yes", "on")
 
-      - name: Publish full video and reel together
-        env:
-          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
-          BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
-          BUFFER_YOUTUBE_CHANNEL_ID: ${{ secrets.BUFFER_YOUTUBE_CHANNEL_ID }}
-          BUFFER_FACEBOOK_CHANNEL_ID: ${{ secrets.BUFFER_FACEBOOK_CHANNEL_ID }}
-          BUFFER_INSTAGRAM_CHANNEL_ID: ${{ secrets.BUFFER_INSTAGRAM_CHANNEL_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FULL_VIDEO_DELAY_HOURS: "8"
-          FULL_TO_SHORT_1_HOURS: "8"
-          CHANNEL_PENDING_LIMIT: "10"
-        run: python scripts/publish_buffer.py
 
-      # Buffer لا يدعم فيديوهات YouTube الطويلة؛ يتم نشر الفيديو الكامل
-      # مباشرة عبر YouTube Data API.
-      - name: Publish full video directly to YouTube
-        env:
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          FULL_VIDEO_DELAY_HOURS: "8"
-        run: python scripts/publish_youtube_direct.py
+# ─────────────────────────── الإعدادات ───────────────────────────
 
-      - name: Check YouTube token age
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/check_youtube_token_age.py
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+# قيمة فاضية صريحة في البيئة = مفيش نماذج Gemini احتياطية.
+_fallback_raw = os.getenv("GEMINI_FALLBACK_MODELS")
+if _fallback_raw is None:
+    _fallback_raw = "gemini-3.5-flash-lite"
+FALLBACK_MODELS = [item.strip() for item in _fallback_raw.split(",") if item.strip()]
+MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
+ACTIVE_MODEL_INDEX = 0
+ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
 
-      - name: Upload generated media artifacts
-        uses: actions/upload-artifact@v5
-        with:
-          name: historical-strategy-episode-media-${{ github.run_id }}
-          path: |
-            output/final_video_full.mp4
-            output/short_*.mp4
-            state/current_episode.json
-          retention-days: 14
-          if-no-files-found: error
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_MODELS = [
+    item.strip()
+    for item in os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free").split(",")
+    if item.strip()
+]
+OPENROUTER_MODEL = OPENROUTER_MODELS[0] if OPENROUTER_MODELS else ""
+OPENROUTER_TIMEOUT = _env_int("OPENROUTER_TIMEOUT", 90)
+ACTIVE_PROVIDER = "gemini"
 
-      - name: Commit clip tracking state only
-        run: |
-          git config user.name "content-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add state/used_clips.json state/yt_token_last_success.json
-          if git diff --cached --quiet; then
-            echo "لا يوجد تغيير في حالة الكليبات"
-            exit 0
-          fi
-          git commit -m "chore: update used clips tracking [skip ci]"
-          for attempt in 1 2 3 4 5; do
-            git pull --rebase origin main && git push && exit 0
-            echo "إعادة محاولة push رقم $attempt"
-            sleep $((attempt * 5))
-          done
-          echo "فشل push بعد 5 محاولات"
-          exit 1
+TEMPERATURE = _env_float("TEMPERATURE", 0.75)
+
+# سقف توكنز نداء القصة. القصة (~850 كلمة عربية) + الحقول الوصفية تكفيها
+# 8000 بسهولة عند thinking_budget=0.
+STORY_MAX_TOKENS = _env_int("STORY_MAX_TOKENS", 8000)
+PROOFREAD_MAX_TOKENS = 9000
+# ⚠️ thinking_budget بياكل من نفس سقف max_output_tokens. خليه منخفض.
+THINKING_BUDGET = _env_int("GEMINI_THINKING_BUDGET", 0)
+
+TARGET_WORDS = _env_int("TARGET_WORDS", 850)
+# الحد الأدنى المقبول. لو مش متحدد = 70% من الهدف. اكتب 0 لتعطيله.
+_min_raw = os.getenv("ACCEPTABLE_MIN_WORDS", "").strip()
+ACCEPTABLE_MIN_WORDS = int(_min_raw) if _min_raw.isdigit() else int(TARGET_WORDS * 0.7)
+
+# السقف المكتوب للموديل في البرومبت (كنسبة من الهدف).
+PROMPT_MAX_FACTOR = 1.3
+# لو الرد تخطى الرقم ده نعمل نداء اختصار. وبعد الاختصار لو لسه تخطى
+# ABSOLUTE_MAX_FACTOR نفشّل المحاولة.
+CONDENSE_TRIGGER_FACTOR = 1.5
+ABSOLUTE_MAX_FACTOR = 2.0
+
+BUDGET_RETRIES = _env_int("BUDGET_RETRIES", 0)
+LENGTH_ESCALATION = 1.5
+MAX_EXPANSION_ROUNDS = _env_int("MAX_EXPANSION_ROUNDS", 1)
+TRANSIENT_RETRIES = _env_int("TRANSIENT_RETRIES", 4)
+TRANSIENT_BACKOFF_BASE = _env_int("TRANSIENT_BACKOFF_BASE", 6)
+MAX_ATTEMPTS = _env_int("MAX_FULL_ATTEMPTS", 2)
+PROOFREAD_TASHKEEL = _env_bool("PROOFREAD_TASHKEEL", False)
+
+HISTORY_LIMIT = 8
+REGION_HISTORY_LIMIT = 6
+HOOK_SIMILARITY_THRESHOLD = 0.72
+
+REQUIRED_STORY_FIELDS = ("hook", "region", "source_type", "source_reference", "narration")
+REQUIRED_EPISODE_KEYS = {
+    "title", "hook", "region", "narration", "visual_keywords", "caption",
+    "phonetic_hints", "source_type", "source_reference",
+}
+
+DEFAULT_VISUAL_KEYWORDS = [
+    "ancient desert landscape",
+    "old map parchment",
+    "stone fortress walls",
+    "historical manuscript",
+    "sailing ship sea",
+    "mountain valley aerial",
+]
+
+TASHKEEL_SCHEMA = {
+    "type": "object",
+    "properties": {"corrected_narration": {"type": "string"}},
+    "required": ["corrected_narration"],
+}
+
+# زاوية مقترحة تتبدّل يوميًا (ومع كل محاولة) لتنويع القناة. الموديل حر
+# يتجاوزها لو الواقعة المناسبة مكررة أو غير موثقة كفاية.
+STORY_ANGLES = [
+    "خدعة عسكرية أو حيلة استخباراتية غيّرت نتيجة معركة",
+    "فتح أو معركة إسلامية موثقة بمصدر محدد (السيرة، الراشدون، أو دولة إسلامية لاحقة)",
+    "حصار طويل انتهى بحيلة أو مفارقة غير متوقعة",
+    "قرار فرد واحد تحت ضغط هائل غيّر مجرى الأحداث",
+    "انتصار الأقل عددًا وعدة على الأكثر عددًا وعدة",
+    "قصة نجاة أو صمود إنساني موثقة في ظروف قاسية",
+    "عبور جغرافي شديد الصعوبة أو معركة بحرية حاسمة",
+    "تفاوض أو دبلوماسية ذكية أنهت صراعًا",
+    "قصة إسلامية موثقة عن الذكاء والحكمة في إدارة أزمة أو معركة",
+    "غرابة تاريخية موثقة لها تفسير مؤكد في المصادر",
+]
+
+
+class AttemptFailed(Exception):
+    """فشل متوقّع داخل محاولة كاملة؛ الحلقة الخارجية تبدأ محاولة جديدة."""
+
+
+class QuotaExhausted(Exception):
+    """نفاد الحصة اليومية للنموذج الحالي."""
+
+
+class ModelUnavailable(Exception):
+    """النموذج غير موجود أو لم يعد متاحًا (404)."""
+
+
+class ProviderFailover(Exception):
+    """استُنفدت إعادات الأخطاء المؤقتة؛ لازم نحوّل لمزوّد/نموذج تاني."""
+
+
+def to_gemini_schema(schema: dict) -> dict:
+    """JSON Schema عادي -> صيغة Gemini (أنواع uppercase)."""
+    gemini_type = schema["type"].upper()
+    result: dict = {"type": gemini_type}
+    if gemini_type == "OBJECT":
+        result["properties"] = {
+            key: to_gemini_schema(value)
+            for key, value in schema.get("properties", {}).items()
+        }
+        if "required" in schema:
+            result["required"] = schema["required"]
+    elif gemini_type == "ARRAY":
+        result["items"] = to_gemini_schema(schema["items"])
+    return result
+
+
+# ─────────────────────────── مساعدات النص ───────────────────────────
+
+def load_system_prompt() -> str:
+    return PROMPT_PATH.read_text(encoding="utf-8")
+
+
+def _load_history_field(field: str, limit: int) -> list[str]:
+    history_path = SCRIPT_DIR.parent / "state" / "used_clips.json"
+    if not history_path.exists():
+        return []
+    try:
+        data = json.loads(history_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return []
+    values = [h.get(field, "") for h in data.get("history", []) if h.get(field)]
+    return values[-limit:]
+
+
+def load_used_history(limit: int = HISTORY_LIMIT) -> list[str]:
+    return _load_history_field("title", limit)
+
+
+def load_used_regions(limit: int = REGION_HISTORY_LIMIT) -> list[str]:
+    return _load_history_field("region", limit)
+
+
+def load_used_hooks(limit: int = HISTORY_LIMIT) -> list[str]:
+    return _load_history_field("hook", limit)
+
+
+def count_words(text: str) -> int:
+    return len(text.split())
+
+
+_SENTENCE_ENDERS = (".", "!", "؟", "?", "…")
+_TRAILING_WRAPPERS = ")\"'”’»」』﴾]"
+_TRAILING_PAREN_GROUP = re.compile(r"[\(（][^()（）]*[\)）]\s*$")
+
+
+def looks_truncated(narration: str) -> bool:
+    """النص متقطوع لو آخره (بعد تجاهل استشهاد بين قوسين وأقواس ختامية)
+    مش علامة نهاية جملة حقيقية."""
+    stripped = narration.strip()
+    if not stripped:
+        return True
+    match = _TRAILING_PAREN_GROUP.search(stripped)
+    if match:
+        without_paren = stripped[: match.start()].rstrip()
+        if without_paren:
+            stripped = without_paren
+    trimmed = stripped.rstrip(_TRAILING_WRAPPERS)
+    if not trimmed:
+        return True
+    return not trimmed.endswith(_SENTENCE_ENDERS)
+
+
+def split_arabic_sentences(narration: str) -> list[str]:
+    """نفس منطق split_sentences() في generate_voice.py."""
+    parts = re.split(r"(?<=[.!؟…])\s+", narration.strip())
+    return [part.strip() for part in parts if part.strip()]
+
+
+def _word_signature(text: str) -> list[str]:
+    plain = re.sub(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]", "", text)
+    return re.findall(r"[\u0621-\u064A\u0671]+", plain)
+
+
+def _clean_inline(value: str) -> str:
+    return value.replace("**", "").replace("__", "").strip()
+
+
+def clean_continuation_text(text: str) -> str:
+    cleaned = text.strip()
+    cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
+    cleaned = re.sub(r"^(NARRATION|narration)\s*:\s*", "", cleaned).strip()
+    cleaned = cleaned.replace("**", "").replace("__", "").strip()
+    if len(cleaned) >= 2 and cleaned[0] == cleaned[-1] and cleaned[0] in ('"', "”", "'"):
+        cleaned = cleaned[1:-1].strip()
+    return cleaned
+
+
+def _strip_label_markup(text: str) -> str:
+    cleaned = text.replace("**", "").replace("__", "")
+    cleaned = re.sub(r"(?m)^[ \t]*[#>\-*]+[ \t]*", "", cleaned)
+    return cleaned
+
+
+_LABELS = (
+    "HOOK|TITLE|REGION|SOURCE_SOURCE_TYPE|SOURCE_TYPE|SOURCE_REFERENCE|"
+    "CAPTION|VISUAL_KEYWORDS|PHONETIC_HINTS|NARRATION"
+)
+_LABEL_PATTERN = re.compile(
+    rf"(?:^|\n)[ \t]*({_LABELS})[ \t]*:[ \t]*(.*?)(?=\n[ \t]*(?:{_LABELS})[ \t]*:|\Z)",
+    re.DOTALL,
+)
+
+
+def parse_labeled_response(text: str) -> dict:
+    """يحلّل رد الصيغة المسمّاة (HOOK: ... NARRATION: ...) لقاموس lowercase."""
+    cleaned = text.strip()
+    cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
+    cleaned = _strip_label_markup(cleaned)
+    result: dict = {}
+    for match in _LABEL_PATTERN.finditer(cleaned):
+        key = match.group(1).strip().lower()
+        if key == "source_source_type":
+            key = "source_type"
+        result[key] = match.group(2).strip()
+    return result
+
+
+def try_parse_json_episode(text: str) -> dict | None:
+    """خطة بديلة لو الموديل رد JSON بدل الصيغة المسمّاة."""
+    cleaned = text.strip()
+    cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
+    try:
+        data = json.loads(cleaned)
+    except json.JSONDecodeError:
+        return None
+    if not isinstance(data, dict):
+        return None
+    result: dict = {}
+    for key in ("hook", "title", "region", "source_type", "source_reference", "caption", "narration"):
+        value = data.get(key)
+        if isinstance(value, str) and value.strip():
+            result[key] = value.strip()
+    keywords = data.get("visual_keywords")
+    if isinstance(keywords, list):
+        result["visual_keywords"] = ", ".join(str(item) for item in keywords)
+    elif isinstance(keywords, str):
+        result["visual_keywords"] = keywords
+    hints = data.get("phonetic_hints")
+    if isinstance(hints, list):
+        result["phonetic_hints"] = "\n".join(
+            f"{item.get('word', '')} = {item.get('phonetic', '')}"
+            for item in hints if isinstance(item, dict)
+        )
+    return result or None
+
+
+def parse_visual_keywords(raw: str) -> list[str]:
+    keywords: list[str] = []
+    for part in re.split(r"[,\n،;|]+", raw or ""):
+        item = part.strip(" -•\t\"'")
+        if item and re.search(r"[A-Za-z]", item) and item.lower() not in [k.lower() for k in keywords]:
+            keywords.append(item)
+    return keywords[:10]
+
+
+def parse_phonetic_hints(raw: str) -> list[dict]:
+    hints: list[dict] = []
+    for line in (raw or "").splitlines():
+        line = line.strip(" -•\t")
+        parts = re.split(r"\s*(?:=|\||→|->)\s*", line, maxsplit=1)
+        if len(parts) == 2 and parts[0].strip() and parts[1].strip():
+            hints.append({"word": parts[0].strip(), "phonetic": parts[1].strip()})
+    return hints[:12]
+
+
+def normalize_story(fields: dict) -> dict:
+    return {
+        "hook": _clean_inline(fields.get("hook", "")),
+        "title": _clean_inline(fields.get("title", "")),
+        "region": _clean_inline(fields.get("region", "")),
+        "source_type": _clean_inline(fields.get("source_type", "")),
+        "source_reference": _clean_inline(fields.get("source_reference", "")),
+        "caption": _clean_inline(fields.get("caption", "")),
+        "narration": clean_continuation_text(fields.get("narration", "")),
+        "visual_keywords": parse_visual_keywords(fields.get("visual_keywords", "")),
+        "phonetic_hints": parse_phonetic_hints(fields.get("phonetic_hints", "")),
+    }
+
+
+def parse_story_reply(reply: str, attempt_label: str, step_label: str, fallback: dict | None = None) -> dict:
+    """يحلّل رد أي نداء بيرجّع حلقة كاملة (قصة/اختصار/توسيع). لو حقل ناقص
+    وفيه fallback من نداء سابق، بياخده منه (ما عدا narration)."""
+    fields = parse_labeled_response(reply)
+    if not all(fields.get(key, "").strip() for key in REQUIRED_STORY_FIELDS):
+        json_fields = try_parse_json_episode(reply)
+        if json_fields and all(json_fields.get(key, "").strip() for key in REQUIRED_STORY_FIELDS):
+            print(f"   ℹ️ {attempt_label} | {step_label}: الرد جه JSON — اتقبل عن طريق الخطة البديلة.")
+            fields = json_fields
+
+    story = normalize_story(fields)
+    if fallback:
+        for key, value in list(story.items()):
+            if key != "narration" and not value:
+                story[key] = fallback.get(key, value)
+
+    missing = [key for key in REQUIRED_STORY_FIELDS if not story.get(key)]
+    if missing:
+        print(f"   🔎 رد {attempt_label} | {step_label} الخام (أول 500 حرف):\n{reply[:500]!r}")
+        raise AttemptFailed(f"رد {step_label} ناقص حقل '{missing[0]}' أو فاضي")
+    return story
+
+
+def build_episode(story: dict) -> dict:
+    narration = story["narration"]
+    # تلميحات النطق لازم تطابق كلمة موجودة حرفيًا في النص.
+    hints = [h for h in story.get("phonetic_hints", []) if h["word"] in narration]
+    keywords = list(story.get("visual_keywords") or [])
+    if len(keywords) < 4:
+        print("   ⚠️ كلمات البحث البصرية قليلة؛ إكمالها بكلمات احتياطية عامة")
+        keywords += [k for k in DEFAULT_VISUAL_KEYWORDS if k not in keywords]
+    title = (story.get("title") or story["hook"]).strip(" .؟!،")[:100]
+    return {
+        "title": title,
+        "hook": story["hook"],
+        "region": story["region"],
+        "narration": narration,
+        "visual_keywords": keywords,
+        "caption": story.get("caption") or story["hook"],
+        "phonetic_hints": hints,
+        "source_type": story["source_type"],
+        "source_reference": story["source_reference"],
+    }
+
+
+CONTENT_RED_FLAGS = ("السيلينس", "الشهرات الجوية", "المحتلة بالدقيق", "البركان الثلجي")
+
+
+def find_content_red_flag(text: str) -> str | None:
+    plain = re.sub(r"[\u064B-\u065F\u0670]", "", text or "")
+    return next((flag for flag in CONTENT_RED_FLAGS if flag in plain), None)
+
+
+def find_similar_hook(hook: str, recent_hooks: list[str]) -> str | None:
+    signature = " ".join(_word_signature(hook))
+    for old in recent_hooks:
+        ratio = difflib.SequenceMatcher(None, signature, " ".join(_word_signature(old))).ratio()
+        if ratio >= HOOK_SIMILARITY_THRESHOLD:
+            return old
+    return None
+
+
+def validate_episode(episode: dict, recent_hooks: list[str] | None = None) -> str | None:
+    """رسالة الخطأ لو الحلقة النهائية فيها مشكلة، أو None لو سليمة."""
+    if not REQUIRED_EPISODE_KEYS.issubset(episode.keys()):
+        return f"الحلقة ناقصة حقول مطلوبة: {sorted(episode.keys())}"
+
+    narration = str(episode.get("narration", "")).strip()
+    red_flag = find_content_red_flag(narration)
+    if red_flag:
+        return f"النص يحتوي مصطلحًا علميًا مرفوضًا أو مختلقًا: {red_flag}"
+    if looks_truncated(narration):
+        return "نص narration النهائي شكله متقطوع (مش منتهي بعلامة ترقيم واضحة)"
+
+    word_count = count_words(narration)
+    if ACCEPTABLE_MIN_WORDS > 0 and word_count < ACCEPTABLE_MIN_WORDS:
+        return f"narration قصيرة جدًا ({word_count} كلمة، الحد الأدنى {ACCEPTABLE_MIN_WORDS})"
+
+    if not episode.get("visual_keywords"):
+        return "حقل visual_keywords فاضي"
+    for key in ("title", "hook", "source_type", "source_reference"):
+        if not str(episode.get(key, "")).strip():
+            return f"حقل {key} فاضي"
+
+    if recent_hooks:
+        similar = find_similar_hook(episode["hook"], recent_hooks)
+        if similar:
+            return f"الهوك مشابه جدًا لهوك حلقة سابقة: {similar[:60]}"
+    return None
+
+
+def log_usage(response, label: str) -> None:
+    usage = getattr(response, "usage_metadata", None)
+    if not usage:
+        return
+    print(
+        f"   🔢 {label} | مدخل: {usage.prompt_token_count} "
+        f"| مخرج: {usage.candidates_token_count} "
+        f"| إجمالي: {usage.total_token_count}"
+    )
+
+
+# ─────────────────────────── تصنيف الأخطاء ───────────────────────────
+
+def _is_daily_quota_exhausted(exc: Exception) -> bool:
+    """نفاد الحصة اليومية (429 + PerDay). مالوش فايدة إعادة المحاولة بعده."""
+    text = str(exc).upper()
+    if "RESOURCE_EXHAUSTED" not in text and "429" not in text:
+        return False
+    return "PERDAY" in text.replace("_", "").replace(" ", "").replace("-", "")
+
+
+def _is_model_unavailable(exc: Exception) -> bool:
+    text = str(exc).upper()
+    return "404" in text and "NOT_FOUND" in text
+
+
+def _is_transient_error(exc: Exception) -> bool:
+    """ضغط مؤقت أو شبكة عابرة أو حد طلبات بالدقيقة — يستاهل إعادة محاولة."""
+    if _is_daily_quota_exhausted(exc):
+        return False
+    text = str(exc).upper()
+    if re.search(r"\b(429|500|502|503|504)\b", text):
+        return True
+    markers = (
+        "UNAVAILABLE", "INTERNAL", "OVERLOADED", "DEADLINE_EXCEEDED",
+        "TIMEOUT", "TIMED OUT", "RESOURCE_EXHAUSTED", "CONNECTION",
+    )
+    return any(marker in text for marker in markers)
+
+
+# ─────────────────────────── مزوّد OpenRouter ───────────────────────────
+
+class OpenRouterModels:
+    """يحاكي client.models.generate_content بتاع Gemini فوق OpenRouter."""
+
+    def generate_content(self, *, model: str, contents, config):
+        messages = []
+        system = getattr(config, "system_instruction", None)
+        if system:
+            messages.append({"role": "system", "content": str(system)})
+        for content in contents:
+            text = "".join(getattr(part, "text", "") or "" for part in (content.parts or []))
+            messages.append({
+                "role": "assistant" if content.role == "model" else "user",
+                "content": text,
+            })
+        payload = {
+            "messages": messages,
+            "temperature": getattr(config, "temperature", TEMPERATURE),
+            "max_tokens": getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
+            "reasoning": {"effort": "none", "exclude": True},
+        }
+        if getattr(config, "response_mime_type", "") == "application/json":
+            payload["response_format"] = {"type": "json_object"}
+
+        errors = []
+        for router_model in OPENROUTER_MODELS:
+            payload["model"] = router_model
+            try:
+                response = requests.post(
+                    "https://openrouter.ai/api/v1/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                        "Content-Type": "application/json",
+                        "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/islamic-reminder1",
+                        "X-Title": "Islamic Reminder Auto Publisher",
+                    },
+                    json=payload,
+                    timeout=OPENROUTER_TIMEOUT,
+                )
+                if response.status_code != 200:
+                    raise RuntimeError(f"HTTP {response.status_code}: {response.text[:200]}")
+                data = response.json()
+                choice = (data.get("choices") or [{}])[0]
+                content = (choice.get("message") or {}).get("content") or ""
+                if isinstance(content, list):
+                    content = "".join(
+                        item.get("text", "") if isinstance(item, dict) else str(item)
+                        for item in content
+                    )
+                text = str(content).strip()
+                if not text:
+                    raise RuntimeError("empty answer content")
+                print(f"🔀 OpenRouter: using model {router_model}")
+
+                # توحيد أسباب الإيقاف مع أسماء Gemini عشان call_model يفهمها.
+                raw_reason = str(choice.get("finish_reason") or "stop").lower()
+                if raw_reason == "length":
+                    finish_reason = "MAX_TOKENS"
+                elif raw_reason == "content_filter":
+                    finish_reason = "SAFETY"
+                else:
+                    finish_reason = raw_reason.upper()
+
+                usage = data.get("usage") or {}
+                return SimpleNamespace(
+                    text=text,
+                    usage_metadata=SimpleNamespace(
+                        prompt_token_count=usage.get("prompt_tokens", 0),
+                        candidates_token_count=usage.get("completion_tokens", 0),
+                        total_token_count=usage.get("total_tokens", 0),
+                    ),
+                    candidates=[SimpleNamespace(finish_reason=finish_reason)],
+                )
+            except Exception as exc:  # noqa: BLE001 - جرّب النموذج التالي
+                errors.append(f"{router_model}: {exc}")
+        raise RuntimeError("All OpenRouter models failed: " + " | ".join(errors))
+
+
+class ProviderClient:
+    def __init__(self, gemini_client):
+        self._gemini_client = gemini_client
+        self._openrouter_models = OpenRouterModels()
+
+    @property
+    def models(self):
+        if ACTIVE_PROVIDER == "openrouter":
+            return self._openrouter_models
+        return self._gemini_client.models
+
+
+def switch_to_next_model() -> bool:
+    """الترتيب: نماذج Gemini الاحتياطية أولًا، ثم OpenRouter. بيرجّع False
+    لو مفيش حاجة تانية نحوّل لها."""
+    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER
+    if ACTIVE_PROVIDER == "gemini":
+        if ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES):
+            ACTIVE_MODEL_INDEX += 1
+            ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
+            return True
+        if OPENROUTER_API_KEY and OPENROUTER_MODEL:
+            ACTIVE_PROVIDER = "openrouter"
+            ACTIVE_MODEL = OPENROUTER_MODEL
+            print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية: {OPENROUTER_MODEL}")
+            return True
+    return False
+
+
+# ─────────────────────────── نداء الموديل ───────────────────────────
+
+def make_content(role: str, text: str) -> types.Content:
+    return types.Content(role=role, parts=[types.Part(text=text)])
+
+
+def _config(system_prompt: str, budget: int, *, temperature: float = TEMPERATURE,
+            thinking: int = THINKING_BUDGET, **extra) -> types.GenerateContentConfig:
+    return types.GenerateContentConfig(
+        system_instruction=system_prompt,
+        temperature=temperature,
+        max_output_tokens=budget,
+        thinking_config=types.ThinkingConfig(thinking_budget=thinking),
+        # بيسكّت تحذير AFC؛ السكريبت مبيستخدمش أدوات أصلًا.
+        automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+        **extra,
+    )
+
+
+def free_text_config(system_prompt: str, budget: int) -> types.GenerateContentConfig:
+    return _config(system_prompt, budget)
+
+
+def tashkeel_json_config(system_prompt: str, budget: int) -> types.GenerateContentConfig:
+    return _config(
+        system_prompt, budget, temperature=0.1, thinking=0,
+        response_mime_type="application/json",
+        response_schema=to_gemini_schema(TASHKEEL_SCHEMA),
+    )
+
+
+def _generate_with_retries(client, contents, config_builder, system_prompt: str, budget: int, label: str):
+    """نداء واحد مع إعادة محاولة متصاعدة للأخطاء المؤقتة."""
+    last_exc: Exception | None = None
+    for retry in range(TRANSIENT_RETRIES + 1):
+        try:
+            return client.models.generate_content(
+                model=ACTIVE_MODEL, contents=contents,
+                config=config_builder(system_prompt, budget),
+            )
+        except Exception as exc:  # noqa: BLE001 — شبكة/حصة/حجب أمان
+            last_exc = exc
+            if _is_daily_quota_exhausted(exc):
+                raise QuotaExhausted(
+                    f"نفدت الحصة اليومية لموديل {ACTIVE_MODEL} أثناء {label} ({exc})"
+                ) from exc
+            if _is_model_unavailable(exc):
+                raise ModelUnavailable(
+                    f"الموديل {ACTIVE_MODEL} غير متاح أثناء {label} ({exc})"
+                ) from exc
+            if not _is_transient_error(exc):
+                raise AttemptFailed(f"فشل استدعاء الموديل في {label} ({exc})") from exc
+            if retry < TRANSIENT_RETRIES:
+                wait = TRANSIENT_BACKOFF_BASE * (2 ** retry)
+                print(f"   ⏳ {label}: خطأ مؤقت ({str(exc)[:120]}) — إعادة بعد {wait} ثانية "
+                      f"({retry + 1}/{TRANSIENT_RETRIES})...")
+                time.sleep(wait)
+    raise ProviderFailover(
+        f"استُنفدت إعادات الخطأ المؤقت لموديل {ACTIVE_MODEL} في {label} ({last_exc})"
+    ) from last_exc
+
+
+def call_model(client, history: list, prompt_text: str, config_builder,
+               system_prompt: str, budget: int, label: str):
+    """يبعت prompt_text كدور جديد فوق history ويضيف الدور للـ history بعد
+    ما يستقر على رد نهائي. بيرجّع (نص الرد, finish_reason).
+      - MAX_TOKENS (أو length من OpenRouter): يرفع السقف ويعيد (BUDGET_RETRIES).
+      - خطأ مؤقت: إعادة بانتظار متصاعد ثم ProviderFailover.
+      - حصة يومية: QuotaExhausted فورًا."""
+    attempt_budget = budget
+    response = None
+    finish_reason = ""
+    for length_retry in range(BUDGET_RETRIES + 1):
+        contents = history + [make_content("user", prompt_text)]
+        response = _generate_with_retries(
+            client, contents, config_builder, system_prompt, attempt_budget, label
+        )
+        log_usage(response, label)
+        candidates = getattr(response, "candidates", None) or []
+        finish_reason = str(candidates[0].finish_reason) if candidates else ""
+        if "MAX_TOKENS" in finish_reason and length_retry < BUDGET_RETRIES:
+            attempt_budget = int(attempt_budget * LENGTH_ESCALATION)
+            print(f"   ⚠️ {label}: اتقطع بحد التوكنز — رفع السقف لـ {attempt_budget} وإعادة النداء...")
+            continue
+        break
+
+    if any(flag in finish_reason for flag in ("SAFETY", "PROHIBITED", "BLOCKLIST")):
+        raise AttemptFailed(f"الرد اتحجب في {label} (finish_reason={finish_reason})")
+
+    reply_text = response.text or ""
+    history.append(make_content("user", prompt_text))
+    history.append(make_content("model", reply_text))
+    return reply_text, finish_reason
+
+
+# ─────────────────────────── نصوص البرومبت ───────────────────────────
+
+_STORY_FORMAT_BLOCK = (
+    "HOOK: <الخطاف: جملة واحدة قوية، هي نفسها أول جملة في NARRATION>\n"
+    "TITLE: <عنوان الفيديو>\n"
+    "REGION: <العصر والمكان>\n"
+    "SOURCE_TYPE: <نوع المصدر: كتاب تاريخي/موسوعة/أرشيف/متحف>\n"
+    "SOURCE_REFERENCE: <اسم الكتاب أو الموسوعة والمؤلف، والباب أو السنة إن كنت متأكدًا>\n"
+    "CAPTION: <وصف قصير للنشر>\n"
+    "VISUAL_KEYWORDS: <ثماني إلى عشر كلمات بحث إنجليزية مفصولة بفواصل>\n"
+    "PHONETIC_HINTS:\n"
+    "<سطر لكل كلمة صعبة: الكلمة كما وردت في النص = الكلمة نفسها بالحركات>\n"
+    "NARRATION:\n"
+    "<نص القصة الكاملة من الخطاف إلى الخاتمة>"
+)
+
+_FORMAT_RULES = (
+    "⚠️ الصيغة: ردك كله نص عادي (وليس JSON) بالشكل التالي بالضبط. اكتب "
+    "كل تسمية حرفيًا بالحروف الكبيرة في بداية سطر جديد، بلا زخرفة "
+    "markdown ولا أسوار كود ولا أقواس {} ولا علامات اقتباس حول القيم، "
+    "ولا أي نص خارج هذه الحقول. حقل NARRATION آخر حقل. آخر حرف في ردك "
+    "حرفيًا يجب أن يكون نقطة (.) أو علامة تعجب (!) أو علامة استفهام (؟)، "
+    "ولا شيء بعده، ولا تنهِ النص بقوس أو مرجع أو علامة اقتباس.\n\n"
+)
+
+
+def pick_story_angle(offset: int = 0) -> str:
+    return STORY_ANGLES[(date.today().toordinal() + offset) % len(STORY_ANGLES)]
+
+
+def build_story_prompt(
+    recent_titles: list[str], recent_regions: list[str], recent_hooks: list[str],
+    target_words: int, angle: str,
+) -> str:
+    max_words = int(target_words * PROMPT_MAX_FACTOR)
+    min_words = int(target_words * 0.85)
+    message = (
+        "اكتب حلقة جديدة تمامًا: قصة تاريخية موثقة كاملة (خطاف، تمهيد، "
+        "تصاعد، ذروة، نتيجة، خاتمة) في رد واحد، وفق تعليمات النظام.\n\n"
+        f"⚠️ الزاوية المقترحة لهذا التشغيل: {angle}. التزم بها ما لم تكن "
+        "الواقعة المناسبة مكررة أو غير موثقة بما يكفي، فاختر بديلًا قريبًا.\n\n"
+        "⚠️ عدم التكرار: ممنوع اختيار واقعة سبق استخدامها حتى بعنوان أو "
+        "صياغة مختلفة. الهوكات المذكورة أدناه تصف الوقائع السابقة بدقة؛ "
+        "إن كانت الواقعة التي في بالك تصف حادثة أحدها فارفضها.\n\n"
+        "⚠️ اللغة: NARRATION بالفصحى المبسطة فقط، بلا عامية، وبلا أرقام "
+        "أو رموز أو أقواس أو حروف لاتينية (الأرقام تُكتب بالحروف)، وبلا "
+        "تشكيل كامل. راجع مطابقة الضمائر والأفعال والتذكير والتأنيث.\n\n"
+        "⚠️ التوثيق: اختر واقعة قابلة للمراجعة من مصدر موثوق، ولا تختلق "
+        "حوارًا ولا رقمًا ولا اسمًا ولا نتيجة. إذا اختلفت الروايات فاذكر "
+        "ذلك بوضوح.\n\n"
+        f"⚠️ الطول: المستهدف حوالي {target_words} كلمة عربية، والمسموح بين "
+        f"{min_words} و{max_words} كلمة، والحد الأقصى المطلق {max_words} كلمة "
+        "ولا تتجاوزه أبدًا. خطط للقصة مسبقًا بحيث تنتهي بخاتمة حقيقية داخل "
+        "هذا الحد، واختصر التفاصيل الجانبية عند الحاجة. القصة المكتملة "
+        "المتماسكة أهم من بلوغ رقم بعينه، ولا تحشُ بتفاصيل غير موثقة.\n\n"
+        f"{_FORMAT_RULES}{_STORY_FORMAT_BLOCK}"
+    )
+    if recent_titles:
+        message += "\n\nالعناوين السابقة (تجنب أي تشابه معها):\n- " + "\n- ".join(recent_titles)
+    if recent_hooks:
+        message += "\n\nالهوكات السابقة (ممنوع نفس الواقعة بأي صياغة):\n- " + "\n- ".join(recent_hooks)
+    if recent_regions:
+        message += "\n\nالعصور والأماكن السابقة (اختر عصرًا مختلفًا):\n- " + "\n- ".join(recent_regions)
+    return message
+
+
+def build_condense_prompt(current: int, target: int) -> str:
+    max_words = int(target * PROMPT_MAX_FACTOR)
+    return (
+        f"القصة طلعت {current} كلمة، وهذا أطول بكثير من المطلوب (المستهدف حوالي "
+        f"{target} كلمة والحد الأقصى المطلق {max_words} كلمة). أعد كتابة الحلقة "
+        "كاملة مختصرة: احذف التفاصيل الجانبية والتكرار، واحتفظ بالخطاف "
+        "والحلقة المفتوحة واللحظة الحاسمة والنتيجة والخاتمة والمصدر نفسه، "
+        "من غير إضافة أي معلومة جديدة. اكتب الرد بنفس الصيغة من الأول:\n\n"
+        f"{_FORMAT_RULES}{_STORY_FORMAT_BLOCK}"
+    )
+
+
+def build_expand_story_prompt(current: int, target: int) -> str:
+    max_words = int(target * PROMPT_MAX_FACTOR)
+    return (
+        f"القصة قصيرة ({current} كلمة بينما المستهدف حوالي {target}). أعد كتابة "
+        "الحلقة كاملة بنفس الواقعة والخطاف والمصدر، مع تفاصيل سياقية ووصفية "
+        "إضافية واردة في المصدر نفسه (المكان، الزمان، الأسباب، ردود الأفعال)، "
+        f"دون اختراع أي حدث أو تفصيلة، وبحد أقصى {max_words} كلمة. اكتب الرد "
+        "بنفس الصيغة من الأول:\n\n"
+        f"{_FORMAT_RULES}{_STORY_FORMAT_BLOCK}"
+    )
+
+
+def build_finish_ending_prompt() -> str:
+    return (
+        "النص اتقطع قبل خاتمة حقيقية. اكتب الآن فقط الجملة أو الجمل الختامية "
+        "التي تقفل القصة بعبرة قصيرة مبنية على الواقعة نفسها ثم سؤالًا ختاميًا "
+        "يدعو إلى التعليق، دون أي حدث جديد ودون تكرار جملة سابقة ودون ذكر "
+        "مصدر. أجب بنص الخاتمة فقط، وآخر حرف حرفيًا فيه نقطة (.) أو علامة "
+        "تعجب (!) أو علامة استفهام (؟)، من غير قوس أو علامة اقتباس."
+    )
+
+
+def ensure_complete_ending(client, history, narration: str, system_prompt: str, attempt_label: str) -> str:
+    """لو narration متقطوعة، نداء واحد بس لإكمال الخاتمة."""
+    if not looks_truncated(narration):
+        return narration
+    reply, _ = call_model(
+        client, history, build_finish_ending_prompt(),
+        free_text_config, system_prompt, STORY_MAX_TOKENS,
+        f"{attempt_label} | إكمال الخاتمة",
+    )
+    narration = narration + " " + clean_continuation_text(reply)
+    print(f"   📝 بعد إكمال الخاتمة: {count_words(narration)} كلمة")
+    return narration
+
+
+TASHKEEL_SYSTEM_PROMPT = (
+    "أنت مدقق لغوي عربي متخصص في ضبط نصوص النطق. صحح النص المرسل دون حذف "
+    "أو إضافة معلومة أو تغيير ترتيب الكلمات. راجع الفاعل والمفعول وعائد كل "
+    "ضمير، وطابق الأفعال مع الفاعل في التذكير والتأنيث والإفراد والتثنية "
+    "والجمع. أضف التشكيل الكامل، خصوصًا للأفعال والضمائر وأواخر الكلمات "
+    "والكلمات التي تحتمل قراءتين. حافظ على علامات الوقف، وأعد JSON فقط "
+    "بالمفتاح corrected_narration."
+)
+
+
+def proofread_narration_for_tts(client, narration: str, attempt_label: str) -> str:
+    """تدقيق وتشكيل اختياري (PROOFREAD_TASHKEEL=true). بسياق نظيف لتوفير
+    التوكنز: مش بنعيد إرسال القصة اللي فاتت."""
+    prompt = (
+        "راجع النص التالي للنطق العربي. لا تغيّر الكلمات أو المعلومات أو "
+        "ترتيبها؛ أصلح التشكيل والنحو فقط. النص:\n\n" + narration
+    )
+    reply, _ = call_model(
+        client, [], prompt, tashkeel_json_config, TASHKEEL_SYSTEM_PROMPT,
+        max(PROOFREAD_MAX_TOKENS, count_words(narration) * 8),
+        f"{attempt_label} | التدقيق والتشكيل",
+    )
+    try:
+        corrected = str(json.loads(reply).get("corrected_narration", "")).strip()
+    except (json.JSONDecodeError, AttributeError) as exc:
+        raise AttemptFailed("رد التدقيق النحوي ليس JSON صالحًا") from exc
+    original_words = _word_signature(narration)
+    corrected_words = _word_signature(corrected)
+    if not corrected or len(corrected_words) < max(20, int(len(original_words) * 0.85)):
+        raise AttemptFailed("التدقيق النحوي أعاد نصًا فارغًا أو مختصرًا بشدة")
+    if corrected_words != original_words:
+        print("   ⚠️ التدقيق غيّر بعض صيغ الكلمات؛ اتقبل لأنه حافظ على معظم النص")
+    return corrected
+
+
+# ─────────────────────────── تنفيذ محاولة واحدة ───────────────────────────
+
+def run_single_attempt(
+    client, system_prompt: str,
+    recent_titles: list[str], recent_regions: list[str], recent_hooks: list[str],
+    target_words: int, attempt_label: str, attempt_index: int,
+) -> dict:
+    history: list[types.Content] = []
+
+    # 1) نداء واحد بيبني الحلقة كاملة.
+    reply, finish_reason = call_model(
+        client, history,
+        build_story_prompt(recent_titles, recent_regions, recent_hooks,
+                           target_words, pick_story_angle(attempt_index)),
+        free_text_config, system_prompt, STORY_MAX_TOKENS,
+        f"{attempt_label} | القصة",
+    )
+    story = parse_story_reply(reply, attempt_label, "القصة")
+    narration = story["narration"]
+    words = count_words(narration)
+    print(f"   📝 القصة: {words} كلمة (هدف {target_words}) | finish={finish_reason or 'غير معروف'}")
+
+    # 2) طويلة بشكل مبالغ فيه -> نداء اختصار واحد.
+    if words > int(target_words * CONDENSE_TRIGGER_FACTOR):
+        print(f"   ✂️ القصة {words} كلمة، أطول بكثير من الهدف — نداء اختصار.")
+        reply, _ = call_model(
+            client, history, build_condense_prompt(words, target_words),
+            free_text_config, system_prompt, STORY_MAX_TOKENS,
+            f"{attempt_label} | اختصار",
+        )
+        story = parse_story_reply(reply, attempt_label, "الاختصار", fallback=story)
+        narration = story["narration"]
+        words = count_words(narration)
+        print(f"   📝 بعد الاختصار: {words} كلمة")
+        if words > int(target_words * ABSOLUTE_MAX_FACTOR):
+            raise AttemptFailed(f"القصة لسه طويلة جدًا بعد الاختصار ({words} كلمة)")
+
+    # 3) خاتمة حقيقية.
+    narration = ensure_complete_ending(client, history, narration, system_prompt, attempt_label)
+    if looks_truncated(narration):
+        raise AttemptFailed("narration لسه متقطوعة بعد محاولة إكمال الخاتمة")
+
+    # 4) قصيرة عن الحد الأدنى -> توسيع (لغاية MAX_EXPANSION_ROUNDS).
+    for expansion_round in range(1, MAX_EXPANSION_ROUNDS + 1):
+        current = count_words(narration)
+        if ACCEPTABLE_MIN_WORDS <= 0 or current >= ACCEPTABLE_MIN_WORDS:
+            break
+        print(f"   ℹ️ الطول ({current}) أقل من الحد الأدنى ({ACCEPTABLE_MIN_WORDS}) — "
+              f"توسيع {expansion_round}/{MAX_EXPANSION_ROUNDS}.")
+        reply, _ = call_model(
+            client, history, build_expand_story_prompt(current, target_words),
+            free_text_config, system_prompt, STORY_MAX_TOKENS,
+            f"{attempt_label} | توسيع {expansion_round}",
+        )
+        story = parse_story_reply(reply, attempt_label, "التوسيع", fallback=story)
+        narration = ensure_complete_ending(
+            client, history, story["narration"], system_prompt, attempt_label
+        )
+        print(f"   📝 بعد التوسيع {expansion_round}: {count_words(narration)} كلمة")
+        if looks_truncated(narration):
+            raise AttemptFailed("narration متقطوعة بعد التوسيع ومحاولة إكمال الخاتمة")
+
+    story["narration"] = narration
+    episode = build_episode(story)
+
+    # 5) تدقيق وتشكيل اختياري.
+    if PROOFREAD_TASHKEEL:
+        episode["narration"] = proofread_narration_for_tts(client, narration, attempt_label)
+
+    final_words = count_words(episode["narration"])
+    if final_words < target_words:
+        print(f"   ℹ️ الطول ({final_words}) أقل من الهدف ({target_words}) لكنه مقبول.")
+
+    error = validate_episode(episode, recent_hooks)
+    if error:
+        raise AttemptFailed(error)
+    return episode
+
+
+def generate_episode() -> dict:
+    global ACTIVE_PROVIDER, ACTIVE_MODEL
+    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not api_key and not OPENROUTER_API_KEY:
+        sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY إلى GitHub Secrets")
+    if api_key:
+        client = ProviderClient(genai.Client(api_key=api_key))
+    else:
+        ACTIVE_PROVIDER = "openrouter"
+        ACTIVE_MODEL = OPENROUTER_MODEL
+        client = ProviderClient(None)
+
+    system_prompt = load_system_prompt()
+    recent_titles = load_used_history()
+    recent_regions = load_used_regions()
+    recent_hooks = load_used_hooks()
+
+    print(
+        f"🕌 المزود الأساسي: {ACTIVE_PROVIDER} | Gemini: {MODEL} | "
+        f"OpenRouter: {OPENROUTER_MODEL or 'غير مفعّل'} | thinking_budget: {THINKING_BUDGET} | "
+        f"هدف الطول: {TARGET_WORDS} كلمة | الحد الأدنى: {ACCEPTABLE_MIN_WORDS or 'غير محدد'} | "
+        f"تشكيل: {'نعم' if PROOFREAD_TASHKEEL else 'لا'}"
+    )
+
+    last_error = "لم تبدأ أي محاولة"
+    quota_errors: list[str] = []
+    attempt = 0
+    while attempt < MAX_ATTEMPTS:
+        attempt += 1
+        print(f"\n===== محاولة كاملة {attempt}/{MAX_ATTEMPTS} "
+              f"[{ACTIVE_PROVIDER}:{ACTIVE_MODEL}] =====")
+        try:
+            return run_single_attempt(
+                client, system_prompt, recent_titles, recent_regions, recent_hooks,
+                TARGET_WORDS, f"محاولة {attempt}", attempt - 1,
+            )
+        except (QuotaExhausted, ModelUnavailable, ProviderFailover) as exc:
+            last_error = str(exc)
+            if isinstance(exc, QuotaExhausted):
+                quota_errors.append(last_error)
+            if switch_to_next_model():
+                print(f"⚠️ {exc}\n🔁 انتقلت إلى: {ACTIVE_PROVIDER}:{ACTIVE_MODEL} "
+                      "(التحويل لا يستهلك من المحاولات الكاملة).", flush=True)
+                attempt -= 1
+                continue
+            details = "\n".join(f"- {item}" for item in quota_errors)
+            sys.exit(
+                "❌ توقف: لا يوجد مزوّد أو نموذج آخر متاح.\n"
+                f"نماذج Gemini: {MODEL_CANDIDATES} | OpenRouter: {OPENROUTER_MODEL or 'غير مفعّل'}\n"
+                f"آخر خطأ: {last_error}\n"
+                + (f"تفاصيل الحصة:\n{details}\n" if details else "")
+                + "الحل: انتظر تجدد الحصة، أو أضف نموذجًا احتياطيًا متاحًا في "
+                "GEMINI_FALLBACK_MODELS، أو افحص اسم النموذج."
+            )
+        except AttemptFailed as exc:
+            last_error = str(exc)
+            print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{MAX_ATTEMPTS}: {last_error}")
+        except Exception as exc:  # noqa: BLE001 — أي خطأ غير متوقع
+            last_error = f"خطأ غير متوقع: {exc}"
+            print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{MAX_ATTEMPTS}: {last_error}")
+
+    sys.exit(f"❌ فشل توليد حلقة سليمة بعد {MAX_ATTEMPTS} محاولات كاملة. آخر خطأ: {last_error}")
+
+
+if __name__ == "__main__":
+    episode = generate_episode()
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_PATH.write_text(json.dumps(episode, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"✅ اتكتبت الحلقة: {episode['title']}")
+    print(f"   العصر/المكان: {episode.get('region', 'غير محدد')}")
+    print(f"   عدد كلمات narration: {count_words(episode.get('narration', ''))}")
+    print(f"   الهوك: {episode.get('hook', '')[:80]}")
+    print(f"   المصدر: {episode.get('source_type', '')} — {episode.get('source_reference', '')}")
+    print(f"   كلمات البحث: {episode['visual_keywords']}")
+    print(f"   تلميحات النطق: {episode.get('phonetic_hints', [])}")
