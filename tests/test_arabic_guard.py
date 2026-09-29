@@ -1,36 +1,32 @@
-"""Test cases for Arabic text validation."""
+"""Regression tests for the pre-TTS Arabic narration validator."""
 
-import unittest
 import sys
+import unittest
 from pathlib import Path
 
-# Add parent directory to path to import arabic_guard
-sys.path.insert(0, str(Path(__file__).parent.parent))
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS = ROOT / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
 
-try:
-    from arabic_guard import validate_narration, Issue
-except ImportError:
-    # Fallback if arabic_guard is not available in islamic-reminder1
-    # This test will pass as a placeholder
-    class validate_narration:
-        pass
+from arabic_guard import Issue, validate_narration  # noqa: E402
 
 
-class TestArabicGuard(unittest.TestCase):
-    
-    def test_valid_arabic_narration(self):
-        """Test that valid Arabic text passes validation."""
-        try:
-            text = "السلام عليكم ورحمة الله وبركاته"
-            issues = validate_narration(text)
-            self.assertEqual(len(issues), 0)
-        except (NameError, TypeError):
-            # Module not available, skip test
-            self.skipTest("arabic_guard module not available")
-    
-    def test_placeholder(self):
-        """Placeholder test to ensure test module loads."""
-        self.assertTrue(True)
+class ArabicGuardTests(unittest.TestCase):
+    def test_valid_arabic_narration_has_no_issues(self):
+        issues = validate_narration("السلام عليكم ورحمة الله وبركاته")
+        self.assertEqual(issues, [])
+
+    def test_foreign_script_and_digits_are_reported(self):
+        issues = validate_narration("في 14 أغسطس carrying a crew")
+        kinds = {issue.kind for issue in issues}
+        self.assertIn("foreign_script", kinds)
+        self.assertIn("digit", kinds)
+        self.assertTrue(all(isinstance(issue, Issue) for issue in issues))
+
+    def test_low_arabic_ratio_is_reported(self):
+        issues = validate_narration("hello مرحبا")
+        self.assertIn("low_arabic_ratio", {issue.kind for issue in issues})
 
 
 if __name__ == "__main__":

@@ -28,10 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r scripts/requirements.txt 2>/dev/null || python -m pip install -r requirements.txt 2>/dev/null || echo "No requirements file found"
 
-      - name: Run Arabic guard tests
+      - name: Run full Python regression suite
         run: |
-          echo "Testing Arabic Guard module..."
-          python -m unittest discover -s tests -p 'test_arabic_guard.py' -v
+          echo "Testing all repository suites..."
+          python -m unittest discover -s tests -p 'test_*.py' -v
 
       - name: Verify test module import
         run: |
