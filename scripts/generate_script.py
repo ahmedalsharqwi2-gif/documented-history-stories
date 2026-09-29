@@ -95,7 +95,13 @@ MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
 ACTIVE_MODEL_INDEX = 0
 ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
-OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free")
+OPENROUTER_MODELS = [
+    item.strip() for item in os.getenv(
+        "OPENROUTER_MODEL",
+        "openai/gpt-oss-120b:free,google/gemma-3-27b-it:free,nvidia/nemotron-3-super-120b-a12b:free",
+    ).split(",") if item.strip()
+]
+OPENROUTER_MODEL = OPENROUTER_MODELS[0] if OPENROUTER_MODELS else ""
 OPENROUTER_TIMEOUT = int(os.getenv("OPENROUTER_TIMEOUT", "90"))
 ACTIVE_PROVIDER = "gemini"
 TEMPERATURE = 0.75
@@ -535,45 +541,51 @@ class OpenRouterModels:
         }
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
-        response = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/islamic-reminder1",
-                "X-Title": "Islamic Reminder Auto Publisher",
-            },
-            json=payload,
-            timeout=OPENROUTER_TIMEOUT,
-        )
-        if response.status_code != 200:
-            raise RuntimeError(f"OpenRouter HTTP {response.status_code}: {response.text[:300]}")
-        data = response.json()
-        choice = (data.get("choices") or [{}])[0]
-        message = choice.get("message") or {}
-        content = message.get("content") or ""
-        if isinstance(content, list):
-            content = "".join(
-                item.get("text", "") if isinstance(item, dict) else str(item)
-                for item in content
-            )
-        text = str(content).strip()
-        if not text and message.get("reasoning"):
-            raise RuntimeError("OpenRouter returned reasoning but no answer content")
-        if not text:
-            raise RuntimeError("OpenRouter returned an empty response")
-        finish_reason = str(choice.get("finish_reason") or "STOP")
-        usage = data.get("usage") or {}
-        usage_metadata = SimpleNamespace(
-            prompt_token_count=usage.get("prompt_tokens", 0),
-            candidates_token_count=usage.get("completion_tokens", 0),
-            total_token_count=usage.get("total_tokens", 0),
-        )
-        return SimpleNamespace(
-            text=text,
-            usage_metadata=usage_metadata,
-            candidates=[SimpleNamespace(finish_reason=finish_reason)],
-        )
+        errors = []
+        for router_model in OPENROUTER_MODELS:
+            payload["model"] = router_model
+            try:
+                response = requests.post(
+                    "https://openrouter.ai/api/v1/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                        "Content-Type": "application/json",
+                        "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/islamic-reminder1",
+                        "X-Title": "Islamic Reminder Auto Publisher",
+                    },
+                    json=payload,
+                    timeout=OPENROUTER_TIMEOUT,
+                )
+                if response.status_code != 200:
+                    raise RuntimeError(f"HTTP {response.status_code}: {response.text[:200]}")
+                data = response.json()
+                choice = (data.get("choices") or [{}])[0]
+                message = choice.get("message") or {}
+                content = message.get("content") or ""
+                if isinstance(content, list):
+                    content = "".join(
+                        item.get("text", "") if isinstance(item, dict) else str(item)
+                        for item in content
+                    )
+                text = str(content).strip()
+                if not text:
+                    raise RuntimeError("empty answer content")
+                print(f"🔀 OpenRouter: using model {router_model}")
+                finish_reason = str(choice.get("finish_reason") or "STOP")
+                usage = data.get("usage") or {}
+                usage_metadata = SimpleNamespace(
+                    prompt_token_count=usage.get("prompt_tokens", 0),
+                    candidates_token_count=usage.get("completion_tokens", 0),
+                    total_token_count=usage.get("total_tokens", 0),
+                )
+                return SimpleNamespace(
+                    text=text,
+                    usage_metadata=usage_metadata,
+                    candidates=[SimpleNamespace(finish_reason=finish_reason)],
+                )
+            except Exception as exc:  # noqa: BLE001 - try the next router model
+                errors.append(f"{router_model}: {exc}")
+        raise RuntimeError("All OpenRouter models failed: " + " | ".join(errors))
 
 
 class ProviderClient:
