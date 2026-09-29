@@ -223,6 +223,13 @@ TASHKEEL_SCHEMA = {
 
 STORY_REQUIRED_FIELDS = ("hook", "region", "source_type", "source_reference", "narration")
 
+DEFAULT_VISUAL_KEYWORDS = [
+    "historical documentary",
+    "archival documents",
+    "old map",
+    "museum artifact",
+]
+
 
 def to_gemini_schema(schema: dict) -> dict:
     """يحوّل تعريف JSON Schema عادي (lowercase types) إلى صيغة Gemini
@@ -1013,13 +1020,21 @@ def run_single_attempt(
     except json.JSONDecodeError as exc:
         raise AttemptFailed(f"رد finalize غير صالح JSON ({exc})") from exc
 
+    visual_keywords = finalize_data.get("visual_keywords")
+    if not isinstance(visual_keywords, list):
+        visual_keywords = []
+    visual_keywords = [str(item).strip() for item in visual_keywords if str(item).strip()]
+    if not visual_keywords:
+        print("   ⚠️ finalize أعاد visual_keywords فارغة؛ استخدام كلمات بحث احتياطية")
+        visual_keywords = DEFAULT_VISUAL_KEYWORDS.copy()
+
     episode = {
         "title": finalize_data.get("title", ""),
         "hook": hook,
         "region": region,
         "narration": narration,
         "narration_en": [],
-        "visual_keywords": finalize_data.get("visual_keywords", []),
+        "visual_keywords": visual_keywords,
         "caption": finalize_data.get("caption", ""),
         "phonetic_hints": finalize_data.get("phonetic_hints", []),
         "source_type": source_type,
