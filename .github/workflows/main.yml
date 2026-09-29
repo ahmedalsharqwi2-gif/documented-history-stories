@@ -71,7 +71,9 @@ jobs:
           OPENROUTER_TIMEOUT: "90"
           GEMINI_THINKING_BUDGET: "0"
           TARGET_WORDS: "850"
-          ACCEPTABLE_MIN_WORDS: "500"
+          # وضع المرور الواحد لا يفرض حدًا أدنى حتى لا يعيد التوليد ويستهلك التوكنز.
+          # يتم قبول النص المكتمل مع تسجيل تحذير إذا كان أقصر من الهدف.
+          ACCEPTABLE_MIN_WORDS: "0"
           SINGLE_PASS_GENERATION: "true"
           MAX_FULL_ATTEMPTS: "1"
           MAX_EXPANSION_ROUNDS: "0"

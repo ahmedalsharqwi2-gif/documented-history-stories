@@ -963,6 +963,12 @@ def run_single_attempt(
     if SINGLE_PASS_GENERATION:
         if looks_truncated(narration):
             raise AttemptFailed("النص ذو المرور الواحد انتهى قبل خاتمة واضحة")
+        actual_words = count_words(narration)
+        if actual_words < target_words:
+            print(
+                f"   ⚠️ النص المكتمل أقصر من الهدف ({actual_words}/{target_words} كلمة)؛ "
+                "سيُقبل بدون نداء توسعة لتوفير التوكنز"
+            )
         episode = {
             "title": hook[:80].strip(" .؟!،"),
             "hook": hook,
