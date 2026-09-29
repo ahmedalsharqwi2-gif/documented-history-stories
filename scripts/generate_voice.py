@@ -18,6 +18,10 @@ from pathlib import Path
 
 import edge_tts
 from voice_profiles import resolve_reference_profile
+try:
+    from language_guard import describe_letters, find_non_arabic_letters, has_decimal_digits, validate_phonetic_hints
+except ImportError:  # imported as scripts.generate_voice from tests/tools
+    from scripts.language_guard import describe_letters, find_non_arabic_letters, has_decimal_digits, validate_phonetic_hints
 
 TTS_ENGINE = os.getenv("TTS_ENGINE", "silma").strip().lower()
 BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
@@ -141,6 +145,18 @@ def save_voice_to_history(episode: dict, selected_voice: str) -> None:
 
 def strip_diacritics(text: str) -> str:
     return ARABIC_DIACRITICS_PATTERN.sub("", text)
+
+
+def validate_voice_input(narration: str, hints: object) -> None:
+    foreign = find_non_arabic_letters(narration)
+    if foreign:
+        raise ValueError(
+            "narration تحتوي أحرفًا من لغات أخرى؛ أوقفنا الصوت قبل إرساله للمحرك: "
+            + describe_letters(foreign)
+        )
+    if has_decimal_digits(narration):
+        raise ValueError("narration تحتوي أرقامًا؛ اكتبها بالحروف قبل توليد الصوت")
+    validate_phonetic_hints(narration, hints, strip_diacritics)
 
 
 def normalize_text(text: str) -> str:
@@ -717,6 +733,11 @@ def main() -> None:
     narration = normalize_text(str(episode.get("narration", "")))
     if not narration:
         sys.exit("❌ حقل narration غير موجود أو فارغ.")
+    phonetic_hints = episode.get("phonetic_hints") or []
+    try:
+        validate_voice_input(narration, phonetic_hints)
+    except ValueError as exc:
+        sys.exit(f"❌ فشل فحص النص قبل توليد الصوت: {exc}")
 
     CLIPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
@@ -725,7 +746,6 @@ def main() -> None:
     if TTS_ENGINE == "silma":
         selected_voice_profile = configure_silma_voice_profile()
 
-    phonetic_hints = episode.get("phonetic_hints") or []
     voice_text = apply_phonetic_hints(narration, phonetic_hints)
     voice_text = apply_light_diacritics(voice_text)
     synthesize_voice(voice_text)

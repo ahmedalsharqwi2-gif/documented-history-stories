@@ -15,6 +15,8 @@ from llm_gateway import (
     generate_valid_episode,
 )
 import llm_gateway
+from language_guard import describe_letters, find_non_arabic_letters, has_decimal_digits
+from religious_texts import resolve_religious_text_markers
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -177,6 +179,13 @@ def normalize_phonetic_hints(value, narration: str) -> list[dict[str, str]]:
         word, phonetic = re.sub(r"\s+", " ", word).strip(), re.sub(r"\s+", " ", phonetic).strip()
         if not word or not phonetic or len(word) > 80 or len(phonetic) > 120:
             continue
+        for field_name, value in (("word", word), ("phonetic", phonetic)):
+            foreign = find_non_arabic_letters(value)
+            if foreign:
+                raise OutputError(
+                    f"phonetic_hints.{field_name} يحتوي أحرفًا غير عربية: "
+                    f"{describe_letters(foreign)}"
+                )
         if _plain_arabic(word) != _plain_arabic(phonetic):
             continue
         if not _hint_word_is_in_narration(word, narration):
@@ -249,6 +258,22 @@ def normalize_episode(raw: dict) -> dict:
     if len(keywords) > 12:
         raise OutputError(f"visual_keywords تحتوي {len(keywords)} عنصرًا؛ الحد الأقصى 12")
     episode["visual_keywords"] = keywords
+
+    try:
+        narration, religious_entries = resolve_religious_text_markers(narration)
+    except ValueError as exc:
+        raise OutputError(str(exc)) from exc
+    episode["narration"] = narration
+    if religious_entries:
+        source_reference = episode.get("source_reference", "").strip()
+        if not source_reference:
+            raise OutputError("لا يمكن إدراج نص شرعي دون مرجع المصدر الأساسي")
+        citation = "؛ نص شرعي: " + "، ".join(
+            f"{entry.reference} ({entry.source_url})" for entry in religious_entries
+        )
+        episode["source_reference"] = source_reference.rstrip(" ؛،") + citation
+        if len(episode["source_reference"]) > FIELD_LIMITS["source_reference"]:
+            raise OutputError("إضافة مرجع النص الشرعي تجاوزت حد source_reference")
     episode["phonetic_hints"] = normalize_phonetic_hints(raw.get("phonetic_hints", []), narration)
     # Preserve the requested stable key order for artifacts and downstream consumers.
     return {key: episode[key] for key in REQUIRED_KEYS if key in episode}
@@ -268,6 +293,17 @@ def validate_episode(episode: dict) -> None:
             raise OutputError(f"الحقل {key} فارغ أو ليس نصًا")
         if len(value) > FIELD_LIMITS.get(key, MAX_NARRATION_CHARS):
             raise OutputError(f"الحقل {key} يتجاوز حد الطول المسموح")
+
+    for key in ("title", "hook", "region", "narration", "caption"):
+        value = episode[key]
+        foreign = find_non_arabic_letters(value)
+        if foreign:
+            raise OutputError(
+                f"الحقل {key} يحتوي أحرفًا من لغات أخرى؛ عرّب الاسم أو المصطلح: "
+                f"{describe_letters(foreign)}"
+            )
+        if has_decimal_digits(value):
+            raise OutputError(f"اكتب الأعداد بالحروف في الحقل {key}، لا بالأرقام")
 
     hook = episode["hook"].strip()
     if count_words(hook) > 28:
