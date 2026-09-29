@@ -1095,8 +1095,11 @@ def generate_episode() -> dict:
 
     last_error = "لم تبدأ أي محاولة"
     quota_errors: list[str] = []
-    for attempt in range(1, MAX_ATTEMPTS + 1):
-        print(f"\n===== محاولة كاملة {attempt}/{MAX_ATTEMPTS} (محادثة جديدة) =====")
+    # محاولة Gemini الأساسية + محاولة بديلة واحدة على OpenRouter عند وجوده؛
+    # التحويل بين المزودين لا يستهلك إعادة توليد إضافية لنفس المزود.
+    attempt_limit = MAX_ATTEMPTS + (1 if api_key and OPENROUTER_API_KEY else 0)
+    for attempt in range(1, attempt_limit + 1):
+        print(f"\n===== محاولة كاملة {attempt}/{attempt_limit} (محادثة جديدة) =====")
         try:
             return run_single_attempt(
                 client, system_prompt, recent_titles, recent_regions, recent_hooks,
@@ -1126,10 +1129,10 @@ def generate_episode() -> dict:
             )
         except AttemptFailed as exc:
             last_error = str(exc)
-            print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{MAX_ATTEMPTS}: {last_error}")
+            print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{attempt_limit}: {last_error}")
         except Exception as exc:  # noqa: BLE001 — أي خطأ غير متوقع تاني
             last_error = f"خطأ غير متوقع: {exc}"
-            print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{MAX_ATTEMPTS}: {last_error}")
+            print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{attempt_limit}: {last_error}")
 
     sys.exit(f"❌ فشل توليد حلقة سليمة بعد {MAX_ATTEMPTS} محاولات كاملة. آخر خطأ: {last_error}")
 

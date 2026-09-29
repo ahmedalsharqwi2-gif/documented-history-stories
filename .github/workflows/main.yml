@@ -71,6 +71,7 @@ jobs:
           OPENROUTER_TIMEOUT: "90"
           GEMINI_THINKING_BUDGET: "0"
           TARGET_WORDS: "850"
+          ACCEPTABLE_MIN_WORDS: "500"
           SINGLE_PASS_GENERATION: "true"
           MAX_FULL_ATTEMPTS: "1"
           MAX_EXPANSION_ROUNDS: "0"
