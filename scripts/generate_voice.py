@@ -35,7 +35,7 @@ SILMA_REFERENCE_PROFILE = os.getenv("SILMA_REFERENCE_PROFILE", "").strip()
 SILMA_VOICE_PROFILES_FILE = Path(
     os.getenv("SILMA_VOICE_PROFILES_FILE", "assets/voices/voice_profiles.json")
 )
-SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.0"))
+SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.15"))
 SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
 SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
 
