@@ -1,7 +1,7 @@
 """
 generate_script.py
 يستدعي Gemini API عشان يولّد سيناريو القصة التاريخية +
-الترجمة الإنجليزية الموازية + كلمات البحث البصرية + مرجع التوثيق الشرعي.
+الترجمة العربية + كلمات البحث البصرية + مرجع التوثيق الشرعي.
 
 === نداء واحد للقصة كاملة + قبول طول "مقارب" بدل الإجبار ===
 بدل تقسيم narration لمرحلتين مع توسيعات (كان بيرفع عدد نداءات الـ API
@@ -109,8 +109,7 @@ TEMPERATURE = 0.75
 # سقف التوكنز لأي نداء نص حر بيكتب/يعيد كتابة/يوسّع narration. سخي عشان
 # القصة كلها + مساحة تفكير في نفس النداء.
 STORY_MAX_TOKENS = 8000
-# سقف نداء finalize (JSON فيه narration_en كمصفوفة بعدد جمل القصة كاملة
-# + باقي الحقول) — قصص طويلة (800+ كلمة) ممكن تبقى 50-80 جملة.
+# سقف نداء البيانات الاختيارية — لم يعد مطلوبًا في وضع المرور الواحد.
 FINALIZE_MAX_TOKENS = 9000
 # ⚠️ مهم: thinking_budget بياكل من نفس سقف max_output_tokens بتاع
 # النداء (مش سقف منفصل). خليه منخفض (0-512) إلا لو محتاج تفكير أعمق.
@@ -394,10 +393,7 @@ def try_parse_json_episode(text: str) -> dict | None:
     """خطة بديلة لو الموديل رد بصيغة JSON كاملة (زي EPISODE_SCHEMA) بدل
     الفورمات المسمّى المطلوب. بتحاول تفكّ الرد كـ JSON وتطلّع منه بس
     الحقول الخمسة اللي محتاجينها (hook/region/source_type/
-    source_reference/narration). باقي حقول الـ JSON (title/narration_en/
-    visual_keywords/caption/phonetic_hints لو موجودة) بتتجاهل عمدًا —
-    هنولّدها من نداء finalize زي العادة عشان نضمن تطابق narration_en مع
-    تقسيم الجمل بتاعنا (split_arabic_sentences)، مش تقسيم الموديل.
+    source_reference/narration). باقي الحقول الاختيارية بتتجاهل عمدًا.
     بترجع None لو الرد مش JSON صالح، أو JSON صالح بس من غير أي حقل
     مفيد من الخمسة."""
     cleaned = text.strip()
@@ -806,7 +802,7 @@ def build_story_prompt(
         "نقطة (.) أو علامة تعجب (!) أو علامة استفهام (؟) — ولا شيء بعده.\n\n"
         "⚠️ الفورمات — التزم بيه حرفيًا: ردك كله لازم يكون نص عادي "
         "(plain text) وليس JSON، بالشكل بالضبط تحت. اكتب كل تسمية "
-        "حرفيًا بالإنجليزية بالحروف الكبيرة كما هي (HOOK: بدون أي ترجمة "
+        "حرفيًا بالرموز الكبيرة كما هي (HOOK: بدون أي ترجمة "
         "أو تغيير أو زخرفة markdown حواليها، ومن غير أقواس {} أو علامات "
         "اقتباس \" حوالين القيم)، كل تسمية في بداية سطر جديد، ومفيش أي "
         "نص أو مقدمة أو أسوار كود ```json أو تعليق خارج الحقول دي:\n\n"
@@ -884,7 +880,7 @@ def build_finalize_prompt(final_narration: str, recent_titles: list[str]) -> str
         "4) caption: وصف قصير جذّاب للفيديو (لمنصات التواصل).\n\n"
         "5) phonetic_hints: تلميحات نطق للكلمات الصعبة أو غير الشائعة "
         "الواردة في narration (لو وجدت).\n\n"
-        "لا تنشئ narration_en أو أي ترجمة إنجليزية؛ المطلوب فيديو وصوت وترجمة عربية فقط. "
+        "المطلوب فيديو وصوت وترجمة عربية فقط. "
         "اكتب الرد بصيغة JSON فقط حسب الـ schema المحدد، من غير أي نص "
         "خارج الـ JSON."
     )
@@ -972,7 +968,6 @@ def run_single_attempt(
             "hook": hook,
             "region": region,
             "narration": narration,
-            "narration_en": [],
             "visual_keywords": DEFAULT_VISUAL_KEYWORDS.copy(),
             "caption": hook,
             "phonetic_hints": [],
@@ -1062,7 +1057,6 @@ def run_single_attempt(
         "hook": hook,
         "region": region,
         "narration": narration,
-        "narration_en": [],
         "visual_keywords": visual_keywords,
         "caption": finalize_data.get("caption", ""),
         "phonetic_hints": finalize_data.get("phonetic_hints", []),
@@ -1151,6 +1145,5 @@ if __name__ == "__main__":
     print(f"   عدد كلمات narration: {count_words(episode.get('narration', ''))}")
     print(f"   الهوك: {episode.get('hook', '')[:80]}")
     print(f"   المصدر: {episode.get('source_type', '')} — {episode.get('source_reference', '')}")
-    print(f"   عدد جمل narration_en: {len(episode.get('narration_en', []))}")
     print(f"   كلمات البحث: {episode['visual_keywords']}")
     print(f"   تلميحات النطق: {episode.get('phonetic_hints', [])}")
