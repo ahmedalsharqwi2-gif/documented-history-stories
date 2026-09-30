@@ -15,6 +15,15 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+
+# عند تشغيل الملف بهذه الصيغة: `python scripts/generate_voice.py`، يضيف
+# Python مجلد scripts فقط إلى sys.path، بينما arabic_pronunciation.py موجود
+# في جذر المستودع. أضف الجذر قبل الاستيراد حتى لا يفشل التشغيل بعد تنزيل
+# جميع المقاطع برسالة ModuleNotFoundError.
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 import edge_tts
 from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
@@ -40,7 +49,6 @@ SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
 SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
 
 SCRIPT_DIR = Path(__file__).parent
-ROOT_DIR = SCRIPT_DIR.parent
 STATE_DIR = ROOT_DIR / "state"
 CLIPS_DIR = ROOT_DIR / "downloaded_clips"
 ASSETS_DIR = ROOT_DIR / "assets"
