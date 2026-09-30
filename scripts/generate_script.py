@@ -66,6 +66,17 @@ OPENROUTER_MODELS = [
 ]
 OPENROUTER_MODEL = OPENROUTER_MODELS[0] if OPENROUTER_MODELS else ""
 OPENROUTER_TIMEOUT = int(os.getenv("OPENROUTER_TIMEOUT", "90"))
+FALLBACK_API_KEY = (os.getenv("LLM_FALLBACK_API_KEY") or os.getenv("GROQ_API_KEY", "")).strip()
+FALLBACK_ENDPOINT = os.getenv(
+    "LLM_FALLBACK_ENDPOINT", "https://api.groq.com/openai/v1/chat/completions"
+)
+FALLBACK_MODELS = [
+    item.strip() for item in os.getenv(
+        "LLM_FALLBACK_MODEL", "llama-3.3-70b-versatile"
+    ).split(",") if item.strip()
+]
+FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
+FALLBACK_TIMEOUT = int(os.getenv("LLM_FALLBACK_TIMEOUT", "90"))
 ACTIVE_PROVIDER = "gemini"
 TEMPERATURE = 0.75
 
@@ -449,7 +460,13 @@ def _is_transient_error(exc: Exception) -> bool:
     return any(marker in text for marker in transient_markers)
 
 
-class OpenRouterModels:
+class CompatibleChatModels:
+    def __init__(self, api_key: str, endpoint: str, models: list[str], title: str):
+        self.api_key = api_key
+        self.endpoint = endpoint
+        self.models = models
+        self.title = title
+
     def generate_content(self, *, model: str, contents, config):
         messages = []
         system = getattr(config, "system_instruction", None)
@@ -462,7 +479,7 @@ class OpenRouterModels:
                 "content": text,
             })
         payload = {
-            "model": OPENROUTER_MODEL,
+            "model": model,
             "messages": messages,
             "temperature": getattr(config, "temperature", TEMPERATURE),
             "max_tokens": getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
@@ -471,20 +488,25 @@ class OpenRouterModels:
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
         errors = []
-        for router_model in OPENROUTER_MODELS:
+        for router_model in self.models:
             payload["model"] = router_model
             try:
                 response = requests.post(
-                    "https://openrouter.ai/api/v1/chat/completions",
+                    self.endpoint,
                     headers={
-                        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                        "Authorization": f"Bearer {self.api_key}",
                         "Content-Type": "application/json",
                         "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/islamic-reminder1",
-                        "X-Title": "Islamic Reminder Auto Publisher",
+                        "X-Title": self.title,
                     },
                     json=payload,
                     timeout=OPENROUTER_TIMEOUT,
                 )
+                if response.status_code in (401, 402, 403, 429):
+                    raise QuotaExhausted(
+                        f"{self.title} غير متاح حاليًا (HTTP {response.status_code}): "
+                        f"{response.text[:200]}"
+                    )
                 if response.status_code != 200:
                     raise RuntimeError(f"HTTP {response.status_code}: {response.text[:200]}")
                 data = response.json()
@@ -499,7 +521,7 @@ class OpenRouterModels:
                 text = str(content).strip()
                 if not text:
                     raise RuntimeError("empty answer content")
-                print(f"🔀 OpenRouter: using model {router_model}")
+                print(f"🔀 {self.title}: using model {router_model}")
                 finish_reason = str(choice.get("finish_reason") or "STOP")
                 usage = data.get("usage") or {}
                 usage_metadata = SimpleNamespace(
@@ -520,18 +542,32 @@ class OpenRouterModels:
 class ProviderClient:
     def __init__(self, gemini_client):
         self._gemini_client = gemini_client
-        self._openrouter_models = OpenRouterModels()
+        self._openrouter_models = CompatibleChatModels(
+            OPENROUTER_API_KEY, "https://openrouter.ai/api/v1/chat/completions",
+            OPENROUTER_MODELS, "OpenRouter",
+        )
+        self._fallback_models = CompatibleChatModels(
+            FALLBACK_API_KEY, FALLBACK_ENDPOINT, FALLBACK_MODELS, "Fallback LLM",
+        )
 
     @property
     def models(self):
-        return self._openrouter_models if ACTIVE_PROVIDER == "openrouter" else self._gemini_client.models
+        if ACTIVE_PROVIDER == "openrouter":
+            return self._openrouter_models
+        if ACTIVE_PROVIDER == "fallback":
+            return self._fallback_models
+        return self._gemini_client.models
 
 
 def has_next_model() -> bool:
     """هل فيه موديل تاني نقدر نتحول له؟ (Gemini احتياطي أو OpenRouter)"""
     if ACTIVE_PROVIDER != "gemini":
         return False
-    return ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES) or bool(OPENROUTER_API_KEY)
+    return (
+        ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES)
+        or bool(OPENROUTER_API_KEY)
+        or bool(FALLBACK_API_KEY)
+    )
 
 
 def switch_to_next_model() -> bool:
@@ -548,6 +584,16 @@ def switch_to_next_model() -> bool:
             ACTIVE_MODEL = OPENROUTER_MODEL
             print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية: {OPENROUTER_MODEL}")
             return True
+        if FALLBACK_API_KEY:
+            ACTIVE_PROVIDER = "fallback"
+            ACTIVE_MODEL = FALLBACK_MODEL
+            print(f"🔁 انتقلت إلى مزود LLM الاحتياطي: {FALLBACK_MODEL}")
+            return True
+    elif ACTIVE_PROVIDER == "openrouter" and FALLBACK_API_KEY:
+        ACTIVE_PROVIDER = "fallback"
+        ACTIVE_MODEL = FALLBACK_MODEL
+        print(f"🔁 انتقلت من OpenRouter إلى مزود LLM الاحتياطي: {FALLBACK_MODEL}")
+        return True
     return False
 
 
@@ -1008,13 +1054,17 @@ def run_single_attempt(
 def generate_episode() -> dict:
     global ACTIVE_PROVIDER, ACTIVE_MODEL
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not api_key and not OPENROUTER_API_KEY:
-        sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY إلى GitHub Secrets")
+    if not api_key and not OPENROUTER_API_KEY and not FALLBACK_API_KEY:
+        sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY أو GROQ_API_KEY إلى GitHub Secrets")
     if api_key:
         client = ProviderClient(genai.Client(api_key=api_key))
     else:
-        ACTIVE_PROVIDER = "openrouter"
-        ACTIVE_MODEL = OPENROUTER_MODEL
+        if OPENROUTER_API_KEY:
+            ACTIVE_PROVIDER = "openrouter"
+            ACTIVE_MODEL = OPENROUTER_MODEL
+        else:
+            ACTIVE_PROVIDER = "fallback"
+            ACTIVE_MODEL = FALLBACK_MODEL
         client = ProviderClient(None)
     system_prompt = load_system_prompt()
     recent_titles = load_used_history()
@@ -1024,6 +1074,7 @@ def generate_episode() -> dict:
     print(
         f"🕌 المزود الأساسي: {ACTIVE_PROVIDER} | Gemini: {MODEL} "
         f"(احتياطي: {FALLBACK_MODELS or 'لا يوجد'}) | OpenRouter: {OPENROUTER_MODEL} | "
+        f"LLM fallback: {FALLBACK_MODEL or 'لا يوجد'} | "
         f"thinking_budget: {THINKING_BUDGET} | "
         f"هدف الطول التقريبي: {TARGET_WORDS} كلمة | "
         f"الحد الأدنى: {ACCEPTABLE_MIN_WORDS or 'غير محدد'} "
@@ -1038,6 +1089,8 @@ def generate_episode() -> dict:
     if api_key:
         extra += len(MODEL_CANDIDATES) - 1
         if OPENROUTER_API_KEY:
+            extra += 1
+        if FALLBACK_API_KEY:
             extra += 1
     attempt_limit = MAX_ATTEMPTS + extra
     for attempt in range(1, attempt_limit + 1):

@@ -26,6 +26,13 @@ on:
         required: false
         default: false
         type: boolean
+      video_renderer:
+        description: "Video renderer (native FFmpeg)"
+        required: false
+        default: ffmpeg
+        type: choice
+        options:
+          - ffmpeg
 
 # يمنع تشغيل حلقتين في الوقت نفسه، ولا يلغي التشغيل الجاري.
 concurrency:
@@ -71,6 +78,9 @@ jobs:
       - name: Generate complete historical strategy episode script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
+          LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
+          LLM_FALLBACK_MODEL: ${{ vars.LLM_FALLBACK_MODEL || 'llama-3.3-70b-versatile' }}
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
           GEMINI_MODEL: "gemini-3.8-flash"
           GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
