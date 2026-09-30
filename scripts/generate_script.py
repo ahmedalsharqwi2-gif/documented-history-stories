@@ -72,7 +72,7 @@ FALLBACK_ENDPOINT = os.getenv(
 )
 FALLBACK_MODELS = [
     item.strip() for item in os.getenv(
-        "LLM_FALLBACK_MODEL", "llama-3.3-70b-versatile"
+        "LLM_FALLBACK_MODEL", "llama-3.1-8b-instant"
     ).split(",") if item.strip()
 ]
 FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
