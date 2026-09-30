@@ -7,3 +7,4 @@ google-auth-httplib2
 google-api-python-client
 faster-whisper
 silma-tts
+mantoq @ git+https://github.com/mush42/mantoq.git
