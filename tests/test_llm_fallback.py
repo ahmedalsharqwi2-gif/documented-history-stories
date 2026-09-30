@@ -50,6 +50,7 @@ class IslamicFallbackTests(unittest.TestCase):
         payload = post.call_args.kwargs["json"]
         self.assertEqual(payload["messages"][-1]["content"], "اختبار")
         self.assertNotIn("reasoning", payload)
+        self.assertLessEqual(payload["max_tokens"], gs.FALLBACK_MAX_TOKENS)
 
 
 if __name__ == "__main__":

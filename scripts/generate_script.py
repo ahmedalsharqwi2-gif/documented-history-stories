@@ -77,6 +77,7 @@ FALLBACK_MODELS = [
 ]
 FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
 FALLBACK_TIMEOUT = int(os.getenv("LLM_FALLBACK_TIMEOUT", "90"))
+FALLBACK_MAX_TOKENS = int(os.getenv("LLM_FALLBACK_MAX_TOKENS", "3500"))
 ACTIVE_PROVIDER = "gemini"
 TEMPERATURE = 0.75
 
@@ -482,7 +483,10 @@ class CompatibleChatModels:
             "model": model,
             "messages": messages,
             "temperature": getattr(config, "temperature", TEMPERATURE),
-            "max_tokens": getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
+            "max_tokens": min(
+                getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
+                FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else STORY_MAX_TOKENS,
+            ),
         }
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
