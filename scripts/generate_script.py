@@ -487,6 +487,7 @@ class CompatibleChatModels:
                 getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
                 FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else STORY_MAX_TOKENS,
             ),
+            "reasoning_effort": "low",
         }
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
