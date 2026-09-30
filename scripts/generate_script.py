@@ -483,7 +483,6 @@ class CompatibleChatModels:
             "messages": messages,
             "temperature": getattr(config, "temperature", TEMPERATURE),
             "max_tokens": getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
-            "reasoning": {"effort": "none", "exclude": True},
         }
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
@@ -508,6 +507,11 @@ class CompatibleChatModels:
                         f"{response.text[:200]}"
                     )
                 if response.status_code != 200:
+                    if response.status_code in (400, 404):
+                        raise ModelUnavailable(
+                            f"{self.title} model/request unavailable (HTTP {response.status_code}): "
+                            f"{response.text[:200]}"
+                        )
                     raise RuntimeError(f"HTTP {response.status_code}: {response.text[:200]}")
                 data = response.json()
                 choice = (data.get("choices") or [{}])[0]
@@ -601,7 +605,10 @@ def switch_to_next_model() -> bool:
 
 def _is_model_unavailable(exc: Exception) -> bool:
     text = str(exc).upper()
-    return "404" in text and "NOT_FOUND" in text
+    return (
+        ("404" in text and "NOT_FOUND" in text)
+        or ("400" in text and ("INVALID_REQUEST" in text or "UNSUPPORTED" in text))
+    )
 
 
 def _is_daily_quota_exhausted(exc: Exception) -> bool:

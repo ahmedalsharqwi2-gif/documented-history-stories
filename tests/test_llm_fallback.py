@@ -47,7 +47,9 @@ class IslamicFallbackTests(unittest.TestCase):
         with patch.object(gs.requests, "post", return_value=response) as post:
             result = client.generate_content(model="model", contents=[content], config=config)
         self.assertEqual(result.text, "نص احتياطي")
-        self.assertEqual(post.call_args.kwargs["json"]["messages"][-1]["content"], "اختبار")
+        payload = post.call_args.kwargs["json"]
+        self.assertEqual(payload["messages"][-1]["content"], "اختبار")
+        self.assertNotIn("reasoning", payload)
 
 
 if __name__ == "__main__":
