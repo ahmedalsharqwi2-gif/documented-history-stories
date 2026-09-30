@@ -75,6 +75,7 @@ VIDEO_H = 1080
 # والدقة على معالج عادي؛ يمكن رفعه لـ "small" لدقة أعلى مقابل وقت أطول
 # عبر متغير البيئة WHISPER_MODEL.
 WHISPER_MODEL_SIZE = os.getenv("WHISPER_MODEL", "base")
+ASR_MIN_MATCH_RATIO = float(os.getenv("ASR_MIN_MATCH_RATIO", "0.82"))
 
 VOICE_AUDIO = CLIPS_DIR / "narration_voice.mp3"
 FINAL_AUDIO = CLIPS_DIR / "narration_with_music.mp3"
@@ -569,6 +570,27 @@ def _build_word_events_from_edge_tts(segments: list[dict]) -> list[dict]:
     return events
 
 
+def assert_audio_matches_script(audio_path: Path, script_text: str) -> float:
+    """Reject audio whose Arabic transcript materially differs from the script."""
+    from faster_whisper import WhisperModel
+    expected = _norm_arabic_words(script_text)
+    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
+    result = model.transcribe(
+        str(audio_path), language="ar", word_timestamps=False, vad_filter=False
+    )
+    segments = result[0] if isinstance(result, (tuple, list)) else result
+    heard = _norm_arabic_words(" ".join(getattr(seg, "text", "") or "" for seg in segments))
+    if not expected or not heard:
+        raise RuntimeError("بوابة ASR لم تحصل على كلمات عربية من النص أو الصوت")
+    matcher = difflib.SequenceMatcher(None, expected, heard, autojunk=False)
+    matched = sum(block.size for block in matcher.get_matching_blocks())
+    ratio = matched / len(expected)
+    print(f"🎧 بوابة ASR العربية: {matched}/{len(expected)} كلمة مطابقة ({ratio:.1%})")
+    if ratio < ASR_MIN_MATCH_RATIO:
+        raise RuntimeError(f"تطابق النطق العربي منخفض: {ratio:.1%}، المطلوب {ASR_MIN_MATCH_RATIO:.1%}")
+    return ratio
+
+
 def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[dict]:
     """يحاذي script_words مع الصوت الفعلي المُنتَج باستخدام faster-whisper،
     بدل الوثوق بتوقيت edge-tts الذاتي. النص المعروض/المستخدم دائمًا هو
@@ -580,9 +602,10 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     from faster_whisper import WhisperModel
 
     model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
-    segments, _ = model.transcribe(
+    result = model.transcribe(
         str(audio_path), language="ar", word_timestamps=True, vad_filter=False,
     )
+    segments = result[0] if isinstance(result, (tuple, list)) else result
 
     whisper_words: list[tuple[str, float, float]] = []
     for segment in segments:
@@ -678,11 +701,11 @@ def synthesize_voice(voice_text: str) -> None:
     # وبعلامات الترقيم لا تزال ملتصقة — two_lines_ar() تحذفها وقت العرض).
     display_words = strip_diacritics(voice_text).split()
 
+    assert_audio_matches_script(VOICE_AUDIO, voice_text)
     try:
         all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
     except Exception as exc:  # noqa: BLE001
-        print(f"⚠️ فشلت محاذاة Whisper ({exc}) — الرجوع لتوقيت edge-tts الافتراضي.")
-        all_word_events = _build_word_events_from_edge_tts(segments)
+        raise RuntimeError(f"فشلت محاذاة Whisper بعد نجاح بوابة ASR: {exc}") from exc
 
     if not all_word_events:
         sys.exit("❌ تعذر إنشاء توقيت الترجمة.")

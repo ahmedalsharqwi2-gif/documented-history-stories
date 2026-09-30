@@ -98,6 +98,8 @@ jobs:
           SILMA_GUARD_ENABLED: "true"
           SILMA_GUARD_MIN_MATCH_WORDS: "4"
           SILMA_FALLBACK_TO_EDGE: "false"
+          WHISPER_MODEL: "base"
+          ASR_MIN_MATCH_RATIO: "0.82"
           EDGE_TTS_RATE: "+10%"
           EDGE_TTS_PITCH: "-5Hz"
         run: python scripts/generate_voice.py
