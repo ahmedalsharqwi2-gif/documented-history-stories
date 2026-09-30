@@ -89,6 +89,15 @@ jobs:
           PROOFREAD_TASHKEEL: "false"
         run: python scripts/generate_script.py
 
+      - name: Arabic preflight gates (history)
+        env:
+          EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
+          TTS_ENGINE: "edge"
+        run: |
+          test -f state/current_episode.json || { echo "TEXT_GATE: episode artifact missing"; exit 1; }
+          TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
+          python -m arabic_speech_core.cli preflight --text "$TEXT" --engine edge --locale ar-SA --voice "$EDGE_TTS_VOICE" --lexicon config/arabic_pronunciation.json --min-words 20 --max-words 1200
+
       - name: Fetch landscape stock clips
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
