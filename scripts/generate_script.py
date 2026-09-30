@@ -411,6 +411,8 @@ def validate_episode(episode: dict) -> str | None:
         return "حقل visual_keywords فاضي"
     if not str(episode.get("hook", "")).strip():
         return "حقل hook فاضي"
+    if not str(episode.get("caption", "")).strip():
+        return "حقل caption فاضي — لازم وصف للنشر على المنصات"
     if not str(episode.get("source_type", "")).strip():
         return "حقل source_type فاضي — كل حلقة تاريخية لازم توثيق لنوع المصدر"
     if not str(episode.get("source_reference", "")).strip():
@@ -987,7 +989,10 @@ def run_single_attempt(
         "region": region,
         "narration": narration,
         "visual_keywords": visual_keywords,
-        "caption": finalize_data.get("caption", ""),
+        # caption metadata is optional from the model, but never optional to
+        # Buffer: fall back to the validated hook instead of writing an empty
+        # value that fails several steps later during publishing.
+        "caption": str(finalize_data.get("caption") or hook).strip(),
         "phonetic_hints": normalize_phonetic_hints(finalize_data.get("phonetic_hints", [])),
         "source_type": source_type,
         "source_reference": source_reference,
