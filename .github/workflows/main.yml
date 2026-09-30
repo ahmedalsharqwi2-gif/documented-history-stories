@@ -21,6 +21,11 @@ on:
           - marwan
           - nassim
           - ahmed_z
+      dry_run:
+        description: "Build and validate without publishing externally"
+        required: false
+        default: false
+        type: boolean
 
 # يمنع تشغيل حلقتين في الوقت نفسه، ولا يلغي التشغيل الجاري.
 concurrency:
@@ -100,7 +105,10 @@ jobs:
           SILMA_FALLBACK_TO_EDGE: "false"
           WHISPER_MODEL: "base"
           ASR_MIN_MATCH_RATIO: "0.82"
-          MANTOQ_REQUIRED: "true"
+          # Mantoq يتطلب numpy>=2 بينما silma-tts يتطلب numpy<=1.26؛
+          # نستخدم القاموس والتشكيل المحلي داخل بيئة SILMA، ونجعل Mantoq
+          # اختياريًا فقط في بيئة منفصلة حتى لا يفشل تثبيت كل التشغيل.
+          MANTOQ_REQUIRED: "false"
           EDGE_TTS_RATE: "+10%"
           EDGE_TTS_PITCH: "-5Hz"
         run: python scripts/generate_voice.py
@@ -109,6 +117,7 @@ jobs:
         run: python scripts/assemble_video.py
 
       - name: Publish full video and reel together
+        if: ${{ !inputs.dry_run }}
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
@@ -124,6 +133,7 @@ jobs:
       # Buffer لا يدعم فيديوهات YouTube الطويلة؛ يتم نشر الفيديو الكامل
       # مباشرة عبر YouTube Data API.
       - name: Publish full video directly to YouTube
+        if: ${{ !inputs.dry_run }}
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}

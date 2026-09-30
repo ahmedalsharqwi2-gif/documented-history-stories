@@ -124,6 +124,7 @@ def publish_target_utc(hour: int = 19) -> datetime:
 # عن أبعاده الحقيقية. لازم نشيله من نص الفيديو الكامل حتى لا يُرفض برسالة
 # "Video must be no longer than 3 minutes / must be vertical for YouTube Shorts".
 SHORTS_HASHTAG_RE = re.compile(r"(?<!\w)#[Ss]hort[s]?\b")
+DEFAULT_HASHTAGS = ("#تاريخ", "#قصص_تاريخية", "#معلومة_تاريخية")
 
 
 def strip_shorts_hashtag(text: str) -> str:
@@ -135,6 +136,14 @@ def strip_shorts_hashtag(text: str) -> str:
     "Video must be vertical (portrait orientation) for YouTube Shorts."
     """
     return SHORTS_HASHTAG_RE.sub("", text).strip()
+
+
+def ensure_caption_hashtags(title: str, caption: str) -> str:
+    """Never publish an empty caption or a post without relevant hashtags."""
+    text = " ".join(str(caption or "").split()).strip() or str(title).strip()
+    existing = re.findall(r"(?<!\w)#[\w\u0600-\u06FF]+", text)
+    tags = list(dict.fromkeys(existing + list(DEFAULT_HASHTAGS)))[:5]
+    return f"{text}\n\n{' '.join(tags)}".strip()
 
 
 def build_channel_services() -> dict[str, str]:
@@ -292,6 +301,7 @@ def metadata_for(channel_id: str, asset_type: str, title: str) -> dict | None:
 
 
 def build_post_text(service: str, asset_type: str, title: str, caption: str, full_url: str | None = None) -> str:
+    caption = ensure_caption_hashtags(title, caption)
     hashtags = " ".join(dict.fromkeys(re.findall(r"(?<!\w)#\S+", caption)))
     if asset_type == "full_video":
         # مهم: نشيل #Shorts/#Short من كابشن ومن الهاشتاجات المجمّعة للفيديو
@@ -363,9 +373,7 @@ def main() -> None:
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     title = str(episode.get("title", "Historical Strategy Episode")).strip()
-    caption = str(episode.get("caption", "")).strip()
-    if not caption:
-        sys.exit("current_episode.json لا يحتوي caption.")
+    caption = str(episode.get("caption", "")).strip() or title
 
     full_path = OUTPUT_DIR / "final_video_full.mp4"
     if not full_path.exists() or full_path.stat().st_size == 0:
