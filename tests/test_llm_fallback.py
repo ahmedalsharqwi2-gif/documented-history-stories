@@ -5,6 +5,13 @@ from scripts import generate_script as gs
 
 
 class IslamicFallbackTests(unittest.TestCase):
+    def test_openrouter_reports_groq_as_next_provider(self):
+        with (
+            patch.object(gs, "ACTIVE_PROVIDER", "openrouter"),
+            patch.object(gs, "FALLBACK_API_KEY", "groq-test"),
+        ):
+            self.assertTrue(gs.has_next_model())
+
     def test_switches_from_openrouter_to_configured_fallback(self):
         with (
             patch.object(gs, "ACTIVE_PROVIDER", "openrouter"),

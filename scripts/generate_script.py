@@ -72,7 +72,7 @@ FALLBACK_ENDPOINT = os.getenv(
 )
 FALLBACK_MODELS = [
     item.strip() for item in os.getenv(
-        "LLM_FALLBACK_MODEL", "llama-3.1-8b-instant"
+        "LLM_FALLBACK_MODEL", "openai/gpt-oss-120b"
     ).split(",") if item.strip()
 ]
 FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
@@ -561,7 +561,9 @@ class ProviderClient:
 
 def has_next_model() -> bool:
     """هل فيه موديل تاني نقدر نتحول له؟ (Gemini احتياطي أو OpenRouter)"""
-    if ACTIVE_PROVIDER != "gemini":
+    if ACTIVE_PROVIDER == "openrouter":
+        return bool(FALLBACK_API_KEY)
+    if ACTIVE_PROVIDER == "fallback":
         return False
     return (
         ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES)
