@@ -86,7 +86,7 @@ PLATFORM_CTA = {
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != 0:
-        sys.exit(
+        raise RuntimeError(
             "❌ فشل الأمر:\n"
             + " ".join(command)
             + "\n\n"
@@ -105,7 +105,7 @@ def probe_duration(path: Path) -> float:
     try:
         return float(result.stdout.strip())
     except ValueError:
-        sys.exit(f"❌ تعذر قراءة مدة الملف: {path}")
+        raise RuntimeError(f"❌ تعذر قراءة مدة الملف: {path}")
 
 
 def resolve_path(value: str | Path) -> Path:
@@ -142,7 +142,7 @@ def normalize_clip(input_path: Path, output_path: Path, duration: float) -> None
 
 def concat_clips(paths: list[Path], output_path: Path, list_path: Path) -> None:
     if not paths:
-        sys.exit("❌ لا توجد مقاطع صالحة لتجميعها.")
+        raise RuntimeError("❌ لا توجد مقاطع صالحة لتجميعها.")
 
     list_path.write_text(
         "\n".join(f"file '{path.resolve().as_posix()}'" for path in paths) + "\n",
@@ -210,14 +210,14 @@ def build_full_video(
     """يبني الحلقة الكاملة الأفقية دون قصها إلى 90 ثانية."""
     audio_duration = probe_duration(final_audio)
     if audio_duration <= 0:
-        sys.exit("❌ مدة الصوت النهائي غير صالحة.")
+        raise RuntimeError("❌ مدة الصوت النهائي غير صالحة.")
 
     duration_per_clip = max(audio_duration / len(clips), 2.0)
     normalized: list[Path] = []
     for index, clip in enumerate(clips):
         source = resolve_path(clip["file"])
         if not source.exists():
-            sys.exit(f"❌ الكليب غير موجود: {source}")
+            raise RuntimeError(f"❌ الكليب غير موجود: {source}")
         norm_path = CLIPS_DIR / f"norm_full_{index:03d}.mp4"
         normalize_clip(source, norm_path, duration_per_clip)
         normalized.append(norm_path)
@@ -362,14 +362,14 @@ def create_short(
     return probe_duration(output_path)
 
 
-def main() -> None:
+def _run() -> None:
     for path in (FETCHED_CLIPS_PATH, EPISODE_PATH):
         if not path.exists():
-            sys.exit(f"❌ الملف غير موجود: {path}")
+            raise RuntimeError(f"❌ الملف غير موجود: {path}")
 
     clips = json.loads(FETCHED_CLIPS_PATH.read_text(encoding="utf-8"))
     if not isinstance(clips, list) or not clips:
-        sys.exit("❌ fetched_clips.json فارغ أو غير صالح.")
+        raise RuntimeError("❌ fetched_clips.json فارغ أو غير صالح.")
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     final_audio_value = episode.get("final_audio")
@@ -382,7 +382,7 @@ def main() -> None:
             final_audio_value = parts[0].get("final_audio")
             subtitles_value = subtitles_value or parts[0].get("subtitles")
         elif len(parts) > 1:
-            sys.exit(
+            raise RuntimeError(
                 "❌ current_episode.json ما زال يحتوي على أجزاء متعددة. "
                 "شغّل generate_voice.py بالنسخة الجديدة لإنتاج صوت كامل واحد."
             )
@@ -393,7 +393,7 @@ def main() -> None:
     subtitles = resolve_path(subtitles_value) if subtitles_value else None
 
     if not final_audio.exists():
-        sys.exit(f"❌ ملف الصوت النهائي غير موجود: {final_audio}")
+        raise RuntimeError(f"❌ ملف الصوت النهائي غير موجود: {final_audio}")
     if subtitles and not subtitles.exists():
         print(f"⚠️ ملف الترجمة غير موجود؛ سيتم إنتاج الفيديو بدون ترجمة: {subtitles}")
         subtitles = None
@@ -427,10 +427,17 @@ def main() -> None:
             )
 
     if generated == 0:
-        sys.exit("❌ لم يتم إنشاء أي ريل.")
+        raise RuntimeError("❌ لم يتم إنشاء أي ريل.")
 
     print("✅ اكتمل إنتاج الفيديو الكامل والريل لجميع المنصات.")
 
 
+def main() -> int:
+    try:
+        _run()
+    except Exception as exc:
+        print(f"❌ Video assembly failed: {exc}")
+        return 1
+    return 0
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

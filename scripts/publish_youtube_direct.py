@@ -26,11 +26,16 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from googleapiclient.http import MediaFileUpload
+try:
+    from google.auth.transport.requests import Request
+    from google.oauth2.credentials import Credentials
+    from googleapiclient.discovery import build
+    from googleapiclient.errors import HttpError
+    from googleapiclient.http import MediaFileUpload
+except ImportError:  # Optional locally; CI installs these from requirements.
+    Request = Credentials = build = MediaFileUpload = None
+    class HttpError(Exception):
+        pass
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -73,36 +78,28 @@ def publish_target_utc(hour: int = 19) -> datetime:
 
 
 def load_credentials() -> Credentials:
+    if Credentials is None or Request is None:
+        raise RuntimeError("حزم Google YouTube غير مثبتة؛ سيتم تخطي النشر مع استمرار الـworkflow")
     client_id = os.environ.get("YT_CLIENT_ID", "").strip()
     client_secret = os.environ.get("YT_CLIENT_SECRET", "").strip()
-    refresh_token = os.environ.get("YT_REFRESH_TOKEN", "").strip()
-    missing = [
-        name
-        for name, value in [
-            ("YT_CLIENT_ID", client_id),
-            ("YT_CLIENT_SECRET", client_secret),
-            ("YT_REFRESH_TOKEN", refresh_token),
-        ]
-        if not value
-    ]
-    if missing:
-        sys.exit(f"المتغيرات دي ناقصة: {', '.join(missing)}")
-
-    credentials = Credentials(
-        token=None,
-        refresh_token=refresh_token,
-        token_uri=TOKEN_URI,
-        client_id=client_id,
-        client_secret=client_secret,
-        scopes=SCOPES,
-    )
-    # نجدّد access token صراحة قبل أول استخدام، عشان نمسك أي خطأ في الـ
-    # refresh_token (منتهي / مسحوب) بدري وبرسالة واضحة بدل ما يفشل داخل
-    # المكتبة بشكل مبهم.
-    credentials.refresh(Request())
-    _record_token_success()
-    return credentials
-
+    tokens = [os.environ.get("YT_REFRESH_TOKEN", "").strip(), os.environ.get("YT_REFRESH_TOKEN_FALLBACK", "").strip()]
+    if not client_id or not client_secret or not any(tokens):
+        missing = [name for name, value in (("YT_CLIENT_ID", client_id), ("YT_CLIENT_SECRET", client_secret), ("YT_REFRESH_TOKEN/YT_REFRESH_TOKEN_FALLBACK", any(tokens))) if not value]
+        raise RuntimeError("متغيرات يوتيوب ناقصة: " + ", ".join(missing))
+    errors = []
+    unique_tokens = list(dict.fromkeys(token for token in tokens if token))
+    for index, refresh_token in enumerate(unique_tokens):
+        credentials = Credentials(token=None, refresh_token=refresh_token, token_uri=TOKEN_URI, client_id=client_id, client_secret=client_secret, scopes=SCOPES)
+        try:
+            credentials.refresh(Request())
+            _record_token_success()
+            if index:
+                print("⚠️ تم استخدام YT_REFRESH_TOKEN_FALLBACK بعد فشل التوكن الأساسي")
+            return credentials
+        except Exception as exc:
+            errors.append(f"token-{index + 1}: {exc}")
+            print(f"⚠️ فشل تجديد توكن يوتيوب ({index + 1}/{len(unique_tokens)}): {exc}")
+    raise RuntimeError("تعذر تجديد أي Refresh Token: " + " | ".join(errors)[-800:])
 
 def _record_token_success() -> None:
     """يسجّل تاريخ آخر مرة نجح فيها تجديد access token بنجاح، عشان
@@ -125,7 +122,7 @@ def _record_token_success() -> None:
 
 def load_title_and_description() -> tuple[str, str]:
     if not EPISODE_PATH.exists():
-        sys.exit(f"state/current_episode.json غير موجود: {EPISODE_PATH}")
+        raise RuntimeError(f"state/current_episode.json غير موجود: {EPISODE_PATH}")
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     title = str(episode.get("title", "Historical Strategy Episode")).strip()[:100]
     caption = str(episode.get("caption", "")).strip() or title
@@ -171,22 +168,26 @@ def upload_video(youtube, video_path: Path, title: str, description: str) -> str
     return response["id"]
 
 
-def main() -> None:
-    if not VIDEO_PATH.exists() or VIDEO_PATH.stat().st_size == 0:
-        sys.exit(f"الفيديو الكامل غير موجود: {VIDEO_PATH}")
-
-    title, description = load_title_and_description()
-    credentials = load_credentials()
-    youtube = build("youtube", "v3", credentials=credentials)
-
-    print(f"📤 جاري رفع الفيديو الكامل على يوتيوب: {title}")
+def main() -> int:
     try:
-        video_id = upload_video(youtube, VIDEO_PATH, title, description)
-    except HttpError as exc:
-        sys.exit(f"❌ فشل الرفع: {exc}")
-
-    print(f"✅ تم النشر بنجاح: https://youtu.be/{video_id}")
-
-
+        if not VIDEO_PATH.exists() or VIDEO_PATH.stat().st_size == 0:
+            raise RuntimeError(f"الفيديو الكامل غير موجود: {VIDEO_PATH}")
+        title, description = load_title_and_description()
+        credentials = load_credentials()
+        youtube = build("youtube", "v3", credentials=credentials)
+        print(f"📤 جاري رفع الفيديو الكامل على يوتيوب: {title}")
+        try:
+            video_id = upload_video(youtube, VIDEO_PATH, title, description)
+        except HttpError as exc:
+            status = getattr(exc.resp, "status", None)
+            if status not in (401, 403):
+                raise
+            print(f"⚠️ YouTube أعاد HTTP {status}؛ إعادة تجديد التوكن والمحاولة مرة واحدة")
+            credentials = load_credentials()
+            video_id = upload_video(build("youtube", "v3", credentials=credentials), VIDEO_PATH, title, description)
+        print(f"✅ تم النشر بنجاح: https://youtu.be/{video_id}")
+    except Exception as exc:
+        print(f"⚠️ نشر YouTube غير متاح في هذه الجولة (غير قاتل؛ سيُستكمل باقي الـworkflow): {exc}")
+    return 0
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

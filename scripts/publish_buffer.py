@@ -363,13 +363,13 @@ def channel_ids() -> list[str]:
     return list(CHANNEL_SERVICES.keys())
 
 
-def main() -> None:
+def _run() -> None:
     api_key = os.environ.get("BUFFER_API_KEY", "").strip()
     github_token = os.environ.get("GITHUB_TOKEN", "").strip()
     if not api_key or not github_token:
-        sys.exit("BUFFER_API_KEY و GITHUB_TOKEN مطلوبان.")
+        raise RuntimeError("BUFFER_API_KEY و GITHUB_TOKEN مطلوبان.")
     if not EPISODE_PATH.exists():
-        sys.exit("state/current_episode.json غير موجود.")
+        raise RuntimeError("state/current_episode.json غير موجود.")
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     title = str(episode.get("title", "Historical Strategy Episode")).strip()
@@ -377,10 +377,10 @@ def main() -> None:
 
     full_path = OUTPUT_DIR / "final_video_full.mp4"
     if not full_path.exists() or full_path.stat().st_size == 0:
-        sys.exit(f"الفيديو الكامل غير موجود: {full_path}")
+        raise RuntimeError(f"الفيديو الكامل غير موجود: {full_path}")
     full_width, full_height = video_dimensions(full_path)
     if full_width <= full_height:
-        sys.exit(
+        raise RuntimeError(
             f"الفيديو الكامل ليس أفقيًا ({full_width}x{full_height}). "
             "شغّل assemble_video.py من النسخة الجديدة قبل النشر."
         )
@@ -388,11 +388,11 @@ def main() -> None:
 
     shorts = sorted(OUTPUT_DIR.glob("short_*_*.mp4"))
     if not shorts:
-        sys.exit("لا يوجد ريل جاهز للنشر.")
+        raise RuntimeError("لا يوجد ريل جاهز للنشر.")
 
     ids = channel_ids()
     if not ids:
-        sys.exit(
+        raise RuntimeError(
             "لا يوجد أي قناة معرّفة: تأكد إن BUFFER_YOUTUBE_CHANNEL_ID / "
             "BUFFER_FACEBOOK_CHANNEL_ID / BUFFER_INSTAGRAM_CHANNEL_ID متظبطين "
             "في GitHub Secrets."
@@ -460,8 +460,14 @@ def main() -> None:
     for item in failures:
         print("فشل:", " | ".join(item))
     if successes == 0:
-        sys.exit("لم ينجح نشر أي أصل.")
+        raise RuntimeError("لم ينجح نشر أي أصل.")
 
 
+def main() -> int:
+    try:
+        _run()
+    except Exception as exc:
+        print(f"⚠️ Buffer publishing skipped (non-fatal; remaining workflow continues): {exc}")
+    return 0
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

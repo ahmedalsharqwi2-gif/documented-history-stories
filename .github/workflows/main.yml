@@ -147,6 +147,7 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_REFRESH_TOKEN_FALLBACK: ${{ secrets.YT_REFRESH_TOKEN_FALLBACK }}
           FULL_VIDEO_DELAY_HOURS: "8"
         run: python scripts/publish_youtube_direct.py
 
