@@ -680,12 +680,16 @@ def synthesize_voice(voice_text: str) -> None:
     sentences = split_sentences(voice_text)
     if not sentences:
         sys.exit("❌ النص فارغ ولا يمكن إنشاء صوت.")
+
+    def render_segments(current_segments: list[dict]) -> None:
+        inputs: list[str] = []
+        for segment in current_segments:
+            inputs += ["-i", str(segment["path"])]
+        concat_filter = "".join(f"[{i}:a]" for i in range(len(current_segments))) + f"concat=n={len(current_segments)}:v=0:a=1[aout]"
+        run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
+
     segments = asyncio.run(synthesize_sentences(sentences))
-    inputs: list[str] = []
-    for segment in segments:
-        inputs += ["-i", str(segment["path"])]
-    concat_filter = "".join(f"[{i}:a]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=0:a=1[aout]"
-    run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
+    render_segments(segments)
     if TTS_ENGINE == "silma":
         try:
             leak = detect_silma_reference_leak(VOICE_AUDIO)
@@ -701,17 +705,27 @@ def synthesize_voice(voice_text: str) -> None:
             for segment in segments:
                 Path(segment["path"]).unlink(missing_ok=True)
             segments = asyncio.run(synthesize_sentences(sentences, "edge"))
-            inputs = []
-            for segment in segments:
-                inputs += ["-i", str(segment["path"])]
-            concat_filter = "".join(f"[{i}:a]" for i in range(len(segments))) + f"concat=n={len(segments)}:v=0:a=1[aout]"
-            run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
+            render_segments(segments)
 
     # نفس ترتيب/شكل الكلمات المعروضة كما كانت قبل التعديل (بلا تشكيل،
     # وبعلامات الترقيم لا تزال ملتصقة — two_lines_ar() تحذفها وقت العرض).
     display_words = strip_diacritics(voice_text).split()
 
-    assert_audio_matches_script(VOICE_AUDIO, voice_text)
+    try:
+        assert_audio_matches_script(VOICE_AUDIO, voice_text)
+    except RuntimeError as exc:
+        # SILMA can produce intelligible audio while Whisper still misses a
+        # large portion of a long Arabic episode. Do not publish that audio;
+        # regenerate the complete narration with deterministic Edge TTS and
+        # run the same ASR gate again.
+        if TTS_ENGINE != "silma" or os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
+            raise
+        print(f"⚠️ فشل تطابق SILMA مع النص ({exc}) — إعادة التوليد كاملًا بـEdge TTS.")
+        for segment in segments:
+            Path(segment["path"]).unlink(missing_ok=True)
+        segments = asyncio.run(synthesize_sentences(sentences, "edge"))
+        render_segments(segments)
+        assert_audio_matches_script(VOICE_AUDIO, voice_text)
     try:
         all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
     except Exception as exc:  # noqa: BLE001
