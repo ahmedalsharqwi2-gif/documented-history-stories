@@ -158,12 +158,13 @@
       "title": "هل سبق أن خُطِئَتْ حربةٍ بريةً في خندقٍ لم يُسجِّل في الكتب إلا في أحاديثٍ يذكره",
       "hook": "هل سبق أن خُطِئَتْ حربةٍ بريةً في خندقٍ لم يُسجِّل في الكتب إلا في أحاديثٍ يذكرها القارئ؟",
       "region": "شبه الجزيرة العربية، عام 627 م، معركة خندق.",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "0581865aeb364cc8889571644233f3f1",
       "reserved_at": "2026-10-01T23:42:41Z",
       "run_id": "36940591368",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "0581865aeb364cc8889571644233f3f1",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-01T23:43:10Z"
     }
   ]
 }
