@@ -25,7 +25,10 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 import edge_tts
-from voice_profiles import resolve_reference_profile
+try:
+    from .voice_profiles import resolve_reference_profile
+except ImportError:  # direct `python scripts/generate_voice.py`
+    from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
 
 TTS_ENGINE = os.getenv("TTS_ENGINE", "silma").strip().lower()
@@ -525,7 +528,7 @@ def two_lines_ar(words: list[str]) -> str:
 def build_ass_header() -> str:
     """يعرّف تنسيق الترجمة العربية المتزامنة مع الصوت عبر Whisper."""
     style_ar = (
-        "Style: Caption,Arial,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
+        "Style: Caption,Noto Sans Arabic,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
         "1,0,0,0,100,100,0,0,1,3,0,2,70,70,90,1"
     )
     return (
@@ -656,7 +659,10 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
         next_i = min((k for k in known_indices if k > i), default=None)
         if prev_i is None:
             base = timings[next_i]
-            offset = max(base["offset"] - 0.2 * (next_i - i), 0.0)
+            # وزّع الكلمات غير المتعرّف عليها من الصفر إلى أول كلمة مسموعة؛
+            # لا تعطها نفس offset حتى لا تبقى أول جملة ثابتة.
+            step = max(base["offset"] / (next_i + 1), 0.08)
+            offset = step * i
         elif next_i is None:
             base = timings[prev_i]
             offset = base["offset"] + base["duration"] * (i - prev_i)
@@ -667,6 +673,11 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
             offset = prev_end + span * (i - prev_i) / (next_i - prev_i)
         timings[i] = {"text": script_words[i], "offset": offset, "duration": 0.3}
 
+    previous_end = 0.0
+    for timing in timings:
+        timing["offset"] = max(float(timing["offset"]), previous_end)
+        timing["duration"] = max(float(timing["duration"]), 0.06)
+        previous_end = timing["offset"] + timing["duration"]
     print(
         f"🎯 محاذاة Whisper: {len(known_indices)}/{len(script_words)} كلمة مطابقة مباشرة، "
         f"{len(script_words) - len(known_indices)} بالتقريب"
