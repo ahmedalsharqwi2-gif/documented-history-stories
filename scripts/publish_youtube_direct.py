@@ -63,16 +63,22 @@ YT_MADE_FOR_KIDS = os.environ.get("YT_MADE_FOR_KIDS", "false").lower() == "true"
 # ينشروا في نفس التوقيت تقريبًا.
 FULL_VIDEO_DELAY_HOURS = float(os.environ.get("FULL_VIDEO_DELAY_HOURS", "0"))
 
-def publish_target_utc(hour: int = 19) -> datetime:
-    """Return the next 19:00 Africa/Cairo converted to UTC.
-    This is absolute scheduling, so SILMA duration does not shift the post.
-    """
+def publish_target_utc(hour: int | None = None) -> datetime:
+    """Return the next configured Cairo publication slot converted to UTC."""
     now = datetime.now(timezone.utc)
     cairo = now.astimezone(ZoneInfo("Africa/Cairo"))
-    target = cairo.replace(hour=hour, minute=0, second=0, microsecond=0)
-    if target <= cairo:
-        target += timedelta(days=1)
-    return target.astimezone(timezone.utc)
+    if hour is None:
+        raw_hours = os.environ.get("PUBLISH_HOURS_CAIRO", "12,18")
+        hours = sorted({int(value.strip()) for value in raw_hours.split(",") if value.strip()})
+    else:
+        hours = [hour]
+    if not hours or any(value < 0 or value > 23 for value in hours):
+        raise ValueError("PUBLISH_HOURS_CAIRO must contain valid 0-23 hours")
+    for slot_hour in hours:
+        target = cairo.replace(hour=slot_hour, minute=0, second=0, microsecond=0)
+        if target > cairo:
+            return target.astimezone(timezone.utc)
+    return cairo.replace(hour=hours[0], minute=0, second=0, microsecond=0).astimezone(timezone.utc) + timedelta(days=1)
 
 
 
@@ -137,7 +143,7 @@ def upload_video(youtube, video_path: Path, title: str, description: str) -> str
         # جدولة نشر مؤجَّلة: يوتيوب بيطلب privacyStatus="private" مع
         # publishAt (ISO 8601)، وبيحوّل الفيديو تلقائيًا لـpublic في
         # الموعد المحدد بالظبط — الفيديو مش هيكون مرئي لحد ده الموعد.
-        publish_at = publish_target_utc(19)
+        publish_at = publish_target_utc()
         status["privacyStatus"] = "private"
         status["publishAt"] = publish_at.isoformat(timespec="seconds").replace("+00:00", "Z")
         print(f"⏰ الفيديو مجدول ينشر تلقائيًا عند: {status['publishAt']} UTC")

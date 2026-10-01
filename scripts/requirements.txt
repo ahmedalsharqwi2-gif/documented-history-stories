@@ -2,6 +2,7 @@
 google-genai
 requests
 edge-tts>=6.1.9
+av<19
 google-auth
 google-auth-httplib2
 google-api-python-client
