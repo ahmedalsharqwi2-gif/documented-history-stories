@@ -2,8 +2,10 @@ name: Create and Publish Historical Strategy Episode
 
 on:
   schedule:
-    # يبدأ التوليد الساعة 13:30 UTC (16:30 القاهرة)، والنشر يُحسب ثابتًا عند 19:00 القاهرة.
-    - cron: "30 13 * * *"
+    # يبدأ التوليد مرتين يوميًا قبل موعدي النشر 12:00 و18:00 القاهرة.
+    # GitHub Actions يستخدم UTC: 06:00 و12:00 UTC في توقيت القاهرة الحالي.
+    - cron: "0 6 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch:
     inputs:
       voice_profile:
@@ -218,6 +220,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FULL_VIDEO_DELAY_HOURS: "8"
           FULL_TO_SHORT_1_HOURS: "8"
+          PUBLISH_HOURS_CAIRO: "12,18"
           CHANNEL_PENDING_LIMIT: "10"
         run: python scripts/publish_buffer.py
 
@@ -231,6 +234,7 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           YT_REFRESH_TOKEN_FALLBACK: ${{ secrets.YT_REFRESH_TOKEN_FALLBACK }}
           FULL_VIDEO_DELAY_HOURS: "8"
+          PUBLISH_HOURS_CAIRO: "12,18"
         run: python scripts/publish_youtube_direct.py
 
       - name: Mark topic as published in repository history
