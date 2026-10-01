@@ -29,6 +29,14 @@ class ArabicPronunciationTests(unittest.TestCase):
         output = apply_pronunciation_dictionary("عدة معدات", mapping)
         self.assertEqual(output, "عِدَّة معدات")
 
+    def test_production_dictionary_preserves_every_word_sequence(self):
+        path = Path(__file__).parents[1] / "config" / "arabic_pronunciation.json"
+        mapping = load_pronunciation_dictionary(path)
+        for source in mapping:
+            with self.subTest(source=source):
+                output = apply_pronunciation_dictionary(source, mapping)
+                self.assertEqual(strip_marks(source).split(), strip_marks(output).split())
+
     @patch.dict(os.environ, {"MANTOQ_REQUIRED": "false"}, clear=False)
     def test_mantoq_is_optional_when_not_installed(self):
         text, phonemes = mantoq_vocalize("نص عربي")
