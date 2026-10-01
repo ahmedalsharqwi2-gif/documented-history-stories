@@ -39,7 +39,12 @@ from pathlib import Path
 
 from google import genai
 
-from arabic_guard import validate_narration
+try:
+    # Direct execution: ``python scripts/generate_script.py``.
+    from arabic_guard import validate_narration
+except ModuleNotFoundError:
+    # Package/test execution: ``from scripts import generate_script``.
+    from scripts.arabic_guard import validate_narration
 from google.genai import types
 
 SCRIPT_DIR = Path(__file__).parent
