@@ -18,6 +18,7 @@ ASS_SOURCE = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1920
 PlayResY: 1080
+WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -48,6 +49,8 @@ class ReelSubtitleSeparationTests(unittest.TestCase):
 
         self.assertIn("PlayResX: 1080", rendered)
         self.assertIn("PlayResY: 1920", rendered)
+        self.assertIn("WrapStyle: 0", rendered)
+        self.assertIn("WrapStyle: 2", original)
         style = next(line for line in rendered.splitlines() if line.startswith("Style: Caption,"))
         self.assertIn(",8,124,124,260,1", style)
         events = [line for line in rendered.splitlines() if line.startswith("Dialogue:")]

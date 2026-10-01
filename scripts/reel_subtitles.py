@@ -88,6 +88,9 @@ def write_reel_subtitles(
                 output_lines.append(f"PlayResY: {REEL_HEIGHT}")
                 found_y = True
                 continue
+            if line.startswith("WrapStyle:"):
+                output_lines.append("WrapStyle: 0")
+                continue
 
         if section in ("[v4+ styles]", "[v4 styles]"):
             if line.startswith("Format:"):
