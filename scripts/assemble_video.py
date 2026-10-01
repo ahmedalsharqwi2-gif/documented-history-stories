@@ -34,15 +34,10 @@ assemble_video.py
 الجديدة بترجع ريل واحد بس يبدأ من الثانية صفر (start=0) ويمتد لحد
 MAX_SHORT_DURATION_SECONDS أو حد الهامش قبل النهاية، أيهما أصغر.
 
-=== تعديل جديد: تنويه الريل أعلى الشاشة بنفس خط الترجمة ===
-كان التنويه (CTA) بيتحط في أسفل الشاشة تقريبًا (Alignment=2، MarginV=180)
-بخط Arial حجم 62 — ده كان بيقرب جدًا من مكان الترجمة العربية
-اللي بتتحط أسفل الفيديو في generate_voice.py (MarginV=90)، وبخط بحجم مختلف
-شوية. المطلوب: مكان منفصل
-تمامًا (بعيد عن الأسكربت) وبنفس حجم ونوع خط الترجمة بالظبط. الحل في
-write_cta_ass(): الخط بقى Arial حجم 58 (نفس حجم الترجمة العربية في
-generate_voice.py بالظبط)، والمكان بقى أعلى الشاشة (Alignment=8: أعلى
-الوسط) بدل أسفلها — فمفيش أي تداخل بصري ممكن بين التنويه والترجمة تحت.
+=== تخطيط النص في المنطقة الآمنة للريل ===
+ترجمة السرد محاذاة أعلى بهامش 160px في أصل 16:9 (نحو 284px بعد تحويله
+إلى 9:16)، أسفل النوتش وواجهة التطبيق. يظهر CTA في مسار علوي ثانٍ بهامش
+620px في الريل، كي لا يتداخل مع سطر الترجمة خلال النهاية.
 """
 
 from __future__ import annotations
@@ -77,6 +72,7 @@ MAX_SHORT_DURATION_SECONDS = 90.0
 DEFAULT_SHORT_COUNT = 1
 AUTO_END_MARGIN_SECONDS = 8.0
 CTA_DURATION_SECONDS = 4.0
+REEL_CTA_TOP_MARGIN = 620
 FPS = 24
 
 PLATFORM_CTA = {
@@ -257,13 +253,8 @@ def build_full_video(
 def write_cta_ass(path: Path, start: float, end: float, text: str) -> None:
     """ينشئ Overlay ASS عربيًا بدل drawtext لتفادي مشاكل تشكيل العربية.
 
-التنويه بيتحط أعلى الشاشة (Alignment=8: أعلى الوسط) بدل أسفلها، عشان
-يبقى في مكان منفصل تمامًا وبعيد عن الترجمة العربية (الأسكربت) اللي
-بتتحط أسفل الفيديو في generate_voice.py (MarginV=90) — فمفيش أي تداخل
-    بصري ممكن بينهم. الخط والحجم (Arial، 58) مطابقين بالظبط لخط الترجمة
-    نفسه (شوف build_ass_header() في generate_voice.py)، وباقي إعدادات
-    الحدود (BorderStyle/Outline/Shadow) نفسها كمان لاتساق شكل النص في
-    الفيديو كله.
+التنويه يظهر أعلى الإطار لكن في مسار ثانٍ أسفل ترجمة السرد (هامش 620px)،
+مع الحفاظ على الخط والحجم وحدود النص المتوافقة مع الترجمة.
     """
     def ass_time(seconds: float) -> str:
         centiseconds = max(0, int(round(seconds * 100)))
@@ -285,11 +276,9 @@ def write_cta_ass(path: Path, start: float, end: float, text: str) -> None:
         "OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, "
         "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
         "Alignment, MarginL, MarginR, MarginV, Encoding\n"
-        # أبيض، بنفس خط وحجم ترجمة الفيديو بالظبط (Arial 58، Outline=3،
-        # Shadow=0 — مطابق لستايل الترجمة العربية في generate_voice.py)،
-        # أعلى الشاشة (Alignment=8) عشان يبعد تمامًا عن الترجمة السفلية.
+        # أعلى-وسط، في مسار منفصل أسفل ترجمة السرد وأعلى منطقة الشاشة.
         "Style: CTA,Arial,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
-        "1,0,0,0,100,100,0,0,1,3,0,8,70,70,120,1\n\n"
+        f"1,0,0,0,100,100,0,0,1,3,0,8,70,70,{REEL_CTA_TOP_MARGIN},1\n\n"
         "[Events]\n"
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, "
         "Effect, Text\n"
