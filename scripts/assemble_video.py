@@ -34,10 +34,12 @@ assemble_video.py
 الجديدة بترجع ريل واحد بس يبدأ من الثانية صفر (start=0) ويمتد لحد
 MAX_SHORT_DURATION_SECONDS أو حد الهامش قبل النهاية، أيهما أصغر.
 
-=== تخطيط النص في المنطقة الآمنة للريل ===
-ترجمة السرد محاذاة أعلى بهامش 160px في أصل 16:9 (نحو 284px بعد تحويله
-إلى 9:16)، أسفل النوتش وواجهة التطبيق. يظهر CTA في مسار علوي ثانٍ بهامش
-620px في الريل، كي لا يتداخل مع سطر الترجمة خلال النهاية.
+=== فصل مساري الترجمة ===
+- الفيديو الأفقي يحافظ على ترجمة ASS الأصلية أسفل الصورة.
+- لكل ريل يُنشأ ASS مؤقت مستقل، يُقص توقيته إلى المقتطف ويُعاد تحجيمه إلى
+  1080x1920 مع محاذاة علوية وهامش أمان 260px؛ لا تُطبع ترجمته على الأفقي.
+- يُستخدم الفيديو النظيف المجمّع للقص وصوت النسخة الكاملة الممزوج؛ يظهر CTA
+  في مسار منفصل بهامش 620px.
 """
 
 from __future__ import annotations
@@ -46,6 +48,11 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+
+try:
+    from .reel_subtitles import write_reel_subtitles
+except ImportError:  # Support direct execution as `python scripts/assemble_video.py`.
+    from reel_subtitles import write_reel_subtitles
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -331,7 +338,9 @@ def load_short_specs(episode: dict, full_duration: float) -> list[dict]:
 
 
 def create_short(
-    full_video: Path,
+    clean_video: Path,
+    audio_source: Path,
+    subtitles: Path | None,
     spec: dict,
     short_index: int,
     platform: str,
@@ -347,33 +356,46 @@ def create_short(
     cta_ass = CLIPS_DIR / f"cta_short_{short_index}_{platform}.ass"
     write_cta_ass(cta_ass, cta_start, duration, PLATFORM_CTA[platform])
     cta_filter = subtitle_filter(cta_ass)
+    reel_ass: Path | None = None
+    if subtitles:
+        reel_ass = CLIPS_DIR / f"reel_short_{short_index}_{platform}.ass"
+        write_reel_subtitles(subtitles, start, start + duration, reel_ass)
+    reel_filter = subtitle_filter(reel_ass)
 
-    # crop مركزي من 16:9 إلى 9:16، مع الإبقاء على صوت الفيديو الكامل.
+    # قصّ مصدر نظيف ثم طباعة ASS عمودي خاص بالريل؛ لا نستخدم صورة الأفقي
+    # حتى لا تتكرر الترجمة السفلية داخل الريل.
     vf = (
         f"scale={SHORT_WIDTH}:{SHORT_HEIGHT}:force_original_aspect_ratio=increase,"
         f"crop={SHORT_WIDTH}:{SHORT_HEIGHT}"
     )
+    if reel_filter:
+        vf += f",{reel_filter}"
     if cta_filter:
         vf += f",{cta_filter}"
 
-    run([
-        "ffmpeg", "-y",
-        "-ss", f"{start:.3f}",
-        "-i", str(full_video),
-        "-t", f"{duration:.3f}",
-        "-vf", vf,
-        "-map", "0:v:0",
-        "-map", "0:a:0?",
-        "-c:v", "libx264",
-        "-preset", "fast",
-        "-crf", "23",
-        "-pix_fmt", "yuv420p",
-        "-c:a", "aac",
-        "-b:a", "192k",
-        "-shortest",
-        "-movflags", "+faststart",
-        str(output_path),
-    ])
+    try:
+        run([
+            "ffmpeg", "-y",
+            "-ss", f"{start:.3f}", "-i", str(clean_video),
+            "-ss", f"{start:.3f}", "-i", str(audio_source),
+            "-t", f"{duration:.3f}",
+            "-vf", vf,
+            "-map", "0:v:0",
+            "-map", "1:a:0?",
+            "-c:v", "libx264",
+            "-preset", "fast",
+            "-crf", "23",
+            "-pix_fmt", "yuv420p",
+            "-c:a", "aac",
+            "-b:a", "192k",
+            "-shortest",
+            "-movflags", "+faststart",
+            str(output_path),
+        ])
+    finally:
+        cta_ass.unlink(missing_ok=True)
+        if reel_ass is not None:
+            reel_ass.unlink(missing_ok=True)
     return probe_duration(output_path)
 
 
@@ -424,6 +446,9 @@ def _run() -> None:
 
     full_output = OUTPUT_DIR / "final_video_full.mp4"
     full_duration = build_full_video(clips, final_audio, subtitles, full_output)
+    clean_source = CLIPS_DIR / "concatenated_full.mp4"
+    if not clean_source.is_file():
+        raise RuntimeError("❌ مصدر الفيديو النظيف للريل غير موجود.")
     print(f"✅ الفيديو الكامل الأفقي: {full_output}")
     print(f"✅ مدة الفيديو الكامل: {full_duration:.1f} ثانية")
 
@@ -434,7 +459,7 @@ def _run() -> None:
     for short_index, spec in enumerate(specs, 1):
         for platform in PLATFORM_CTA:
             output = OUTPUT_DIR / f"short_{short_index}_{platform}.mp4"
-            duration = create_short(full_output, spec, short_index, platform, output)
+            duration = create_short(clean_source, full_output, subtitles, spec, short_index, platform, output)
             generated += 1
             print(
                 f"✅ ريل {short_index} / {platform}: {output} "
