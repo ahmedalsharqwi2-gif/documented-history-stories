@@ -154,6 +154,14 @@ jobs:
           ffprobe -v error -show_entries format=duration -of csv=p=0 output/final_video_full.mp4
           echo "Professional landscape montage with topic-specific B-roll verified."
 
+      - name: Run B-roll quality gate before Buffer
+        run: |
+          python scripts/broll_quality_pipeline.py \
+            --video output/final_video_full.mp4 \
+            --manifest state/fetched_clips.json \
+            --expected landscape \
+            --min-clips 4
+
       - name: Publish full video and reel together
         if: ${{ !inputs.dry_run }}
         env:
