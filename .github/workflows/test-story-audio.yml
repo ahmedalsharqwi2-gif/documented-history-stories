@@ -27,7 +27,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -69,7 +69,7 @@ jobs:
         run: python scripts/generate_voice.py
 
       - name: Upload story and audio test artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: historical-story-audio-test-${{ github.run_id }}
           path: |
