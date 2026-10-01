@@ -190,11 +190,13 @@ jobs:
 
       - name: Check YouTube token age
         if: always()
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/check_youtube_token_age.py
 
       - name: Upload generated media artifacts
+        continue-on-error: true
         uses: actions/upload-artifact@v5
         with:
           name: historical-strategy-episode-media-${{ github.run_id }}
