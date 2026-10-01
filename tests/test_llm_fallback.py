@@ -52,6 +52,21 @@ class IslamicFallbackTests(unittest.TestCase):
         self.assertNotIn("reasoning", payload)
         self.assertLessEqual(payload["max_tokens"], gs.FALLBACK_MAX_TOKENS)
 
+    def test_openrouter_has_independent_token_cap(self):
+        client = gs.CompatibleChatModels(
+            "test-key", "https://example.invalid/v1/chat/completions", ["model"], "OpenRouter"
+        )
+        content = gs.make_content("user", "اختبار")
+        config = type("Config", (), {"system_instruction": "نظام", "temperature": 0.2, "max_output_tokens": 8000})()
+        response = type(
+            "Response",
+            (),
+            {"status_code": 200, "text": "", "json": lambda self: {"choices": [{"message": {"content": "نص"}}], "usage": {}}},
+        )()
+        with patch.object(gs.requests, "post", return_value=response) as post:
+            client.generate_content(model="model", contents=[content], config=config)
+        self.assertLessEqual(post.call_args.kwargs["json"]["max_tokens"], gs.OPENROUTER_MAX_TOKENS)
+
 
 if __name__ == "__main__":
     unittest.main()

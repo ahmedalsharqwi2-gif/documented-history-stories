@@ -66,6 +66,7 @@ OPENROUTER_MODELS = [
 ]
 OPENROUTER_MODEL = OPENROUTER_MODELS[0] if OPENROUTER_MODELS else ""
 OPENROUTER_TIMEOUT = int(os.getenv("OPENROUTER_TIMEOUT", "90"))
+OPENROUTER_MAX_TOKENS = int(os.getenv("OPENROUTER_MAX_TOKENS", "2200"))
 FALLBACK_API_KEY = (os.getenv("LLM_FALLBACK_API_KEY") or os.getenv("GROQ_API_KEY", "")).strip()
 FALLBACK_ENDPOINT = os.getenv(
     "LLM_FALLBACK_ENDPOINT", "https://api.groq.com/openai/v1/chat/completions"
@@ -485,7 +486,9 @@ class CompatibleChatModels:
             "temperature": getattr(config, "temperature", TEMPERATURE),
             "max_tokens": min(
                 getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
-                FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else STORY_MAX_TOKENS,
+                (FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else OPENROUTER_MAX_TOKENS)
+                if self.title in {"Fallback LLM", "OpenRouter"}
+                else STORY_MAX_TOKENS,
             ),
             "reasoning_effort": "low",
         }
@@ -573,7 +576,7 @@ def has_next_model() -> bool:
     if ACTIVE_PROVIDER == "openrouter":
         return bool(FALLBACK_API_KEY)
     if ACTIVE_PROVIDER == "fallback":
-        return False
+        return bool(OPENROUTER_API_KEY)
     return (
         ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES)
         or bool(OPENROUTER_API_KEY)
@@ -582,7 +585,7 @@ def has_next_model() -> bool:
 
 
 def switch_to_next_model() -> bool:
-    """الترتيب: Gemini الأساسي -> موديلات Gemini الاحتياطية -> OpenRouter."""
+    """الترتيب: Gemini -> مزود OpenAI-compatible -> OpenRouter الأخير."""
     global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER
     if ACTIVE_PROVIDER == "gemini":
         if ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES):
@@ -590,15 +593,15 @@ def switch_to_next_model() -> bool:
             ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
             print(f"🔁 انتقلت إلى موديل Gemini الاحتياطي: {ACTIVE_MODEL}")
             return True
-        if OPENROUTER_API_KEY:
-            ACTIVE_PROVIDER = "openrouter"
-            ACTIVE_MODEL = OPENROUTER_MODEL
-            print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية: {OPENROUTER_MODEL}")
-            return True
         if FALLBACK_API_KEY:
             ACTIVE_PROVIDER = "fallback"
             ACTIVE_MODEL = FALLBACK_MODEL
             print(f"🔁 انتقلت إلى مزود LLM الاحتياطي: {FALLBACK_MODEL}")
+            return True
+        if OPENROUTER_API_KEY:
+            ACTIVE_PROVIDER = "openrouter"
+            ACTIVE_MODEL = OPENROUTER_MODEL
+            print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية أخيرة: {OPENROUTER_MODEL}")
             return True
     elif ACTIVE_PROVIDER == "openrouter" and FALLBACK_API_KEY:
         ACTIVE_PROVIDER = "fallback"

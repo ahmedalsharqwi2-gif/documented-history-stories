@@ -78,19 +78,55 @@ jobs:
       - name: Verify Arabic narration guard
         run: python -m unittest tests.test_arabic_guard -v
 
+      - name: Resolve available fallback model
+        env:
+          FALLBACK_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
+          FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
+        run: |
+          if [ -z "$FALLBACK_KEY" ]; then
+            echo "No OpenAI-compatible fallback key; keeping OpenRouter as last resort."
+            exit 0
+          fi
+          MODELS_URL="${FALLBACK_ENDPOINT%/chat/completions}/models"
+          if ! curl --fail --silent --show-error --max-time 20 \
+            -H "Authorization: Bearer $FALLBACK_KEY" "$MODELS_URL" > /tmp/fallback_models.json; then
+            echo "WARNING: fallback model discovery failed; using the bounded default model."
+            exit 0
+          fi
+          SELECTED_MODEL="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          preferred = (
+              "llama-3.1-8b-instant",
+              "openai/gpt-oss-20b",
+              "llama-3.3-70b-versatile",
+              "openai/gpt-oss-120b",
+          )
+          data = json.loads(Path("/tmp/fallback_models.json").read_text())
+          ids = [str(item.get("id")) for item in data.get("data", []) if item.get("id")]
+          print(next((name for name in preferred if name in ids), ids[0] if ids else ""))
+          PY
+          )"
+          if [ -z "$SELECTED_MODEL" ]; then
+            echo "WARNING: fallback endpoint returned no usable models; using the bounded default model."
+            exit 0
+          fi
+          echo "Resolved fallback model: $SELECTED_MODEL"
+          echo "RESOLVED_FALLBACK_MODEL=$SELECTED_MODEL" >> "$GITHUB_ENV"
+
       - name: Generate complete historical strategy episode script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
           LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
-          LLM_FALLBACK_MODEL: "openai/gpt-oss-120b"
           LLM_FALLBACK_MAX_TOKENS: "2200"
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
           GEMINI_MODEL: "gemini-3.8-flash"
           GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: "google/gemini-2.5-flash,qwen/qwen3-32b"
-          OPENROUTER_TIMEOUT: "90"
+          OPENROUTER_TIMEOUT: "45"
+          OPENROUTER_MAX_TOKENS: "2200"
           GEMINI_THINKING_BUDGET: "0"
           TARGET_WORDS: "650"
           ACCEPTABLE_MIN_WORDS: "180"
@@ -102,7 +138,10 @@ jobs:
           TRANSIENT_BACKOFF_BASE: "8"
           BUDGET_RETRIES: "0"
           PROOFREAD_TASHKEEL: "false"
-        run: python scripts/generate_script.py
+        run: |
+          export LLM_FALLBACK_MODEL="${RESOLVED_FALLBACK_MODEL:-llama-3.1-8b-instant}"
+          echo "Using fallback model: $LLM_FALLBACK_MODEL"
+          python scripts/generate_script.py
 
       - name: Arabic preflight gates (history)
         env:
