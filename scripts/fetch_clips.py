@@ -62,6 +62,7 @@ generate_script.py بيكتبه) — عشان load_used_regions() في generate_
 import os
 import json
 import re
+import subprocess
 import sys
 import time
 import requests
@@ -95,6 +96,8 @@ MIN_DURATION_SECONDS = 4    # نتجنب الكليبات القصيرة جدً�
 
 # عدد محاولات التحميل القصوى لكل كليب (لو انقطع الاتصال أثناء التحميل).
 DOWNLOAD_MAX_ATTEMPTS = 4
+MAX_CLIP_BLACK_SECONDS = 0.30
+BLACK_INTERVAL_RE = re.compile(r"black_start:([0-9.]+).*black_end:([0-9.]+)")
 
 # كلمات دالة على عناصر عصرية/معاصرة. لو ظهرت في الوصف المستخرج من رابط
 # الكليب (شوف clip_description_slug)، نستبعد الكليب فورًا حتى لو طابق
@@ -348,6 +351,26 @@ def download_clip(url: str, dest: Path, max_attempts: int = DOWNLOAD_MAX_ATTEMPT
     raise last_error
 
 
+def has_excessive_black_frames(path: Path, max_black_seconds: float = MAX_CLIP_BLACK_SECONDS) -> bool:
+    """Reject unusable stock clips before they can create black montage gaps."""
+    result = subprocess.run(
+        [
+            "ffmpeg", "-hide_banner", "-nostats", "-i", str(path),
+            "-vf", "blackdetect=d=0.05:pic_th=0.98", "-an", "-f", "null", "-",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode:
+        raise RuntimeError(f"ffmpeg could not inspect downloaded clip {path}: {result.stderr[-300:]}")
+    intervals = [
+        float(end) - float(start)
+        for start, end in BLACK_INTERVAL_RE.findall(result.stderr)
+    ]
+    return sum(intervals) > max_black_seconds
+
+
 def main():
     api_key = os.environ.get("PEXELS_API_KEY")
     if not api_key:
@@ -371,12 +394,17 @@ def main():
         remaining_budget = MAX_TOTAL_CLIPS - len(fetched_clips)
         wanted = min(CLIPS_PER_KEYWORD, remaining_budget)
 
-        results = search_with_fallback(keyword, api_key, used_ids, wanted)
+        # Fetch extra candidates because black leaders/tails must be rejected
+        # before the final montage, while preserving the historical filters.
+        results = search_with_fallback(keyword, api_key, used_ids, wanted * 2)
         if not results:
             print(f"⚠️  مفيش كليبات جديدة لكلمة '{keyword}' حتى بعد كل محاولات البديل — هنتخطاها")
             continue
 
+        accepted_for_keyword = 0
         for result in results:
+            if accepted_for_keyword >= wanted or len(fetched_clips) >= MAX_TOTAL_CLIPS:
+                break
             dest_path = CLIPS_DIR / f"clip_{len(fetched_clips):02d}.mp4"
             try:
                 download_clip(result["url"], dest_path)
@@ -389,11 +417,23 @@ def main():
 
             used_ids.add(result["id"])
 
+            try:
+                black_frames = has_excessive_black_frames(dest_path)
+            except RuntimeError as exc:
+                print(f"⚠️ تعذر فحص كليب Pexels {result['id']} — هنرفضه احترازيًا: {exc}")
+                dest_path.unlink(missing_ok=True)
+                continue
+            if black_frames:
+                print(f"⚠️ استبعاد كليب Pexels {result['id']}: يحتوي على أكثر من {MAX_CLIP_BLACK_SECONDS:.2f}s إطارات سوداء")
+                dest_path.unlink(missing_ok=True)
+                continue
+
             fetched_clips.append({
                 "file": str(dest_path),
                 "pexels_id": result["id"],
                 "keyword": keyword,
             })
+            accepted_for_keyword += 1
             print(f"✅ اتنزل كليب لـ '{keyword}' (Pexels ID: {result['id']})")
 
     if not fetched_clips:
