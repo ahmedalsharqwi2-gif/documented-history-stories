@@ -75,7 +75,7 @@ jobs:
           path: |
             state/current_episode.json
             downloaded_clips/narration_voice.mp3
-            downloaded_clips/narration_with_music.mp3
+            downloaded_clips/narration.mp3
             downloaded_clips/narration.ass
           if-no-files-found: error
           retention-days: 14

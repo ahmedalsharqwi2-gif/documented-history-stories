@@ -53,7 +53,6 @@ STATE_DIR = ROOT_DIR / "state"
 CLIPS_DIR = ROOT_DIR / "downloaded_clips"
 ASSETS_DIR = ROOT_DIR / "assets"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
-BACKGROUND_MUSIC = ASSETS_DIR / "background_music.mp3"
 
 # الصوت الأساسي ثم أصوات احتياطية. يمكن تغييرها من GitHub Actions عبر
 # EDGE_TTS_VOICES="ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"
@@ -73,7 +72,6 @@ EDGE_TTS_RETRY_DELAY = float(os.getenv("EDGE_TTS_RETRY_DELAY", "2"))
 RATE = os.getenv("EDGE_TTS_RATE", "-8%")
 PITCH = os.getenv("EDGE_TTS_PITCH", "-5Hz")
 VOLUME = "+0%"
-MUSIC_VOLUME = 0.15
 WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "6"))
 VIDEO_W = 1920
 VIDEO_H = 1080
@@ -86,7 +84,7 @@ WHISPER_MODEL_SIZE = os.getenv("WHISPER_MODEL", "base")
 ASR_MIN_MATCH_RATIO = float(os.getenv("ASR_MIN_MATCH_RATIO", "0.82"))
 
 VOICE_AUDIO = CLIPS_DIR / "narration_voice.mp3"
-FINAL_AUDIO = CLIPS_DIR / "narration_with_music.mp3"
+FINAL_AUDIO = CLIPS_DIR / "narration.mp3"
 SUBTITLES = CLIPS_DIR / "narration.ass"
 
 PAUSE_AFTER_ELLIPSIS = 1.3
@@ -746,16 +744,12 @@ def synthesize_voice(voice_text: str) -> None:
         Path(segment["path"]).unlink(missing_ok=True)
 
 
-def mix_music_into_voice() -> None:
-    if not BACKGROUND_MUSIC.exists():
-        run(["ffmpeg", "-y", "-i", str(VOICE_AUDIO), "-c:a", "libmp3lame", "-b:a", "192k", str(FINAL_AUDIO)])
-        return
+def prepare_final_audio() -> None:
+    """Publish narration as a clean voice-only track; no background music."""
     run([
-        "ffmpeg", "-y", "-i", str(VOICE_AUDIO), "-stream_loop", "-1", "-i", str(BACKGROUND_MUSIC),
-        "-filter_complex", f"[0:a]volume=1.0[voice];[1:a]volume={MUSIC_VOLUME}[music];[voice][music]amix=inputs=2:duration=first:dropout_transition=3:normalize=0[aout]",
-        "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", "-shortest", str(FINAL_AUDIO),
+        "ffmpeg", "-y", "-i", str(VOICE_AUDIO),
+        "-c:a", "libmp3lame", "-b:a", "192k", str(FINAL_AUDIO),
     ])
-
 
 def main() -> None:
     if not EPISODE_PATH.exists():
@@ -780,7 +774,7 @@ def main() -> None:
     )
     print(f"✅ طبقة النطق: Mantoq/القاموس — {len(phonemes)} phoneme token(s)")
     synthesize_voice(voice_text)
-    mix_music_into_voice()
+    prepare_final_audio()
 
     episode.pop("parts", None)
     episode["narration"] = narration

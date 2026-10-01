@@ -14,7 +14,7 @@ assemble_video.py
 مصدر الحقيقة للصوت والترجمة العربية هو current_episode.json. يدعم الملف الحقول الجديدة:
 
 {
-  "final_audio": "downloaded_clips/narration_with_music.mp3",
+  "final_audio": "downloaded_clips/narration.mp3",
   "subtitles": "downloaded_clips/narration.ass",
   "shorts": [
     {"start_seconds": 0, "end_seconds": 75}
@@ -388,7 +388,7 @@ def _run() -> None:
             )
 
     if not final_audio_value:
-        final_audio_value = str(CLIPS_DIR / "narration_with_music.mp3")
+        final_audio_value = str(CLIPS_DIR / "narration.mp3")
     final_audio = resolve_path(final_audio_value)
     subtitles = resolve_path(subtitles_value) if subtitles_value else None
 
