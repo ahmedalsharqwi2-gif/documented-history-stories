@@ -8,3 +8,6 @@ assets/*.webm
 output/
 downloaded_clips/
 scripts/__pycache__/
+
+__pycache__/
+*.pyc
