@@ -706,34 +706,28 @@ def make_content(role: str, text: str) -> types.Content:
     return types.Content(role=role, parts=[types.Part(text=text)])
 
 
+def _gemini_config(**kwargs):
+    """Build config without sending unsupported thinking_budget=0."""
+    if THINKING_BUDGET > 0:
+        kwargs["thinking_config"] = types.ThinkingConfig(thinking_budget=THINKING_BUDGET)
+    return types.GenerateContentConfig(**kwargs)
+
+
 def free_text_config(system_prompt: str, budget: int) -> types.GenerateContentConfig:
-    return types.GenerateContentConfig(
-        system_instruction=system_prompt,
-        temperature=TEMPERATURE,
-        max_output_tokens=budget,
-        thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET),
-    )
+    return _gemini_config(system_instruction=system_prompt, temperature=TEMPERATURE, max_output_tokens=budget)
 
 
 def finalize_json_config(system_prompt: str, budget: int) -> types.GenerateContentConfig:
-    return types.GenerateContentConfig(
-        system_instruction=system_prompt,
-        temperature=TEMPERATURE,
-        max_output_tokens=budget,
-        response_mime_type="application/json",
-        response_schema=to_gemini_schema(FINALIZE_SCHEMA),
-        thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET),
-    )
+    return _gemini_config(system_instruction=system_prompt, temperature=TEMPERATURE, max_output_tokens=budget, response_mime_type="application/json", response_schema=to_gemini_schema(FINALIZE_SCHEMA))
 
 
 def tashkeel_json_config(system_prompt: str, budget: int) -> types.GenerateContentConfig:
-    return types.GenerateContentConfig(
+    return _gemini_config(
         system_instruction=system_prompt,
         temperature=0.1,
         max_output_tokens=budget,
         response_mime_type="application/json",
         response_schema=to_gemini_schema(TASHKEEL_SCHEMA),
-        thinking_config=types.ThinkingConfig(thinking_budget=0),
     )
 
 
