@@ -83,12 +83,12 @@ def select_topic_from_bank(entries: list[dict[str, str]], history: list[dict]) -
 
 # ─────────────────────────── الإعدادات ───────────────────────────
 
-MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 FALLBACK_MODELS = [
     item.strip()
     # Gemini 2.5 access is restricted for new users. Keep defaults on
     # current stable models so a quota failure on 3.8 can fail over.
-    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-3.5-flash-lite,gemini-3.5-flash").split(",")
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "").split(",")
     if item.strip()
 ]
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
