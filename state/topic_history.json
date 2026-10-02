@@ -171,12 +171,13 @@
       "title": "كيف تحولت الأندلس من مركز علم عالمي إلى ذكرى في كتب التاريخ",
       "hook": "كيف تحولت الأندلس من مركز علم عالمي إلى ذكرى في كتب التاريخ؟",
       "region": "شبه الجزيرة الإيبيرية، الأندلس، القرن الخامس عشر الميلادي",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "c8a86882b80c467ab70d87103917fbf8",
       "reserved_at": "2026-10-02T03:11:42Z",
       "run_id": "36957637160",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "c8a86882b80c467ab70d87103917fbf8",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-02T03:12:17Z"
     }
   ]
 }
