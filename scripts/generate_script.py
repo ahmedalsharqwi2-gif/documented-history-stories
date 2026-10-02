@@ -70,12 +70,15 @@ def load_topic_bank(path: Path = TOPIC_BANK_PATH) -> list[dict[str, str]]:
     return entries
 
 
-def select_topic_from_bank(entries: list[dict[str, str]], history: list[dict]) -> dict[str, str] | None:
+def select_topic_from_bank(
+    entries: list[dict[str, str]], history: list[dict], excluded_titles: set[str] | None = None
+) -> dict[str, str] | None:
     """Return the highest-ranked unused topic, or None when the bank is exhausted."""
     used_titles = {
         " ".join(str(item.get("title") or item.get("topic") or item.get("subject") or "").split()).casefold()
         for item in history
     }
+    used_titles.update(" ".join(title.split()).casefold() for title in (excluded_titles or set()))
     for entry in entries:
         if " ".join(entry["title"].split()).casefold() not in used_titles:
             return entry
@@ -1215,8 +1218,11 @@ def generate_episode() -> dict:
     recent_hooks = load_used_hooks()
     topic_history = TopicHistory(TOPIC_HISTORY_PATH)
     bank_topic = None
+    bank_entries: list[dict[str, str]] = []
+    rejected_bank_titles: set[str] = set()
     if os.getenv("TOPIC_BANK_REQUIRED", "false").lower() == "true":
-        bank_topic = select_topic_from_bank(load_topic_bank(), topic_history.entries)
+        bank_entries = load_topic_bank()
+        bank_topic = select_topic_from_bank(bank_entries, topic_history.entries)
         if not bank_topic:
             sys.exit("❌ بنك المواضيع التاريخية فارغ أو استُهلك بالكامل؛ أوقف التشغيل بدل اختيار موضوع عشوائي")
         print(f"📚 الموضوع المختار من بنك المواضيع: {bank_topic['title']}")
@@ -1256,7 +1262,16 @@ def generate_episode() -> dict:
                 last_error = "الموضوع أو الواقعة مشابهة لسجل دائم في هذا المستودع"
                 recent_titles.append(clean_text(episode.get("title", ""), 180))
                 recent_hooks.append(clean_text(episode.get("hook", ""), 240))
-                print(f"⚠️ رُفضت المحاولة {attempt}: موضوع مكرر؛ سيُعاد التوليد من قائمة المنع.")
+                if bank_topic:
+                    rejected_bank_titles.add(bank_topic.get("title", ""))
+                    bank_topic = select_topic_from_bank(
+                        bank_entries, topic_history.entries, rejected_bank_titles
+                    )
+                    if not bank_topic:
+                        sys.exit("❌ بنك المواضيع استُهلك أثناء استبدال موضوع مكرر؛ أوقف التشغيل بدل تكرار الواقعة.")
+                    print(f"⚠️ رُفضت المحاولة {attempt}: موضوع مكرر؛ الانتقال إلى موضوع بنك جديد: {bank_topic['title']}")
+                else:
+                    print(f"⚠️ رُفضت المحاولة {attempt}: موضوع مكرر؛ سيُعاد التوليد من قائمة المنع.")
                 continue
             return episode
         except (QuotaExhausted, ModelUnavailable) as exc:
