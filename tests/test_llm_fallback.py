@@ -15,6 +15,11 @@ class IslamicFallbackTests(unittest.TestCase):
         cleaned = gs.strip_internal_narration_labels("الخاتمة: انتهت الحادثة بعد ظهور الدليل.")
         self.assertEqual(cleaned, "انتهت الحادثة بعد ظهور الدليل.")
 
+    def test_embedded_internal_label_is_removed(self):
+        cleaned = gs.strip_internal_narration_labels("ثم كانت النتيجة واضحة بعد ظهور الدليل.")
+        self.assertNotIn("النتيجة", cleaned)
+        self.assertIn("كانت واضحة", cleaned)
+
     def test_legacy_labeled_reply_derives_hook_from_first_narration_sentence(self):
         reply = (
             "TITLE: سقوط مدينة تاريخية\n"

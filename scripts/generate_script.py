@@ -365,6 +365,16 @@ def strip_internal_narration_labels(text: str) -> str:
         "",
         cleaned,
     )
+    # Some models place a heading after a sentence instead of on its own line.
+    # The Arabic guard rejects these tokens anywhere in narration, so remove
+    # the standalone editorial token and retain the surrounding spoken words.
+    cleaned = re.sub(
+        rf"(?<![\u0621-\u064A\w])(?:{_INTERNAL_LABEL_PATTERN})(?![\u0621-\u064A\w])",
+        "",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    cleaned = re.sub(r"[ \t]{2,}", " ", cleaned)
     return re.sub(r"[ \t]+\n", "\n", cleaned).strip()
 
 
