@@ -107,12 +107,22 @@ def find_duplicate(candidate: Any, entries: list[dict[str, Any]]) -> dict[str, A
     for entry in entries:
         previous_titles = _topic_fields(entry, kind="title")
         previous_hooks = _topic_fields(entry, kind="hook")
-        if any(_is_similar(new, old, field="title") for new in proposed_titles for old in previous_titles):
-            return entry
-        if proposed_hooks and previous_hooks and any(
+        hook_match = proposed_hooks and previous_hooks and any(
             _is_similar(new, old, field="hook") for new in proposed_hooks for old in previous_hooks
-        ):
+        )
+        if hook_match:
             return entry
+        title_match = any(_is_similar(new, old, field="title") for new in proposed_titles for old in previous_titles)
+        if title_match:
+            # Similar headlines are only a hint. When both records have
+            # different hooks, they describe different incidents and should
+            # remain publishable; exact titles are still blocked.
+            exact_title = any(
+                normalize_text(new) == normalize_text(old)
+                for new in proposed_titles for old in previous_titles
+            )
+            if exact_title or not (proposed_hooks and previous_hooks):
+                return entry
     return None
 
 
@@ -164,12 +174,22 @@ def find_duplicate(candidate: Any, entries: list[dict[str, Any]]) -> dict[str, A
     for entry in entries:
         previous_titles = _topic_fields(entry, kind="title")
         previous_hooks = _topic_fields(entry, kind="hook")
-        if any(_is_similar(new, old, field="title") for new in proposed_titles for old in previous_titles):
-            return entry
-        if proposed_hooks and previous_hooks and any(
+        hook_match = proposed_hooks and previous_hooks and any(
             _is_similar(new, old, field="hook") for new in proposed_hooks for old in previous_hooks
-        ):
+        )
+        if hook_match:
             return entry
+        title_match = any(_is_similar(new, old, field="title") for new in proposed_titles for old in previous_titles)
+        if title_match:
+            # Similar headlines are only a hint. When both records have
+            # different hooks, they describe different incidents and should
+            # remain publishable; exact titles are still blocked.
+            exact_title = any(
+                normalize_text(new) == normalize_text(old)
+                for new in proposed_titles for old in previous_titles
+            )
+            if exact_title or not (proposed_hooks and previous_hooks):
+                return entry
     return None
 
 def prompt_topics(entries: list[dict[str, Any]], limit: int = 100) -> str:

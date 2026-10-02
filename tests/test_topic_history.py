@@ -30,6 +30,17 @@ class TopicHistoryTests(unittest.TestCase):
         }
         self.assertIsNotNone(find_duplicate(proposed, previous))
 
+    def test_similar_headline_with_different_incident_is_allowed(self):
+        previous = [{
+            "title": "معركة بحرية غامضة غيّرت تاريخ المنطقة",
+            "hook": "كيف اختفت سفن الأسطول في عاصفة مفاجئة قرب الساحل؟",
+        }]
+        proposed = {
+            "title": "معركة بحرية غامضة غيّرت تاريخ العالم",
+            "hook": "كيف حسم قائد صغير معركة برية ضد جيش يفوقه أضعافًا؟",
+        }
+        self.assertIsNone(find_duplicate(proposed, previous))
+
     def test_generic_hook_or_caption_does_not_block_a_new_title(self):
         previous = [{
             "title": "كيف تتكون العواصف الشمسية",
