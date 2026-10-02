@@ -528,6 +528,28 @@ def two_lines_ar(words: list[str]) -> str:
     return "\u200f" + " ".join(words[:midpoint]) + r"\N" + "\u200f" + " ".join(words[midpoint:])
 
 
+def validate_caption_chunks(ass_text: str, max_words: int = WORDS_PER_CAPTION_CHUNK) -> None:
+    """Fail closed if a subtitle event accidentally contains the whole narration.
+
+    ``display_text``/``align_text`` are metadata used by the Arabic preflight
+    gate; they must never be passed to FFmpeg as one subtitle event.
+    """
+    events = [line for line in ass_text.splitlines() if line.startswith("Dialogue:")]
+    if not events:
+        raise RuntimeError("ملف ASS لا يحتوي على أي مقاطع ترجمة")
+    counts = []
+    for line in events:
+        fields = line.split(",", 9)
+        rendered = (fields[9] if len(fields) == 10 else "").replace(r"\N", " ")
+        rendered = rendered.replace("\u200f", " ")
+        counts.append(len(_WORD_TOKEN_PATTERN.findall(rendered)))
+    if max(counts) > max_words:
+        raise RuntimeError(
+            f"ترجمة غير آمنة: مقطع واحد يحتوي {max(counts)} كلمة؛ "
+            f"الحد الأقصى {max_words}. لن يتم دمج النص الكامل داخل الفيديو."
+        )
+
+
 def build_ass_header() -> str:
     """يعرّف تنسيق الترجمة العربية المتزامنة مع الصوت عبر Whisper."""
     style_ar = (
@@ -753,7 +775,9 @@ def synthesize_voice(voice_text: str) -> None:
         end = group[-1]["offset"] + group[-1]["duration"]
         dialogue_lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.25))},Caption,,0,0,0,,{two_lines_ar([e['text'] for e in group])}")
 
-    SUBTITLES.write_text(build_ass_header() + "\n".join(dialogue_lines) + "\n", encoding="utf-8")
+    ass_text = build_ass_header() + "\n".join(dialogue_lines) + "\n"
+    validate_caption_chunks(ass_text)
+    SUBTITLES.write_text(ass_text, encoding="utf-8")
     for segment in segments:
         Path(segment["path"]).unlink(missing_ok=True)
 
