@@ -421,6 +421,12 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
             fields["hook"] = derived
             print(f"   ℹ️ {attempt_label} | {step_label}: تم اشتقاق hook من أول جملة في narration.")
 
+    # Legacy format omitted REGION. Reuse the model's title as a neutral
+    # editorial location label; never synthesize a historical place or era.
+    if not fields.get("region", "").strip() and fields.get("title", "").strip():
+        fields["region"] = fields["title"].strip()
+        print(f"   ℹ️ {attempt_label} | {step_label}: تم استخدام TITLE كمرجع region دون اختلاق معلومة.")
+
     missing = [key for key in STORY_REQUIRED_FIELDS if not fields.get(key, "").strip()]
     if missing:
         print(f"   🔎 رد {attempt_label} | {step_label} الخام (أول 500 حرف):\n{reply[:500]!r}")

@@ -17,6 +17,7 @@ class IslamicFallbackTests(unittest.TestCase):
         )
         episode = gs.parse_story_reply(reply, "اختبار", "القصة")
         self.assertEqual(episode["hook"], "كيف انتهت مدينة عظيمة في ليلة واحدة بعد حصار طويل؟")
+        self.assertEqual(episode["region"], "الأندلس في أواخر القرن الخامس الهجري")
 
     def test_openrouter_reports_groq_as_next_provider(self):
         with (
