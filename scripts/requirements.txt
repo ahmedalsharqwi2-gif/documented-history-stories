@@ -7,3 +7,5 @@ google-auth-httplib2
 google-api-python-client
 faster-whisper
 silma-tts
+pytrends>=4.9.2
+urllib3>=1.26,<2.0
