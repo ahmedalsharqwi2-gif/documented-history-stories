@@ -184,12 +184,13 @@
       "title": "في الليلة التي سُمِّيتُها «ليلة القسوة»، كان هادئًا في صحراء كربلاء، حيث انقضت ش",
       "hook": "في الليلة التي سُمِّيتُها «ليلة القسوة»، كان هادئًا في صحراء كربلاء، حيث انقضت شمس الخريف على الرمال الباردة.",
       "region": "جنوب العراق، شبه الجزيرة العربية، عام 680 م",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "e8a943434e684015ba5561174e1253e2",
       "reserved_at": "2026-10-02T17:14:25Z",
       "run_id": "37037666047",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "e8a943434e684015ba5561174e1253e2",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-02T17:15:03Z"
     }
   ]
 }
