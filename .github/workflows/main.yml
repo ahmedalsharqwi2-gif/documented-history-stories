@@ -151,8 +151,10 @@ jobs:
           TRANSIENT_BACKOFF_BASE: "8"
           BUDGET_RETRIES: "0"
           PROOFREAD_TASHKEEL: "false"
-          TOPIC_BANK_REQUIRED: "true"
-          TOPIC_BANK_FILE: "TOPIC_BANK.md"
+          TOPIC_BANK_REQUIRED: "false"
+          TOPIC_SELECTION_MODE: "dynamic"
+          TOPIC_ROTATION_SEED: ${{ github.run_id }}
+          TOPIC_PERFORMANCE_FILE: "state/topic_performance.json"
         run: |
           echo "Using validated fallback model: ${LLM_FALLBACK_MODEL:-not-configured}"
           python scripts/generate_script.py
