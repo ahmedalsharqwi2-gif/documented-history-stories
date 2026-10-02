@@ -34,6 +34,17 @@ class IslamicFallbackTests(unittest.TestCase):
         self.assertEqual(episode["hook"], "كيف انتهت مدينة عظيمة في ليلة واحدة بعد حصار طويل؟")
         self.assertEqual(episode["region"], "الأندلس في أواخر القرن الخامس الهجري")
 
+    def test_model_hook_is_replaced_when_it_does_not_match_narration(self):
+        reply = (
+            "TITLE: حصار تاريخي\nCAPTION: قصة موثقة\nREGION: الشام\n"
+            "SOURCE_TYPE: كتاب تاريخي\nSOURCE_REFERENCE: مرجع موثق\n"
+            "HOOK: لماذا انتصر الجيش؟\n"
+            "NARRATION: كيف صمدت قلعة صغيرة أمام جيش عظيم طوال أشهر عديدة في الشتاء؟ ثم تبدلت موازين القوة."
+        )
+        episode = gs.parse_story_reply(reply, "اختبار", "القصة")
+        self.assertEqual(episode["hook"], "كيف صمدت قلعة صغيرة أمام جيش عظيم طوال أشهر عديدة في الشتاء؟")
+        self.assertEqual(gs.validate_hook(episode["hook"], episode["narration"]), [])
+
     def test_openrouter_reports_groq_as_next_provider(self):
         with (
             patch.object(gs, "ACTIVE_PROVIDER", "openrouter"),

@@ -449,14 +449,18 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
             print(f"   ℹ️ {attempt_label} | {step_label}: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
             fields = json_fields
 
-    # Older responses sometimes emit TITLE/CAPTION/NARRATION and omit HOOK.
-    # Derive it only from the spoken first sentence; validate_episode still
-    # enforces exact alignment, Arabic quality, and the 10–20 word policy.
-    if not fields.get("hook", "").strip() and fields.get("narration", "").strip():
+    # The narration is authoritative: a model may return a plausible but
+    # different hook. Canonicalize it before validation so hook and speech
+    # cannot drift apart after cleanup or provider failover.
+    if fields.get("narration", "").strip():
+        fields["narration"] = strip_internal_narration_labels(
+            clean_continuation_text(fields["narration"])
+        )
         derived = _derive_hook_from_narration(fields["narration"])
         if derived:
+            if fields.get("hook", "").strip() != derived:
+                print(f"   ℹ️ {attempt_label} | {step_label}: تم توحيد hook مع أول جملة فعلية في narration.")
             fields["hook"] = derived
-            print(f"   ℹ️ {attempt_label} | {step_label}: تم اشتقاق hook من أول جملة في narration.")
 
     # Legacy format omitted REGION. Reuse the model's title as a neutral
     # editorial location label; never synthesize a historical place or era.
@@ -474,7 +478,7 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         "region": fields["region"].replace("**", "").replace("__", "").strip(),
         "source_type": fields["source_type"].replace("**", "").replace("__", "").strip(),
         "source_reference": fields["source_reference"].replace("**", "").replace("__", "").strip(),
-        "narration": strip_internal_narration_labels(clean_continuation_text(fields["narration"])),
+        "narration": fields["narration"],
     }
 
 
