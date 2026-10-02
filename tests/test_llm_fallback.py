@@ -15,12 +15,36 @@ class IslamicFallbackTests(unittest.TestCase):
     def test_switches_from_openrouter_to_configured_fallback(self):
         with (
             patch.object(gs, "ACTIVE_PROVIDER", "openrouter"),
+            patch.object(gs, "VISITED_PROVIDERS", {"gemini", "openrouter"}),
             patch.object(gs, "FALLBACK_API_KEY", "groq-test"),
             patch.object(gs, "FALLBACK_MODEL", "llama-test"),
         ):
             self.assertTrue(gs.switch_to_next_model())
             self.assertEqual(gs.ACTIVE_PROVIDER, "fallback")
             self.assertEqual(gs.ACTIVE_MODEL, "llama-test")
+
+    def test_switches_from_fallback_to_openrouter(self):
+        with (
+            patch.object(gs, "ACTIVE_PROVIDER", "fallback"),
+            patch.object(gs, "VISITED_PROVIDERS", {"gemini", "fallback"}),
+            patch.object(gs, "OPENROUTER_API_KEY", "router-test"),
+            patch.object(gs, "OPENROUTER_MODEL", "router-model"),
+        ):
+            self.assertTrue(gs.switch_to_next_model())
+            self.assertEqual(gs.ACTIVE_PROVIDER, "openrouter")
+            self.assertEqual(gs.ACTIVE_MODEL, "router-model")
+
+    def test_model_unavailable_400_invalid_argument_is_classified(self):
+        self.assertTrue(gs._is_model_unavailable(Exception("400 INVALID_ARGUMENT")))
+
+    def test_compatible_client_preserves_quota_error_after_all_models_fail(self):
+        response = type("Response", (), {"status_code": 429, "text": "rate limit"})()
+        client = gs.CompatibleChatModels(
+            "test-key", "https://example.invalid/v1/chat/completions", ["model"], "Fallback LLM"
+        )
+        with patch.object(gs.requests, "post", return_value=response):
+            with self.assertRaises(gs.QuotaExhausted):
+                client.generate_content(model="model", contents=[], config=object())
 
     def test_compatible_client_maps_openai_response(self):
         response = type(

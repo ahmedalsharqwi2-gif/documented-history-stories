@@ -61,7 +61,7 @@ TOPIC_HISTORY_PATH = SCRIPT_DIR.parent / "state" / "topic_history.json"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 FALLBACK_MODELS = [
     item.strip()
-    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-3.5-flash-lite").split(",")
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash").split(",")
     if item.strip()
 ]
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
@@ -90,6 +90,9 @@ FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
 FALLBACK_TIMEOUT = int(os.getenv("LLM_FALLBACK_TIMEOUT", "90"))
 FALLBACK_MAX_TOKENS = int(os.getenv("LLM_FALLBACK_MAX_TOKENS", "3500"))
 ACTIVE_PROVIDER = "gemini"
+# Providers are tried at most once per run.  Without this guard, a failed
+# OpenRouter/fallback provider could bounce back and forth forever.
+VISITED_PROVIDERS = {ACTIVE_PROVIDER}
 TEMPERATURE = 0.75
 
 STORY_MAX_TOKENS = 8000
@@ -522,6 +525,7 @@ class CompatibleChatModels:
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
         errors = []
+        typed_errors = []
         for router_model in self.models:
             payload["model"] = router_model
             try:
@@ -575,6 +579,13 @@ class CompatibleChatModels:
                 )
             except Exception as exc:  # noqa: BLE001 - try the next router model
                 errors.append(f"{router_model}: {exc}")
+                if isinstance(exc, (QuotaExhausted, ModelUnavailable)):
+                    typed_errors.append(exc)
+        # Preserve the actionable error class after all models at this
+        # provider fail.  The caller uses it to move to the next provider;
+        # wrapping it in RuntimeError used to make the fallback chain stop.
+        if typed_errors:
+            raise typed_errors[-1]
         raise RuntimeError("All OpenRouter models failed: " + " | ".join(errors))
 
 
@@ -613,25 +624,34 @@ def has_next_model() -> bool:
 
 def switch_to_next_model() -> bool:
     """الترتيب: Gemini -> مزود OpenAI-compatible -> OpenRouter الأخير."""
-    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER
+    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER, VISITED_PROVIDERS
     if ACTIVE_PROVIDER == "gemini":
         if ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES):
             ACTIVE_MODEL_INDEX += 1
             ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
             print(f"🔁 انتقلت إلى موديل Gemini الاحتياطي: {ACTIVE_MODEL}")
             return True
-        if FALLBACK_API_KEY:
+        if FALLBACK_API_KEY and "fallback" not in VISITED_PROVIDERS:
             ACTIVE_PROVIDER = "fallback"
+            VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
             ACTIVE_MODEL = FALLBACK_MODEL
             print(f"🔁 انتقلت إلى مزود LLM الاحتياطي: {FALLBACK_MODEL}")
             return True
-        if OPENROUTER_API_KEY:
+        if OPENROUTER_API_KEY and "openrouter" not in VISITED_PROVIDERS:
             ACTIVE_PROVIDER = "openrouter"
+            VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
             ACTIVE_MODEL = OPENROUTER_MODEL
             print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية أخيرة: {OPENROUTER_MODEL}")
             return True
-    elif ACTIVE_PROVIDER == "openrouter" and FALLBACK_API_KEY:
+    elif ACTIVE_PROVIDER == "fallback" and OPENROUTER_API_KEY and "openrouter" not in VISITED_PROVIDERS:
+        ACTIVE_PROVIDER = "openrouter"
+        VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
+        ACTIVE_MODEL = OPENROUTER_MODEL
+        print(f"🔁 انتقلت من مزود LLM الاحتياطي إلى OpenRouter: {OPENROUTER_MODEL}")
+        return True
+    elif ACTIVE_PROVIDER == "openrouter" and FALLBACK_API_KEY and "fallback" not in VISITED_PROVIDERS:
         ACTIVE_PROVIDER = "fallback"
+        VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
         ACTIVE_MODEL = FALLBACK_MODEL
         print(f"🔁 انتقلت من OpenRouter إلى مزود LLM الاحتياطي: {FALLBACK_MODEL}")
         return True
@@ -642,7 +662,7 @@ def _is_model_unavailable(exc: Exception) -> bool:
     text = str(exc).upper()
     return (
         ("404" in text and "NOT_FOUND" in text)
-        or ("400" in text and ("INVALID_REQUEST" in text or "UNSUPPORTED" in text))
+        or ("400" in text and ("INVALID_ARGUMENT" in text or "INVALID_REQUEST" in text or "UNSUPPORTED" in text))
     )
 
 

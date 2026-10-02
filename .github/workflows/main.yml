@@ -122,7 +122,8 @@ jobs:
           LLM_FALLBACK_MAX_TOKENS: "2200"
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
           GEMINI_MODEL: "gemini-3.8-flash"
-          GEMINI_FALLBACK_MODELS: "gemini-3.5-flash-lite"
+          # gemini-3.5-flash-lite returns INVALID_ARGUMENT on the current API.
+          GEMINI_FALLBACK_MODELS: "gemini-2.5-flash"
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: "google/gemini-2.5-flash,qwen/qwen3-32b"
           OPENROUTER_TIMEOUT: "45"
