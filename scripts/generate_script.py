@@ -61,7 +61,9 @@ TOPIC_HISTORY_PATH = SCRIPT_DIR.parent / "state" / "topic_history.json"
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 FALLBACK_MODELS = [
     item.strip()
-    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash").split(",")
+    # Gemini 2.5 access is restricted for new users. Keep defaults on
+    # current stable models so a quota failure on 3.8 can fail over.
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-3.5-flash-lite,gemini-3.5-flash").split(",")
     if item.strip()
 ]
 MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
@@ -538,7 +540,7 @@ class CompatibleChatModels:
                         "X-Title": self.title,
                     },
                     json=payload,
-                    timeout=OPENROUTER_TIMEOUT,
+                    timeout=(FALLBACK_TIMEOUT if self.title == "Fallback LLM" else OPENROUTER_TIMEOUT),
                 )
                 if response.status_code in (401, 402, 403, 429):
                     raise QuotaExhausted(
