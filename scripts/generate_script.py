@@ -83,17 +83,17 @@ def select_topic_from_bank(entries: list[dict[str, str]], history: list[dict]) -
 
 # ─────────────────────────── الإعدادات ───────────────────────────
 
-MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-FALLBACK_MODELS = [
+MODEL = os.getenv("GEMINI_MODEL", "").strip()
+GEMINI_FALLBACK_MODELS = [
     item.strip()
     # Gemini 2.5 access is restricted for new users. Keep defaults on
     # current stable models so a quota failure on 3.8 can fail over.
     for item in os.getenv("GEMINI_FALLBACK_MODELS", "").split(",")
     if item.strip()
 ]
-MODEL_CANDIDATES = list(dict.fromkeys([MODEL, *FALLBACK_MODELS]))
+MODEL_CANDIDATES = list(dict.fromkeys([item for item in [MODEL, *GEMINI_FALLBACK_MODELS] if item]))
 ACTIVE_MODEL_INDEX = 0
-ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
+ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX] if MODEL_CANDIDATES else ""
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_MODELS = [
     item.strip() for item in os.getenv(
@@ -109,9 +109,7 @@ FALLBACK_ENDPOINT = os.getenv(
     "LLM_FALLBACK_ENDPOINT", "https://api.groq.com/openai/v1/chat/completions"
 )
 FALLBACK_MODELS = [
-    item.strip() for item in os.getenv(
-        "LLM_FALLBACK_MODEL", "openai/gpt-oss-120b"
-    ).split(",") if item.strip()
+    item.strip() for item in os.getenv("LLM_FALLBACK_MODEL", "").split(",") if item.strip()
 ]
 FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
 FALLBACK_TIMEOUT = int(os.getenv("LLM_FALLBACK_TIMEOUT", "90"))
@@ -353,7 +351,10 @@ def parse_labeled_response(text: str) -> dict:
     cleaned = text.strip()
     cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
     cleaned = _strip_label_markup(cleaned)
-    labels = "HOOK|REGION|SOURCE_SOURCE_TYPE|SOURCE_TYPE|SOURCE_REFERENCE|NARRATION"
+    labels = (
+        "TITLE|CAPTION|HOOK|REGION|SOURCE_SOURCE_TYPE|SOURCE_TYPE|SOURCE_REFERENCE|"
+        "SOURCE|REFERENCE|NARRATION|VISUAL_KEYWORDS|PHONETIC_HINTS"
+    )
     pattern = re.compile(
         rf"(?:^|\n)\s*({labels})\s*:\s*(.*?)(?=\n\s*(?:{labels})\s*:|\Z)",
         re.DOTALL,
@@ -364,9 +365,26 @@ def parse_labeled_response(text: str) -> dict:
         if key == "source_source_type":
             key = "source_type"
             print("   ⚠️ تم تصحيح تسمية SOURCE_SOURCE_TYPE إلى SOURCE_TYPE تلقائيًا.")
+        elif key == "source":
+            key = "source_type"
+        elif key == "reference":
+            key = "source_reference"
         value = match.group(2).strip()
         result[key] = value
     return result
+
+
+def _first_sentence(text: str) -> str:
+    """Return the first spoken sentence, preserving its punctuation."""
+    cleaned = clean_continuation_text(text)
+    match = re.search(r"[.!؟!…]+\s*", cleaned)
+    return cleaned[:match.end()].strip() if match else cleaned
+
+
+def _derive_hook_from_narration(narration: str) -> str:
+    """Recover a legacy response's hook, still subject to the normal gate."""
+    first = _first_sentence(narration)
+    return first if 10 <= count_words(first) <= 20 else ""
 
 
 def try_parse_json_episode(text: str) -> dict | None:
@@ -393,6 +411,15 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         if json_fields and all(json_fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
             print(f"   ℹ️ {attempt_label} | {step_label}: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
             fields = json_fields
+
+    # Older responses sometimes emit TITLE/CAPTION/NARRATION and omit HOOK.
+    # Derive it only from the spoken first sentence; validate_episode still
+    # enforces exact alignment, Arabic quality, and the 10–20 word policy.
+    if not fields.get("hook", "").strip() and fields.get("narration", "").strip():
+        derived = _derive_hook_from_narration(fields["narration"])
+        if derived:
+            fields["hook"] = derived
+            print(f"   ℹ️ {attempt_label} | {step_label}: تم اشتقاق hook من أول جملة في narration.")
 
     missing = [key for key in STORY_REQUIRED_FIELDS if not fields.get(key, "").strip()]
     if missing:
@@ -547,8 +574,11 @@ class CompatibleChatModels:
                 if self.title in {"Fallback LLM", "OpenRouter"}
                 else STORY_MAX_TOKENS,
             ),
-            "reasoning_effort": "low",
         }
+        # Keep the portable payload valid for ordinary OpenAI-compatible
+        # endpoints; provider-specific reasoning fields are opt-in.
+        if os.getenv("LLM_SEND_REASONING_EFFORT", "false").lower() == "true":
+            payload["reasoning_effort"] = "low"
         if getattr(config, "response_mime_type", "") == "application/json":
             payload["response_format"] = {"type": "json_object"}
         errors = []
@@ -639,13 +669,13 @@ class ProviderClient:
 def has_next_model() -> bool:
     """هل فيه موديل تاني نقدر نتحول له؟ (Gemini احتياطي أو OpenRouter)"""
     if ACTIVE_PROVIDER == "openrouter":
-        return bool(FALLBACK_API_KEY)
+        return bool(FALLBACK_API_KEY and FALLBACK_MODEL)
     if ACTIVE_PROVIDER == "fallback":
-        return bool(OPENROUTER_API_KEY)
+        return bool(OPENROUTER_API_KEY and OPENROUTER_MODEL)
     return (
         ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES)
-        or bool(OPENROUTER_API_KEY)
-        or bool(FALLBACK_API_KEY)
+        or bool(OPENROUTER_API_KEY and OPENROUTER_MODEL)
+        or bool(FALLBACK_API_KEY and FALLBACK_MODEL)
     )
 
 
@@ -658,25 +688,25 @@ def switch_to_next_model() -> bool:
             ACTIVE_MODEL = MODEL_CANDIDATES[ACTIVE_MODEL_INDEX]
             print(f"🔁 انتقلت إلى موديل Gemini الاحتياطي: {ACTIVE_MODEL}")
             return True
-        if FALLBACK_API_KEY and "fallback" not in VISITED_PROVIDERS:
+        if FALLBACK_API_KEY and FALLBACK_MODEL and "fallback" not in VISITED_PROVIDERS:
             ACTIVE_PROVIDER = "fallback"
             VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
             ACTIVE_MODEL = FALLBACK_MODEL
             print(f"🔁 انتقلت إلى مزود LLM الاحتياطي: {FALLBACK_MODEL}")
             return True
-        if OPENROUTER_API_KEY and "openrouter" not in VISITED_PROVIDERS:
+        if OPENROUTER_API_KEY and OPENROUTER_MODEL and "openrouter" not in VISITED_PROVIDERS:
             ACTIVE_PROVIDER = "openrouter"
             VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
             ACTIVE_MODEL = OPENROUTER_MODEL
             print(f"🔁 انتقلت إلى OpenRouter كخطة احتياطية أخيرة: {OPENROUTER_MODEL}")
             return True
-    elif ACTIVE_PROVIDER == "fallback" and OPENROUTER_API_KEY and "openrouter" not in VISITED_PROVIDERS:
+    elif ACTIVE_PROVIDER == "fallback" and OPENROUTER_API_KEY and OPENROUTER_MODEL and "openrouter" not in VISITED_PROVIDERS:
         ACTIVE_PROVIDER = "openrouter"
         VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
         ACTIVE_MODEL = OPENROUTER_MODEL
         print(f"🔁 انتقلت من مزود LLM الاحتياطي إلى OpenRouter: {OPENROUTER_MODEL}")
         return True
-    elif ACTIVE_PROVIDER == "openrouter" and FALLBACK_API_KEY and "fallback" not in VISITED_PROVIDERS:
+    elif ACTIVE_PROVIDER == "openrouter" and FALLBACK_API_KEY and FALLBACK_MODEL and "fallback" not in VISITED_PROVIDERS:
         ACTIVE_PROVIDER = "fallback"
         VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
         ACTIVE_MODEL = FALLBACK_MODEL
@@ -1159,7 +1189,7 @@ def generate_episode() -> dict:
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key and not OPENROUTER_API_KEY and not FALLBACK_API_KEY:
         sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY أو GROQ_API_KEY إلى GitHub Secrets")
-    if api_key:
+    if api_key and MODEL_CANDIDATES:
         client = ProviderClient(genai.Client(api_key=api_key))
     else:
         # Follow the same resolved provider order as model_preflight: fallback
@@ -1200,7 +1230,7 @@ def generate_episode() -> dict:
     # كل تحويل بين موديلات بياخد محاولة كاملة إضافية، عشان التحويل ما ياكلش
     # من محاولات التوليد الأصلية.
     extra = 0
-    if api_key:
+    if api_key and MODEL_CANDIDATES:
         extra += len(MODEL_CANDIDATES) - 1
         if OPENROUTER_API_KEY:
             extra += 1

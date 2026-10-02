@@ -5,10 +5,24 @@ from scripts import generate_script as gs
 
 
 class IslamicFallbackTests(unittest.TestCase):
+    def test_legacy_labeled_reply_derives_hook_from_first_narration_sentence(self):
+        reply = (
+            "TITLE: سقوط مدينة تاريخية\n"
+            "CAPTION: قصة تاريخية موثقة\n"
+            "REGION: الأندلس في أواخر القرن الخامس الهجري\n"
+            "SOURCE_TYPE: موسوعة تاريخية\n"
+            "SOURCE_REFERENCE: مرجع تاريخي موثوق\n"
+            "NARRATION:\n"
+            "كيف انتهت مدينة عظيمة في ليلة واحدة بعد حصار طويل؟ ثم تتابعت الأحداث حتى أُغلقت أبوابها."
+        )
+        episode = gs.parse_story_reply(reply, "اختبار", "القصة")
+        self.assertEqual(episode["hook"], "كيف انتهت مدينة عظيمة في ليلة واحدة بعد حصار طويل؟")
+
     def test_openrouter_reports_groq_as_next_provider(self):
         with (
             patch.object(gs, "ACTIVE_PROVIDER", "openrouter"),
             patch.object(gs, "FALLBACK_API_KEY", "groq-test"),
+            patch.object(gs, "FALLBACK_MODEL", "llama-test"),
         ):
             self.assertTrue(gs.has_next_model())
 
