@@ -5,6 +5,16 @@ from scripts import generate_script as gs
 
 
 class IslamicFallbackTests(unittest.TestCase):
+    def test_internal_narration_headings_are_removed_before_validation(self):
+        text = "تمهيد موثق يبدأ بالحدث مباشرة.\nالنتيجة\nثم تكشفت الحقيقة في نهاية القصة."
+        cleaned = gs.strip_internal_narration_labels(text)
+        self.assertNotIn("النتيجة", cleaned)
+        self.assertIn("ثم تكشفت الحقيقة", cleaned)
+
+    def test_prefixed_internal_narration_heading_keeps_spoken_text(self):
+        cleaned = gs.strip_internal_narration_labels("الخاتمة: انتهت الحادثة بعد ظهور الدليل.")
+        self.assertEqual(cleaned, "انتهت الحادثة بعد ظهور الدليل.")
+
     def test_legacy_labeled_reply_derives_hook_from_first_narration_sentence(self):
         reply = (
             "TITLE: سقوط مدينة تاريخية\n"

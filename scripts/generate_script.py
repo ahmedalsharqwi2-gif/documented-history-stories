@@ -344,6 +344,30 @@ def clean_continuation_text(text: str) -> str:
     return cleaned
 
 
+_INTERNAL_LABELS = (
+    "الخطاف", "الحلقة المفتوحة", "إعادة الإمساك", "المفارقة", "التصاعد",
+    "الذروة", "الانقلاب", "النتيجة", "العبرة", "الخاتمة",
+    "hook", "open loop", "re-hook", "paradox", "escalation", "payoff", "lesson", "conclusion",
+)
+_INTERNAL_LABEL_PATTERN = "|".join(re.escape(label) for label in _INTERNAL_LABELS)
+
+
+def strip_internal_narration_labels(text: str) -> str:
+    """Remove editorial headings while preserving ordinary spoken sentences."""
+    cleaned = text.replace("\r\n", "\n")
+    cleaned = re.sub(
+        rf"(?im)^\s*(?:{_INTERNAL_LABEL_PATTERN})\s*[:：]?\s*$\n?",
+        "",
+        cleaned,
+    )
+    cleaned = re.sub(
+        rf"(?im)^\s*(?:{_INTERNAL_LABEL_PATTERN})\s*[:：]\s*",
+        "",
+        cleaned,
+    )
+    return re.sub(r"[ \t]+\n", "\n", cleaned).strip()
+
+
 def _strip_label_markup(text: str) -> str:
     cleaned = text.replace("**", "").replace("__", "")
     cleaned = re.sub(r"(?m)^[ \t]*[#>\-*]+[ \t]*", "", cleaned)
@@ -440,7 +464,7 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         "region": fields["region"].replace("**", "").replace("__", "").strip(),
         "source_type": fields["source_type"].replace("**", "").replace("__", "").strip(),
         "source_reference": fields["source_reference"].replace("**", "").replace("__", "").strip(),
-        "narration": clean_continuation_text(fields["narration"]),
+        "narration": strip_internal_narration_labels(clean_continuation_text(fields["narration"])),
     }
 
 
