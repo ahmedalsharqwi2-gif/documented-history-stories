@@ -41,10 +41,10 @@ from google import genai
 
 try:
     # Direct execution: ``python scripts/generate_script.py``.
-    from arabic_guard import validate_narration
+    from arabic_guard import validate_hook, validate_narration
 except ModuleNotFoundError:
     # Package/test execution: ``from scripts import generate_script``.
-    from scripts.arabic_guard import validate_narration
+    from scripts.arabic_guard import validate_hook, validate_narration
 from google.genai import types
 try:
     from scripts.topic_history import DuplicateTopicError, TopicHistory, clean_text, find_duplicate
@@ -428,6 +428,11 @@ def validate_episode(episode: dict) -> str | None:
     arabic_issues = validate_narration(narration)
     if arabic_issues:
         return "بوابة العربية رفضت narration: " + "; ".join(f"{i.kind}: {i.sample}" for i in arabic_issues)
+    hook_issues = validate_hook(str(episode.get("hook", "")), narration)
+    if hook_issues:
+        return "بوابة الهوك رفضت الحلقة: " + "; ".join(
+            f"{i.kind}: {i.sample}" for i in hook_issues
+        )
     red_flag = find_content_red_flag(narration)
     if red_flag:
         return f"النص يحتوي مصطلحًا علميًا مرفوضًا أو مختلقًا: {red_flag}"
@@ -790,10 +795,15 @@ def build_story_prompt(
         "حتى بعنوان أو صياغة مختلفة تمامًا. راجع الهوكات تحت (بيوصفوا "
         "الواقعة نفسها بدقة أكتر من العنوان) — لو الواقعة في بالك بتوصف "
         "نفس حادثة أي هوك منهم، ارفضها واختار واقعة مختلفة.\n\n"
-        "⚠️ الهوك: أول جملة في narration لازم تكون هي نفسها حقل hook "
-        "(أو صياغة قريبة جدًا منه) — مشوّقة ومباشرة تخلق فضول فوري (سؤال "
-        "مثير، أو تفصيلة تاريخية مدهشة وحقيقية، أو مشهد لحظة الذروة قبل "
-        "ما تُروى)، من غير أي تهويل يخالف الأمانة التاريخية.\n\n"
+        "⚠️ الهوك: أول جملة في narration لازم تكون مطابقة لحقل hook، من "
+        "عشر إلى عشرين كلمة، وتخلق سؤالًا أو فضولًا فوريًا من حقيقة موثقة. "
+        "ابدأ بالحدث مباشرة، لا بتحية أو مقدمة عامة، ولا تكشف النتيجة. "
+        "ممنوع أن يبدأ الهوك بعبارات مثل في هذا الفيديو أو سنتحدث اليوم.\n\n"
+        "🚫 فصل التخطيط عن السرد: كلمات البنية التحريرية مثل الخطاف، الحلقة "
+        "المفتوحة، المفارقة، التصاعد، الذروة، النتيجة، العبرة، والخاتمة "
+        "تعليمات داخلية لك فقط. ممنوع ظهورها أو أي مرادف إنجليزي لها داخل "
+        "NARRATION، حتى لو كانت على سطر مستقل أو متبوعة بنقطتين. اكتب "
+        "السرد كقصة طبيعية متصلة بلا عناوين أو أسماء مراحل.\n\n"
         "⚠️ التنويع: اختار عصرًا/شخصية محورية مختلفة عن اللي اتذكرت تحت.\n\n"
         f"⚠️ الطول: اكتب narration كاملة (تمهيد+تصعيد+ذروة+خاتمة) في حدود "
         f"{target_words} كلمة عربية تقريبًا. لو المصدر مش فيه تفاصيل كافية "

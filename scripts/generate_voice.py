@@ -30,6 +30,10 @@ try:
 except ImportError:  # direct `python scripts/generate_voice.py`
     from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
+try:
+    from .arabic_guard import validate_narration
+except ImportError:  # direct `python scripts/generate_voice.py`
+    from arabic_guard import validate_narration
 
 TTS_ENGINE = os.getenv("TTS_ENGINE", "silma").strip().lower()
 BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
@@ -796,6 +800,10 @@ def main() -> None:
     narration = normalize_text(str(episode.get("narration", "")))
     if not narration:
         sys.exit("❌ حقل narration غير موجود أو فارغ.")
+    narration_issues = validate_narration(narration)
+    if narration_issues:
+        details = "; ".join(f"{issue.kind}: {issue.sample}" for issue in narration_issues)
+        sys.exit(f"❌ أوقف TTS: narration يحتوي بنية تحريرية أو نصًا غير صالح ({details})")
 
     CLIPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)

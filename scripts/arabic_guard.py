@@ -18,6 +18,41 @@ HARAKAT = re.compile(r"[\u064B-\u0652\u0670]")
 TATWEEL = "\u0640"
 ARABIC_LETTER = re.compile(r"[\u0621-\u064A]")
 
+# These are editorial instructions, not narration.  Keep this list deliberately
+# centralized: the model may use the same words in its planning, but none of
+# them may leak into the spoken track or subtitles.
+INTERNAL_NARRATION_LABELS = (
+    "الخطاف",
+    "الحلقة المفتوحة",
+    "إعادة الإمساك",
+    "المفارقة",
+    "التصاعد",
+    "الذروة",
+    "الانقلاب",
+    "النتيجة",
+    "العبرة",
+    "الخاتمة",
+    "hook",
+    "open loop",
+    "re-hook",
+    "paradox",
+    "escalation",
+    "payoff",
+    "lesson",
+    "conclusion",
+)
+_INTERNAL_LABEL_RE = re.compile(
+    r"(?<![\u0621-\u064A\w])(?:"
+    + "|".join(re.escape(label) for label in INTERNAL_NARRATION_LABELS)
+    + r")(?![\u0621-\u064A\w])",
+    re.IGNORECASE,
+)
+_HOOK_GENERIC_RE = re.compile(
+    r"(?:^|[.!؟])\s*(?:السلام عليكم|في هذا الفيديو|سنتحدث اليوم|اليوم سنتحدث|"
+    r"سوف نتحدث|دعونا نتعرف)",
+    re.IGNORECASE,
+)
+
 
 @dataclass(frozen=True)
 class Issue:
@@ -30,6 +65,28 @@ def strip_marks(s: str) -> str:
     return HARAKAT.sub("", s).replace(TATWEEL, "")
 
 
+def _first_sentence(text: str) -> str:
+    match = re.search(r"[.!؟!]+\s*", text.strip())
+    return text.strip()[: match.end()].strip() if match else text.strip()
+
+
+def validate_hook(hook: str, narration: str) -> list[Issue]:
+    """Validate the retention hook without exposing its editorial label."""
+    issues: list[Issue] = []
+    hook = hook.strip()
+    first = _first_sentence(narration)
+    hook_words = hook.split()
+    if not hook:
+        return [Issue("empty_hook", "hook")]
+    if not 10 <= len(hook_words) <= 20:
+        issues.append(Issue("hook_length", f"{len(hook_words)} كلمة"))
+    if first and strip_marks(first).rstrip(".!؟") != strip_marks(hook).rstrip(".!؟"):
+        issues.append(Issue("hook_not_first_sentence", first[:160]))
+    if _HOOK_GENERIC_RE.search(hook):
+        issues.append(Issue("generic_hook", hook[:160]))
+    return issues
+
+
 def validate_narration(text: str, min_arabic_ratio: float = 0.85) -> list[Issue]:
     """Validate narration text immediately before it reaches TTS."""
     issues: list[Issue] = []
@@ -40,6 +97,9 @@ def validate_narration(text: str, min_arabic_ratio: float = 0.85) -> list[Issue]
         while end < len(text) and FOREIGN.match(text[end]):
             end += 1
         issues.append(Issue("foreign_script", text[start:end]))
+
+    for match in _INTERNAL_LABEL_RE.finditer(strip_marks(text)):
+        issues.append(Issue("internal_narration_label", match.group()))
 
     issues.extend(Issue("digit", m.group()) for m in DIGITS.finditer(text))
 
