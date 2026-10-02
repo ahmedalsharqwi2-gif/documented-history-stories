@@ -82,9 +82,10 @@ VOLUME = "+0%"
 WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "6"))
 VIDEO_W = 1920
 VIDEO_H = 1080
-# The 16:9 master is scaled to 9:16 for reels; this margin becomes ~284px
-# of top clearance on a phone, below the camera notch and platform chrome.
-REEL_CAPTION_SOURCE_TOP_MARGIN = 160
+# Horizontal 16:9 master subtitles stay in a bottom-centered safe lane.  The
+# master is also used as the source for reels, so keep enough clearance from
+# the lower platform controls without placing narration over the main subject.
+FULL_CAPTION_BOTTOM_MARGIN = 70
 
 # نموذج Whisper المستخدم لمحاذاة الترجمة مع الصوت الفعلي (انظر
 # align_words_with_whisper أدناه). "base" اختيار متوازن بين السرعة
@@ -558,7 +559,7 @@ def build_ass_header() -> str:
     """يعرّف تنسيق الترجمة العربية المتزامنة مع الصوت عبر Whisper."""
     style_ar = (
         f"Style: Caption,Noto Sans Arabic,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
-        f"1,0,0,0,100,100,0,0,1,3,0,8,70,70,{REEL_CAPTION_SOURCE_TOP_MARGIN},1"
+        f"1,0,0,0,100,100,0,0,1,3,0,2,70,70,{FULL_CAPTION_BOTTOM_MARGIN},1"
     )
     return (
         "[Script Info]\nScriptType: v4.00+\n"

@@ -13,9 +13,9 @@ import generate_voice  # noqa: E402
 
 
 class ReelSafeAreaTests(unittest.TestCase):
-    def test_narration_captions_use_top_safe_lane(self):
+    def test_narration_captions_use_bottom_safe_lane_for_horizontal_master(self):
         style = next(line for line in generate_voice.build_ass_header().splitlines() if line.startswith("Style: Caption,"))
-        self.assertIn(",8,70,70,160,1", style)
+        self.assertIn(",2,70,70,70,1", style)
 
     def test_cta_is_in_a_separate_top_safe_lane_below_captions(self):
         with tempfile.TemporaryDirectory() as directory:
