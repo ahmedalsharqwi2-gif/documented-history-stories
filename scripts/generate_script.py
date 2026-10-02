@@ -1168,12 +1168,16 @@ def generate_episode() -> dict:
     if api_key:
         client = ProviderClient(genai.Client(api_key=api_key))
     else:
-        if OPENROUTER_API_KEY:
+        # Follow the same resolved provider order as model_preflight: fallback
+        # first, then OpenRouter. Never prefer a merely configured model.
+        if FALLBACK_API_KEY and FALLBACK_MODEL:
+            ACTIVE_PROVIDER = "fallback"
+            ACTIVE_MODEL = FALLBACK_MODEL
+        elif OPENROUTER_API_KEY and OPENROUTER_MODEL:
             ACTIVE_PROVIDER = "openrouter"
             ACTIVE_MODEL = OPENROUTER_MODEL
         else:
-            ACTIVE_PROVIDER = "fallback"
-            ACTIVE_MODEL = FALLBACK_MODEL
+            sys.exit("MODEL_PREFLIGHT_ERROR: no validated fallback model is available")
         client = ProviderClient(None)
     system_prompt = load_system_prompt()
     recent_titles = load_used_history()
