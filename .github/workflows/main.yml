@@ -141,6 +141,8 @@ jobs:
           TRANSIENT_BACKOFF_BASE: "8"
           BUDGET_RETRIES: "0"
           PROOFREAD_TASHKEEL: "false"
+          TOPIC_BANK_REQUIRED: "true"
+          TOPIC_BANK_FILE: "TOPIC_BANK.md"
         run: |
           export LLM_FALLBACK_MODEL="${RESOLVED_FALLBACK_MODEL:-llama-3.1-8b-instant}"
           echo "Using fallback model: $LLM_FALLBACK_MODEL"
