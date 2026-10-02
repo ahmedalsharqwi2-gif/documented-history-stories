@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.publish_buffer import build_post_text, ensure_caption_hashtags
+from scripts.publish_buffer import HISTORICAL_SOURCE, build_post_text, ensure_caption_hashtags
 
 
 class PublishMetadataTests(unittest.TestCase):
@@ -14,6 +14,11 @@ class PublishMetadataTests(unittest.TestCase):
         text = build_post_text("youtube", "full_video", "عنوان", "#Shorts")
         self.assertNotIn("#Shorts", text)
         self.assertIn("#تاريخ", text)
+        self.assertIn(HISTORICAL_SOURCE, text)
+
+    def test_source_is_not_added_to_short_description(self):
+        text = build_post_text("facebook", "short", "عنوان", "مقتطف")
+        self.assertNotIn(HISTORICAL_SOURCE, text)
 
 
 if __name__ == "__main__":

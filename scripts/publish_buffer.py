@@ -125,6 +125,7 @@ def publish_target_utc(hour: int = 19) -> datetime:
 # "Video must be no longer than 3 minutes / must be vertical for YouTube Shorts".
 SHORTS_HASHTAG_RE = re.compile(r"(?<!\w)#[Ss]hort[s]?\b")
 DEFAULT_HASHTAGS = ("#تاريخ", "#قصص_تاريخية", "#معلومة_تاريخية")
+HISTORICAL_SOURCE = "المصدر: كتاب تاريخي موثوق — كتاب دولة الإسلام في الأندلس للمؤرخ محمد عبد الله عنان"
 
 
 def strip_shorts_hashtag(text: str) -> str:
@@ -138,9 +139,11 @@ def strip_shorts_hashtag(text: str) -> str:
     return SHORTS_HASHTAG_RE.sub("", text).strip()
 
 
-def ensure_caption_hashtags(title: str, caption: str) -> str:
+def ensure_caption_hashtags(title: str, caption: str, *, include_source: bool = False) -> str:
     """Never publish an empty caption or a post without relevant hashtags."""
     text = " ".join(str(caption or "").split()).strip() or str(title).strip()
+    if include_source and HISTORICAL_SOURCE not in text:
+        text = f"{text}\n\n{HISTORICAL_SOURCE}"
     existing = re.findall(r"(?<!\w)#[\w\u0600-\u06FF]+", text)
     tags = list(dict.fromkeys(existing + list(DEFAULT_HASHTAGS)))[:5]
     return f"{text}\n\n{' '.join(tags)}".strip()
@@ -301,7 +304,7 @@ def metadata_for(channel_id: str, asset_type: str, title: str) -> dict | None:
 
 
 def build_post_text(service: str, asset_type: str, title: str, caption: str, full_url: str | None = None) -> str:
-    caption = ensure_caption_hashtags(title, caption)
+    caption = ensure_caption_hashtags(title, caption, include_source=(asset_type == "full_video"))
     hashtags = " ".join(dict.fromkeys(re.findall(r"(?<!\w)#\S+", caption)))
     if asset_type == "full_video":
         # مهم: نشيل #Shorts/#Short من كابشن ومن الهاشتاجات المجمّعة للفيديو
