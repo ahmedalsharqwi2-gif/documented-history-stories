@@ -30,6 +30,7 @@ try:
 except ImportError:  # direct `python scripts/generate_voice.py`
     from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
+from arabic_speech_core.ass_text import render_arabic_caption
 try:
     from .arabic_guard import validate_narration
 except ImportError:  # direct `python scripts/generate_voice.py`
@@ -523,14 +524,7 @@ def ass_time(seconds: float) -> str:
 def two_lines_ar(words: list[str]) -> str:
     """يقسم كتلة كلمات عربية إلى سطرين لعرض ترجمة عربية متزامنة كلمة
     بكلمة تقريبًا (تُستخدم لخط الترجمة العربية السفلي)."""
-    words = [word.translate(DISPLAY_PUNCTUATION).strip() for word in words]
-    words = [word for word in words if word]
-    if len(words) <= 3:
-        return "\u200f" + " ".join(words)
-    midpoint = (len(words) + 1) // 2
-    # \N هو كسر سطر ASS، أما U+200F فهو حرف اتجاه غير مرئي. لا نستخدم
-    # النص الحرفي "\\u200f" حتى لا يظهر بجانب الكلام في الفيديو.
-    return "\u200f" + " ".join(words[:midpoint]) + r"\N" + "\u200f" + " ".join(words[midpoint:])
+    return render_arabic_caption(words)
 
 
 def validate_caption_chunks(ass_text: str, max_words: int = WORDS_PER_CAPTION_CHUNK) -> None:

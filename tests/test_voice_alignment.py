@@ -9,6 +9,13 @@ from scripts.generate_voice import two_lines_ar, validate_caption_chunks
 
 
 class CaptionLayoutTests(unittest.TestCase):
+    def test_caption_renderer_never_emits_bidi_controls(self):
+        rendered = two_lines_ar(["هذا\u200f", "نص", "عربي", "سليم"])
+
+        self.assertNotIn("\u200f", rendered)
+        self.assertNotIn("\u200e", rendered)
+        self.assertEqual(rendered, "هذا نص\\Nعربي سليم")
+
     def test_six_words_split_three_and_three(self):
         rendered = two_lines_ar(["واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة"])
         self.assertIn(r"\N", rendered)

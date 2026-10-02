@@ -2,8 +2,9 @@ name: Create and Publish Historical Strategy Episode
 
 on:
   schedule:
-    # يبدأ التوليد الساعة 13:30 UTC (16:30 القاهرة)، والنشر يُحسب ثابتًا عند 19:00 القاهرة.
-    - cron: "30 13 * * *"
+    # يبدأ التحضير قبل موعدي النشر النهائيين 12:00 و18:00 القاهرة.
+    - cron: "0 8 * * *"
+    - cron: "0 14 * * *"
   workflow_dispatch:
     inputs:
       voice_profile:
@@ -49,6 +50,32 @@ jobs:
     timeout-minutes: 180
 
     steps:
+      - name: Set final Cairo publication slot
+        env:
+          SCHEDULE_EXPR: ${{ github.event.schedule }}
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime, timedelta, timezone
+          from zoneinfo import ZoneInfo
+
+          now = datetime.now(timezone.utc)
+          cairo_now = now.astimezone(ZoneInfo("Africa/Cairo"))
+          target_hour = {"0 8 * * *": 12, "0 14 * * *": 18}.get(os.environ.get("SCHEDULE_EXPR", ""))
+          if target_hour is None:
+              slots = [cairo_now.replace(hour=12, minute=0, second=0, microsecond=0),
+                       cairo_now.replace(hour=18, minute=0, second=0, microsecond=0)]
+              target = next((slot for slot in slots if slot > cairo_now), slots[0] + timedelta(days=1))
+          else:
+              target = cairo_now.replace(hour=target_hour, minute=0, second=0, microsecond=0)
+              if target <= cairo_now:
+                  target += timedelta(days=1)
+          due_at = target.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+          print(f"Final Cairo publication slot: {target.isoformat()} ({due_at} UTC)")
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env_file:
+              env_file.write(f"PUBLISH_DUE_AT={due_at}\n")
+          PY
+
       - name: Checkout repo
         uses: actions/checkout@v6
         with:

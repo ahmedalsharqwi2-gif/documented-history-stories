@@ -119,6 +119,17 @@ def publish_target_utc(hour: int = 19) -> datetime:
     return target.astimezone(timezone.utc)
 
 
+def scheduled_publish_utc(default_hour: int = 19) -> datetime:
+    """Use the workflow's exact final slot when one was computed."""
+    raw = os.environ.get("PUBLISH_DUE_AT", "").strip()
+    if raw:
+        parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            raise ValueError("PUBLISH_DUE_AT must include a timezone")
+        return parsed.astimezone(timezone.utc)
+    return publish_target_utc(default_hour)
+
+
 
 # يوتيوب بيعامل أي فيديو نصّه فيه #Shorts/#Short كـ Short تلقائيًا بغض النظر
 # عن أبعاده الحقيقية. لازم نشيله من نص الفيديو الكامل حتى لا يُرفض برسالة
@@ -332,7 +343,7 @@ def build_post_text(service: str, asset_type: str, title: str, caption: str, ful
 
 
 def iso_after(hours: float) -> str:
-    due = publish_target_utc(19)
+    due = scheduled_publish_utc(19)
     return due.isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
