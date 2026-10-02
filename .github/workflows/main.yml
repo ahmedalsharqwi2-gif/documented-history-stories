@@ -125,6 +125,8 @@ jobs:
           # fallback directly for this production run instead of burning
           # attempts across unavailable Gemini models first.
           GEMINI_API_KEY: ""
+          LLM_SEND_REASONING_EFFORT: "true"
+          LLM_FALLBACK_REASONING_EFFORT: "low"
           LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
           LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL || 'openai/gpt-oss-20b' }}
