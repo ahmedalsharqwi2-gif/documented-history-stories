@@ -54,7 +54,7 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 YT_CATEGORY_ID = os.environ.get("YT_CATEGORY_ID", "24")
 YT_PRIVACY = os.environ.get("YT_PRIVACY", "public")  # public | unlisted | private
 YT_MADE_FOR_KIDS = os.environ.get("YT_MADE_FOR_KIDS", "false").lower() == "true"
-HISTORICAL_SOURCE = "المصدر: كتاب تاريخي موثوق — كتاب دولة الإسلام في الأندلس للمؤرخ محمد عبد الله عنان"
+HISTORICAL_SOURCE = "المصادر والمراجع: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
 # الفيديو الطويل أداؤه أفضل مساءً (وقت فراغ فعلي عند المشاهد) بعكس
 # الشورتس اللي أداؤها أفضل صبحًا/ضهرًا. لو الـ workflow بيشتغل صباحًا،
 # القيمة دي بتأجل النشر الفعلي على يوتيوب لنفس اليوم مساءً بدل النشر
@@ -138,8 +138,11 @@ def load_title_and_description() -> tuple[str, str]:
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     title = str(episode.get("title", "Historical Strategy Episode")).strip()[:100]
     caption = str(episode.get("caption", "")).strip() or title
+    source_reference = str(episode.get("source_reference", "")).strip()
+    if not source_reference:
+        raise RuntimeError("المصادر والمراجع مفقودة من current_episode.json؛ لن يتم النشر")
     # وصف يوتيوب بيسمح بحد أقصى 5000 حرف، الكابشن الحالي عادة أقصر بكتير.
-    description = f"{caption[:4750]}\n\n{HISTORICAL_SOURCE}\n\n#تاريخ #قصص_تاريخية #معلومة_تاريخية".strip()
+    description = f"{caption[:4650]}\n\nالمصادر والمراجع:\n- {source_reference}\n\n#تاريخ #قصص_تاريخية #معلومة_تاريخية".strip()
     return title, description
 
 

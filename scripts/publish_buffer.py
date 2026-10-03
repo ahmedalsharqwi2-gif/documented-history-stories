@@ -136,7 +136,7 @@ def scheduled_publish_utc(default_hour: int = 19) -> datetime:
 # "Video must be no longer than 3 minutes / must be vertical for YouTube Shorts".
 SHORTS_HASHTAG_RE = re.compile(r"(?<!\w)#[Ss]hort[s]?\b")
 DEFAULT_HASHTAGS = ("#تاريخ", "#قصص_تاريخية", "#معلومة_تاريخية")
-HISTORICAL_SOURCE = "المصدر: كتاب تاريخي موثوق — كتاب دولة الإسلام في الأندلس للمؤرخ محمد عبد الله عنان"
+HISTORICAL_SOURCE = "المصادر والمراجع: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
 
 
 def strip_shorts_hashtag(text: str) -> str:
@@ -150,11 +150,23 @@ def strip_shorts_hashtag(text: str) -> str:
     return SHORTS_HASHTAG_RE.sub("", text).strip()
 
 
-def ensure_caption_hashtags(title: str, caption: str, *, include_source: bool = False) -> str:
+def ensure_caption_hashtags(
+    title: str,
+    caption: str,
+    *,
+    include_source: bool = False,
+    source_reference: str = "",
+) -> str:
     """Never publish an empty caption or a post without relevant hashtags."""
     text = " ".join(str(caption or "").split()).strip() or str(title).strip()
-    if include_source and HISTORICAL_SOURCE not in text:
-        text = f"{text}\n\n{HISTORICAL_SOURCE}"
+    if include_source:
+        reference = " ".join(str(source_reference or "").split()).strip()
+        # The production runner rejects a missing episode reference before
+        # calling this helper; retain a deterministic fallback for old callers
+        # and unit tests that exercise formatting in isolation.
+        source_block = f"المصادر والمراجع:\n- {reference or HISTORICAL_SOURCE}"
+        if source_block not in text:
+            text = f"{text}\n\n{source_block}"
     existing = re.findall(r"(?<!\w)#[\w\u0600-\u06FF]+", text)
     tags = list(dict.fromkeys(existing + list(DEFAULT_HASHTAGS)))[:5]
     return f"{text}\n\n{' '.join(tags)}".strip()
@@ -314,8 +326,20 @@ def metadata_for(channel_id: str, asset_type: str, title: str) -> dict | None:
     return None
 
 
-def build_post_text(service: str, asset_type: str, title: str, caption: str, full_url: str | None = None) -> str:
-    caption = ensure_caption_hashtags(title, caption, include_source=(asset_type == "full_video"))
+def build_post_text(
+    service: str,
+    asset_type: str,
+    title: str,
+    caption: str,
+    full_url: str | None = None,
+    source_reference: str = "",
+) -> str:
+    caption = ensure_caption_hashtags(
+        title,
+        caption,
+        include_source=(asset_type == "full_video"),
+        source_reference=source_reference,
+    )
     hashtags = " ".join(dict.fromkeys(re.findall(r"(?<!\w)#\S+", caption)))
     if asset_type == "full_video":
         # مهم: نشيل #Shorts/#Short من كابشن ومن الهاشتاجات المجمّعة للفيديو
@@ -388,6 +412,9 @@ def _run() -> None:
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     title = str(episode.get("title", "Historical Strategy Episode")).strip()
     caption = str(episode.get("caption", "")).strip() or title
+    source_reference = str(episode.get("source_reference", "")).strip()
+    if not source_reference:
+        raise RuntimeError("المصادر والمراجع مفقودة من current_episode.json؛ لن يتم النشر")
 
     full_path = OUTPUT_DIR / "final_video_full.mp4"
     if not full_path.exists() or full_path.stat().st_size == 0:
@@ -462,7 +489,9 @@ def _run() -> None:
             try:
                 if org_id is not None and pending_count(org_id, cid, api_key) >= CHANNEL_PENDING_LIMIT:
                     raise RuntimeError(f"قائمة Buffer ممتلئة ({CHANNEL_PENDING_LIMIT}) للقناة {service}")
-                text = build_post_text(service, asset_type, title, caption, full_urls.get(service))
+                text = build_post_text(
+                    service, asset_type, title, caption, full_urls.get(service), source_reference
+                )
                 post = create_post(url, text, title, cid, api_key, due_at, asset_type)
                 print(f"  ✅ {service}: {post.get('id')} عند {post.get('dueAt', due_at)}")
                 successes += 1

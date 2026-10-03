@@ -214,11 +214,30 @@ TASHKEEL_SCHEMA = {
 STORY_REQUIRED_FIELDS = ("hook", "region", "source_type", "source_reference", "narration")
 
 DEFAULT_VISUAL_KEYWORDS = [
-    "historical documentary",
-    "archival documents",
-    "old map",
-    "museum artifact",
+    "historical documentary landscape",
+    "ancient desert road",
+    "old stone architecture",
+    "historic map parchment",
+    "old manuscript closeup",
+    "ancient fortress exterior",
+    "traditional sailing vessel",
+    "archaeological ruins landscape",
 ]
+
+TRUSTED_SOURCE_MARKERS = (
+    "القرآن", "صحيح البخاري", "البخاري", "صحيح مسلم", "مسلم", "سنن أبي داود",
+    "الترمذي", "النسائي", "ابن ماجه", "ابن هشام", "ابن كثير", "الطبري",
+    "الذهبي", "ابن حجر", "السيرة النبوية", "تاريخ الإسلام", "البداية والنهاية",
+)
+FORBIDDEN_SOURCE_MARKERS = (
+    "فيسبوك", "انستغرام", "إنستغرام", "تيك توك", "تويتر", "إكس", "واتساب",
+    "منشور", "مواقع التواصل", "مصدر مجهول", "رواية متداولة", "قصة متناقلة",
+)
+VISUAL_FORBIDDEN_TERMS = {
+    "person", "people", "human", "man", "men", "woman", "women", "female",
+    "girl", "boy", "face", "portrait", "actor", "actress", "prophet",
+    "companion", "modern car", "smartphone", "city street", "office",
+}
 
 
 def to_gemini_schema(schema: dict) -> dict:
@@ -551,16 +570,31 @@ def validate_episode(episode: dict) -> str | None:
             f"الحد الأدنى المقبول {min_words})"
         )
 
-    if not episode.get("visual_keywords"):
+    visual_keywords = episode.get("visual_keywords")
+    if not isinstance(visual_keywords, list) or not visual_keywords:
         return "حقل visual_keywords فاضي"
+    if not 8 <= len(visual_keywords) <= 10:
+        return f"حقل visual_keywords يجب أن يحتوي من 8 إلى 10 كلمات بحث مرتبطة بالمشاهد (وجدنا {len(visual_keywords)})"
+    for keyword in visual_keywords:
+        normalized = " ".join(str(keyword).strip().lower().split())
+        if not normalized:
+            return "حقل visual_keywords يحتوي كلمة فارغة"
+        if any(term in normalized for term in VISUAL_FORBIDDEN_TERMS):
+            return f"visual_keywords يحتوي كلمة قد تجسد بشرًا أو عنصرًا حديثًا: {keyword}"
     if not str(episode.get("hook", "")).strip():
         return "حقل hook فاضي"
     if not str(episode.get("caption", "")).strip():
         return "حقل caption فاضي — لازم وصف للنشر على المنصات"
     if not str(episode.get("source_type", "")).strip():
         return "حقل source_type فاضي — كل حلقة تاريخية لازم توثيق لنوع المصدر"
-    if not str(episode.get("source_reference", "")).strip():
+    source_reference = str(episode.get("source_reference", "")).strip()
+    if not source_reference:
         return "حقل source_reference فاضي — كل حلقة تاريخية لازم مرجع دقيق"
+    source_plain = source_reference.casefold()
+    if any(marker.casefold() in source_plain for marker in FORBIDDEN_SOURCE_MARKERS):
+        return "source_reference يشير إلى مصدر اجتماعي أو مجهول؛ أُوقفت الحلقة حفاظًا على التوثيق"
+    if not any(marker.casefold() in source_plain for marker in TRUSTED_SOURCE_MARKERS):
+        return "source_reference لا يحتوي اسم مصدر إسلامي معتبر يمكن التحقق منه"
 
     phonetic_hints = episode.get("phonetic_hints")
     if not isinstance(phonetic_hints, list):
@@ -888,7 +922,7 @@ def call_model(
 _STORY_FORMAT_BLOCK = (
     "HOOK: <جملة الهوك>\n"
     "REGION: <وصف العصر/المكان>\n"
-    "SOURCE_TYPE: <نوع المصدر (أرشيف/متحف/موسوعة/كتاب تاريخي موثوق)>\n"
+    "SOURCE_TYPE: <القرآن/حديث صحيح/سيرة موثوقة/كتاب تاريخ إسلامي معتبر>\n"
     "SOURCE_REFERENCE: <المرجع الدقيق>\n"
     "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
 )
@@ -901,12 +935,12 @@ def build_story_prompt(
     message = (
         "اكتب حلقة جديدة تمامًا — قصة تاريخية كاملة من "
         "الهوك للتمهيد للتصعيد للذروة للخاتمة، في رد واحد.\n\n"
-        "⚠️ نطاق القناة: اختر قصة تاريخية موثقة، ويُرحب بقصص الفتوحات الإسلامية والغزوات والمعارك والانتصارات الإسلامية عبر العصور، إلى جانب القصص العسكرية والإنسانية العالمية. عند اختيار واقعة إسلامية، لا تختلق تفاصيل أو حوارًا، واذكر مصدرًا تاريخيًا محددًا، واحترم الشخصيات والمذاهب وتجنب التحقير والتحريض.\n\n"
+        "⚠️ نطاق القناة: اختر قصة إسلامية حقيقية وموثقة من القرآن أو السنة الصحيحة أو كتب السيرة والتاريخ الإسلامي المعتبرة. ارفض أي قصة أسطورية أو مجهولة أو من مواقع التواصل. لا تختلق تفاصيل أو حوارًا، واذكر مصدرًا إسلاميًا محددًا. عند ذكر النبي محمد استخدم دائمًا النبي محمد صلى الله عليه وسلم، وعند ذكر الله استخدم الله جل جلاله أو قال الله تعالى، وأضف رضي الله عنه أو عنها أو عنهم للصحابة عند ملاءمة السياق. لا تجسد نبيًا أو صحابيًا أو شخصية مقدسة بأي صورة أو فيديو أو ممثل أو وجه.\n\n"
         "⚠️ اللغة: narration بالكامل باللغة العربية الفصحى المبسّطة "
         "(Modern Standard Arabic) فقط، ممنوع أي لهجة عامية. شكّل النص كاملًا "
         "لتوجيه النطق، وراجع مطابقة الضمائر والأفعال والتذكير والتأنيث قبل الرد.\n\n"
-        "⚠️ التوثيق التاريخي: اختر واقعة قابلة للمراجعة من أرشيف أو متحف "
-        "أو موسوعة أو كتاب تاريخي موثوق. ممنوع اختلاق أي حوار أو تفصيلة أو "
+        "⚠️ التوثيق التاريخي: اختر واقعة قابلة للمراجعة من القرآن أو الحديث الصحيح "
+        "أو كتاب سيرة أو تاريخ إسلامي موثوق. ممنوع اختلاق أي حوار أو تفصيلة أو "
         "اسم أو رقم أو نتيجة. إذا اختلفت الروايات، اذكر ذلك بوضوح ولا تقدم "
         "المختلف عليه كحقيقة قطعية.\n\n"
         "⚠️ عدم التكرار: ممنوع نفس الواقعة اللي اتستخدمت في حلقة سابقة "
@@ -937,6 +971,12 @@ def build_story_prompt(
         "مرجع بين قوسين، ضع نقطة \".\" فورًا بعد القوس الختامي مباشرة (من "
         "غير مسافة قبلها). آخر حرف حرفيًا في ردك يجب أن يكون واحدًا من: "
         "نقطة (.) أو علامة تعجب (!) أو علامة استفهام (؟) — ولا شيء بعده.\n\n"
+        "⚠️ المشاهد: عند بناء visual_keywords اختر من 8 إلى 10 عبارات إنجليزية، "
+        "كل عبارة مرتبطة بجملة أو مشهد محدد في narration وبالحقبة والمكان. استخدم "
+        "الصحارى والطرق القديمة والعمارة والمخطوطات والخرائط والأدوات واللقطات "
+        "الواسعة الخالية من البشر. ممنوع النساء والوجوه والممثلون والأنبياء "
+        "والصحابة والعناصر الحديثة والسيارات والهواتف والشاشات. لا تستخدم لقطة "
+        "عامة عشوائية لمجرد ملء الفراغ.\n\n"
         "⚠️ الفورمات — التزم بيه حرفيًا: ردك كله لازم يكون نص عادي "
         "(plain text) وليس JSON، بالشكل بالضبط تحت. اكتب كل تسمية "
         "حرفيًا بالرموز الكبيرة كما هي (HOOK: بدون أي ترجمة "
