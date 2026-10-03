@@ -197,12 +197,13 @@
       "title": "في صحراء وادي اليرموك، اجتمع قافلة من الفرس والبابليين، يملكون مائتين ألف جندي",
       "hook": "في صحراء وادي اليرموك، اجتمع قافلة من الفرس والبابليين، يملكون مائتين ألف جندي، على أعتاب سهل يُدعى اليرموك.",
       "region": "بلاد الشام، عام 636 م، بعد غزوة حُمّص",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "6cae6b040358459c91150bdeafa3690a",
       "reserved_at": "2026-10-03T08:19:34Z",
       "run_id": "37108534932",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "6cae6b040358459c91150bdeafa3690a",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-03T08:19:52Z"
     }
   ]
 }
