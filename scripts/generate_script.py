@@ -602,7 +602,10 @@ def validate_episode(episode: dict) -> str | None:
         normalized = " ".join(str(keyword).strip().lower().split())
         if not normalized:
             return "حقل visual_keywords يحتوي كلمة فارغة"
-        if any(term in normalized for term in VISUAL_FORBIDDEN_TERMS):
+        tokens = set(re.findall(r"[a-z]+", normalized))
+        forbidden_single = {term for term in VISUAL_FORBIDDEN_TERMS if " " not in term}
+        forbidden_phrases = {term for term in VISUAL_FORBIDDEN_TERMS if " " in term}
+        if (tokens & forbidden_single) or any(phrase in normalized for phrase in forbidden_phrases):
             return f"visual_keywords يحتوي كلمة قد تجسد بشرًا أو عنصرًا حديثًا: {keyword}"
     if not str(episode.get("hook", "")).strip():
         return "حقل hook فاضي"
