@@ -443,6 +443,24 @@ def _derive_hook_from_narration(narration: str) -> str:
     return first if 10 <= count_words(first) <= 20 else ""
 
 
+def _split_overlong_first_sentence(narration: str) -> tuple[str, str]:
+    """Make an overlong model opening compatible with the 10–20 word hook gate."""
+    first = _first_sentence(narration)
+    words = first.split()
+    if len(words) <= 20:
+        return narration, ""
+    cut = 16
+    hook = " ".join(words[:cut]).rstrip("،,:؛") + "؟"
+    remainder = " ".join(words[cut:]).strip(" .!?؟")
+    suffix = narration[len(first):].lstrip()
+    rebuilt = hook
+    if remainder:
+        rebuilt += " " + remainder
+    if suffix:
+        rebuilt += " " + suffix
+    return rebuilt.strip(), hook
+
+
 def try_parse_json_episode(text: str) -> dict | None:
     cleaned = text.strip()
     cleaned = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", cleaned).strip()
@@ -475,7 +493,12 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         fields["narration"] = strip_internal_narration_labels(
             clean_continuation_text(fields["narration"])
         )
+        fields["narration"], recovered_hook = _split_overlong_first_sentence(fields["narration"])
+        if recovered_hook:
+            print(f"   ℹ️ {attempt_label} | {step_label}: تم تقسيم الجملة الافتتاحية الطويلة إلى hook من 16 كلمة.")
         derived = _derive_hook_from_narration(fields["narration"])
+        if recovered_hook:
+            derived = recovered_hook
         if derived:
             if fields.get("hook", "").strip() != derived:
                 print(f"   ℹ️ {attempt_label} | {step_label}: تم توحيد hook مع أول جملة فعلية في narration.")

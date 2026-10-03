@@ -45,6 +45,12 @@ class IslamicFallbackTests(unittest.TestCase):
         self.assertEqual(episode["hook"], "كيف صمدت قلعة صغيرة أمام جيش عظيم طوال أشهر عديدة في الشتاء؟")
         self.assertEqual(gs.validate_hook(episode["hook"], episode["narration"]), [])
 
+    def test_overlong_first_sentence_is_split_into_a_valid_hook(self):
+        narration = "هذه بداية طويلة جدًا للقصة حتى تتجاوز الحد المطلوب للهوك وتستمر في وصف المكان والحدث بالتفصيل قبل أن تبدأ بقية القصة. ثم تتوالى الأحداث."
+        normalized, hook = gs._split_overlong_first_sentence(narration)
+        self.assertEqual(len(hook.split()), 16)
+        self.assertEqual(gs.validate_hook(hook, normalized), [])
+
     def test_openrouter_reports_groq_as_next_provider(self):
         with (
             patch.object(gs, "ACTIVE_PROVIDER", "openrouter"),
