@@ -223,12 +223,13 @@
       "title": "في صباحٍ هادئٍ بعد غزوةٍ هزمت فيها جيوشٍ من بلاد الشام، كان الخليفة أبو بكر الصد",
       "hook": "في صباحٍ هادئٍ بعد غزوةٍ هزمت فيها جيوشٍ من بلاد الشام، كان الخليفة أبو بكر الصديق؟",
       "region": "بلاد الشام، عام 636 م، بعد غزوة اليرموك",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "73c85c1e9bf64fda9c40984f5f7be922",
       "reserved_at": "2026-10-03T18:54:53Z",
       "run_id": "37144329414",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "73c85c1e9bf64fda9c40984f5f7be922",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-03T18:55:39Z"
     }
   ]
 }
