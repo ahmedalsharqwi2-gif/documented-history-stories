@@ -17,6 +17,15 @@ class ReelSafeAreaTests(unittest.TestCase):
         style = next(line for line in generate_voice.build_ass_header().splitlines() if line.startswith("Style: Caption,"))
         self.assertIn(",2,70,70,70,1", style)
 
+    def test_vertical_narration_captions_move_to_top_safe_lane(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "horizontal.ass"
+            output = Path(directory) / "vertical.ass"
+            source.write_text(generate_voice.build_ass_header(), encoding="utf-8")
+            assemble_video.make_vertical_subtitles(source, output)
+            style = next(line for line in output.read_text(encoding="utf-8").splitlines() if line.startswith("Style: Caption,"))
+        self.assertIn(",8,70,70,160,1", style)
+
     def test_cta_is_in_a_separate_top_safe_lane_below_captions(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "cta.ass"

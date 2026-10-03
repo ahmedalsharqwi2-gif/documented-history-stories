@@ -53,6 +53,7 @@ STATE_DIR = ROOT_DIR / "state"
 CLIPS_DIR = ROOT_DIR / "downloaded_clips"
 OUTPUT_DIR = ROOT_DIR / "output"
 SFX_DIR = ROOT_DIR / "assets" / "sfx"
+SUBTITLES_PATH = CLIPS_DIR / "narration.ass"
 REMINDER_AMBIENCE_GAIN = 0.035
 REMINDER_EVENT_GAIN = 0.14
 
@@ -163,6 +164,24 @@ def subtitle_filter(subtitles: Path | None) -> str | None:
         return None
     path = str(subtitles.resolve()).replace("\\", "/").replace(":", "\\:")
     return f"subtitles='{path}'"
+
+
+def make_vertical_subtitles(source: Path, output: Path) -> Path:
+    """Move narration captions to the upper safe lane for 9:16 reels."""
+    if not source.exists():
+        raise RuntimeError(f"ملف الترجمة غير موجود: {source}")
+    lines = source.read_text(encoding="utf-8").splitlines()
+    rewritten = []
+    for line in lines:
+        if line.startswith("Style: Caption,"):
+            fields = line.split(",")
+            if len(fields) >= 23:
+                fields[18] = "8"       # top-center alignment
+                fields[21] = "160"     # safe top margin for 9:16
+                line = ",".join(fields)
+        rewritten.append(line)
+    output.write_text("\n".join(rewritten) + "\n", encoding="utf-8")
+    return output
 
 
 def mix_reminder_audio(final_audio: Path, duration: float, output_path: Path) -> Path:
@@ -336,6 +355,7 @@ def create_short(
     short_index: int,
     platform: str,
     output_path: Path,
+    vertical_subtitles: Path | None = None,
 ) -> float:
     start = float(spec["start_seconds"])
     end = float(spec["end_seconds"])
@@ -353,6 +373,9 @@ def create_short(
         f"scale={SHORT_WIDTH}:{SHORT_HEIGHT}:force_original_aspect_ratio=increase,"
         f"crop={SHORT_WIDTH}:{SHORT_HEIGHT}"
     )
+    narration_filter = subtitle_filter(vertical_subtitles)
+    if narration_filter:
+        vf += f",{narration_filter}"
     if cta_filter:
         vf += f",{cta_filter}"
 
@@ -427,6 +450,17 @@ def _run() -> None:
     print(f"✅ الفيديو الكامل الأفقي: {full_output}")
     print(f"✅ مدة الفيديو الكامل: {full_duration:.1f} ثانية")
 
+    # Reels must not inherit the horizontal bottom-caption layer. Reuse the
+    # same rendered clip sequence and audio, then place a dedicated caption
+    # track in the upper 9:16 safe lane.
+    reel_source = OUTPUT_DIR / "reel_source_clean.mp4"
+    add_audio_and_subtitles(CLIPS_DIR / "concatenated_full.mp4", final_audio, None, reel_source)
+    vertical_subtitles = None
+    if subtitles:
+        vertical_subtitles = make_vertical_subtitles(
+            subtitles, CLIPS_DIR / "narration_vertical.ass"
+        )
+
     specs = load_short_specs(episode, full_duration)
     print(f"✅ عدد الريلات: {len(specs)} — الحد الأقصى لكل ريل: {MAX_SHORT_DURATION_SECONDS:.0f}s")
 
@@ -434,7 +468,9 @@ def _run() -> None:
     for short_index, spec in enumerate(specs, 1):
         for platform in PLATFORM_CTA:
             output = OUTPUT_DIR / f"short_{short_index}_{platform}.mp4"
-            duration = create_short(full_output, spec, short_index, platform, output)
+            duration = create_short(
+                reel_source, spec, short_index, platform, output, vertical_subtitles
+            )
             generated += 1
             print(
                 f"✅ ريل {short_index} / {platform}: {output} "
