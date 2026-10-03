@@ -210,12 +210,13 @@
       "title": "في سُهول وادي اليرموك، حشد الجيش الإسلامي أكثر من ثلاثة آلاف مقاتل في صفٍ واحد",
       "hook": "في سُهول وادي اليرموك، حشد الجيش الإسلامي أكثر من ثلاثة آلاف مقاتل في صفٍ واحد، بينما؟",
       "region": "بلاد الشام، عام 636 ميلادي، بعد غزوة حُمّص",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "8eb6cface5fb4056b5b491a37dd6a5b9",
       "reserved_at": "2026-10-03T14:52:12Z",
       "run_id": "37130080925",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "8eb6cface5fb4056b5b491a37dd6a5b9",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-03T14:52:30Z"
     }
   ]
 }
