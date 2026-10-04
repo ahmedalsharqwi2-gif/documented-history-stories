@@ -236,12 +236,13 @@
       "title": "في صباحٍ بارد، كان المسلمون في سهل بدر مستعدّين للقاء القريش",
       "hook": "في صباحٍ بارد، كان المسلمون في سهل بدر مستعدّين للقاء القريش.",
       "region": "شبه الجزيرة العربية، عام 624 م، معركة بدر.",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "73f379d43ee64f47baef5925e331deb2",
       "reserved_at": "2026-10-04T09:52:06Z",
       "run_id": "37192349263",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "73f379d43ee64f47baef5925e331deb2",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-04T09:52:30Z"
     }
   ]
 }
