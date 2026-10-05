@@ -18,6 +18,13 @@ class GenerationRecoveryTests(unittest.TestCase):
         generation = next(s for s in steps if s['name'] == 'Generate complete documented history story script')
         self.assertEqual(generation['env']['GEMINI_API_KEY'], '${{ secrets.GEMINI_API_KEY }}')
 
+    def test_empty_gemini_response_switches_instead_of_reparsing(self):
+        from types import SimpleNamespace
+        response = SimpleNamespace(text="", candidates=[SimpleNamespace(finish_reason="STOP")], usage_metadata=None)
+        client = SimpleNamespace(models=SimpleNamespace(generate_content=lambda **kwargs: response))
+        with self.assertRaises(generator.ModelUnavailable):
+            generator.call_model(client, [], "test", generator.free_text_config, "system", 100, "test")
+
     def test_fallback_start_does_not_revisit_failed_provider(self):
         with patch.dict(os.environ, {'GEMINI_API_KEY': '', 'TOPIC_BANK_REQUIRED': 'false'}), \
              patch.multiple(generator, FALLBACK_API_KEY='test', FALLBACK_MODEL='fallback-model',

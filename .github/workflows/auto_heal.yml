@@ -51,7 +51,7 @@ jobs:
           if grep -Eqi 'HTTP (402|401|403|429)|quota|rate limit|tokens per day|prompt tokens limit exceeded|billing|insufficient|invalid.?api.?key|authentication' "$LOG_FILE"; then
             RETRY_SAFE=false
             DIAGNOSIS="Provider quota/authentication/billing or prompt-limit failure; retry suppressed."
-          elif grep -Eqi 'HTTP (408|500|502|503|504)|timed out|timeout|temporarily unavailable|runner' "$LOG_FILE"; then
+          elif grep -Eqi 'HTTP (408|500|502|503|504)|timed out|timeout|temporarily unavailable' "$LOG_FILE"; then
             RETRY_SAFE=true
           else
             RETRY_SAFE=false

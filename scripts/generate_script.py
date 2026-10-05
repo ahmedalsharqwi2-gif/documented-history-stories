@@ -793,34 +793,6 @@ class CompatibleChatModels:
                 "role": "assistant" if content.role == "model" else "user",
                 "content": text,
             })
-        if self.title == "OpenRouter":
-            # Some OpenRouter free keys enforce a very small prompt ceiling
-            # (observed: 1,585 tokens), while the full historical system
-            # prompt is intentionally much larger. Keep the final provider
-            # usable by sending a compact, source-first contract and only the
-            # current user request. The normal Groq/Gemini paths are unchanged.
-            compact_system = (
-                "اكتب قصة تاريخية عربية فصحى موثقة بلا اختلاق أو حوار. "
-                "أعد plain text بالتسميات المطلوبة، وأدرج مصدرًا قابلاً للتحقق، "
-                "وتأكد أن narration مكتملة وتنتهي بعلامة ترقيم."
-            )
-            user_text = messages[-1].get("content", "") if messages else ""
-            compact_contract = (
-                "\n\nأخرج بهذه التسميات فقط، كل تسمية في سطر مستقل:\n"
-                "TITLE:\nCAPTION:\nVISUAL_KEYWORDS:\nPHONETIC_HINTS:\n"
-                "SOURCE_TYPE:\nSOURCE_REFERENCE:\n"
-                "HISTORICAL_VERIFICATION_REPORT: {}\n"
-                "EVENT_IDENTITY_CHECK: {}\nFACT_TABLE: []\n"
-                "PRE_PRODUCTION_REPORT: {}\nFINAL_FACT_CHECK: {}\n"
-                "NARRATION:\n(قصة عربية كاملة من الهوك إلى الخاتمة)"
-            )
-            # Keep the most important opening constraints and the exact output
-            # contract while staying below roughly 1,400 input tokens.
-            user_text = user_text[:1800] + compact_contract
-            messages = [
-                {"role": "system", "content": compact_system},
-                {"role": "user", "content": user_text},
-            ]
         requested_tokens = getattr(config, "max_output_tokens", STORY_MAX_TOKENS)
         provider_cap = (
             FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else OPENROUTER_MAX_TOKENS
@@ -1101,6 +1073,10 @@ def call_model(
         raise AttemptFailed(f"الرد اتحجب في {label} (finish_reason={finish_reason})")
 
     reply_text = response.text or ""
+    if not reply_text.strip():
+        raise ModelUnavailable(f"النموذج {ACTIVE_MODEL} أعاد ردًا فارغًا (finish_reason={finish_reason})")
+    if "MAX_TOKENS" in finish_reason:
+        raise ModelUnavailable(f"النموذج {ACTIVE_MODEL} قطع الرد بعد استنفاد ميزانية الإخراج في {label}")
     history.append(make_content("user", prompt_text))
     history.append(make_content("model", reply_text))
     return reply_text, finish_reason
@@ -1495,7 +1471,7 @@ def generate_episode() -> dict:
     if api_key and MODEL_CANDIDATES:
         ACTIVE_PROVIDER = "gemini"
         ACTIVE_MODEL = MODEL_CANDIDATES[0]
-        client = ProviderClient(genai.Client(api_key=api_key))
+        client = ProviderClient(genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=120000)))
     else:
         # Follow the same resolved provider order as model_preflight: fallback
         # first, then OpenRouter. Never prefer a merely configured model.

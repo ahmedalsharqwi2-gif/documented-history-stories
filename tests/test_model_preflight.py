@@ -29,6 +29,15 @@ class ModelPolicyTests(unittest.TestCase):
                 ["stale-model"], ("LLM_FALLBACK_MODEL",), "stale-model"
             ), ("", []))
 
+    def test_forbidden_catalog_can_be_confirmed_by_completion(self):
+        from scripts.model_preflight import discover_openai_provider
+        with patch.dict(os.environ, {"LLM_FALLBACK_MODEL": "working-model"}, clear=True), \
+             patch("scripts.model_preflight.request_json", side_effect=[(403, {}), (200, {"choices": []})]):
+            self.assertEqual(discover_openai_provider(
+                "Fallback LLM", "https://example.test/chat/completions", "test",
+                ["working-model"], ("LLM_FALLBACK_MODEL",), "working-model"
+            ), ("working-model", []))
+
     def test_preflight_is_importable_without_third_party_dependencies(self):
         import scripts.model_preflight as preflight
         self.assertEqual(preflight.DEFAULT_GEMINI, "gemini-2.5-flash")

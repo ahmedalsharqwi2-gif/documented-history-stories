@@ -141,6 +141,7 @@ jobs:
 
       - name: Generate complete documented history story script
         env:
+          PYTHONUNBUFFERED: "1"
           # Keep the validated primary provider available to generation.
           # Runtime quota failures use the bounded fallback chain.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -154,7 +155,7 @@ jobs:
           # Do not pin a single fallback model here. model_preflight.py writes
           # the currently available model list to GITHUB_ENV; pinning an
           # exhausted model bypasses discovery and defeats the fallback chain.
-          LLM_FALLBACK_MAX_TOKENS: "1300"
+          LLM_FALLBACK_MAX_TOKENS: "6000"
           ENDING_MAX_TOKENS: "320"
           EXPANSION_MAX_TOKENS: "1300"
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
@@ -163,8 +164,8 @@ jobs:
           OPENROUTER_TIMEOUT: "45"
           OPENROUTER_MAX_TOKENS: "2200"
           GEMINI_THINKING_BUDGET: "0"
-          STORY_MAX_TOKENS: "1800"
-          FINALIZE_MAX_TOKENS: "1400"
+          STORY_MAX_TOKENS: "8000"
+          FINALIZE_MAX_TOKENS: "4000"
           TARGET_WORDS: "650"
           ACCEPTABLE_MIN_WORDS: "180"
           OPENROUTER_MIN_WORDS: "180"
@@ -175,9 +176,9 @@ jobs:
           MAX_FULL_ATTEMPTS: "2"
           MAX_EXPANSION_ROUNDS: "1"
           SINGLE_PASS_GENERATION: "false"
-          TRANSIENT_RETRIES: "5"
+          TRANSIENT_RETRIES: "2"
           TRANSIENT_BACKOFF_BASE: "8"
-          BUDGET_RETRIES: "0"
+          BUDGET_RETRIES: "1"
           PROOFREAD_TASHKEEL: "false"
           TOPIC_BANK_REQUIRED: "false"
           TOPIC_SELECTION_MODE: "dynamic"
