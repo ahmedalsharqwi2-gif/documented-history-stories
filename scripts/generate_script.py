@@ -688,15 +688,15 @@ def normalize_phonetic_hints(value) -> list[dict[str, str]]:
     return normalized
 
 
-def validate_episode(episode: dict) -> str | None:
-    if not REQUIRED_KEYS.issubset(episode.keys()):
-        return f"الحلقة النهائية ناقصة حقول مطلوبة: {sorted(episode.keys())}"
+def validate_episode(episode_data: dict) -> str | None:
+    if not REQUIRED_KEYS.issubset(episode_data.keys()):
+        return f"الحلقة النهائية ناقصة حقول مطلوبة: {sorted(episode_data.keys())}"
 
-    narration = str(episode.get("narration", "")).strip()
+    narration = str(episode_data.get("narration", "")).strip()
     arabic_issues = validate_narration(narration)
     if arabic_issues:
         return "بوابة العربية رفضت narration: " + "; ".join(f"{i.kind}: {i.sample}" for i in arabic_issues)
-    hook_issues = validate_hook(str(episode.get("hook", "")), narration)
+    hook_issues = validate_hook(str(episode_data.get("hook", "")), narration)
     if hook_issues:
         return "بوابة الهوك رفضت الحلقة: " + "; ".join(
             f"{i.kind}: {i.sample}" for i in hook_issues
@@ -1363,7 +1363,7 @@ def run_single_attempt(
         visual_keywords = story.get("visual_keywords") or DEFAULT_VISUAL_KEYWORDS.copy()
         if not 8 <= len(visual_keywords) <= 10:
             visual_keywords = DEFAULT_VISUAL_KEYWORDS.copy()
-        episode = {
+        episode_data = {
             "title": story.get("title") or hook[:80].strip(" .؟!،"),
             "hook": hook,
             "region": region,
@@ -1379,11 +1379,11 @@ def run_single_attempt(
             "pre_production_report": story.get("pre_production_report", {}),
             "final_fact_check": story.get("final_fact_check", {}),
         }
-        error = validate_episode(episode)
+        error = validate_episode(episode_data)
         if error:
             raise AttemptFailed(error)
         print("   ⚡ وضع المرور الواحد: تم تخطي التوسيع والتدقيق وfinalize لتوفير التوكنز")
-        return episode
+        return episode_data
 
     narration = ensure_complete_ending(client, history, narration, system_prompt, attempt_label)
     if looks_truncated(narration):
@@ -1549,16 +1549,16 @@ def generate_episode() -> dict:
     for attempt in range(1, attempt_limit + 1):
         print(f"\n===== محاولة كاملة {attempt}/{attempt_limit} (محادثة جديدة) =====")
         try:
-            episode = run_single_attempt(
+            generated_episode = run_single_attempt(
                 client, system_prompt, recent_titles, recent_regions, recent_hooks,
                 TARGET_WORDS, f"محاولة {attempt}",
                 bank_topic,
             )
-            duplicate = find_duplicate(episode, topic_history.entries)
+            duplicate = find_duplicate(generated_episode, topic_history.entries)
             if duplicate:
                 last_error = "الموضوع أو الواقعة مشابهة لسجل دائم في هذا المستودع"
-                recent_titles.append(clean_text(episode.get("title", ""), 180))
-                recent_hooks.append(clean_text(episode.get("hook", ""), 240))
+                recent_titles.append(clean_text(generated_episode.get("title", ""), 180))
+                recent_hooks.append(clean_text(generated_episode.get("hook", ""), 240))
                 if bank_topic:
                     rejected_bank_titles.add(bank_topic.get("title", ""))
                     bank_topic = select_topic_from_bank(
@@ -1570,7 +1570,7 @@ def generate_episode() -> dict:
                 else:
                     print(f"⚠️ رُفضت المحاولة {attempt}: موضوع مكرر؛ سيُعاد التوليد من قائمة المنع.")
                 continue
-            return episode
+            return generated_episode
         except (QuotaExhausted, ModelUnavailable) as exc:
             last_error = str(exc)
             if isinstance(exc, QuotaExhausted):
