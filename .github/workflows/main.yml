@@ -296,6 +296,7 @@ jobs:
             output/final_video_full.mp4
             output/short_*.mp4
             state/current_episode.json
+            state/audio_matching_report.json
           retention-days: 14
           if-no-files-found: error
 

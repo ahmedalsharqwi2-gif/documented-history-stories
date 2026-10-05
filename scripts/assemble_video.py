@@ -49,6 +49,11 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+try:
+    from scripts.audio_matching import probe_audio, validate_manifest
+except ModuleNotFoundError:
+    from audio_matching import probe_audio, validate_manifest
+
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
 STATE_DIR = ROOT_DIR / "state"
@@ -123,20 +128,30 @@ def resolve_path(value: str | Path) -> Path:
 
 
 def normalize_clip(input_path: Path, output_path: Path, duration: float) -> None:
-    """يحوّل أي كليب إلى 1920x1080 أفقيًا مع ملء الإطار وقص الحواف."""
+    """Normalize video without discarding embedded audio."""
+    audio = probe_audio(input_path)
+    inputs = ["-stream_loop", "-1", "-i", str(input_path)]
+    audio_map = "0:a:0"
+    if not audio.get("present"):
+        inputs += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
+        audio_map = "1:a:0"
     run([
         "ffmpeg", "-y",
-        "-stream_loop", "-1",
-        "-i", str(input_path),
+        *inputs,
         "-t", f"{duration:.3f}",
         "-vf",
         f"scale={FULL_WIDTH}:{FULL_HEIGHT}:force_original_aspect_ratio=increase,"
         f"crop={FULL_WIDTH}:{FULL_HEIGHT},fps={FPS}",
-        "-an",
+        "-map", "0:v:0",
+        "-map", audio_map,
         "-c:v", "libx264",
         "-preset", "fast",
         "-crf", "22",
         "-pix_fmt", "yuv420p",
+        "-c:a", "aac",
+        "-ar", "48000",
+        "-ac", "2",
+        "-b:a", "128k",
         "-movflags", "+faststart",
         str(output_path),
     ])
@@ -305,20 +320,22 @@ def make_vertical_subtitles(source: Path, output: Path) -> Path:
     return output
 
 
-def mix_documentary_audio(final_audio: Path, duration: float, output_path: Path) -> Path:
-    """Add a very quiet natural bed, opening breeze, and one page turn."""
+def mix_documentary_audio(source_video: Path, final_audio: Path, duration: float, output_path: Path) -> Path:
+    """Keep embedded clip audio and duck it beneath clear narration."""
     ambience = SFX_DIR / "documentary_nature_ambience_loop.mp3"
     breeze = SFX_DIR / "documentary_soft_breeze.mp3"
     page_turn = SFX_DIR / "documentary_page_turn.mp3"
     if not all(p.is_file() for p in (ambience, breeze, page_turn)):
         raise FileNotFoundError("ملفات مؤثرات الوثائقي ناقصة داخل assets/sfx")
-    inputs = ["-i", str(final_audio), "-stream_loop", "-1", "-i", str(ambience), "-i", str(breeze), "-i", str(page_turn)]
+    inputs = ["-i", str(source_video), "-i", str(final_audio), "-stream_loop", "-1", "-i", str(ambience), "-i", str(breeze), "-i", str(page_turn)]
     page_at = max(1.0, duration * 0.48)
-    filters = [f"[0:a]aresample=48000,volume=1.0[voice]",
-               f"[1:a]aresample=48000,volume={DOCUMENTARY_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
-               f"[2:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
-               f"[3:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]"]
-    filters.append("[voice][nature][breeze][page]amix=inputs=4:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]")
+    filters = [f"[0:a]aresample=48000,volume=0.18[original]",
+               f"[1:a]aresample=48000,volume=1.0[voice]",
+               "[original][voice]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=350:makeup=1[ducked]",
+               f"[2:a]aresample=48000,volume={DOCUMENTARY_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
+               f"[3:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
+               f"[4:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]"]
+    filters.append("[voice][ducked][nature][breeze][page]amix=inputs=5:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]")
     run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[a]", "-t", f"{duration:.3f}", "-c:a", "libmp3lame", "-b:a", "192k", str(output_path)])
     return output_path
 
@@ -335,7 +352,7 @@ def add_audio_and_subtitles(
         filters.append(sub_filter)
 
     mixed_audio = output_path.with_suffix(".mixed.mp3")
-    mix_documentary_audio(final_audio, probe_duration(final_audio), mixed_audio)
+    mix_documentary_audio(video_path, final_audio, probe_duration(final_audio), mixed_audio)
     command = [
         "ffmpeg", "-y",
         "-i", str(video_path),
@@ -542,6 +559,12 @@ def _run() -> None:
     clips = json.loads(FETCHED_CLIPS_PATH.read_text(encoding="utf-8"))
     if not isinstance(clips, list) or not clips:
         raise RuntimeError("❌ fetched_clips.json فارغ أو غير صالح.")
+    audio_report = validate_manifest(clips)
+    (STATE_DIR / "audio_matching_report.json").write_text(
+        json.dumps(audio_report, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    if not audio_report["passed"]:
+        raise RuntimeError("❌ AUDIO MATCHING GATE: " + "; ".join(audio_report["errors"]))
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     final_audio_value = episode.get("final_audio")

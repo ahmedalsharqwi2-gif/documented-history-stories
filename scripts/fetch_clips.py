@@ -70,6 +70,11 @@ from pathlib import Path
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+try:
+    from scripts.audio_matching import build_audio_record
+except ModuleNotFoundError:
+    from audio_matching import build_audio_record
+
 SCRIPT_DIR = Path(__file__).parent
 STATE_DIR = SCRIPT_DIR.parent / "state"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
@@ -428,10 +433,18 @@ def main():
                 dest_path.unlink(missing_ok=True)
                 continue
 
+            try:
+                audio_record = build_audio_record(dest_path)
+            except (RuntimeError, ValueError) as exc:
+                print(f"⚠️ استبعاد كليب Pexels {result['id']}: تعذر تحليل الصوت الأصلي: {exc}")
+                dest_path.unlink(missing_ok=True)
+                continue
+
             fetched_clips.append({
                 "file": str(dest_path),
                 "pexels_id": result["id"],
                 "keyword": keyword,
+                "audio": audio_record,
             })
             accepted_for_keyword += 1
             print(f"✅ اتنزل كليب لـ '{keyword}' (Pexels ID: {result['id']})")
