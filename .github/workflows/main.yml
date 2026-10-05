@@ -141,10 +141,9 @@ jobs:
 
       - name: Generate complete documented history story script
         env:
-          # Gemini's free daily quota is exhausted; use the validated Groq
-          # fallback directly for this production run instead of burning
-          # attempts across unavailable Gemini models first.
-          GEMINI_API_KEY: ""
+          # Keep the validated primary provider available to generation.
+          # Runtime quota failures use the bounded fallback chain.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # GPT-OSS reasoning tokens share the same output budget. With the
           # constrained 1300-token request, enabling reasoning leaves only a
           # tiny partial answer and breaks the required story fields.
@@ -185,7 +184,7 @@ jobs:
           TOPIC_ROTATION_SEED: ${{ github.run_id }}
           TOPIC_PERFORMANCE_FILE: "state/topic_performance.json"
         run: |
-          echo "Using validated fallback model: ${LLM_FALLBACK_MODEL:-not-configured}"
+          echo "Validated primary Gemini model: ${GEMINI_MODEL:-not-configured}"
           python scripts/generate_script.py
 
       - name: Arabic preflight gates (documented history)

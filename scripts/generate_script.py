@@ -936,14 +936,10 @@ class ProviderClient:
 
 def has_next_model() -> bool:
     """هل فيه موديل تاني نقدر نتحول له؟ (Gemini احتياطي أو OpenRouter)"""
-    if ACTIVE_PROVIDER == "openrouter":
-        return bool(FALLBACK_API_KEY and FALLBACK_MODEL)
-    if ACTIVE_PROVIDER == "fallback":
-        return bool(OPENROUTER_API_KEY and OPENROUTER_MODEL)
     return (
-        ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES)
-        or bool(OPENROUTER_API_KEY and OPENROUTER_MODEL)
-        or bool(FALLBACK_API_KEY and FALLBACK_MODEL)
+        (ACTIVE_PROVIDER == "gemini" and ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES))
+        or bool(FALLBACK_API_KEY and FALLBACK_MODEL and "fallback" not in VISITED_PROVIDERS)
+        or bool(OPENROUTER_API_KEY and OPENROUTER_MODEL and "openrouter" not in VISITED_PROVIDERS)
     )
 
 
@@ -1491,11 +1487,14 @@ def run_single_attempt(
 
 
 def generate_episode() -> dict:
-    global ACTIVE_PROVIDER, ACTIVE_MODEL
+    global ACTIVE_PROVIDER, ACTIVE_MODEL, ACTIVE_MODEL_INDEX
+    ACTIVE_MODEL_INDEX = 0
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key and not OPENROUTER_API_KEY and not FALLBACK_API_KEY:
         sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY أو GROQ_API_KEY إلى GitHub Secrets")
     if api_key and MODEL_CANDIDATES:
+        ACTIVE_PROVIDER = "gemini"
+        ACTIVE_MODEL = MODEL_CANDIDATES[0]
         client = ProviderClient(genai.Client(api_key=api_key))
     else:
         # Follow the same resolved provider order as model_preflight: fallback
@@ -1509,6 +1508,8 @@ def generate_episode() -> dict:
         else:
             sys.exit("MODEL_PREFLIGHT_ERROR: no validated fallback model is available")
         client = ProviderClient(None)
+    VISITED_PROVIDERS.clear()
+    VISITED_PROVIDERS.add(ACTIVE_PROVIDER)
     system_prompt = load_system_prompt()
     recent_titles = load_used_history()
     recent_regions = load_used_regions()
@@ -1538,14 +1539,10 @@ def generate_episode() -> dict:
     quota_errors: list[str] = []
     # كل تحويل بين موديلات بياخد محاولة كاملة إضافية، عشان التحويل ما ياكلش
     # من محاولات التوليد الأصلية.
-    extra = 0
-    if api_key and MODEL_CANDIDATES:
-        extra += len(MODEL_CANDIDATES) - 1
-        if OPENROUTER_API_KEY:
-            extra += 1
-        if FALLBACK_API_KEY:
-            extra += 1
-    attempt_limit = MAX_ATTEMPTS + extra
+    route_count = (len(MODEL_CANDIDATES) if api_key else 0)
+    route_count += int(bool(FALLBACK_API_KEY and FALLBACK_MODEL))
+    route_count += int(bool(OPENROUTER_API_KEY and OPENROUTER_MODEL))
+    attempt_limit = MAX_ATTEMPTS + max(0, route_count - 1)
     for attempt in range(1, attempt_limit + 1):
         print(f"\n===== محاولة كاملة {attempt}/{attempt_limit} (محادثة جديدة) =====")
         try:
