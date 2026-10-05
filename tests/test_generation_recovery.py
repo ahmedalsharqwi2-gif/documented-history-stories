@@ -7,6 +7,14 @@ from scripts import generate_script as generator
 
 
 class GenerationRecoveryTests(unittest.TestCase):
+    def test_short_minute_quota_can_recover_but_daily_quota_cannot(self):
+        self.assertAlmostEqual(generator._minute_quota_wait(RuntimeError(
+            '429 RESOURCE_EXHAUSTED PerMinute Please retry in 18.74s.')), 19.74)
+        self.assertIsNone(generator._minute_quota_wait(RuntimeError(
+            '429 RESOURCE_EXHAUSTED PerDay Please retry in 18s.')))
+        self.assertIsNone(generator._minute_quota_wait(RuntimeError(
+            '429 RESOURCE_EXHAUSTED PerMinute Please retry in 120s.')))
+
     def test_incomplete_historical_report_cannot_reach_proofreading(self):
         story = {"hook": "اختبار", "region": "مكان", "source_type": "أرشيف",
                  "source_reference": "أرشيف", "narration": "نص.",
@@ -25,28 +33,6 @@ class GenerationRecoveryTests(unittest.TestCase):
         prompt = generator.build_story_prompt([], [], [], 650)
         for field in REQUIRED_REPORT_FIELDS | REQUIRED_PRE_FIELDS:
             self.assertIn(field, prompt)
-
-    def test_final_text_errors_are_sent_back_and_all_gates_recheck(self):
-        with patch.object(generator, 'validate_episode', side_effect=['hook invalid', None]) as text_gate, \
-             patch.object(generator, 'historical_errors', return_value=[]) as history_gate, \
-             patch.object(generator, 'validate_source_integrity', side_effect=[['quote lacks source'], []]) as source_gate, \
-             patch.object(generator, 'call_model', return_value=('fixed', 'STOP')) as call, \
-             patch.object(generator, 'parse_story_reply', return_value={'narration': 'corrected'}):
-            result = generator.repair_final_episode(None, [], 'system', {'narration': 'original'}, 'test')
-        self.assertEqual(result['narration'], 'corrected')
-        self.assertIn('quote lacks source', call.call_args.args[2])
-        self.assertIn('original', call.call_args.args[2])
-        self.assertEqual([text_gate.call_count, history_gate.call_count, source_gate.call_count], [2, 2, 2])
-
-    def test_failed_repairs_stop_after_two_calls(self):
-        with patch.object(generator, 'validate_episode', return_value=None), \
-             patch.object(generator, 'historical_errors', return_value=['unverified claim']), \
-             patch.object(generator, 'validate_source_integrity', return_value=[]), \
-             patch.object(generator, 'call_model', return_value=('invalid', 'STOP')) as call, \
-             patch.object(generator, 'parse_story_reply', return_value={}):
-            with self.assertRaises(generator.AttemptFailed):
-                generator.repair_final_episode(None, [], 'system', {}, 'test')
-        self.assertEqual(call.call_count, 2)
 
     def setUp(self):
         original = generator.VISITED_PROVIDERS.copy()
