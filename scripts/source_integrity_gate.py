@@ -38,6 +38,20 @@ def normalize(value: object) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
+def undocumented_quotes(episode: dict) -> list[str]:
+    """A quoted verified person name is a label, not attributed speech."""
+    report = episode.get("historical_verification_report") or {}
+    def plain(value: object) -> str:
+        return normalize(re.sub(r"[\u064b-\u065f\u0670\u0640]", "", str(value))).casefold()
+    names = {plain(name) for name in report.get("main_figures", []) if isinstance(name, str)}
+    quoted = re.findall(r'[«"](.{3,}?)[»"]', str(episode.get("narration") or ""))
+    def is_name(text: str) -> bool:
+        label = plain(text)
+        return any(label == name or (len(label.split()) <= 3 and name.startswith(label + " "))
+                   for name in names)
+    return [text for text in quoted if not is_name(text)]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--episode", type=Path, required=True)
@@ -88,7 +102,7 @@ def main() -> int:
 
     # Quoted dialogue is not accepted unless the episode explicitly labels a
     # source location. This conservative rule blocks invented cinematic speech.
-    quoted = re.findall(r"[«\"].{3,}?[»\"]", narration)
+    quoted = undocumented_quotes(episode)
     if quoted and not re.search(r"(ص\.?\s*\d+|صفحة|page\s*\d+|document|archive|سجل|وثيقة)", source, re.I):
         errors.append("يوجد اقتباس مباشر بلا موضع توثيق واضح")
 
