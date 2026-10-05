@@ -478,6 +478,39 @@ def try_parse_json_episode(text: str) -> dict | None:
     return result or None
 
 
+def _parse_plain_list(value: str) -> list[str]:
+    """Parse newline/bullet/comma separated fields from the plain-text contract."""
+    raw = str(value or "").strip()
+    if not raw:
+        return []
+    try:
+        parsed = json.loads(raw)
+        if isinstance(parsed, list):
+            return [str(item).strip() for item in parsed if str(item).strip()]
+    except json.JSONDecodeError:
+        pass
+    items = []
+    for line in raw.splitlines():
+        line = re.sub(r"^[\s\-*•\d.)]+", "", line).strip()
+        if not line:
+            continue
+        items.extend(part.strip() for part in re.split(r"\s*[,؛;]\s*", line) if part.strip())
+    return items
+
+
+def _extract_sources_from_narration(fields: dict) -> None:
+    """Keep the required source block out of spoken narration when present."""
+    narration = str(fields.get("narration", "")).strip()
+    marker = re.search(r"(?im)^\s*(?:المصادر والمراجع|المراجع والمصادر)\s*:?\s*", narration)
+    if marker:
+        source_block = narration[marker.end():].strip()
+        fields["narration"] = narration[:marker.start()].strip()
+        if not fields.get("source_reference"):
+            fields["source_reference"] = source_block
+    if fields.get("source_reference") and not fields.get("source_type"):
+        fields["source_type"] = "مصدر إسلامي معتبر"
+
+
 def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
     fields = parse_labeled_response(reply)
     if any(not fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
@@ -485,6 +518,8 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         if json_fields and all(json_fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
             print(f"   ℹ️ {attempt_label} | {step_label}: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
             fields = json_fields
+
+    _extract_sources_from_narration(fields)
 
     # The narration is authoritative: a model may return a plausible but
     # different hook. Canonicalize it before validation so hook and speech
@@ -516,6 +551,10 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         raise AttemptFailed(f"رد {step_label} ناقص حقل '{missing[0]}' أو فاضي (بكل الطرق المتاحة للتحليل)")
 
     return {
+        "title": fields.get("title", "").replace("**", "").replace("__", "").strip(),
+        "caption": fields.get("caption", "").replace("**", "").replace("__", "").strip(),
+        "visual_keywords": _parse_plain_list(fields.get("visual_keywords", "")),
+        "phonetic_hints": _parse_plain_list(fields.get("phonetic_hints", "")),
         "hook": fields["hook"].replace("**", "").replace("__", "").strip(),
         "region": fields["region"].replace("**", "").replace("__", "").strip(),
         "source_type": fields["source_type"].replace("**", "").replace("__", "").strip(),
@@ -946,10 +985,12 @@ def call_model(
 # ─────────────────────────── نصوص البرومبت ───────────────────────────
 
 _STORY_FORMAT_BLOCK = (
-    "HOOK: <جملة الهوك>\n"
-    "REGION: <وصف العصر/المكان>\n"
-    "SOURCE_TYPE: <القرآن/حديث صحيح/سيرة موثوقة/كتاب تاريخ إسلامي معتبر>\n"
-    "SOURCE_REFERENCE: <المرجع الدقيق>\n"
+    "TITLE: <عنوان الفيديو>\n"
+    "CAPTION: <وصف قصير للفيديو>\n"
+    "VISUAL_KEYWORDS: <ثماني إلى عشر عبارات بحث إنجليزية، عبارة في كل سطر>\n"
+    "PHONETIC_HINTS: <كلمة صعبة = الكلمة نفسها مع الحركات، سطر لكل كلمة>\n"
+    "SOURCE_TYPE: <نوع المصدر الإسلامي المعتبر>\n"
+    "SOURCE_REFERENCE: <اسم الكتاب أو المصدر الإسلامي المعتبر>\n"
     "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
 )
 
@@ -1003,9 +1044,9 @@ def build_story_prompt(
         "الواسعة الخالية من البشر. ممنوع النساء والوجوه والممثلون والأنبياء "
         "والصحابة والعناصر الحديثة والسيارات والهواتف والشاشات. لا تستخدم لقطة "
         "عامة عشوائية لمجرد ملء الفراغ.\n\n"
-        "⚠️ الفورمات — التزم بيه حرفيًا: ردك كله لازم يكون نص عادي "
+        "⚠️ الفورمات — التزم به حرفيًا وبما يطابق البرومبت النظامي: ردك كله لازم يكون نصًا عاديًا "
         "(plain text) وليس JSON، بالشكل بالضبط تحت. اكتب كل تسمية "
-        "حرفيًا بالرموز الكبيرة كما هي (HOOK: بدون أي ترجمة "
+        "حرفيًا بالرموز الكبيرة كما هي (TITLE: بدون أي ترجمة "
         "أو تغيير أو زخرفة markdown حواليها، ومن غير أقواس {} أو علامات "
         "اقتباس \" حوالين القيم)، كل تسمية في بداية سطر جديد، ومفيش أي "
         "نص أو مقدمة أو أسوار كود ```json أو تعليق خارج الحقول دي:\n\n"
@@ -1187,14 +1228,17 @@ def run_single_attempt(
                 f"   ⚠️ النص المكتمل أقصر من الهدف ({actual_words}/{target_words} كلمة)؛ "
                 "سيُقبل بدون نداء توسعة لتوفير التوكنز"
             )
+        visual_keywords = story.get("visual_keywords") or DEFAULT_VISUAL_KEYWORDS.copy()
+        if not 8 <= len(visual_keywords) <= 10:
+            visual_keywords = DEFAULT_VISUAL_KEYWORDS.copy()
         episode = {
-            "title": hook[:80].strip(" .؟!،"),
+            "title": story.get("title") or hook[:80].strip(" .؟!،"),
             "hook": hook,
             "region": region,
             "narration": narration,
-            "visual_keywords": DEFAULT_VISUAL_KEYWORDS.copy(),
-            "caption": hook,
-            "phonetic_hints": [],
+            "visual_keywords": visual_keywords,
+            "caption": story.get("caption") or hook,
+            "phonetic_hints": normalize_phonetic_hints(story.get("phonetic_hints", [])),
             "source_type": source_type,
             "source_reference": source_reference,
         }
