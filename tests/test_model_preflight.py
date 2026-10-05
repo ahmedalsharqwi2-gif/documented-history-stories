@@ -1,5 +1,4 @@
 import json
-import os
 import unittest
 from pathlib import Path
 
@@ -23,6 +22,6 @@ class ModelPolicyTests(unittest.TestCase):
         import scripts.model_preflight as preflight
         self.assertEqual(preflight.DEFAULT_GEMINI, "gemini-2.5-flash")
 
-
 if __name__ == "__main__":
+    unittest.main()
     unittest.main()
