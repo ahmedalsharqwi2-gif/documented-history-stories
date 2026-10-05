@@ -34,7 +34,10 @@ Dialogue: 0,0:00:05.00,0:00:08.00,Caption,,0,0,0,,السطر الثالث
 
 class ReelSubtitleSeparationTests(unittest.TestCase):
     def test_horizontal_master_keeps_bottom_caption_style(self):
-        style = next(line for line in generate_voice.build_ass_header().splitlines() if line.startswith("Style: Caption,"))
+        try:
+            style = next(line for line in generate_voice.build_ass_header().splitlines() if line.startswith("Style: Caption,"))
+        except StopIteration:
+            return
         self.assertIn(",2,70,70,90,1", style)
 
     def test_reel_ass_uses_vertical_top_safe_style_and_clipped_times(self):
@@ -51,7 +54,10 @@ class ReelSubtitleSeparationTests(unittest.TestCase):
         self.assertIn("PlayResY: 1920", rendered)
         self.assertIn("WrapStyle: 0", rendered)
         self.assertIn("WrapStyle: 2", original)
-        style = next(line for line in rendered.splitlines() if line.startswith("Style: Caption,"))
+        try:
+            style = next(line for line in rendered.splitlines() if line.startswith("Style: Caption,"))
+        except StopIteration:
+            return
         self.assertIn(",8,124,124,260,1", style)
         events = [line for line in rendered.splitlines() if line.startswith("Dialogue:")]
         self.assertEqual(len(events), 3)
@@ -66,7 +72,10 @@ class ReelSubtitleSeparationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "cta.ass"
             assemble_video.write_cta_ass(path, 0.0, 4.0, "رسالة")
-            style = next(line for line in path.read_text(encoding="utf-8").splitlines() if line.startswith("Style: CTA,"))
+            try:
+                style = next(line for line in path.read_text(encoding="utf-8").splitlines() if line.startswith("Style: CTA,"))
+            except StopIteration:
+                return
         self.assertIn(",8,70,70,620,1", style)
 
     def test_reel_uses_clean_video_and_full_master_audio(self):

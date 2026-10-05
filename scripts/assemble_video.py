@@ -21,6 +21,7 @@ assemble_video.py
   ]
 }
 
+"""
 إذا لم توجد قائمة shorts، يتم إنشاء ريل واحد تلقائيًا من بداية الفيديو،
 مع ترك AUTO_END_MARGIN_SECONDS في نهاية الحلقة حتى لا يصل المقتطف إلى الحل.
 
@@ -46,7 +47,6 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 try:
@@ -90,7 +90,7 @@ PLATFORM_CTA = {
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = subprocess.run(command, capture_output=True, text=True, check=True)
     if result.returncode != 0:
         raise RuntimeError(
             "❌ فشل الأمر:\n"
@@ -181,11 +181,13 @@ def mix_reminder_audio(final_audio: Path, duration: float, output_path: Path) ->
         raise FileNotFoundError("ملفات مؤثرات التذكير ناقصة داخل assets/sfx")
     inputs = ["-i", str(final_audio), "-stream_loop", "-1", "-i", str(ambience), "-i", str(breeze), "-i", str(page_turn)]
     page_at = max(1.0, duration * 0.48)
-    filters = [f"[0:a]aresample=48000,volume=1.0[voice]",
-               f"[1:a]aresample=48000,volume={REMINDER_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
-               f"[2:a]aresample=48000,volume={REMINDER_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
-               f"[3:a]aresample=48000,volume={REMINDER_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]"]
-    filters.append("[voice][nature][breeze][page]amix=inputs=4:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]")
+    filters = [
+        "[0:a]aresample=48000,volume=1.0[voice]",
+        f"[1:a]aresample=48000,volume={REMINDER_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
+        f"[2:a]aresample=48000,volume={REMINDER_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
+        f"[3:a]aresample=48000,volume={REMINDER_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]",
+        "[voice][nature][breeze][page]amix=inputs=4:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]"
+    ]
     run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[a]", "-t", f"{duration:.3f}", "-c:a", "libmp3lame", "-b:a", "192k", str(output_path)])
     return output_path
 
@@ -399,30 +401,44 @@ def create_short(
     return probe_duration(output_path)
 
 
-def _run() -> None:
+def _ensure_input_paths_exist() -> None:
     for path in (FETCHED_CLIPS_PATH, EPISODE_PATH):
         if not path.exists():
             raise RuntimeError(f"❌ الملف غير موجود: {path}")
 
+
+def _load_clips() -> list:
     clips = json.loads(FETCHED_CLIPS_PATH.read_text(encoding="utf-8"))
     if not isinstance(clips, list) or not clips:
         raise RuntimeError("❌ fetched_clips.json فارغ أو غير صالح.")
+    return clips
 
-    episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    final_audio_value = episode.get("final_audio")
-    subtitles_value = episode.get("subtitles")
 
-    # توافق مع current_episode القديم الذي كان يحفظ المخرجات داخل parts.
-    if not final_audio_value:
+def _load_episode() -> dict:
+    return json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
+
+
+def _extract_final_audio_and_subtitles(episode: dict):
+    final_audio = episode.get("final_audio")
+    subtitles = episode.get("subtitles")
+    if not final_audio:
         parts = episode.get("parts") or []
         if len(parts) == 1:
-            final_audio_value = parts[0].get("final_audio")
-            subtitles_value = subtitles_value or parts[0].get("subtitles")
+            final_audio = parts[0].get("final_audio")
+            subtitles = subtitles or parts[0].get("subtitles")
         elif len(parts) > 1:
             raise RuntimeError(
                 "❌ current_episode.json ما زال يحتوي على أجزاء متعددة. "
                 "شغّل generate_voice.py بالنسخة الجديدة لإنتاج صوت كامل واحد."
             )
+    return final_audio, subtitles
+
+
+def _run() -> None:
+    _ensure_input_paths_exist()
+    clips = _load_clips()
+    episode = _load_episode()
+    final_audio_value, subtitles_value = _extract_final_audio_and_subtitles(episode)
 
     if not final_audio_value:
         final_audio_value = str(CLIPS_DIR / "narration.mp3")

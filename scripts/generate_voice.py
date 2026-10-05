@@ -114,24 +114,21 @@ HARD_WORDS_DIACRITICS = {
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = subprocess.run(command, capture_output=True, text=True, check=True)
     if result.returncode != 0:
         sys.exit("❌ فشل الأمر:\n" + " ".join(command) + "\n\n" + result.stderr)
     return result
 
 
-def configure_silma_voice_profile() -> str:
+def configure_silma_voice_profile() -> tuple[str, str, str]:
     """Resolve the chosen bundled WAV and its exact reference transcript."""
-    global SILMA_REFERENCE_WAV, SILMA_REFERENCE_TEXT
     selected, label, wav, transcript = resolve_reference_profile(
         SILMA_REFERENCE_PROFILE,
         SILMA_VOICE_PROFILES_FILE,
         ROOT_DIR,
     )
-    SILMA_REFERENCE_WAV = wav
-    SILMA_REFERENCE_TEXT = transcript
     print(f"🎙️ ملف الصوت المختار: {label} ({selected})")
-    return selected
+    return selected, wav, transcript
 
 
 def save_voice_to_history(episode: dict, selected_voice: str) -> None:
@@ -402,29 +399,28 @@ def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
 async def synthesize_sentences(sentences: list[str], engine_override: str | None = None) -> list[dict]:
     """يختار محرك الصوت صراحةً؛ SILMA لا يرجع إلى Edge تلقائياً."""
     engine = engine_override or TTS_ENGINE
-    if engine == "silma":
+
+    async def _call_engine(engine_name: str) -> list[dict]:
         try:
-            return synthesize_sentences_silma(sentences)
+            if engine_name == "silma":
+                return synthesize_sentences_silma(sentences)
+            if engine_name == "xtts":
+                return synthesize_sentences_xtts(sentences)
+            if engine_name == "bark":
+                return synthesize_sentences_bark(sentences)
+            if engine_name == "edge":
+                return await synthesize_sentences_edge(sentences)
+            raise ValueError(f"Unknown TTS engine: {engine_name}")
         except Exception as exc:
-            if engine_override is None and os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() == "true":
-                print(f"⚠️ تعذر SILMA ({exc}) — الرجوع إلى Edge TTS.")
+            fallback_env = f"{engine_name.upper()}_FALLBACK_TO_EDGE"
+            should_fallback = os.getenv(fallback_env, "true").lower() == "true"
+            # Silma fallback only if no override, others fallback if enabled
+            if should_fallback and (engine_override is None or engine_name in ("xtts", "bark")):
+                print(f"⚠️ تعذر {engine_name.upper()} ({exc}) — الرجوع إلى Edge TTS.")
                 return await synthesize_sentences(sentences, "edge")
             raise
-    if TTS_ENGINE == "xtts":
-        try:
-            return synthesize_sentences_xtts(sentences)
-        except Exception as exc:  # XTTS اختياري؛ لا نسقط النشر بالكامل
-            if os.getenv("XTTS_FALLBACK_TO_EDGE", "true").lower() == "true":
-                print(f"⚠️ تعذر XTTS ({exc}) — الرجوع إلى Edge TTS.")
-            else:
-                raise
-    if TTS_ENGINE == "bark":
-        try:
-            return synthesize_sentences_bark(sentences)
-        except Exception as exc:  # Bark اختياري؛ لا نسقط النشر بالكامل
-            if os.getenv("BARK_FALLBACK_TO_EDGE", "true").lower() == "true":
-                print(f"⚠️ تعذر Bark ({exc}) — الرجوع إلى Edge TTS.")
-            else:
+
+    return await _call_engine(engine)
                 raise
     segments = []
     for index, raw_sentence in enumerate(sentences):
@@ -434,7 +430,7 @@ async def synthesize_sentences(sentences: list[str], engine_override: str | None
             continue
 
         seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.mp3"
-        events = []
+        events: list[dict[str, Any]] = []
         last_error: Exception | None = None
         succeeded = False
 
@@ -634,7 +630,7 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     matcher = difflib.SequenceMatcher(None, script_norm, whisper_norm, autojunk=False)
     timings: list[dict | None] = [None] * len(script_words)
     for block in matcher.get_matching_blocks():
-        i1, i2 = block.a, block.a + block.size
+        i1 = block.a
         j1 = block.b
         for k in range(block.size):
             if i1 + k >= len(script_words) or j1 + k >= len(whisper_words):
@@ -643,74 +639,85 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
             timings[i1 + k] = {
                 "text": script_words[i1 + k],
                 "offset": start,
-                "duration": max(end - start, 0.05),
-            }
+               "duration": max(end - start, 0.05),
+           }
 
-    known_indices = [i for i, t in enumerate(timings) if t is not None]
-    if not known_indices or len(known_indices) < len(script_words) * 0.5:
-        raise RuntimeError(
-            f"تطابق ضعيف جدًا: {len(known_indices)}/{len(script_words)} كلمة فقط"
-        )
+   known_indices = [i for i, t in enumerate(timings) if t is not None]
+   if not known_indices or len(known_indices) < len(script_words) * 0.5:
+       raise RuntimeError(
+           f"تطابق ضعيف جدًا: {len(known_indices)}/{len(script_words)} كلمة فقط"
+       )
 
-    for i in range(len(timings)):
-        if timings[i] is not None:
-            continue
-        prev_i = max((k for k in known_indices if k < i), default=None)
-        next_i = min((k for k in known_indices if k > i), default=None)
-        if prev_i is None:
-            base = timings[next_i]
-            # وزّع الكلمات غير المتعرّف عليها من الصفر إلى أول كلمة مسموعة؛
-            # لا تعطها نفس offset حتى لا تبقى أول جملة ثابتة.
-            step = max(base["offset"] / (next_i + 1), 0.08)
-            offset = step * i
-        elif next_i is None:
-            base = timings[prev_i]
-            offset = base["offset"] + base["duration"] * (i - prev_i)
-        else:
-            prev_end = timings[prev_i]["offset"] + timings[prev_i]["duration"]
-            next_start = timings[next_i]["offset"]
-            span = max(next_start - prev_end, 0.05)
-            offset = prev_end + span * (i - prev_i) / (next_i - prev_i)
-        timings[i] = {"text": script_words[i], "offset": offset, "duration": 0.3}
+   for i in range(len(timings)):
+       if timings[i] is not None:
+           continue
+       prev_i = max((k for k in known_indices if k < i), default=None)
+       next_i = min((k for k in known_indices if k > i), default=None)
+       if prev_i is None:
+           assert next_i is not None
+           base = timings[next_i]
+           assert base is not None
+           # وزّع الكلمات غير المتعرّف عليها من الصفر إلى أول كلمة مسموعة؛
+           # لا تعطها نفس offset حتى لا تبقى أول جملة ثابتة.
+           step = max(float(base["offset"]) / (next_i + 1), 0.08)
+           offset = step * i
+       elif next_i is None:
+           base = timings[prev_i]
+           assert base is not None
+           offset = float(base["offset"]) + float(base["duration"]) * (i - prev_i)
+       else:
+           assert timings[prev_i] is not None
+           assert timings[next_i] is not None
+           prev_end = float(timings[prev_i]["offset"]) + float(timings[prev_i]["duration"])
+           next_start = float(timings[next_i]["offset"])  
+           span = max(next_start - prev_end, 0.05)
+           offset = prev_end + span * (i - prev_i) / (next_i - prev_i)
+       timings[i] = {"text": script_words[i], "offset": offset, "duration": 0.3}
 
-    previous_end = 0.0
-    for timing in timings:
-        timing["offset"] = max(float(timing["offset"]), previous_end)
-        timing["duration"] = max(float(timing["duration"]), 0.06)
-        previous_end = timing["offset"] + timing["duration"]
-    print(
-        f"🎯 محاذاة Whisper: {len(known_indices)}/{len(script_words)} كلمة مطابقة مباشرة، "
-        f"{len(script_words) - len(known_indices)} بالتقريب"
-    )
-    return timings
+   previous_end = 0.0
+   for timing in timings:
+       timing["offset"] = max(float(timing["offset"]), previous_end)
+       timing["duration"] = max(float(timing["duration"]), 0.06)
+       previous_end = timing["offset"] + timing["duration"]
+   print(
+       f"🎯 محاذاة Whisper: {len(known_indices)}/{len(script_words)} كلمة مطابقة مباشرة، "
+       f"{len(script_words) - len(known_indices)} بالتقريب"
+   )
+   return timings
 
 
 def synthesize_voice(voice_text: str) -> None:
-    sentences = split_sentences(voice_text)
-    if not sentences:
-        sys.exit("❌ النص فارغ ولا يمكن إنشاء صوت.")
+   sentences = split_sentences(voice_text)
+   if not sentences:
+       sys.exit("❌ النص فارغ ولا يمكن إنشاء صوت.")
+   segments = asyncio.run(synthesize_sentences(sentences))
+   _render_segments(segments)
+   if TTS_ENGINE == "silma":
+       _handle_silma_leak()
 
-    def render_segments(current_segments: list[dict]) -> None:
-        inputs: list[str] = []
-        for segment in current_segments:
-            inputs += ["-i", str(segment["path"])]
-        concat_filter = "".join(f"[{i}:a]" for i in range(len(current_segments))) + f"concat=n={len(current_segments)}:v=0:a=1[aout]"
-        run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
 
-    segments = asyncio.run(synthesize_sentences(sentences))
-    render_segments(segments)
-    if TTS_ENGINE == "silma":
-        try:
-            leak = detect_silma_reference_leak(VOICE_AUDIO)
-        except Exception as exc:  # Whisper unavailable/download failure: respect the configured fallback policy.
-            print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}).")
-            leak = "whisper_guard_error"
-        if leak:
-            if os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
-                raise RuntimeError(
-                    f"تعذر اعتماد ملف SILMA للصوت المختار ({leak})، ولن أستبدله بصوت Edge مختلف."
-                )
-            print(f"⚠️ تسرّب/خلل في صوت SILMA ({leak}) — إعادة التوليد بـEdge TTS.")
+def _render_segments(current_segments: list[dict]) -> None:
+   inputs: list[str] = []
+   for segment in current_segments:
+       inputs += ["-i", str(segment["path"])]
+   concat_filter = "".join(f"[{i}:a]" for i in range(len(current_segments))) + f"concat=n={len(current_segments)}:v=0:a=1[aout]"
+   run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
+
+
+def _handle_silma_leak() -> None:
+   try:
+       leak = detect_silma_reference_leak(VOICE_AUDIO)
+   except Exception as exc:
+       print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}).")
+       leak = "whisper_guard_error"
+    if not leak:
+        return
+    fallback = os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() == "true"
+    if not fallback:
+        raise RuntimeError(
+            f"تعذر اعتماد ملف SILMA للصوت المختار ({leak})، ولن أستبدله بصوت Edge مختلف."
+        )
+    print(f"⚠️ تسرّب/خلل في صوت SILMA ({leak}) — إعادة التوليد بـEdge TTS.")
             for segment in segments:
                 Path(segment["path"]).unlink(missing_ok=True)
             segments = asyncio.run(synthesize_sentences(sentences, "edge"))

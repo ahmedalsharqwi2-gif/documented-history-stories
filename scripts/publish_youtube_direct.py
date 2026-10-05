@@ -7,6 +7,16 @@ YouTube Shorts" — بغض النظر عن أي تعديل في الـ metadata 
 
 هذا السكريبت مستقل تمامًا عن publish_buffer.py، ولا يمس نشر الشورتس أو
 فيسبوك أو انستجرام، اللي تفضل شغالة عبر Buffer زي ما هي.
+"""
+رفع الفيديو الكامل مباشرة على يوتيوب عبر YouTube Data API v3، بديلًا
+عن Buffer اللي لا يدعم فيديوهات يوتيوب الطويلة (Long-form) إطلاقًا —
+Buffer بيدعم YouTube Shorts فقط (موثّق رسميًا من Buffer نفسها)، فأي
+محاولة لنشر فيديو أفقي أطول من 3 دقايق عن طريقه هترجع دايمًا:
+"Video must be no longer than 3 minutes / must be vertical for
+YouTube Shorts" — بغض النظر عن أي تعديل في الـ metadata أو النص.
+
+هذا السكريبت مستقل تمامًا عن publish_buffer.py، ولا يمس نشر الشورتس أو
+فيسبوك أو انستجرام، اللي تفضل شغالة عبر Buffer زي ما هي.
 
 المتغيرات المطلوبة (GitHub Secrets):
     YT_CLIENT_ID
@@ -21,19 +31,22 @@ from __future__ import annotations
 
 import json
 import os
-import sys
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
+from typing import TYPE_CHECKING
 
-try:
+if TYPE_CHECKING:
     from google.auth.transport.requests import Request
     from google.oauth2.credentials import Credentials
     from googleapiclient.discovery import build
     from googleapiclient.errors import HttpError
     from googleapiclient.http import MediaFileUpload
-except ImportError:  # Optional locally; CI installs these from requirements.
-    Request = Credentials = build = MediaFileUpload = None
+else:
+    Request = None
+    Credentials = None
+    build = None
+    MediaFileUpload = None
     class HttpError(Exception):
         pass
 
@@ -51,11 +64,11 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 
 # نفس تصنيف Entertainment المستخدم في publish_buffer.py، قابل للتغيير
 # عبر متغيّر بيئة لو احتجت تصنيفًا مختلفًا.
-YT_CATEGORY_ID = os.environ.get("YT_CATEGORY_ID", "24")
+YT_CATEGORY_ID = int(os.environ.get("YT_CATEGORY_ID", "24"))
 YT_PRIVACY = os.environ.get("YT_PRIVACY", "public")  # public | unlisted | private
 YT_MADE_FOR_KIDS = os.environ.get("YT_MADE_FOR_KIDS", "false").lower() == "true"
 # الفيديو الطويل أداؤه أفضل مساءً (وقت فراغ فعلي عند المشاهد) بعكس
-# الشورتس اللي أداؤها أفضل صبحًا/ضهرًا. لو الـ workflow بيشتغل صباحًا،
+# الشورتس اللي أداؤها أفضل صبحًا/ظهرًا. لو الـ workflow بيشتغل صباحًا،
 # القيمة دي بتأجل النشر الفعلي على يوتيوب لنفس اليوم مساءً بدل النشر
 # الفوري وقت الرفع — بنفس منطق FULL_VIDEO_DELAY_HOURS في
 

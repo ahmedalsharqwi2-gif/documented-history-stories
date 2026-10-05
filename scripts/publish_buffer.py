@@ -65,10 +65,10 @@ BUFFER_YOUTUBE_CHANNEL_ID / BUFFER_FACEBOOK_CHANNEL_ID، مش بدلًا منه�
 كان فيه شورتان بتأخيرين مختلفين (short_1 بعد 24 ساعة، short_2 بعد 29
 ساعة) — نُشرا بعد الفيديو الكامل بيوم كامل تقريبًا. المطلوب دلوقتي: ريل
 واحد بس (شوف assemble_video.py) ينشر في نفس لحظة نشر الفيديو الكامل
-بالظبط. الحل: حذف FULL_TO_SHORT_2_HOURS نهائيًا (مفيش short_2 أصلًا
+بالضبط. الحل: حذف FULL_TO_SHORT_2_HOURS نهائيًا (مفيش short_2 أصلًا
 دلوقتي)، وكل الريلات الموجودة (حاليًا واحد بس) بتاخد نفس تأخير
 FULL_TO_SHORT_1_HOURS — لازم تظبطه في main.yml بنفس قيمة
-FULL_VIDEO_DELAY_HOURS بالظبط (مثلاً "8" لنشر الاتنين الساعة 7 مساءً).
+FULL_VIDEO_DELAY_HOURS بالضبط (مثلاً "8" لنشر الاتنين الساعة 7 مساءً).
 """
 
 from __future__ import annotations
@@ -77,7 +77,6 @@ import json
 import os
 import re
 import subprocess
-import sys
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -95,7 +94,7 @@ CHANNEL_PENDING_LIMIT = int(os.environ.get("CHANNEL_PENDING_LIMIT", "10"))
 ENABLE_PREFLIGHT_CHECK = os.environ.get("ENABLE_PREFLIGHT_CHECK", "true").lower() != "false"
 
 # افتراضيًا نفس قيمة FULL_VIDEO_DELAY_HOURS تحت، عشان الريل ينشر في نفس
-# توقيت الفيديو الكامل بالظبط (طلب: الفيديو والريل ينشروا معًا الساعة
+# توقيت الفيديو الكامل بالضبط (طلب: الفيديو والريل ينشروا معًا الساعة
 # 7 مساءً). لو حبيت تأخير مختلف للريل مستقبلاً، غيّر القيمة دي في
 # main.yml بمعزل عن FULL_VIDEO_DELAY_HOURS.
 FULL_TO_SHORT_1_HOURS = float(os.environ.get("FULL_TO_SHORT_1_HOURS", "8"))
@@ -264,7 +263,7 @@ def upload_media(video_path: Path, token: str) -> str:
 def video_dimensions(video_path: Path) -> tuple[int, int]:
     """يقرأ أبعاد الفيديو قبل رفعه حتى لا يصل الكامل إلى YouTube كـShort."""
     result = subprocess.run(
-        ["ffprobe", "-v", "error", "-select_streams", "v:0",
+        ["/usr/bin/ffprobe", "-v", "error", "-select_streams", "v:0",
          "-show_entries", "stream=width,height",
          "-of", "csv=p=0:s=x", str(video_path)],
         capture_output=True, text=True, check=False,
@@ -334,7 +333,7 @@ def build_post_text(service: str, asset_type: str, title: str, caption: str, ful
     return "\n\n".join(part for part in parts if part).strip()
 
 
-def iso_after(hours: float) -> str:
+def iso_after(_hours: float) -> str:
     due = publish_target_utc()
     return due.isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
@@ -344,8 +343,6 @@ def organization_id(api_key: str) -> str:
     if not organizations:
         raise RuntimeError("لم يتم العثور على Buffer organization.")
     return organizations[0]["id"]
-
-
 def pending_count(org_id: str, channel_id: str, api_key: str) -> int:
     data = graphql(GET_PENDING_QUERY, {"organizationId": org_id, "channelId": channel_id}, api_key)
     return len(data.get("posts", {}).get("edges", []))
@@ -369,19 +366,24 @@ def channel_ids() -> list[str]:
     return list(CHANNEL_SERVICES.keys())
 
 
-def _run() -> None:
+def _check_env_vars():
     api_key = os.environ.get("BUFFER_API_KEY", "").strip()
     github_token = os.environ.get("GITHUB_TOKEN", "").strip()
     if not api_key or not github_token:
         raise RuntimeError("BUFFER_API_KEY و GITHUB_TOKEN مطلوبان.")
+    return api_key, github_token
+
+
+def _load_episode():
     if not EPISODE_PATH.exists():
         raise RuntimeError("state/current_episode.json غير موجود.")
-
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     title = str(episode.get("title", "Historical Strategy Episode")).strip()
     caption = str(episode.get("caption", "")).strip() or title
+    return title, caption
 
-    full_path = OUTPUT_DIR / "final_video_full.mp4"
+
+def _validate_full_video(full_path):
     if not full_path.exists() or full_path.stat().st_size == 0:
         raise RuntimeError(f"الفيديو الكامل غير موجود: {full_path}")
     full_width, full_height = video_dimensions(full_path)
@@ -391,10 +393,22 @@ def _run() -> None:
             "شغّل assemble_video.py من النسخة الجديدة قبل النشر."
         )
     print(f"✅ أبعاد الفيديو الكامل: {full_width}x{full_height} — سيُرسل كفيديو YouTube عادي")
+    return full_width, full_height
 
+
+def _get_shorts():
     shorts = sorted(OUTPUT_DIR.glob("short_*_*.mp4"))
     if not shorts:
         raise RuntimeError("لا يوجد ريل جاهز للنشر.")
+    return shorts
+
+
+def _run() -> None:
+    api_key, github_token = _check_env_vars()
+    title, caption = _load_episode()
+    full_path = OUTPUT_DIR / "final_video_full.mp4"
+    _validate_full_video(full_path)
+    shorts = _get_shorts()
 
     ids = channel_ids()
     if not ids:
