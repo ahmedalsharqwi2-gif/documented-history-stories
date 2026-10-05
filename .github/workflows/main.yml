@@ -190,6 +190,9 @@ jobs:
       - name: Source and historical-claim integrity gate
         run: python scripts/source_integrity_gate.py --episode state/current_episode.json
 
+      - name: Historical verification and pre-production gate
+        run: python scripts/historical_verification_gate.py --episode state/current_episode.json
+
       - name: Fetch landscape stock clips
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}

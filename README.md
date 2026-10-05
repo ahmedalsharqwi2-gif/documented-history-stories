@@ -14,10 +14,11 @@
 ## بوابات الأمان
 
 1. تحقق من المصدر والادعاءات: `scripts/source_integrity_gate.py`.
-2. فحص اللغة العربية والصوت والترجمة.
-3. فحص الحقبة والمكان والأدوات والمشهد.
-4. منع التكرار عبر `state/topic_history.json`.
-5. النشر الخارجي متوقف افتراضيًا حتى تفعيل `PUBLISH_ENABLED=true` بعد مراجعة بشرية.
+2. تقرير التحقق التاريخي المستقل: `scripts/historical_verification_gate.py`، ويشمل هوية الحدث، جدول الحقائق، المصادر بروابط قابلة للفحص، وفحصًا نهائيًا يحاول إسقاط السيناريو.
+3. فحص اللغة العربية والصوت والترجمة.
+4. فحص الحقبة والمكان والأدوات والمشهد.
+5. منع التكرار عبر `state/topic_history.json`.
+6. النشر الخارجي متوقف افتراضيًا حتى تفعيل `PUBLISH_ENABLED=true` بعد مراجعة بشرية.
 
 ## التشغيل
 
@@ -26,5 +27,7 @@ python3 -m py_compile scripts/*.py
 python3 -m unittest discover -s tests -p 'test_*.py' -q
 python3 scripts/generate_script.py
 ```
+
+لا يكفي وجود اسم كتاب أو كلمة «أرشيف» لتمرير الحلقة؛ يجب أن يحتوي `current_episode.json` على حزمة التحقق الكاملة، وإلا تعرض البوابة `PRODUCTION HALTED — HISTORICAL VERIFICATION FAILURE` وتمنع الإنتاج والنشر.
 
 السجل القديم محفوظ في `archive/legacy-islamic/` لأغراض التدقيق فقط، ولا يدخل في بنك الموضوعات الجديد أو دورة الإنتاج.

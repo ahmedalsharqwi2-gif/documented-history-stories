@@ -444,7 +444,8 @@ def parse_labeled_response(text: str) -> dict:
     cleaned = _strip_label_markup(cleaned)
     labels = (
         "TITLE|CAPTION|HOOK|REGION|SOURCE_SOURCE_TYPE|SOURCE_TYPE|SOURCE_REFERENCE|"
-        "SOURCE|REFERENCE|NARRATION|VISUAL_KEYWORDS|PHONETIC_HINTS"
+        "SOURCE|REFERENCE|HISTORICAL_VERIFICATION_REPORT|EVENT_IDENTITY_CHECK|"
+        "FACT_TABLE|PRE_PRODUCTION_REPORT|FINAL_FACT_CHECK|NARRATION|VISUAL_KEYWORDS|PHONETIC_HINTS"
     )
     pattern = re.compile(
         rf"(?:^|\n)\s*({labels})\s*:\s*(.*?)(?=\n\s*(?:{labels})\s*:|\Z)",
@@ -510,6 +511,9 @@ def try_parse_json_episode(text: str) -> dict | None:
         value = data.get(key)
         if isinstance(value, str) and value.strip():
             result[key] = value.strip()
+    for key in ("historical_verification_report", "event_identity_check", "fact_table", "pre_production_report", "final_fact_check"):
+        if key in data:
+            result[key] = data[key]
     return result or None
 
 
@@ -597,6 +601,14 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
     if not fields.get("region", "").strip() and fields.get("title", "").strip():
         fields["region"] = fields["title"].strip()
         print(f"   ℹ️ {attempt_label} | {step_label}: تم استخدام TITLE كمرجع region دون اختلاق معلومة.")
+
+    for report_key in ("historical_verification_report", "event_identity_check", "fact_table", "pre_production_report", "final_fact_check"):
+        raw = fields.get(report_key, "")
+        if isinstance(raw, str) and raw.strip():
+            try:
+                fields[report_key] = json.loads(raw)
+            except json.JSONDecodeError:
+                fields[report_key] = {} if report_key != "fact_table" else []
 
     missing = [key for key in STORY_REQUIRED_FIELDS if not fields.get(key, "").strip()]
     if missing:
@@ -1044,6 +1056,11 @@ _STORY_FORMAT_BLOCK = (
     "PHONETIC_HINTS: <كلمة صعبة = الكلمة نفسها مع الحركات، سطر لكل كلمة>\n"
     "SOURCE_TYPE: <نوع المصدر التاريخي القابل للتحقق>\n"
     "SOURCE_REFERENCE: <اسم الأرشيف أو الوثيقة أو الجامعة أو الكتاب التاريخي القابل للتحقق>\n"
+    "HISTORICAL_VERIFICATION_REPORT: <JSON object مطابق للمخطط الإلزامي>\n"
+    "EVENT_IDENTITY_CHECK: <JSON object مطابق للمخطط الإلزامي>\n"
+    "FACT_TABLE: <JSON array لكل الادعاءات>\n"
+    "PRE_PRODUCTION_REPORT: <JSON object مطابق للمخطط الإلزامي>\n"
+    "FINAL_FACT_CHECK: <JSON object بكل الفحوصات true>\n"
     "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
 )
 
@@ -1062,6 +1079,7 @@ def build_story_prompt(
         "⚠️ التوثيق التاريخي: اختر واقعة قابلة للمراجعة من وثيقة أو أرشيف أو جامعة أو كتاب تاريخي موثوق. ممنوع اختلاق أي حوار أو تفصيلة أو "
         "اسم أو رقم أو نتيجة. إذا اختلفت الروايات، اذكر ذلك بوضوح ولا تقدم "
         "المختلف عليه كحقيقة قطعية.\n\n"
+        "قبل كتابة السرد، أنشئ تقرير HISTORICAL_VERIFICATION_REPORT كاملًا، وEVENT_IDENTITY_CHECK، وجدول FACT_TABLE لكل ادعاء، ثم PRE_PRODUCTION_REPORT وFINAL_FACT_CHECK. كل مصدر يجب أن يتضمن عنوانًا ومؤلفًا وتاريخًا ورابط URL وما يثبته. القرار APPROVED لا يُسمح به إلا عند اكتمال الأدلة؛ استخدم REJECTED إذا تعذر التحقق. أعد هذه الحقول كـ JSON صحيح داخل التسميات المطلوبة، ولا تضع ادعاءً بلا مصدر.\n\n"
         "⚠️ عدم التكرار: ممنوع نفس الواقعة اللي اتستخدمت في حلقة سابقة "
         "حتى بعنوان أو صياغة مختلفة تمامًا. راجع الهوكات تحت (بيوصفوا "
         "الواقعة نفسها بدقة أكتر من العنوان) — لو الواقعة في بالك بتوصف "
@@ -1292,6 +1310,11 @@ def run_single_attempt(
             "phonetic_hints": normalize_phonetic_hints(story.get("phonetic_hints", [])),
             "source_type": source_type,
             "source_reference": source_reference,
+            "historical_verification_report": story.get("historical_verification_report", {}),
+            "event_identity_check": story.get("event_identity_check", {}),
+            "fact_table": story.get("fact_table", []),
+            "pre_production_report": story.get("pre_production_report", {}),
+            "final_fact_check": story.get("final_fact_check", {}),
         }
         error = validate_episode(episode)
         if error:
@@ -1327,6 +1350,10 @@ def run_single_attempt(
         if count_words(new_narration) > current_count and not looks_truncated(new_narration):
             hook, region = expanded["hook"], expanded["region"]
             source_type, source_reference = expanded["source_type"], expanded["source_reference"]
+            story.update({key: expanded.get(key, story.get(key)) for key in (
+                "historical_verification_report", "event_identity_check", "fact_table",
+                "pre_production_report", "final_fact_check",
+            )})
             narration = new_narration
         else:
             print("   ⚠️ نسخة التوسيع مش أطول أو مش مكتملة — الاحتفاظ بالنسخة السابقة.")
@@ -1386,6 +1413,11 @@ def run_single_attempt(
         "phonetic_hints": normalize_phonetic_hints(finalize_data.get("phonetic_hints", [])),
         "source_type": source_type,
         "source_reference": source_reference,
+        "historical_verification_report": story.get("historical_verification_report", {}),
+        "event_identity_check": story.get("event_identity_check", {}),
+        "fact_table": story.get("fact_table", []),
+        "pre_production_report": story.get("pre_production_report", {}),
+        "final_fact_check": story.get("final_fact_check", {}),
     }
 
     error = validate_episode(episode)
