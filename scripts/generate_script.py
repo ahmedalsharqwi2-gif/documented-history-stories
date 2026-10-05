@@ -792,7 +792,9 @@ class CompatibleChatModels:
         # OpenAI-compatible fallback endpoints enforce a combined prompt plus
         # completion TPM limit. Estimate the prompt conservatively and reserve
         # headroom so short follow-up calls cannot inherit an oversized budget.
-        prompt_chars = sum(len(str(message.get("content", ""))) for message in messages)
+        prompt_chars = len(str(system or "")) + sum(
+            len(str(message.get("content", ""))) for message in messages
+        )
         estimated_prompt_tokens = max(1, (prompt_chars + 3) // 4)
         safe_context_budget = max(128, 8000 - estimated_prompt_tokens - 128)
         payload = {

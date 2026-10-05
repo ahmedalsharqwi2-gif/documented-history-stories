@@ -146,7 +146,7 @@ class DocumentedHistoryFallbackTests(unittest.TestCase):
         config = type(
             "Config",
             (),
-            {"system_instruction": "نظام", "temperature": 0.2, "max_output_tokens": 1800},
+            {"system_instruction": "نظام طويل " * 7000, "temperature": 0.2, "max_output_tokens": 1800},
         )()
         response = type(
             "Response",
