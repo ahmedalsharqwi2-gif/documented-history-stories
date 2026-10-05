@@ -511,6 +511,22 @@ def _extract_sources_from_narration(fields: dict) -> None:
         fields["source_type"] = "مصدر إسلامي معتبر"
 
 
+def _recover_source_reference(fields: dict, reply: str) -> None:
+    """Recover a labelled source block without inventing a citation."""
+    current = str(fields.get("source_reference", "")).strip()
+    if any(marker.casefold() in current.casefold() for marker in TRUSTED_SOURCE_MARKERS):
+        return
+    source_match = re.search(
+        r"(?is)(?:المصادر والمراجع|المراجع والمصادر|SOURCE_REFERENCE)\s*:?\s*(.*?)(?=\n\s*(?:NARRATION|TITLE|CAPTION|VISUAL_KEYWORDS|PHONETIC_HINTS)\s*:|\Z)",
+        reply,
+    )
+    if source_match:
+        candidate = source_match.group(1).strip()
+        if any(marker.casefold() in candidate.casefold() for marker in TRUSTED_SOURCE_MARKERS):
+            fields["source_reference"] = candidate
+            fields["source_type"] = fields.get("source_type") or "مصدر إسلامي معتبر"
+
+
 def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
     fields = parse_labeled_response(reply)
     if any(not fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
@@ -520,6 +536,7 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
             fields = json_fields
 
     _extract_sources_from_narration(fields)
+    _recover_source_reference(fields, reply)
 
     # The narration is authoritative: a model may return a plausible but
     # different hook. Canonicalize it before validation so hook and speech
