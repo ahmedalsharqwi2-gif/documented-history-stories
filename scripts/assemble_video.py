@@ -91,7 +91,7 @@ PLATFORM_CTA = {
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = subprocess.run(command, capture_output=True, text=True, check=True)
     if result.returncode != 0:
         raise RuntimeError(
             "❌ فشل الأمر:\n"
