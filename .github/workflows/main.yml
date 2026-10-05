@@ -55,6 +55,10 @@ env:
 
 jobs:
   build-and-publish:
+    # Fail closed until the editorial/source gate is proven in a dry run.
+    # Scheduled runs remain disabled unless PUBLISH_ENABLED is explicitly
+    # set to true as a repository variable.
+    if: ${{ vars.PUBLISH_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == true) }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
 
@@ -182,6 +186,9 @@ jobs:
           test -f state/current_episode.json || { echo "TEXT_GATE: episode artifact missing"; exit 1; }
           TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
           python -m arabic_speech_core.cli preflight --text "$TEXT" --engine edge --locale ar-SA --voice "$EDGE_TTS_VOICE" --lexicon config/arabic_pronunciation.json --min-words 20 --max-words 1200
+
+      - name: Source and historical-claim integrity gate
+        run: python scripts/source_integrity_gate.py --episode state/current_episode.json
 
       - name: Fetch landscape stock clips
         env:
