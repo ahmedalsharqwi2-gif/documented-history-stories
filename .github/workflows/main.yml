@@ -55,10 +55,10 @@ env:
 
 jobs:
   build-and-publish:
-    # Fail closed until the editorial/source gate is proven in a dry run.
-    # Scheduled runs remain disabled unless PUBLISH_ENABLED is explicitly
-    # set to true as a repository variable.
-    if: ${{ vars.PUBLISH_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == true) }}
+    # Manual dispatch is authoritative: dry_run=true validates only, while
+    # dry_run=false performs the explicitly requested live publication.
+    # Scheduled runs remain protected by the repository variable.
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.PUBLISH_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
 
