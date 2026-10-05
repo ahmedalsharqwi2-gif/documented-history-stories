@@ -57,9 +57,9 @@ except ModuleNotFoundError:
     from media_audio import normalized_audio_args, ducking_filters
 
 try:
-    from scripts.audio_matching import probe_audio, validate_manifest
+    from scripts.audio_matching import validate_manifest
 except ModuleNotFoundError:
-    from audio_matching import probe_audio, validate_manifest
+    from audio_matching import validate_manifest
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
