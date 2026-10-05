@@ -145,7 +145,10 @@ jobs:
           # fallback directly for this production run instead of burning
           # attempts across unavailable Gemini models first.
           GEMINI_API_KEY: ""
-          LLM_SEND_REASONING_EFFORT: "true"
+          # GPT-OSS reasoning tokens share the same output budget. With the
+          # constrained 1300-token request, enabling reasoning leaves only a
+          # tiny partial answer and breaks the required story fields.
+          LLM_SEND_REASONING_EFFORT: "false"
           LLM_FALLBACK_REASONING_EFFORT: "low"
           LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
           LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
