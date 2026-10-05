@@ -1043,6 +1043,12 @@ def call_model(
                 break
 
         if response is None:
+            # A provider can transiently return HTTP 200 with an empty
+            # message. Do not classify that as quota exhaustion and switch to
+            # a credit-limited provider; let the full-attempt retry reuse the
+            # validated fallback model instead.
+            if last_exc and "empty answer content" in str(last_exc):
+                raise AttemptFailed(f"إجابة فارغة من المزود أثناء {label}") from last_exc
             if has_next_model():
                 raise QuotaExhausted(
                     f"تعذر إكمال نداء {ACTIVE_MODEL} في {label}؛ سيتم التحويل للموديل التالي ({last_exc})"
