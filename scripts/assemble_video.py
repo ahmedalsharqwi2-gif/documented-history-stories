@@ -66,10 +66,7 @@ ROOT_DIR = SCRIPT_DIR.parent
 STATE_DIR = ROOT_DIR / "state"
 CLIPS_DIR = ROOT_DIR / "downloaded_clips"
 OUTPUT_DIR = ROOT_DIR / "output"
-SFX_DIR = ROOT_DIR / "assets" / "sfx"
 SUBTITLES_PATH = CLIPS_DIR / "narration.ass"
-DOCUMENTARY_AMBIENCE_GAIN = 0.035
-DOCUMENTARY_EVENT_GAIN = 0.14
 
 FETCHED_CLIPS_PATH = STATE_DIR / "fetched_clips.json"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
