@@ -53,7 +53,7 @@ class ProviderPool:
         for name, fn in self.providers:
             breaker = self.breakers[name]
             if not breaker.allow(): continue
-            for attempt in range(self.attempts):
+            for _ in range(self.attempts):
                 self.limiters[name].wait()
                 try:
                     value = fn(prompt); breaker.success(); return value
