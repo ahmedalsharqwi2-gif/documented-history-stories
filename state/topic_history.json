@@ -262,12 +262,13 @@
       "title": "فتح مكة في عام 630 م",
       "hook": "في مساءٍ هادئٍ بعد غزوة حُمّص، كان الصحابة يتأملون في مسارهم نحو مكة، حيث حشدوا صفوفهم؟",
       "region": "فتح مكة في عام 630 م",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "59663dfa47d743a7b68e6a7ac0d1f50d",
       "reserved_at": "2026-10-05T09:57:39Z",
       "run_id": "37291314803",
-      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos"
+      "reservation_id": "59663dfa47d743a7b68e6a7ac0d1f50d",
+      "repository": "ahmedalsharqwi2-gif/islamic-reminder-videos",
+      "published_at": "2026-10-05T09:58:09Z"
     }
   ]
 }
