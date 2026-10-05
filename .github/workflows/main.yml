@@ -134,7 +134,7 @@ jobs:
           # The catalog endpoint can be forbidden while chat completion still
           # works. Keep an ordered, replaceable list so one exhausted model
           # cannot take down the whole production run.
-          LLM_FALLBACK_MODELS: ${{ vars.LLM_FALLBACK_MODELS || 'openai/gpt-oss-20b,llama-3.3-70b-versatile,llama-3.1-8b-instant' }}
+          LLM_FALLBACK_MODELS: ${{ vars.LLM_FALLBACK_MODELS || 'openai/gpt-oss-120b,openai/gpt-oss-20b,llama-3.3-70b-versatile' }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           MODEL_POLICY_FILE: config/model_policy.json
         run: python scripts/model_preflight.py
