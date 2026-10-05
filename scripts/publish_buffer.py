@@ -65,10 +65,10 @@ BUFFER_YOUTUBE_CHANNEL_ID / BUFFER_FACEBOOK_CHANNEL_ID، مش بدلًا منه�
 كان فيه شورتان بتأخيرين مختلفين (short_1 بعد 24 ساعة، short_2 بعد 29
 ساعة) — نُشرا بعد الفيديو الكامل بيوم كامل تقريبًا. المطلوب دلوقتي: ريل
 واحد بس (شوف assemble_video.py) ينشر في نفس لحظة نشر الفيديو الكامل
-بالظبط. الحل: حذف FULL_TO_SHORT_2_HOURS نهائيًا (مفيش short_2 أصلًا
+بالضبط. الحل: حذف FULL_TO_SHORT_2_HOURS نهائيًا (مفيش short_2 أصلًا
 دلوقتي)، وكل الريلات الموجودة (حاليًا واحد بس) بتاخد نفس تأخير
 FULL_TO_SHORT_1_HOURS — لازم تظبطه في main.yml بنفس قيمة
-FULL_VIDEO_DELAY_HOURS بالظبط (مثلاً "8" لنشر الاتنين الساعة 7 مساءً).
+FULL_VIDEO_DELAY_HOURS بالضبط (مثلاً "8" لنشر الاتنين الساعة 7 مساءً).
 """
 
 from __future__ import annotations
@@ -77,7 +77,6 @@ import json
 import os
 import re
 import subprocess
-import sys
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -95,7 +94,7 @@ CHANNEL_PENDING_LIMIT = int(os.environ.get("CHANNEL_PENDING_LIMIT", "10"))
 ENABLE_PREFLIGHT_CHECK = os.environ.get("ENABLE_PREFLIGHT_CHECK", "true").lower() != "false"
 
 # افتراضيًا نفس قيمة FULL_VIDEO_DELAY_HOURS تحت، عشان الريل ينشر في نفس
-# توقيت الفيديو الكامل بالظبط (طلب: الفيديو والريل ينشروا معًا الساعة
+# توقيت الفيديو الكامل بالضبط (طلب: الفيديو والريل ينشروا معًا الساعة
 # 7 مساءً). لو حبيت تأخير مختلف للريل مستقبلاً، غيّر القيمة دي في
 # main.yml بمعزل عن FULL_VIDEO_DELAY_HOURS.
 FULL_TO_SHORT_1_HOURS = float(os.environ.get("FULL_TO_SHORT_1_HOURS", "8"))

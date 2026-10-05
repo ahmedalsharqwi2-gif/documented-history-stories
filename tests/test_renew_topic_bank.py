@@ -1,7 +1,4 @@
-import tempfile
 import unittest
-from pathlib import Path
-from unittest.mock import patch
 
 from scripts.renew_topic_bank import merge_related_trends, query_groups, build_candidates
 
