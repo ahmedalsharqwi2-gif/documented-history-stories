@@ -1,9 +1,16 @@
 import unittest
+import os
+from unittest.mock import patch
 
 from scripts.historical_verification_gate import validate_episode
 
 
 class HistoricalVerificationGateTests(unittest.TestCase):
+    def test_optional_sources_keep_religious_scope_exclusion(self):
+        with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false"}):
+            self.assertEqual(validate_episode({'title': 'بناء مدينة', 'narration': 'سرد تاريخي.'}), [])
+            self.assertTrue(validate_episode({'title': 'النَّبِيّ محمد', 'narration': 'سرد.'}))
+
     def test_missing_bundle_fails_closed(self):
         errors = validate_episode({"title": "قصة", "narration": "نص"})
         self.assertTrue(any("HISTORICAL VERIFICATION REPORT" in error for error in errors))

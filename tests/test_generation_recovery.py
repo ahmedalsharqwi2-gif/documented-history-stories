@@ -7,6 +7,15 @@ from scripts import generate_script as generator
 
 
 class GenerationRecoveryTests(unittest.TestCase):
+    def test_optional_sources_parse_plain_story_without_fabricated_reference(self):
+        narration = "في مدينة قديمة عرف الناس كيف يحفظون الماء داخل خزانات كبيرة تحت الأرض. ثم انتشرت الفكرة."
+        with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false"}):
+            story = generator.parse_story_reply(
+                'TITLE: خزانات المدينة\nREGION: مدينة قديمة\nNARRATION: ' + narration, 'test', 'story')
+            self.assertEqual(story['source_reference'], '')
+            self.assertEqual(generator.historical_errors(story), [])
+            self.assertNotIn('FACT_TABLE', generator.build_story_prompt([], [], [], 650))
+
     def test_short_minute_quota_can_recover_but_daily_quota_cannot(self):
         self.assertAlmostEqual(generator._minute_quota_wait(RuntimeError(
             '429 RESOURCE_EXHAUSTED PerMinute Please retry in 18.74s.')), 19.74)

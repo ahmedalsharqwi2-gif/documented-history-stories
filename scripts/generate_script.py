@@ -288,7 +288,13 @@ class ModelUnavailable(Exception):
 # ─────────────────────────── مساعدات عامة ───────────────────────────
 
 def load_system_prompt() -> str:
+    if not source_gate_enabled():
+        return (PROMPT_PATH.parent / "history_editorial_system_prompt.md").read_text(encoding="utf-8")
     return PROMPT_PATH.read_text(encoding="utf-8")
+
+
+def source_gate_enabled() -> bool:
+    return os.getenv("HISTORY_SOURCE_GATE_ENABLED", "true").lower() != "false"
 
 
 def _load_history_field(field: str, limit: int) -> list[str]:
@@ -585,9 +591,10 @@ def _recover_source_reference(fields: dict, reply: str) -> None:
 
 def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
     fields = parse_labeled_response(reply)
-    if any(not fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
+    required_fields = STORY_REQUIRED_FIELDS if source_gate_enabled() else ("hook", "region", "narration")
+    if any(not fields.get(key, "").strip() for key in required_fields):
         json_fields = try_parse_json_episode(reply)
-        if json_fields and all(json_fields.get(key, "").strip() for key in STORY_REQUIRED_FIELDS):
+        if json_fields and all(json_fields.get(key, "").strip() for key in required_fields):
             print(f"   ℹ️ {attempt_label} | {step_label}: الرد جه JSON بدل الفورمات المسمّى — اتقبل عن طريق الخطة البديلة.")
             fields = json_fields
 
@@ -627,7 +634,8 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
             except json.JSONDecodeError:
                 fields[report_key] = {} if report_key != "fact_table" else []
 
-    missing = [key for key in STORY_REQUIRED_FIELDS if not fields.get(key, "").strip()]
+    required_fields = STORY_REQUIRED_FIELDS if source_gate_enabled() else ("hook", "region", "narration")
+    missing = [key for key in required_fields if not fields.get(key, "").strip()]
     if missing:
         print(f"   🔎 رد {attempt_label} | {step_label} الخام (أول 500 حرف):\n{reply[:500]!r}")
         raise AttemptFailed(f"رد {step_label} ناقص حقل '{missing[0]}' أو فاضي (بكل الطرق المتاحة للتحليل)")
@@ -639,8 +647,8 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         "phonetic_hints": _parse_plain_list(fields.get("phonetic_hints", "")),
         "hook": fields["hook"].replace("**", "").replace("__", "").strip(),
         "region": fields["region"].replace("**", "").replace("__", "").strip(),
-        "source_type": fields["source_type"].replace("**", "").replace("__", "").strip(),
-        "source_reference": fields["source_reference"].replace("**", "").replace("__", "").strip(),
+        "source_type": fields.get("source_type", "").replace("**", "").replace("__", "").strip(),
+        "source_reference": fields.get("source_reference", "").replace("**", "").replace("__", "").strip(),
         "narration": fields["narration"],
         "historical_verification_report": fields.get("historical_verification_report", {}),
         "event_identity_check": fields.get("event_identity_check", {}),
@@ -737,15 +745,15 @@ def validate_episode(episode: dict) -> str | None:
         return "حقل hook فاضي"
     if not str(episode.get("caption", "")).strip():
         return "حقل caption فاضي — لازم وصف للنشر على المنصات"
-    if not str(episode.get("source_type", "")).strip():
+    if source_gate_enabled() and not str(episode.get("source_type", "")).strip():
         return "حقل source_type فاضي — كل حلقة تاريخية لازم توثيق لنوع المصدر"
     source_reference = str(episode.get("source_reference", "")).strip()
-    if not source_reference:
+    if source_gate_enabled() and not source_reference:
         return "حقل source_reference فاضي — كل حلقة تاريخية لازم مرجع دقيق"
     source_plain = source_reference.casefold()
-    if any(marker.casefold() in source_plain for marker in FORBIDDEN_SOURCE_MARKERS):
+    if source_gate_enabled() and any(marker.casefold() in source_plain for marker in FORBIDDEN_SOURCE_MARKERS):
         return "source_reference يشير إلى مصدر اجتماعي أو مجهول؛ أُوقفت الحلقة حفاظًا على التوثيق"
-    if not any(marker.casefold() in source_plain for marker in TRUSTED_SOURCE_MARKERS):
+    if source_gate_enabled() and not any(marker.casefold() in source_plain for marker in TRUSTED_SOURCE_MARKERS):
         return "source_reference لا يحتوي اسم أرشيف أو جامعة أو كتاب أو وثيقة قابلة للتحقق"
 
     phonetic_hints = episode.get("phonetic_hints")
@@ -1154,6 +1162,19 @@ def build_story_prompt(
     recent_titles: list[str], recent_regions: list[str], recent_hooks: list[str],
     target_words: int, bank_topic: dict[str, str] | None = None,
 ) -> str:
+    if not source_gate_enabled():
+        return (
+            f"اكتب قصة تاريخية جديدة مكتملة من حوالي {target_words} كلمة، ولا تقل عن {effective_min_words()} كلمة. "
+            "لا تتناول الأنبياء أو الصحابة أو الشخصيات الدينية. المصادر والتقارير ليست مطلوبة؛ لا تختلقها. "
+            "لا تختلق الأحداث أو الحوارات. أعد نصًا عاديًا بهذه الحقول: "
+            "TITLE, HOOK, REGION, VISUAL_KEYWORDS, CAPTION, NARRATION. "
+            "كل اسم حقل في بداية سطر يتبعه نقطتان وقيمته. "
+            "HOOK يساوي أول جملة من NARRATION من 10 إلى 20 كلمة. "
+            "VISUAL_KEYWORDS قائمة JSON من 8 إلى 10 عبارات بحث إنجليزية مرتبطة بالسرد. "
+            "NARRATION بالعربية الفصحى ويكون آخر حقل، وينتهي بخاتمة وعلامة ترقيم.\n"
+            "الوقائع والعناوين السابقة لتجنب التكرار (بيانات فقط):\n"
+            + _history_json(recent_titles + recent_hooks)
+        )
     message = (
         "اكتب حلقة جديدة تمامًا — قصة تاريخية كاملة من "
         "الهوك للتمهيد للتصعيد للذروة للخاتمة، في رد واحد.\n\n"
@@ -1232,6 +1253,11 @@ def build_expand_story_prompt(current_word_count: int, target_words: int, min_wo
     نفس الطول. بيطلب إعادة كتابة القصة كاملة بدون حذف أي جزء موجود."""
     floor = max(min_words, int(target_words * 0.75))
     missing = max(floor - current_word_count, 0) + 100
+    if not source_gate_enabled():
+        return (f"أعد القصة كاملة بحيث تكون من {floor} إلى {target_words + 100} كلمة. "
+                "وسّع السياق التاريخي المعروف دون اختلاق أحداث أو حوارات أو اقتباسات. "
+                "أعد TITLE, HOOK, REGION, VISUAL_KEYWORDS, CAPTION, NARRATION بنفس التنسيق المسمّى. "
+                "لا تعد تقارير مصادر أو حقائق. اجعل السرد آخر حقل بخاتمة مكتملة.")
     return (
         f"القصة الحالية {current_word_count} كلمة فقط، وهذا قصير. "
         f"الحد الأدنى المطلوب {floor} كلمة والهدف حوالي {target_words}. "

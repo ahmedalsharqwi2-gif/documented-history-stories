@@ -52,6 +52,7 @@ permissions:
 
 env:
   PYTHONPATH: ${{ github.workspace }}
+  HISTORY_SOURCE_GATE_ENABLED: 'false'
 
 jobs:
   build-and-publish:

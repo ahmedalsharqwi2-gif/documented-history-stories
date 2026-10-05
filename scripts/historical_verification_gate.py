@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -18,6 +19,8 @@ from typing import Any
 LEGACY_TERMS = (
     "قصص إسلامية", "السيرة النبوية", "الأنبياء", "الصحابة", "الفتاوى",
     "prophet", "companions", "islamic reminders",
+    "النبي", "نبي الله", "رسول الله", "أبو بكر الصديق", "عمر بن الخطاب",
+    "عثمان بن عفان", "علي بن أبي طالب",
 )
 REQUIRED_REPORT_FIELDS = {
     "event_name", "period", "location", "main_figures", "key_events",
@@ -59,6 +62,11 @@ def check_source(source: Any) -> list[str]:
 
 def validate_episode(episode: dict[str, Any]) -> list[str]:
     errors: list[str] = []
+    if os.getenv("HISTORY_SOURCE_GATE_ENABLED", "true").lower() == "false":
+        haystack = " ".join(text(episode.get(key)) for key in ("title", "narration", "region"))
+        plain = re.sub(r"[\u064b-\u065f\u0670]", "", haystack)
+        return [f"محتوى خارج نطاق القناة: {term}" for term in LEGACY_TERMS
+                if term.casefold() in plain.casefold()]
     report = episode.get("historical_verification_report")
     if not isinstance(report, dict):
         return ["HISTORICAL VERIFICATION REPORT مفقود أو ليس كائنًا"]
@@ -168,7 +176,10 @@ def main() -> int:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
-    print("HISTORICAL_GATE: APPROVED — verification bundle, source claims, identity, and final checks passed")
+    if os.getenv("HISTORY_SOURCE_GATE_ENABLED", "true").lower() == "false":
+        print("HISTORY_EDITORIAL_GATE: passed; source verification disabled, no independent verification claimed")
+    else:
+        print("HISTORICAL_GATE: APPROVED — verification bundle, source claims, identity, and final checks passed")
     return 0
 
 

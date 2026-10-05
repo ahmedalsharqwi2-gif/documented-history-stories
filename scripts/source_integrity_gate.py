@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -52,7 +53,19 @@ def undocumented_quotes(episode: dict) -> list[str]:
     return [text for text in quoted if not is_name(text)]
 
 
-def validate_source_integrity(episode: dict) -> list[str]:
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--episode", type=Path, required=True)
+    args = parser.parse_args()
+    try:
+        episode = json.loads(args.episode.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"SOURCE_GATE: تعذر قراءة ملف الحلقة: {exc}", file=sys.stderr)
+        return 1
+    if not isinstance(episode, dict):
+        print("SOURCE_GATE: ملف الحلقة ليس كائن JSON", file=sys.stderr)
+        return 1
+
     title = normalize(episode.get("title"))
     narration = normalize(episode.get("narration"))
     source_type = normalize(episode.get("source_type"))
@@ -61,16 +74,17 @@ def validate_source_integrity(episode: dict) -> list[str]:
     haystack = " ".join((title, narration, source_type, source, *keywords))
     haystack_folded = haystack.casefold()
     errors: list[str] = []
+    require_sources = os.getenv("HISTORY_SOURCE_GATE_ENABLED", "true").lower() != "false"
 
     if len(narration.split()) < 180:
         errors.append("النص قصير أو مفقود")
-    if not source_type:
+    if require_sources and not source_type:
         errors.append("نوع المصدر مفقود")
-    if not source:
+    if require_sources and not source:
         errors.append("المصدر مفقود")
-    elif not any(marker.casefold() in source.casefold() for marker in RECOGNIZED_SOURCE_MARKERS):
+    elif require_sources and not any(marker.casefold() in source.casefold() for marker in RECOGNIZED_SOURCE_MARKERS):
         errors.append(f"المصدر غير قابل للتعرف والتحقق: {source}")
-    if any(term.casefold() in haystack_folded for term in SOCIAL_OR_UNVERIFIED):
+    if require_sources and any(term.casefold() in haystack_folded for term in SOCIAL_OR_UNVERIFIED):
         errors.append("المصدر أو السرد يعتمد على مادة اجتماعية/مجهولة")
     for term in LEGACY_IDENTITY_TERMS:
         if term.casefold() in haystack_folded:
@@ -91,33 +105,16 @@ def validate_source_integrity(episode: dict) -> list[str]:
     # Quoted dialogue is not accepted unless the episode explicitly labels a
     # source location. This conservative rule blocks invented cinematic speech.
     quoted = undocumented_quotes(episode)
-    if quoted and not re.search(r"(ص\.?\s*\d+|صفحة|page\s*\d+|document|archive|سجل|وثيقة)", source, re.I):
+    if require_sources and quoted and not re.search(r"(ص\.?\s*\d+|صفحة|page\s*\d+|document|archive|سجل|وثيقة)", source, re.I):
         errors.append("يوجد اقتباس مباشر بلا موضع توثيق واضح")
-
-    return list(dict.fromkeys(errors))
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--episode", type=Path, required=True)
-    args = parser.parse_args()
-    try:
-        episode = json.loads(args.episode.read_text(encoding="utf-8"))
-    except Exception as exc:
-        print(f"SOURCE_GATE: تعذر قراءة ملف الحلقة: {exc}", file=sys.stderr)
-        return 1
-    if not isinstance(episode, dict):
-        print("SOURCE_GATE: ملف الحلقة ليس كائن JSON", file=sys.stderr)
-        return 1
-
-    errors = validate_source_integrity(episode)
 
     if errors:
         print("SOURCE_GATE: فشل التحقق — أُوقف المسار قبل الإنتاج أو النشر.", file=sys.stderr)
         for error in dict.fromkeys(errors):
             print(f"- {error}", file=sys.stderr)
         return 1
-    print(f"SOURCE_GATE: passed ({title})")
+    print(f"EDITORIAL_GATE: passed ({title}); source verification "
+          + ("enabled" if require_sources else "disabled"))
     return 0
 
 
