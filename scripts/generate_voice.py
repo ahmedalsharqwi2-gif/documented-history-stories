@@ -35,7 +35,7 @@ try:
 except ImportError:  # direct `python scripts/generate_voice.py`
     from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
-from arabic_speech_core.ass_text import render_arabic_caption, caption_word_groups
+from arabic_speech_core.ass_text import render_arabic_caption, display_word
 try:
     from .arabic_guard import validate_narration
 except ImportError:  # direct `python scripts/generate_voice.py`
@@ -772,8 +772,19 @@ def synthesize_voice(voice_text: str) -> None:
     if not all_word_events:
         sys.exit("❌ تعذر إنشاء توقيت الترجمة.")
 
+    # Display punctuation can turn one aligned token (e.g. a hyphenated name)
+    # into several visible words. Split it before grouping, preserving timing.
+    expanded_events = []
+    for event in all_word_events:
+        tokens = display_word(event["text"]).split()
+        for part, token in enumerate(tokens):
+            step = event["duration"] / len(tokens)
+            expanded_events.append({"text": token, "offset": event["offset"] + part * step,
+                                    "duration": step})
+    all_word_events = expanded_events
     dialogue_lines = []
-    for group in caption_word_groups(all_word_events, WORDS_PER_CAPTION_CHUNK):
+    for index in range(0, len(all_word_events), WORDS_PER_CAPTION_CHUNK):
+        group = all_word_events[index:index + WORDS_PER_CAPTION_CHUNK]
         start = group[0]["offset"]
         end = group[-1]["offset"] + group[-1]["duration"]
         dialogue_lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.25))},Caption,,0,0,0,,{two_lines_ar([e['text'] for e in group])}")
