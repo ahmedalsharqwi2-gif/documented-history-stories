@@ -122,7 +122,7 @@ def main() -> None:
         data = json.loads(TOKEN_STATE_PATH.read_text(encoding="utf-8"))
         last_success_utc = data["last_success_utc"]
         last_success = datetime.fromisoformat(last_success_utc)
-    except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
+    except (OSError, KeyError, ValueError) as exc:
         print(f"⚠️ تعذّر قراءة {TOKEN_STATE_PATH}: {exc}؛ تخطي الفحص.")
         return
 

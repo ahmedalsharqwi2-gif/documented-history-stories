@@ -73,7 +73,7 @@ def main() -> int:
         return 2
     try:
         text = load_text(args)
-    except (OSError, json.JSONDecodeError, ValueError) as exc:
+    except (OSError, ValueError) as exc:
         print(f"ERROR: could not load synthesis text: {exc}", file=sys.stderr)
         return 2
 
