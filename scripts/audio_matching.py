@@ -55,7 +55,7 @@ def choose_decision(audio: dict[str, Any], override: str | None = None) -> tuple
         return decision, "editorial manifest override"
     if not audio.get("present"):
         return "VOICE ONLY", "no embedded source audio detected"
-    return "ORIGINAL AUDIO + VOICE DUCKING", "embedded source audio retained below narration by default"
+    return "VOICE ONLY", "embedded sound requires scene/audio review before retention"
 
 
 def build_audio_record(path: Path, *, override: str | None = None) -> dict[str, Any]:
@@ -83,6 +83,8 @@ def validate_manifest(clips: list[dict[str, Any]]) -> dict[str, Any]:
         decision = " ".join(str(record.get("decision") or "").upper().split())
         if decision not in AUDIO_DECISIONS:
             errors.append(f"clip #{index} has unsupported audio decision: {decision or '<empty>'}")
+        if decision.startswith("ORIGINAL AUDIO") and record.get("semantic_match_review") != "PASS":
+            errors.append(f"clip #{index} original audio has no semantic match approval")
         analysis = record.get("analysis")
         if not isinstance(analysis, dict) or "present" not in analysis:
             errors.append(f"clip #{index} missing technical audio analysis")

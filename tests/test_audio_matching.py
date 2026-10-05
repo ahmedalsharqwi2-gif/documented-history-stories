@@ -5,9 +5,9 @@ from scripts.audio_matching import build_audio_record, choose_decision
 
 
 class AudioMatchingTests(unittest.TestCase):
-    def test_clip_with_audio_defaults_to_ducking(self):
+    def test_unreviewed_clip_audio_defaults_to_voice_only(self):
         decision, _ = choose_decision({"present": True})
-        self.assertEqual(decision, "ORIGINAL AUDIO + VOICE DUCKING")
+        self.assertEqual(decision, "VOICE ONLY")
 
     def test_clip_without_audio_uses_voice_only(self):
         decision, _ = choose_decision({"present": False})

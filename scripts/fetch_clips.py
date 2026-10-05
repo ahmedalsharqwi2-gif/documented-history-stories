@@ -67,6 +67,11 @@ import sys
 import time
 import requests
 from pathlib import Path
+
+try:
+    from scripts.clip_review import review_clip
+except ModuleNotFoundError:
+    from clip_review import review_clip
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -262,8 +267,6 @@ def search_pexels(
             if video["duration"] < MIN_DURATION_SECONDS:
                 continue
             # ممنوع أي شخص: امرأة، رجل، طفل، وجه، ظل أو تمثال بشري.
-            if contains_forbidden_human(video):
-                continue
 
             # ممنوع أي عنصر حديث أو معاصر لا يطابق الحقبة التاريخية.
             if looks_contemporary(video):
@@ -305,27 +308,8 @@ def search_with_fallback(
     if results:
         return results
 
-    print(
-        f"⚠️  '{keyword}': لا توجد لقطة موثوقة مطابقة — "
-        "سيتم البحث في لقطات تاريخية عامة خالية من البشر"
-    )
-
-    collected: list[dict] = []
-    already_used_this_call = set(used_ids)
-    for fallback_keyword in HISTORICAL_FALLBACK_KEYWORDS:
-        if len(collected) >= count:
-            break
-        remaining = count - len(collected)
-        fb_results = search_pexels(
-            fallback_keyword, api_key, already_used_this_call, remaining,
-        )
-        for item in fb_results:
-            already_used_this_call.add(item["id"])
-        collected.extend(fb_results)
-
-    if collected:
-        print(f"   ↳ اتلقى {len(collected)} كليب بديل موثوق وخالٍ من البشر")
-    return collected
+    print(f"⚠️ No matching clip for {keyword!r}; unrelated fallback is forbidden")
+    return []
 
 
 def download_clip(url: str, dest: Path, max_attempts: int = DOWNLOAD_MAX_ATTEMPTS):
@@ -410,7 +394,7 @@ def main():
         for result in results:
             if accepted_for_keyword >= wanted or len(fetched_clips) >= MAX_TOTAL_CLIPS:
                 break
-            dest_path = CLIPS_DIR / f"clip_{len(fetched_clips):02d}.mp4"
+            dest_path = CLIPS_DIR / f"clip_{result['id']}.mp4"
             try:
                 download_clip(result["url"], dest_path)
             except requests.exceptions.RequestException as exc:
@@ -434,10 +418,12 @@ def main():
                 continue
 
             try:
-                audio_record = build_audio_record(dest_path)
+                review = review_clip(dest_path, keyword, str(episode.get("title", "")), historical=True)
+                audio_record = build_audio_record(dest_path, override=review["audio_decision"])
+                audio_record["semantic_match_review"] = review.get("audio_match", "NOT_REQUIRED")
             except (RuntimeError, ValueError) as exc:
                 print(f"⚠️ استبعاد كليب Pexels {result['id']}: تعذر تحليل الصوت الأصلي: {exc}")
-                dest_path.unlink(missing_ok=True)
+                # Keep rejected candidates for byte-bound editorial review.
                 continue
 
             fetched_clips.append({
@@ -445,6 +431,7 @@ def main():
                 "pexels_id": result["id"],
                 "keyword": keyword,
                 "audio": audio_record,
+                "visual_review": review,
             })
             accepted_for_keyword += 1
             print(f"✅ اتنزل كليب لـ '{keyword}' (Pexels ID: {result['id']})")
