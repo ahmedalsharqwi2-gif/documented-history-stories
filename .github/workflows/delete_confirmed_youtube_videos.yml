@@ -1,0 +1,73 @@
+name: Delete confirmed YouTube videos
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  delete-confirmed-videos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install YouTube client
+        run: python -m pip install --quiet google-api-python-client google-auth google-auth-httplib2 google-auth-oauthlib
+      - name: Delete only the user-confirmed video IDs
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          from google.auth.transport.requests import Request
+          from google.oauth2.credentials import Credentials
+          from googleapiclient.discovery import build
+          from googleapiclient.errors import HttpError
+
+          ids = [
+              "4R8Fiz1HX3s",
+              "OGj1pdeTfeg",
+              "Bx9sEiTpmKg",
+              "vjqWcZvbDEE",
+              "dOpPPpnmXmM",
+              "SDqbI4fUA5M",
+              "VlhmCR8C_sI",
+              "jfvnOrDsavQ",
+              "SwTl_JeiWoQ",
+          ]
+          required = ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN")
+          missing = [name for name in required if not os.environ.get(name)]
+          if missing:
+              raise SystemExit("Missing YouTube credentials: " + ", ".join(missing))
+          credentials = Credentials(
+              token=None,
+              refresh_token=os.environ["YT_REFRESH_TOKEN"],
+              token_uri="https://oauth2.googleapis.com/token",
+              client_id=os.environ["YT_CLIENT_ID"],
+              client_secret=os.environ["YT_CLIENT_SECRET"],
+              scopes=["https://www.googleapis.com/auth/youtube.force-ssl"],
+          )
+          credentials.refresh(Request())
+          youtube = build("youtube", "v3", credentials=credentials)
+          failed = []
+          for video_id in ids:
+              try:
+                  youtube.videos().delete(id=video_id).execute()
+                  print(f"DELETED https://youtu.be/{video_id}")
+              except HttpError as exc:
+                  status = getattr(exc.resp, "status", "unknown")
+                  if status == 404:
+                      print(f"ALREADY_ABSENT https://youtu.be/{video_id}")
+                  else:
+                      print(f"FAILED {video_id} HTTP {status}: {exc}")
+                      failed.append(video_id)
+          if failed:
+              raise SystemExit("Deletion failed for: " + ", ".join(failed))
+          print("CONFIRMED_DELETE_COMPLETE: all nine IDs processed")
+          PY
