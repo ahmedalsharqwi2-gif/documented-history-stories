@@ -329,8 +329,8 @@ def mix_documentary_audio(source_video: Path, final_audio: Path, duration: float
         raise FileNotFoundError("ملفات مؤثرات الوثائقي ناقصة داخل assets/sfx")
     inputs = ["-i", str(source_video), "-i", str(final_audio), "-stream_loop", "-1", "-i", str(ambience), "-i", str(breeze), "-i", str(page_turn)]
     page_at = max(1.0, duration * 0.48)
-    filters = [f"[0:a]aresample=48000,volume=0.18[original]",
-               f"[1:a]aresample=48000,volume=1.0[voice]",
+    filters = ["[0:a]aresample=48000,volume=0.18[original]",
+               "[1:a]aresample=48000,volume=1.0[voice]",
                "[original][voice]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=350:makeup=1[ducked]",
                f"[2:a]aresample=48000,volume={DOCUMENTARY_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
                f"[3:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
