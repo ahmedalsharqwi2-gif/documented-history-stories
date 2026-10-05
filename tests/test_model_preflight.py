@@ -1,5 +1,4 @@
 import json
-import os
 import unittest
 from pathlib import Path
 
@@ -22,7 +21,6 @@ class ModelPolicyTests(unittest.TestCase):
     def test_preflight_is_importable_without_third_party_dependencies(self):
         import scripts.model_preflight as preflight
         self.assertEqual(preflight.DEFAULT_GEMINI, "gemini-2.5-flash")
-
 
 if __name__ == "__main__":
     unittest.main()

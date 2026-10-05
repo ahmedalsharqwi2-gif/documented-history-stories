@@ -47,9 +47,9 @@ except ModuleNotFoundError:
     from scripts.arabic_guard import validate_hook, validate_narration
 from google.genai import types
 try:
-    from scripts.topic_history import DuplicateTopicError, TopicHistory, clean_text, find_duplicate
+    from scripts.topic_history import TopicHistory, clean_text, find_duplicate
 except ModuleNotFoundError:
-    from topic_history import DuplicateTopicError, TopicHistory, clean_text, find_duplicate
+    from topic_history import TopicHistory, clean_text, find_duplicate
 
 SCRIPT_DIR = Path(__file__).parent
 PROMPT_PATH = SCRIPT_DIR.parent / "prompts" / "documented_history_system_prompt.md"
