@@ -30,8 +30,7 @@ RECOGNIZED_SOURCE_MARKERS = (
     "primary source", "official record",
 )
 VISUAL_RED_FLAGS = (
-    "cannon", "musket", "modern car", "smartphone", "modern building",
-    "contemporary", "fortress wall", "stock footage generic",
+    "stock footage generic",
 )
 
 
@@ -80,9 +79,11 @@ def main() -> int:
 
     if len(keywords) < 8:
         errors.append("عدد الكلمات البصرية أقل من ثمانية")
+    # Weapons and transport are era-dependent; the actual-video review gate
+    # checks them against the verification report rather than banning all eras.
     for keyword in keywords:
         lowered = keyword.casefold()
-        if any(flag in lowered for flag in VISUAL_RED_FLAGS) or re.search(r"\bcar\b|\bcars\b", lowered):
+        if any(flag in lowered for flag in VISUAL_RED_FLAGS):
             errors.append(f"كلمة بصرية أنكرونية أو عامة: {keyword}")
 
     # Quoted dialogue is not accepted unless the episode explicitly labels a

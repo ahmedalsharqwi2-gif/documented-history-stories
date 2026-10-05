@@ -1,63 +1,7 @@
-"""
-fetch_clips.py
-يبحث في Pexels عن كليبات فيديو حقيقية بناءً على visual_keywords،
-ويتجنب أي كليب اتستخدم قبل كده باستخدام state/used_clips.json.
+"""Fetch historical candidates, then review the actual clip against its era and scene.
 
-يحتاج: متغير بيئة PEXELS_API_KEY (مجاني من https://www.pexels.com/api/)
-
-=== تعديل جديد: قيد العصر التاريخي واستبعاد اللقطات المعاصرة ===
-القصص هنا تاريخية إنسانية موثقة، وأي لقطة فيها عنصر عصري حديث (سيارات، مباني
-زجاجية حديثة، هواتف ذكية، طرق سريعة، إلخ) بتكسر الإحساس بالزمن وتبقى
-غير مناسبة تمامًا حتى لو طابقت كلمة البحث تقنيًا.
-
-⚠️ تنويه تقني صادق: Pexels API مفيهوش حقل "tags" أو وصف نصي منفصل
-لفيديوهاته (بعكس الصور اللي عندها tags)، ومفيش أي عامل استبعاد
-(exclude operator) في البحث نفسه. الفلترة هنا بتعتمد بشكل عملي على
-تحليل الـ slug الوصفي الموجود جوه رابط كل فيديو (video["url"]، زي
-".../video/aerial-view-of-a-city-at-night-1093662/") ومقارنته بقائمة
-MODERN_EXCLUDE_TERMS. ده حل تقريبي معقول لكنه مش مضمون بالكامل: ممكن
-يفوت كليب عصري لو الرابط مالوش وصف كافٍ، أو يستبعد كليب بريء بالغلط
-لو الوصف فيه كلمة متشابهة. مفيش بديل أدق متاح فعليًا من الـ API نفسه.
-
-منطق البحث صار صارمًا لكل كلمة بحث:
-  1) إضافة "no people" إلى استعلام Pexels لتحسين النتائج الخالية من البشر.
-  2) رفض أي كليب يظهر في وصف رابطه مؤشر على بشر، نساء، رجال، أطفال، أو
-     أي مظهر بشري.
-  3) رفض أي كليب يظهر في وصف رابطه مؤشر على عنصر حديث/معاصر.
-  4) رفض الكليب إذا لم يوجد له وصف قابل للفحص في رابط Pexels، لأن عدم القدرة
-     على التحقق لا يُعتبر موافقة.
-  5) عند عدم وجود نتائج، البحث فقط في قائمة لقطات تاريخية إنسانية عامة خالية من البشر
-     وبنفس الفلترة الصارمة. لا توجد أبدًا نتيجة احتياطية غير مفلترة.
-
-=== تعديل سابق: تسجيل region في الهيستوري ===
-كان الهيستوري بيسجّل "title" بس مع كل حلقة. دلوقتي بيسجّل "region" كمان
-(المنطقة/الدولة اللي القصة منها، جاية من current_episode.json اللي
-generate_script.py بيكتبه) — عشان load_used_regions() في generate_script.py
-تقدر فعليًا تمنع تكرار نفس المنطقة الجغرافية في حلقات متتالية. لو الحلقة
-القديمة اتعملت قبل التعديل ده ومفيهاش region، بيتسجل النص فاضي بدل ما
-يحصل خطأ.
-
-تعديلات سابقة على النسخة دي:
-- بدل ما ينزّل كليب واحد بس لكل كلمة بحث، بقى بينزّل لحد CLIPS_PER_KEYWORD
-  كليبات لكل كلمة (بدل ما كانت CLIPS_PER_KEYWORD معرّفة بس مش مستخدمة فعليًا)،
-  عشان يبقى فيه أكبر عدد ممكن من الفيديوهات المتنوعة اللي فعلاً بتعبّر عن
-  أحداث القصة، بدل الاعتماد على كليب واحد يتكرر أو يتمط طول الحلقة.
-- بيدور على صفحات أكتر (MAX_PAGES_TO_TRY) وبنتائج أكتر لكل صفحة (per_page)
-  عشان يقدر يلاقي عدد كافي من الكليبات الجديدة (الغير مستخدمة قبل كده)
-  لكل كلمة بحث.
-- فيه سقف إجمالي (MAX_TOTAL_CLIPS) يمنع تنزيل عدد ضخم جدًا من الكليبات في
-  حلقة واحدة (تحكم في الوقت والمساحة)، قابل للتعديل براحتك.
-
-تحمّل انقطاعات الشبكة العابرة (زي ConnectionResetError اللي كانت
-بتوقف الـ run كله وتضيّع كل الكليبات اللي اتنزلت قبلها):
-- كل طلبات الشبكة (بحث وتحميل) بتعدي دلوقتي على `requests.Session` معاها
-  `Retry` adapter بيعيد المحاولة تلقائيًا على مستوى الـ HTTP connection
-  نفسه (بيغطي حتى فشل الـ SSL/TLS handshake).
-- `download_clip` كمان عندها طبقة retry يدوية فوق كده (مع مسح أي ملف
-  ناقص قبل كل محاولة جديدة)، عشان تتعامل مع أخطاء زي
-  ChunkedEncodingError اللي ممكن تحصل بعد ما جزء من الملف اتكتب فعلاً.
-- في main()، لو كليب واحد فشل بعد كل المحاولات، بنتخطاه ونكمل باقي
-  الكليبات بدل ما نوقف السكريبت كله ونضيّع اللي اتنزل قبل كده.
+Search terms and URL slugs are not evidence. Unrelated fallback is forbidden;
+actual video/audio review is mandatory before clips enter the manifest.
 """
 import os
 import json
@@ -67,6 +11,11 @@ import sys
 import time
 import requests
 from pathlib import Path
+
+try:
+    from scripts.clip_review import review_clip
+except ModuleNotFoundError:
+    from clip_review import review_clip
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -104,64 +53,6 @@ DOWNLOAD_MAX_ATTEMPTS = 4
 MAX_CLIP_BLACK_SECONDS = 0.30
 BLACK_INTERVAL_RE = re.compile(r"black_start:([0-9.]+).*black_end:([0-9.]+)")
 
-# كلمات دالة على عناصر عصرية/معاصرة. لو ظهرت في الوصف المستخرج من رابط
-# الكليب (شوف clip_description_slug)، نستبعد الكليب فورًا حتى لو طابق
-# كلمة البحث الأصلية، لأنه هيكسر الإحساس بالعصر التاريخي للحلقة. القائمة
-# تقريبية وقابلة للتوسيع — أضف أي كلمة لاحظت تسربها في لقطات سابقة.
-MODERN_EXCLUDE_TERMS = {
-    "car", "cars", "traffic", "highway", "freeway", "smartphone", "phone",
-    "iphone", "laptop", "computer", "modern", "skyline", "skyscraper",
-    "neon", "airplane", "aircraft", "jet", "helicopter", "train", "subway",
-    "metro", "office", "gym", "fitness", "mall", "supermarket", "wifi",
-    "drone", "electric", "bicycle", "motorcycle", "bus", "truck", "stadium",
-    "concert", "nightclub", "television", "internet", "led", "billboard",
-    "apartment", "elevator", "escalator", "shopping", "parking", "urban",
-    "downtown", "contemporary", "tourist", "tourists", "selfie", "camera",
-    "studio", "microphone", "headphones", "game", "gaming", "keyboard",
-    "monitor", "screen", "app", "social-media", "credit-card", "atm",
-    "modern-day", "modern-city", "modern-building", "glass-building",
-    "skyscrapers", "road", "street", "crosswalk", "suburban", "city-center",
-    "airport", "railway", "bus-stop", "factory", "warehouse", "construction",
-    "plastic", "neon-light", "streetlight", "power-line", "wind-turbine",
-}
-
-# قاعدة أمان صارمة: لا نسمح بظهور أي إنسان، وليس النساء فقط.
-# الفلترة تعتمد على الوصف الموجود في رابط Pexels، وليست تحليلًا بصريًا كاملًا.
-HUMAN_EXCLUDE_TERMS = {
-    "person", "people", "human", "humans", "man", "men", "male",
-    "woman", "women", "female", "girl", "girls", "lady", "ladies",
-    "mother", "father", "family", "child", "children", "baby", "babies",
-    "boy", "boys", "face", "faces", "portrait", "body", "crowd", "crowds",
-    "people-walking", "walking", "standing", "sitting", "running", "walking-person",
-    "worshipper", "worshippers", "prayer", "praying", "pilgrim", "pilgrims",
-    "soldier", "soldiers", "warrior", "warriors", "rider", "riders",
-    "worker", "workers", "farmer", "farmers", "merchant", "merchants",
-    "king", "queen", "prince", "princess", "prophet", "historian",
-    "actor", "actress", "dancer", "model", "hand", "hands", "feet",
-    "silhouette", "shadow", "statue", "sculpture", "human-figure",
-}
-
-# إذا لم نستطع فحص وصف الرابط، نرفض الكليب بدل قبول لقطة غير مضمونة.
-REJECT_UNVERIFIABLE_SLUG = True
-
-# كلمات بحث احتياطية تاريخية عامة، مستخدمة فقط لو فشل البحث
-# بالكلمة الأصلية (حتى بعد إلغاء الفلترة الصارمة) — يعني آخر خط دفاع
-# قبل ما نضطر نتخطى الكلمة دي خالص. كلها كلمات محايدة زمنيًا (عمارة/
-# طبيعة/مخطوطات) عشان تناسب عصورًا تاريخية إنسانية مختلفة.
-HISTORICAL_FALLBACK_KEYWORDS = [
-    "ancient stone fortress empty no people",
-    "historic map parchment close up no people",
-    "old wooden sailing ship ocean no people",
-    "ancient battlefield landscape no people",
-    "desert dunes historic atmosphere no people",
-    "old manuscript writing close up no people",
-    "ancient city ruins empty no people",
-    "historic mountain pass landscape no people",
-    "old compass and map close up no people",
-    "ancient weapons museum display no people",
-]
-
-
 def _build_session() -> requests.Session:
     """Session واحدة لكل الطلبات (بحث + تحميل) مع Retry adapter بيعيد
     المحاولة تلقائيًا على انقطاعات الشبكة العابرة (Connection reset,
@@ -191,45 +82,10 @@ def load_json(path: Path, default):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def clip_description_slug(video: dict) -> str:
-    """يستخرج الوصف النصي التقريبي من رابط الفيديو نفسه على Pexels (اللي
-    بيحتوي عادةً على كلمات وصفية زي
-    ".../video/aerial-view-of-a-city-at-night-1093662/")، عشان نقدر
-    نفحص الكليب بحثًا عن كلمات دالة على العصر الحديث حتى لو كلمة البحث
-    نفسها كانت بريئة. لو الرابط مالوش وصف واضح، بترجع نص فاضي (يعني مفيش
-    فلترة هتحصل عليه — الفلترة تحفّظية، مش قاطعة)."""
-    url = str(video.get("url", ""))
-    slug = url.rstrip("/").rsplit("/", 1)[-1]
-    # نشيل الرقم التسلسلي في آخر الـ slug (زي "-1093662")
-    slug = re.sub(r"-\d+$", "", slug)
-    return slug.replace("-", " ").lower()
-
-
-def contains_forbidden_human(video: dict) -> bool:
-    """ترفض أي كليب يصف رابطه وجود بشر أو هيئة بشرية."""
-    description = clip_description_slug(video)
-    if not description:
-        return REJECT_UNVERIFIABLE_SLUG
-
-    words = set(description.split())
-    return any(term in words or term in description for term in HUMAN_EXCLUDE_TERMS)
-
-
-def looks_contemporary(video: dict) -> bool:
-    """True لو الوصف المستخرج من رابط الكليب فيه أي كلمة من
-    MODERN_EXCLUDE_TERMS. شوف تنويه الدقة في أعلى الملف."""
-    description = clip_description_slug(video)
-    if not description:
-        return False
-    words = set(description.split())
-    return any(term in words or term in description for term in MODERN_EXCLUDE_TERMS)
-
-
 def search_pexels(
     keyword: str, api_key: str, used_ids: set, count: int,
 ) -> list[dict]:
-    """يرجّع كليبات جديدة قابلة للتحقق فقط: بلا بشر وبلا عناصر حديثة.
-    لا توجد نتيجة غير مفلترة؛ عدم القدرة على التحقق يعني الرفض."""
+    """Return candidates; the actual-video gate decides whether each one is usable."""
     headers = {"Authorization": api_key}
     found: list[dict] = []
     seen_ids_this_search: set[int] = set()
@@ -241,7 +97,7 @@ def search_pexels(
         params = {
             # تحسين فرص الحصول على لقطة خالية من البشر؛ الفلترة الحقيقية
             # تتم لاحقًا ولا تعتمد على نص الاستعلام وحده.
-            "query": f"{keyword} no people",
+            "query": keyword,
             "orientation": "landscape",  # المصدر الأساسي للفيديو الكامل 16:9؛ الشورتس تُقص لاحقًا
             "per_page": RESULTS_PER_PAGE,
             "page": page,
@@ -261,13 +117,7 @@ def search_pexels(
                 continue
             if video["duration"] < MIN_DURATION_SECONDS:
                 continue
-            # ممنوع أي شخص: امرأة، رجل، طفل، وجه، ظل أو تمثال بشري.
-            if contains_forbidden_human(video):
-                continue
-
-            # ممنوع أي عنصر حديث أو معاصر لا يطابق الحقبة التاريخية.
-            if looks_contemporary(video):
-                continue
+            # Period suitability is judged from the actual clip, not a slug.
 
             # تجاهل أي نتيجة لا تحتوي ملفات فيديو قابلة للتنزيل.
             if not video.get("video_files"):
@@ -296,36 +146,13 @@ def search_pexels(
 def search_with_fallback(
     keyword: str, api_key: str, used_ids: set, count: int,
 ) -> list[dict]:
-    """بحث صارم بلا أي fallback غير مفلتر.
-
-    نبحث بالكلمة الأصلية أولًا، ثم نستخدم كلمات عامة خالية من البشر فقط.
-    كل المسارات تمر بنفس فحص البشر والعصر الحديث.
-    """
+    """Search the requested subject only; never substitute generic landscapes."""
     results = search_pexels(keyword, api_key, used_ids, count)
     if results:
         return results
 
-    print(
-        f"⚠️  '{keyword}': لا توجد لقطة موثوقة مطابقة — "
-        "سيتم البحث في لقطات تاريخية عامة خالية من البشر"
-    )
-
-    collected: list[dict] = []
-    already_used_this_call = set(used_ids)
-    for fallback_keyword in HISTORICAL_FALLBACK_KEYWORDS:
-        if len(collected) >= count:
-            break
-        remaining = count - len(collected)
-        fb_results = search_pexels(
-            fallback_keyword, api_key, already_used_this_call, remaining,
-        )
-        for item in fb_results:
-            already_used_this_call.add(item["id"])
-        collected.extend(fb_results)
-
-    if collected:
-        print(f"   ↳ اتلقى {len(collected)} كليب بديل موثوق وخالٍ من البشر")
-    return collected
+    print(f"⚠️ No matching clip for {keyword!r}; unrelated fallback is forbidden")
+    return []
 
 
 def download_clip(url: str, dest: Path, max_attempts: int = DOWNLOAD_MAX_ATTEMPTS):
@@ -410,7 +237,7 @@ def main():
         for result in results:
             if accepted_for_keyword >= wanted or len(fetched_clips) >= MAX_TOTAL_CLIPS:
                 break
-            dest_path = CLIPS_DIR / f"clip_{len(fetched_clips):02d}.mp4"
+            dest_path = CLIPS_DIR / f"clip_{result['id']}.mp4"
             try:
                 download_clip(result["url"], dest_path)
             except requests.exceptions.RequestException as exc:
@@ -434,10 +261,12 @@ def main():
                 continue
 
             try:
-                audio_record = build_audio_record(dest_path)
+                review = review_clip(dest_path, keyword, str(episode.get("title", "")), historical=True)
+                audio_record = build_audio_record(dest_path, override=review["audio_decision"])
+                audio_record["semantic_match_review"] = review.get("audio_match", "NOT_REQUIRED")
             except (RuntimeError, ValueError) as exc:
                 print(f"⚠️ استبعاد كليب Pexels {result['id']}: تعذر تحليل الصوت الأصلي: {exc}")
-                dest_path.unlink(missing_ok=True)
+                # Keep rejected candidates for byte-bound editorial review.
                 continue
 
             fetched_clips.append({
@@ -445,6 +274,7 @@ def main():
                 "pexels_id": result["id"],
                 "keyword": keyword,
                 "audio": audio_record,
+                "visual_review": review,
             })
             accepted_for_keyword += 1
             print(f"✅ اتنزل كليب لـ '{keyword}' (Pexels ID: {result['id']})")

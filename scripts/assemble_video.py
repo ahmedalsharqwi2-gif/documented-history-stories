@@ -50,19 +50,23 @@ from collections import defaultdict
 from pathlib import Path
 
 try:
-    from scripts.audio_matching import probe_audio, validate_manifest
+    from scripts.clip_review import review_clip
+    from scripts.media_audio import normalized_audio_args, ducking_filters
 except ModuleNotFoundError:
-    from audio_matching import probe_audio, validate_manifest
+    from clip_review import review_clip
+    from media_audio import normalized_audio_args, ducking_filters
+
+try:
+    from scripts.audio_matching import validate_manifest
+except ModuleNotFoundError:
+    from audio_matching import validate_manifest
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
 STATE_DIR = ROOT_DIR / "state"
 CLIPS_DIR = ROOT_DIR / "downloaded_clips"
 OUTPUT_DIR = ROOT_DIR / "output"
-SFX_DIR = ROOT_DIR / "assets" / "sfx"
 SUBTITLES_PATH = CLIPS_DIR / "narration.ass"
-DOCUMENTARY_AMBIENCE_GAIN = 0.035
-DOCUMENTARY_EVENT_GAIN = 0.14
 
 FETCHED_CLIPS_PATH = STATE_DIR / "fetched_clips.json"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
@@ -127,34 +131,14 @@ def resolve_path(value: str | Path) -> Path:
     return ROOT_DIR / path
 
 
-def normalize_clip(input_path: Path, output_path: Path, duration: float) -> None:
-    """Normalize video without discarding embedded audio."""
-    audio = probe_audio(input_path)
-    inputs = ["-stream_loop", "-1", "-i", str(input_path)]
-    audio_map = "0:a:0"
-    if not audio.get("present"):
-        inputs += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
-        audio_map = "1:a:0"
-    run([
-        "ffmpeg", "-y",
-        *inputs,
-        "-t", f"{duration:.3f}",
-        "-vf",
-        f"scale={FULL_WIDTH}:{FULL_HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={FULL_WIDTH}:{FULL_HEIGHT},fps={FPS}",
-        "-map", "0:v:0",
-        "-map", audio_map,
-        "-c:v", "libx264",
-        "-preset", "fast",
-        "-crf", "22",
-        "-pix_fmt", "yuv420p",
-        "-c:a", "aac",
-        "-ar", "48000",
-        "-ac", "2",
-        "-b:a", "128k",
-        "-movflags", "+faststart",
-        str(output_path),
-    ])
+def normalize_clip(input_path: Path, output_path: Path, duration: float, audio_decision: str = "VOICE ONLY") -> None:
+    """Render only explicitly approved embedded audio, with a stable stream layout."""
+    extra, mapping = normalized_audio_args(input_path, audio_decision.startswith("ORIGINAL AUDIO"))
+    run(["ffmpeg", "-y", "-stream_loop", "-1", "-i", str(input_path), *extra,
+         "-t", f"{duration:.3f}", "-vf",
+         f"scale={FULL_WIDTH}:{FULL_HEIGHT}:force_original_aspect_ratio=increase,crop={FULL_WIDTH}:{FULL_HEIGHT},fps={FPS}",
+         "-map", "0:v:0", *mapping, "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+         "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output_path)])
 
 
 def concat_clips(paths: list[Path], output_path: Path, list_path: Path) -> None:
@@ -277,9 +261,10 @@ def build_scene_plan(
         pool = by_keyword.get(keyword.casefold(), [])
         clip = next((item for item in pool if (str(item.get("id", "")), str(item.get("file", ""))) not in used), None)
         if clip is None:
-            clip = next((item for item in clips if (str(item.get("id", "")), str(item.get("file", ""))) not in used), None)
+            # Reuse only a clip matching this sentence's keyword.
+            clip = pool[0] if pool else None
         if clip is None:
-            clip = clips[index % len(clips)]
+            raise RuntimeError(f"No matching clip for sentence {index + 1}: {keyword}")
         used.add((str(clip.get("id", "")), str(clip.get("file", ""))))
         window = windows[min(index, len(windows) - 1)]
         plan.append({
@@ -288,6 +273,7 @@ def build_scene_plan(
             "keyword": keyword,
             "clip_id": clip.get("pexels_id", clip.get("id")),
             "file": clip["file"],
+            "audio_decision": clip.get("audio", {}).get("decision", "VOICE ONLY"),
             "start_seconds": round(window["start"], 3),
             "end_seconds": round(window["end"], 3),
             "duration_seconds": round(max(window["end"] - window["start"], 0.05), 3),
@@ -322,21 +308,13 @@ def make_vertical_subtitles(source: Path, output: Path) -> Path:
 
 def mix_documentary_audio(source_video: Path, final_audio: Path, duration: float, output_path: Path) -> Path:
     """Keep embedded clip audio and duck it beneath clear narration."""
-    ambience = SFX_DIR / "documentary_nature_ambience_loop.mp3"
-    breeze = SFX_DIR / "documentary_soft_breeze.mp3"
-    page_turn = SFX_DIR / "documentary_page_turn.mp3"
-    if not all(p.is_file() for p in (ambience, breeze, page_turn)):
-        raise FileNotFoundError("ملفات مؤثرات الوثائقي ناقصة داخل assets/sfx")
-    inputs = ["-i", str(source_video), "-i", str(final_audio), "-stream_loop", "-1", "-i", str(ambience), "-i", str(breeze), "-i", str(page_turn)]
-    page_at = max(1.0, duration * 0.48)
-    filters = [f"[0:a]aresample=48000,volume=0.18[original]",
-               f"[1:a]aresample=48000,volume=1.0[voice]",
-               "[original][voice]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=350:makeup=1[ducked]",
-               f"[2:a]aresample=48000,volume={DOCUMENTARY_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
-               f"[3:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
-               f"[4:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]"]
-    filters.append("[voice][ducked][nature][breeze][page]amix=inputs=5:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]")
-    run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[a]", "-t", f"{duration:.3f}", "-c:a", "libmp3lame", "-b:a", "192k", str(output_path)])
+    # Generic page turns and nature sounds can invent events absent from the
+    # narrative. Use only the actual approved scene audio here.
+    filters = ducking_filters("[1:a]", "[0:a]")
+    filters.append("[voice][ducked]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]")
+    run(["ffmpeg", "-y", "-i", str(source_video), "-i", str(final_audio),
+         "-filter_complex", ";".join(filters), "-map", "[a]", "-t", f"{duration:.3f}",
+         "-c:a", "libmp3lame", "-b:a", "192k", str(output_path)])
     return output_path
 
 
@@ -392,6 +370,12 @@ def build_full_video(
     if audio_duration <= 0:
         raise RuntimeError("❌ مدة الصوت النهائي غير صالحة.")
 
+    if not clips:
+        raise RuntimeError("No clips to assemble")
+    for clip in clips:
+        reviewed = review_clip(resolve_path(clip["file"]), str(clip.get("keyword", "")), str((episode or {}).get("title", "")), historical=True)
+        if reviewed["audio_decision"] != clip.get("audio", {}).get("decision"):
+            raise ValueError("Audio decision differs from byte-bound clip review")
     scene_plan = build_scene_plan(clips, episode or {}, subtitles, audio_duration) if episode else []
     if scene_plan:
         (STATE_DIR / "scene_plan.json").write_text(
@@ -411,7 +395,7 @@ def build_full_video(
         if not source.exists():
             raise RuntimeError(f"❌ الكليب غير موجود: {source}")
         norm_path = CLIPS_DIR / f"norm_full_{index:03d}.mp4"
-        normalize_clip(source, norm_path, max(float(scene["duration_seconds"]), 0.05))
+        normalize_clip(source, norm_path, max(float(scene["duration_seconds"]), 0.05), scene.get("audio_decision", "VOICE ONLY"))
         normalized.append(norm_path)
 
     concatenated = CLIPS_DIR / "concatenated_full.mp4"

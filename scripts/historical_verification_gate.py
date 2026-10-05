@@ -69,8 +69,19 @@ def validate_episode(episode: dict[str, Any]) -> list[str]:
     for field in ("main_figures", "key_events", "sources", "confirmed_information", "verified_dates", "period_technology", "verified_places"):
         if not nonempty_list(report.get(field)):
             errors.append(f"تقرير التحقق يحتاج قائمة غير فارغة: {field}")
-    for source in report.get("sources", []):
-        errors.extend(check_source(source))
+    sources = report.get("sources")
+    if isinstance(sources, list):
+        for source in sources:
+            errors.extend(check_source(source))
+    else:
+        sources = []
+    source_names = {text(source.get(field)) for source in sources if isinstance(source, dict)
+                    for field in ("title", "url") if text(source.get(field))}
+    if sources and not any(isinstance(source, dict) and text(source.get("level")) in {"1", "2", "3", "I", "II", "III"} for source in sources):
+        errors.append("لا يجوز الاعتماد على مصادر المستوى الرابع وحدها")
+    for field in ("event_name", "period", "location"):
+        if not text(report.get(field)):
+            errors.append(f"تقرير التحقق يحتاج قيمة موثقة: {field}")
     if not isinstance(report.get("disputed_information"), list):
         errors.append("disputed_information يجب أن يكون قائمة")
     if not isinstance(report.get("excluded_information"), list):
@@ -99,6 +110,14 @@ def validate_episode(episode: dict[str, Any]) -> list[str]:
                     errors.append(f"FACT TABLE #{index} ناقص: {field}")
             confidence = text(fact.get("confidence")).upper()
             decision = text(fact.get("decision")).lower()
+            if confidence not in {"A", "B", "C", "D", "E"}:
+                errors.append(f"FACT TABLE #{index}: درجة ثقة غير صالحة")
+            if not text(fact.get("claim")) or not text(fact.get("source")):
+                errors.append(f"FACT TABLE #{index}: ادعاء أو مصدر فارغ")
+            if text(fact.get("source")) not in source_names:
+                errors.append(f"FACT TABLE #{index}: المصدر غير موجود في تقرير التحقق")
+            if confidence == "C" and decision not in {"disputed", "use with qualification", "exclude", "حذف", "استخدام مع توضيح"}:
+                errors.append(f"FACT TABLE #{index}: يجب توضيح الخلاف أو حذف ادعاء C")
             if confidence in {"D", "E"} and decision in {"use", "استخدام", "fact", "حقيقة"}:
                 errors.append(f"FACT TABLE #{index}: لا يجوز استخدام ادعاء بدرجة {confidence}")
             if confidence in {"A", "B"} and fact.get("verified") is not True:

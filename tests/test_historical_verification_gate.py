@@ -18,6 +18,16 @@ class HistoricalVerificationGateTests(unittest.TestCase):
         errors = validate_episode(episode)
         self.assertTrue(any("لا يجوز استخدام" in error for error in errors))
 
+    def test_malformed_sources_returns_errors_instead_of_crashing(self):
+        errors = validate_episode({"historical_verification_report": {"decision": "APPROVED", "sources": None}})
+        self.assertTrue(errors)
+
+    def test_unknown_confidence_and_unlisted_source_cannot_pass(self):
+        errors = validate_episode({"historical_verification_report": {"decision": "APPROVED", "sources": []},
+                                   "fact_table": [{"claim": "claim", "source": "invented", "confidence": "Z", "verified": True, "decision": "use"}]})
+        self.assertTrue(any("درجة ثقة غير صالحة" in error for error in errors))
+        self.assertTrue(any("المصدر غير موجود" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()
