@@ -54,7 +54,7 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 YT_CATEGORY_ID = os.environ.get("YT_CATEGORY_ID", "24")
 YT_PRIVACY = os.environ.get("YT_PRIVACY", "public")  # public | unlisted | private
 YT_MADE_FOR_KIDS = os.environ.get("YT_MADE_FOR_KIDS", "false").lower() == "true"
-HISTORICAL_SOURCE = "المصادر والمراجع: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
+HISTORICAL_SOURCE = "المصادر والوثائق: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
 # الفيديو الطويل أداؤه أفضل مساءً (وقت فراغ فعلي عند المشاهد) بعكس
 # الشورتس اللي أداؤها أفضل صبحًا/ضهرًا. لو الـ workflow بيشتغل صباحًا،
 # القيمة دي بتأجل النشر الفعلي على يوتيوب لنفس اليوم مساءً بدل النشر
@@ -136,13 +136,13 @@ def load_title_and_description() -> tuple[str, str]:
     if not EPISODE_PATH.exists():
         raise RuntimeError(f"state/current_episode.json غير موجود: {EPISODE_PATH}")
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    title = str(episode.get("title", "Historical Strategy Episode")).strip()[:100]
+    title = str(episode.get("title", "Documented History Story")).strip()[:100]
     caption = str(episode.get("caption", "")).strip() or title
     source_reference = str(episode.get("source_reference", "")).strip()
     if not source_reference:
-        raise RuntimeError("المصادر والمراجع مفقودة من current_episode.json؛ لن يتم النشر")
+        raise RuntimeError("المصادر والوثائق مفقودة من current_episode.json؛ لن يتم النشر")
     # وصف يوتيوب بيسمح بحد أقصى 5000 حرف، الكابشن الحالي عادة أقصر بكتير.
-    description = f"{caption[:4650]}\n\nالمصادر والمراجع:\n- {source_reference}\n\n#تاريخ #قصص_تاريخية #معلومة_تاريخية".strip()
+    description = f"{caption[:4650]}\n\nالمصادر والوثائق:\n- {source_reference}\n\n#تاريخ #وثائقي #قصص_موثقة".strip()
     return title, description
 
 
@@ -161,7 +161,7 @@ def upload_video(youtube, video_path: Path, title: str, description: str) -> str
 
     body = {
         "snippet": {
-            "title": title or "Historical Strategy Episode",
+            "title": title or "Documented History Story",
             "description": description,
             "categoryId": YT_CATEGORY_ID,
         },

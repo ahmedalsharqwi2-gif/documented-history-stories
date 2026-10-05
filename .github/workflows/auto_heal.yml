@@ -2,7 +2,7 @@ name: Auto-Heal Failed Workflow
 
 on:
   workflow_run:
-    workflows: ["Create and Publish Historical Strategy Episode"]
+    workflows: ["Create and Publish Documented History Story"]
     types: [completed]
 
 permissions:

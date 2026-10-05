@@ -56,8 +56,8 @@ CLIPS_DIR = ROOT_DIR / "downloaded_clips"
 OUTPUT_DIR = ROOT_DIR / "output"
 SFX_DIR = ROOT_DIR / "assets" / "sfx"
 SUBTITLES_PATH = CLIPS_DIR / "narration.ass"
-REMINDER_AMBIENCE_GAIN = 0.035
-REMINDER_EVENT_GAIN = 0.14
+DOCUMENTARY_AMBIENCE_GAIN = 0.035
+DOCUMENTARY_EVENT_GAIN = 0.14
 
 FETCHED_CLIPS_PATH = STATE_DIR / "fetched_clips.json"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
@@ -305,19 +305,19 @@ def make_vertical_subtitles(source: Path, output: Path) -> Path:
     return output
 
 
-def mix_reminder_audio(final_audio: Path, duration: float, output_path: Path) -> Path:
+def mix_documentary_audio(final_audio: Path, duration: float, output_path: Path) -> Path:
     """Add a very quiet natural bed, opening breeze, and one page turn."""
-    ambience = SFX_DIR / "reminder_nature_ambience_loop.mp3"
-    breeze = SFX_DIR / "reminder_soft_breeze.mp3"
-    page_turn = SFX_DIR / "reminder_page_turn.mp3"
+    ambience = SFX_DIR / "documentary_nature_ambience_loop.mp3"
+    breeze = SFX_DIR / "documentary_soft_breeze.mp3"
+    page_turn = SFX_DIR / "documentary_page_turn.mp3"
     if not all(p.is_file() for p in (ambience, breeze, page_turn)):
-        raise FileNotFoundError("ملفات مؤثرات التذكير ناقصة داخل assets/sfx")
+        raise FileNotFoundError("ملفات مؤثرات الوثائقي ناقصة داخل assets/sfx")
     inputs = ["-i", str(final_audio), "-stream_loop", "-1", "-i", str(ambience), "-i", str(breeze), "-i", str(page_turn)]
     page_at = max(1.0, duration * 0.48)
     filters = [f"[0:a]aresample=48000,volume=1.0[voice]",
-               f"[1:a]aresample=48000,volume={REMINDER_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
-               f"[2:a]aresample=48000,volume={REMINDER_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
-               f"[3:a]aresample=48000,volume={REMINDER_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]"]
+               f"[1:a]aresample=48000,volume={DOCUMENTARY_AMBIENCE_GAIN},atrim=duration={duration:.3f}[nature]",
+               f"[2:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay=120|120,atrim=duration={duration:.3f}[breeze]",
+               f"[3:a]aresample=48000,volume={DOCUMENTARY_EVENT_GAIN},adelay={int(page_at*1000)}|{int(page_at*1000)},atrim=duration={duration:.3f}[page]"]
     filters.append("[voice][nature][breeze][page]amix=inputs=4:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=disabled[a]")
     run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[a]", "-t", f"{duration:.3f}", "-c:a", "libmp3lame", "-b:a", "192k", str(output_path)])
     return output_path
@@ -335,7 +335,7 @@ def add_audio_and_subtitles(
         filters.append(sub_filter)
 
     mixed_audio = output_path.with_suffix(".mixed.mp3")
-    mix_reminder_audio(final_audio, probe_duration(final_audio), mixed_audio)
+    mix_documentary_audio(final_audio, probe_duration(final_audio), mixed_audio)
     command = [
         "ffmpeg", "-y",
         "-i", str(video_path),

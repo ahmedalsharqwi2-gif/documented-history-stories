@@ -247,7 +247,7 @@ def main(argv: list[str] | None = None) -> int:
     groups = query_groups(os.getenv("TOPIC_RENEWAL_QUERIES", {
         "science": "AI, artificial intelligence;quantum computing, الحوسبة الكمية;space mission, مهمة فضائية;robotics, robotics medicine",
         "horror": "unexplained disappearance, اختفاء غامض;abandoned places, أماكن مهجورة;unsolved mystery, لغز لم يحل;strange signals, إشارات غامضة",
-        "history": "Islamic history, التاريخ الإسلامي;Andalus, الأندلس;Abbasid Baghdad, بغداد العباسية;Mamluk battles, معارك المماليك",
+        "history": "Pompeii, بومبي;historical mystery, غموض تاريخي;ancient civilizations, الحضارات القديمة;documented battles, معارك موثقة;archaeology, علم الآثار;historic disasters, كوارث تاريخية",
     }[args.kind]))
     trend_values = fetch_trends(groups, args.geo, args.timeframe)
     queries = [q for group in groups for q in group]

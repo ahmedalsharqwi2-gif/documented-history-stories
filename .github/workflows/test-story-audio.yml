@@ -1,4 +1,4 @@
-name: Test Historical Story and Arabic Audio
+name: Test Documented History Story and Arabic Audio
 
 on:
   workflow_dispatch:

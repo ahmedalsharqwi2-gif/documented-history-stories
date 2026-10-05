@@ -1,7 +1,7 @@
 """
 generate_script.py
 يستدعي Gemini API عشان يولّد سيناريو القصة التاريخية +
-الترجمة العربية + كلمات البحث البصرية + مرجع التوثيق الشرعي.
+الترجمة العربية + كلمات البحث البصرية + مرجع التوثيق التاريخي.
 
 === نداء واحد للقصة كاملة + قبول طول "مقارب" بدل الإجبار ===
   1) نطلب من الموديل يكتب القصة *كاملة* في نداء واحد بهدف طول تقريبي.
@@ -26,7 +26,7 @@ OPENROUTER_MIN_WORDS (الافتراضي 500) بدل ACCEPTABLE_MIN_WORDS لما
 بيوقف النموذج الحالي فورًا وينتقل للتالي.
 
 ⚠️ تنويه: الموديل مايقدرش "يتحقق" فعليًا من صحة أي حديث أو رواية —
-حقول source_type/source_reference بتخلّي المراجعة البشرية ممكنة قبل النشر.
+حقول source_type/source_reference تجعل المراجعة البشرية ممكنة قبل النشر.
 """
 import os
 import re
@@ -52,7 +52,7 @@ except ModuleNotFoundError:
     from topic_history import DuplicateTopicError, TopicHistory, clean_text, find_duplicate
 
 SCRIPT_DIR = Path(__file__).parent
-PROMPT_PATH = SCRIPT_DIR.parent / "prompts" / "history_strategy_system_prompt.md"
+PROMPT_PATH = SCRIPT_DIR.parent / "prompts" / "documented_history_system_prompt.md"
 OUTPUT_PATH = SCRIPT_DIR.parent / "state" / "current_episode.json"
 TOPIC_HISTORY_PATH = SCRIPT_DIR.parent / "state" / "topic_history.json"
 TOPIC_BANK_PATH = SCRIPT_DIR.parent / "TOPIC_BANK.md"
@@ -225,9 +225,9 @@ DEFAULT_VISUAL_KEYWORDS = [
 ]
 
 TRUSTED_SOURCE_MARKERS = (
-    "القرآن", "صحيح البخاري", "البخاري", "صحيح مسلم", "مسلم", "سنن أبي داود",
-    "الترمذي", "النسائي", "ابن ماجه", "ابن هشام", "ابن كثير", "الطبري",
-    "الذهبي", "ابن حجر", "السيرة النبوية", "تاريخ الإسلام", "البداية والنهاية",
+    "أرشيف", "وثيقة", "سجل", "مخطوط", "متحف", "جامعة", "مؤسسة أثرية",
+    "دراسة محكمة", "مجلة علمية", "كتاب", "موسوعة", "المكتبة الوطنية",
+    "archive", "museum", "university", "journal", "book", "encyclopedia",
 )
 FORBIDDEN_SOURCE_MARKERS = (
     "فيسبوك", "انستغرام", "إنستغرام", "تيك توك", "تويتر", "إكس", "واتساب",
@@ -536,14 +536,14 @@ def _parse_plain_list(value: str) -> list[str]:
 def _extract_sources_from_narration(fields: dict) -> None:
     """Keep the required source block out of spoken narration when present."""
     narration = str(fields.get("narration", "")).strip()
-    marker = re.search(r"(?im)^\s*(?:المصادر والمراجع|المراجع والمصادر)\s*:?\s*", narration)
+    marker = re.search(r"(?im)^\s*(?:المصادر والوثائق|المراجع والمصادر)\s*:?\s*", narration)
     if marker:
         source_block = narration[marker.end():].strip()
         fields["narration"] = narration[:marker.start()].strip()
         if not fields.get("source_reference"):
             fields["source_reference"] = source_block
     if fields.get("source_reference") and not fields.get("source_type"):
-        fields["source_type"] = "مصدر إسلامي معتبر"
+        fields["source_type"] = "مصدر تاريخي قابل للتحقق"
 
 
 def _recover_source_reference(fields: dict, reply: str) -> None:
@@ -552,14 +552,14 @@ def _recover_source_reference(fields: dict, reply: str) -> None:
     if any(marker.casefold() in current.casefold() for marker in TRUSTED_SOURCE_MARKERS):
         return
     source_match = re.search(
-        r"(?is)(?:المصادر والمراجع|المراجع والمصادر|SOURCE_REFERENCE)\s*:?\s*(.*?)(?=\n\s*(?:NARRATION|TITLE|CAPTION|VISUAL_KEYWORDS|PHONETIC_HINTS)\s*:|\Z)",
+        r"(?is)(?:المصادر والوثائق|المراجع والمصادر|SOURCE_REFERENCE)\s*:?\s*(.*?)(?=\n\s*(?:NARRATION|TITLE|CAPTION|VISUAL_KEYWORDS|PHONETIC_HINTS)\s*:|\Z)",
         reply,
     )
     if source_match:
         candidate = source_match.group(1).strip()
         if any(marker.casefold() in candidate.casefold() for marker in TRUSTED_SOURCE_MARKERS):
             fields["source_reference"] = candidate
-            fields["source_type"] = fields.get("source_type") or "مصدر إسلامي معتبر"
+            fields["source_type"] = fields.get("source_type") or "مصدر تاريخي قابل للتحقق"
 
 
 def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
@@ -712,7 +712,7 @@ def validate_episode(episode: dict) -> str | None:
     if any(marker.casefold() in source_plain for marker in FORBIDDEN_SOURCE_MARKERS):
         return "source_reference يشير إلى مصدر اجتماعي أو مجهول؛ أُوقفت الحلقة حفاظًا على التوثيق"
     if not any(marker.casefold() in source_plain for marker in TRUSTED_SOURCE_MARKERS):
-        return "source_reference لا يحتوي اسم مصدر إسلامي معتبر يمكن التحقق منه"
+        return "source_reference لا يحتوي اسم أرشيف أو جامعة أو كتاب أو وثيقة قابلة للتحقق"
 
     phonetic_hints = episode.get("phonetic_hints")
     if not isinstance(phonetic_hints, list):
@@ -790,7 +790,7 @@ class CompatibleChatModels:
                     headers={
                         "Authorization": f"Bearer {self.api_key}",
                         "Content-Type": "application/json",
-                        "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/islamic-reminder1",
+                        "HTTP-Referer": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories",
                         "X-Title": self.title,
                     },
                     json=payload,
@@ -1042,8 +1042,8 @@ _STORY_FORMAT_BLOCK = (
     "CAPTION: <وصف قصير للفيديو>\n"
     "VISUAL_KEYWORDS: <ثماني إلى عشر عبارات بحث إنجليزية، عبارة في كل سطر>\n"
     "PHONETIC_HINTS: <كلمة صعبة = الكلمة نفسها مع الحركات، سطر لكل كلمة>\n"
-    "SOURCE_TYPE: <نوع المصدر الإسلامي المعتبر>\n"
-    "SOURCE_REFERENCE: <اسم الكتاب أو المصدر الإسلامي المعتبر>\n"
+    "SOURCE_TYPE: <نوع المصدر التاريخي القابل للتحقق>\n"
+    "SOURCE_REFERENCE: <اسم الأرشيف أو الوثيقة أو الجامعة أو الكتاب التاريخي القابل للتحقق>\n"
     "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
 )
 
@@ -1055,12 +1055,11 @@ def build_story_prompt(
     message = (
         "اكتب حلقة جديدة تمامًا — قصة تاريخية كاملة من "
         "الهوك للتمهيد للتصعيد للذروة للخاتمة، في رد واحد.\n\n"
-        "⚠️ نطاق القناة: اختر قصة إسلامية حقيقية وموثقة من القرآن أو السنة الصحيحة أو كتب السيرة والتاريخ الإسلامي المعتبرة. ارفض أي قصة أسطورية أو مجهولة أو من مواقع التواصل. لا تختلق تفاصيل أو حوارًا، واذكر مصدرًا إسلاميًا محددًا. عند ذكر النبي محمد استخدم دائمًا النبي محمد صلى الله عليه وسلم، وعند ذكر الله استخدم الله جل جلاله أو قال الله تعالى، وأضف رضي الله عنه أو عنها أو عنهم للصحابة عند ملاءمة السياق. لا تجسد نبيًا أو صحابيًا أو شخصية مقدسة بأي صورة أو فيديو أو ممثل أو وجه.\n\n"
+        "⚠️ نطاق القناة: اختر قصة تاريخية إنسانية حقيقية وموثقة من أرشيف أو وثيقة أو جامعة أو كتاب تاريخي قابل للتحقق. ارفض أي قصة أسطورية أو مجهولة أو من مواقع التواصل. لا تختلق تفاصيل أو حوارًا، واذكر مصدرًا تاريخيًا محددًا قابلًا للتحقق. لا تقدم أي شخصية دينية أو عقائدية بوصفها محورًا للقصة الجديدة.\n\n"
         "⚠️ اللغة: narration بالكامل باللغة العربية الفصحى المبسّطة "
         "(Modern Standard Arabic) فقط، ممنوع أي لهجة عامية. شكّل النص كاملًا "
         "لتوجيه النطق، وراجع مطابقة الضمائر والأفعال والتذكير والتأنيث قبل الرد.\n\n"
-        "⚠️ التوثيق التاريخي: اختر واقعة قابلة للمراجعة من القرآن أو الحديث الصحيح "
-        "أو كتاب سيرة أو تاريخ إسلامي موثوق. ممنوع اختلاق أي حوار أو تفصيلة أو "
+        "⚠️ التوثيق التاريخي: اختر واقعة قابلة للمراجعة من وثيقة أو أرشيف أو جامعة أو كتاب تاريخي موثوق. ممنوع اختلاق أي حوار أو تفصيلة أو "
         "اسم أو رقم أو نتيجة. إذا اختلفت الروايات، اذكر ذلك بوضوح ولا تقدم "
         "المختلف عليه كحقيقة قطعية.\n\n"
         "⚠️ عدم التكرار: ممنوع نفس الواقعة اللي اتستخدمت في حلقة سابقة "
@@ -1094,8 +1093,7 @@ def build_story_prompt(
         "⚠️ المشاهد: عند بناء visual_keywords اختر من 8 إلى 10 عبارات إنجليزية، "
         "كل عبارة مرتبطة بجملة أو مشهد محدد في narration وبالحقبة والمكان. استخدم "
         "الصحارى والطرق القديمة والعمارة والمخطوطات والخرائط والأدوات واللقطات "
-        "الواسعة الخالية من البشر. ممنوع النساء والوجوه والممثلون والأنبياء "
-        "والصحابة والعناصر الحديثة والسيارات والهواتف والشاشات. لا تستخدم لقطة "
+        "الواسعة الخالية من البشر. ممنوع الوجوه والممثلون والعناصر الحديثة والسيارات والهواتف والشاشات. لا تستخدم لقطة "
         "عامة عشوائية لمجرد ملء الفراغ.\n\n"
         "⚠️ الفورمات — التزم به حرفيًا وبما يطابق البرومبت النظامي: ردك كله لازم يكون نصًا عاديًا "
         "(plain text) وليس JSON، بالشكل بالضبط تحت. اكتب كل تسمية "

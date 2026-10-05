@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed source and claim gate for Islamic historical episodes.
-
-This gate is intentionally conservative: it blocks publication when the
-source is not independently identifiable or when the narration contains
-high-risk anachronistic/unsupported claims. It does not replace scholarly
-review; it prevents an unreviewed model output from reaching a platform.
-"""
+"""Fail-closed source and historical-claim gate for the new channel identity."""
 from __future__ import annotations
 
 import argparse
@@ -14,38 +8,30 @@ import re
 import sys
 from pathlib import Path
 
-# These terms are known red flags for the current production failure and for
-# claims that require an explicit, source-verified editorial exception.
-FORBIDDEN_CLAIMS = (
-    "القنابل",
-    "قنابل",
-    "المتفجرات",
-    "متفجرات",
-    "البارود",
-    "تفجير جدار",
-    "تفجير سور",
-    "سور مكة",
-    "حائط مكة",
-    "غزوة حمص",
-    "خالية من القتلى",
-    "لن نرى عدوًا يقف أمامنا",
-    "التاريخ الإسلامي للأحمد بن حنبل",
+# Legacy identity must not leak back into the new editorial pipeline.
+LEGACY_IDENTITY_TERMS = (
+    "قصص إسلامية", "التاريخ الإسلامي", "السيرة النبوية", "الأنبياء", "الصحابة",
+    "النبي محمد", "القرآن", "صحيح البخاري", "صحيح مسلم", "غزوة", "فتوحات إسلامية",
 )
-
-# A source must identify a real, checkable primary or recognized secondary
-# source. Generic labels and invented bibliographic strings are rejected.
-APPROVED_SOURCE_MARKERS = (
-    "القرآن الكريم",
-    "صحيح البخاري",
-    "صحيح مسلم",
-    "سنن أبي داود",
-    "سنن الترمذي",
-    "سنن النسائي",
-    "سنن ابن ماجه",
-    "السيرة النبوية لابن هشام",
-    "البداية والنهاية",
-    "تاريخ الطبري",
-    "وزارة الأوقاف",
+SOCIAL_OR_UNVERIFIED = (
+    "فيسبوك", "انستغرام", "إنستغرام", "تيك توك", "تويتر", "واتساب",
+    "منشور", "مواقع التواصل", "مصدر مجهول", "رواية متداولة", "قصة متناقلة",
+)
+# These terms are high-risk unless the episode has a verified primary source
+# and a human-reviewed exception. Keeping them blocked is safer than guessing.
+UNSUPPORTED_FORMULATIONS = (
+    "أعظم سر في التاريخ", "لا يصدق", "بلا أي دليل", "قال الملك",
+    "قال القائد", "آخر كلماته كانت", "المؤامرة التي لا يعرفها أحد",
+)
+RECOGNIZED_SOURCE_MARKERS = (
+    "أرشيف", "وثيقة", "سجل", "مخطوط", "متحف", "جامعة", "مؤسسة أثرية",
+    "دراسة محكمة", "مجلة علمية", "كتاب", "موسوعة", "المكتبة الوطنية",
+    "archive", "museum", "university", "journal", "book", "encyclopedia",
+    "primary source", "official record",
+)
+VISUAL_RED_FLAGS = (
+    "cannon", "musket", "modern car", "smartphone", "modern building",
+    "contemporary", "fortress wall", "stock footage generic",
 )
 
 
@@ -66,38 +52,50 @@ def main() -> int:
         print("SOURCE_GATE: ملف الحلقة ليس كائن JSON", file=sys.stderr)
         return 1
 
-    narration = normalize(episode.get("narration"))
     title = normalize(episode.get("title"))
+    narration = normalize(episode.get("narration"))
+    source_type = normalize(episode.get("source_type"))
     source = normalize(episode.get("source_reference"))
     keywords = [normalize(x) for x in episode.get("visual_keywords", [])]
-    haystack = " ".join((title, narration, source, *keywords))
-
+    haystack = " ".join((title, narration, source_type, source, *keywords))
+    haystack_folded = haystack.casefold()
     errors: list[str] = []
-    if len(narration) < 200:
+
+    if len(narration.split()) < 180:
         errors.append("النص قصير أو مفقود")
+    if not source_type:
+        errors.append("نوع المصدر مفقود")
     if not source:
         errors.append("المصدر مفقود")
-    elif not any(marker in source for marker in APPROVED_SOURCE_MARKERS):
-        errors.append(f"المصدر غير قابل للتحقق أو غير معتمد: {source}")
+    elif not any(marker.casefold() in source.casefold() for marker in RECOGNIZED_SOURCE_MARKERS):
+        errors.append(f"المصدر غير قابل للتعرف والتحقق: {source}")
+    if any(term.casefold() in haystack_folded for term in SOCIAL_OR_UNVERIFIED):
+        errors.append("المصدر أو السرد يعتمد على مادة اجتماعية/مجهولة")
+    for term in LEGACY_IDENTITY_TERMS:
+        if term.casefold() in haystack_folded:
+            errors.append(f"تسريب من الهوية القديمة: {term}")
+    for phrase in UNSUPPORTED_FORMULATIONS:
+        if phrase.casefold() in haystack_folded:
+            errors.append(f"صياغة إثارة غير موثقة: {phrase}")
 
-    for claim in FORBIDDEN_CLAIMS:
-        if claim in haystack:
-            errors.append(f"ادعاء محظور يحتاج مراجعة بشرية ومصدرًا صريحًا: {claim}")
-
-    # Reject visual prompts that directly request modern or anachronistic
-    # military imagery for early Islamic history.
-    visual_red_flags = ("cannon", "musket", "modern", "fortress wall")
+    if len(keywords) < 8:
+        errors.append("عدد الكلمات البصرية أقل من ثمانية")
     for keyword in keywords:
-        lowered = keyword.lower()
-        if any(flag in lowered for flag in visual_red_flags) or re.search(r"\bcar\b|\bcars\b", lowered):
-            errors.append(f"كلمة بصرية غير مناسبة/أنكرونية: {keyword}")
+        lowered = keyword.casefold()
+        if any(flag in lowered for flag in VISUAL_RED_FLAGS) or re.search(r"\bcar\b|\bcars\b", lowered):
+            errors.append(f"كلمة بصرية أنكرونية أو عامة: {keyword}")
+
+    # Quoted dialogue is not accepted unless the episode explicitly labels a
+    # source location. This conservative rule blocks invented cinematic speech.
+    quoted = re.findall(r"[«\"].{3,}?[»\"]", narration)
+    if quoted and not re.search(r"(ص\.?\s*\d+|صفحة|page\s*\d+|document|archive|سجل|وثيقة)", source, re.I):
+        errors.append("يوجد اقتباس مباشر بلا موضع توثيق واضح")
 
     if errors:
-        print("SOURCE_GATE: فشل التحقق — أُوقف المسار قبل النشر.", file=sys.stderr)
+        print("SOURCE_GATE: فشل التحقق — أُوقف المسار قبل الإنتاج أو النشر.", file=sys.stderr)
         for error in dict.fromkeys(errors):
             print(f"- {error}", file=sys.stderr)
         return 1
-
     print(f"SOURCE_GATE: passed ({title})")
     return 0
 

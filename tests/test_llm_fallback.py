@@ -4,7 +4,7 @@ from unittest.mock import patch
 from scripts import generate_script as gs
 
 
-class IslamicFallbackTests(unittest.TestCase):
+class DocumentedHistoryFallbackTests(unittest.TestCase):
     def test_internal_narration_headings_are_removed_before_validation(self):
         text = "تمهيد موثق يبدأ بالحدث مباشرة.\nالنتيجة\nثم تكشفت الحقيقة في نهاية القصة."
         cleaned = gs.strip_internal_narration_labels(text)

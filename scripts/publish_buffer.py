@@ -136,7 +136,7 @@ def scheduled_publish_utc(default_hour: int = 19) -> datetime:
 # "Video must be no longer than 3 minutes / must be vertical for YouTube Shorts".
 SHORTS_HASHTAG_RE = re.compile(r"(?<!\w)#[Ss]hort[s]?\b")
 DEFAULT_HASHTAGS = ("#تاريخ", "#قصص_تاريخية", "#معلومة_تاريخية")
-HISTORICAL_SOURCE = "المصادر والمراجع: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
+HISTORICAL_SOURCE = "المصادر والوثائق: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
 
 
 def strip_shorts_hashtag(text: str) -> str:
@@ -164,7 +164,7 @@ def ensure_caption_hashtags(
         # The production runner rejects a missing episode reference before
         # calling this helper; retain a deterministic fallback for old callers
         # and unit tests that exercise formatting in isolation.
-        source_block = f"المصادر والمراجع:\n- {reference or HISTORICAL_SOURCE}"
+        source_block = f"المصادر والوثائق:\n- {reference or HISTORICAL_SOURCE}"
         if source_block not in text:
             text = f"{text}\n\n{source_block}"
     existing = re.findall(r"(?<!\w)#[\w\u0600-\u06FF]+", text)
@@ -305,7 +305,7 @@ def metadata_for(channel_id: str, asset_type: str, title: str) -> dict | None:
         # ملحوظة: بدون "type" — YoutubePostMetadataInput مفيهوش الحقل ده
         # أصلًا (شوف الشرح في أعلى الملف).
         return {"youtube": {
-            "title": title[:100] or "Historical Strategy Episode",
+            "title": title[:100] or "Documented History Story",
             "categoryId": "24",
             "privacy": "public",
             "madeForKids": False,
@@ -410,11 +410,11 @@ def _run() -> None:
         raise RuntimeError("state/current_episode.json غير موجود.")
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    title = str(episode.get("title", "Historical Strategy Episode")).strip()
+    title = str(episode.get("title", "Documented History Story")).strip()
     caption = str(episode.get("caption", "")).strip() or title
     source_reference = str(episode.get("source_reference", "")).strip()
     if not source_reference:
-        raise RuntimeError("المصادر والمراجع مفقودة من current_episode.json؛ لن يتم النشر")
+        raise RuntimeError("المصادر والوثائق مفقودة من current_episode.json؛ لن يتم النشر")
 
     full_path = OUTPUT_DIR / "final_video_full.mp4"
     if not full_path.exists() or full_path.stat().st_size == 0:

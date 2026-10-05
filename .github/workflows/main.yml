@@ -1,4 +1,4 @@
-name: Create and Publish Historical Strategy Episode
+name: Create and Publish Documented History Story
 
 on:
   schedule:
@@ -43,7 +43,7 @@ on:
 
 # يمنع تشغيل حلقتين في الوقت نفسه، ولا يلغي التشغيل الجاري.
 concurrency:
-  group: historical-strategy-episode-pipeline
+  group: documented-history-story-pipeline
   cancel-in-progress: false
 
 permissions:
@@ -137,7 +137,7 @@ jobs:
           MODEL_POLICY_FILE: config/model_policy.json
         run: python scripts/model_preflight.py
 
-      - name: Generate complete historical strategy episode script
+      - name: Generate complete documented history story script
         env:
           # Gemini's free daily quota is exhausted; use the validated Groq
           # fallback directly for this production run instead of burning
@@ -178,7 +178,7 @@ jobs:
           echo "Using validated fallback model: ${LLM_FALLBACK_MODEL:-not-configured}"
           python scripts/generate_script.py
 
-      - name: Arabic preflight gates (history)
+      - name: Arabic preflight gates (documented history)
         env:
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
           TTS_ENGINE: "edge"
