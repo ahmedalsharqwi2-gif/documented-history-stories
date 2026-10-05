@@ -125,6 +125,11 @@ TEMPERATURE = 0.75
 
 STORY_MAX_TOKENS = int(os.getenv("STORY_MAX_TOKENS", "1800"))
 FINALIZE_MAX_TOKENS = int(os.getenv("FINALIZE_MAX_TOKENS", "1400"))
+# Short follow-up prompts must not inherit the full story budget: the
+# fallback provider enforces an 8k TPM limit and the story context is already
+# close to that ceiling.
+ENDING_MAX_TOKENS = int(os.getenv("ENDING_MAX_TOKENS", "320"))
+EXPANSION_MAX_TOKENS = int(os.getenv("EXPANSION_MAX_TOKENS", "1300"))
 # ⚠️ thinking_budget بياكل من نفس سقف max_output_tokens.
 THINKING_BUDGET = int(os.getenv("GEMINI_THINKING_BUDGET", "0"))
 
@@ -644,7 +649,7 @@ def ensure_complete_ending(
         return narration
     reply, _ = call_model(
         client, history, build_finish_ending_prompt(),
-        free_text_config, system_prompt, STORY_MAX_TOKENS,
+        free_text_config, system_prompt, ENDING_MAX_TOKENS,
         f"{attempt_label} | إكمال الخاتمة",
     )
     narration = narration + " " + clean_continuation_text(reply)
@@ -1344,7 +1349,7 @@ def run_single_attempt(
         reply, _ = call_model(
             client, history,
             build_expand_story_prompt(current_count, target_words, min_words),
-            free_text_config, system_prompt, STORY_MAX_TOKENS,
+            free_text_config, system_prompt, EXPANSION_MAX_TOKENS,
             f"{attempt_label} | توسيع القصة {expansion_round}",
         )
         expanded = parse_story_reply(reply, attempt_label, "توسيع القصة")
