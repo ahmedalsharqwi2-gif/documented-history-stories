@@ -43,8 +43,10 @@ MAX_SHORT_DURATION_SECONDS أو حد الهامش قبل النهاية، أيه
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).parent
@@ -159,6 +161,125 @@ def concat_clips(paths: list[Path], output_path: Path, list_path: Path) -> None:
     ])
 
 
+def _ass_timestamp(value: str) -> float:
+    """Convert an ASS timestamp (H:MM:SS.cc) to seconds."""
+    hours, minutes, seconds = value.strip().split(":")
+    whole, fraction = (seconds.split(".", 1) + ["0"])[:2]
+    return int(hours) * 3600 + int(minutes) * 60 + int(whole) + int(fraction[:2].ljust(2, "0")) / 100
+
+
+def _text_words(value: str) -> list[str]:
+    value = re.sub(r"\{[^}]*\}", "", value or "").replace(r"\N", " ")
+    return re.findall(r"[\w\u0600-\u06ff]+", value, flags=re.UNICODE)
+
+
+def _narration_sentences(narration: str) -> list[str]:
+    """Split narration at its spoken sentence boundaries, preserving text."""
+    return [part.strip() for part in re.split(r"(?<=[.!؟])\s+", narration.strip()) if part.strip()]
+
+
+def _subtitle_events(subtitles: Path | None) -> list[dict]:
+    """Read timed ASS dialogue events as the authoritative spoken timeline."""
+    if not subtitles or not subtitles.exists():
+        return []
+    events = []
+    for line in subtitles.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("Dialogue:"):
+            continue
+        fields = line.split(",", 9)
+        if len(fields) != 10:
+            continue
+        try:
+            start, end = _ass_timestamp(fields[1]), _ass_timestamp(fields[2])
+        except (ValueError, IndexError):
+            continue
+        words = _text_words(fields[9])
+        if words and end > start:
+            events.append({"start": start, "end": end, "words": len(words)})
+    return events
+
+
+def _sentence_windows(narration: str, subtitles: Path | None, total: float) -> list[dict]:
+    """Return one [start, end] window per sentence using subtitle timings."""
+    sentences = _narration_sentences(narration)
+    if not sentences:
+        return []
+    events = _subtitle_events(subtitles)
+    counts = [max(1, len(_text_words(sentence))) for sentence in sentences]
+    if not events:
+        total_words = sum(counts)
+        cursor = 0.0
+        windows = []
+        for index, count in enumerate(counts):
+            end = total if index == len(counts) - 1 else cursor + total * count / total_words
+            windows.append({"start": cursor, "end": max(end, cursor + 0.05)})
+            cursor = end
+        return windows
+
+    windows = []
+    event_index = 0
+    for sentence_index, count in enumerate(counts):
+        start = events[min(event_index, len(events) - 1)]["start"]
+        consumed = 0
+        last_end = start
+        while event_index < len(events) and consumed < count:
+            event = events[event_index]
+            consumed += event["words"]
+            last_end = event["end"]
+            event_index += 1
+        if sentence_index == len(counts) - 1:
+            last_end = total
+        windows.append({"start": start, "end": min(total, max(last_end, start + 0.05))})
+    windows[-1]["end"] = total
+    for index in range(1, len(windows)):
+        windows[index]["start"] = max(windows[index]["start"], windows[index - 1]["end"])
+        windows[index]["end"] = max(windows[index]["end"], windows[index]["start"] + 0.05)
+    return windows
+
+
+def build_scene_plan(
+    clips: list[dict], episode: dict, subtitles: Path | None, audio_duration: float,
+) -> list[dict]:
+    """Bind every narration sentence to a timed, semantically labelled clip.
+
+    The prompt supplies 8–10 ordered visual keywords rather than one keyword
+    per sentence. Keywords are therefore mapped proportionally across the
+    narration, while an unused clip from the matching keyword is preferred.
+    """
+    narration = str(episode.get("narration", ""))
+    sentences = _narration_sentences(narration)
+    keywords = [str(item).strip() for item in episode.get("visual_keywords", []) if str(item).strip()]
+    if not sentences or not keywords or not clips:
+        return []
+    windows = _sentence_windows(narration, subtitles, audio_duration)
+    by_keyword: dict[str, list[dict]] = defaultdict(list)
+    for clip in clips:
+        by_keyword[str(clip.get("keyword", "")).strip().casefold()].append(clip)
+    used: set[tuple[str, str]] = set()
+    plan = []
+    for index, sentence in enumerate(sentences):
+        keyword = keywords[min(len(keywords) - 1, int(index * len(keywords) / len(sentences)))]
+        pool = by_keyword.get(keyword.casefold(), [])
+        clip = next((item for item in pool if (str(item.get("id", "")), str(item.get("file", ""))) not in used), None)
+        if clip is None:
+            clip = next((item for item in clips if (str(item.get("id", "")), str(item.get("file", ""))) not in used), None)
+        if clip is None:
+            clip = clips[index % len(clips)]
+        used.add((str(clip.get("id", "")), str(clip.get("file", ""))))
+        window = windows[min(index, len(windows) - 1)]
+        plan.append({
+            "sentence_index": index,
+            "sentence": sentence,
+            "keyword": keyword,
+            "clip_id": clip.get("pexels_id", clip.get("id")),
+            "file": clip["file"],
+            "start_seconds": round(window["start"], 3),
+            "end_seconds": round(window["end"], 3),
+            "duration_seconds": round(max(window["end"] - window["start"], 0.05), 3),
+        })
+    return plan
+
+
 def subtitle_filter(subtitles: Path | None) -> str | None:
     if not subtitles or not subtitles.exists():
         return None
@@ -247,20 +368,33 @@ def build_full_video(
     final_audio: Path,
     subtitles: Path | None,
     output_path: Path,
+    episode: dict | None = None,
 ) -> float:
-    """يبني الحلقة الكاملة الأفقية دون قصها إلى 90 ثانية."""
+    """يبني الحلقة الكاملة مع مشهد زمني مقابل لكل جملة صوتية."""
     audio_duration = probe_duration(final_audio)
     if audio_duration <= 0:
         raise RuntimeError("❌ مدة الصوت النهائي غير صالحة.")
 
-    duration_per_clip = max(audio_duration / len(clips), 2.0)
+    scene_plan = build_scene_plan(clips, episode or {}, subtitles, audio_duration) if episode else []
+    if scene_plan:
+        (STATE_DIR / "scene_plan.json").write_text(
+            json.dumps(scene_plan, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+    else:
+        # Backward compatibility for older episodes without narration metadata.
+        duration_per_clip = max(audio_duration / len(clips), 2.0)
+        scene_plan = [
+            {"file": clip["file"], "duration_seconds": duration_per_clip, "keyword": clip.get("keyword", "")}
+            for clip in clips
+        ]
+
     normalized: list[Path] = []
-    for index, clip in enumerate(clips):
-        source = resolve_path(clip["file"])
+    for index, scene in enumerate(scene_plan):
+        source = resolve_path(scene["file"])
         if not source.exists():
             raise RuntimeError(f"❌ الكليب غير موجود: {source}")
         norm_path = CLIPS_DIR / f"norm_full_{index:03d}.mp4"
-        normalize_clip(source, norm_path, duration_per_clip)
+        normalize_clip(source, norm_path, max(float(scene["duration_seconds"]), 0.05))
         normalized.append(norm_path)
 
     concatenated = CLIPS_DIR / "concatenated_full.mp4"
@@ -446,7 +580,7 @@ def _run() -> None:
         old.unlink(missing_ok=True)
 
     full_output = OUTPUT_DIR / "final_video_full.mp4"
-    full_duration = build_full_video(clips, final_audio, subtitles, full_output)
+    full_duration = build_full_video(clips, final_audio, subtitles, full_output, episode)
     print(f"✅ الفيديو الكامل الأفقي: {full_output}")
     print(f"✅ مدة الفيديو الكامل: {full_duration:.1f} ثانية")
 
