@@ -167,7 +167,7 @@ def main() -> int:
         "Fallback LLM", fallback_endpoint,
         os.getenv("LLM_FALLBACK_API_KEY", os.getenv("GROQ_API_KEY", "")).strip(),
         policy["providers"]["fallback"].get("preferred_models", []),
-        ("LLM_FALLBACK_MODEL", "GROQ_MODEL", "GROQ_MODELS"), DEFAULT_FALLBACK,
+        ("LLM_FALLBACK_MODELS", "LLM_FALLBACK_MODEL", "GROQ_MODELS", "GROQ_MODEL"), DEFAULT_FALLBACK,
     )
     openrouter, openrouter_fallbacks = discover_openai_provider(
         "OpenRouter", "https://openrouter.ai/api/v1/chat/completions",
