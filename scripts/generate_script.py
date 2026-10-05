@@ -363,6 +363,41 @@ def clean_continuation_text(text: str) -> str:
     return cleaned
 
 
+_ARABIC_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
+_ARABIC_ONES = ("صفر", "واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة")
+_ARABIC_TEENS = ("عشرة", "أحد عشر", "اثنا عشر", "ثلاثة عشر", "أربعة عشر", "خمسة عشر", "ستة عشر", "سبعة عشر", "ثمانية عشر", "تسعة عشر")
+_ARABIC_TENS = ("", "", "عشرون", "ثلاثون", "أربعون", "خمسون", "ستون", "سبعون", "ثمانون", "تسعون")
+
+
+def _arabic_number(value: int) -> str:
+    """Spell the small integers that occasionally appear in model output."""
+    if value < 10:
+        return _ARABIC_ONES[value]
+    if value < 20:
+        return _ARABIC_TEENS[value - 10]
+    if value < 100:
+        tens, ones = divmod(value, 10)
+        return _ARABIC_TENS[tens] if not ones else f"{_ARABIC_ONES[ones]} و{_ARABIC_TENS[tens]}"
+    if value < 1000:
+        hundreds, rest = divmod(value, 100)
+        prefix = {1: "مئة", 2: "مئتان", 3: "ثلاثمئة", 4: "أربعمئة", 5: "خمسمئة", 6: "ستمئة", 7: "سبعمئة", 8: "ثمانمئة", 9: "تسعمئة"}[hundreds]
+        return prefix if not rest else f"{prefix} و{_arabic_number(rest)}"
+    if value < 10000:
+        thousands, rest = divmod(value, 1000)
+        prefix = "ألف" if thousands == 1 else "ألفان" if thousands == 2 else f"{_arabic_number(thousands)} آلاف"
+        return prefix if not rest else f"{prefix} و{_arabic_number(rest)}"
+    return str(value)
+
+
+def spell_numeric_tokens(text: str) -> str:
+    """Replace Arabic/Western digit tokens; leave oversized values for the gate."""
+    def replace(match: re.Match) -> str:
+        raw = match.group(0).translate(_ARABIC_DIGITS)
+        value = int(raw)
+        return _arabic_number(value) if value < 10000 else match.group(0)
+    return re.sub(r"(?<![\w\u0600-\u06ff])[0-9٠-٩]+(?![\w\u0600-\u06ff])", replace, text)
+
+
 _INTERNAL_LABELS = (
     "الخطاف", "الحلقة المفتوحة", "إعادة الإمساك", "المفارقة", "التصاعد",
     "الذروة", "الانقلاب", "النتيجة", "العبرة", "الخاتمة",
@@ -545,6 +580,7 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         fields["narration"] = strip_internal_narration_labels(
             clean_continuation_text(fields["narration"])
         )
+        fields["narration"] = spell_numeric_tokens(fields["narration"])
         fields["narration"], recovered_hook = _split_overlong_first_sentence(fields["narration"])
         if recovered_hook:
             print(f"   ℹ️ {attempt_label} | {step_label}: تم تقسيم الجملة الافتتاحية الطويلة إلى hook من 16 كلمة.")
