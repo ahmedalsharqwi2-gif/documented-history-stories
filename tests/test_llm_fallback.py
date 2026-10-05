@@ -138,6 +138,29 @@ class DocumentedHistoryFallbackTests(unittest.TestCase):
             client.generate_content(model="model", contents=[content], config=config)
         self.assertLessEqual(post.call_args.kwargs["json"]["max_tokens"], gs.OPENROUTER_MAX_TOKENS)
 
+    def test_long_context_reserves_room_under_provider_tpm_limit(self):
+        client = gs.CompatibleChatModels(
+            "test-key", "https://example.invalid/v1/chat/completions", ["model"], "Fallback LLM"
+        )
+        content = gs.make_content("user", "سياق طويل " * 7000)
+        config = type(
+            "Config",
+            (),
+            {"system_instruction": "نظام", "temperature": 0.2, "max_output_tokens": 1800},
+        )()
+        response = type(
+            "Response",
+            (),
+            {
+                "status_code": 200,
+                "text": "",
+                "json": lambda self: {"choices": [{"message": {"content": "نص"}}], "usage": {}},
+            },
+        )()
+        with patch.object(gs.requests, "post", return_value=response) as post:
+            client.generate_content(model="model", contents=[content], config=config)
+        self.assertLess(post.call_args.kwargs["json"]["max_tokens"], 1800)
+
 
 if __name__ == "__main__":
     unittest.main()

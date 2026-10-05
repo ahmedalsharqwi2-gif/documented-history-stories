@@ -785,15 +785,24 @@ class CompatibleChatModels:
                 "role": "assistant" if content.role == "model" else "user",
                 "content": text,
             })
+        requested_tokens = getattr(config, "max_output_tokens", STORY_MAX_TOKENS)
+        provider_cap = (
+            FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else OPENROUTER_MAX_TOKENS
+        ) if self.title in {"Fallback LLM", "OpenRouter"} else STORY_MAX_TOKENS
+        # OpenAI-compatible fallback endpoints enforce a combined prompt plus
+        # completion TPM limit. Estimate the prompt conservatively and reserve
+        # headroom so short follow-up calls cannot inherit an oversized budget.
+        prompt_chars = sum(len(str(message.get("content", ""))) for message in messages)
+        estimated_prompt_tokens = max(1, (prompt_chars + 3) // 4)
+        safe_context_budget = max(128, 8000 - estimated_prompt_tokens - 128)
         payload = {
             "model": model,
             "messages": messages,
             "temperature": getattr(config, "temperature", TEMPERATURE),
             "max_tokens": min(
-                getattr(config, "max_output_tokens", STORY_MAX_TOKENS),
-                (FALLBACK_MAX_TOKENS if self.title == "Fallback LLM" else OPENROUTER_MAX_TOKENS)
-                if self.title in {"Fallback LLM", "OpenRouter"}
-                else STORY_MAX_TOKENS,
+                requested_tokens,
+                provider_cap,
+                safe_context_budget,
             ),
         }
         # Keep the portable payload valid for ordinary OpenAI-compatible
