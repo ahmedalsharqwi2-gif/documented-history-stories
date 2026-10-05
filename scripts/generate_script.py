@@ -50,6 +50,10 @@ try:
     from scripts.topic_history import DuplicateTopicError, TopicHistory, clean_text, find_duplicate
 except ModuleNotFoundError:
     from topic_history import DuplicateTopicError, TopicHistory, clean_text, find_duplicate
+try:
+    from scripts.historical_verification_gate import validate_episode as historical_errors
+except ModuleNotFoundError:
+    from historical_verification_gate import validate_episode as historical_errors
 
 SCRIPT_DIR = Path(__file__).parent
 PROMPT_PATH = SCRIPT_DIR.parent / "prompts" / "documented_history_system_prompt.md"
@@ -1099,6 +1103,33 @@ _STORY_FORMAT_BLOCK = (
     "NARRATION:\n<نص القصة الكاملة من الهوك للخاتمة>"
 )
 
+HISTORICAL_CONTRACT = """
+المخطط الإلزامي لتقارير JSON (الأسماء حرفية بالإنجليزية؛ القيم من الأدلة فقط):
+HISTORICAL_VERIFICATION_REPORT:
+event_name, period, location: نصوص؛ main_figures, key_events,
+confirmed_information, disputed_information, excluded_information, verified_quotes,
+verified_dates, period_technology, verified_places: قوائم نصوص.
+sources: قائمة كائنات، كل مصدر يحتوي title, author, date, url, level,
+reliability, claim_support. level واحدة من 1/2/3/4 كنص، ومصدر واحد على الأقل
+من المستويات 1/2/3. decision = APPROVED فقط عند اكتمال الأدلة، وإلا REJECTED.
+القوائم main_figures/key_events/confirmed_information/verified_dates/period_technology/
+verified_places/sources يجب أن تحتوي بيانات موثقة؛ قوائم الخلاف والاستبعاد والاقتباسات قد تكون فارغة.
+EVENT_IDENTITY_CHECK: event_name, date, location, figures, parties, cause, outcome,
+result. result = PASS فقط عند اتساق هوية الحدث مع المصادر.
+FACT_TABLE: قائمة كائنات، كل صف يحتوي claim, source, confidence, verified, decision.
+source يساوي حرفيًا عنوان مصدر أو رابطه داخل sources. confidence واحدة من A/B/C/D/E.
+verified قيمة boolean؛ A/B تحتاج true مع دليل. C تستعمل disputed أو use with qualification
+أو exclude. D/E لا يجوز عرضها كحقيقة؛ decision = exclude.
+PRE_PRODUCTION_REPORT: title, period, location, characters, primary_sources,
+claim_count, confirmed_claim_count, disputed_claim_count, excluded_claim_count, quotes,
+timeline_check, source_check, event_check, people_check, visual_check, decision.
+الأعداد تطابق جدول الحقائق. الفحوصات PASS عند نجاحها، decision = APPROVED — PROCEED
+فقط بعد نجاح التحقق، وإلا REJECTED.
+FINAL_FACT_CHECK: factual, source, quote, timeline, location, people, weapons,
+visual, audio, subtitles, story: قيم boolean؛ result = PASS عند نجاح جميع الفحوصات.
+لا تملأ التقارير بموافقة افتراضية. إذا لم تجد أدلة كافية اختر واقعة أخرى موثقة.
+"""
+
 
 def build_story_prompt(
     recent_titles: list[str], recent_regions: list[str], recent_hooks: list[str],
@@ -1174,7 +1205,7 @@ def build_story_prompt(
         )
     if recent_regions:
         message += "\n\nالعصور/الأماكن السابقة بصيغة JSON بيانات:\n" + _history_json(recent_regions, limit=30)
-    return message
+    return message + "\n\n" + HISTORICAL_CONTRACT
 
 
 def build_expand_story_prompt(current_word_count: int, target_words: int, min_words: int = 0) -> str:
@@ -1317,6 +1348,25 @@ def run_single_attempt(
         f"{attempt_label} | القصة",
     )
     story = parse_story_reply(reply, attempt_label, "القصة")
+    # Reject/repair the same bundle here, before proofreading and production.
+    # Otherwise a valid narration could be saved with incompatible report keys.
+    for correction in range(2):
+        errors = historical_errors(story)
+        if not errors:
+            break
+        print("   ⚠️ تقرير التحقق يحتاج تصحيحًا: " + "; ".join(errors[:8]))
+        reply, _ = call_model(
+            client, history,
+            "صحح الحلقة كاملة وفق سبب الرفض التالي، ثم أعد كل الحقول والسرد بالتنسيق الأصلي. "
+            "لا تختلق مصدرًا ولا تمنح PASS بلا دليل؛ استبدل الواقعة إذا تعذر إثباتها.\n"
+            + "\n".join(errors) + "\n" + HISTORICAL_CONTRACT,
+            free_text_config, system_prompt, STORY_MAX_TOKENS,
+            f"{attempt_label} | تصحيح التحقق {correction + 1}",
+        )
+        story = parse_story_reply(reply, attempt_label, "تصحيح التحقق")
+    errors = historical_errors(story)
+    if errors:
+        raise AttemptFailed("تقرير التحقق التاريخي مرفوض: " + "; ".join(errors))
     hook, region = story["hook"], story["region"]
     source_type, source_reference = story["source_type"], story["source_reference"]
     narration = story["narration"]
@@ -1458,6 +1508,10 @@ def run_single_attempt(
     error = validate_episode(episode)
     if error:
         raise AttemptFailed(error)
+
+    errors = historical_errors(episode)
+    if errors:
+        raise AttemptFailed("التحقق النهائي رفض الحلقة: " + "; ".join(errors))
 
     return episode
 

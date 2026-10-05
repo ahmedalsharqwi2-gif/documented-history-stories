@@ -7,6 +7,25 @@ from scripts import generate_script as generator
 
 
 class GenerationRecoveryTests(unittest.TestCase):
+    def test_incomplete_historical_report_cannot_reach_proofreading(self):
+        story = {"hook": "اختبار", "region": "مكان", "source_type": "أرشيف",
+                 "source_reference": "أرشيف", "narration": "نص.",
+                 "historical_verification_report": {"decision": "APPROVED"}}
+        with patch.object(generator, 'call_model', return_value=('reply', 'STOP')) as call, \
+             patch.object(generator, 'parse_story_reply', return_value=story), \
+             patch.object(generator, 'proofread_narration_for_tts') as proofread:
+            with self.assertRaises(generator.AttemptFailed):
+                generator.run_single_attempt(None, 'system', [], [], [], 650, 'test')
+        self.assertEqual(call.call_count, 3)
+        self.assertIn('تقرير التحقق ناقص', call.call_args.args[2])
+        proofread.assert_not_called()
+
+    def test_prompt_names_all_historical_report_fields(self):
+        from scripts.historical_verification_gate import REQUIRED_REPORT_FIELDS, REQUIRED_PRE_FIELDS
+        prompt = generator.build_story_prompt([], [], [], 650)
+        for field in REQUIRED_REPORT_FIELDS | REQUIRED_PRE_FIELDS:
+            self.assertIn(field, prompt)
+
     def setUp(self):
         original = generator.VISITED_PROVIDERS.copy()
         self.addCleanup(lambda: (generator.VISITED_PROVIDERS.clear(), generator.VISITED_PROVIDERS.update(original)))
