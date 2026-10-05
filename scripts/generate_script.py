@@ -114,6 +114,14 @@ FALLBACK_ENDPOINT = os.getenv(
 FALLBACK_MODELS = [
     item.strip() for item in os.getenv("LLM_FALLBACK_MODEL", "").split(",") if item.strip()
 ]
+# model_preflight.py publishes the validated primary model plus additional
+# currently-served models. Prefer that list when present; the singular
+# variable remains a backwards-compatible fallback for local/manual runs.
+_FALLBACK_MODELS_DISCOVERED = [
+    item.strip() for item in os.getenv("LLM_FALLBACK_MODELS", "").split(",") if item.strip()
+]
+if _FALLBACK_MODELS_DISCOVERED:
+    FALLBACK_MODELS = list(dict.fromkeys(_FALLBACK_MODELS_DISCOVERED))
 FALLBACK_MODEL = FALLBACK_MODELS[0] if FALLBACK_MODELS else ""
 FALLBACK_TIMEOUT = int(os.getenv("LLM_FALLBACK_TIMEOUT", "90"))
 FALLBACK_MAX_TOKENS = int(os.getenv("LLM_FALLBACK_MAX_TOKENS", "3500"))
