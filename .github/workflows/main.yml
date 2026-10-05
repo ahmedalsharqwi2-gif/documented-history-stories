@@ -157,7 +157,7 @@ jobs:
           # exhausted model bypasses discovery and defeats the fallback chain.
           LLM_FALLBACK_MAX_TOKENS: "6000"
           ENDING_MAX_TOKENS: "320"
-          EXPANSION_MAX_TOKENS: "1300"
+          EXPANSION_MAX_TOKENS: "8000"
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
           # 2.5 access is restricted for new users; use current stable models.
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
