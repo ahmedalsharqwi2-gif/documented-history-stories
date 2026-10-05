@@ -663,7 +663,7 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     matcher = difflib.SequenceMatcher(None, script_norm, whisper_norm, autojunk=False)
     timings: list[dict | None] = [None] * len(script_words)
     for block in matcher.get_matching_blocks():
-        i1, i2 = block.a, block.a + block.size
+        i1 = block.a
         j1 = block.b
         for k in range(block.size):
             if i1 + k >= len(script_words) or j1 + k >= len(whisper_words):
