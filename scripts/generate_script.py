@@ -1457,6 +1457,12 @@ def run_single_attempt(
         )
 
     narration = proofread_narration_for_tts(client, history, narration, attempt_label)
+    # Proofreading can change spelling and punctuation in the opening. Derive
+    # metadata from the final spoken text rather than retaining the stale hook.
+    narration, repaired_hook = _split_overlong_first_sentence(narration)
+    hook = repaired_hook or _derive_hook_from_narration(narration)
+    if not hook:
+        raise AttemptFailed("الافتتاحية النهائية لا تصلح كهوك من 10 إلى 20 كلمة")
 
     # ── نداء finalize ──
     try:

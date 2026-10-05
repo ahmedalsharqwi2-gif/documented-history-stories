@@ -48,7 +48,7 @@ jobs:
           # Quota, billing, authentication, and provider prompt-limit errors
           # do not heal by rerunning. Retrying them burns remaining quota and
           # creates an auto-heal storm. Only retry genuine transient failures.
-          if grep -Eqi 'HTTP (402|401|403|429)|quota|rate limit|tokens per day|prompt tokens limit exceeded|billing|insufficient|invalid.?api.?key|authentication' "$LOG_FILE"; then
+          if grep -Eqi 'HTTP (402|401|403|429)|quota|rate limit|tokens per day|prompt tokens limit exceeded|billing|insufficient|invalid.?api.?key|authentication|بوابة الهوك رفضت|تقرير التحقق التاريخي مرفوض|SOURCE_GATE.*فشل|التحقق النهائي رفض' "$LOG_FILE"; then
             RETRY_SAFE=false
             DIAGNOSIS="Provider quota/authentication/billing or prompt-limit failure; retry suppressed."
           elif grep -Eqi 'HTTP (408|500|502|503|504)|timed out|timeout|temporarily unavailable' "$LOG_FILE"; then
