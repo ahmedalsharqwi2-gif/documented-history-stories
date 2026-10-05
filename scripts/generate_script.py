@@ -625,6 +625,11 @@ def parse_story_reply(reply: str, attempt_label: str, step_label: str) -> dict:
         "source_type": fields["source_type"].replace("**", "").replace("__", "").strip(),
         "source_reference": fields["source_reference"].replace("**", "").replace("__", "").strip(),
         "narration": fields["narration"],
+        "historical_verification_report": fields.get("historical_verification_report", {}),
+        "event_identity_check": fields.get("event_identity_check", {}),
+        "fact_table": fields.get("fact_table", []),
+        "pre_production_report": fields.get("pre_production_report", {}),
+        "final_fact_check": fields.get("final_fact_check", {}),
     }
 
 
