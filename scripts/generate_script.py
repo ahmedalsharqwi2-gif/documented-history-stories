@@ -949,7 +949,7 @@ def has_next_model() -> bool:
 
 def switch_to_next_model() -> bool:
     """الترتيب: Gemini -> مزود OpenAI-compatible -> OpenRouter الأخير."""
-    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER, VISITED_PROVIDERS
+    global ACTIVE_MODEL_INDEX, ACTIVE_MODEL, ACTIVE_PROVIDER
     if ACTIVE_PROVIDER == "gemini":
         if ACTIVE_MODEL_INDEX + 1 < len(MODEL_CANDIDATES):
             ACTIVE_MODEL_INDEX += 1
