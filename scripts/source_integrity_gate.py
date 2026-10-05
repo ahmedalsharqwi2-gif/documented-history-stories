@@ -52,19 +52,7 @@ def undocumented_quotes(episode: dict) -> list[str]:
     return [text for text in quoted if not is_name(text)]
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--episode", type=Path, required=True)
-    args = parser.parse_args()
-    try:
-        episode = json.loads(args.episode.read_text(encoding="utf-8"))
-    except Exception as exc:
-        print(f"SOURCE_GATE: تعذر قراءة ملف الحلقة: {exc}", file=sys.stderr)
-        return 1
-    if not isinstance(episode, dict):
-        print("SOURCE_GATE: ملف الحلقة ليس كائن JSON", file=sys.stderr)
-        return 1
-
+def validate_source_integrity(episode: dict) -> list[str]:
     title = normalize(episode.get("title"))
     narration = normalize(episode.get("narration"))
     source_type = normalize(episode.get("source_type"))
@@ -105,6 +93,24 @@ def main() -> int:
     quoted = undocumented_quotes(episode)
     if quoted and not re.search(r"(ص\.?\s*\d+|صفحة|page\s*\d+|document|archive|سجل|وثيقة)", source, re.I):
         errors.append("يوجد اقتباس مباشر بلا موضع توثيق واضح")
+
+    return list(dict.fromkeys(errors))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--episode", type=Path, required=True)
+    args = parser.parse_args()
+    try:
+        episode = json.loads(args.episode.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"SOURCE_GATE: تعذر قراءة ملف الحلقة: {exc}", file=sys.stderr)
+        return 1
+    if not isinstance(episode, dict):
+        print("SOURCE_GATE: ملف الحلقة ليس كائن JSON", file=sys.stderr)
+        return 1
+
+    errors = validate_source_integrity(episode)
 
     if errors:
         print("SOURCE_GATE: فشل التحقق — أُوقف المسار قبل الإنتاج أو النشر.", file=sys.stderr)

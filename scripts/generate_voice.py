@@ -35,7 +35,7 @@ try:
 except ImportError:  # direct `python scripts/generate_voice.py`
     from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
-from arabic_speech_core.ass_text import render_arabic_caption
+from arabic_speech_core.ass_text import render_arabic_caption, caption_word_groups
 try:
     from .arabic_guard import validate_narration
 except ImportError:  # direct `python scripts/generate_voice.py`
@@ -773,8 +773,7 @@ def synthesize_voice(voice_text: str) -> None:
         sys.exit("❌ تعذر إنشاء توقيت الترجمة.")
 
     dialogue_lines = []
-    for index in range(0, len(all_word_events), WORDS_PER_CAPTION_CHUNK):
-        group = all_word_events[index:index + WORDS_PER_CAPTION_CHUNK]
+    for group in caption_word_groups(all_word_events, WORDS_PER_CAPTION_CHUNK):
         start = group[0]["offset"]
         end = group[-1]["offset"] + group[-1]["duration"]
         dialogue_lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.25))},Caption,,0,0,0,,{two_lines_ar([e['text'] for e in group])}")
