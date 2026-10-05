@@ -94,7 +94,7 @@ def evaluate(
     ratio = width / height if height else 0
     if expected == "vertical" and not (0.50 <= ratio <= 0.65):
         errors.append(f"expected vertical video, got {width}x{height}")
-    if expected == "landscape" and not (ratio >= 1.45):
+    if expected == "landscape" and ratio < 1.45:
         errors.append(f"expected landscape video, got {width}x{height}")
 
     manifest_items: list[dict[str, Any]] = []
