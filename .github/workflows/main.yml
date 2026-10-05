@@ -198,10 +198,10 @@ jobs:
           TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
           python -m arabic_speech_core.cli preflight --text "$TEXT" --engine edge --locale ar-SA --voice "$EDGE_TTS_VOICE" --lexicon config/arabic_pronunciation.json --min-words 20 --max-words 1200
 
-      - name: Source and historical-claim integrity gate
+      - name: History editorial scope gate (sources optional)
         run: python scripts/source_integrity_gate.py --episode state/current_episode.json
 
-      - name: Historical verification and pre-production gate
+      - name: Historical channel scope and religious exclusions
         run: python scripts/historical_verification_gate.py --episode state/current_episode.json
 
       - name: Fetch landscape stock clips
