@@ -163,9 +163,13 @@ jobs:
           TARGET_WORDS: "650"
           ACCEPTABLE_MIN_WORDS: "180"
           OPENROUTER_MIN_WORDS: "180"
-          MAX_FULL_ATTEMPTS: "1"
-          MAX_EXPANSION_ROUNDS: "0"
-          SINGLE_PASS_GENERATION: "true"
+          # Keep the recovery path enabled: fallback models can return a
+          # short narration without terminal punctuation even when the
+          # content is otherwise usable. The generator then requests a
+          # source-bounded ending before the historical gates run.
+          MAX_FULL_ATTEMPTS: "2"
+          MAX_EXPANSION_ROUNDS: "1"
+          SINGLE_PASS_GENERATION: "false"
           TRANSIENT_RETRIES: "5"
           TRANSIENT_BACKOFF_BASE: "8"
           BUDGET_RETRIES: "0"
