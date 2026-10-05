@@ -151,7 +151,9 @@ jobs:
           GROQ_MODEL: "openai/gpt-oss-20b"
           # Keep the request below Groq's 8k TPM ceiling when the prompt
           # already consumed most of the current rate-limit window.
-          LLM_FALLBACK_MAX_TOKENS: "1600"
+          # Keep the request below Groq's 8k TPM ceiling even when the
+          # current rolling window already contains about 6.5k prompt tokens.
+          LLM_FALLBACK_MAX_TOKENS: "1300"
           ENDING_MAX_TOKENS: "320"
           EXPANSION_MAX_TOKENS: "1300"
           # Gemini هو النموذج الأساسي، وOpenRouter خطة احتياطية مستقلة.
