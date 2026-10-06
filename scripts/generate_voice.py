@@ -608,15 +608,27 @@ def _build_word_events_from_edge_tts(segments: list[dict]) -> list[dict]:
     return events
 
 
+
+_TRANSCRIPT_CACHE: dict[tuple, list] = {}
+
+def _cached_whisper_segments(audio_path: Path) -> list:
+    """Reuse one word-timed transcript; invalidate it when audio is rewritten."""
+    from faster_whisper import WhisperModel
+    stat = audio_path.stat()
+    key = (str(audio_path.resolve()), stat.st_size, stat.st_mtime_ns, WHISPER_MODEL_SIZE)
+    if key not in _TRANSCRIPT_CACHE:
+        model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
+        result = model.transcribe(str(audio_path), language="ar",
+                                  word_timestamps=True, vad_filter=False)
+        segments = result[0] if isinstance(result, (tuple, list)) else result
+        _TRANSCRIPT_CACHE.clear()
+        _TRANSCRIPT_CACHE[key] = list(segments)
+    return _TRANSCRIPT_CACHE[key]
+
 def assert_audio_matches_script(audio_path: Path, script_text: str) -> float:
     """Reject audio whose Arabic transcript materially differs from the script."""
-    from faster_whisper import WhisperModel
     expected = _norm_arabic_words(script_text)
-    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
-    result = model.transcribe(
-        str(audio_path), language="ar", word_timestamps=False, vad_filter=False
-    )
-    segments = result[0] if isinstance(result, (tuple, list)) else result
+    segments = _cached_whisper_segments(audio_path)
     heard = _norm_arabic_words(" ".join(getattr(seg, "text", "") or "" for seg in segments))
     if not expected or not heard:
         raise RuntimeError("بوابة ASR لم تحصل على كلمات عربية من النص أو الصوت")
@@ -637,13 +649,7 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     (difflib) بين الكلمتين بعد تطبيع كل منهما. أي كلمة من السكريبت لم
     يتعرّف عليها Whisper بثقة تأخذ توقيتًا تقريبيًا من أقرب كلمتين
     متطابقتين قبلها وبعدها، بدل أن تُفقد."""
-    from faster_whisper import WhisperModel
-
-    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
-    result = model.transcribe(
-        str(audio_path), language="ar", word_timestamps=True, vad_filter=False,
-    )
-    segments = result[0] if isinstance(result, (tuple, list)) else result
+    segments = _cached_whisper_segments(audio_path)
 
     whisper_words: list[tuple[str, float, float]] = []
     for segment in segments:
