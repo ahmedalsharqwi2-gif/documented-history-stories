@@ -41,9 +41,9 @@ def search_images(query: str, limit: int = 4) -> list[dict]:
     return result
 
 def animate_image(source: Path, destination: Path, *, width=1920, height=1080, seconds=8.0):
-    # Fit and pad keeps maps, captions and historical details inside the frame.
-    vf = (f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
-          f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1,"
+    # Fill the frame without distortion; crop excess edges instead of baking in black bars.
+    vf = (f"scale={width}:{height}:force_original_aspect_ratio=increase,"
+          f"crop={width}:{height},setsar=1,"
           f"zoompan=z='min(zoom+0.00015,1.035)':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':"
           f"d=1:s={width}x{height}:fps=30")
     subprocess.run([media_executable("ffmpeg"), "-y", "-v", "error", "-loop", "1", "-i", str(source),
