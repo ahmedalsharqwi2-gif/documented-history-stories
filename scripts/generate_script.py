@@ -1427,9 +1427,9 @@ def run_single_attempt(
                 f"   ⚠️ النص المكتمل أقصر من الهدف ({actual_words}/{target_words} كلمة)؛ "
                 "سيُقبل بدون نداء توسعة لتوفير التوكنز"
             )
-        visual_keywords = story.get("visual_keywords") or DEFAULT_VISUAL_KEYWORDS.copy()
-        if not 8 <= len(visual_keywords) <= 10:
-            visual_keywords = DEFAULT_VISUAL_KEYWORDS.copy()
+        visual_keywords = story.get("visual_keywords")
+        if not isinstance(visual_keywords, list) or not 8 <= len(visual_keywords) <= 10:
+            raise AttemptFailed("يلزم 8 إلى 10 عبارات بحث مرتبطة بالقصة؛ لن تُستخدم مشاهد عامة")
         episode = {
             "title": story.get("title") or hook[:80].strip(" .؟!،"),
             "hook": hook,
@@ -1517,8 +1517,6 @@ def run_single_attempt(
             f"{attempt_label} | finalize",
         )
         finalize_data = json.loads(reply)
-    except (QuotaExhausted, ModelUnavailable):
-        raise
     except Exception as exc:  # noqa: BLE001 - metadata is optional, narration is not
         print(f"   ⚠️ تعذر finalize الاختياري ({exc})؛ استخدام بيانات الحلقة الأساسية")
         finalize_data = {
