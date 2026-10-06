@@ -14,7 +14,16 @@ class PublishMetadataTests(unittest.TestCase):
         text = build_post_text("youtube", "full_video", "عنوان", "#Shorts")
         self.assertNotIn("#Shorts", text)
         self.assertIn("#تاريخ", text)
-        self.assertIn(HISTORICAL_SOURCE, text)
+        self.assertNotIn(HISTORICAL_SOURCE, text)
+
+    def test_explicit_source_is_preserved_in_full_description(self):
+        source = "مرجع الحلقة: وثيقة تاريخية"
+        text = build_post_text(
+            "youtube", "full_video", "عنوان", "#تاريخ",
+            source_reference=source,
+        )
+        self.assertIn(source, text)
+        self.assertNotIn(HISTORICAL_SOURCE, text)
 
     def test_source_is_not_added_to_short_description(self):
         text = build_post_text("facebook", "short", "عنوان", "مقتطف")
