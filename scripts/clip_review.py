@@ -98,8 +98,8 @@ def analyze_clip(path: Path, keyword: str, topic: str, historical: bool) -> dict
     policy_path = ROOT / "config/model_policy.json"
     policy = json.loads(policy_path.read_text()) if policy_path.exists() else {}
     preferred = policy.get("providers", {}).get("gemini", {}).get("preferred_models", [])
-    model = os.environ.get("CLIP_REVIEW_MODEL", "").strip() or (preferred[0] if preferred else "")
-    if not model:
+    models = list(dict.fromkeys(value.strip() for value in [os.environ.get("CLIP_REVIEW_MODEL", ""), os.environ.get("GEMINI_MODEL", ""), *os.environ.get("GEMINI_MODELS", "").split(","), *preferred] if value.strip()))[:3]
+    if not models:
         return None
     episode_path = ROOT / "state/current_episode.json"
     episode = json.loads(episode_path.read_text()) if episode_path.exists() else {}
@@ -137,17 +137,30 @@ def analyze_clip(path: Path, keyword: str, topic: str, historical: bool) -> dict
         preview = Path(temp) / "review.mp4"
         subprocess.run([media_executable("ffmpeg"), "-y", "-v", "error", "-i", str(path), "-vf", "scale=480:-2", "-r", "4",
                         "-c:v", "libx264", "-crf", "30", "-c:a", "aac", "-ac", "1", "-b:a", "48k", str(preview)], check=True)
-        response = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-            headers={"x-goog-api-key": key}, json={"contents": [{"role": "user", "parts": [
-                {"text": prompt}, {"inline_data": {"mime_type": "video/mp4", "data": base64.b64encode(preview.read_bytes()).decode("ascii")}}]}],
-                "generationConfig": {"temperature": 0, "responseMimeType": "application/json", "maxOutputTokens": 2048}}, timeout=90)
-    if not response.ok:
-        # Do not include HTTP request URLs/headers or provider response bodies with credentials.
-        raise ValueError(f"Multimodal clip review failed: HTTP {response.status_code}")
-    try:
-        record = json.loads(response.json()["candidates"][0]["content"]["parts"][0]["text"])
-        if not isinstance(record, dict):
-            raise ValueError("Review response must be a JSON object")
-    except (ValueError, KeyError, IndexError, TypeError) as exc:
-        raise ValueError("Invalid multimodal clip review response") from exc
+        payload = {"contents": [{"role": "user", "parts": [
+            {"text": prompt}, {"inline_data": {"mime_type": "video/mp4",
+                "data": base64.b64encode(preview.read_bytes()).decode("ascii")}}]}],
+            "generationConfig": {"temperature": 0, "responseMimeType": "application/json",
+                                 "maxOutputTokens": 2048}}
+        failures = []
+        for model in models:
+            try:
+                response = requests.post(
+                    f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                    headers={"x-goog-api-key": key}, json=payload, timeout=60)
+                if not response.ok:
+                    failures.append(f"{model}: HTTP {response.status_code}")
+                    continue
+                parts = response.json()["candidates"][0]["content"]["parts"]
+                record = json.loads("".join(part.get("text", "") for part in parts if not part.get("thought")))
+                if not isinstance(record, dict):
+                    raise ValueError("Review response must be an object")
+                break
+            except requests.RequestException:
+                failures.append(f"{model}: network failure")
+            except (ValueError, KeyError, IndexError, TypeError):
+                failures.append(f"{model}: invalid review JSON")
+        else:
+            raise ValueError("Multimodal review unavailable: " + "; ".join(failures))
+
     return {**record, "topic": topic, "keyword": keyword, "reviewer": f"gemini-video:{model}"}
