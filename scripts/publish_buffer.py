@@ -159,12 +159,9 @@ def ensure_caption_hashtags(
 ) -> str:
     """Never publish an empty caption or a post without relevant hashtags."""
     text = " ".join(str(caption or "").split()).strip() or str(title).strip()
-    if include_source:
+    if include_source and str(source_reference or "").strip():
         reference = " ".join(str(source_reference or "").split()).strip()
-        # The production runner rejects a missing episode reference before
-        # calling this helper; retain a deterministic fallback for old callers
-        # and unit tests that exercise formatting in isolation.
-        source_block = f"المصادر والوثائق:\n- {reference or HISTORICAL_SOURCE}"
+        source_block = f"المصادر والوثائق:\n- {reference}"
         if source_block not in text:
             text = f"{text}\n\n{source_block}"
     existing = re.findall(r"(?<!\w)#[\w\u0600-\u06FF]+", text)
@@ -413,8 +410,6 @@ def _run() -> None:
     title = str(episode.get("title", "Documented History Story")).strip()
     caption = str(episode.get("caption", "")).strip() or title
     source_reference = str(episode.get("source_reference", "")).strip()
-    if not source_reference:
-        raise RuntimeError("المصادر والوثائق مفقودة من current_episode.json؛ لن يتم النشر")
 
     full_path = OUTPUT_DIR / "final_video_full.mp4"
     if not full_path.exists() or full_path.stat().st_size == 0:
