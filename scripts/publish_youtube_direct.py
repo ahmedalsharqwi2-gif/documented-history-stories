@@ -139,10 +139,9 @@ def load_title_and_description() -> tuple[str, str]:
     title = str(episode.get("title", "Documented History Story")).strip()[:100]
     caption = str(episode.get("caption", "")).strip() or title
     source_reference = str(episode.get("source_reference", "")).strip()
-    if not source_reference:
-        raise RuntimeError("المصادر والوثائق مفقودة من current_episode.json؛ لن يتم النشر")
     # وصف يوتيوب بيسمح بحد أقصى 5000 حرف، الكابشن الحالي عادة أقصر بكتير.
-    description = f"{caption[:4650]}\n\nالمصادر والوثائق:\n- {source_reference}\n\n#تاريخ #وثائقي #قصص_موثقة".strip()
+    source_block = f"\n\nالمصادر والوثائق:\n- {source_reference}" if source_reference else ""
+    description = f"{caption[:4650]}{source_block}\n\n#تاريخ #وثائقي #قصص_موثقة".strip()
     return title, description
 
 
