@@ -41,6 +41,7 @@ MAX_SHORT_DURATION_SECONDS أو حد الهامش قبل النهاية، أيه
 """
 
 from __future__ import annotations
+import os
 
 import json
 import re
@@ -263,6 +264,11 @@ def build_scene_plan(
         if clip is None:
             # Reuse only a clip matching this sentence's keyword.
             clip = pool[0] if pool else None
+        illustrative_fallback = False
+        if clip is None and os.getenv("QUALITY_GATES_BLOCKING", "true").lower() != "true":
+            clip = clips[index % len(clips)]
+            illustrative_fallback = True
+            print(f"WARNING: sentence {index + 1} uses an illustrative clip from this episode; exact match unavailable: {keyword}")
         if clip is None:
             raise RuntimeError(f"No matching clip for sentence {index + 1}: {keyword}")
         used.add((str(clip.get("id", "")), str(clip.get("file", ""))))
@@ -271,6 +277,8 @@ def build_scene_plan(
             "sentence_index": index,
             "sentence": sentence,
             "keyword": keyword,
+            "illustrative_fallback": illustrative_fallback,
+            "source_keyword": clip.get("keyword", ""),
             "clip_id": clip.get("pexels_id", clip.get("id")),
             "file": clip["file"],
             "audio_decision": clip.get("audio", {}).get("decision", "VOICE ONLY"),
