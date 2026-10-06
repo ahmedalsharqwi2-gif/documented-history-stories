@@ -6,12 +6,13 @@
       "title": "رحلة العصور الوسطى الكبرى",
       "hook": "فِي عَامِ سَبْعُمِائَةٍ وَخَمْسٍ وَعِشْرِينَ لِلْهِجْرَةِ، غَادَرَ الشَّابُّ مُحَمَّدُ بْنُ بَطُّوطَةَ مَدِينَةَ طَنْجَةَ وَحِيدًا قَاصِدًا بَيْتَ؟",
       "region": "شمال إفريقيا والأندلس",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "2dfcef35c870422a8a8b79384b7c4b66",
       "reserved_at": "2026-10-06T05:07:05Z",
       "run_id": "37415503404",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "2dfcef35c870422a8a8b79384b7c4b66",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-06T05:07:07Z"
     }
   ]
 }
