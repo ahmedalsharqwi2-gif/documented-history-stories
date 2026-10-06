@@ -129,6 +129,8 @@ jobs:
 
       - name: Validate and resolve AI model policy
         env:
+          GEMINI_MODEL: "gemini-flash-lite-latest"
+          GEMINI_MODELS: "gemini-flash-lite-latest,gemma-4-26b-a4b-it,gemini-flash-latest"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
           LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
@@ -176,7 +178,7 @@ jobs:
           # source-bounded ending before the historical gates run.
           MAX_FULL_ATTEMPTS: "2"
           MAX_EXPANSION_ROUNDS: "1"
-          SINGLE_PASS_GENERATION: "false"
+          SINGLE_PASS_GENERATION: "true"
           TRANSIENT_RETRIES: "2"
           TRANSIENT_BACKOFF_BASE: "8"
           BUDGET_RETRIES: "1"
