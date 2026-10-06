@@ -49,6 +49,7 @@ import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
+from scripts.media_audio import add_topic_soundtrack
 
 try:
     from scripts.clip_review import review_clip
@@ -327,6 +328,7 @@ def mix_documentary_audio(source_video: Path, final_audio: Path, duration: float
     run(["ffmpeg", "-y", "-i", str(source_video), "-i", str(final_audio),
          "-filter_complex", ";".join(filters), "-map", "[a]", "-t", f"{duration:.3f}",
          "-c:a", "libmp3lame", "-b:a", "192k", str(output_path)])
+    add_topic_soundtrack(output_path, final_audio, duration, "history")
     return output_path
 
 
