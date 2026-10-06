@@ -137,7 +137,7 @@ def normalize_clip(input_path: Path, output_path: Path, duration: float, audio_d
     extra, mapping = normalized_audio_args(input_path, audio_decision.startswith("ORIGINAL AUDIO"))
     run(["ffmpeg", "-y", "-stream_loop", "-1", "-i", str(input_path), *extra,
          "-t", f"{duration:.3f}", "-vf",
-         f"scale={FULL_WIDTH}:{FULL_HEIGHT}:force_original_aspect_ratio=increase,crop={FULL_WIDTH}:{FULL_HEIGHT},fps={FPS}",
+         f"scale={FULL_WIDTH}:{FULL_HEIGHT}:force_original_aspect_ratio=increase,crop={FULL_WIDTH}:{FULL_HEIGHT},setsar=1,fps={FPS}",
          "-map", "0:v:0", *mapping, "-c:v", "libx264", "-preset", "fast", "-crf", "22",
          "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output_path)])
 
@@ -518,7 +518,7 @@ def create_short(
     # crop مركزي من 16:9 إلى 9:16، مع الإبقاء على صوت الفيديو الكامل.
     vf = (
         f"scale={SHORT_WIDTH}:{SHORT_HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={SHORT_WIDTH}:{SHORT_HEIGHT}"
+        f"crop={SHORT_WIDTH}:{SHORT_HEIGHT},setsar=1"
     )
     narration_filter = subtitle_filter(vertical_subtitles)
     if narration_filter:
