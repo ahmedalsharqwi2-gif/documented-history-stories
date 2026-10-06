@@ -84,14 +84,14 @@ MAX_SHORT_DURATION_SECONDS = 90.0
 # "ريل واحد بس بدل شورتين" أعلى الملف.
 DEFAULT_SHORT_COUNT = 1
 AUTO_END_MARGIN_SECONDS = 8.0
-CTA_DURATION_SECONDS = 4.0
+CTA_DURATION_SECONDS = 6.0
 REEL_CTA_TOP_MARGIN = 620
 FPS = 24
 
 PLATFORM_CTA = {
-    "youtube": "تعرف على بقية القصة\nشاهد الحلقة كاملة على YouTube",
-    "facebook": "تعرف على بقية القصة\nشاهد الحلقة كاملة على صفحتنا",
-    "instagram": "تعرف على بقية القصة\nالحلقة كاملة على صفحتنا",
+    "youtube": "شاهد الفيديو الكامل\nعلى قناة YouTube",
+    "facebook": "شاهد الفيديو الكامل\nعلى صفحتنا",
+    "instagram": "شاهد الفيديو الكامل\nعلى صفحتنا",
 }
 
 
@@ -303,7 +303,11 @@ def make_vertical_subtitles(source: Path, output: Path) -> Path:
     lines = source.read_text(encoding="utf-8").splitlines()
     rewritten = []
     for line in lines:
-        if line.startswith("Style: Caption,"):
+        if line.startswith("PlayResX:"):
+            line = f"PlayResX: {SHORT_WIDTH}"
+        elif line.startswith("PlayResY:"):
+            line = f"PlayResY: {SHORT_HEIGHT}"
+        elif line.startswith("Style: Caption,"):
             fields = line.split(",")
             if len(fields) >= 23:
                 fields[18] = "8"       # top-center alignment
