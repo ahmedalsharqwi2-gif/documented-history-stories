@@ -32,12 +32,13 @@
       "title": "حَافِلَةُ المِيَاهِ العَظِيمَةِ: بِنَاءُ سَدِّ مَأْرِبَ",
       "hook": "فِي صَحْرَاءِ اليَمَنِ القَاحِلَةِ، شَيَّدَ البَشَرُ صَرْحًا هَنْدَسِيًّا عَظِيمًا حَوَّلَ الكُثْبَانَ الرَّمْلِيَّةَ إلى جَنَّةٍ خَضْرَاءَ.",
       "region": "مَأْرِب، اليَمَن",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "ca51f65ef6104a8a94aa7fcaf5dd6ca0",
       "reserved_at": "2026-10-06T12:24:58Z",
       "run_id": "37460524741",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "ca51f65ef6104a8a94aa7fcaf5dd6ca0",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-06T12:25:22Z"
     }
   ]
 }
