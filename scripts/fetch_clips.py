@@ -266,10 +266,14 @@ def main():
 
             try:
                 review = review_clip(dest_path, keyword, str(episode.get("title", "")), historical=True)
-                audio_record = build_audio_record(dest_path, override=review["audio_decision"])
-                audio_record["semantic_match_review"] = review.get("audio_match", "NOT_REQUIRED")
+                try:
+                    audio_record = build_audio_record(dest_path, override=review["audio_decision"])
+                    audio_record["semantic_match_review"] = review.get("audio_match", "NOT_REQUIRED")
+                except (RuntimeError, ValueError):
+                    audio_record = {"decision": "VOICE ONLY", "semantic_match_review": "NOT_REQUIRED",
+                                    "mute_reason": "Original audio analysis unavailable"}
             except (RuntimeError, ValueError) as exc:
-                print(f"⚠️ استبعاد كليب Pexels {result['id']}: تعذر تحليل الصوت الأصلي: {exc}")
+                print(f"⚠️ استبعاد كليب Pexels {result['id']}: تعذر فحص ملاءمة المقطع: {exc}")
                 # Keep rejected candidates for byte-bound editorial review.
                 continue
 
