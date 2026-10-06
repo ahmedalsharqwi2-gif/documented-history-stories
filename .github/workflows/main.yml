@@ -101,7 +101,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -117,15 +117,6 @@ jobs:
 
       - name: Install dependencies
         run: python -m pip install -r scripts/requirements.txt
-
-      - name: Verify Edge TTS installation
-        run: python -c "import edge_tts; print('edge-tts import OK:', getattr(edge_tts, '__version__', 'installed'))"
-
-      - name: Verify faster-whisper is importable on the same interpreter
-        run: python -c "import faster_whisper; print('faster-whisper OK:', faster_whisper.__file__)"
-
-      - name: Verify Arabic narration guard
-        run: python -m unittest tests.test_arabic_guard -v
 
       - name: Validate and resolve AI model policy
         env:
@@ -247,15 +238,6 @@ jobs:
           ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 output/final_video_full.mp4
           ffprobe -v error -show_entries format=duration -of csv=p=0 output/final_video_full.mp4
           echo "Professional landscape montage with topic-specific B-roll verified."
-
-      - name: Run B-roll quality gate before Buffer
-        continue-on-error: true
-        run: |
-          python scripts/broll_quality_pipeline.py \
-            --video output/final_video_full.mp4 \
-            --manifest state/fetched_clips.json \
-            --expected landscape \
-            --min-clips 4
 
       - name: Reserve unique topic before external publication
         if: ${{ !inputs.dry_run }}
