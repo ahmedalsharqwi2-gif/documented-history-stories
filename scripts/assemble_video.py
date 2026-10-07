@@ -80,7 +80,7 @@ FULL_HEIGHT = 1080
 # الريل: رأسي 9:16
 SHORT_WIDTH = 1080
 SHORT_HEIGHT = 1920
-MAX_SHORT_DURATION_SECONDS = 90.0
+MAX_SHORT_DURATION_SECONDS = 59.0
 # ريل واحد بس (كان 2 قبل كده) — يبدأ من أول الفيديو مباشرة. شوف شرح
 # "ريل واحد بس بدل شورتين" أعلى الملف.
 DEFAULT_SHORT_COUNT = 1
