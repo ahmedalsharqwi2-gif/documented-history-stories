@@ -71,12 +71,13 @@
       "title": "لُغْزُ بومبي المَفْدُودُ: يَوْمُ غَضَبِ فِيزُوف",
       "hook": "هَلْ تَخَيَّلْتَ يَوْمًا مَدِينَةً كَامِلَةً تُخْتَفَى تَحْتَ رَمَادِ البُرْكَانِ فِي لَحْظَاتٍ خَاطِفَةٍ؟",
       "region": "إيطاليا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "3195f6144c154acd95e9831c06292ab5",
       "reserved_at": "2026-10-07T21:23:22Z",
       "run_id": "37685680355",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "3195f6144c154acd95e9831c06292ab5",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-07T21:23:46Z"
     }
   ]
 }
