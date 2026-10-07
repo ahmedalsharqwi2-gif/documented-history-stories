@@ -45,12 +45,13 @@
       "title": "مأساة المنارة الغارقة: سقوط منارة الإسكندرية القديمة",
       "hook": "شُيِّدَ أَعْظَمُ بِنَاءِ إِرْشَادِيٍّ فِي العَالَمِ القَدِيمِ لِيُضِيءَ الظَّلَامَ، لَكِنَّهُ تَهَادَى يَوْمًا وَسَقَطَ.",
       "region": "الإسكندرية، مصر",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "4d1e9240ce2147f2986ff20db27f9a22",
       "reserved_at": "2026-10-07T06:33:40Z",
       "run_id": "37580306395",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "4d1e9240ce2147f2986ff20db27f9a22",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-07T06:34:11Z"
     }
   ]
 }
