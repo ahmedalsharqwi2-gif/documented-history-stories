@@ -35,10 +35,22 @@
       "status": "published",
       "source": "workflow",
       "reserved_at": "2026-10-06T12:24:58Z",
+      "published_at": "2026-10-06T12:25:22Z",
       "run_id": "37460524741",
       "reservation_id": "ca51f65ef6104a8a94aa7fcaf5dd6ca0",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
-      "published_at": "2026-10-06T12:25:22Z"
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+    },
+    {
+      "id": "cf83ceceebe80003cf2b",
+      "title": "مأساة المنارة الغارقة: سقوط منارة الإسكندرية القديمة",
+      "hook": "شُيِّدَ أَعْظَمُ بِنَاءِ إِرْشَادِيٍّ فِي العَالَمِ القَدِيمِ لِيُضِيءَ الظَّلَامَ، لَكِنَّهُ تَهَادَى يَوْمًا وَسَقَطَ.",
+      "region": "الإسكندرية، مصر",
+      "status": "reserved",
+      "source": "workflow",
+      "reservation_id": "4d1e9240ce2147f2986ff20db27f9a22",
+      "reserved_at": "2026-10-07T06:33:40Z",
+      "run_id": "37580306395",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
     }
   ]
 }
