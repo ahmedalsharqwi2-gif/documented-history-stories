@@ -58,12 +58,13 @@
       "title": "صراع العقول على جبل أوليمبوس: ملحمة بناء سكة حديد اليونان",
       "hook": "فِي قَلْبِ جِبَالِ الْيُونَانِ الْوَعْرِةِ، انْطَلَقَتْ مَشَارِعُ هَنْدَسِيَّةٌ ضَخْمَةٌ لِتَرْبِطَ بَيْنَ الْجَزِيرَةِ وَالْبَرِّ.",
       "region": "اليونان",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "2816a3f9a74e4b5ea6682a986dc59bd0",
       "reserved_at": "2026-10-07T12:19:18Z",
       "run_id": "37618377440",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "2816a3f9a74e4b5ea6682a986dc59bd0",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-07T12:19:45Z"
     }
   ]
 }
