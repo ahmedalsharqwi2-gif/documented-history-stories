@@ -53,6 +53,8 @@ permissions:
 env:
   QUALITY_GATES_BLOCKING: 'false'
   BACKGROUND_MUSIC_ENABLED: 'true'
+  # Consecutive production runs cycle 1 -> 2 -> 3; retries keep the same track.
+  MUSIC_ROTATION_INDEX: ${{ github.run_number }}
   BACKGROUND_MUSIC_VOLUME: '0.07'
   PYTHONPATH: ${{ github.workspace }}
   HISTORY_SOURCE_GATE_ENABLED: 'false'
