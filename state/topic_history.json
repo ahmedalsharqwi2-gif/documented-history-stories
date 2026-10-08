@@ -84,12 +84,13 @@
       "title": "مأساةُ بومبي الكبرى: يَوْمُ غَضَبِ جَبَلِ فِيزُوف",
       "hook": "هَلْ تَعْلَمُ كَيْفَ اخْتَفَتْ مَدِينَةُ بُومْبِي الرُّمَانِيَّةُ تَحْتَ طَبَقَاتِ الرَّمَادِ البُرْكَانِيِّ فِي عَامِ سَبْعَةٍ وَسَبْعِينَ بَعْدَ المِيلادِ؟",
       "region": "إيطاليا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "67466e0d338240b880be128730b6a2d0",
       "reserved_at": "2026-10-08T13:08:51Z",
       "run_id": "37779943453",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "67466e0d338240b880be128730b6a2d0",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-08T13:09:12Z"
     }
   ]
 }
