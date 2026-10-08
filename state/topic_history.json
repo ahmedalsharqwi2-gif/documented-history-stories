@@ -97,12 +97,13 @@
       "title": "سُقُوطُ بَابِلَ: لَظَى النَّهْرِ المُحَوَّلِ وَنَهِايَةُ الإِمْبِرَاطُورِيَّةِ",
       "hook": "هَلْ تَعْلَمُ كَيْفَ سَقَطَتْ أَعْظَمُ مَدِينَةٍ فِي العَالَمِ القَدِيمِ بَعْدَ تَحْوِيلِ مَسَارِ النَّهْرِ؟",
       "region": "بابل، العراق الحالي",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "a203d00119d447b2a869e99dac8639a9",
       "reserved_at": "2026-10-08T15:45:42Z",
       "run_id": "37800917209",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "a203d00119d447b2a869e99dac8639a9",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-08T15:46:02Z"
     }
   ]
 }
