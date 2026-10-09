@@ -24,7 +24,7 @@ class ReelSafeAreaTests(unittest.TestCase):
             source.write_text(generate_voice.build_ass_header(), encoding="utf-8")
             assemble_video.make_vertical_subtitles(source, output)
             style = next(line for line in output.read_text(encoding="utf-8").splitlines() if line.startswith("Style: Caption,"))
-        self.assertIn(",8,70,70,160,1", style)
+        self.assertIn(",8,70,70,300,1", style)
 
     def test_cta_is_in_a_separate_top_safe_lane_below_captions(self):
         with tempfile.TemporaryDirectory() as directory:
