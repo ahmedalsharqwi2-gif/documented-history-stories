@@ -3,7 +3,7 @@ assemble_video.py
 
 ينتج أصلين من نفس الحلقة:
 
-1) فيديو كامل أفقي 16:9:
+1) فيديو كامل عمودي 9:16:
    output/final_video_full.mp4
 
 2) ريل واحد رأسي 9:16، مقتطف من أول الفيديو الكامل ويتوقف قبل النهاية/الحل:
@@ -73,9 +73,9 @@ SUBTITLES_PATH = CLIPS_DIR / "narration.ass"
 FETCHED_CLIPS_PATH = STATE_DIR / "fetched_clips.json"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
 
-# الفيديو الكامل: أفقي 16:9
-FULL_WIDTH = 1920
-FULL_HEIGHT = 1080
+# الفيديو الكامل: عمودي 9:16
+FULL_WIDTH = 1080
+FULL_HEIGHT = 1920
 
 # الريل: رأسي 9:16
 SHORT_WIDTH = 1080
@@ -87,7 +87,7 @@ DEFAULT_SHORT_COUNT = 1
 AUTO_END_MARGIN_SECONDS = 8.0
 CTA_DURATION_SECONDS = 6.0
 REEL_CTA_TOP_MARGIN = 620
-FPS = 24
+FPS = 30
 
 PLATFORM_CTA = {
     "youtube": "شاهد الفيديو الكامل\nعلى قناة YouTube",
@@ -312,7 +312,7 @@ def make_vertical_subtitles(source: Path, output: Path) -> Path:
             fields = line.split(",")
             if len(fields) >= 23:
                 fields[18] = "8"       # top-center alignment
-                fields[21] = "160"     # safe top margin for 9:16
+                fields[21] = "300"     # safe top margin for 9:16
                 line = ",".join(fields)
         rewritten.append(line)
     output.write_text("\n".join(rewritten) + "\n", encoding="utf-8")
@@ -578,6 +578,10 @@ def create_short(
 
 
 def _run() -> None:
+    from scripts.cinematic_production import enabled, build_episode
+    if enabled():
+        build_episode(ROOT_DIR)
+        return
     for path in (FETCHED_CLIPS_PATH, EPISODE_PATH):
         if not path.exists():
             raise RuntimeError(f"❌ الملف غير موجود: {path}")
@@ -629,8 +633,9 @@ def _run() -> None:
         old.unlink(missing_ok=True)
 
     full_output = OUTPUT_DIR / "final_video_full.mp4"
-    full_duration = build_full_video(clips, final_audio, subtitles, full_output, episode)
-    print(f"✅ الفيديو الكامل الأفقي: {full_output}")
+    full_subtitles = make_vertical_subtitles(subtitles, CLIPS_DIR / "narration_full_vertical.ass") if subtitles else None
+    full_duration = build_full_video(clips, final_audio, full_subtitles, full_output, episode)
+    print(f"✅ الفيديو الكامل العمودي: {full_output}")
     print(f"✅ مدة الفيديو الكامل: {full_duration:.1f} ثانية")
 
     # Reels must not inherit the horizontal bottom-caption layer. Reuse the
