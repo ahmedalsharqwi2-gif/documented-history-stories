@@ -32,6 +32,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -50,6 +51,7 @@ DEFAULT_PITCH = "-2Hz"
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
+    """Run a subprocess command and raise an informative error on failure."""
     result = subprocess.run(command, text=True, capture_output=True)
     if result.returncode:
         raise RuntimeError(
@@ -59,6 +61,7 @@ def run(command: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 def probe_duration(path: Path) -> float:
+    """Read and validate the media duration with ffprobe."""
     result = run([
         "ffprobe", "-v", "error", "-show_entries", "format=duration",
         "-of", "default=noprint_wrappers=1:nokey=1", str(path),
@@ -70,6 +73,7 @@ def probe_duration(path: Path) -> float:
 
 
 def resolve_path(value: str | Path, base: Path | None = None) -> Path:
+    """Resolve a path relative to the storyboard or current directory."""
     path = Path(value).expanduser()
     if path.is_absolute():
         return path.resolve()
@@ -84,6 +88,7 @@ def resolve_path(value: str | Path, base: Path | None = None) -> Path:
 
 
 async def synthesize_voice(text: str, output: Path, voice: str, rate: str, pitch: str) -> None:
+    """Generate an Arabic narration audio file with Edge TTS."""
     spoken = re.sub(r"\s+", " ", text).strip()
     if not spoken:
         raise ValueError("Scene narration is empty")
@@ -91,6 +96,7 @@ async def synthesize_voice(text: str, output: Path, voice: str, rate: str, pitch
 
 
 def ass_time(seconds: float) -> str:
+    """Format seconds as an ASS subtitle timestamp."""
     total_cs = max(0, int(round(seconds * 100)))
     hours, rem = divmod(total_cs, 360000)
     minutes, rem = divmod(rem, 6000)
@@ -99,10 +105,12 @@ def ass_time(seconds: float) -> str:
 
 
 def ass_escape(text: str) -> str:
+    """Escape user text so it is safe inside an ASS event."""
     return text.replace("\\", r"\\").replace("{", r"\{").replace("}", r"\}")
 
 
 def caption_text(text: str, max_words: int = 7) -> str:
+    """Wrap caption text into readable ASS lines within a word limit."""
     words = ass_escape(text).split()
     if len(words) <= max_words:
         return " ".join(words)
@@ -111,24 +119,144 @@ def caption_text(text: str, max_words: int = 7) -> str:
 
 
 def write_ass(events: list[dict[str, Any]], output: Path) -> None:
+    """Render safe Arabic captions and optional red word highlights to ASS."""
     lines = [
         "[Script Info]", "ScriptType: v4.00+", f"PlayResX: {WIDTH}",
         f"PlayResY: {HEIGHT}", "WrapStyle: 2", "ScaledBorderAndShadow: yes", "",
         "[V4+ Styles]",
         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-        f"Style: Caption,{FONT_NAME},58,&H00FFFFFF,&H00FFFFFF,&H0010182B,&HAA000000,1,0,0,0,100,100,0,0,1,3,1,8,70,70,260,1",
-        "",
-        "[Events]",
+        f"Style: Caption,{FONT_NAME},58,&H00F4F1EA,&H00F4F1EA,&H0010182B,&HAA000000,1,0,0,0,100,100,0,0,1,4,2,8,70,70,300,1",
+        "", "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
     for event in events:
-        lines.append(
-            f"Dialogue: 0,{ass_time(event['start'])},{ass_time(event['end'])},Caption,,0,0,0,,{caption_text(event['text'])}"
-        )
+        # Strip bidi controls from display only; libass handles Arabic shaping and RTL.
+        text = re.sub(r"[\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]", "", event["text"])
+        tokens = text.split()
+        highlight_keys = {normalize_match_word(word) for word in event.get("highlight_words", [])[:2]}
+        styled = []
+        for token in tokens:
+            safe = ass_escape(token)
+            if normalize_match_word(token) in highlight_keys:
+                safe = r"{\c&H000000FF&}" + safe + r"{\c}"
+            styled.append(safe)
+        if len(styled) > 7:
+            midpoint = (len(styled) + 1) // 2
+            rendered = " ".join(styled[:midpoint]) + r"\N" + " ".join(styled[midpoint:])
+        else:
+            rendered = " ".join(styled)
+        lines.append(f"Dialogue: 0,{ass_time(event['start'])},{ass_time(event['end'])},Caption,,0,0,0,,{{\\fad(120,150)}}{rendered}")
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+
+_BIDI_CONTROLS = dict.fromkeys(map(ord, "\u061c\u200e\u200f\u202a\u202b\u202c\u202d\u202e\u2066\u2067\u2068\u2069"), None)
+_DIACRITICS = re.compile(r"[\u064b-\u065f\u0670\u06d6-\u06ed]")
+_PUNCT = re.compile(r"[^\w\u0621-\u064a\u0660-\u0669\u06f0-\u06f9]+", re.UNICODE)
+_WHISPER_MODEL = None
+
+def normalize_match_word(word: str) -> str:
+    """Internal-only Arabic normalization; never use this value for display."""
+    value = unicodedata.normalize("NFKC", word).translate(_BIDI_CONTROLS).replace("ـ", "")
+    alef_map = {ord("أ"): ord("ا"), ord("إ"): ord("ا"), ord("آ"): ord("ا"), ord("ٱ"): ord("ا"), ord("ى"): ord("ي")}
+    value = _DIACRITICS.sub("", value).translate(alef_map)
+    return _PUNCT.sub("", value).lower()
+
+def _text_words(text: str) -> list[str]:
+    """Split narration into original display tokens, omitting bidi controls."""
+    return [w for w in re.sub(r"[\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]", "", text).split() if normalize_match_word(w)]
+
+def _whisper_word_spans(audio: Path, text: str, duration: float) -> tuple[list[dict[str, Any]], str]:
+    """Return spoken words with Whisper times, falling back without stopping the render."""
+    global _WHISPER_MODEL
+    display_words = _text_words(text)
+    try:
+        from faster_whisper import WhisperModel
+        if _WHISPER_MODEL is None:
+            model_name = os.getenv("CAPTION_WHISPER_MODEL", "small")
+            _WHISPER_MODEL = WhisperModel(model_name, device="cpu", compute_type="int8")
+        segments, _ = _WHISPER_MODEL.transcribe(
+            str(audio), language="ar", word_timestamps=True, vad_filter=True,
+            condition_on_previous_text=False,
+        )
+        recognized: list[dict[str, Any]] = []
+        for segment in segments:
+            for word in (segment.words or []):
+                if word.start is not None and word.end is not None:
+                    recognized.append({"key": normalize_match_word(word.word),
+                                       "start": max(0.0, float(word.start)),
+                                       "end": min(duration, float(word.end))})
+        expected = [normalize_match_word(w) for w in display_words]
+        # Only transfer times when normalized sequence matches completely. This avoids
+        # silently dropping or substituting text when ASR mishears a word.
+        if recognized and [w["key"] for w in recognized] == expected:
+            return ([{"text": word, "start": rec["start"], "end": max(rec["start"] + 0.01, rec["end"])}
+                     for word, rec in zip(display_words, recognized)], "whisper")
+    except Exception as exc:
+        print(f"WARNING: Whisper word alignment unavailable; using estimated timing: {exc}", file=sys.stderr)
+    # Stable character-weighted fallback; avoids the inaccurate constant words/second rule.
+    weights = [max(1, len(normalize_match_word(w))) for w in display_words]
+    total = sum(weights) or 1
+    spans, offset = [], 0.0
+    for word, weight in zip(display_words, weights):
+        end = offset + duration * weight / total
+        spans.append({"text": word, "start": offset, "end": end})
+        offset = end
+    return spans, "estimated_fallback"
+
+def _caption_chunks(word_spans: list[dict[str, Any]], max_words: int = 7,
+                    max_chars: int = 38) -> list[dict[str, Any]]:
+    """Group word spans into readable captions, preserving each original display token."""
+    if max_words < 1:
+        raise ValueError("max_words must be positive")
+    chunks: list[dict[str, Any]] = []
+    current: list[dict[str, Any]] = []
+    def flush() -> None:
+        """Finalize the current word group as one timed caption event."""
+        nonlocal current
+        if not current:
+            return
+        start, end = current[0]["start"], current[-1]["end"]
+        # Keep a readable minimum duration where possible without overlapping the next event.
+        if end - start < 0.45:
+            end = start + 0.45
+        text = " ".join(item["text"] for item in current)
+        chunks.append({"start": start, "end": end, "text": text})
+        current = []
+    for item in word_spans:
+        proposed = current + [item]
+        joined = " ".join(part["text"] for part in proposed)
+        punctuation_break = bool(current and re.search(r"[.!?؟،؛:]$", current[-1]["text"]))
+        if current and (len(proposed) > max_words or len(joined) > max_chars or punctuation_break):
+            flush()
+        current.append(item)
+    flush()
+    # Do not leave a one-word tail if it can be combined under both visual bounds.
+    if len(chunks) > 1 and len(chunks[-1]["text"].split()) == 1:
+        a, b = chunks[-2], chunks[-1]
+        merged = a["text"] + " " + b["text"]
+        if len(merged) <= max_chars and len(merged.split()) <= max_words:
+            chunks[-2:] = [{"start": a["start"], "end": b["end"], "text": merged}]
+    return chunks
+
+def validate_caption_events(events: list[dict[str, Any]], duration: float) -> None:
+    """Reject empty, malformed, overlong, unordered, or out-of-range captions."""
+    previous_start = -1.0
+    for event in events:
+        if not event.get("text", "").strip():
+            raise ValueError("Caption event has empty text")
+        if event["start"] < 0 or event["end"] <= event["start"]:
+            raise ValueError("Caption event has invalid timing")
+        if event["start"] < previous_start:
+            raise ValueError("Caption events are not ordered")
+        if event["end"] > duration + 0.5:
+            raise ValueError("Caption event extends beyond audio/video duration")
+        if len(event["text"]) > 76:
+            raise ValueError("Caption line exceeds the 38-character-per-line bound")
+        previous_start = event["start"]
+
 def make_local_ambient_music(output: Path, duration: float) -> None:
+    """Create a fallback ambient bed using local FFmpeg sources."""
     graph = (
         "[0:a]volume=0.035,lowpass=f=900,tremolo=f=0.10:d=0.65,"
         "afade=t=in:st=0:d=2,afade=t=out:st="
@@ -147,6 +275,7 @@ def make_local_ambient_music(output: Path, duration: float) -> None:
 
 
 def motion_filter(motion: str) -> str:
+    """Build the FFmpeg zoom or pan filter for a scene."""
     motion = (motion or "zoom_in").lower()
     if motion == "zoom_out":
         zoom = "max(1.0,1.05-zoom+1.0-1.0)"  # replaced below for readability
@@ -172,6 +301,7 @@ def motion_filter(motion: str) -> str:
 
 
 def render_scene_visual(image: Path, output: Path, duration: float, motion: str) -> None:
+    """Render one vertical scene with the selected motion."""
     run([
         "ffmpeg", "-y", "-loop", "1", "-i", str(image), "-t", f"{duration:.3f}",
         "-vf", motion_filter(motion), "-an", "-c:v", "libx264", "-preset", "medium",
@@ -180,6 +310,7 @@ def render_scene_visual(image: Path, output: Path, duration: float, motion: str)
 
 
 def concat_audio(paths: list[Path], output: Path) -> None:
+    """Concatenate narration audio segments in storyboard order."""
     if len(paths) == 1:
         shutil.copy2(paths[0], output)
         return
@@ -193,6 +324,7 @@ def concat_audio(paths: list[Path], output: Path) -> None:
 
 
 def concat_video(paths: list[Path], output: Path) -> None:
+    """Concatenate rendered scene videos without re-encoding."""
     list_path = output.with_suffix(".concat.txt")
     list_path.write_text("\n".join(f"file '{p.resolve().as_posix()}'" for p in paths) + "\n", encoding="utf-8")
     try:
@@ -203,6 +335,7 @@ def concat_video(paths: list[Path], output: Path) -> None:
 
 
 def mix_full_audio(voice: Path, music: Path, output: Path, duration: float, music_gain: float = 0.26) -> None:
+    """Mix narration with ducked background music."""
     graph = (
         "[0:a]aresample=48000,volume=1.0,asplit=2[voice_main][sidechain];"
         f"[1:a]aresample=48000,volume={music_gain:.3f}[music];"
@@ -217,6 +350,7 @@ def mix_full_audio(voice: Path, music: Path, output: Path, duration: float, musi
 
 
 def load_storyboard(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Load a storyboard JSON file and validate its scene list."""
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict) or not isinstance(data.get("scenes"), list) or not data["scenes"]:
         raise ValueError("Storyboard must contain a non-empty scenes array")
@@ -226,6 +360,7 @@ def load_storyboard(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
 def build_storyboard(storyboard_path: Path, output: Path, music_override: Path | None = None,
                      voice_override: str | None = None, rate_override: str | None = None,
                      pitch_override: str | None = None) -> dict[str, Any]:
+    """Synthesize, align, caption, mix, and render the configured vertical storyboard."""
     config, raw_scenes = load_storyboard(storyboard_path)
     base = storyboard_path.parent
     voice = voice_override or config.get("voice") or DEFAULT_VOICE
@@ -263,12 +398,21 @@ def build_storyboard(storyboard_path: Path, output: Path, music_override: Path |
             render_scene_visual(image, visual_path, scene_duration, str(raw.get("motion", "zoom_in")))
             voice_paths.append(voice_path)
             visual_paths.append(visual_path)
-            caption_events.append({"start": cursor, "end": cursor + voice_duration + 0.15, "text": text})
+            word_spans, alignment_method = _whisper_word_spans(voice_path, text, voice_duration)
+            repo_profile = {"arabic-horror-stories": "horror", "documented-history-stories": "history"}.get(Path(__file__).resolve().parent.parent.name, "science")
+            profile = str(raw.get("content_type") or config.get("content_type") or repo_profile).lower()
+            max_words = 5 if profile in {"horror", "رعب"} else 6 if profile in {"history", "التاريخ"} else 7
+            for caption in _caption_chunks(word_spans, max_words=max_words):
+                caption_events.append({"start": cursor + caption["start"],
+                                       "end": min(cursor + voice_duration, cursor + caption["end"]),
+                                       "text": caption["text"],
+                                       "highlight_words": list(raw.get("highlight_words", []))[:2]})
             metadata_scenes.append({
                 "index": index, "id": raw.get("id", f"scene_{index:03d}"),
                 "image": str(image), "motion": raw.get("motion", "zoom_in"),
                 "voice_duration": round(voice_duration, 3),
                 "scene_duration": round(scene_duration, 3),
+                "caption_alignment": alignment_method,
             })
             cursor += scene_duration
 
@@ -287,6 +431,7 @@ def build_storyboard(storyboard_path: Path, output: Path, music_override: Path |
         mixed_audio = work / "mixed.m4a"
         mix_full_audio(concatenated_voice, music_path, mixed_audio, total_duration, music_gain)
         ass_path = work / "captions.ass"
+        validate_caption_events(caption_events, total_duration)
         write_ass(caption_events, ass_path)
         ass_filter = str(ass_path).replace("\\", "/").replace(":", r"\:")
         run(["ffmpeg", "-y", "-i", str(concatenated_video), "-i", str(mixed_audio),
@@ -304,6 +449,7 @@ def build_storyboard(storyboard_path: Path, output: Path, music_override: Path |
 
 def build_single(image: Path, text: str, output: Path, music: Path | None,
                  voice: str, rate: str, pitch: str) -> dict[str, Any]:
+    """Render a one-scene storyboard using the shared pipeline."""
     storyboard = output.with_suffix(".storyboard.json")
     storyboard.write_text(json.dumps({"music": str(music) if music else None,
         "voice": voice, "rate": rate, "pitch": pitch,
@@ -315,6 +461,7 @@ def build_single(image: Path, text: str, output: Path, music: Path | None,
 
 
 def parse_args() -> argparse.Namespace:
+    """Define and parse the command-line arguments."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--storyboard", type=Path)
     parser.add_argument("--image", type=Path)
@@ -329,6 +476,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    """Run the command-line pipeline and report its metadata or errors."""
     args = parse_args()
     try:
         if args.storyboard:
