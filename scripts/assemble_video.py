@@ -36,7 +36,7 @@ MAX_SHORT_DURATION_SECONDS أو حد الهامش قبل النهاية، أيه
 
 === تخطيط النص في المنطقة الآمنة ===
 ترجمة السرد في أصل 16:9 محاذاة أسفل-وسط بهامش سفلي 70px، بعيدًا عن حواف
-الفيديو. يظهر CTA في مسار علوي ثانٍ بهامش 620px في الريل، كي لا يتداخل
+الفيديو. يظهر مقتطف في مسار علوي ثانٍ بهامش 620px في الريل، كي لا يتداخل
 مع سطر الترجمة خلال النهاية.
 """
 
@@ -85,15 +85,9 @@ MAX_SHORT_DURATION_SECONDS = 59.0
 # "ريل واحد بس بدل شورتين" أعلى الملف.
 DEFAULT_SHORT_COUNT = 1
 AUTO_END_MARGIN_SECONDS = 8.0
-CTA_DURATION_SECONDS = 6.0
-REEL_CTA_TOP_MARGIN = 620
 FPS = 30
 
-PLATFORM_CTA = {
-    "youtube": "شاهد الفيديو الكامل\nعلى قناة YouTube",
-    "facebook": "شاهد الفيديو الكامل\nعلى صفحتنا",
-    "instagram": "شاهد الفيديو الكامل\nعلى صفحتنا",
-}
+PLATFORMS = ("youtube", "facebook", "instagram")
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
@@ -418,42 +412,6 @@ def build_full_video(
     return probe_duration(output_path)
 
 
-def write_cta_ass(path: Path, start: float, end: float, text: str) -> None:
-    """ينشئ Overlay ASS عربيًا بدل drawtext لتفادي مشاكل تشكيل العربية.
-
-التنويه يظهر أعلى الإطار لكن في مسار ثانٍ أسفل ترجمة السرد (هامش 620px)،
-مع الحفاظ على الخط والحجم وحدود النص المتوافقة مع الترجمة.
-    """
-    def ass_time(seconds: float) -> str:
-        centiseconds = max(0, int(round(seconds * 100)))
-        hours, rem = divmod(centiseconds, 360000)
-        minutes, rem = divmod(rem, 6000)
-        secs, cs = divmod(rem, 100)
-        return f"{hours}:{minutes:02d}:{secs:02d}.{cs:02d}"
-
-    safe_text = text.replace("\\", "\\\\").replace("\n", r"\N")
-    content = (
-        "[Script Info]\n"
-        "ScriptType: v4.00+\n"
-        f"PlayResX: {SHORT_WIDTH}\n"
-        f"PlayResY: {SHORT_HEIGHT}\n"
-        "WrapStyle: 2\n"
-        "ScaledBorderAndShadow: yes\n\n"
-        "[V4+ Styles]\n"
-        "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, "
-        "OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, "
-        "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
-        "Alignment, MarginL, MarginR, MarginV, Encoding\n"
-        # أعلى-وسط، في مسار منفصل أسفل ترجمة السرد وأعلى منطقة الشاشة.
-        "Style: CTA,Arial,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
-        f"1,0,0,0,100,100,0,0,1,3,0,8,70,70,{REEL_CTA_TOP_MARGIN},1\n\n"
-        "[Events]\n"
-        "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, "
-        "Effect, Text\n"
-        f"Dialogue: 0,{ass_time(start)},{ass_time(end)},CTA,,0,0,0,,{safe_text}\n"
-    )
-    path.write_text(content, encoding="utf-8")
-
 
 def default_short_specs(full_duration: float) -> list[dict]:
     """ينشئ ريل/ريلات تلقائيًا تبدأ من أول الفيديو وتترك هامشًا قبل
@@ -540,10 +498,6 @@ def create_short(
     if duration <= 0:
         raise ValueError("مدة الريل يجب أن تكون أكبر من صفر")
 
-    cta_start = max(0.0, duration - CTA_DURATION_SECONDS)
-    cta_ass = CLIPS_DIR / f"cta_short_{short_index}_{platform}.ass"
-    write_cta_ass(cta_ass, cta_start, duration, PLATFORM_CTA[platform])
-    cta_filter = subtitle_filter(cta_ass)
 
     # crop مركزي من 16:9 إلى 9:16، مع الإبقاء على صوت الفيديو الكامل.
     vf = (
@@ -553,8 +507,6 @@ def create_short(
     narration_filter = subtitle_filter(vertical_subtitles)
     if narration_filter:
         vf += f",{narration_filter}"
-    if cta_filter:
-        vf += f",{cta_filter}"
 
     run([
         "ffmpeg", "-y",
@@ -638,7 +590,7 @@ def _run() -> None:
     print(f"✅ الفيديو الكامل العمودي: {full_output}")
     print(f"✅ مدة الفيديو الكامل: {full_duration:.1f} ثانية")
 
-    # Reels must not inherit the horizontal bottom-caption layer. Reuse the
+    # Reels must not inherit the legacy caption layer. Reuse the
     # same rendered clip sequence and audio, then place a dedicated caption
     # track in the upper 9:16 safe lane.
     reel_source = OUTPUT_DIR / "reel_source_clean.mp4"
@@ -655,7 +607,7 @@ def _run() -> None:
 
     generated = 0
     for short_index, spec in enumerate(specs, 1):
-        for platform in PLATFORM_CTA:
+        for platform in PLATFORMS:
             output = OUTPUT_DIR / f"short_{short_index}_{platform}.mp4"
             duration = create_short(
                 reel_source, spec, short_index, platform, output, vertical_subtitles
