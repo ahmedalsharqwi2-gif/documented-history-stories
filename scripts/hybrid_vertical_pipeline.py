@@ -112,6 +112,7 @@ def caption_text(text: str, max_words: int = 7) -> str:
 
 
 def write_ass(events: list[dict[str, Any]], output: Path) -> None:
+    """Render safe Arabic captions and optional red word highlights to ASS."""
     lines = [
         "[Script Info]", "ScriptType: v4.00+", f"PlayResX: {WIDTH}",
         f"PlayResY: {HEIGHT}", "WrapStyle: 2", "ScaledBorderAndShadow: yes", "",
@@ -155,6 +156,7 @@ def normalize_match_word(word: str) -> str:
     return _PUNCT.sub("", value).lower()
 
 def _text_words(text: str) -> list[str]:
+    """Split narration into original display tokens, omitting bidi controls."""
     return [w for w in re.sub(r"[\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]", "", text).split() if normalize_match_word(w)]
 
 def _whisper_word_spans(audio: Path, text: str, duration: float) -> tuple[list[dict[str, Any]], str]:
@@ -230,6 +232,7 @@ def _caption_chunks(word_spans: list[dict[str, Any]], max_words: int = 7,
     return chunks
 
 def validate_caption_events(events: list[dict[str, Any]], duration: float) -> None:
+    """Reject empty, malformed, overlong, unordered, or out-of-range captions."""
     previous_start = -1.0
     for event in events:
         if not event.get("text", "").strip():
@@ -342,6 +345,7 @@ def load_storyboard(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
 def build_storyboard(storyboard_path: Path, output: Path, music_override: Path | None = None,
                      voice_override: str | None = None, rate_override: str | None = None,
                      pitch_override: str | None = None) -> dict[str, Any]:
+    """Synthesize, align, caption, mix, and render the configured vertical storyboard."""
     config, raw_scenes = load_storyboard(storyboard_path)
     base = storyboard_path.parent
     voice = voice_override or config.get("voice") or DEFAULT_VOICE
