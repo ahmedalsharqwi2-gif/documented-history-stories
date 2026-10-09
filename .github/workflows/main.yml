@@ -257,7 +257,7 @@ jobs:
           EDGE_TTS_PITCH: "-2Hz"
         run: python scripts/generate_voice.py
 
-      - name: Assemble complete vertical video and platform reel
+      - name: Assemble one complete vertical video
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
@@ -285,7 +285,7 @@ jobs:
           TOPIC_HISTORY_COMMIT: "true"
         run: python scripts/topic_history.py reserve --file state/topic_history.json --episode state/current_episode.json
 
-      - name: Publish full video and reel together
+      - name: Publish the complete video only
         if: ${{ !inputs.dry_run }}
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
@@ -295,7 +295,6 @@ jobs:
           BUFFER_INSTAGRAM_CHANNEL_ID: ${{ secrets.BUFFER_INSTAGRAM_CHANNEL_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FULL_VIDEO_DELAY_HOURS: "8"
-          FULL_TO_SHORT_1_HOURS: "8"
           CHANNEL_PENDING_LIMIT: "10"
         run: python scripts/publish_buffer.py
 
@@ -331,7 +330,6 @@ jobs:
           name: historical-strategy-episode-media-${{ github.run_id }}
           path: |
             output/final_video_full.mp4
-            output/short_*.mp4
             state/current_episode.json
             state/audio_matching_report.json
           retention-days: 14

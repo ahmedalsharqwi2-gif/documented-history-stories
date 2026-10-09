@@ -6,10 +6,7 @@ assemble_video.py
 1) فيديو كامل عمودي 9:16:
    output/final_video_full.mp4
 
-2) ريل واحد رأسي 9:16، مقتطف من أول الفيديو الكامل ويتوقف قبل النهاية/الحل:
-   output/short_1_youtube.mp4
-   output/short_1_facebook.mp4
-   output/short_1_instagram.mp4
+2) لا يتم إنشاء ريل؛ المخرج الوحيد هو القصة الكاملة العمودية:
 
 مصدر الحقيقة للصوت والترجمة العربية هو current_episode.json. يدعم الملف الحقول الجديدة:
 
@@ -21,7 +18,7 @@ assemble_video.py
   ]
 }
 
-إذا لم توجد قائمة shorts، يتم إنشاء ريل واحد تلقائيًا من بداية الفيديو،
+تُهمل أي قائمة shorts قديمة ولا تُنتج ملفات ريل،
 مع ترك AUTO_END_MARGIN_SECONDS في نهاية الحلقة حتى لا يصل المقتطف إلى الحل.
 
 مهم: مدة 90 ثانية حد للريل فقط، وليست حدًا للفيديو الكامل.
@@ -32,7 +29,7 @@ assemble_video.py
 آخره يوجّه المشاهد لمشاهدة بقية الفيديو على الصفحة. الحل: DEFAULT_SHORT_COUNT
 بقت 1 بدل 2 — default_short_specs() أصلًا كانت بتدعم أي عدد، فمع القيمة
 الجديدة بترجع ريل واحد بس يبدأ من الثانية صفر (start=0) ويمتد لحد
-MAX_SHORT_DURATION_SECONDS أو حد الهامش قبل النهاية، أيهما أصغر.
+MAX_FULL_VIDEO_SECONDS هو الحد الأقصى للفيديو الكامل.
 
 === تخطيط النص في المنطقة الآمنة ===
 ترجمة السرد في أصل 16:9 محاذاة أسفل-وسط بهامش سفلي 70px، بعيدًا عن حواف
@@ -77,10 +74,10 @@ EPISODE_PATH = STATE_DIR / "current_episode.json"
 FULL_WIDTH = 1080
 FULL_HEIGHT = 1920
 
-# الريل: رأسي 9:16
 SHORT_WIDTH = 1080
 SHORT_HEIGHT = 1920
 MAX_SHORT_DURATION_SECONDS = 59.0
+MAX_FULL_VIDEO_SECONDS = 180.0
 # ريل واحد بس (كان 2 قبل كده) — يبدأ من أول الفيديو مباشرة. شوف شرح
 # "ريل واحد بس بدل شورتين" أعلى الملف.
 DEFAULT_SHORT_COUNT = 1
@@ -588,42 +585,11 @@ def _run() -> None:
     full_subtitles = make_vertical_subtitles(subtitles, CLIPS_DIR / "narration_full_vertical.ass") if subtitles else None
     full_duration = build_full_video(clips, final_audio, full_subtitles, full_output, episode)
     print(f"✅ الفيديو الكامل العمودي: {full_output}")
-    print(f"✅ مدة الفيديو الكامل: {full_duration:.1f} ثانية")
+    if full_duration <= 0 or full_duration > MAX_FULL_VIDEO_SECONDS:
+        raise ValueError(f"مدة الفيديو الكامل يجب أن تكون بين 0 و180 ثانية: {full_duration:.2f}s")
+    print(f"✅ مدة الفيديو الكامل العمودي: {full_duration:.1f} ثانية")
 
-    # Reels must not inherit the legacy caption layer. Reuse the
-    # same rendered clip sequence and audio, then place a dedicated caption
-    # track in the upper 9:16 safe lane.
-    reel_source = OUTPUT_DIR / "reel_source_clean.mp4"
-    add_audio_and_subtitles(CLIPS_DIR / "concatenated_full.mp4", final_audio, None, reel_source)
-    vertical_subtitles = None
-    if subtitles:
-        vertical_subtitles = make_vertical_subtitles(
-            subtitles, CLIPS_DIR / "narration_vertical.ass"
-        )
-
-    specs = [finish_reel_at_caption_boundary(spec, subtitles)
-             for spec in load_short_specs(episode, full_duration)]
-    print(f"✅ عدد الريلات: {len(specs)} — الحد الأقصى لكل ريل: {MAX_SHORT_DURATION_SECONDS:.0f}s")
-
-    generated = 0
-    for short_index, spec in enumerate(specs, 1):
-        for platform in PLATFORMS:
-            output = OUTPUT_DIR / f"short_{short_index}_{platform}.mp4"
-            duration = create_short(
-                reel_source, spec, short_index, platform, output, vertical_subtitles
-            )
-            generated += 1
-            print(
-                f"✅ ريل {short_index} / {platform}: {output} "
-                f"({duration:.1f}s، يتوقف قبل نهاية القصة)"
-            )
-
-    if generated == 0:
-        raise RuntimeError("❌ لم يتم إنشاء أي ريل.")
-
-    print("✅ اكتمل إنتاج الفيديو الكامل والريل لجميع المنصات.")
-
-
+    print("✅ تم إنتاج قصة كاملة واحدة فقط؛ لن يتم إنشاء أي ريل أو short_*.mp4.")
 def main() -> int:
     try:
         _run()

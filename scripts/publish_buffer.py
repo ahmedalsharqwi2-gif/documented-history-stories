@@ -1,7 +1,7 @@
 """نشر أصول الحلقة الجديدة عبر Buffer.
 
 الترتيب:
-- الفيديو الكامل الأفقي والريل (شورت واحد فقط، من أول الفيديو) بينشروا
+- الفيديو الكامل العمودي فقط يُنشر
   معًا في نفس التوقيت: الفيديو عند FULL_VIDEO_DELAY_HOURS، والريل عند
 
   FULL_TO_SHORT_1_HOURS. اضبط القيمتين على نفس الرقم في main.yml (مثلاً
@@ -66,7 +66,7 @@ BUFFER_YOUTUBE_CHANNEL_ID / BUFFER_FACEBOOK_CHANNEL_ID، مش بدلًا منه�
 ساعة) — نُشرا بعد الفيديو الكامل بيوم كامل تقريبًا. المطلوب دلوقتي: ريل
 واحد بس (شوف assemble_video.py) ينشر في نفس لحظة نشر الفيديو الكامل
 بالظبط. الحل: حذف FULL_TO_SHORT_2_HOURS نهائيًا (مفيش short_2 أصلًا
-دلوقتي)، وكل الريلات الموجودة (حاليًا واحد بس) بتاخد نفس تأخير
+دلوقتي)، والفيديو الكامل فقط يأخذ تأخير
 FULL_TO_SHORT_1_HOURS — لازم تظبطه في main.yml بنفس قيمة
 FULL_VIDEO_DELAY_HOURS بالظبط (مثلاً "8" لنشر الاتنين الساعة 7 مساءً).
 """
@@ -98,7 +98,6 @@ ENABLE_PREFLIGHT_CHECK = os.environ.get("ENABLE_PREFLIGHT_CHECK", "true").lower(
 # توقيت الفيديو الكامل بالظبط (طلب: الفيديو والريل ينشروا معًا الساعة
 # 7 مساءً). لو حبيت تأخير مختلف للريل مستقبلاً، غيّر القيمة دي في
 # main.yml بمعزل عن FULL_VIDEO_DELAY_HOURS.
-FULL_TO_SHORT_1_HOURS = float(os.environ.get("FULL_TO_SHORT_1_HOURS", "8"))
 # الفيديو الكامل (طويل) أداؤه أفضل مساءً لما المشاهد يكون عنده وقت فراغ
 # فعلي، بعكس الشورتس اللي أداؤها أفضل صبحًا/ضهرًا أثناء تصفّح سريع —
 # فمش منطقي ينشر الفيديو الكامل فورًا وقت التشغيل (صباحًا عادة) زي ما
@@ -312,7 +311,7 @@ def metadata_for(channel_id: str, asset_type: str, title: str) -> dict | None:
         # قيم Facebook الرسمية هي post / reel / story؛ لا توجد قيمة video.
         return {"facebook": {"type": "reel"}}
     if service == "instagram":
-        # كل الفيديوهات (الكامل والريل) بتتبعت كـ"reel" — لا "post"،
+        # الفيديو الكامل يُرسل كـ"reel" — لا "post"،
         # لأن نوع "post" عند Buffer بيفرض حد قديم 60 ثانية لفيديوهات
         # Instagram (رسالة الخطأ: "Video must be no longer than 1 minute
         # for Instagram Posts")، بينما Instagram Graph API الرسمي بيسمح
@@ -419,9 +418,6 @@ def _run() -> None:
         raise RuntimeError(f"الفيديو الكامل يجب أن يكون عموديًا 9:16 ({full_width}x{full_height}).")
     print(f"✅ الفيديو الكامل العمودي: {full_width}x{full_height}")
 
-    shorts = sorted(OUTPUT_DIR.glob("short_*_*.mp4"))
-    if not shorts:
-        raise RuntimeError("لا يوجد ريل جاهز للنشر.")
 
     ids = channel_ids()
     if not ids:
@@ -443,14 +439,8 @@ def _run() -> None:
     for service in set(services.values()):
         full_urls[service] = os.environ.get(f"FULL_VIDEO_URL_{service.upper()}", "").strip() or None
 
-    # كل الريلات (حاليًا ريل واحد بس، short_1) بتاخد نفس تأخير النشر
-    # FULL_TO_SHORT_1_HOURS — مفيش تمييز بالرقم زي قبل كده لإن مفيش
-    # short_2 تاني (شوف DEFAULT_SHORT_COUNT في assemble_video.py). لو
-    # ظبطت FULL_TO_SHORT_1_HOURS بنفس قيمة FULL_VIDEO_DELAY_HOURS في
-    # main.yml، الفيديو والريل هينشروا في نفس اللحظة بالظبط.
+    # Full-story-only policy: publish exactly one complete vertical video.
     assets: list[tuple[str, Path, float]] = [("full_video", full_path, FULL_VIDEO_DELAY_HOURS)]
-    for path in shorts:
-        assets.append(("short", path, FULL_TO_SHORT_1_HOURS))
 
     successes = 0
     failures = []
