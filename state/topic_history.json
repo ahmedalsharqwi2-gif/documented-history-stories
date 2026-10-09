@@ -123,12 +123,13 @@
       "title": "عِنْدَ ضِفَافِ البَحْرِ المَيِّتِ، نَشَأَتْ مَدِينَةُ أُوجَارِيتَ القَدِيمَةُ لِتَحْضُنَ أَقْدَمَ أَبْجِدِيَّةٍ مَكْتُوبَةٍ فِي التَّارِيخِ البَشَرِيِّ.",
       "hook": "عِنْدَ ضِفَافِ البَحْرِ المَيِّتِ، نَشَأَتْ مَدِينَةُ أُوجَارِيتَ القَدِيمَةُ لِتَحْضُنَ أَقْدَمَ أَبْجِدِيَّةٍ مَكْتُوبَةٍ فِي التَّارِيخِ البَشَرِيِّ.",
       "region": "رَأْسُ الشَّمْرَةِ، سُورِيَا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "a98dc656c001414daeffb4b9e0c338ee",
       "reserved_at": "2026-10-09T22:11:09Z",
       "run_id": "37996419722",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "a98dc656c001414daeffb4b9e0c338ee",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-09T22:11:28Z"
     }
   ]
 }
