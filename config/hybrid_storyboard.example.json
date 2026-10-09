@@ -1,0 +1,11 @@
+{
+  "music": "../assets/music/history_stone_echoes.mp3",
+  "voice": "ar-SA-HamedNeural",
+  "rate": "-4%",
+  "pitch": "-2Hz",
+  "music_gain": 0.22,
+  "scenes": [
+    {"id": "hook", "image": "../assets/scene_001.jpg", "text": "ضع هنا الخطاف التاريخي.", "motion": "zoom_in"},
+    {"id": "evidence", "image": "../assets/scene_002.jpg", "text": "ضع هنا الدليل أو نقطة التحول.", "motion": "pan_right"}
+  ]
+}
