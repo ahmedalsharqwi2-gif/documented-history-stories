@@ -189,9 +189,10 @@ jobs:
           GEMINI_THINKING_BUDGET: "0"
           STORY_MAX_TOKENS: "8000"
           FINALIZE_MAX_TOKENS: "4000"
-          TARGET_WORDS: "650"
-          ACCEPTABLE_MIN_WORDS: "180"
-          OPENROUTER_MIN_WORDS: "180"
+          TARGET_WORDS: "220"
+          MAX_NARRATION_WORDS: "240"
+          ACCEPTABLE_MIN_WORDS: "140"
+          OPENROUTER_MIN_WORDS: "140"
           # Keep the recovery path enabled: fallback models can return a
           # short narration without terminal punctuation even when the
           # content is otherwise usable. The generator then requests a

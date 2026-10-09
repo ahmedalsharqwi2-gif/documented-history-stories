@@ -43,6 +43,23 @@ class GenerationRecoveryTests(unittest.TestCase):
         for field in REQUIRED_REPORT_FIELDS | REQUIRED_PRE_FIELDS:
             self.assertIn(field, prompt)
 
+    def test_history_prompt_requires_one_complete_vertical_story_under_three_minutes(self):
+        prompt = generator.build_story_prompt([], [], [], 220)
+        self.assertIn("180 ثانية", prompt)
+        self.assertIn("لا تقسّم القصة إلى أجزاء", prompt)
+        self.assertNotIn("مقتطف الريل", prompt)
+
+    def test_episode_validation_rejects_narration_above_word_ceiling(self):
+        episode = {key: "" for key in generator.REQUIRED_KEYS}
+        episode["narration"] = " ".join(["كلمة"] * (generator.MAX_NARRATION_WORDS + 1)) + "."
+        episode["hook"] = " ".join(["كلمة"] * 12)
+        with patch.object(generator, "validate_narration", return_value=[]), \
+             patch.object(generator, "validate_hook", return_value=[]), \
+             patch.object(generator, "find_content_red_flag", return_value=None), \
+             patch.object(generator, "looks_truncated", return_value=False), \
+             patch.object(generator, "effective_min_words", return_value=0):
+            self.assertIn("الحد الأقصى", generator.validate_episode(episode))
+
     def setUp(self):
         original = generator.VISITED_PROVIDERS.copy()
         self.addCleanup(lambda: (generator.VISITED_PROVIDERS.clear(), generator.VISITED_PROVIDERS.update(original)))
@@ -53,6 +70,8 @@ class GenerationRecoveryTests(unittest.TestCase):
         steps = workflow['jobs']['build-and-publish']['steps']
         generation = next(s for s in steps if s['name'] == 'Generate complete documented history story script')
         self.assertEqual(generation['env']['GEMINI_API_KEY'], '${{ secrets.GEMINI_API_KEY }}')
+        self.assertEqual(generation['env']['TARGET_WORDS'], '220')
+        self.assertEqual(generation['env']['MAX_NARRATION_WORDS'], '240')
 
     def test_empty_gemini_response_switches_instead_of_reparsing(self):
         from types import SimpleNamespace

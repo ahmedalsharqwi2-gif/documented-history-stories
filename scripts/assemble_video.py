@@ -1,40 +1,8 @@
-"""
-assemble_video.py
+"""Assemble exactly one complete 9:16 history story video.
 
-ينتج أصلين من نفس الحلقة:
-
-1) فيديو كامل عمودي 9:16:
-   output/final_video_full.mp4
-
-2) لا يتم إنشاء ريل؛ المخرج الوحيد هو القصة الكاملة العمودية:
-
-مصدر الحقيقة للصوت والترجمة العربية هو current_episode.json. يدعم الملف الحقول الجديدة:
-
-{
-  "final_audio": "downloaded_clips/narration.mp3",
-  "subtitles": "downloaded_clips/narration.ass",
-  "shorts": [
-    {"start_seconds": 0, "end_seconds": 75}
-  ]
-}
-
-تُهمل أي قائمة shorts قديمة ولا تُنتج ملفات ريل،
-مع ترك AUTO_END_MARGIN_SECONDS في نهاية الحلقة حتى لا يصل المقتطف إلى الحل.
-
-مهم: مدة 90 ثانية حد للريل فقط، وليست حدًا للفيديو الكامل.
-
-=== تعديل جديد: ريل واحد بس بدل شورتين ===
-كان بيتنتج شورتان (short_1 من البداية، short_2 من المنتصف تقريبًا).
-المطلوب دلوقتي ريل واحد بس، يبدأ من أول الفيديو مباشرة، مع تنويه في
-آخره يوجّه المشاهد لمشاهدة بقية الفيديو على الصفحة. الحل: DEFAULT_SHORT_COUNT
-بقت 1 بدل 2 — default_short_specs() أصلًا كانت بتدعم أي عدد، فمع القيمة
-الجديدة بترجع ريل واحد بس يبدأ من الثانية صفر (start=0) ويمتد لحد
-MAX_FULL_VIDEO_SECONDS هو الحد الأقصى للفيديو الكامل.
-
-=== تخطيط النص في المنطقة الآمنة ===
-ترجمة السرد في أصل 16:9 محاذاة أسفل-وسط بهامش سفلي 70px، بعيدًا عن حواف
-الفيديو. يظهر مقتطف في مسار علوي ثانٍ بهامش 620px في الريل، كي لا يتداخل
-مع سطر الترجمة خلال النهاية.
+The only publishable output is output/final_video_full.mp4 (1080x1920).
+Legacy ``shorts`` metadata is ignored and no excerpt/reel is emitted. The
+full narration and rendered MP4 are both capped at 180 seconds.
 """
 
 from __future__ import annotations
@@ -599,4 +567,3 @@ def main() -> int:
     return 0
 if __name__ == "__main__":
     raise SystemExit(main())
-
