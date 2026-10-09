@@ -86,11 +86,9 @@ RATE = os.getenv("EDGE_TTS_RATE", "-8%")
 PITCH = os.getenv("EDGE_TTS_PITCH", "-5Hz")
 VOLUME = "+0%"
 WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "6"))
-VIDEO_W = 1920
-VIDEO_H = 1080
-# Horizontal 16:9 master subtitles stay in a bottom-centered safe lane.  The
-# master is also used as the source for reels, so keep enough clearance from
-# the lower platform controls without placing narration over the main subject.
+VIDEO_W = 1080
+VIDEO_H = 1920
+# جميع المخرجات عمودية 9:16؛ الترجمة في المنطقة الآمنة العلوية.
 FULL_CAPTION_BOTTOM_MARGIN = 70
 
 # نموذج Whisper المستخدم لمحاذاة الترجمة مع الصوت الفعلي (انظر
