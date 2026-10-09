@@ -51,6 +51,7 @@ DEFAULT_PITCH = "-2Hz"
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
+    """Run a subprocess command and raise an informative error on failure."""
     result = subprocess.run(command, text=True, capture_output=True)
     if result.returncode:
         raise RuntimeError(
@@ -60,6 +61,7 @@ def run(command: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 def probe_duration(path: Path) -> float:
+    """Read and validate the media duration with ffprobe."""
     result = run([
         "ffprobe", "-v", "error", "-show_entries", "format=duration",
         "-of", "default=noprint_wrappers=1:nokey=1", str(path),
@@ -71,6 +73,7 @@ def probe_duration(path: Path) -> float:
 
 
 def resolve_path(value: str | Path, base: Path | None = None) -> Path:
+    """Resolve a path relative to the storyboard or current directory."""
     path = Path(value).expanduser()
     if path.is_absolute():
         return path.resolve()
@@ -85,6 +88,7 @@ def resolve_path(value: str | Path, base: Path | None = None) -> Path:
 
 
 async def synthesize_voice(text: str, output: Path, voice: str, rate: str, pitch: str) -> None:
+    """Generate an Arabic narration audio file with Edge TTS."""
     spoken = re.sub(r"\s+", " ", text).strip()
     if not spoken:
         raise ValueError("Scene narration is empty")
@@ -92,6 +96,7 @@ async def synthesize_voice(text: str, output: Path, voice: str, rate: str, pitch
 
 
 def ass_time(seconds: float) -> str:
+    """Format seconds as an ASS subtitle timestamp."""
     total_cs = max(0, int(round(seconds * 100)))
     hours, rem = divmod(total_cs, 360000)
     minutes, rem = divmod(rem, 6000)
@@ -100,10 +105,12 @@ def ass_time(seconds: float) -> str:
 
 
 def ass_escape(text: str) -> str:
+    """Escape user text so it is safe inside an ASS event."""
     return text.replace("\\", r"\\").replace("{", r"\{").replace("}", r"\}")
 
 
 def caption_text(text: str, max_words: int = 7) -> str:
+    """Wrap caption text into readable ASS lines within a word limit."""
     words = ass_escape(text).split()
     if len(words) <= max_words:
         return " ".join(words)
@@ -205,6 +212,7 @@ def _caption_chunks(word_spans: list[dict[str, Any]], max_words: int = 7,
     chunks: list[dict[str, Any]] = []
     current: list[dict[str, Any]] = []
     def flush() -> None:
+        """Finalize the current word group as one timed caption event."""
         nonlocal current
         if not current:
             return
@@ -248,6 +256,7 @@ def validate_caption_events(events: list[dict[str, Any]], duration: float) -> No
         previous_start = event["start"]
 
 def make_local_ambient_music(output: Path, duration: float) -> None:
+    """Create a fallback ambient bed using local FFmpeg sources."""
     graph = (
         "[0:a]volume=0.035,lowpass=f=900,tremolo=f=0.10:d=0.65,"
         "afade=t=in:st=0:d=2,afade=t=out:st="
@@ -266,6 +275,7 @@ def make_local_ambient_music(output: Path, duration: float) -> None:
 
 
 def motion_filter(motion: str) -> str:
+    """Build the FFmpeg zoom or pan filter for a scene."""
     motion = (motion or "zoom_in").lower()
     if motion == "zoom_out":
         zoom = "max(1.0,1.05-zoom+1.0-1.0)"  # replaced below for readability
@@ -291,6 +301,7 @@ def motion_filter(motion: str) -> str:
 
 
 def render_scene_visual(image: Path, output: Path, duration: float, motion: str) -> None:
+    """Render one vertical scene with the selected motion."""
     run([
         "ffmpeg", "-y", "-loop", "1", "-i", str(image), "-t", f"{duration:.3f}",
         "-vf", motion_filter(motion), "-an", "-c:v", "libx264", "-preset", "medium",
@@ -299,6 +310,7 @@ def render_scene_visual(image: Path, output: Path, duration: float, motion: str)
 
 
 def concat_audio(paths: list[Path], output: Path) -> None:
+    """Concatenate narration audio segments in storyboard order."""
     if len(paths) == 1:
         shutil.copy2(paths[0], output)
         return
@@ -312,6 +324,7 @@ def concat_audio(paths: list[Path], output: Path) -> None:
 
 
 def concat_video(paths: list[Path], output: Path) -> None:
+    """Concatenate rendered scene videos without re-encoding."""
     list_path = output.with_suffix(".concat.txt")
     list_path.write_text("\n".join(f"file '{p.resolve().as_posix()}'" for p in paths) + "\n", encoding="utf-8")
     try:
@@ -322,6 +335,7 @@ def concat_video(paths: list[Path], output: Path) -> None:
 
 
 def mix_full_audio(voice: Path, music: Path, output: Path, duration: float, music_gain: float = 0.26) -> None:
+    """Mix narration with ducked background music."""
     graph = (
         "[0:a]aresample=48000,volume=1.0,asplit=2[voice_main][sidechain];"
         f"[1:a]aresample=48000,volume={music_gain:.3f}[music];"
@@ -336,6 +350,7 @@ def mix_full_audio(voice: Path, music: Path, output: Path, duration: float, musi
 
 
 def load_storyboard(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Load a storyboard JSON file and validate its scene list."""
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict) or not isinstance(data.get("scenes"), list) or not data["scenes"]:
         raise ValueError("Storyboard must contain a non-empty scenes array")
@@ -434,6 +449,7 @@ def build_storyboard(storyboard_path: Path, output: Path, music_override: Path |
 
 def build_single(image: Path, text: str, output: Path, music: Path | None,
                  voice: str, rate: str, pitch: str) -> dict[str, Any]:
+    """Render a one-scene storyboard using the shared pipeline."""
     storyboard = output.with_suffix(".storyboard.json")
     storyboard.write_text(json.dumps({"music": str(music) if music else None,
         "voice": voice, "rate": rate, "pitch": pitch,
@@ -445,6 +461,7 @@ def build_single(image: Path, text: str, output: Path, music: Path | None,
 
 
 def parse_args() -> argparse.Namespace:
+    """Define and parse the command-line arguments."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--storyboard", type=Path)
     parser.add_argument("--image", type=Path)
@@ -459,6 +476,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    """Run the command-line pipeline and report its metadata or errors."""
     args = parse_args()
     try:
         if args.storyboard:
