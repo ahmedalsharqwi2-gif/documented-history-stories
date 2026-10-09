@@ -138,9 +138,21 @@
       "region": "تُرْكُمَانِسْتَان",
       "status": "reserved",
       "source": "workflow",
-      "reservation_id": "9930d166c1a546d095295de31045f828",
       "reserved_at": "2026-10-09T23:15:08Z",
       "run_id": "38001991927",
+      "reservation_id": "9930d166c1a546d095295de31045f828",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+    },
+    {
+      "id": "40e5e458a2c6c7d1161b",
+      "title": "غَضَبُ الجَبَلِ الصَّامِتِ: مَأْسَاسَةُ مَدِينَةِ أَكْوِيلَيا",
+      "hook": "هَلْ تَعْلَمُ كَيْفَ دُمِّرَتْ مَدِينَةُ أَكْوِيلَيا الرُّمَانِيَّةُ الكُبْرَى عَلَى يَدِ الجَيْشِ الغَازِي؟",
+      "region": "إِيطاليا",
+      "status": "reserved",
+      "source": "workflow",
+      "reservation_id": "b60ce6dc64ec46e4bdd876f69d7df84a",
+      "reserved_at": "2026-10-09T23:35:15Z",
+      "run_id": "38004168284",
       "repository": "ahmedalsharqwi2-gif/documented-history-stories"
     }
   ]
