@@ -70,8 +70,8 @@ class GenerationRecoveryTests(unittest.TestCase):
         steps = workflow['jobs']['build-and-publish']['steps']
         generation = next(s for s in steps if s['name'] == 'Generate complete documented history story script')
         self.assertEqual(generation['env']['GEMINI_API_KEY'], '${{ secrets.GEMINI_API_KEY }}')
-        self.assertEqual(generation['env']['TARGET_WORDS'], '220')
-        self.assertEqual(generation['env']['MAX_NARRATION_WORDS'], '240')
+        self.assertEqual(generation['env']['TARGET_WORDS'], '250')
+        self.assertEqual(generation['env']['MAX_NARRATION_WORDS'], '300')
 
     def test_empty_gemini_response_switches_instead_of_reparsing(self):
         from types import SimpleNamespace
