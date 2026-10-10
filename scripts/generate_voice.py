@@ -57,7 +57,7 @@ SILMA_REFERENCE_PROFILE = os.getenv("SILMA_REFERENCE_PROFILE", "").strip()
 SILMA_VOICE_PROFILES_FILE = Path(
     os.getenv("SILMA_VOICE_PROFILES_FILE", "assets/voices/voice_profiles.json")
 )
-SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.15"))
+SILMA_SPEED = float(os.getenv("SILMA_SPEED", "0.96"))
 SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
 SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
 
@@ -82,7 +82,7 @@ if VOICE not in VOICE_CANDIDATES:
     VOICE_CANDIDATES.insert(0, VOICE)
 EDGE_TTS_RETRIES = int(os.getenv("EDGE_TTS_RETRIES", "3"))
 EDGE_TTS_RETRY_DELAY = float(os.getenv("EDGE_TTS_RETRY_DELAY", "2"))
-RATE = os.getenv("EDGE_TTS_RATE", "-8%")
+RATE = os.getenv("EDGE_TTS_RATE", "-12%")
 PITCH = os.getenv("EDGE_TTS_PITCH", "-5Hz")
 VOLUME = "+0%"
 WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "6"))

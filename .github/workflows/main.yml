@@ -241,7 +241,7 @@ jobs:
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
           SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
           SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
-          SILMA_SPEED: "1.00"
+          SILMA_SPEED: "0.96"
           SILMA_GUARD_ENABLED: "true"
           SILMA_GUARD_MIN_MATCH_WORDS: "4"
           SILMA_FALLBACK_TO_EDGE: "true"
@@ -254,7 +254,7 @@ jobs:
           # نستخدم القاموس والتشكيل المحلي داخل بيئة SILMA، ونجعل Mantoq
           # اختياريًا فقط في بيئة منفصلة حتى لا يفشل تثبيت كل التشغيل.
           MANTOQ_REQUIRED: "false"
-          EDGE_TTS_RATE: "-4%"
+          EDGE_TTS_RATE: "-12%"
           EDGE_TTS_PITCH: "-2Hz"
         run: python scripts/generate_voice.py
 
