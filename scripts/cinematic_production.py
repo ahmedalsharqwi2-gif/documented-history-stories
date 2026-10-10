@@ -153,6 +153,14 @@ def captions(narration: str, duration: float, source: Path | None) -> tuple[list
             start, end = timestamp(fields[1]), min(duration, timestamp(fields[2]))
             if text and 0 <= start < end:
                 spans.append({"start": start, "end": end, "text": text})
+    # ASS karaoke renders several positioned words simultaneously. Those Dialogue
+    # entries are overlays, not sequential narration events; using them as a
+    # timeline produces overlapping scenes. Fall back to the complete narration
+    # rather than silently dropping words or producing invalid intervals.
+    spans.sort(key=lambda item: (item["start"], item["end"]))
+    if any(current["start"] < previous["end"] - 0.001
+           for previous, current in zip(spans, spans[1:])):
+        spans = []
     method = "existing_audio_timeline" if spans else "character_weighted_estimate"
     if not spans:
         words = narration.split()
