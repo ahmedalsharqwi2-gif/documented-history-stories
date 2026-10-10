@@ -555,7 +555,7 @@ def validate_caption_chunks(ass_text: str, max_words: int = WORDS_PER_CAPTION_CH
 def build_ass_header() -> str:
     """يعرّف تنسيق الترجمة العربية المتزامنة مع الصوت عبر Whisper."""
     style_ar = (
-        f"Style: Caption,Noto Sans Arabic,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
+        f"Style: Caption,Noto Naskh Arabic,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,"
         f"1,0,0,0,100,100,0,0,1,3,0,2,70,70,{FULL_CAPTION_BOTTOM_MARGIN},1"
     )
     return (
