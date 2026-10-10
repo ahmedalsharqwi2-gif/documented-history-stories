@@ -121,9 +121,16 @@ def write_ass(events: list[dict[str, Any]], output: Path) -> None:
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
     for event in events:
-        lines.append(
-            f"Dialogue: 0,{ass_time(event['start'])},{ass_time(event['end'])},Caption,,0,0,0,,{caption_text(event['text'])}"
-        )
+        text = caption_text(event["text"])
+        tokens = text.split()
+        if not tokens:
+            continue
+        start, end = float(event["start"]), float(event["end"])
+        for active in range(len(tokens)):
+            word_start = start + (end - start) * active / len(tokens)
+            word_end = end if active == len(tokens) - 1 else start + (end - start) * (active + 1) / len(tokens)
+            rendered = [r"{\c&H000000FF&}" + ass_escape(token) + r"{\c}" if index == active else ass_escape(token) for index, token in enumerate(tokens)]
+            lines.append(f"Dialogue: 0,{ass_time(word_start)},{ass_time(max(word_end, word_start + 0.04))},Caption,,0,0,0,,{' '.join(rendered)}")
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
