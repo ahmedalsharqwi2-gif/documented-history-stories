@@ -795,10 +795,13 @@ def synthesize_voice(voice_text: str) -> None:
         for active_index in range(len(words)):
             word_start = group[active_index]["offset"]
             word_end = group[active_index]["offset"] + group[active_index]["duration"]
-            dialogue_lines.append(
-                f"Dialogue: 0,{ass_time(word_start)},{ass_time(max(word_end, word_start + 0.12))},Caption,,0,0,0,,"
-                f"{render_active_arabic_caption(words, active_index)}"
-            )
+            for payload in render_active_arabic_caption(
+                words, active_index, canvas_width=VIDEO_W,
+                center_y=VIDEO_H - FULL_CAPTION_BOTTOM_MARGIN - 29,
+            ):
+                dialogue_lines.append(
+                    f"Dialogue: 0,{ass_time(word_start)},{ass_time(max(word_end, word_start + 0.12))},Caption,,0,0,0,,{payload}"
+                )
 
     ass_text = build_ass_header() + "\n".join(dialogue_lines) + "\n"
     validate_caption_chunks(ass_text)
