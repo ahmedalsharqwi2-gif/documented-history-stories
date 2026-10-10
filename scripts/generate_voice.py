@@ -543,6 +543,8 @@ def validate_caption_chunks(ass_text: str, max_words: int = WORDS_PER_CAPTION_CH
     for line in events:
         fields = line.split(",", 9)
         rendered = (fields[9] if len(fields) == 10 else "").replace(r"\N", " ")
+        # ASS override blocks are formatting metadata, not caption words.
+        rendered = re.sub(r"\{[^{}]*\}", "", rendered)
         rendered = rendered.replace("\u200f", " ")
         counts.append(len(_WORD_TOKEN_PATTERN.findall(rendered)))
     if max(counts) > max_words:
