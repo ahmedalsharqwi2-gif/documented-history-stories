@@ -104,10 +104,7 @@ def ass_escape(text: str) -> str:
 
 def caption_text(text: str, max_words: int = 7) -> str:
     words = ass_escape(text).split()
-    if len(words) <= max_words:
-        return " ".join(words)
-    midpoint = (len(words) + 1) // 2
-    return " ".join(words[:midpoint]) + r"\N" + " ".join(words[midpoint:])
+    return " ".join(words[:max_words])
 
 
 def write_ass(events: list[dict[str, Any]], output: Path) -> None:

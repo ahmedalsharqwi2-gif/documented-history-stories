@@ -14,25 +14,24 @@ class CaptionLayoutTests(unittest.TestCase):
 
         self.assertNotIn("\u200f", rendered)
         self.assertNotIn("\u200e", rendered)
-        self.assertEqual(rendered, "هذا نص\\Nعربي سليم")
+        self.assertEqual(rendered, "هذا نص عربي سليم")
 
-    def test_six_words_split_three_and_three(self):
+    def test_six_words_stay_on_one_clean_line(self):
         rendered = two_lines_ar(["واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة"])
-        self.assertIn(r"\N", rendered)
-        self.assertIn("واحد اثنان ثلاثة", rendered)
-        self.assertIn("أربعة خمسة ستة", rendered)
+        self.assertNotIn(r"\N", rendered)
+        self.assertEqual(rendered, "واحد اثنان ثلاثة أربعة خمسة ستة")
 
     def test_three_words_use_one_line(self):
         self.assertNotIn(r"\N", two_lines_ar(["واحد", "اثنان", "ثلاثة"]))
 
     def test_caption_guard_accepts_short_chunks(self):
-        ass = "Dialogue: 0,0:00:00.00,0:00:02.00,Caption,,0,0,0,,واحد اثنان ثلاثة\\Nأربعة خمسة ستة"
-        validate_caption_chunks(ass, max_words=6)
+        ass = "Dialogue: 0,0:00:00.00,0:00:02.00,Caption,,0,0,0,,واحد اثنان ثلاثة أربعة"
+        validate_caption_chunks(ass, max_words=4)
 
     def test_caption_guard_rejects_full_narration_event(self):
         ass = "Dialogue: 0,0:00:00.00,0:00:20.00,Caption,,0,0,0,," + " ".join(["كلمة"] * 40)
         with self.assertRaises(RuntimeError):
-            validate_caption_chunks(ass, max_words=6)
+            validate_caption_chunks(ass, max_words=4)
 
 
 if __name__ == "__main__":

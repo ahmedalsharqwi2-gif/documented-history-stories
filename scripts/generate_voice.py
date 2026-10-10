@@ -35,7 +35,7 @@ try:
 except ImportError:  # direct `python scripts/generate_voice.py`
     from voice_profiles import resolve_reference_profile
 from arabic_pronunciation import prepare_tts_text
-from arabic_speech_core.ass_text import render_arabic_caption, display_word
+from arabic_speech_core.ass_text import render_active_arabic_caption, render_arabic_caption, display_word
 try:
     from .arabic_guard import validate_narration
 except ImportError:  # direct `python scripts/generate_voice.py`
@@ -85,7 +85,7 @@ EDGE_TTS_RETRY_DELAY = float(os.getenv("EDGE_TTS_RETRY_DELAY", "2"))
 RATE = os.getenv("EDGE_TTS_RATE", "-12%")
 PITCH = os.getenv("EDGE_TTS_PITCH", "-5Hz")
 VOLUME = "+0%"
-WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "6"))
+WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "4"))
 VIDEO_W = 1080
 VIDEO_H = 1920
 # جميع المخرجات عمودية 9:16؛ الترجمة في المنطقة الآمنة العلوية.
@@ -791,7 +791,14 @@ def synthesize_voice(voice_text: str) -> None:
         group = all_word_events[index:index + WORDS_PER_CAPTION_CHUNK]
         start = group[0]["offset"]
         end = group[-1]["offset"] + group[-1]["duration"]
-        dialogue_lines.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.25))},Caption,,0,0,0,,{two_lines_ar([e['text'] for e in group])}")
+        words = [e["text"] for e in group]
+        for active_index in range(len(words)):
+            word_start = group[active_index]["offset"]
+            word_end = group[active_index]["offset"] + group[active_index]["duration"]
+            dialogue_lines.append(
+                f"Dialogue: 0,{ass_time(word_start)},{ass_time(max(word_end, word_start + 0.12))},Caption,,0,0,0,,"
+                f"{render_active_arabic_caption(words, active_index)}"
+            )
 
     ass_text = build_ass_header() + "\n".join(dialogue_lines) + "\n"
     validate_caption_chunks(ass_text)
