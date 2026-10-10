@@ -102,7 +102,9 @@ def ass_escape(text: str) -> str:
     return text.replace("\\", r"\\").replace("{", r"\{").replace("}", r"\}")
 
 
-def caption_text(text: str, max_words: int = 7) -> str:
+def caption_text(text: str, max_words: int = 4) -> str:
+    text = re.sub(r"[\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069\u064b-\u065f\u0670\u06d6-\u06ed]", "", text)
+    text = re.sub(r'''[.,،؛:!?؟…/\\\-—_()\[\]{}"«»]+''', " ", text)
     words = ass_escape(text).split()
     return " ".join(words[:max_words])
 
