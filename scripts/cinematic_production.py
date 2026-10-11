@@ -744,7 +744,19 @@ def build(audio: Path, narration: str, output: Path, episode: dict, subtitles: P
         mixed = work / "mixed.m4a"
         mix_audio(audio, clean, mixed, duration, cfg, scenes, root)
         ass = work / "captions.ass"
-        write_captions(events, ass, cfg)
+        if subtitles and subtitles.exists() and r"\\pos(" in subtitles.read_text(encoding="utf-8-sig"):
+            # Keep the Whisper-aligned per-word ASS timing. Its overlapping
+            # dialogues are simultaneous positioned words, NOT timeline chunks.
+            original_ass = subtitles.read_text(encoding="utf-8-sig")
+            original_ass = re.sub(
+                r"\\\\pos\\(\\s*([0-9.]+)\\s*,\\s*[0-9.]+\\s*\\)",
+                lambda match: r"\\pos(" + match.group(1) + ",329)",
+                original_ass,
+            )
+            ass.write_text(original_ass, encoding="utf-8")
+            timing = "whisper_aligned_source_ass"
+        else:
+            write_captions(events, ass, cfg)
         escaped = str(ass.resolve()).replace("\\", "/").replace(":", r"\:").replace("'", r"\'")
         temporary = output.with_name(output.stem + ".building.mp4")
         run(["ffmpeg", "-y", "-v", "error", "-i", str(clean), "-i", str(mixed), "-vf", f"subtitles='{escaped}'",
