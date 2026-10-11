@@ -734,9 +734,10 @@ def build(audio: Path, narration: str, output: Path, episode: dict, subtitles: P
             and r.get("review", {}).get("passed") is True
         )
         moving_video_share = moving_scene_seconds / total_scene_seconds if total_scene_seconds else 0.0
-        min_video_share = 0.0
+        # Prevent still-image-only videos from silently passing cinematic quality.
+        min_video_share = 0.70
         if moving_video_share + 1e-9 < min_video_share:
-            raise RuntimeError(f"REAL_VIDEO_SHARE_GATE: {moving_video_share:.1%} real moving video; minimum 70%.")
+            raise RuntimeError(f"REAL_VIDEO_SHARE_GATE: {moving_video_share:.1%} real moving video; minimum {min_video_share:.0%}.")
         listing = work / "concat.txt"
         listing.write_text("\n".join("file '" + str(p.resolve()).replace("'", "'\\''") + "'" for p in paths) + "\n")
         clean = output.with_name("cinematic_clean.mp4")
