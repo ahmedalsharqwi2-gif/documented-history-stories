@@ -82,7 +82,7 @@ if VOICE not in VOICE_CANDIDATES:
     VOICE_CANDIDATES.insert(0, VOICE)
 EDGE_TTS_RETRIES = int(os.getenv("EDGE_TTS_RETRIES", "3"))
 EDGE_TTS_RETRY_DELAY = float(os.getenv("EDGE_TTS_RETRY_DELAY", "2"))
-RATE = os.getenv("EDGE_TTS_RATE", "-12%")
+RATE = os.getenv("EDGE_TTS_RATE", "-17%")
 PITCH = os.getenv("EDGE_TTS_PITCH", "-5Hz")
 VOLUME = "+0%"
 WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "4"))
