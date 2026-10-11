@@ -1509,7 +1509,11 @@ def run_single_attempt(
             f"({target_words}) لكنه فوق الحد الأدنى المقبول — هيتقبل من غير إعادة."
         )
 
+    verified_narration = narration
     narration = proofread_narration_for_tts(client, history, narration, attempt_label)
+    if min_words > 0 and count_words(narration) < min_words:
+        print("   ⚠️ التدقيق اللغوي اختصر النص تحت الحد الأدنى؛ استعادة النص المكتمل المعتمد.")
+        narration = verified_narration
     # Proofreading can change spelling and punctuation in the opening. Derive
     # metadata from the final spoken text rather than retaining the stale hook.
     narration, repaired_hook = _split_overlong_first_sentence(narration)
@@ -1538,9 +1542,9 @@ def run_single_attempt(
     if not isinstance(visual_keywords, list):
         visual_keywords = []
     visual_keywords = [str(item).strip() for item in visual_keywords if str(item).strip()]
-    if not visual_keywords:
-        print("   ⚠️ finalize أعاد visual_keywords فارغة؛ استخدام كلمات بحث احتياطية")
-        visual_keywords = DEFAULT_VISUAL_KEYWORDS.copy()
+    if len(visual_keywords) < 8:
+        print("   ⚠️ استكمال كلمات البحث البصرية الناقصة بكلمات تاريخية احتياطية")
+        visual_keywords = list(dict.fromkeys(visual_keywords + DEFAULT_VISUAL_KEYWORDS))[:10]
 
     episode = {
         "title": finalize_data.get("title", "") or hook[:80].strip(" .؟!،"),
