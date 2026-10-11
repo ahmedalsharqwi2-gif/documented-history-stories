@@ -174,12 +174,13 @@
       "title": "فَجِيعَةُ المُحِيطِ: زِلْزَالُ لِيسْبُونَةَ الأَكْبَرُ",
       "hook": "فِي صَبَاحِ الأَحَدِ الأَوَّلِ مِنْ نُوڤَمْبَرَ عَامَ سَبْعَةٍ وَخَمْسِينَ وَخَمْسِمِائَةٍ وَأَلْفٍ، تَهَادَتِ الأَرْضُ تَحْتَ أَقْدَامِ أَهْلِ لِيسْبُونَةَ.",
       "region": "لِيسْبُونَة، البُرْتُغَال",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "ee3a8e39f9064b2d9bd0ad359db0295d",
       "reserved_at": "2026-10-11T08:35:57Z",
       "run_id": "38124510220",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "ee3a8e39f9064b2d9bd0ad359db0295d",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-11T08:36:29Z"
     }
   ]
 }
