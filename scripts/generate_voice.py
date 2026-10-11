@@ -693,7 +693,7 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
             }
 
     known_indices = [i for i, t in enumerate(timings) if t is not None]
-    if not known_indices or len(known_indices) < len(script_words) * 0.5:
+    if not known_indices or len(known_indices) < len(script_words) * 0.85:
         raise RuntimeError(
             f"تطابق ضعيف جدًا: {len(known_indices)}/{len(script_words)} كلمة فقط"
         )
