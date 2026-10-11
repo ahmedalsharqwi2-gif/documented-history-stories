@@ -253,7 +253,7 @@ SCENE_SEARCH_FALLBACKS = (
 
 def search_queries(scene: dict) -> tuple[str, ...]:
     primary = str(scene.get("query", "")).strip()
-    return tuple(dict.fromkeys(((primary,) if primary else ()) + SCENE_SEARCH_FALLBACKS))
+    return tuple(dict.fromkeys(((primary,) if primary else ()) + SCENE_SEARCH_FALLBACKS[:2]))
 
 
 def gemini_json(parts: list[dict], model: str, budget: Budget, cost: float, kind: str, tokens=1024) -> dict | list:
@@ -470,7 +470,7 @@ def candidates(scene: dict, cfg: dict):
                 response = requests.get("https://api.pexels.com/videos/search", headers={"Authorization": key},
                     params={"query": query, "per_page": 15}, timeout=(10, 20))
                 response.raise_for_status()
-                for video in (response.json() or {}).get("videos", [])[:8]:
+                for video in (response.json() or {}).get("videos", [])[:5]:
                     files = [f for f in video.get("video_files", []) if f.get("link") and f.get("height", 0) >= 720 and f.get("width", 0) >= 360]
                     if files:
                         best = min(files, key=lambda f: abs(f.get("width", 0) * f.get("height", 0) - 1080 * 1920))
@@ -542,7 +542,12 @@ def acquire(scene: dict, episode: dict, cfg: dict, budget: Budget, cache: Path) 
                     record["audio_decision"] = "VOICE ONLY"
                     record["review"]["audio_keep"] = False
                     record["video_fallback"] = "local_image_motion"
-            # Do not accept a rejected clip or a still-image fallback while\n            # the production quality gate requires reviewed real motion.\n            if not record.get("review", {}).get("passed"):\n                raise RuntimeError("Historical visual rejected by editorial review")\n            if attempt["image"] and cfg.get("free_only", True):\n                raise RuntimeError("Still image cannot satisfy the real-footage requirement")\n            atomic_json(meta, record)\n            return visual, record
+            # Every accepted asset must pass actual visual/era inspection.
+            # Still images remain a limited fallback; the final montage must
+            # independently satisfy the 70% reviewed moving-footage gate.
+            if record.get("review", {}).get("passed") is not True:
+                raise RuntimeError("Historical visual rejected by editorial review")
+            atomic_json(meta, record)\n            return visual, record
         except (requests.RequestException, RuntimeError, ValueError, OSError, subprocess.SubprocessError, KeyError, IndexError) as exc:
             visual.unlink(missing_ok=True)
             errors.append({
