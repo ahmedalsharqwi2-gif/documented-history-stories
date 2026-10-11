@@ -216,8 +216,8 @@ jobs:
           FINALIZE_MAX_TOKENS: "4000"
           TARGET_WORDS: "250"
           MAX_NARRATION_WORDS: "300"
-          ACCEPTABLE_MIN_WORDS: "190"
-          OPENROUTER_MIN_WORDS: "190"
+          ACCEPTABLE_MIN_WORDS: "160"
+          OPENROUTER_MIN_WORDS: "160"
           # Keep the recovery path enabled: fallback models can return a
           # short narration without terminal punctuation even when the
           # content is otherwise usable. The generator then requests a
