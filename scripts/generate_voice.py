@@ -204,6 +204,17 @@ def apply_light_diacritics(text: str) -> str:
     return _WORD_TOKEN_PATTERN.sub(replace, text)
 
 
+def sanitize_tts_punctuation(text: str) -> str:
+    """Prevent speech engines from reading editorial dashes as 'شرطة'.
+
+    Preserve the original narration for captions; only clean the speech input.
+    """
+    text = re.sub(r"[\\u2010-\\u2015\\u2212\\uFE58\\uFE63\\uFF0D]", "، ", text)
+    text = re.sub(r"(?<!\\w)-(?!\\w)|(?<=\\s)-|-(?=\\s)", "، ", text)
+    text = re.sub(r"[,،\\s]*،(?:\\s*،)+", "، ", text)
+    return re.sub(r"\\s+", " ", text).strip()
+
+
 def split_sentences(text: str) -> list[str]:
     parts = re.split(r"(?<=[.!؟…])\s+", text.strip())
     return [part.strip() for part in parts if part.strip()]
@@ -845,6 +856,7 @@ def main() -> None:
         voice_text, ROOT_DIR / "config" / "arabic_pronunciation.json"
     )
     print(f"✅ طبقة النطق: Mantoq/القاموس — {len(phonemes)} phoneme token(s)")
+    voice_text = sanitize_tts_punctuation(voice_text)
     synthesize_voice(voice_text)
     prepare_final_audio()
 
