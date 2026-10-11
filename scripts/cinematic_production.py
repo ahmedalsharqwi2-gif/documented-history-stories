@@ -547,7 +547,8 @@ def acquire(scene: dict, episode: dict, cfg: dict, budget: Budget, cache: Path) 
             # independently satisfy the 70% reviewed moving-footage gate.
             if record.get("review", {}).get("passed") is not True:
                 raise RuntimeError("Historical visual rejected by editorial review")
-            atomic_json(meta, record)\n            return visual, record
+            atomic_json(meta, record)
+            return visual, record
         except (requests.RequestException, RuntimeError, ValueError, OSError, subprocess.SubprocessError, KeyError, IndexError) as exc:
             visual.unlink(missing_ok=True)
             errors.append({
