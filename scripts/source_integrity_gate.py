@@ -77,7 +77,7 @@ def main() -> int:
     require_sources = os.getenv("HISTORY_SOURCE_GATE_ENABLED", "true").lower() != "false"
 
     if len(narration.split()) < 180:
-        errors.append("النص قصير أو مفقود")
+        errors.append(f"النص قصير أو مفقود: {len(narration.split())} كلمة؛ المطلوب 180 على الأقل")
     if require_sources and not source_type:
         errors.append("نوع المصدر مفقود")
     if require_sources and not source:
