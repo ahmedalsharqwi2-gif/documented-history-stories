@@ -465,13 +465,13 @@ def candidates(scene: dict, cfg: dict):
     key = os.getenv("PEXELS_API_KEY", "")
     seen: set[str] = set()
     for query in queries:
-        if scene["kind"] == "stock" and key:
+        if key:
             try:
                 response = requests.get("https://api.pexels.com/videos/search", headers={"Authorization": key},
-                    params={"query": query, "orientation": "portrait", "per_page": 5}, timeout=(10, 20))
+                    params={"query": query, "per_page": 15}, timeout=(10, 20))
                 response.raise_for_status()
-                for video in response.json().get("videos", [])[:2]:
-                    files = [f for f in video.get("video_files", []) if f.get("link") and f.get("height", 0) > f.get("width", 0) and f.get("height", 0) >= 720]
+                for video in response.json().get("videos", [])[:8]:
+                    files = [f for f in video.get("video_files", []) if f.get("link") and f.get("height", 0) >= 720 and f.get("width", 0) >= 360]
                     if files:
                         best = min(files, key=lambda f: abs(f.get("width", 0) * f.get("height", 0) - 1080 * 1920))
                         if best["link"] not in seen:
@@ -542,8 +542,7 @@ def acquire(scene: dict, episode: dict, cfg: dict, budget: Budget, cache: Path) 
                     record["audio_decision"] = "VOICE ONLY"
                     record["review"]["audio_keep"] = False
                     record["video_fallback"] = "local_image_motion"
-            atomic_json(meta, record)
-            return visual, record
+            # Do not accept a rejected clip or a still-image fallback while\n            # the production quality gate requires reviewed real motion.\n            if not record.get("review", {}).get("passed"):\n                raise RuntimeError("Historical visual rejected by editorial review")\n            if attempt["image"] and cfg.get("free_only", True):\n                raise RuntimeError("Still image cannot satisfy the real-footage requirement")\n            atomic_json(meta, record)\n            return visual, record
         except (requests.RequestException, RuntimeError, ValueError, OSError, subprocess.SubprocessError, KeyError, IndexError) as exc:
             visual.unlink(missing_ok=True)
             errors.append({
