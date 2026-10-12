@@ -735,6 +735,38 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     return timings
 
 
+def synthesize_google_sentences(sentences: list[str]) -> list[dict]:
+    from scripts.free_tts_fallback import google_arabic_voice
+    segments = []
+    for index, sentence in enumerate(sentences):
+        path = CLIPS_DIR / f"_google_full_{index:03d}.mp3"
+        google_arabic_voice(sentence, path)
+        segments.append({"path": path, "duration": probe_duration(path), "events": None,
+                         "sentence": sentence, "is_silence": False})
+        if index < len(sentences) - 1:
+            pause = pause_duration_for(sentence)
+            pause_path = CLIPS_DIR / f"_google_pause_{index:03d}.mp3"
+            build_silence_clip(pause, pause_path)
+            segments.append({"path": pause_path, "duration": pause, "events": None,
+                             "sentence": None, "is_silence": True})
+    return segments
+
+
+async def synthesize_with_free_recovery(sentences: list[str], engine_override: str | None = None):
+    if engine_override is None and os.getenv("PREFER_FREE_GOOGLE_TTS", "false").lower() == "true":
+        try:
+            return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
+        except Exception as exc:
+            print(f"Preferred free Arabic TTS unavailable: {type(exc).__name__}")
+    try:
+        return await synthesize_sentences(sentences, engine_override), engine_override or TTS_ENGINE
+    except Exception:
+        if os.getenv("FREE_GOOGLE_TTS_ENABLED", "false").lower() != "true":
+            raise
+        print("Voice provider unavailable; using independent free Google Arabic voice")
+        return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
+
+
 def synthesize_voice(voice_text: str) -> None:
     sentences = split_sentences(voice_text)
     if not sentences:
@@ -747,9 +779,9 @@ def synthesize_voice(voice_text: str) -> None:
         concat_filter = "".join(f"[{i}:a]" for i in range(len(current_segments))) + f"concat=n={len(current_segments)}:v=0:a=1[aout]"
         run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
 
-    segments = asyncio.run(synthesize_sentences(sentences))
+    segments, engine_used = asyncio.run(synthesize_with_free_recovery(sentences))
     render_segments(segments)
-    if TTS_ENGINE == "silma":
+    if engine_used == "silma":
         try:
             leak = detect_silma_reference_leak(VOICE_AUDIO)
         except Exception as exc:  # Whisper unavailable/download failure: respect the configured fallback policy.
@@ -763,7 +795,7 @@ def synthesize_voice(voice_text: str) -> None:
             print(f"⚠️ تسرّب/خلل في صوت SILMA ({leak}) — إعادة التوليد بـEdge TTS.")
             for segment in segments:
                 Path(segment["path"]).unlink(missing_ok=True)
-            segments = asyncio.run(synthesize_sentences(sentences, "edge"))
+            segments, engine_used = asyncio.run(synthesize_with_free_recovery(sentences, "edge"))
             render_segments(segments)
 
     # نفس ترتيب/شكل الكلمات المعروضة كما كانت قبل التعديل (بلا تشكيل،
@@ -782,13 +814,19 @@ def synthesize_voice(voice_text: str) -> None:
         print(f"⚠️ فشل تطابق SILMA مع النص ({exc}) — إعادة التوليد كاملًا بـEdge TTS.")
         for segment in segments:
             Path(segment["path"]).unlink(missing_ok=True)
-        segments = asyncio.run(synthesize_sentences(sentences, "edge"))
+        segments, engine_used = asyncio.run(synthesize_with_free_recovery(sentences, "edge"))
         render_segments(segments)
         assert_audio_matches_script(VOICE_AUDIO, voice_text)
     try:
         all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
     except Exception as exc:  # noqa: BLE001
-        raise RuntimeError(f"فشلت محاذاة Whisper بعد نجاح بوابة ASR: {exc}") from exc
+        if engine_used == "google_free" or os.getenv("FREE_GOOGLE_TTS_ENABLED", "false").lower() != "true":
+            raise RuntimeError(f"فشلت محاذاة Whisper بعد نجاح بوابة ASR: {exc}") from exc
+        print("Speech alignment rejected current voice; regenerating the same text with free Google Arabic")
+        segments = synthesize_google_sentences(sentences)
+        render_segments(segments)
+        assert_audio_matches_script(VOICE_AUDIO, voice_text)
+        all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
 
     if not all_word_events:
         sys.exit("❌ تعذر إنشاء توقيت الترجمة.")
