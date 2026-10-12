@@ -240,7 +240,7 @@ jobs:
       - name: Arabic preflight gates (documented history)
         env:
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
-          TTS_ENGINE: "edge"
+          TTS_ENGINE: "silma"
         run: |
           test -f state/current_episode.json || { echo "TEXT_GATE: episode artifact missing"; exit 1; }
           TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
@@ -261,7 +261,7 @@ jobs:
 
       - name: Generate narration with the selected SILMA reference voice
         env:
-          TTS_ENGINE: "edge"
+          TTS_ENGINE: "silma"
           EDGE_TTS_VOICES: "ar-SA-HamedNeural"
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
           SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
