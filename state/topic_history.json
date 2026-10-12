@@ -189,9 +189,21 @@
       "region": "إيطاليا",
       "status": "reserved",
       "source": "workflow",
-      "reservation_id": "32ec51f5244d426dbf7c6344f872ec0a",
       "reserved_at": "2026-10-12T21:59:24Z",
       "run_id": "38312172600",
+      "reservation_id": "32ec51f5244d426dbf7c6344f872ec0a",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+    },
+    {
+      "id": "7861a7f43bd6578b0296",
+      "title": "بَوَّابَةُ هِيَرَابُولِسَ: بَيْنَ أَبَاطِيرِ المَوْتِ وَالعِلْمِ",
+      "hook": "فِي مَدِينَةِ هِيَرَابُولِسَ الأَثَرِيَّةِ، انْتَصَبَ مَبْنَى غَامِضٌ عُدَّ قَدِيمًا بَوَّابَةً مُؤَدِّيَةً إِلَى عَالَمِ الأَمْوَاتِ.",
+      "region": "Hierapolis, Turkey",
+      "status": "reserved",
+      "source": "workflow",
+      "reservation_id": "51a4261031e646c087f61a1e808b0156",
+      "reserved_at": "2026-10-12T22:17:36Z",
+      "run_id": "38309425065",
       "repository": "ahmedalsharqwi2-gif/documented-history-stories"
     }
   ]
