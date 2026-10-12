@@ -313,7 +313,7 @@ class TopicHistory:
         fetched = git("fetch", "origin", "main", check=False)
         if fetched.returncode != 0:
             raise TopicHistoryError("تعذر تحديث سجل المواضيع البعيد؛ أُوقف النشر.")
-        rebased = git("rebase", "FETCH_HEAD", check=False)
+        rebased = git("rebase", "--autostash", "FETCH_HEAD", check=False)
         if rebased.returncode != 0:
             git("rebase", "--abort", check=False)
             raise TopicHistoryError("تعارض تحديث سجل المواضيع؛ أُوقف النشر بدل المخاطرة بالتكرار.")
