@@ -735,12 +735,12 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     return timings
 
 
-def synthesize_google_sentences(sentences: list[str]) -> list[dict]:
+def synthesize_google_sentences(sentences: list[str], *, slow: bool = False) -> list[dict]:
     from scripts.free_tts_fallback import google_arabic_voice
     segments = []
     for index, sentence in enumerate(sentences):
         path = CLIPS_DIR / f"_google_full_{index:03d}.mp3"
-        google_arabic_voice(sentence, path)
+        google_arabic_voice(sentence, path, slow=slow)
         segments.append({"path": path, "duration": probe_duration(path), "events": None,
                          "sentence": sentence, "is_silence": False})
         if index < len(sentences) - 1:
@@ -820,10 +820,10 @@ def synthesize_voice(voice_text: str) -> None:
     try:
         all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
     except Exception as exc:  # noqa: BLE001
-        if engine_used == "google_free" or os.getenv("FREE_GOOGLE_TTS_ENABLED", "false").lower() != "true":
+        if os.getenv("FREE_GOOGLE_TTS_ENABLED", "false").lower() != "true":
             raise RuntimeError(f"فشلت محاذاة Whisper بعد نجاح بوابة ASR: {exc}") from exc
         print("Speech alignment rejected current voice; regenerating the same text with free Google Arabic")
-        segments = synthesize_google_sentences(sentences)
+        segments = synthesize_google_sentences(sentences, slow=True)
         render_segments(segments)
         assert_audio_matches_script(VOICE_AUDIO, voice_text)
         all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
