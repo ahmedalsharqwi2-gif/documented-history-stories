@@ -696,6 +696,8 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
                 "duration": max(end - start, 0.05),
             }
 
+    from scripts.asr_token_boundaries import recover_token_boundaries
+    recover_token_boundaries(script_norm, whisper_norm, whisper_words, script_words, timings)
     known_indices = [i for i, t in enumerate(timings) if t is not None]
     if not known_indices or len(known_indices) < len(script_words) * 0.85:
         raise RuntimeError(
