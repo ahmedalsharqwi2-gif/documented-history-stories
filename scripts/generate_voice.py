@@ -753,6 +753,11 @@ def synthesize_google_sentences(sentences: list[str]) -> list[dict]:
 
 
 async def synthesize_with_free_recovery(sentences: list[str], engine_override: str | None = None):
+    if engine_override is None and os.getenv("PREFER_FREE_GOOGLE_TTS", "false").lower() == "true":
+        try:
+            return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
+        except Exception as exc:
+            print(f"Preferred free Arabic TTS unavailable: {type(exc).__name__}")
     try:
         return await synthesize_sentences(sentences, engine_override), engine_override or TTS_ENGINE
     except Exception:
