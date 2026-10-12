@@ -704,9 +704,9 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str], *, stron
         if not stronger:
             print("Rechecking the same audio with local Whisper medium; strict alignment gate unchanged", flush=True)
             return align_words_with_whisper(audio_path, script_words, stronger=True)
-        raise RuntimeError(
-            f"تطابق ضعيف جدًا: {len(known_indices)}/{len(script_words)} كلمة فقط"
-        )
+        from scripts.forced_caption_alignment import forced_word_alignment
+        return forced_word_alignment(audio_path, script_words)
+
 
     for i in range(len(timings)):
         if timings[i] is not None:
