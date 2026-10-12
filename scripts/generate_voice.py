@@ -674,8 +674,12 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     def _norm(w: str) -> str:
         return strip_diacritics(w).translate(DISPLAY_PUNCTUATION).strip().lower()
 
-    script_norm = [_norm(w) for w in script_words]
-    whisper_norm = [_norm(w) for w, _, _ in whisper_words]
+    # Normalize common Arabic ASR spelling variants before aligning actual audio.
+    def _asr_norm(w: str) -> str:
+        return _norm(w).translate(str.maketrans({"أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا", "ى": "ي", "ؤ": "و", "ئ": "ي", "ـ": ""}))
+
+    script_norm = [_asr_norm(w) for w in script_words]
+    whisper_norm = [_asr_norm(w) for w, _, _ in whisper_words]
 
     matcher = difflib.SequenceMatcher(None, script_norm, whisper_norm, autojunk=False)
     timings: list[dict | None] = [None] * len(script_words)
