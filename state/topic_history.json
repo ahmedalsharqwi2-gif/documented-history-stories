@@ -201,9 +201,21 @@
       "region": "Hierapolis, Turkey",
       "status": "reserved",
       "source": "workflow",
-      "reservation_id": "51a4261031e646c087f61a1e808b0156",
       "reserved_at": "2026-10-12T22:17:36Z",
       "run_id": "38309425065",
+      "reservation_id": "51a4261031e646c087f61a1e808b0156",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+    },
+    {
+      "id": "cacdd58a60d741d1235b",
+      "title": "أُوجَارِيتُ: مَدِينَةُ الحَرْفِ وَالزِّلْزَالِ المُدَمِّرِ",
+      "hook": "عَاصِفَةٌ غَامِضَةٌ وَهِزَّاتٌ أَرْضِيَّةٌ مَرْعِبَةٌ بَاقَرَتَا قَلْبَ مَدِينَةِ أُوجَارِيتَ الكُبْرَى فِي لَحْظَاتٍ حَاسِمَةٍ.",
+      "region": "سُورِيَةُ القَدِيمَةُ",
+      "status": "reserved",
+      "source": "workflow",
+      "reservation_id": "5f1d46db4b2048f2a515c3537a1f4dca",
+      "reserved_at": "2026-10-12T22:33:34Z",
+      "run_id": "38315890139",
       "repository": "ahmedalsharqwi2-gif/documented-history-stories"
     }
   ]
