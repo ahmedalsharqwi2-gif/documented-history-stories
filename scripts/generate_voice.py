@@ -361,7 +361,7 @@ def detect_silma_reference_leak(audio_path: Path) -> str | None:
     if not SILMA_GUARD_ENABLED or not SILMA_REFERENCE_TEXT:
         return None
     from faster_whisper import WhisperModel
-    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
+    model = WhisperModel(model_size, device="cpu", compute_type="int8")
     segments, _ = model.transcribe(str(audio_path), language="ar", word_timestamps=False, vad_filter=False)
     heard = _norm_arabic_words(" ".join(seg.text or "" for seg in segments))
     ref = _norm_arabic_words(SILMA_REFERENCE_TEXT)
@@ -622,11 +622,12 @@ def _build_word_events_from_edge_tts(segments: list[dict]) -> list[dict]:
 
 _TRANSCRIPT_CACHE: dict[tuple, list] = {}
 
-def _cached_whisper_segments(audio_path: Path) -> list:
+def _cached_whisper_segments(audio_path: Path, model_size: str | None = None) -> list:
     """Reuse one word-timed transcript; invalidate it when audio is rewritten."""
     from faster_whisper import WhisperModel
+    model_size = model_size or WHISPER_MODEL_SIZE
     stat = audio_path.stat()
-    key = (str(audio_path.resolve()), stat.st_size, stat.st_mtime_ns, WHISPER_MODEL_SIZE)
+    key = (str(audio_path.resolve()), stat.st_size, stat.st_mtime_ns, model_size)
     if key not in _TRANSCRIPT_CACHE:
         model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
         result = model.transcribe(str(audio_path), language="ar",
@@ -652,7 +653,7 @@ def assert_audio_matches_script(audio_path: Path, script_text: str) -> float:
     return ratio
 
 
-def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[dict]:
+def align_words_with_whisper(audio_path: Path, script_words: list[str], *, stronger: bool = False) -> list[dict]:
     """يحاذي script_words مع الصوت الفعلي المُنتَج باستخدام faster-whisper،
     بدل الوثوق بتوقيت edge-tts الذاتي. النص المعروض/المستخدم دائمًا هو
     script_words نفسها؛ ناتج Whisper (بلا تشكيل، وقد يحوي أخطاء تعرّف
@@ -660,7 +661,7 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     (difflib) بين الكلمتين بعد تطبيع كل منهما. أي كلمة من السكريبت لم
     يتعرّف عليها Whisper بثقة تأخذ توقيتًا تقريبيًا من أقرب كلمتين
     متطابقتين قبلها وبعدها، بدل أن تُفقد."""
-    segments = _cached_whisper_segments(audio_path)
+    segments = _cached_whisper_segments(audio_path, "medium" if stronger else None)
 
     whisper_words: list[tuple[str, float, float]] = []
     for segment in segments:
@@ -700,6 +701,9 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str]) -> list[
     recover_token_boundaries(script_norm, whisper_norm, whisper_words, script_words, timings)
     known_indices = [i for i, t in enumerate(timings) if t is not None]
     if not known_indices or len(known_indices) < len(script_words) * 0.85:
+        if not stronger:
+            print("Rechecking the same audio with local Whisper medium; strict alignment gate unchanged", flush=True)
+            return align_words_with_whisper(audio_path, script_words, stronger=True)
         raise RuntimeError(
             f"تطابق ضعيف جدًا: {len(known_indices)}/{len(script_words)} كلمة فقط"
         )
