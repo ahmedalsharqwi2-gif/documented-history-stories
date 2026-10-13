@@ -250,12 +250,13 @@
       "title": "مَدِينَةُ الطِّينِ المَدْفُونَةُ: أَسْرَارُ هِرْكُولَانِيُومَ",
       "hook": "هَلْ تَخَيَّلْتَ يَوْمًا مَدِينَةً كَامِلَةً مُزْدَهِرَةً تَخْتَفَى فِي ثَوَانٍ مَعْدُودَةٍ تَحْتَ طَبَقَاتٍ هَائِلَةٍ مِنَ الطِّينِ البُرْكَانِيِّ؟",
       "region": "هِرْكُولَانِيُومَ، إِطَاليَا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "1af3c28a71bb473cb539add3aede6887",
       "reserved_at": "2026-10-13T07:16:38Z",
       "run_id": "38360496218",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "1af3c28a71bb473cb539add3aede6887",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-13T07:16:54Z"
     }
   ]
 }
