@@ -237,12 +237,13 @@
       "title": "لُغْزُ طْرُويَةَ: الحَقِيقَةُ وَرَاءَ الأَسْطُورَةِ",
       "hook": "هَلْ كَانَتْ طْرُويَةُ الأَسْطُورِيَّةُ مَدِينَةً حَقِيقِيَّةً أَمْ نَحَتَهَا خَيَالُ الشُّعَرَاءِ فِي القُدُومِ؟",
       "region": "طْرُويَةُ، تُرْكِيَا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "88388c2f55d14b49999f905a623e4b2e",
       "reserved_at": "2026-10-13T07:03:03Z",
       "run_id": "38359000618",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "88388c2f55d14b49999f905a623e4b2e",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-13T07:03:22Z"
     }
   ]
 }
