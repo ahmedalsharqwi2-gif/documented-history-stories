@@ -28,6 +28,35 @@
         "youtube"
       ],
       "confirmed_at": "2026-10-12T22:33:45.256985+00:00"
+    },
+    "stock 2026-10-13 18 Cairo": {
+      "confirmed": true,
+      "receipts": {
+        "facebook": {
+          "id": "6acd7f8fc210c8c6dd41a1c1",
+          "due_at": "2026-10-13T15:00:00Z",
+          "run_id": "38327887645",
+          "accepted_at": "2026-10-13T00:47:11.524255+00:00"
+        },
+        "instagram": {
+          "id": "6acd7f905229b40e868a909e",
+          "due_at": "2026-10-13T15:00:00Z",
+          "run_id": "38327887645",
+          "accepted_at": "2026-10-13T00:47:12.411954+00:00"
+        },
+        "youtube": {
+          "id": "RNTkC5PuKp0",
+          "due_at": "2026-10-13T15:00:00Z",
+          "run_id": "38327887645",
+          "accepted_at": "2026-10-13T00:47:22.373383+00:00"
+        }
+      },
+      "required_services": [
+        "facebook",
+        "instagram",
+        "youtube"
+      ],
+      "confirmed_at": "2026-10-13T00:47:22.448327+00:00"
     }
   }
 }
