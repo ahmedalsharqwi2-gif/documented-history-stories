@@ -181,6 +181,10 @@ jobs:
           path: state/current_episode.json
           key: prepared-v1-${{ github.repository_id }}-${{ inputs.dry_run || false }}-${{ matrix.date || github.run_id }}-${{ matrix.hour }}
 
+      - name: Validate restored text against current topic history
+        id: checked_text
+        run: python scripts/check_prepared_text.py --path state/current_episode.json --history state/topic_history.json
+
       - name: Restore inspected cinematic scenes
         if: ${{ env.CINEMATIC_ENABLED == 'true' }}
         uses: actions/cache/restore@v4
@@ -207,7 +211,7 @@ jobs:
         run: python -m pip install -r scripts/requirements.txt
 
       - name: Validate and resolve AI model policy
-        if: steps.prepared_text.outputs.cache-hit != 'true'
+        if: steps.checked_text.outputs.usable != 'true'
         env:
           GEMINI_MODEL: "gemini-flash-lite-latest"
           GEMINI_MODELS: "gemini-flash-lite-latest,gemma-4-26b-a4b-it,gemini-flash-latest"
@@ -223,7 +227,7 @@ jobs:
         run: python scripts/model_preflight.py
 
       - name: Generate complete documented history story script
-        if: steps.prepared_text.outputs.cache-hit != 'true'
+        if: steps.checked_text.outputs.usable != 'true'
         env:
           PYTHONUNBUFFERED: "1"
           # Keep the validated primary provider available to generation.
@@ -289,7 +293,7 @@ jobs:
         run: python scripts/historical_verification_gate.py --episode state/current_episode.json
 
       - name: Save prepared text independently of later media failures
-        if: steps.prepared_text.outputs.cache-hit != 'true'
+        if: steps.checked_text.outputs.usable != 'true'
         uses: actions/cache/save@v4
         with:
           path: state/current_episode.json
