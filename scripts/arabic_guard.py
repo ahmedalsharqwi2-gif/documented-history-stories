@@ -98,7 +98,10 @@ def validate_narration(text: str, min_arabic_ratio: float = 0.85) -> list[Issue]
             end += 1
         issues.append(Issue("foreign_script", text[start:end]))
 
-    for match in _INTERNAL_LABEL_RE.finditer(strip_marks(text)):
+    for match in re.finditer(
+        r"(?<![\u0621-\u064A\w])(?:" + "|".join(re.escape(label) for label in INTERNAL_NARRATION_LABELS)
+        + r")\s*[:：]", strip_marks(text), re.IGNORECASE
+    ):
         issues.append(Issue("internal_narration_label", match.group()))
 
     issues.extend(Issue("digit", m.group()) for m in DIGITS.finditer(text))
