@@ -276,12 +276,13 @@
       "title": "كيف وحدت السكك الحديدية الوقت في أمريكا عام ١٨٨٣",
       "hook": "في يوم واحد تغيرت ساعات مدن كثيرة، لأن القطارات احتاجت وقتًا يمكن الاتفاق عليه.",
       "region": "أمريكا الشمالية",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "57d624a7a8e84ae198228693c0fb3748",
       "reserved_at": "2026-10-13T21:28:21Z",
       "run_id": "38469335079",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "57d624a7a8e84ae198228693c0fb3748",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-13T21:28:33Z"
     }
   ]
 }
