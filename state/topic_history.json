@@ -227,10 +227,22 @@
       "status": "published",
       "source": "workflow",
       "reserved_at": "2026-10-13T00:47:04Z",
+      "published_at": "2026-10-13T00:47:22Z",
       "run_id": "38327887645",
       "reservation_id": "2791fb20c4b0488f971708d802d582b0",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
-      "published_at": "2026-10-13T00:47:22Z"
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+    },
+    {
+      "id": "07d615044eba19a65482",
+      "title": "لُغْزُ طْرُويَةَ: الحَقِيقَةُ وَرَاءَ الأَسْطُورَةِ",
+      "hook": "هَلْ كَانَتْ طْرُويَةُ الأَسْطُورِيَّةُ مَدِينَةً حَقِيقِيَّةً أَمْ نَحَتَهَا خَيَالُ الشُّعَرَاءِ فِي القُدُومِ؟",
+      "region": "طْرُويَةُ، تُرْكِيَا",
+      "status": "reserved",
+      "source": "workflow",
+      "reservation_id": "88388c2f55d14b49999f905a623e4b2e",
+      "reserved_at": "2026-10-13T07:03:03Z",
+      "run_id": "38359000618",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
     }
   ]
 }
