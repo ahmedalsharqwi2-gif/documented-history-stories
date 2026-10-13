@@ -10,6 +10,7 @@ from __future__ import annotations
 import asyncio
 import difflib
 import json
+import math
 import os
 import re
 import subprocess
@@ -825,14 +826,27 @@ def synthesize_voice(voice_text: str) -> None:
         assert_audio_matches_script(VOICE_AUDIO, voice_text)
     try:
         all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
-    except Exception as exc:  # noqa: BLE001
-        if os.getenv("FREE_GOOGLE_TTS_ENABLED", "false").lower() != "true":
-            raise RuntimeError(f"فشلت محاذاة Whisper بعد نجاح بوابة ASR: {exc}") from exc
-        print("Speech alignment rejected current voice; regenerating the same text with free Google Arabic")
-        segments = synthesize_google_sentences(sentences, slow=True)
-        render_segments(segments)
-        assert_audio_matches_script(VOICE_AUDIO, voice_text)
-        all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
+    except Exception as exc:
+        if os.getenv("QUALITY_GATES_BLOCKING", "false").lower() == "true":
+            raise
+        # The independent narration check has passed. Use measured sentence
+        # durations (including pauses), avoiding another expensive TTS/ASR pass.
+        print(f"Caption timing warning: {exc}; using measured sentence timing")
+        all_word_events = []
+        cursor = 0.0
+        for segment in segments:
+            duration = float(segment["duration"])
+            if not math.isfinite(duration) or duration <= 0:
+                raise RuntimeError("Invalid sentence audio duration")
+            if not segment["is_silence"]:
+                words = strip_diacritics(segment["sentence"] or "").split()
+                step = duration / max(len(words), 1)
+                for index, word in enumerate(words):
+                    all_word_events.append({"text": word, "offset": cursor + index * step,
+                                            "duration": step})
+            cursor += duration
+        if [event["text"] for event in all_word_events] != display_words:
+            raise RuntimeError("Sentence timing does not cover the approved narration")
 
     if not all_word_events:
         sys.exit("❌ تعذر إنشاء توقيت الترجمة.")
