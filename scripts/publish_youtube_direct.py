@@ -209,8 +209,9 @@ def main() -> int:
             credentials = load_credentials()
             video_id = upload_video(build("youtube", "v3", credentials=credentials), VIDEO_PATH, title, description)
         if os.getenv("PUBLICATION_RECEIPTS_ENABLED", "false").lower() == "true":
-            from scripts.publication_state import record_receipt
-            record_receipt("youtube", video_id, os.getenv("PUBLISH_DUE_AT"))
+            from scripts.publication_state import record_receipt, immediate_requested
+            due_at = datetime.now(timezone.utc).isoformat(timespec="seconds") if immediate_requested() else os.getenv("PUBLISH_DUE_AT")
+            record_receipt("youtube", video_id, due_at)
         print(f"✅ تم قبول فيديو يوتيوب: https://youtu.be/{video_id}")
     except Exception as exc:
         print(f"❌ YouTube publication failed: {exc}")
