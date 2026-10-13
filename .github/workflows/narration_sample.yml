@@ -1,0 +1,33 @@
+name: Narration continuity sample
+on:
+  push:
+    branches: ["fix/narration-continuity"]
+    paths: [".github/workflows/narration_sample.yml", "scripts/free_tts_fallback.py"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - run: python -m pip install 'gTTS==2.5.4'
+      - name: Generate free voice sample without publishing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.free_tts_fallback import google_arabic_voice
+          text = "هل تعلم كيف تحولت مدينة سين-بيير المزدهرة إلى أكوام من الرماد؟ كانت المدينة مركزا ثقافيا مهما في الجزيرة، لكن البركان غيّر مصيرها في لحظات. هذه عينة للتأكد من اتصال الكلمات والجمل، مع الحفاظ على الوقفات الطبيعية دون سكتات إضافية."
+          Path("sample").mkdir(exist_ok=True)
+          google_arabic_voice(text, Path("sample/narration.mp3"))
+          Path("sample/narration.txt").write_text(text, encoding="utf-8")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: narration-continuity-sample
+          path: sample/
