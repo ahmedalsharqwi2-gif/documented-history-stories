@@ -122,3 +122,53 @@ class GenerationRecoveryTests(unittest.TestCase):
             history.return_value.entries = []
             self.assertEqual(generator.generate_episode(), {'title': 'valid'})
             self.assertEqual(run.call_count, 3)
+
+
+class TargetedRecoveryTests(unittest.TestCase):
+    def test_normal_result_word_is_not_an_editorial_label(self):
+        from scripts.arabic_guard import validate_narration
+        self.assertEqual(validate_narration("وكانت النتيجة أن المدينة استعادت نشاطها."), [])
+        self.assertTrue(validate_narration("النتيجة: استعادت المدينة نشاطها."))
+
+    def test_bank_skips_reworded_used_topics(self):
+        entries = [{'title': 'حريق لندن الكبير', 'hook': 'قصة الحريق', 'keywords': 'London'},
+                   {'title': 'قناة بنما', 'hook': 'قصة القناة', 'keywords': 'Panama'}]
+        self.assertEqual(generator.select_topic_from_bank(entries, [{'title': 'حريق لندن الكبير'}]), entries[1])
+
+    def test_duplicate_is_rejected_before_expansion(self):
+        story = {'title': 'مكرر', 'hook': 'اختبار', 'region': 'مكان',
+                 'narration': 'نص.', 'source_type': '', 'source_reference': ''}
+        with patch.object(generator, 'call_model', return_value=('reply', 'STOP')) as call, \
+             patch.object(generator, 'parse_story_reply', return_value=story), \
+             patch.object(generator, 'historical_errors', return_value=[]), \
+             patch.object(generator, 'find_duplicate', return_value={'title': 'مكرر'}):
+            with self.assertRaises(generator.DuplicateTopicError):
+                generator.run_single_attempt(None, 'system', [], [], [], 250, 'test')
+        self.assertEqual(call.call_count, 1)
+
+    def test_clean_arabic_does_not_spend_repair_request(self):
+        with patch.object(generator, 'call_model') as call:
+            text = 'عاد الناس إلى المدينة بعد انتهاء الرحلة.'
+            self.assertEqual(generator.repair_arabic_narration(None, [], text, 'system', 'test'), text)
+            call.assert_not_called()
+
+class ReviewedReserveTests(unittest.TestCase):
+    def test_reviewed_reserves_validate_and_used_one_is_skipped(self):
+        from scripts.select_prepared_history import select_reserve
+        directory = Path('config/prepared_history')
+        with patch.dict(os.environ, {'HISTORY_SOURCE_GATE_ENABLED': 'false'}), \
+             patch.multiple(generator, ACCEPTABLE_MIN_WORDS=180, MAX_NARRATION_WORDS=300):
+            first = select_reserve(directory, [])
+            self.assertIsNotNone(first)
+            second = select_reserve(directory, [first])
+            self.assertIsNotNone(second)
+            self.assertNotEqual(first['title'], second['title'])
+            self.assertIsNone(select_reserve(directory, [first, second]))
+
+    def test_malformed_reserve_never_reaches_production(self):
+        import tempfile
+        from scripts.select_prepared_history import select_reserve
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, 'bad.json').write_text('{')
+            Path(tmp, 'empty.json').write_text('{}')
+            self.assertIsNone(select_reserve(Path(tmp), []))

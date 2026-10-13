@@ -84,7 +84,8 @@ def select_topic_from_bank(
     }
     used_titles.update(" ".join(title.split()).casefold() for title in (excluded_titles or set()))
     for entry in entries:
-        if " ".join(entry["title"].split()).casefold() not in used_titles:
+        if (" ".join(entry["title"].split()).casefold() not in used_titles
+                and not find_duplicate(entry, history)):
             return entry
     return None
 
@@ -1379,6 +1380,29 @@ def proofread_narration_for_tts(
     return corrected
 
 
+def repair_arabic_narration(client, history, narration, system_prompt, attempt_label):
+    """Repair isolated language defects without relaxing the spoken-text gate."""
+    issues = validate_narration(narration)
+    if not issues:
+        return narration
+    reply, _ = call_model(
+        client, history,
+        "أعد السرد الكامل فقط دون عناوين. حافظ على المعلومات وترتيب الجمل وطول النص. "
+        "صحح المواضع التالية فقط: اكتب الأرقام بالحروف والأسماء الأجنبية بلفظها العربي، "
+        "واحذف عناوين التعليمات الداخلية دون حذف الجملة. لا تضف أي معلومة.\n"
+        + json.dumps([{'kind': i.kind, 'sample': i.sample} for i in issues], ensure_ascii=False)
+        + "\nالنص:\n" + narration,
+        free_text_config, system_prompt, STORY_MAX_TOKENS,
+        f"{attempt_label} | إصلاح العربية",
+    )
+    corrected = reply.strip()
+    if (validate_narration(corrected) or looks_truncated(corrected)
+            or not max(effective_min_words(), int(count_words(narration) * .85))
+            <= count_words(corrected) <= MAX_NARRATION_WORDS):
+        raise AttemptFailed("إصلاح العربية لم يحافظ على نص سليم مكتمل")
+    return corrected
+
+
 # ─────────────────────────── تنفيذ محاولة واحدة ───────────────────────────
 
 def run_single_attempt(
@@ -1420,6 +1444,8 @@ def run_single_attempt(
     errors = historical_errors(story)
     if errors:
         raise AttemptFailed("تقرير التحقق التاريخي مرفوض: " + "; ".join(errors))
+    if find_duplicate(story, TopicHistory(TOPIC_HISTORY_PATH).entries):
+        raise DuplicateTopicError("الموضوع مكرر قبل التوسيع والتدقيق")
     hook, region = story["hook"], story["region"]
     source_type, source_reference = story["source_type"], story["source_reference"]
     narration = story["narration"]
@@ -1476,7 +1502,10 @@ def run_single_attempt(
         )
         reply, _ = call_model(
             client, history,
-            build_expand_story_prompt(current_count, target_words, min_words),
+            build_expand_story_prompt(current_count, target_words, min_words)
+            + "\nوسّع النص التالي نفسه، ولا تغيّر الواقعة أو تضف أرقامًا أو أسماء أو ادعاءات غير مثبتة. "
+            "أعد الحقول الأصلية مع السرد الكامل، وليس ملخصًا أو إضافات منفصلة.\n"
+            + json.dumps(story | {"narration": narration}, ensure_ascii=False),
             free_text_config, system_prompt, EXPANSION_MAX_TOKENS,
             f"{attempt_label} | توسيع القصة {expansion_round}",
         )
@@ -1485,7 +1514,11 @@ def run_single_attempt(
             client, history, expanded["narration"], system_prompt, attempt_label
         )
         # نقبل النسخة الجديدة بس لو أطول ومكتملة.
-        if count_words(new_narration) > current_count and not looks_truncated(new_narration):
+        if (count_words(new_narration) > current_count
+                and count_words(new_narration) <= MAX_NARRATION_WORDS
+                and not looks_truncated(new_narration)
+                and not historical_errors(expanded)
+                and not find_duplicate(expanded, TopicHistory(TOPIC_HISTORY_PATH).entries)):
             hook, region = expanded["hook"], expanded["region"]
             source_type, source_reference = expanded["source_type"], expanded["source_reference"]
             story.update({key: expanded.get(key, story.get(key)) for key in (
@@ -1514,6 +1547,7 @@ def run_single_attempt(
     if min_words > 0 and count_words(narration) < min_words:
         print("   ⚠️ التدقيق اللغوي اختصر النص تحت الحد الأدنى؛ استعادة النص المكتمل المعتمد.")
         narration = verified_narration
+    narration = repair_arabic_narration(client, history, narration, system_prompt, attempt_label)
     # Proofreading can change spelling and punctuation in the opening. Derive
     # metadata from the final spoken text rather than retaining the stale hook.
     narration, repaired_hook = _split_overlong_first_sentence(narration)
@@ -1680,6 +1714,14 @@ def generate_episode() -> dict:
                 + "الحل: انتظر تجدد الحصة/استقرار السيرفر، أو حدّث GEMINI_FALLBACK_MODELS "
                 "إلى نموذج متاح فعليًا."
             )
+        except DuplicateTopicError as exc:
+            last_error = str(exc)
+            if bank_topic:
+                rejected_bank_titles.add(bank_topic["title"])
+                bank_topic = select_topic_from_bank(bank_entries, topic_history.entries, rejected_bank_titles)
+                if not bank_topic:
+                    sys.exit("❌ لا يوجد موضوع جديد في البنك")
+            print(f"⚠️ {last_error}؛ اختيار موضوع آخر قبل استهلاك طلبات التدقيق")
         except AttemptFailed as exc:
             last_error = str(exc)
             print(f"⚠️ فشلت المحاولة الكاملة {attempt}/{attempt_limit}: {last_error}")
