@@ -302,12 +302,13 @@
       "title": "أوبار: حصن البخور الذي ابتلعته رمال الربع الخالي",
       "hook": "هَلْ تَعْلَمُ كَيْفَ اخْتَفَتْ مَدِينَةُ أُبَارَ التَّارِيخِيَّةُ العَظِيمَةُ تَحْتَ الكُثْبَانِ الرَّمْلِيَّةِ القَاحِلَةِ؟",
       "region": "شبه الجزيرة العربية - عُمان",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "be5bcc4f078d412c8a0983f07990d8d7",
       "reserved_at": "2026-10-13T21:57:45Z",
       "run_id": "38472896750",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "be5bcc4f078d412c8a0983f07990d8d7",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-13T21:57:56Z"
     }
   ]
 }
