@@ -1263,7 +1263,8 @@ def build_expand_story_prompt(current_word_count: int, target_words: int, min_wo
     floor = max(min_words, int(target_words * 0.75))
     missing = max(floor - current_word_count, 0) + 100
     if not source_gate_enabled():
-        return (f"أعد القصة كاملة بحيث تكون من {floor} إلى {target_words + 100} كلمة. "
+        return (f"النص الحالي {current_word_count} كلمة. أضف على الأقل {missing} كلمة دون حذف المحتوى الحالي. "
+                f"أعد القصة كاملة بحيث تكون من {max(floor, min_words + 60)} إلى {target_words + 100} كلمة. "
                 "وسّع السياق التاريخي المعروف دون اختلاق أحداث أو حوارات أو اقتباسات. "
                 "أعد TITLE, HOOK, REGION, VISUAL_KEYWORDS, CAPTION, NARRATION بنفس التنسيق المسمّى. "
                 "لا تعد تقارير مصادر أو حقائق. اجعل السرد آخر حقل بخاتمة مكتملة.")

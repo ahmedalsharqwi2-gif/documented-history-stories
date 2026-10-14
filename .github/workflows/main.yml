@@ -279,7 +279,7 @@ jobs:
           BUDGET_RETRIES: "1"
           PROOFREAD_TASHKEEL: "false"
           TOPIC_BANK_REQUIRED: "true"
-          TOPIC_SELECTION_MODE: "dynamic"
+          TOPIC_SELECTION_MODE: "bank"
           TOPIC_ROTATION_SEED: ${{ github.run_id }}
           TOPIC_PERFORMANCE_FILE: "state/topic_performance.json"
         run: |
