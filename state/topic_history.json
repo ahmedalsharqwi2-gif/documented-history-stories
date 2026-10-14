@@ -315,12 +315,13 @@
       "title": "أعجوبة الفسيفساء المخفية: اكتشاف خريطة مادبا التاريخية",
       "hook": "هَلْ تَعْلَمُ أَنَّ أَقْدَمَ خَرِيطَةٍ جُغْرَافِيَّةٍ لِلأَرْضِ المُقَدَّسَةِ رُسِمَتْ بِأَكْثَرِ مِنْ مِلْيُونِ قِطْعَةِ فُسَيْفِسَاءَ صَغِيرَةٍ؟",
       "region": "الأردُنّ",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "c439bc09a55541d68987288cb0a64e8f",
       "reserved_at": "2026-10-14T14:56:37Z",
       "run_id": "38583119295",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "c439bc09a55541d68987288cb0a64e8f",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-14T14:56:52Z"
     }
   ]
 }
