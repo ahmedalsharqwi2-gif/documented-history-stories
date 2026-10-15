@@ -328,12 +328,13 @@
       "title": "أَزْمِنَةُ الرَّمَادِ: لَحْظَاتُ بومبي الأَخِيرَةُ",
       "hook": "السَّاعَاتُ الأَخِيرَةُ الَّتِي حَفِظَهَا الرَّمَادُ لِمَدِينَةٍ كَامِلَةٍ عَاشَتْ تَفَاصِيلَهَا العَادِيَّةَ قَبْلَ لَحْظَةِ الفَنَاءِ.",
       "region": "إيطاليا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "b0dfeb9d4d674fc890d299ac789a6f9a",
       "reserved_at": "2026-10-15T20:34:35Z",
       "run_id": "38800519554",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "b0dfeb9d4d674fc890d299ac789a6f9a",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-15T20:34:52Z"
     }
   ]
 }
