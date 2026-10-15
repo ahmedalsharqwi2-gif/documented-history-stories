@@ -7,6 +7,14 @@ from scripts import generate_script as generator
 
 
 class GenerationRecoveryTests(unittest.TestCase):
+    def test_selected_bank_event_reaches_optional_source_production_prompt(self):
+        bank = {"title": "رحلة شاكلتون", "hook": "النجاة في الجليد"}
+        with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false", "TOPIC_SELECTION_MODE": "bank"}):
+            prompt = generator.build_story_prompt(["موضوع سابق"], [], [], 220, bank)
+        self.assertIn(bank["title"], prompt)
+        self.assertIn("إلزاميًا", prompt)
+        self.assertIn("موضوع سابق", prompt)
+
     def test_optional_sources_parse_plain_story_without_fabricated_reference(self):
         narration = "في مدينة قديمة عرف الناس كيف يحفظون الماء داخل خزانات كبيرة تحت الأرض. ثم انتشرت الفكرة."
         with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false"}):
