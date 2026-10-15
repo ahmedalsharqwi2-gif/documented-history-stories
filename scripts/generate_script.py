@@ -506,6 +506,20 @@ def _derive_hook_from_narration(narration: str) -> str:
 
 def _split_overlong_first_sentence(narration: str) -> tuple[str, str]:
     """Make an overlong model opening compatible with the 10–20 word hook gate."""
+    # Proofreading may insert a full stop after a short opening clause. Join
+    # complete adjacent sentences only when their combined opening fits the
+    # original hook gate. Preserve every spoken word; never pad or truncate.
+    if count_words(_first_sentence(narration)) < 10:
+        for boundary in re.finditer(r"[.!؟?…]+(?:\s+|$)", narration):
+            opening = narration[:boundary.end()].strip()
+            size = count_words(opening)
+            if size > 20:
+                break
+            if size >= 10:
+                joined = re.sub(r"[.!؟?…]+\s+", "، ", opening)
+                narration = joined + (" " + narration[boundary.end():].lstrip()
+                                      if narration[boundary.end():].strip() else "")
+                break
     first = _first_sentence(narration)
     words = first.split()
     if len(words) <= 20:
