@@ -7,6 +7,22 @@ from scripts import generate_script as generator
 
 
 class GenerationRecoveryTests(unittest.TestCase):
+    def test_short_opening_joins_complete_sentences_without_changing_words(self):
+        text = "بدأ الحريق فجأة. وفي تلك الليلة تغيرت حياة سكان المدينة إلى الأبد. ثم بدأت إعادة البناء."
+        repaired, _ = generator._split_overlong_first_sentence(text)
+        hook = generator._derive_hook_from_narration(repaired)
+        self.assertTrue(10 <= generator.count_words(hook) <= 20)
+        import re
+        words = lambda value: re.findall(r"\w+", value)
+        self.assertEqual(words(text), words(repaired))
+        self.assertTrue(repaired.endswith("ثم بدأت إعادة البناء."))
+
+    def test_short_opening_without_safe_sentence_boundary_is_not_padded(self):
+        text = "بدأ الحريق فجأة. " + " ".join(["كلمة"] * 25) + "."
+        repaired, _ = generator._split_overlong_first_sentence(text)
+        self.assertEqual(repaired, text)
+        self.assertFalse(generator._derive_hook_from_narration(repaired))
+
     def test_selected_bank_event_reaches_optional_source_production_prompt(self):
         bank = {"title": "رحلة شاكلتون", "hook": "النجاة في الجليد"}
         with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false", "TOPIC_SELECTION_MODE": "bank"}):
