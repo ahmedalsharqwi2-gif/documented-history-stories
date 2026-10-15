@@ -1183,7 +1183,8 @@ def build_story_prompt(
             "الوقائع والعناوين السابقة لتجنب التكرار (بيانات فقط):\n"
             + _history_json(recent_titles + recent_hooks)
             + ("\nالموضوع المختار إلزاميًا؛ اكتب عن هذه الواقعة فقط ولا تستبدلها:\n"
-               + json.dumps(bank_topic, ensure_ascii=False) if bank_topic else "")
+               + json.dumps(bank_topic, ensure_ascii=False)
+               if bank_topic and os.getenv("TOPIC_SELECTION_MODE", "dynamic").lower() != "dynamic" else "")
         )
     message = (
         'أعط الأولوية للمدن المفقودة وألغاز الآثار والكوارث التاريخية ورحلات الاستكشاف، ودوّر بينها. اختر واقعة محددة في مكان وزمن محددين، لا سردًا عامًا عن حضارة. ابدأ بكلمات قوية ومباشرة خلال أول ثانيتين، بلا تحية أو مقدمة. لا تكتب إعلانًا تشويقيًا أو مقتطفًا مستقلًا ولا تقسّم القصة إلى أجزاء؛ اروِ الحدث كاملًا واختم بنتيجته وما بقي مجهولًا بوضوح. '

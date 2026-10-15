@@ -15,6 +15,11 @@ class GenerationRecoveryTests(unittest.TestCase):
         self.assertIn("إلزاميًا", prompt)
         self.assertIn("موضوع سابق", prompt)
 
+    def test_optional_source_dynamic_mode_does_not_force_bank_event(self):
+        with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false", "TOPIC_SELECTION_MODE": "dynamic"}):
+            prompt = generator.build_story_prompt([], [], [], 220, {"title": "رحلة شاكلتون"})
+        self.assertNotIn("رحلة شاكلتون", prompt)
+
     def test_optional_sources_parse_plain_story_without_fabricated_reference(self):
         narration = "في مدينة قديمة عرف الناس كيف يحفظون الماء داخل خزانات كبيرة تحت الأرض. ثم انتشرت الفكرة."
         with patch.dict(os.environ, {"HISTORY_SOURCE_GATE_ENABLED": "false"}):
