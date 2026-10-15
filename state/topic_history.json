@@ -318,10 +318,22 @@
       "status": "published",
       "source": "workflow",
       "reserved_at": "2026-10-14T14:56:37Z",
+      "published_at": "2026-10-14T14:56:52Z",
       "run_id": "38583119295",
       "reservation_id": "c439bc09a55541d68987288cb0a64e8f",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
-      "published_at": "2026-10-14T14:56:52Z"
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+    },
+    {
+      "id": "5e5fc7588f1174185bcb",
+      "title": "أَزْمِنَةُ الرَّمَادِ: لَحْظَاتُ بومبي الأَخِيرَةُ",
+      "hook": "السَّاعَاتُ الأَخِيرَةُ الَّتِي حَفِظَهَا الرَّمَادُ لِمَدِينَةٍ كَامِلَةٍ عَاشَتْ تَفَاصِيلَهَا العَادِيَّةَ قَبْلَ لَحْظَةِ الفَنَاءِ.",
+      "region": "إيطاليا",
+      "status": "reserved",
+      "source": "workflow",
+      "reservation_id": "b0dfeb9d4d674fc890d299ac789a6f9a",
+      "reserved_at": "2026-10-15T20:34:35Z",
+      "run_id": "38800519554",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
     }
   ]
 }
