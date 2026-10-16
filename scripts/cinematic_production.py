@@ -755,14 +755,13 @@ def _beat_ass_text(text: str, limit: int = 27) -> str:
 
 
 def write_scene_overlays(scenes: list[dict], path: Path, cfg: dict) -> None:
-    """Render the original-style beat card over B-roll only; never burn generic ASR captions."""
+    """Render authored beat titles over B-roll; Canvas scenes carry their own kinetic copy."""
     header = (
         "[Script Info]\nScriptType: v4.00+\n"
         f"PlayResX: {cfg['width']}\nPlayResY: {cfg['height']}\nWrapStyle: 2\nScaledBorderAndShadow: yes\n\n"
         "[V4+ Styles]\n"
         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
-        "Style: BeatTitle,Noto Sans Arabic,54,&H00EEE9DF,&H00EEE9DF,&H00101010,&H880A0A0A,1,0,0,0,100,100,0,0,1,3,2,8,70,70,300,1\n"
-        "Style: BeatCaption,Noto Sans Arabic,39,&H00EEE9DF,&H00EEE9DF,&H00101010,&HAA0A0A0A,1,0,0,0,100,100,0,0,3,0,1,2,85,85,270,1\n\n"
+        "Style: BeatTitle,Noto Sans Arabic,54,&H00EEE9DF,&H00EEE9DF,&H00101010,&H880A0A0A,1,0,0,0,100,100,0,0,1,3,2,8,70,70,300,1\n\n"
         "[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     )
     rows = [header]
@@ -773,13 +772,9 @@ def write_scene_overlays(scenes: list[dict], path: Path, cfg: dict) -> None:
         if end <= start:
             continue
         title = _beat_ass_text(scene.get("title") or scene.get("topic") or "", 24)
-        caption = _beat_ass_text(scene.get("caption") or scene.get("text") or "", 30)
         if title:
             title_text = title
             rows.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.04))},BeatTitle,,0,0,0,,{{\\an8\\pos(540,300)\\fad(180,180)}}{title_text}")
-        if caption:
-            caption_text = caption
-            rows.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.04))},BeatCaption,,0,0,0,,{{\\an5\\pos(540,1570)\\fad(180,180)\\q2}}{caption_text}")
     path.write_text("\n".join(rows) + "\n", encoding="utf-8")
 
 
