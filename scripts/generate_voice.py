@@ -362,7 +362,7 @@ def detect_silma_reference_leak(audio_path: Path) -> str | None:
     if not SILMA_GUARD_ENABLED or not SILMA_REFERENCE_TEXT:
         return None
     from faster_whisper import WhisperModel
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
     segments, _ = model.transcribe(str(audio_path), language="ar", word_timestamps=False, vad_filter=False)
     heard = _norm_arabic_words(" ".join(seg.text or "" for seg in segments))
     ref = _norm_arabic_words(SILMA_REFERENCE_TEXT)
