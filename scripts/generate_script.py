@@ -146,13 +146,13 @@ EXPANSION_MAX_TOKENS = int(os.getenv("EXPANSION_MAX_TOKENS", "1300"))
 # ⚠️ thinking_budget بياكل من نفس سقف max_output_tokens.
 THINKING_BUDGET = int(os.getenv("GEMINI_THINKING_BUDGET", "0"))
 
-TARGET_WORDS = int(os.getenv("TARGET_WORDS", "220"))
-MAX_NARRATION_WORDS = int(os.getenv("MAX_NARRATION_WORDS", "240"))
+TARGET_WORDS = int(os.getenv("TARGET_WORDS", "320"))
+MAX_NARRATION_WORDS = int(os.getenv("MAX_NARRATION_WORDS", "420"))
 
 # الحد الأدنى المقبول لـ Gemini. 0 = غير مفعّل.
-ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARRATION_WORDS", "0")))
+ACCEPTABLE_MIN_WORDS = int(os.getenv("ACCEPTABLE_MIN_WORDS", os.getenv("MIN_NARRATION_WORDS", "240")))
 # الحد الأدنى المقبول لما نكون على OpenRouter (موديلات مجانية أضعف في الطول).
-OPENROUTER_MIN_WORDS = int(os.getenv("OPENROUTER_MIN_WORDS", "140"))
+OPENROUTER_MIN_WORDS = int(os.getenv("OPENROUTER_MIN_WORDS", "240"))
 
 BUDGET_RETRIES = int(os.getenv("BUDGET_RETRIES", "2"))
 LENGTH_ESCALATION = 1.5
@@ -1185,7 +1185,7 @@ def build_story_prompt(
 ) -> str:
     if not source_gate_enabled():
         return (
-            f"اكتب قصة تاريخية واحدة مكتملة لفيديو عمودي 9:16، من حوالي {target_words} كلمة ولا تتجاوز {MAX_NARRATION_WORDS} كلمة أو 180 ثانية. "
+            f"اكتب قصة تاريخية واحدة مكتملة لفيديو عمودي 9:16، من حوالي {target_words} كلمة ولا تتجاوز {MAX_NARRATION_WORDS} كلمة أو 180 ثانية، مع مدة مستهدفة لا تقل عن 90 ثانية. "
             'أعط الأولوية للمدن المفقودة وألغاز الآثار والكوارث التاريخية ورحلات الاستكشاف، ودوّر بينها. اختر واقعة محددة في مكان وزمن محددين، لا سردًا عامًا عن حضارة. ابدأ بكلمات قوية ومباشرة خلال أول ثانيتين، بلا تحية أو مقدمة. لا تكتب إعلانًا تشويقيًا أو مقتطفًا مستقلًا ولا تقسّم القصة إلى أجزاء؛ اروِ الحدث كاملًا واختم بنتيجته وما بقي مجهولًا بوضوح. '
             "لا تتناول الأنبياء أو الصحابة أو الشخصيات الدينية. المصادر والتقارير ليست مطلوبة؛ لا تختلقها. "
             "لا تختلق الأحداث أو الحوارات. أعد نصًا عاديًا بهذه الحقول: "
@@ -1230,7 +1230,7 @@ def build_story_prompt(
         "دون نسخ عناوينها؛ وإلا اعتمد على محتوى القناة. بيانات التدوير داخلية ولا تذكر أي أرقام أو معرّفات "
         "في narration.\n\n"
         f"⚠️ الطول والفيديو: اكتب narration كاملة واحدة (تمهيد+تصعيد+ذروة+خاتمة) لفيديو عمودي 9:16 في حدود "
-        f"{target_words} كلمة عربية تقريبًا، ولا تتجاوز {MAX_NARRATION_WORDS} كلمة أو 180 ثانية بعد تحويلها لصوت. ممنوع الريل أو المقتطف أو تقسيم القصة إلى أجزاء. لو المصدر مش فيه تفاصيل كافية "
+        f"{target_words} كلمة عربية تقريبًا، ولا تتجاوز {MAX_NARRATION_WORDS} كلمة أو 180 ثانية بعد تحويلها لصوت، ويجب أن يبلغ الصوت النهائي 90 ثانية على الأقل. ممنوع الريل أو المقتطف أو تقسيم القصة إلى أجزاء. لو المصدر مش فيه تفاصيل كافية "
         "توصلك للرقم ده بالظبط، اقفل القصة بخاتمة حقيقية بدل ما تحشو "
         "تفاصيل غير موثقة — القصة الكاملة والمتماسكة أهم من الوصول لرقم "
         "كلمات بعينه. لازم آخر جملة تنتهي بعلامة ترقيم واضحة (نقطة أو "

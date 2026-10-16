@@ -5,21 +5,12 @@ on:
   workflow_dispatch:
     inputs:
       voice_profile:
-        description: "اختر صوت الراوي لهذا الفيديو"
+        description: "الصوت المصري الثابت المستخدم في كل الحلقات"
         required: false
         type: choice
         default: octopus_narrator
         options:
           - octopus_narrator
-          - auto
-          - mohamed_elbed
-          - rafik_sa
-          - egyptian_female
-          - hossam
-          - hossam_uploaded
-          - marwan
-          - nassim
-          - ahmed_z
       stock_date:
         description: 'Cairo date(s): YYYY-MM-DD or 13,14,15-10-2026; each slot gets its own video'
         required: false
@@ -219,8 +210,8 @@ jobs:
         if: steps.checked_text.outputs.usable != 'true'
         env:
           HISTORY_SOURCE_GATE_ENABLED: "false"
-          ACCEPTABLE_MIN_WORDS: "180"
-          MAX_NARRATION_WORDS: "300"
+          ACCEPTABLE_MIN_WORDS: "240"
+          MAX_NARRATION_WORDS: "420"
         run: python scripts/select_prepared_history.py
 
       - name: Validate and resolve AI model policy
@@ -267,10 +258,10 @@ jobs:
           GEMINI_THINKING_BUDGET: "0"
           STORY_MAX_TOKENS: "8000"
           FINALIZE_MAX_TOKENS: "4000"
-          TARGET_WORDS: "250"
-          MAX_NARRATION_WORDS: "300"
-          ACCEPTABLE_MIN_WORDS: "180"
-          OPENROUTER_MIN_WORDS: "180"
+          TARGET_WORDS: "320"
+          MAX_NARRATION_WORDS: "420"
+          ACCEPTABLE_MIN_WORDS: "240"
+          OPENROUTER_MIN_WORDS: "240"
           # Keep the recovery path enabled: fallback models can return a
           # short narration without terminal punctuation even when the
           # content is otherwise usable. The generator then requests a
@@ -317,7 +308,7 @@ jobs:
           TTS_ENGINE: "silma"
           EDGE_TTS_VOICES: "ar-EG-ShakirNeural"
           EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
-          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'octopus_narrator' }}
+          SILMA_REFERENCE_PROFILE: "octopus_narrator"
           SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
           SILMA_SPEED: "1.0"
           SILMA_GUARD_ENABLED: "true"
@@ -476,4 +467,3 @@ jobs:
             state/publication_stock.json
           if-no-files-found: ignore
           retention-days: 14
-
