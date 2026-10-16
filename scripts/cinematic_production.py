@@ -775,10 +775,10 @@ def write_scene_overlays(scenes: list[dict], path: Path, cfg: dict) -> None:
         title = _beat_ass_text(scene.get("title") or scene.get("topic") or "", 24)
         caption = _beat_ass_text(scene.get("caption") or scene.get("text") or "", 30)
         if title:
-            title_text = rtl_ass_text(title)
+            title_text = title
             rows.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.04))},BeatTitle,,0,0,0,,{{\\an8\\pos(540,300)\\fad(180,180)}}{title_text}")
         if caption:
-            caption_text = rtl_ass_text(caption)
+            caption_text = caption
             rows.append(f"Dialogue: 0,{ass_time(start)},{ass_time(max(end, start + 0.04))},BeatCaption,,0,0,0,,{{\\an5\\pos(540,1570)\\fad(180,180)\\q2}}{caption_text}")
     path.write_text("\n".join(rows) + "\n", encoding="utf-8")
 
