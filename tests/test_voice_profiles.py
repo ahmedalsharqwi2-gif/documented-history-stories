@@ -13,7 +13,8 @@ class VoiceProfileResolverTests(unittest.TestCase):
     def test_resolves_all_bundled_profiles_and_exact_transcripts(self):
         catalog_path = ROOT / "assets/voices/voice_profiles.json"
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
-        self.assertEqual(len(catalog["profiles"]), 8)
+        self.assertEqual(len(catalog["profiles"]), 9)
+        self.assertIn("octopus_narrator", catalog["profiles"])
         for key in catalog["profiles"]:
             with self.subTest(profile=key):
                 selected, label, wav, transcript = resolve_reference_profile(key, catalog_path, ROOT)
