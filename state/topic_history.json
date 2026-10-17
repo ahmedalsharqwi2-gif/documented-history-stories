@@ -354,12 +354,13 @@
       "title": "أَحْجِيَةُ رُوَانُوكَ المَنْحُوتَةُ",
       "hook": "المُسْتَوْطِنَةُ الَّتِي تَرَكَتْ كَلِمَةً وَاحِدَةً خَلْفَهَا غَامِضَةً عَلَى سَاحِلِ أَمْرِيكَا الشَّمَالِيَّةِ فِي عَامِ سِتَّةٍ وَثَمَانِينَ وَخَمْسِمِائَةٍ وَأَلْفٍ.",
       "region": "رُوَانُوكَ، أَمْرِيكَا الشَّمَالِيَّةُ",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "8e3b1f78057a478e9d4047e893f560c2",
       "reserved_at": "2026-10-17T08:56:00Z",
       "run_id": "39018206029",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "8e3b1f78057a478e9d4047e893f560c2",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-17T08:56:11Z"
     }
   ]
 }
