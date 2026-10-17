@@ -54,11 +54,11 @@ SILMA_REFERENCE_TEXT = os.getenv(
     "SILMA_REFERENCE_TEXT",
     "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة.",
 ).strip()
-SILMA_REFERENCE_PROFILE = os.getenv("SILMA_REFERENCE_PROFILE", "").strip()
+SILMA_REFERENCE_PROFILE = os.getenv("SILMA_REFERENCE_PROFILE", "octopus_narrator").strip()
 SILMA_VOICE_PROFILES_FILE = Path(
     os.getenv("SILMA_VOICE_PROFILES_FILE", "assets/voices/voice_profiles.json")
 )
-SILMA_SPEED = float(os.getenv("SILMA_SPEED", "0.96"))
+SILMA_SPEED = float(os.getenv("SILMA_SPEED", "1.0"))
 SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
 SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
 
@@ -362,7 +362,7 @@ def detect_silma_reference_leak(audio_path: Path) -> str | None:
     if not SILMA_GUARD_ENABLED or not SILMA_REFERENCE_TEXT:
         return None
     from faster_whisper import WhisperModel
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+    model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
     segments, _ = model.transcribe(str(audio_path), language="ar", word_timestamps=False, vad_filter=False)
     heard = _norm_arabic_words(" ".join(seg.text or "" for seg in segments))
     ref = _norm_arabic_words(SILMA_REFERENCE_TEXT)
@@ -430,7 +430,7 @@ async def synthesize_sentences(sentences: list[str], engine_override: str | None
         try:
             return synthesize_sentences_silma(sentences)
         except Exception as exc:
-            if engine_override is None and os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() == "true":
+            if engine_override is None and os.getenv("SILMA_FALLBACK_TO_EDGE", "false").lower() == "true":
                 print(f"⚠️ تعذر SILMA ({exc}) — الرجوع إلى Edge TTS.")
                 return await synthesize_sentences(sentences, "edge")
             raise
@@ -788,7 +788,7 @@ def synthesize_voice(voice_text: str) -> None:
             print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}).")
             leak = "whisper_guard_error"
         if leak:
-            if os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
+            if os.getenv("SILMA_FALLBACK_TO_EDGE", "false").lower() != "true":
                 raise RuntimeError(
                     f"تعذر اعتماد ملف SILMA للصوت المختار ({leak})، ولن أستبدله بصوت Edge مختلف."
                 )
@@ -809,7 +809,7 @@ def synthesize_voice(voice_text: str) -> None:
         # large portion of a long Arabic episode. Do not publish that audio;
         # regenerate the complete narration with deterministic Edge TTS and
         # run the same ASR gate again.
-        if TTS_ENGINE != "silma" or os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
+        if TTS_ENGINE != "silma" or os.getenv("SILMA_FALLBACK_TO_EDGE", "false").lower() != "true":
             raise
         print(f"⚠️ فشل تطابق SILMA مع النص ({exc}) — إعادة التوليد كاملًا بـEdge TTS.")
         for segment in segments:

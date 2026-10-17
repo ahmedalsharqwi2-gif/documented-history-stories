@@ -5,20 +5,12 @@ on:
   workflow_dispatch:
     inputs:
       voice_profile:
-        description: "اختر صوت الراوي لهذا الفيديو"
+        description: "الصوت المصري الثابت المستخدم في كل الحلقات"
         required: false
         type: choice
-        default: auto
+        default: octopus_narrator
         options:
-          - auto
-          - mohamed_elbed
-          - rafik_sa
-          - egyptian_female
-          - hossam
-          - hossam_uploaded
-          - marwan
-          - nassim
-          - ahmed_z
+          - octopus_narrator
       stock_date:
         description: 'Cairo date(s): YYYY-MM-DD or 13,14,15-10-2026; each slot gets its own video'
         required: false
@@ -95,8 +87,8 @@ jobs:
     # Publishing paused by owner request on 2026-10-17.
     if: ${{ false }}
     env:
-      PREFER_FREE_GOOGLE_TTS: 'true'
-      FREE_GOOGLE_TTS_ENABLED: 'true'
+      PREFER_FREE_GOOGLE_TTS: 'false'
+      FREE_GOOGLE_TTS_ENABLED: 'false'
       PUBLICATION_RECEIPTS_ENABLED: 'true'
       PUBLISH_IMMEDIATE: ${{ inputs.publish_now && matrix.date == '' }}
       PRODUCTION_MEDIA_ID: ${{ format('{0}-{1}-{2}', github.run_id, matrix.date, matrix.hour) }}
@@ -214,13 +206,16 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r scripts/requirements.txt
 
+      - name: Install Chromium for local Canvas scenes
+        run: python -m playwright install --with-deps chromium
+
       - name: Select reviewed unused reserve text
         id: reserve_text
         if: steps.checked_text.outputs.usable != 'true'
         env:
           HISTORY_SOURCE_GATE_ENABLED: "false"
-          ACCEPTABLE_MIN_WORDS: "180"
-          MAX_NARRATION_WORDS: "300"
+          ACCEPTABLE_MIN_WORDS: "240"
+          MAX_NARRATION_WORDS: "420"
         run: python scripts/select_prepared_history.py
 
       - name: Validate and resolve AI model policy
@@ -267,10 +262,10 @@ jobs:
           GEMINI_THINKING_BUDGET: "0"
           STORY_MAX_TOKENS: "8000"
           FINALIZE_MAX_TOKENS: "4000"
-          TARGET_WORDS: "250"
-          MAX_NARRATION_WORDS: "300"
-          ACCEPTABLE_MIN_WORDS: "180"
-          OPENROUTER_MIN_WORDS: "180"
+          TARGET_WORDS: "320"
+          MAX_NARRATION_WORDS: "420"
+          ACCEPTABLE_MIN_WORDS: "240"
+          OPENROUTER_MIN_WORDS: "240"
           # Keep the recovery path enabled: fallback models can return a
           # short narration without terminal punctuation even when the
           # content is otherwise usable. The generator then requests a
@@ -292,12 +287,12 @@ jobs:
 
       - name: Arabic preflight gates (documented history)
         env:
-          EDGE_TTS_VOICE: "ar-SA-HamedNeural"
+          EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
           TTS_ENGINE: "silma"
         run: |
           test -f state/current_episode.json || { echo "TEXT_GATE: episode artifact missing"; exit 1; }
           TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
-          python -m arabic_speech_core.cli preflight --text "$TEXT" --engine edge --locale ar-SA --voice "$EDGE_TTS_VOICE" --lexicon config/arabic_pronunciation.json --min-words 20 --max-words 1200
+          python -m arabic_speech_core.cli preflight --text "$TEXT" --engine edge --locale ar-EG --voice "$EDGE_TTS_VOICE" --lexicon config/arabic_pronunciation.json --min-words 20 --max-words 1200
 
       - name: History editorial scope gate (sources optional)
         run: python scripts/source_integrity_gate.py --episode state/current_episode.json
@@ -315,14 +310,14 @@ jobs:
       - name: Generate narration with the selected SILMA reference voice
         env:
           TTS_ENGINE: "silma"
-          EDGE_TTS_VOICES: "ar-SA-HamedNeural"
-          EDGE_TTS_VOICE: "ar-SA-HamedNeural"
-          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
+          EDGE_TTS_VOICES: "ar-EG-ShakirNeural"
+          EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
+          SILMA_REFERENCE_PROFILE: "octopus_narrator"
           SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
-          SILMA_SPEED: "0.96"
+          SILMA_SPEED: "1.0"
           SILMA_GUARD_ENABLED: "true"
           SILMA_GUARD_MIN_MATCH_WORDS: "4"
-          SILMA_FALLBACK_TO_EDGE: "true"
+          SILMA_FALLBACK_TO_EDGE: "false"
           WHISPER_MODEL: "small"
           # Whisper occasionally under-recognizes long Arabic SILMA output;
           # Edge's synthesized Arabic can be valid while Whisper misses
@@ -476,4 +471,3 @@ jobs:
             state/publication_stock.json
           if-no-files-found: ignore
           retention-days: 14
-
