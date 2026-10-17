@@ -341,12 +341,13 @@
       "title": "حَرِيقُ لَنْدَنَ الكَبِير: وِلَادَةُ العَاصِمَةِ مِنَ الرَّمَادِ",
       "hook": "كَيْفَ غَيَّرَ حَرِيقٌ وَاحِدٌ شَكْلَ مَدِينَةٍ بِأَكْمَلِهَا، بَعْدَمَا الْتَهَمَتِ النِّيرَانُ قَلْبَ لَنْدَنَ فِي أَرْبَعَةِ أَيَّامٍ عَاصِفَةٍ؟",
       "region": "لندن، إنجلترا",
-      "status": "reserved",
+      "status": "published",
       "source": "workflow",
-      "reservation_id": "733ff1639a5e45d196e7a6dc669c8a56",
       "reserved_at": "2026-10-17T04:46:59Z",
       "run_id": "39001952707",
-      "repository": "ahmedalsharqwi2-gif/documented-history-stories"
+      "reservation_id": "733ff1639a5e45d196e7a6dc669c8a56",
+      "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+      "published_at": "2026-10-17T04:47:11Z"
     }
   ]
 }
