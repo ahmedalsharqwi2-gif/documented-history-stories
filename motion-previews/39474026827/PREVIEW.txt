@@ -1,0 +1,1 @@
+First scene only; 720x1280 preview. Full 1080x1920 episode renders separately.

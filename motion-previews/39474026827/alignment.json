@@ -1,0 +1,16 @@
+[
+  {
+    "matched_word_fraction": 0.7778,
+    "exact_word_fraction": 0.7222,
+    "near_spelling_matches": [
+      {
+        "expected": "اتحاصرت",
+        "recognized": "اتحصرت",
+        "similarity": 0.9231
+      }
+    ],
+    "recognized_text": "في ميو سنة 1940 قوات الحلفاء اتحصرت عن دونكراك في شمال فرنسا وبقى البحر طريق النجاه",
+    "timing": "ASR anchors; known digit-form numbers expanded within their recognized spans; long near-spelling matches in equal-length replacement blocks; bounded interpolation for unmatched tokens",
+    "part": 0
+  }
+]

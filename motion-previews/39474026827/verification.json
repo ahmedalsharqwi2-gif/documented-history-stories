@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "duration_seconds": 8.49,
+  "width": 720,
+  "height": 1280,
+  "fps": 30,
+  "decoded_complete": true,
+  "scene_count": 1,
+  "word_count": 18,
+  "voice": "New VoiceTut Mohammed speech, four independent segments; no reference-video voice recording",
+  "voice_pcm_before_mix_sha256": "35e090ab665c452e9c19c26d03e0e556db42e077f2597a1208ec82d5c95577c9",
+  "music_file": "assets/music/history_archive_reflection.mp3",
+  "music_sha256": "44140e98b18f64dace1675f7c16c9c1f3d5afa70db83284ae94287877677ec15",
+  "audio_mix": "Narration -16 LUFS, music -26 LUFS before sidechain ducking, original air-sweep SFX on selected events, peak limiter",
+  "sfx_events_seconds": [
+    0.0
+  ],
+  "visuals": "SVG motion graphics, real Natural Earth coastlines, schematic ship positions and routes",
+  "caption_timing": "Whisper small anchors with bounded interpolation. Automatic timing requires user review.",
+  "video_sha256": "617bd94394203284c5e7c51db4447fbdea4c51d60b9f3901aae451156ac6a721",
+  "status": "first_scene_preview_not_full_episode"
+}

@@ -1,0 +1,44 @@
+{
+  "title": "دنكرك: القوارب الصغيرة وإنقاذ جيش",
+  "topic": "Dunkirk evacuation 1940",
+  "script_origin": "Codex prepared Egyptian script, based on reviewed source facts",
+  "text_model": null,
+  "provider_attempts": [
+    {
+      "model": "gemini-flash-lite-latest",
+      "http_status": 503
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "http_status": 503
+    }
+  ],
+  "scenes": [
+    {
+      "id": "beach",
+      "title": "البحر طريق النجاة",
+      "narration": "في مايو سنة ألف وتسعمية وأربعين، قوات الحلفاء اتحاصرت عند دنكرك في شمال فرنسا، وبقى البحر طريق النجاة."
+    },
+    {
+      "id": "evacuation",
+      "title": "دور القوارب الصغيرة",
+      "narration": "السفن الكبيرة ما كانتش بتوصل لكل مكان على الشاطئ. هنا ظهر دور القوارب الصغيرة، اللي ساعدت تنقل الجنود للسفن."
+    },
+    {
+      "id": "boats",
+      "title": "مدنيون وبحرية",
+      "narration": "قوارب صيد ويخوت ومراكب مدنية شاركت جنب البحرية. عملية الإجلاء استمرت من أواخر مايو لحد أربعة يونيو."
+    },
+    {
+      "id": "return",
+      "title": "إنقاذ أكثر من ٣٣٨ ألف",
+      "narration": "في النهاية، اتنقذ أكتر من تلتمية تمانية وتلاتين ألف جندي. انسحاب دنكرك ما كانش انتصار عسكري، لكنه أنقذ قوات تقدر تكمل القتال."
+    }
+  ],
+  "sources": [
+    "https://www.english-heritage.org.uk/visit/places/dover-castle/history-and-stories/operation-dynamo-things-you-need-to-know/",
+    "https://www.royalnavy.mod.uk/news/2025/february/05/250205-royal-navy-to-escort-dunkirk-little-ships-for-85th-anniversary"
+  ],
+  "visuals_origin": "Code-native SVG motion graphics; real Natural Earth coastline; illustrative routes",
+  "status": "preview_for_user_review"
+}
