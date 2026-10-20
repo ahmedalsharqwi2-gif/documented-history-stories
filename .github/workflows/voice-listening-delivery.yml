@@ -1,0 +1,58 @@
+name: Deliver Labeled Voice Comparisons
+on:
+  workflow_run:
+    workflows: ['Complete Voice Listening Lab and Tail Repair']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions: {contents: write, actions: read}
+jobs:
+  deliver:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SOURCE_RUN: ${{ github.event.workflow_run.id || '39506881549' }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: voice-lab-*
+          merge-multiple: true
+          path: voice-comparisons/generated
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: all-original-library-voices
+          path: voice-comparisons/catalogue
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: alternative-engine-tests
+          path: voice-comparisons/alternative
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+          python audio_repair/listening_pack.py
+      - uses: actions/upload-artifact@v4
+        with: {name: labeled-voice-comparisons, path: listening-pack/, retention-days: 30}
+      - name: Save listenable comparisons with visible voice names
+        env:
+          RESULT_BRANCH: codex/listening-pack-${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_id }}
+        run: |
+          target="voice-listening/$RUN_NUMBER"
+          mkdir -p "$target"
+          cp -r listening-pack/* "$target/"
+          git fetch origin main
+          git switch --discard-changes -c "$RESULT_BRANCH" origin/main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          git commit -m "Deliver labeled fresh voice comparisons and separately identified original library references"
+          git push origin "$RESULT_BRANCH"
