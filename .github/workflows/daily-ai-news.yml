@@ -88,3 +88,4 @@ jobs:
             output/narration.source.json
             output/timing.json
           key: ai-news-checkpoint-${{ github.run_id }}-${{ github.run_attempt }}
+# Editorial repair is bounded to one targeted correction, never a full provider loop.
