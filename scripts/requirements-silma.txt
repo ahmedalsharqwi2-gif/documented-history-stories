@@ -1,3 +1,0 @@
-# Install this file in a dedicated virtual environment.
-# SILMA's official package includes its F5-TTS-based inference dependencies.
-silma-tts
