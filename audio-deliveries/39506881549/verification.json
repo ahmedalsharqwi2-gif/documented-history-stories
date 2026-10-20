@@ -1,0 +1,13 @@
+{
+  "audio_seconds": 186.933,
+  "video_seconds": 186.933333,
+  "difference_seconds": -0.0003330000000119071,
+  "last_speech_window_correlation": 0.9992923561270523,
+  "audio_tail_checked": true,
+  "silence_padding_used_to_hide_lost_speech": false,
+  "video_sha256": "19f10b60f8b79c4f94284d58e852bbba144f4b48e0d14595ac9d7a7ea8be120e",
+  "fix": "Normalize voice/music to full-length 48 kHz PCM before sidechain mixing; reject duration drift and missing ending words",
+  "pronunciation_changed": false,
+  "full_decode_passed": true,
+  "voice": "Original Youssef narration retained; this fixes tail truncation only"
+}
