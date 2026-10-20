@@ -1,0 +1,36 @@
+{
+  "attempts": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 1,
+      "validation_error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 2,
+      "validation_error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 3,
+      "validation_error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 4,
+      "validation_error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 5,
+      "validation_error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 6,
+      "validation_error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions"
+    }
+  ],
+  "error": "Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions",
+  "substitute_used": false
+}

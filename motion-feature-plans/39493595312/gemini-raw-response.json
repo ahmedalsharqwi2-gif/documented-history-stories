@@ -1,0 +1,38 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "{\n  \"title\": \"قصة إنقاذ معابد أبو سمبل\",\n  \"scenes\": [\n    {\n      \"narration\": \"إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سمبل في جنوب مصر اللي بتورينا العزيمة.\",\n      \"title\": \"موقع المعابد\",\n      \"highlight\": \"جنوب مصر\",\n      \"visual_type\": \"temple\",\n      \"labels\": [\n        \"أبو سمبل\",\n        \"النوبة\"\n      ],\n      \"source_ids\": [\n        \"mota\"\n      ]\n    },\n    {\n      \"narration\": \"سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رمسيس التاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر.\",\n      \"title\": \"خطر الغرق\",\n      \"highlight\": \"ارتفاع الميه\",\n      \"visual_type\": \"water\",\n      \"labels\": [\n        \"بحيرة ناصر\",\n        \"خطر الغرق\"\n      ],\n      \"source_ids\": [\n        \"mota\",\n        \"unesco_rescue\"\n      ]\n    },\n    {\n      \"narration\": \"الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.\",\n      \"title\": \"طلب النجدة\",\n      \"highlight\": \"دور اليونسكو\",\n      \"visual_type\": \"map\",\n      \"labels\": [\n        \"مصر\",\n        \"السودان\"\n      ],\n      \"source_ids\": [\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"عملية إنقاذ أبو سمبل بدأت سنة {start_year}، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة.\",\n      \"title\": \"بداية العمل\",\n      \"highlight\": \"عام ١٩٦٤\",\n      \"visual_type\": \"timeline\",\n      \"labels\": [\n        \"بدء العمل\"\n      ],\n      \"source_ids\": [\n        \"unesco_rescue\",\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير.\",\n      \"title\": \"فريق الخبراء\",\n      \"highlight\": \"تعاون دولي\",\n      \"visual_type\": \"network\",\n      \"labels\": [\n        \"مهندسين\",\n        \"علماء آثار\"\n      ],\n      \"source_ids\": [\n        \"unesco_rescue\",\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"الواجهة فيها تماثيل ضخمة لرمسيس التاني، وفيه تمثال اتقص في القديم، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة.\",\n      \"title\": \"واجهة المعبد\",\n      \"highlight\": \"تماثيل ضخمة\",\n      \"visual_type\": \"cutaway\",\n      \"labels\": [\n        \"تماثيل رمسيس\"\n      ],\n      \"source_ids\": [\n        \"mota\"\n      ]\n    },\n    {\n      \"narration\": \"الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص.\",\n      \"title\": \"التوثيق الدقيق\",\n      \"highlight\": \"تسجيل القطع\",\n      \"visual_type\": \"grid\",\n      \"labels\": [\n        \"أرقام القطع\",\n        \"التوثيق\"\n      ],\n      \"source_ids\": [\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل.\",\n      \"title\": \"تقطيع الصخور\",\n      \"highlight\": \"تقسيم البلوكات\",\n      \"visual_type\": \"blocks\",\n      \"labels\": [\n        \"تفكيك\",\n        \"قطع صخرية\"\n      ],\n      \"source_ids\": [\n        \"unesco_rescue\",\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق.\",\n      \"title\": \"عمليات النقل\",\n      \"highlight\": \"رفع الحجار\",\n      \"visual_type\": \"crane\",\n      \"labels\": [\n        \"معدات رفع\",\n        \"نقل آمن\"\n      ],\n      \"source_ids\": [\n        \"unesco_rescue\"\n      ]\n    },\n    {\n      \"narration\": \"المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي {height} متر فوق المستوى القديم، وحوالي {setback} متر جوه البر.\",\n      \"title\": \"الموقع الجديد\",\n      \"highlight\": \"ارتفاع جديد\",\n      \"visual_type\": \"distance\",\n      \"labels\": [\n        \"٦٥ متر\",\n        \"٢٠٠ متر\"\n      ],\n      \"source_ids\": [\n        \"unesco_rescue\"\n      ]\n    },\n    {\n      \"narration\": \"المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً.\",\n      \"title\": \"إعادة التركيب\",\n      \"highlight\": \"تجميع البلوكات\",\n      \"visual_type\": \"assembly\",\n      \"labels\": [\n        \"تركيب\",\n        \"بناء من جديد\"\n      ],\n      \"source_ids\": [\n        \"unesco_rescue\",\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت.\",\n      \"title\": \"التل الصناعي\",\n      \"highlight\": \"صخور صناعية\",\n      \"visual_type\": \"cutaway\",\n      \"labels\": [\n        \"تل صخري\"\n      ],\n      \"source_ids\": [\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه.\",\n      \"title\": \"دخول الشمس\",\n      \"highlight\": \"ضوء الشمس\",\n      \"visual_type\": \"sun\",\n      \"labels\": [\n        \"قدس الأقداس\",\n        \"مرتين بالسنة\"\n      ],\n      \"source_ids\": [\n        \"mota\"\n      ]\n    },\n    {\n      \"narration\": \"في سبتمبر سنة {end_year} خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض.\",\n      \"title\": \"الافتتاح الرسمي\",\n      \"highlight\": \"سبتمبر ١٩٦٨\",\n      \"visual_type\": \"legacy\",\n      \"labels\": [\n        \"افتتاح المعابد\"\n      ],\n      \"source_ids\": [\n        \"unesco_campaign\",\n        \"mota\"\n      ]\n    },\n    {\n      \"narration\": \"التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم.\",\n      \"title\": \"حماية التراث\",\n      \"highlight\": \"اتفاقية دولية\",\n      \"visual_type\": \"network\",\n      \"labels\": [\n        \"التراث العالمي\",\n        \"اليونسكو\"\n      ],\n      \"source_ids\": [\n        \"unesco_campaign\"\n      ]\n    },\n    {\n      \"narration\": \"حكاية أبو سمبل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها.\",\n      \"title\": \"خلاصة الحكاية\",\n      \"highlight\": \"حفظ التاريخ\",\n      \"visual_type\": \"temple\",\n      \"labels\": [\n        \"أبو سمبل\",\n        \"مصر\"\n      ],\n      \"source_ids\": [\n        \"mota\",\n        \"unesco_rescue\",\n        \"unesco_campaign\"\n      ]\n    }\n  ]\n}",
+            "thoughtSignature": "EmAKXgFpFH0T6PaJ+iRt8Ot1alKEWp1e9lSfA/h4/3+eePBmNa7+I4uOiSvjTzPj2q97WUk6foay2kMTKOVcQCg2XQjCzdcp09KLCPv8ljzvEeKUDYyBQF11RoGs2kIHWt0="
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 14712,
+    "candidatesTokenCount": 2140,
+    "totalTokenCount": 16852,
+    "cachedContentTokenCount": 10598,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14712
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 10598
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-flash-lite",
+  "responseId": "PNHXaoepNY2YjMcPy_W9sAU"
+}
