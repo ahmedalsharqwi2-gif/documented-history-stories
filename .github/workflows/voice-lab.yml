@@ -1,0 +1,74 @@
+name: New Egyptian Voice Sample
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'voice_lab/**'
+      - '.github/workflows/voice-lab.yml'
+permissions:
+  contents: read
+concurrency:
+  group: new-egyptian-voice-sample
+  cancel-in-progress: false
+jobs:
+  synthesize-new-text:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      HF_HUB_DISABLE_XET: '1'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - name: Cache speech model downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/huggingface
+            ~/.cache/torch
+            ~/.cache/cached_path
+          key: silma-small-2816b5a548c3ccdeea389ebc2db2d246a25d01fd-cpu-v1
+      - name: Install CPU PyTorch and compatible synthesis dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'torch==2.8.0+cpu' 'torchaudio==2.8.0+cpu' 'torchvision==0.23.0+cpu' --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install 'numpy==1.26.4' 'transformers==4.51.3' 'torchcodec==0.7.0' 'git+https://github.com/SILMA-AI/silma-tts.git@2816b5a548c3ccdeea389ebc2db2d246a25d01fd'
+          python -m pip freeze > voice-lab-dependencies.txt
+      - name: Synthesize the new Egyptian paragraph with no fallback
+        run: python voice_lab/synthesize_sample.py
+      - name: Upload newly generated audio and provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: newly-synthesized-egyptian-voice
+          path: |
+            voice-lab-output/
+            voice-lab-dependencies.txt
+          if-no-files-found: error
+          retention-days: 14
+      - name: Save an independently playable sample on a result branch
+        env:
+          RESULT_BRANCH: codex/voice-sample-${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_id }}
+        run: |
+          target="voice-samples/generated/$RUN_NUMBER"
+          mkdir -p "$target"
+          cp voice-lab-output/sample.wav voice-lab-output/sample.mp3 voice-lab-output/new-text.txt voice-lab-output/generation.json "$target/"
+          git switch -c "$RESULT_BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          git commit -m "Add newly synthesized Egyptian paragraph and generation provenance"
+          git push origin "$RESULT_BRANCH"
+          echo "Result branch: $RESULT_BRANCH" >> "$GITHUB_STEP_SUMMARY"
