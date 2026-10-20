@@ -1,0 +1,371 @@
+{
+  "title": "قصة إنقاذ معابد أبو سمبل",
+  "scenes": [
+    {
+      "narration": "إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سمبل في جنوب مصر اللي بتورينا العزيمة.",
+      "title": "موقع المعابد",
+      "highlight": "جنوب مصر",
+      "visual_type": "temple",
+      "labels": [
+        "أبو سمبل",
+        "النوبة"
+      ],
+      "source_ids": [
+        "mota"
+      ],
+      "id": "scene-00",
+      "display_text": "إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سمبل في جنوب مصر اللي بتورينا العزيمة.",
+      "spoken_text": "إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سمبل في جنوب مصر اللي بتورينا العزيمة."
+    },
+    {
+      "narration": "سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رمسيس التاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر.",
+      "title": "خطر الغرق",
+      "highlight": "ارتفاع الميه",
+      "visual_type": "water",
+      "labels": [
+        "بحيرة ناصر",
+        "خطر الغرق"
+      ],
+      "source_ids": [
+        "mota",
+        "unesco_rescue"
+      ],
+      "id": "scene-01",
+      "display_text": "سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رمسيس التاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر.",
+      "spoken_text": "سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رمسيس التاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر."
+    },
+    {
+      "narration": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+      "title": "طلب النجدة",
+      "highlight": "دور اليونسكو",
+      "visual_type": "map",
+      "labels": [
+        "مصر",
+        "السودان"
+      ],
+      "source_ids": [
+        "unesco_campaign"
+      ],
+      "id": "scene-02",
+      "display_text": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+      "spoken_text": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة."
+    },
+    {
+      "narration": "عملية إنقاذ أبو سمبل بدأت سنة {start_year}، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة.",
+      "title": "بداية العمل",
+      "highlight": "عام ١٩٦٤",
+      "visual_type": "timeline",
+      "labels": [
+        "بدء العمل"
+      ],
+      "source_ids": [
+        "unesco_rescue",
+        "unesco_campaign"
+      ],
+      "id": "scene-03",
+      "display_text": "عملية إنقاذ أبو سمبل بدأت سنة ألف تسعمية أربعة وستين، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة.",
+      "spoken_text": "عملية إنقاذ أبو سمبل بدأت سنة أَلْف تِسْعُمِيَّة أَرْبَعَة وَسِتِّين، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة."
+    },
+    {
+      "narration": "هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير.",
+      "title": "فريق الخبراء",
+      "highlight": "تعاون دولي",
+      "visual_type": "network",
+      "labels": [
+        "مهندسين",
+        "علماء آثار"
+      ],
+      "source_ids": [
+        "unesco_rescue",
+        "unesco_campaign"
+      ],
+      "id": "scene-04",
+      "display_text": "هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير.",
+      "spoken_text": "هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير."
+    },
+    {
+      "narration": "الواجهة فيها تماثيل ضخمة لرمسيس التاني، وفيه تمثال اتضرر في العصور القديمة، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة.",
+      "title": "واجهة المعبد",
+      "highlight": "تماثيل ضخمة",
+      "visual_type": "cutaway",
+      "labels": [
+        "تماثيل رمسيس"
+      ],
+      "source_ids": [
+        "mota"
+      ],
+      "id": "scene-05",
+      "display_text": "الواجهة فيها تماثيل ضخمة لرمسيس التاني، وفيه تمثال اتضرر في العصور القديمة، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة.",
+      "spoken_text": "الواجهة فيها تماثيل ضخمة لرمسيس التاني، وفيه تمثال اتضرر في العصور القديمة، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة."
+    },
+    {
+      "narration": "الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص.",
+      "title": "التوثيق الدقيق",
+      "highlight": "تسجيل القطع",
+      "visual_type": "grid",
+      "labels": [
+        "أرقام القطع",
+        "التوثيق"
+      ],
+      "source_ids": [
+        "unesco_campaign"
+      ],
+      "id": "scene-06",
+      "display_text": "الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص.",
+      "spoken_text": "الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص."
+    },
+    {
+      "narration": "المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل.",
+      "title": "تقطيع الصخور",
+      "highlight": "تقسيم البلوكات",
+      "visual_type": "blocks",
+      "labels": [
+        "تفكيك",
+        "قطع صخرية"
+      ],
+      "source_ids": [
+        "unesco_rescue",
+        "unesco_campaign"
+      ],
+      "id": "scene-07",
+      "display_text": "المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل.",
+      "spoken_text": "المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل."
+    },
+    {
+      "narration": "معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق.",
+      "title": "عمليات النقل",
+      "highlight": "رفع الحجار",
+      "visual_type": "crane",
+      "labels": [
+        "معدات رفع",
+        "نقل آمن"
+      ],
+      "source_ids": [
+        "unesco_rescue"
+      ],
+      "id": "scene-08",
+      "display_text": "معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق.",
+      "spoken_text": "معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق."
+    },
+    {
+      "narration": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي {height} متر فوق المستوى القديم، وحوالي {setback} متر جوه البر.",
+      "title": "الموقع الجديد",
+      "highlight": "ارتفاع جديد",
+      "visual_type": "distance",
+      "labels": [
+        "٦٥ متر",
+        "٢٠٠ متر"
+      ],
+      "source_ids": [
+        "unesco_rescue"
+      ],
+      "id": "scene-09",
+      "display_text": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي خمسة وستين متر فوق المستوى القديم، وحوالي ميتين متر جوه البر.",
+      "spoken_text": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي خَمْسَة وَسِتِّين متر فوق المستوى القديم، وحوالي مِيتِين متر جوه البر."
+    },
+    {
+      "narration": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً.",
+      "title": "إعادة التركيب",
+      "highlight": "تجميع البلوكات",
+      "visual_type": "assembly",
+      "labels": [
+        "تركيب",
+        "بناء من جديد"
+      ],
+      "source_ids": [
+        "unesco_rescue",
+        "unesco_campaign"
+      ],
+      "id": "scene-10",
+      "display_text": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً.",
+      "spoken_text": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً."
+    },
+    {
+      "narration": "فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت.",
+      "title": "التل الصناعي",
+      "highlight": "صخور صناعية",
+      "visual_type": "cutaway",
+      "labels": [
+        "تل صخري"
+      ],
+      "source_ids": [
+        "unesco_campaign"
+      ],
+      "id": "scene-11",
+      "display_text": "فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت.",
+      "spoken_text": "فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت."
+    },
+    {
+      "narration": "المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه.",
+      "title": "دخول الشمس",
+      "highlight": "ضوء الشمس",
+      "visual_type": "sun",
+      "labels": [
+        "قدس الأقداس",
+        "مرتين بالسنة"
+      ],
+      "source_ids": [
+        "mota"
+      ],
+      "id": "scene-12",
+      "display_text": "المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه.",
+      "spoken_text": "المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه."
+    },
+    {
+      "narration": "في سبتمبر سنة {end_year} خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض.",
+      "title": "الافتتاح الرسمي",
+      "highlight": "سبتمبر ١٩٦٨",
+      "visual_type": "legacy",
+      "labels": [
+        "افتتاح المعابد"
+      ],
+      "source_ids": [
+        "unesco_campaign",
+        "mota"
+      ],
+      "id": "scene-13",
+      "display_text": "في سبتمبر سنة ألف تسعمية تمانية وستين خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض.",
+      "spoken_text": "في سبتمبر سنة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض."
+    },
+    {
+      "narration": "التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم.",
+      "title": "حماية التراث",
+      "highlight": "اتفاقية دولية",
+      "visual_type": "network",
+      "labels": [
+        "التراث العالمي",
+        "اليونسكو"
+      ],
+      "source_ids": [
+        "unesco_campaign"
+      ],
+      "id": "scene-14",
+      "display_text": "التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم.",
+      "spoken_text": "التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم."
+    },
+    {
+      "narration": "حكاية أبو سمبل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها.",
+      "title": "خلاصة الحكاية",
+      "highlight": "حفظ التاريخ",
+      "visual_type": "temple",
+      "labels": [
+        "أبو سمبل",
+        "مصر"
+      ],
+      "source_ids": [
+        "mota",
+        "unesco_rescue",
+        "unesco_campaign"
+      ],
+      "id": "scene-15",
+      "display_text": "حكاية أبو سمبل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها.",
+      "spoken_text": "حكاية أبو سمبل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها."
+    }
+  ],
+  "word_count": 350,
+  "script_origin": "Gemini API original narrative and storyboard; no locally authored fallback",
+  "requested_model": "gemini-3.5-flash-lite",
+  "response_model": "gemini-3.5-flash-lite",
+  "usage": {
+    "promptTokenCount": 5878,
+    "candidatesTokenCount": 2142,
+    "totalTokenCount": 8020,
+    "cachedContentTokenCount": 1934,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5878
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1934
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "sources": [
+    {
+      "id": "mota",
+      "url": "https://egymonuments.gov.eg/en/archaeological-sites/abu-simbel/",
+      "facts": [
+        "Abu Simbel is in Nubia in southern Egypt.",
+        "Ramesses II had the Great Temple cut into living rock.",
+        "Four seated colossal figures dominate the Great Temple facade; one was damaged in antiquity.",
+        "The nearby Small Temple is associated with Queen Nefertari.",
+        "The Great Temple admits sunlight into the inner sanctuary twice a year; do not claim royal birthdays or exact dates.",
+        "The temples were moved due to inundation risk linked to the Aswan High Dam; relocation was completed in 1968."
+      ]
+    },
+    {
+      "id": "unesco_rescue",
+      "url": "https://www.unesco.org/en/cultural-heritage-7-successes-unescos-preservation-work",
+      "facts": [
+        "The rising reservoir threatened the temples.",
+        "The rescue engineering operation began in 1964.",
+        "Specialists from different countries cooperated under UNESCO coordination.",
+        "The rock-cut site was carefully divided into blocks, dismantled, moved and reassembled.",
+        "The source describes the new location as 65 metres higher and 200 metres inland. Treat both as approximate rounded figures, using حوالي or نحو."
+      ]
+    },
+    {
+      "id": "unesco_campaign",
+      "url": "https://whc.unesco.org/en/story-abu-simbel/",
+      "facts": [
+        "Egypt and Sudan asked UNESCO to help protect Nubian heritage.",
+        "A wider Nubian monuments campaign launched in 1960.",
+        "Engineers, archaeologists, architects and other experts worked together.",
+        "Blocks were numbered and documented before reassembly.",
+        "An artificial rocky hill was constructed around the reassembled temples.",
+        "The relocated Abu Simbel temples were inaugurated in September 1968.",
+        "The rescue helped develop international heritage protection and the World Heritage Convention.",
+        "This is a story about conserving heritage alongside modern development, not rejecting the dam."
+      ]
+    }
+  ],
+  "numeric_policy": {
+    "note": "UNESCO pages use different rounded relocation distances (65/200 versus 64/180); this episode attributes approximate 65/200 to the UNESCO cultural-heritage overview, not exact surveying data.",
+    "tokens": {
+      "{start_year}": {
+        "value": 1964,
+        "display": "١٩٦٤",
+        "spoken": "أَلْف تِسْعُمِيَّة أَرْبَعَة وَسِتِّين",
+        "plain": "ألف تسعمية أربعة وستين"
+      },
+      "{end_year}": {
+        "value": 1968,
+        "display": "١٩٦٨",
+        "spoken": "أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين",
+        "plain": "ألف تسعمية تمانية وستين"
+      },
+      "{height}": {
+        "value": 65,
+        "display": "٦٥",
+        "spoken": "خَمْسَة وَسِتِّين",
+        "plain": "خمسة وستين"
+      },
+      "{setback}": {
+        "value": 200,
+        "display": "٢٠٠",
+        "spoken": "مِيتِين",
+        "plain": "ميتين"
+      }
+    }
+  },
+  "provider_attempts": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 1,
+      "validation_error": "Replace these exact phrases: [\"اتقص في القديم\"]. Specifically اتقص في القديم must become اتضرر في العصور القديمة; the statue was damaged, not cut."
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 2,
+      "status": "accepted"
+    }
+  ],
+  "raw_response_sha256": "cda8735272127888072007283c0250b97505cf587d9a7d52467f8966491d7c42",
+  "minimum_video_seconds": 125,
+  "status": "preview_for_user_review"
+}

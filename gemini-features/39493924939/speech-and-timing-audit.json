@@ -1,0 +1,923 @@
+{
+  "frames": 5608,
+  "duration_seconds": 186.93333333333334,
+  "actual_narration_seconds": 184.14000000000001,
+  "speaker": "Youssef",
+  "part_metrics": [
+    {
+      "part": 0,
+      "start": 0.0,
+      "frames": 331,
+      "duration": 10.86,
+      "coverage": 0.8333333333333334,
+      "exact_coverage": 0.7916666666666666,
+      "near_spellings": [
+        {
+          "expected": "بتورينا",
+          "recognized": "بتوارينا"
+        }
+      ],
+      "transcript": "إزاي ممكن نزيح معبى الضخم منحوت في قلب الجبل عشان ميا البحيرة مش تغرقه  دي حكاية ابو سنبل في جنوب مصر اللي بتوارينا العزيمة",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 1,
+      "start": 11.033333333333333,
+      "frames": 407,
+      "duration": 13.38,
+      "coverage": 0.8333333333333334,
+      "exact_coverage": 0.8333333333333334,
+      "near_spellings": [],
+      "transcript": "سدة أسوان الجديد عمل خطر كبير ومية البحيرة علت  وبأتهدد معابد رمسيس الثاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 2,
+      "start": 24.6,
+      "frames": 334,
+      "duration": 10.97,
+      "coverage": 1.0,
+      "exact_coverage": 0.9523809523809523,
+      "near_spellings": [
+        {
+          "expected": "المساعدة",
+          "recognized": "المساسعدة"
+        }
+      ],
+      "transcript": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساسعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 3,
+      "start": 35.733333333333334,
+      "frames": 352,
+      "duration": 11.56,
+      "coverage": 1.0,
+      "exact_coverage": 0.96,
+      "near_spellings": [
+        {
+          "expected": "سمبل",
+          "recognized": "سيمبل"
+        }
+      ],
+      "transcript": "عملية إنقاذ أبو سيمبل بدأت سنة 1964  واتجمع خبراء من كل حتة في العالم  عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 4,
+      "start": 47.46666666666667,
+      "frames": 346,
+      "duration": 11.36,
+      "coverage": 0.9047619047619048,
+      "exact_coverage": 0.8095238095238095,
+      "near_spellings": [
+        {
+          "expected": "ومعماريين",
+          "recognized": "ومعمريين"
+        },
+        {
+          "expected": "يفككوا",
+          "recognized": "يفكوكوا"
+        }
+      ],
+      "transcript": "هندسة المشروع ما كانتش سهلة أبداً  مهندسين وعلماء آصار ومعمريين  اشتغلوا سوى سوى عشان يدرسوا ازاي يفكوكوا الصخور من غير تأثير كبير",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 5,
+      "start": 59.0,
+      "frames": 339,
+      "duration": 11.13,
+      "coverage": 0.8695652173913043,
+      "exact_coverage": 0.782608695652174,
+      "near_spellings": [
+        {
+          "expected": "الواجهة",
+          "recognized": "الوجهة"
+        },
+        {
+          "expected": "تماثيل",
+          "recognized": "تمثيل"
+        }
+      ],
+      "transcript": "الوجهة فيها تمثيل ضخمة لرمصيس تاني وفيه تمثال الضرر في العصور القديمة  وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 6,
+      "start": 70.3,
+      "frames": 340,
+      "duration": 11.17,
+      "coverage": 0.9523809523809523,
+      "exact_coverage": 0.9047619047619048,
+      "near_spellings": [
+        {
+          "expected": "المظبوط",
+          "recognized": "المزبوط"
+        }
+      ],
+      "transcript": "الناس وسقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المزبوط بكل حرص",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 7,
+      "start": 81.63333333333334,
+      "frames": 345,
+      "duration": 11.33,
+      "coverage": 0.9523809523809523,
+      "exact_coverage": 0.9047619047619048,
+      "near_spellings": [
+        {
+          "expected": "المنحوت",
+          "recognized": "المنحوط"
+        }
+      ],
+      "transcript": "المعبد المنحوط في الصخر اتقسم بعناية لشوية بلوكات عشان النقل  وكل بلوك اترقم وتعمل معاه كأنه قطعة تاريخية غالية على الكل",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 8,
+      "start": 93.13333333333334,
+      "frames": 319,
+      "duration": 10.47,
+      "coverage": 1.0,
+      "exact_coverage": 1.0,
+      "near_spellings": [],
+      "transcript": "معدات الرفع نقلت البلوكات بحرص شديد  والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 9,
+      "start": 103.76666666666667,
+      "frames": 354,
+      "duration": 11.62,
+      "coverage": 1.0,
+      "exact_coverage": 1.0,
+      "near_spellings": [],
+      "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر المية بحوالي 65 متر فوق المستوى القديم وحوالي 200 متر جوه البر.",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 10,
+      "start": 115.56666666666666,
+      "frames": 371,
+      "duration": 12.19,
+      "coverage": 1.0,
+      "exact_coverage": 1.0,
+      "near_spellings": [],
+      "transcript": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريبا.",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 11,
+      "start": 127.93333333333334,
+      "frames": 306,
+      "duration": 10.01,
+      "coverage": 0.8636363636363636,
+      "exact_coverage": 0.7727272727272727,
+      "near_spellings": [
+        {
+          "expected": "المعاد",
+          "recognized": "المعادة"
+        },
+        {
+          "expected": "تركيبها،",
+          "recognized": "تركبها"
+        }
+      ],
+      "transcript": "فوق المعابد المعادة تركبها عملوا تل صناعي صخري عشان يدي احساس طبيعي بأن المعابد لسه جوا جبل صخري قديم زي مكانت.",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 12,
+      "start": 138.13333333333333,
+      "frames": 337,
+      "duration": 11.05,
+      "coverage": 0.9047619047619048,
+      "exact_coverage": 0.9047619047619048,
+      "near_spellings": [],
+      "transcript": "المعبد لسه بيسمح بدخول الشمس جوا قدس الأقداس مرتين في السنة ودي ظاهرة فريدة فظلت محفوظة رغم كل التغييرات الكبيرة حواليه",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 13,
+      "start": 149.36666666666667,
+      "frames": 396,
+      "duration": 13.04,
+      "coverage": 1.0,
+      "exact_coverage": 0.9166666666666666,
+      "near_spellings": [
+        {
+          "expected": "وافتتحوا",
+          "recognized": "وفتتحوا"
+        },
+        {
+          "expected": "يمشوا",
+          "recognized": "يمشو"
+        }
+      ],
+      "transcript": "في سبتمبر سنة 1968  وستين خلصت أعمال الإنقاذ  وفتتحوا الموقع الجديد  وده بين إزاي التنمية والتراث ممكن يمشو سوا من غير تعارض",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 14,
+      "start": 162.56666666666666,
+      "frames": 374,
+      "duration": 12.28,
+      "coverage": 1.0,
+      "exact_coverage": 0.9523809523809523,
+      "near_spellings": [
+        {
+          "expected": "ساعدت",
+          "recognized": "سعدت"
+        }
+      ],
+      "transcript": "التجربة دي سعدت في تطور حماية التراث الدولي  وطلعت اتفاقية التراث العالمي  اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم",
+      "unmatched_words_interpolated": true
+    },
+    {
+      "part": 15,
+      "start": 175.03333333333333,
+      "frames": 357,
+      "duration": 11.72,
+      "coverage": 0.8571428571428571,
+      "exact_coverage": 0.8095238095238095,
+      "near_spellings": [
+        {
+          "expected": "ومعابد",
+          "recognized": "ومعبد"
+        }
+      ],
+      "transcript": "حكاية أبو سنبل بتثبت أن التعاون بين الدول بيقدر يحقق إنجازات  ومعبد النوبة فضل توأفة تحكي تاريخ أجدادنا للأجيال الجاية كلها",
+      "unmatched_words_interpolated": true
+    }
+  ],
+  "voices": [
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-00",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سمبل في جنوب مصر اللي بتورينا العزيمة.",
+        "display_text": "إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سمبل في جنوب مصر اللي بتورينا العزيمة.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "إزاي ممكن نزيح معبد ضخم منحوت في قلب الجبل عشان ميه البحيرة مش تغرقه؟ دي حكاية أبو سِمْبِل في جنوب مصر اللي بتورينا العزيمة.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 10.86,
+        "sample_rate": 24000,
+        "elapsed_seconds": 250.54,
+        "seed": 20261020,
+        "sha256": "154cee71bcb9ab622587746bc5e8b3558d39ed9f4b675e2f4203df8feb0d09ab",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "إزاي ممكن نزيح معبى الضخم منحوت في قلب الجبل عشان ميا البحيرة مش تغرقه  دي حكاية ابو سنبل في جنوب مصر اللي بتوارينا العزيمة",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 10.86
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-01",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رمسيس التاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر.",
+        "display_text": "سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رمسيس التاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "سد أسوان الجديد عمل خطر كبير وميه البحيرة علت وبقت تهدد معابد رَمْسِيس التاني الكبيرة والمعبد الصغير بتاع الملكة نِفِرْتَارِي اللي كان محاط بالمخاطر.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 13.38,
+        "sample_rate": 24000,
+        "elapsed_seconds": 236.3,
+        "seed": 20261021,
+        "sha256": "02afd8e3d9463cc48f34b2cb092eb98ee835890e10a8667b89dd1ed80dee41e2",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "سدة أسوان الجديد عمل خطر كبير ومية البحيرة علت  وبأتهدد معابد رمسيس الثاني الكبيرة والمعبد الصغير بتاع الملكة نفرتاري اللي كان محاط بالمخاطر",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 13.38
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-02",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+        "display_text": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليُونِسْكُو المساعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 10.97,
+        "sample_rate": 24000,
+        "elapsed_seconds": 221.86,
+        "seed": 20261022,
+        "sha256": "69bff660d8a0c7b6611f34a77cfb49c961e2f5a4e5f862652421f67312bcc4d4",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "الموقع الأصلي بقى في خطر حقيقي، ومصر والسودان طلبوا من اليونسكو المساسعدة عشان يحموا التراث ده من الضياع وسط تحديات صعبة.",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 10.97
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-03",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "عملية إنقاذ أبو سمبل بدأت سنة {start_year}، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة.",
+        "display_text": "عملية إنقاذ أبو سمبل بدأت سنة ألف تسعمية أربعة وستين، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة.",
+        "expected_values": [
+          1964
+        ],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "عملية إنقاذ أبو سِمْبِل بدأت سنة أَلْف تِسْعُمِيَّة أَرْبَعَة وَسِتِّين، واتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.56,
+        "sample_rate": 24000,
+        "elapsed_seconds": 314.12,
+        "seed": 20261023,
+        "sha256": "e4809514f8d2afe8349474315648ea4b3d3398763d5a80c3432ea376e98c2af9",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "عملية إنقاذ أبو سيمبل بدأت سنة 1964  واتجمع خبراء من كل حتة في العالم  عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة",
+        "number_checks": {
+          "1964": {
+            "passed": true,
+            "matching_forms": [
+              "1964"
+            ]
+          }
+        },
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.56
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-04",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير.",
+        "display_text": "هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "هندسة المشروع ما كانتش سهلة أبداً، مهندسين وعلماء آثار ومعماريين اشتغلوا سوا عشان يدرسوا إزاي يفككوا الصخور من غير تأثير كبير.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.36,
+        "sample_rate": 24000,
+        "elapsed_seconds": 266.2,
+        "seed": 20261024,
+        "sha256": "bac5784e43988cdee70f44941e0c9d0e1bd37850ffa1de28db4c81c7b3babdbe",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "هندسة المشروع ما كانتش سهلة أبداً  مهندسين وعلماء آصار ومعمريين  اشتغلوا سوى سوى عشان يدرسوا ازاي يفكوكوا الصخور من غير تأثير كبير",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.36
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-05",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "الواجهة فيها تماثيل ضخمة لرمسيس التاني، وفيه تمثال اتضرر في العصور القديمة، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة.",
+        "display_text": "الواجهة فيها تماثيل ضخمة لرمسيس التاني، وفيه تمثال اتضرر في العصور القديمة، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "الواجهة فيها تماثيل ضخمة لرَمْسِيس التاني، وفيه تمثال اتضرر في العصور القديمة، وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.13,
+        "sample_rate": 24000,
+        "elapsed_seconds": 142.74,
+        "seed": 20261025,
+        "sha256": "a2bc88a7a651f219a8e42e76ce9cc0c85da92c5d1489e23997ae3914e3f1f476",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "الوجهة فيها تمثيل ضخمة لرمصيس تاني وفيه تمثال الضرر في العصور القديمة  وكل جزء هنا طلب حرص شديد ودقة عالية في كل خطوة",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.13
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-06",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص.",
+        "display_text": "الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "الناس وثقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المظبوط بكل حرص.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.17,
+        "sample_rate": 24000,
+        "elapsed_seconds": 212.76,
+        "seed": 20261026,
+        "sha256": "5c68c41aaef7b7b621ef0ad7b8f924215846153870b9df81628aab0e53debc05",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "الناس وسقت كل قطعة وصورتها وكتبت عليها ملاحظات دقيقة عشان لما تيجي التركيبات بعدين كل حاجة ترجع مكانها المزبوط بكل حرص",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.17
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-07",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل.",
+        "display_text": "المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "المعبد المنحوت في الصخر اتقسم بعناية لشوية بلوكات عشان النقل، وكل بلوك اترقم واتعاملوا معاه كأنه قطعة تاريخية غالية على الكل.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.33,
+        "sample_rate": 24000,
+        "elapsed_seconds": 224.45,
+        "seed": 20261027,
+        "sha256": "6d7f1a0f28e1efb1ddb861d207502084d2e1a954550034b04465dbbe00d0e7b0",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "المعبد المنحوط في الصخر اتقسم بعناية لشوية بلوكات عشان النقل  وكل بلوك اترقم وتعمل معاه كأنه قطعة تاريخية غالية على الكل",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.33
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-08",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق.",
+        "display_text": "معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "معدات الرفع نقلت البلوكات بحرص شديد، والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 10.47,
+        "sample_rate": 24000,
+        "elapsed_seconds": 187.36,
+        "seed": 20261028,
+        "sha256": "39eec75281134eb27b85ec27045dc6de1c3d94b36564dba651e808cba1ef9e13",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "معدات الرفع نقلت البلوكات بحرص شديد  والشغل مشي خطوة بخطوة عشان الحجار التاريخية دي تفضل متحافظ عليها طول الطريق",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 10.47
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-09",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي {height} متر فوق المستوى القديم، وحوالي {setback} متر جوه البر.",
+        "display_text": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي خمسة وستين متر فوق المستوى القديم، وحوالي ميتين متر جوه البر.",
+        "expected_values": [
+          65,
+          200
+        ],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميه، بحوالي خَمْسَة وَسِتِّين متر فوق المستوى القديم، وحوالي مِيتِين متر جوه البر.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.62,
+        "sample_rate": 24000,
+        "elapsed_seconds": 296.57,
+        "seed": 20261029,
+        "sha256": "b2654b5efbde7d0538d0f4bb345b26826bb5fef4a92ee762884a7a4c43339a43",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر المية بحوالي 65 متر فوق المستوى القديم وحوالي 200 متر جوه البر.",
+        "number_checks": {
+          "65": {
+            "passed": true,
+            "matching_forms": [
+              "65"
+            ]
+          },
+          "200": {
+            "passed": true,
+            "matching_forms": [
+              "200"
+            ]
+          }
+        },
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.62
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-10",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً.",
+        "display_text": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريباً.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 12.19,
+        "sample_rate": 24000,
+        "elapsed_seconds": 158.75,
+        "seed": 20261030,
+        "sha256": "579f3a93d185da6c0f1010c6dd431b69c56059e5770a6aa37187c9c4166e8d8e",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "المهندسين أعادوا تجميع البلوكات فوق بعضها بعناية فائقة، ورجعت المعالم الأساسية تبان تاني شكل ما كانت في مكانها الأصلي تقريبا.",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 12.19
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-11",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت.",
+        "display_text": "فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "فوق المعابد المعاد تركيبها، عملوا تل صناعي صخري عشان يدي إحساس طبيعي بأن المعابد لسه جوه جبل صخري قديم زي ما كانت.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 10.01,
+        "sample_rate": 24000,
+        "elapsed_seconds": 243.94,
+        "seed": 20261031,
+        "sha256": "84fb1d0ce7661aaa32694bd4dbe9727cd13c636636820fd3f9e484683b5bf8e8",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "فوق المعابد المعادة تركبها عملوا تل صناعي صخري عشان يدي احساس طبيعي بأن المعابد لسه جوا جبل صخري قديم زي مكانت.",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 10.01
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-12",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه.",
+        "display_text": "المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "المعبد لسه بيسمح بدخول الشمس جوه قدس الأقداس مرتين في السنة، ودي ظاهرة فريدة فضلت محفوظة رغم كل التغييرات الكبيرة حواليه.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.05,
+        "sample_rate": 24000,
+        "elapsed_seconds": 253.95,
+        "seed": 20261032,
+        "sha256": "c6d347b43204bebf164a75bf527511546db7fd0a3f14b8c2a76b799fa13e669c",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "المعبد لسه بيسمح بدخول الشمس جوا قدس الأقداس مرتين في السنة ودي ظاهرة فريدة فظلت محفوظة رغم كل التغييرات الكبيرة حواليه",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.05
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-13",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "في سبتمبر سنة {end_year} خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض.",
+        "display_text": "في سبتمبر سنة ألف تسعمية تمانية وستين خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض.",
+        "expected_values": [
+          1968
+        ],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "في سبتمبر سنة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين خلصت أعمال الإنقاذ وافتتحوا الموقع الجديد، وده بين إزاي التنمية والتراث ممكن يمشوا سوا من غير تعارض.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 13.04,
+        "sample_rate": 24000,
+        "elapsed_seconds": 326.37,
+        "seed": 20261033,
+        "sha256": "5b2b6c969de58869ef8edc7be371adaa42a5baff56eb94f0e65978cbfb16975a",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "في سبتمبر سنة 1968  وستين خلصت أعمال الإنقاذ  وفتتحوا الموقع الجديد  وده بين إزاي التنمية والتراث ممكن يمشو سوا من غير تعارض",
+        "number_checks": {
+          "1968": {
+            "passed": true,
+            "matching_forms": [
+              "1968"
+            ]
+          }
+        },
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 13.04
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-14",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم.",
+        "display_text": "التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "التجربة دي ساعدت في تطور حماية التراث الدولي وطلعت اتفاقية التراث العالمي اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 12.28,
+        "sample_rate": 24000,
+        "elapsed_seconds": 295.4,
+        "seed": 20261034,
+        "sha256": "c385a51d776ee4edc390d1de377bcf5b07fbcfecc78987623e282a9ec970b8f0",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "التجربة دي سعدت في تطور حماية التراث الدولي  وطلعت اتفاقية التراث العالمي  اللي بتحمي الأماكن التاريخية المهمة في كل دول العالم",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 12.28
+      }
+    },
+    {
+      "voice": {
+        "type": "new_gemini_scene",
+        "scene": "scene-15",
+        "gemini_model": "gemini-3.5-flash-lite",
+        "original_gemini_narration": "حكاية أبو سمبل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها.",
+        "display_text": "حكاية أبو سمبل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها.",
+        "expected_values": [],
+        "speaker": "Youssef",
+        "provider": "VoiceTut-TTS",
+        "model": "mohammedaly22/VoiceTut-TTS",
+        "spoken_text": "حكاية أبو سِمْبِل بتثبت إن التعاون بين الدول بيقدر يحقق إنجازات، ومعابد النوبة فضلت واقفة تحكي تاريخ أجدادنا للأجيال الجاية كلها.",
+        "normalize": false,
+        "one_shot_scene": true,
+        "num_step": 32,
+        "guidance_scale": 2.0,
+        "speed": 0.9,
+        "duration": 11.72,
+        "sample_rate": 24000,
+        "elapsed_seconds": 301.39,
+        "seed": 20261035,
+        "sha256": "9827dab983c550eb0bfc076ef49986ee3c56675fb1b705f96a0a21b8b85afdf0",
+        "newly_synthesized": true,
+        "reference_video_used": false,
+        "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+        "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+      },
+      "audit": {
+        "transcript": "حكاية أبو سنبل بتثبت أن التعاون بين الدول بيقدر يحقق إنجازات  ومعبد النوبة فضل توأفة تحكي تاريخ أجدادنا للأجيال الجاية كلها",
+        "number_checks": {},
+        "all_numbers_passed": true,
+        "asr_model": "medium",
+        "prompt_used": false,
+        "language_probability": 1,
+        "speaker": "Youssef",
+        "duration": 11.72
+      }
+    }
+  ],
+  "sfx_events": [
+    0.0,
+    11.033333333333333,
+    24.6,
+    35.733333333333334,
+    47.46666666666667,
+    59.0,
+    70.3,
+    81.63333333333334,
+    93.13333333333334,
+    103.76666666666667,
+    115.56666666666666,
+    127.93333333333334,
+    138.13333333333333,
+    149.36666666666667,
+    162.56666666666666,
+    175.03333333333333,
+    84.63333333333334,
+    96.13333333333334,
+    118.56666666666666
+  ],
+  "gemini_model": "gemini-3.5-flash-lite",
+  "script_origin": "Gemini API original narrative and storyboard; no locally authored fallback",
+  "raw_gemini_sha256": "cda8735272127888072007283c0250b97505cf587d9a7d52467f8966491d7c42"
+}
