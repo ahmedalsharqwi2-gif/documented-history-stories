@@ -1,1 +1,90 @@
-cat: .github/workflows/feature-final-polish.yml: No such file or directory
+name: Abu Simbel Final Visual Polish
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/feature-final-polish.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+env:
+  SOURCE_RUN: '39493924939'
+  PYTHONUNBUFFERED: '1'
+jobs:
+  polish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [11, 13]
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22', cache: npm, cache-dependency-path: video-toolkit/package-lock.json}
+      - uses: actions/download-artifact@v4
+        with:
+          name: feature-ready-to-render
+          path: feature-work
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - run: |
+          npm ci --prefix video-toolkit --no-audit --no-fund
+          cd video-toolkit
+          npx playwright install --with-deps chromium
+      - name: Correct two layout details with identical narration
+        env:
+          PART: ${{ matrix.part }}
+        working-directory: video-toolkit
+        run: timeout 660 node scripts/render-feature.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: polished-scene-${{ matrix.part }}
+          path: feature-renders/
+  finish:
+    needs: polish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions: {contents: write, actions: read}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: |
+          python -m pip install numpy==1.26.4
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: feature-ready-to-render
+          path: feature-work
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: feature-render-*
+          merge-multiple: true
+          path: feature-renders
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'polished-scene-*', merge-multiple: true, path: feature-renders}
+      - name: Reassemble with unchanged speech and verify every frame
+        run: python motion_feature/assemble.py finish
+      - uses: actions/upload-artifact@v4
+        with: {name: abu-simbel-polished-final, path: feature-output/, retention-days: 30}
+      - name: Save final playable video and checks
+        env:
+          RESULT_BRANCH: codex/abu-simbel-polished-${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_id }}
+        run: |
+          target="gemini-features/$RUN_NUMBER"
+          mkdir -p "$target"
+          cp feature-output/* "$target/"
+          git rev-parse HEAD > "$target/render-source-commit.txt"
+          git fetch origin main
+          git switch --discard-changes -c "$RESULT_BRANCH" origin/main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          git commit -m "Deliver polished full Gemini feature with identical independently checked narration"
+          git push origin "$RESULT_BRANCH"
