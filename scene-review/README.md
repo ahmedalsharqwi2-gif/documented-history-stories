@@ -1,0 +1,1 @@
+Still-frame visual review only. Word timing in these frames is synthetic; the episode uses actual narration alignment.
