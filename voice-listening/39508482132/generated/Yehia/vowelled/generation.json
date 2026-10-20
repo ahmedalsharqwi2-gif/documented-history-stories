@@ -1,0 +1,12 @@
+{
+  "speaker": "Yehia",
+  "condition": "vowelled",
+  "text": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+  "speed": 1.0,
+  "steps": 32,
+  "newly_generated": true,
+  "model": "mohammedaly22/VoiceTut-TTS",
+  "duration": 6.72,
+  "sha256": "038b990dc1b3355bb761734d3403e87a7009996d062ec8a0a266a2551ef4bc0b",
+  "reference_video_used": false
+}

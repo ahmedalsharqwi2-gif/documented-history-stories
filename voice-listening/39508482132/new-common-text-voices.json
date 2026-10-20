@@ -1,0 +1,142 @@
+[
+  {
+    "label": "Ali / vowelled",
+    "start": 0,
+    "duration": 7.488,
+    "source": "voice-comparisons/generated/Ali/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Hadeer / vowelled",
+    "start": 7.5,
+    "duration": 6.864,
+    "source": "voice-comparisons/generated/Hadeer/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Hanan / vowelled",
+    "start": 14.4,
+    "duration": 7.44,
+    "source": "voice-comparisons/generated/Hanan/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Hassan / vowelled",
+    "start": 21.9,
+    "duration": 6.0,
+    "source": "voice-comparisons/generated/Hassan/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Karim / vowelled",
+    "start": 27.9,
+    "duration": 6.672,
+    "source": "voice-comparisons/generated/Karim/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mahmoud / vowelled",
+    "start": 34.6,
+    "duration": 7.488,
+    "source": "voice-comparisons/generated/Mahmoud/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mariam / vowelled",
+    "start": 42.1,
+    "duration": 5.088,
+    "source": "voice-comparisons/generated/Mariam/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mohammed / msa",
+    "start": 47.2,
+    "duration": 6.888,
+    "source": "voice-comparisons/generated/Mohammed/msa/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mohammed / raw",
+    "start": 54.1,
+    "duration": 6.432,
+    "source": "voice-comparisons/generated/Mohammed/raw/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mohammed / slow",
+    "start": 60.6,
+    "duration": 7.32,
+    "source": "voice-comparisons/generated/Mohammed/slow/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mohammed / vowelled",
+    "start": 68.0,
+    "duration": 6.744,
+    "source": "voice-comparisons/generated/Mohammed/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Mostafa / vowelled",
+    "start": 74.8,
+    "duration": 5.448,
+    "source": "voice-comparisons/generated/Mostafa/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Ramy / vowelled",
+    "start": 80.3,
+    "duration": 5.808,
+    "source": "voice-comparisons/generated/Ramy/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Rana / vowelled",
+    "start": 86.2,
+    "duration": 5.832,
+    "source": "voice-comparisons/generated/Rana/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Sarah / vowelled",
+    "start": 92.1,
+    "duration": 6.456,
+    "source": "voice-comparisons/generated/Sarah/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Shaker / vowelled",
+    "start": 98.6,
+    "duration": 7.128,
+    "source": "voice-comparisons/generated/Shaker/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Tareq / vowelled",
+    "start": 105.8,
+    "duration": 5.88,
+    "source": "voice-comparisons/generated/Tareq/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Yara / vowelled",
+    "start": 111.7,
+    "duration": 6.096,
+    "source": "voice-comparisons/generated/Yara/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Yasmin / vowelled",
+    "start": 117.8,
+    "duration": 5.064,
+    "source": "voice-comparisons/generated/Yasmin/vowelled/sample.mp3",
+    "new_generation": true
+  },
+  {
+    "label": "Yehia / vowelled",
+    "start": 122.9,
+    "duration": 6.768,
+    "source": "voice-comparisons/generated/Yehia/vowelled/sample.mp3",
+    "new_generation": true
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "transcript": "في سنة 1968 نقلوا معبدة بو سيمبل وآخر جملة لازم تتقال كاملة",
+  "words": [
+    {
+      "text": "في",
+      "start": 0.0,
+      "end": 0.36
+    },
+    {
+      "text": "سنة",
+      "start": 0.36,
+      "end": 0.88
+    },
+    {
+      "text": "1968",
+      "start": 0.88,
+      "end": 2.04
+    },
+    {
+      "text": "نقلوا",
+      "start": 2.04,
+      "end": 2.92
+    },
+    {
+      "text": "معبدة",
+      "start": 2.92,
+      "end": 3.26
+    },
+    {
+      "text": "بو",
+      "start": 3.26,
+      "end": 3.46
+    },
+    {
+      "text": "سيمبل",
+      "start": 3.46,
+      "end": 3.7
+    },
+    {
+      "text": "وآخر",
+      "start": 3.7,
+      "end": 4.08
+    },
+    {
+      "text": "جملة",
+      "start": 4.08,
+      "end": 4.36
+    },
+    {
+      "text": "لازم",
+      "start": 4.36,
+      "end": 4.64
+    },
+    {
+      "text": "تتقال",
+      "start": 4.64,
+      "end": 4.96
+    },
+    {
+      "text": "كاملة",
+      "start": 4.96,
+      "end": 5.24
+    }
+  ],
+  "number_checks": {
+    "1968": {
+      "passed": true,
+      "matching_forms": [
+        "1968"
+      ]
+    }
+  },
+  "last_word_complete": true,
+  "automatic_result_only_not_subjective_voice_approval": true
+}

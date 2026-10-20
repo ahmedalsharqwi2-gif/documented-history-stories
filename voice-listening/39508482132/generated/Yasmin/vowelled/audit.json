@@ -1,0 +1,75 @@
+{
+  "transcript": "في سنة 1968 نقله مع بداف وسنبل واخر جملة لازم تتقال كاملة",
+  "words": [
+    {
+      "text": "في",
+      "start": 0.0,
+      "end": 0.3
+    },
+    {
+      "text": "سنة",
+      "start": 0.3,
+      "end": 0.8
+    },
+    {
+      "text": "1968",
+      "start": 0.8,
+      "end": 1.88
+    },
+    {
+      "text": "نقله",
+      "start": 1.88,
+      "end": 2.58
+    },
+    {
+      "text": "مع",
+      "start": 2.58,
+      "end": 2.66
+    },
+    {
+      "text": "بداف",
+      "start": 2.66,
+      "end": 2.96
+    },
+    {
+      "text": "وسنبل",
+      "start": 2.96,
+      "end": 3.26
+    },
+    {
+      "text": "واخر",
+      "start": 3.26,
+      "end": 3.64
+    },
+    {
+      "text": "جملة",
+      "start": 3.64,
+      "end": 3.9
+    },
+    {
+      "text": "لازم",
+      "start": 3.9,
+      "end": 4.22
+    },
+    {
+      "text": "تتقال",
+      "start": 4.22,
+      "end": 4.56
+    },
+    {
+      "text": "كاملة",
+      "start": 4.56,
+      "end": 4.88
+    }
+  ],
+  "number_checks": {
+    "1968": {
+      "passed": true,
+      "matching_forms": [
+        "1968"
+      ]
+    }
+  },
+  "last_word_complete": true,
+  "automatic_result_only_not_subjective_voice_approval": true
+}

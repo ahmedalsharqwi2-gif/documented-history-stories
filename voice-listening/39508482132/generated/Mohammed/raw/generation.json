@@ -1,0 +1,12 @@
+{
+  "speaker": "Mohammed",
+  "condition": "raw",
+  "text": "في سنة ألف تسعمية تمانية وستين، نقلوا معبد أبو سمبل. وآخر جملة لازم تتقال كاملة.",
+  "speed": 1.0,
+  "steps": 32,
+  "newly_generated": true,
+  "model": "mohammedaly22/VoiceTut-TTS",
+  "duration": 6.37,
+  "sha256": "ee59e2beb46146a673d4d05548276c748aa391e9f4da82b8fcec66ddced8cc39",
+  "reference_video_used": false
+}

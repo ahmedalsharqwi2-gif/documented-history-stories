@@ -1,0 +1,962 @@
+[
+  {
+    "speaker": "Shaker",
+    "condition": "vowelled",
+    "duration": 7.08,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وأخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Karim",
+    "condition": "vowelled",
+    "duration": 6.62,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نألوا معبد أبو سنبل وآخر جملة لازم تطقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.25,
+    "word_edits": 3,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نالوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تطقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Ramy",
+    "condition": "vowelled",
+    "duration": 5.75,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وأخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Hanan",
+    "condition": "vowelled",
+    "duration": 7.39,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو السنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "السنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mariam",
+    "condition": "vowelled",
+    "duration": 5.04,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سيمبل وأخر الجملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.16666666666666666,
+    "word_edits": 2,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سيمبل",
+      "واخر",
+      "الجمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Rana",
+    "condition": "vowelled",
+    "duration": 5.78,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Tareq",
+    "condition": "vowelled",
+    "duration": 5.81,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Yasmin",
+    "condition": "vowelled",
+    "duration": 5.0,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقله مع بداف وسنبل واخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.3333333333333333,
+    "word_edits": 4,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقله",
+      "مع",
+      "بداف",
+      "وسنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mohammed",
+    "condition": "vowelled",
+    "duration": 6.68,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mohammed",
+    "condition": "raw",
+    "duration": 6.37,
+    "expected": "في سنة ألف تسعمية تمانية وستين، نقلوا معبد أبو سمبل. وآخر جملة لازم تتقال كاملة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وأخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mohammed",
+    "condition": "msa",
+    "duration": 6.83,
+    "expected": "في عام ألف وتسعمائة وثمانية وستين، نُقِل معبد أبو سمبل. ويجب نطق الجملة الأخيرة كاملة.",
+    "transcript": "في عام 1968 نؤل معبد أبو صنبل ويجب نطق الجملة الأخيرة كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.16666666666666666,
+    "word_edits": 2,
+    "expected_tokens": [
+      "في",
+      "عام",
+      "1968",
+      "نقل",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "ويجب",
+      "نطق",
+      "الجمله",
+      "الاخيره",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "عام",
+      "1968",
+      "نول",
+      "معبد",
+      "ابو",
+      "صنبل",
+      "ويجب",
+      "نطق",
+      "الجمله",
+      "الاخيره",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mohammed",
+    "condition": "slow",
+    "duration": 7.27,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سيسمبل وآخر جملة لازم تتقال كملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": false,
+    "word_error_rate": 0.16666666666666666,
+    "word_edits": 2,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سيسمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كمله"
+    ],
+    "ending_word_matches": false,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Sarah",
+    "condition": "vowelled",
+    "duration": 6.4,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mahmoud",
+    "condition": "vowelled",
+    "duration": 7.44,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": false,
+    "word_error_rate": 0.16666666666666666,
+    "word_edits": 2,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كمله"
+    ],
+    "ending_word_matches": false,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Hassan",
+    "condition": "vowelled",
+    "duration": 5.94,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968، نألوا معبد أبو سنبل، وأخر جملة لازم تتقل كملة.",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": false,
+    "word_error_rate": 0.3333333333333333,
+    "word_edits": 4,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نالوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقل",
+      "كمله"
+    ],
+    "ending_word_matches": false,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Ali",
+    "condition": "vowelled",
+    "duration": 7.44,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Hadeer",
+    "condition": "vowelled",
+    "duration": 6.81,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.08333333333333333,
+    "word_edits": 1,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سنبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Mostafa",
+    "condition": "vowelled",
+    "duration": 5.39,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبدة بو سيمبل وآخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.25,
+    "word_edits": 3,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبده",
+      "بو",
+      "سيمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Yara",
+    "condition": "vowelled",
+    "duration": 6.04,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقل معبد أبو سيمبل وأخر جملة لازم تتقال كاملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": true,
+    "word_error_rate": 0.16666666666666666,
+    "word_edits": 2,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقل",
+      "معبد",
+      "ابو",
+      "سيمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "ending_word_matches": true,
+    "fuzzy_spelling_acceptance": false
+  },
+  {
+    "speaker": "Yehia",
+    "condition": "vowelled",
+    "duration": 6.72,
+    "expected": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+    "transcript": "في سنة 1968 نقلوا معبدة بو سيمبل، وآخر جملة لازم تتقال كملة",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word_complete": false,
+    "word_error_rate": 0.3333333333333333,
+    "word_edits": 4,
+    "expected_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبد",
+      "ابو",
+      "سمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كامله"
+    ],
+    "recognized_tokens": [
+      "في",
+      "سنه",
+      "1968",
+      "نقلوا",
+      "معبده",
+      "بو",
+      "سيمبل",
+      "واخر",
+      "جمله",
+      "لازم",
+      "تتقال",
+      "كمله"
+    ],
+    "ending_word_matches": false,
+    "fuzzy_spelling_acceptance": false
+  }
+]

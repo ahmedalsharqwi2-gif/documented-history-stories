@@ -1,0 +1,135 @@
+[
+  {
+    "label": "Ahmed / Library reference",
+    "start": 0,
+    "duration": 8.16,
+    "source": "voice-comparisons/catalogue/Ahmed.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Ali / Library reference",
+    "start": 8.2,
+    "duration": 9.024,
+    "source": "voice-comparisons/catalogue/Ali.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Hadeer / Library reference",
+    "start": 17.3,
+    "duration": 8.712,
+    "source": "voice-comparisons/catalogue/Hadeer.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Hanan / Library reference",
+    "start": 26.1,
+    "duration": 9.351837,
+    "source": "voice-comparisons/catalogue/Hanan.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Hassan / Library reference",
+    "start": 35.5,
+    "duration": 5.568,
+    "source": "voice-comparisons/catalogue/Hassan.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Karim / Library reference",
+    "start": 41.1,
+    "duration": 6.288,
+    "source": "voice-comparisons/catalogue/Karim.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Mahmoud / Library reference",
+    "start": 47.4,
+    "duration": 8.986122,
+    "source": "voice-comparisons/catalogue/Mahmoud.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Mariam / Library reference",
+    "start": 56.4,
+    "duration": 5.808,
+    "source": "voice-comparisons/catalogue/Mariam.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Mohammed / Library reference",
+    "start": 62.3,
+    "duration": 7.872,
+    "source": "voice-comparisons/catalogue/Mohammed.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Mostafa / Library reference",
+    "start": 70.2,
+    "duration": 4.832653,
+    "source": "voice-comparisons/catalogue/Mostafa.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Ramy / Library reference",
+    "start": 75.1,
+    "duration": 7.288163,
+    "source": "voice-comparisons/catalogue/Ramy.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Rana / Library reference",
+    "start": 82.4,
+    "duration": 7.584,
+    "source": "voice-comparisons/catalogue/Rana.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Sarah / Library reference",
+    "start": 90.0,
+    "duration": 6.528,
+    "source": "voice-comparisons/catalogue/Sarah.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Shaker / Library reference",
+    "start": 96.6,
+    "duration": 8.96,
+    "source": "voice-comparisons/catalogue/Shaker.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Tareq / Library reference",
+    "start": 105.6,
+    "duration": 6.984,
+    "source": "voice-comparisons/catalogue/Tareq.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Yara / Library reference",
+    "start": 112.6,
+    "duration": 7.464,
+    "source": "voice-comparisons/catalogue/Yara.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Yasmin / Library reference",
+    "start": 120.1,
+    "duration": 7.262041,
+    "source": "voice-comparisons/catalogue/Yasmin.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Yehia / Library reference",
+    "start": 127.4,
+    "duration": 5.304,
+    "source": "voice-comparisons/catalogue/Yehia.mp3",
+    "new_generation": false
+  },
+  {
+    "label": "Youssef / Library reference",
+    "start": 132.8,
+    "duration": 8.568,
+    "source": "voice-comparisons/catalogue/Youssef.mp3",
+    "new_generation": false
+  }
+]
