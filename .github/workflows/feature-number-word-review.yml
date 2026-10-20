@@ -1,4 +1,5 @@
 name: Feature Number Word Review
+# Keep timestamp and language control tokens; suppress only numeric text tokens.
 on:
   push:
     branches: [main]

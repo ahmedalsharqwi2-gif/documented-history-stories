@@ -11,7 +11,7 @@ def main():
     for size in ['small','medium']:
         model=WhisperModel(size,device='cpu',compute_type='int8',cpu_threads=4)
         # Prevent only numeric output tokens, without revealing a target sentence or a number.
-        vocab=model.hf_tokenizer.get_vocab();suppress=[-1]+[i for i in vocab.values() if re.search(r'\d',model.hf_tokenizer.decode([i]))]
+        vocab=model.hf_tokenizer.get_vocab();eot=model.hf_tokenizer.token_to_id('<|endoftext|>');suppress=[-1]+[i for i in vocab.values() if i<eot and re.search(r'\d',model.hf_tokenizer.decode([i]))]
         for part in [3,9,13]:
             path=ROOT/f'number-review-input/part-{part:02d}.wav'
             segs,_=model.transcribe(str(path),language='ar',beam_size=5,word_timestamps=True,vad_filter=False,condition_on_previous_text=False,suppress_tokens=suppress)
