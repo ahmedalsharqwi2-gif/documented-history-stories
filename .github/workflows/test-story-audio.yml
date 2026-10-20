@@ -7,8 +7,9 @@ on:
         description: "اختر صوت الراوي لاختبار الصوت فقط"
         required: true
         type: choice
-        default: mohamed_elbed
+        default: octopus_narrator
         options:
+          - octopus_narrator
           - mohamed_elbed
           - rafik_sa
           - egyptian_female
@@ -68,13 +69,13 @@ jobs:
       - name: Generate test narration without publishing
         env:
           TTS_ENGINE: "silma"
-          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'mohamed_elbed' }}
+          SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'octopus_narrator' }}
           SILMA_VOICE_PROFILES_FILE: "assets/voices/voice_profiles.json"
           SILMA_FALLBACK_TO_EDGE: "false"
           SILMA_GUARD_ENABLED: "true"
           SILMA_GUARD_MIN_MATCH_WORDS: "4"
           EDGE_TTS_VOICE: "ar-EG-ShakirNeural"
-          EDGE_TTS_VOICES: "ar-EG-ShakirNeural,ar-SA-HamedNeural"
+          EDGE_TTS_VOICES: "ar-EG-ShakirNeural"
           EDGE_TTS_RETRIES: "2"
           WHISPER_MODEL: "tiny"
         run: python scripts/generate_voice.py

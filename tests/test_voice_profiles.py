@@ -13,7 +13,8 @@ class VoiceProfileResolverTests(unittest.TestCase):
     def test_resolves_all_bundled_profiles_and_exact_transcripts(self):
         catalog_path = ROOT / "assets/voices/voice_profiles.json"
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
-        self.assertEqual(len(catalog["profiles"]), 8)
+        self.assertEqual(len(catalog["profiles"]), 9)
+        self.assertIn("octopus_narrator", catalog["profiles"])
         for key in catalog["profiles"]:
             with self.subTest(profile=key):
                 selected, label, wav, transcript = resolve_reference_profile(key, catalog_path, ROOT)
@@ -32,17 +33,15 @@ class VoiceProfileResolverTests(unittest.TestCase):
         selected, _, _, _ = resolve_reference_profile("", ROOT / "assets/voices/voice_profiles.json", ROOT)
         self.assertEqual(selected, catalog["default"])
 
-    def test_both_manual_workflows_offer_every_profile(self):
+    def test_production_uses_fixed_octopus_voice_while_audio_test_can_select_profiles(self):
         catalog = json.loads((ROOT / "assets/voices/voice_profiles.json").read_text(encoding="utf-8"))
-        workflows = [
-            ROOT / ".github/workflows/main.yml",
-            ROOT / ".github/workflows/test-story-audio.yml",
-        ]
-        for workflow in workflows:
-            content = workflow.read_text(encoding="utf-8")
-            with self.subTest(workflow=workflow.name):
-                for key in catalog["profiles"]:
-                    self.assertIn(f"- {key}", content)
+        production = (ROOT / ".github/workflows/main.yml").read_text(encoding="utf-8")
+        self.assertIn("- octopus_narrator", production)
+        self.assertNotIn("- mohamed_elbed", production)
+        test_audio = (ROOT / ".github/workflows/test-story-audio.yml").read_text(encoding="utf-8")
+        for key in catalog["profiles"]:
+            with self.subTest(profile=key):
+                self.assertIn(f"- {key}", test_audio)
 
 
 if __name__ == "__main__":
