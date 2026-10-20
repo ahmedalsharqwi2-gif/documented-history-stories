@@ -30,7 +30,7 @@ def main():
             "expected_values":[v["value"] for tag,v in plan["numeric_policy"]["tokens"].items() if tag in scene["narration"]]}
     text=prepare_spoken(text);out.parent.mkdir(parents=True,exist_ok=True)
     started=time.time();sp=speakers[a.speaker]
-    params=GenerationParams(num_step=32,guidance_scale=2.0,speed=1.0)
+    params=GenerationParams(num_step=32,guidance_scale=2.0,speed=0.9)
     # Public OmniVoice generate API, same VoiceTut checkpoint and built-in reference.
     # One complete scene bypasses VoiceTut's first-110-character chunk boundary:
     # a multiword number can never be cut between two independent generations.
@@ -41,7 +41,7 @@ def main():
     duration=len(wave)/tts.sampling_rate
     if not 2<=duration<=30:raise ValueError("Unexpected scene speech duration")
     report={**source,"speaker":a.speaker,"provider":"VoiceTut-TTS","model":"mohammedaly22/VoiceTut-TTS",
-        "spoken_text":text,"normalize":False,"one_shot_scene":True,"num_step":32,"guidance_scale":2.0,"speed":1,
+        "spoken_text":text,"normalize":False,"one_shot_scene":True,"num_step":32,"guidance_scale":2.0,"speed":0.9,
         "duration":duration,"sample_rate":tts.sampling_rate,"elapsed_seconds":round(time.time()-started,2),
         "seed":a.seed+a.part,"sha256":sha(out),"newly_synthesized":True,"reference_video_used":False,
         "wrapper_commit":"44cba00cd3ddb04b5213353e19e960045e332da7","backbone_commit":"08be0b4ccbac3e13e374e86fbfead4b4cac343e2"}

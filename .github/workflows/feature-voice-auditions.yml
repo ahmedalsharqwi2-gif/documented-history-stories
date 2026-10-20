@@ -35,6 +35,7 @@ jobs:
         env:
           SPEAKER: ${{ matrix.speaker }}
         run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
           python -m pip install faster-whisper==1.2.1
           python motion_feature/audit_voice.py "voice-auditions/$SPEAKER/sample.wav"
           ffmpeg -y -i "voice-auditions/$SPEAKER/sample.wav" -codec:a libmp3lame -q:a 2 "voice-auditions/$SPEAKER/sample.mp3"
