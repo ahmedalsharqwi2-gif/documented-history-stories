@@ -1,0 +1,24 @@
+[
+  {
+    "voice": "Charon",
+    "model": "gemini-3.8-flash-tts",
+    "generated": true,
+    "text": "في سنة ألف تسعمية تمانية وستين، نقلوا معبد أبو سِمْبِل. وآخر جملة لازم تتقال كاملة. الصوت واضح، ومن غير تقطيع في النهاية.",
+    "style": "Egyptian Arabic (ar-EG), natural Cairo pronunciation, mature male documentary narrator with a low resonant voice. Clear precise articulation, relaxed measured pace, no singing, no music. Read the transcript verbatim, preserve all words and say the year naturally in Egyptian Arabic. Do not read instructions aloud.",
+    "sha256": "69bb140f972a5e05cde9b548d44db72be8258ba8e0ecd655386cc166a56f35c3",
+    "interaction_id": "v1_ChdldXJYYXRmVEN1WDF6N0lQcnNDQjRROBIXZXVyWGF0ZlRDdVgxejdJUHJzQ0I0UTg",
+    "newly_synthesized": true,
+    "reference_video_used": false
+  },
+  {
+    "voice": "Orus",
+    "model": "gemini-3.8-flash-tts",
+    "generated": true,
+    "text": "في سنة ألف تسعمية تمانية وستين، نقلوا معبد أبو سِمْبِل. وآخر جملة لازم تتقال كاملة. الصوت واضح، ومن غير تقطيع في النهاية.",
+    "style": "Egyptian Arabic (ar-EG), natural Cairo pronunciation, mature male documentary narrator with a low resonant voice. Clear precise articulation, relaxed measured pace, no singing, no music. Read the transcript verbatim, preserve all words and say the year naturally in Egyptian Arabic. Do not read instructions aloud.",
+    "sha256": "7864384667b6985673e1abc7e0b468471163ac3cacc4715988c8b6aa0dd2dbdc",
+    "interaction_id": "v1_ChZsT3JYYW8tU0pyMkV6N0lQcEstemFREhZsT3JYYW8tU0pyMkV6N0lQcEstemFR",
+    "newly_synthesized": true,
+    "reference_video_used": false
+  }
+]

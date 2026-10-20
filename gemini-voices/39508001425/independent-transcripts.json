@@ -1,0 +1,30 @@
+[
+  {
+    "file": "Orus.mp3",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كملة الصوت واضح ومن غير تقطيع في النهاية",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word": "النهاية",
+    "not_subjective_voice_approval": true
+  },
+  {
+    "file": "Charon.mp3",
+    "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة الصوت واضح ومن غير تقطيع في النهاية",
+    "number_checks": {
+      "1968": {
+        "passed": true,
+        "matching_forms": [
+          "1968"
+        ]
+      }
+    },
+    "last_word": "النهاية",
+    "not_subjective_voice_approval": true
+  }
+]
