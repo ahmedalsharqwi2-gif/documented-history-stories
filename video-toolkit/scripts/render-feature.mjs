@@ -1,0 +1,14 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {bundle} from '@remotion/bundler';
+import {selectComposition,renderMedia,renderStill} from '@remotion/renderer';
+import {chromium} from 'playwright';
+const part=Number(process.env.PART),root=path.resolve('..');
+const props=JSON.parse(await fs.readFile(path.join(root,`feature-work/parts/part-${String(part).padStart(2,'0')}.json`),'utf8'));
+const serveUrl=await bundle({entryPoint:path.resolve('src/abu-simbel-feature.tsx'),publicDir:path.join(root,'feature-work/public')});
+const options={serveUrl,id:'AbuSimbelFeature',inputProps:props,browserExecutable:chromium.executablePath(),chromiumOptions:{gl:'swangle'}};
+const composition=await selectComposition(options);await fs.mkdir(path.join(root,'feature-renders'),{recursive:true});
+const basename=path.join(root,`feature-renders/part-${String(part).padStart(2,'0')}`);
+await renderStill({...options,composition,frame:Math.min(composition.durationInFrames-1,105),imageFormat:'jpeg',jpegQuality:82,output:basename+'.jpg'});
+let last=-1;
+await renderMedia({...options,composition,codec:'h264',crf:19,pixelFormat:'yuv420p',outputLocation:basename+'.mp4',concurrency:1,disableSharedMemoryCapture:true,disallowParallelEncoding:true,imageFormat:'png',logLevel:'verbose',onProgress:({progress,renderedFrames})=>{let p=Math.floor(progress*10);if(p!==last){console.log('Rendering',part,p*10+'%',renderedFrames);last=p;}}});
