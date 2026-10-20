@@ -11,6 +11,10 @@ for attempt in range(2):
     audit=json.loads(wav.with_suffix('.audit.json').read_text())
     try:
         if not audit['all_numbers_passed']:raise ValueError('Independent ASR did not confirm critical numbers')
+        from audio_repair.quality import speech_accuracy
+        literal=speech_accuracy(scene['display_text'],audit['transcript'])
+        if literal['word_error_rate']>.12 or not literal['ending_word_matches']:
+            raise ValueError('Literal pronunciation/ending check failed: '+json.dumps(literal,ensure_ascii=False))
         _,metrics=alignment(scene,audit,audit['duration'])
         print('Scene voice passed',part,metrics['coverage'],flush=True);break
     except ValueError as e:

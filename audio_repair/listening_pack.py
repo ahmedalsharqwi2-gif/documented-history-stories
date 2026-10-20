@@ -19,6 +19,14 @@ def build(paths,target,reference=False):
  for p in clips:p.unlink()
  listing.unlink();target.with_suffix('.json').write_text(json.dumps(index,ensure_ascii=False,indent=2))
  return index
+from audio_repair.quality import speech_accuracy
+quality=[]
+for meta in (ROOT/'voice-comparisons/generated').glob('*/*/generation.json'):
+ audit=meta.with_name('audit.json')
+ if not audit.exists():continue
+ g=json.loads(meta.read_text());a=json.loads(audit.read_text());q=speech_accuracy(g['text'],a['transcript'])
+ quality.append({'speaker':g['speaker'],'condition':g['condition'],'duration':g['duration'],'expected':g['text'],'transcript':a['transcript'],'number_checks':a['number_checks'],'last_word_complete':a['last_word_complete'],**q})
+(out/'literal-pronunciation-comparison.json').write_text(json.dumps(quality,ensure_ascii=False,indent=2))
 fresh=sorted((ROOT/'voice-comparisons/generated').glob('*/*/sample.mp3'))
 refs=sorted((ROOT/'voice-comparisons/catalogue').glob('*.mp3'))
 if not fresh:raise ValueError('No real generated samples')
