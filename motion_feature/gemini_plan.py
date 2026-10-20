@@ -22,7 +22,7 @@ def check(data):
     markers=r"\b(?:ده|دي|اللي|عشان|مش|إزاي|ازاي|ليه|دلوقتي|كده|كانوا|بقت|بقى|اتنقل|اتعمل|بنحافظ|هنشوف)\b"
     if len(re.findall(markers,all_text))<18 or sum(bool(re.search(markers,s.get("narration",""))) for s in scenes)<10:
         raise ValueError("Rewrite in natural spoken Egyptian: at least 18 colloquial markers across at least 10 scenes; formal Arabic is rejected")
-    if any(term in all_text for term in ["أضخم عملية","تاريخ البشرية","دون إلحاق أي ضرر","أحدث وسائل","مناسبات ملكية","الموحدة"]):
+    if any(term in all_text for term in ["أضخم عملية","تاريخ البشرية","دون إلحاق أي ضرر","أحدث وسائل","مناسبات ملكية","الموحدة","أعماريين","اتقص في القديم","القدس الأقدس","من غير أي غلط","من غير أي نقص","من غير ما تتأثر بأي ضرر","حملة حماية الآثار النوبية بدأت سنة"]):
         raise ValueError("Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions")
     known={s["id"] for s in FACTS["sources"]}
     for i,s in enumerate(scenes):
@@ -80,6 +80,9 @@ Allowed visual_type: temple, water, map, cutaway, grid, blocks, crane, lift, dis
 sun, timeline, network, legacy.
 SOURCE FACTS:
 """+json.dumps(FACTS,ensure_ascii=False)
+    draft=ROOT/"motion_feature/editorial-draft.json"
+    if draft.exists():
+        prompt+="\nRevise YOUR OWN previous Gemini draft below. Factual/editorial corrections: 1964 is the beginning of the Abu Simbel rescue ENGINEERING OPERATION, not the wider Nubian campaign (1960). Say عملية إنقاذ أبو سمبل. The old statue was damaged or collapsed in antiquity, not deliberately cut. Use معماريين, not أعماريين. Correct term: قدس الأقداس, not القدس الأقدس. Remove absolute guarantees: no errors, no missing pieces, no damage, exact identicalness, no problems. Describe care and documentation without these claims. Avoid pompous filler such as noble heritage or eternal loss. Scene about the artificial rocky hill must use cutaway, not lift. Scene about international heritage legacy must use network or legacy, not map. The four numbers remain tagged exactly once. Make every sentence conversational Egyptian with simple grammar. Expand to about 420-440 words using useful concrete explanations, not praise. Retain 16 scenes and at least nine distinct visual types.\nPREVIOUS GEMINI DRAFT:\n"+draft.read_text()
     attempts=[];last_error="No supported free-tier Gemini model discovered"
     for model in candidates:
         for attempt in range(6):
