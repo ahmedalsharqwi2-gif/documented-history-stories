@@ -1,0 +1,145 @@
+name: Complete Motion Episode
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'motion_episode/**'
+      - 'video-toolkit/src/motion-episode.tsx'
+      - 'video-toolkit/scripts/render-episode.mjs'
+      - '.github/workflows/complete-motion-episode.yml'
+permissions:
+  contents: read
+concurrency:
+  group: complete-motion-episode
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install requests
+      - name: Validate Python and prepare source-based script
+        id: plan
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python -m py_compile motion_episode/produce.py
+          python motion_episode/produce.py prepare
+      - uses: actions/upload-artifact@v4
+        with:
+          name: motion-script-plan
+          path: episode-work/plan.json
+          retention-days: 14
+  voice:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '4'
+      MKL_NUM_THREADS: '4'
+      HF_HUB_DISABLE_XET: '1'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: motion-script-plan
+          path: episode-work
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/huggingface
+            ~/.cache/torch
+          key: voicetut-44cba00cd3ddb04b5213353e19e960045e332da7-08be0b4ccbac3e13e374e86fbfead4b4cac343e2-cpu-v1
+      - name: Install isolated accepted VoiceTut environment
+        run: bash voice_provider/install.sh
+      - name: Synthesize one new scene with the accepted Mohammed voice
+        env:
+          PART_INDEX: ${{ matrix.part }}
+        run: python motion_episode/produce.py voice --part "$PART_INDEX"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: motion-voice-${{ matrix.part }}
+          path: episode-parts/
+          retention-days: 14
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    permissions:
+      contents: write
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: '1'
+      HF_HUB_DISABLE_XET: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      OMP_NUM_THREADS: '4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: video-toolkit/package-lock.json
+      - uses: actions/download-artifact@v4
+        with:
+          name: motion-script-plan
+          path: episode-work
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: motion-voice-*
+          path: episode-parts
+          merge-multiple: true
+      - name: Install renderer and actual speech alignment
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+          python -m pip install 'numpy==1.26.4' 'faster-whisper==1.2.1'
+          npm ci --prefix video-toolkit
+          cd video-toolkit
+          npx playwright install --with-deps chromium
+      - name: Render all-vector episode and mix narration, music and SFX
+        run: python motion_episode/produce.py assemble
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: complete-motion-episode
+          path: output/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Save playable preview, scene frames and production evidence
+        env:
+          RESULT_BRANCH: codex/motion-episode-${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_id }}
+        run: |
+          target="motion-episodes/$RUN_NUMBER"
+          mkdir -p "$target"
+          cp output/* "$target/"
+          git switch -c "$RESULT_BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          git commit -m "Save full vector Dunkirk episode with new accepted VoiceTut narration"
+          git push origin "$RESULT_BRANCH"
