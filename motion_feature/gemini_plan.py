@@ -48,7 +48,7 @@ def run():
     names=[m["name"].split("/")[-1] for m in models if "generateContent" in m.get("supportedGenerationMethods",[])]
     # These Flash-Lite models have a documented free tier; never use Pro or paid-only generation.
     order=["gemini-3.5-flash-lite","gemini-flash-lite-latest","gemini-3.1-flash-lite","gemini-2.5-flash-lite"]
-    candidates=[m for m in order if m in names]
+    candidates=[m for m in order if m in names][:1]
     (OUT/"model-discovery.json").write_text(json.dumps({"available_text_models":names,"candidates":candidates},indent=2))
     prompt="""You are the sole scriptwriter and storyboard director for a new Egyptian Arabic motion documentary.
 This is SPOKEN EGYPTIAN, not Modern Standard Arabic. Use ده، دي، اللي، عشان، مش، إزاي،
@@ -61,10 +61,10 @@ The 65-metre rise and 200-metre setback are approximate changes from the OLD SIT
 not a measured height above the lake. Make that reference clear.
 Write an ORIGINAL complete story about the supplied Abu Simbel rescue facts. This is not Dunkirk.
 Return JSON {"title":"Arabic", "scenes":[16 scene objects]}.
-Every scene: narration (Egyptian colloquial Arabic, 22-29 words), title (short Arabic),
+Every scene: narration (Egyptian colloquial Arabic, 26-31 words), title (short Arabic),
 highlight (1-4 Arabic words), visual_type (one of the allowed types below),
 labels (0-3 short Arabic graphic labels), source_ids (provided IDs supporting its facts).
-TOTAL 380-440 spoken words; aim at 400 words, a genuine 150-190 second spoken documentary.
+TOTAL 400-450 spoken words; aim at 430 words, a genuine 150-190 second spoken documentary.
 Use a compelling opening, a progressing engineering challenge, clear explanations and a real closing.
 Do not add subscriptions or an introduction about the channel. Do not repeat the same point to fill time.
 Use only the provided source facts. Do not invent quotations, detailed engineering machinery, block counts,
@@ -82,9 +82,10 @@ SOURCE FACTS:
 """+json.dumps(FACTS,ensure_ascii=False)
     attempts=[];last_error="No supported free-tier Gemini model discovered"
     for model in candidates:
-        for attempt in range(4):
+        for attempt in range(6):
+            schema={"type":"OBJECT","required":["title","scenes"],"properties":{"title":{"type":"STRING"},"scenes":{"type":"ARRAY","minItems":16,"maxItems":16,"items":{"type":"OBJECT","required":["narration","title","highlight","visual_type","labels","source_ids"],"properties":{"narration":{"type":"STRING","description":"Natural Egyptian Arabic, 26 to 31 spoken words, count carefully; expand tags mentally"},"title":{"type":"STRING"},"highlight":{"type":"STRING"},"visual_type":{"type":"STRING","enum":sorted(VISUALS)},"labels":{"type":"ARRAY","items":{"type":"STRING"}},"source_ids":{"type":"ARRAY","items":{"type":"STRING","enum":[x["id"] for x in FACTS["sources"]]}}}}}}
             payload={"contents":[{"parts":[{"text":prompt}]}],
-                "generationConfig":{"temperature":.55,"maxOutputTokens":12000,"responseMimeType":"application/json"}}
+                "generationConfig":{"temperature":.55,"maxOutputTokens":12000,"responseMimeType":"application/json","responseSchema":schema}}
             try:
                 raw=call("https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent",key,payload)
                 text="".join(p.get("text","") for p in raw["candidates"][0]["content"]["parts"] if not p.get("thought"))
@@ -112,7 +113,7 @@ SOURCE FACTS:
             except (ValueError,KeyError,IndexError) as e:
                 last_error=str(e);attempts.append({"model":model,"attempt":attempt+1,"validation_error":str(e)})
                 print("Gemini draft needs repair:",str(e),flush=True)
-                prompt+="\nRepair your complete JSON draft. Validation feedback: "+str(e)
+                prompt+="\nYour last draft was rejected: "+str(e)+". Each of the 16 scenes must have about 27 words; count the spoken words per scene. Previous JSON for you to REVISE in full, not summarize:\n"+text
             except Exception as e:
                 last_error=type(e).__name__;attempts.append({"model":model,"attempt":attempt+1,"error":last_error})
                 print("Gemini request failed:",last_error,flush=True)
