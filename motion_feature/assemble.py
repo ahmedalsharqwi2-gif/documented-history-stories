@@ -83,14 +83,17 @@ def finish():
     listing=ROOT/'feature-work/concat.txt';listing.write_text('\n'.join(files))
     silent=ROOT/'feature-work/silent.mp4'
     subprocess.run(['ffmpeg','-y','-v','warning','-f','concat','-safe','0','-i',str(listing),'-c','copy',str(silent)],check=True)
-    filters=(f'[1:a]loudnorm=I=-16:TP=-2:LRA=7,asplit=2[voice][control];[2:a]atrim=duration={duration},asetpts=PTS-STARTPTS,loudnorm=I=-27:TP=-9:LRA=7,afade=t=in:d=1.2,afade=t=out:st={duration-2}:d=2[music];[music][control]sidechaincompress=threshold=0.025:ratio=8:attack=15:release=350[ducked];[3:a]volume=.65[sfx];[voice][ducked][sfx]amix=inputs=3:duration=first:normalize=0,alimiter=limit=.94:latency=1[mix]')
+    from audio_repair.delivery import mix_audio,verify_tail
     video=out/'abu-simbel-gemini.mp4'
-    subprocess.run(['ffmpeg','-y','-v','warning','-i',str(silent),'-i',str(ROOT/'feature-work/narration.wav'),'-stream_loop','-1','-i',str(ROOT/'assets/music/history_archive_reflection.mp3'),'-i',str(ROOT/'feature-work/effects.wav'),'-filter_complex',filters,'-map','0:v:0','-map','[mix]','-c:v','copy','-c:a','aac','-b:a','192k','-ar','48000','-t',str(duration),'-movflags','+faststart',str(video)],check=True)
+    mixed=ROOT/'feature-work/audio-prepared/mix.wav'
+    normalized=mix_audio(ROOT/'feature-work/narration.wav',ROOT/'assets/music/history_archive_reflection.mp3',ROOT/'feature-work/effects.wav',duration,mixed)
+    subprocess.run(['ffmpeg','-y','-v','warning','-i',str(silent),'-i',str(mixed),'-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-ar','48000','-t',str(duration),'-movflags','+faststart',str(video)],check=True)
+    tail_checks=verify_tail(video,normalized,duration)
     meta=probe(video);v=next(s for s in meta['streams'] if s['codec_type']=='video')
     if abs(float(meta['format']['duration'])-duration)>.15 or int(v['nb_frames'])!=assembly['frames']:raise ValueError('Delivery duration mismatch')
     subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(video),'-f','null','-'],check=True)
     if video.stat().st_size>95_000_000:raise ValueError('Video exceeds Git branch file limit')
-    verification={**{k:v for k,v in assembly.items() if k not in ('voices','part_metrics')},'width':1080,'height':1920,'fps':30,'scene_count':16,'all_critical_numbers_asr_checked':True,'full_decode_passed':True,'video_sha256':sha(video),'newly_synthesized_speech':True,'reference_video_audio_used':False,'motion_renderer':'Code-native SVG/Remotion; diagrams illustrative, not survey drawings','timing':'Independent Whisper medium anchors with bounded interpolation; user review required','status':'preview_for_user_review'}
+    verification={**{k:v for k,v in assembly.items() if k not in ('voices','part_metrics')},'width':1080,'height':1920,'fps':30,'scene_count':16,'all_critical_numbers_asr_checked':True,'full_decode_passed':True,'audio_delivery_checks':tail_checks,'video_sha256':sha(video),'newly_synthesized_speech':True,'reference_video_audio_used':False,'motion_renderer':'Code-native SVG/Remotion; diagrams illustrative, not survey drawings','timing':'Independent Whisper medium anchors with bounded interpolation; user review required','status':'preview_for_user_review'}
     (out/'verification.json').write_text(json.dumps(verification,ensure_ascii=False,indent=2))
     shutil.copy2(ROOT/'feature-work/plan.json',out/'gemini-script-and-storyboard.json');shutil.copy2(ROOT/'feature-work/assembly.json',out/'speech-and-timing-audit.json')
     for p in (ROOT/'feature-renders').glob('*.jpg'):shutil.copy2(p,out/p.name)
