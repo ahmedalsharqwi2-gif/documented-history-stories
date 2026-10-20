@@ -106,9 +106,9 @@ ENABLE_PREFLIGHT_CHECK = os.environ.get("ENABLE_PREFLIGHT_CHECK", "true").lower(
 # اضبط القيمة دي معاه.
 FULL_VIDEO_DELAY_HOURS = float(os.environ.get("FULL_VIDEO_DELAY_HOURS", "0"))
 
-def publish_target_utc(hour: int = 19) -> datetime:
-    """Return the next 19:00 Africa/Cairo converted to UTC.
-    This is absolute scheduling, so SILMA duration does not shift the post.
+def publish_target_utc(hour: int = 17) -> datetime:
+    """Return the next 17:00 Africa/Cairo converted to UTC.
+    This is absolute scheduling, so generation duration does not shift the post.
     """
     now = datetime.now(timezone.utc)
     cairo = now.astimezone(ZoneInfo("Africa/Cairo"))
@@ -118,17 +118,15 @@ def publish_target_utc(hour: int = 19) -> datetime:
     return target.astimezone(timezone.utc)
 
 
-def scheduled_publish_utc(default_hour: int = 19) -> datetime:
+def scheduled_publish_utc(default_hour: int = 17) -> datetime:
     """Use the workflow's exact final slot when one was computed."""
     from scripts.publication_state import immediate_requested
     if immediate_requested():
         return datetime.now(timezone.utc) + timedelta(minutes=2)
     raw = os.environ.get("PUBLISH_DUE_AT", "").strip()
     if raw:
-        parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
-        if parsed.tzinfo is None:
-            raise ValueError("PUBLISH_DUE_AT must include a timezone")
-        return parsed.astimezone(timezone.utc)
+        from scripts.daily_schedule import validate_slot
+        return validate_slot(raw).astimezone(timezone.utc)
     return publish_target_utc(default_hour)
 
 
@@ -366,7 +364,7 @@ def build_post_text(
 
 
 def iso_after(hours: float) -> str:
-    due = scheduled_publish_utc(19)
+    due = scheduled_publish_utc(17)
     return due.isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
