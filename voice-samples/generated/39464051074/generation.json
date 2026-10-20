@@ -1,0 +1,22 @@
+{
+  "engine": "SILMA TTS v1 Small",
+  "source_commit": "2816b5a548c3ccdeea389ebc2db2d246a25d01fd",
+  "newly_synthesized": true,
+  "reference_replay": false,
+  "voice_reference_profile": "mohamed_elbed",
+  "reference_label": "Arabic male — Mohamed ElBed",
+  "reference_sha256": "b39ae91cc0938c72ae6bc9a10554889ead878e8e2a7f1fdcae1af9265aea60fa",
+  "generated_wav_sha256": "ba1deafa533260a38cc2beb817c6f09cd33945644a323089a5d8e471757a9820",
+  "generated_mp3_sha256": "90e1f8dab7accd1b3028efc3709e978b25ecf7b011002bf4847b5412ceb39305",
+  "text": "تخيّل إنك واقف قدّام باب مقفول من مئات السنين. ورا الباب، فيه حكاية محدش سمعها كاملة. النهارده هنمشي خطوة بخطوة، ونفهم إيه اللي حصل، وليه التفاصيل الصغيرة ممكن تغيّر فهمنا للتاريخ.",
+  "duration": 18.432416666666665,
+  "sample_rate": 24000,
+  "speed": 1.0,
+  "seed": 20261020,
+  "nfe_step": 32,
+  "automatic_fusha_diacritization": false,
+  "time_stretch_or_pitch_shift": false,
+  "fallback_used": false,
+  "inference_seconds": 200.73,
+  "pronunciation_and_similarity": "requires user listening; not automatically certified"
+}
