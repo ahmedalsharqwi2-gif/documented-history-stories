@@ -91,11 +91,23 @@ def caption_timing(model,path,text,duration):
     matcher=SequenceMatcher(None,clean_expected,clean_actual,autojunk=False);anchors={}
     for block in matcher.get_matching_blocks():
         for k in range(block.size):anchors[block.a+k]=recognized[block.b+k]
+    exact_coverage=len(anchors)/max(1,len(expected));near_matches=[]
+    # Accept only long, close spellings in one-to-one replacement blocks bounded
+    # by exact matching context. Short function words and token-count changes are excluded.
+    for tag,a0,a1,b0,b1 in matcher.get_opcodes():
+        if tag!="replace" or a1-a0!=b1-b0:continue
+        for ei,ai in zip(range(a0,a1),range(b0,b1)):
+            left,right=clean_expected[ei],clean_actual[ai]
+            ratio=SequenceMatcher(None,left,right,autojunk=False).ratio()
+            if min(len(left),len(right))>=4 and ratio>=.85:
+                anchors[ei]=recognized[ai]
+                near_matches.append({"expected":expected[ei],"recognized":recognized[ai]["text"],"similarity":round(ratio,4)})
     coverage=len(anchors)/max(1,len(expected))
     if coverage<.72:
         debug=ROOT/"output";debug.mkdir(exist_ok=True)
         (debug/(Path(path).stem+"-alignment-failed.json")).write_text(json.dumps({"coverage":coverage,"expected":text,"recognized":raw_recognized},ensure_ascii=False,indent=2))
-        raise ValueError(f"Generated narration failed text match: {coverage:.3f}. Voice will not be replaced.")
+        print(json.dumps({"coverage":coverage,"expected":text,"recognized":raw_recognized},ensure_ascii=False),flush=True)
+        raise ValueError(f"Insufficient speech timing anchors: {coverage:.3f}. Voice will not be replaced.")
     timed=[None]*len(expected)
     for i,a in anchors.items():timed[i]={"start":max(0,a["start"]),"end":min(duration,a["end"])}
     i=0
@@ -117,7 +129,7 @@ def caption_timing(model,path,text,duration):
     caps[0]["start"]=0;caps[-1]["end"]=duration
     for ci,c in enumerate(caps):
         c["words"]=[{"text":expected[k],**timed[k]} for k in range(ci*6,min(len(expected),(ci+1)*6))]
-    return caps,{"matched_word_fraction":round(coverage,4),"recognized_text":" ".join(w["text"] for w in raw_recognized),"timing":"ASR anchors; known digit-form numbers expanded within their recognized spans; bounded interpolation for unmatched tokens"}
+    return caps,{"matched_word_fraction":round(coverage,4),"exact_word_fraction":round(exact_coverage,4),"near_spelling_matches":near_matches,"recognized_text":" ".join(w["text"] for w in raw_recognized),"timing":"ASR anchors; known digit-form numbers expanded within their recognized spans; long near-spelling matches in equal-length replacement blocks; bounded interpolation for unmatched tokens"}
 def map_paths():
     geo=json.loads((ROOT/"history_visual/assets/countries.geojson").read_text())
     paths=[]
@@ -163,6 +175,7 @@ def assemble():
             captions.append({**c,"start":c["start"]+cursor,"end":c["end"]+cursor,
                 "words":[{**w,"start":w["start"]+cursor,"end":w["end"]+cursor} for w in c["words"]]})
         metrics["part"]=i;alignment.append(metrics)
+        print(json.dumps({"alignment_part":i,**metrics},ensure_ascii=False),flush=True)
         gap=round(.24*rate)/rate if i<3 else .5
         scenes.append({**s,"start":cursor,"end":cursor+duration+gap})
         frames.append(payload)
