@@ -32,8 +32,8 @@ function MapScene({t,paths,route=false}:{t:number,paths:any[],route?:boolean}){
   <text x="80" y="884" fontSize="20" fill={C.muted} fontFamily="Arabic">خريطة توضيحية · المسارات رمزية</text>
  </svg>
 }
-function ShoreScene({t}:{t:number}){
- const move=ease(t,1,5);return <svg width="1080" height="900" viewBox="0 0 1080 900" style={{position:'absolute',top:350}}>
+function ShoreScene({t,transfer=4}:{t:number,transfer?:number}){
+ const move=ease(t,transfer,transfer+2.4);return <svg width="1080" height="900" viewBox="0 0 1080 900" style={{position:'absolute',top:350}}>
   <defs><linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={C.teal} stopOpacity=".35"/><stop offset="1" stopColor={C.bg}/></linearGradient></defs>
   <path d="M70 615 L300 615 Q360 615 410 675 L1000 790 V855 H70Z" fill="#6c624a" opacity=".35"/>
   <path d="M310 565H1010V850H650L410 675Z" fill="url(#water)"/>
@@ -49,8 +49,8 @@ function ShoreScene({t}:{t:number}){
   <text x="540" y="845" textAnchor="middle" fontFamily="Arabic" fill={C.muted} fontSize="25">نقل الجنود من الشاطئ إلى السفن</text>
  </svg>
 }
-function FleetScene({t}:{t:number}){
- const p=ease(t,.8,5);
+function FleetScene({t,timeline=3}:{t:number,timeline?:number}){
+ const p=ease(t,timeline,timeline+3);
  return <svg width="1080" height="900" viewBox="0 0 1080 900" style={{position:'absolute',top:350}}>
   <circle cx="540" cy="410" r="260" fill="none" stroke={C.muted} strokeOpacity=".15" strokeWidth="1"/>
   <circle cx="540" cy="410" r="185" fill="none" stroke={C.muted} strokeOpacity=".1" strokeDasharray="3 12"/>
@@ -65,16 +65,16 @@ function FleetScene({t}:{t:number}){
   <text x="160" y="852" fontSize="30" fill={C.paper} fontFamily="Arabic">أواخر مايو</text><text x="920" y="852" textAnchor="end" fontSize="30" fill={C.paper} fontFamily="Arabic">٤ يونيو ١٩٤٠</text>
  </svg>
 }
-function RescueScene({t}:{t:number}){
- const p=ease(t,.3,3.2);return <div style={{position:'absolute',top:430,width:'100%',textAlign:'center'}}>
+function RescueScene({t,countAt=.3}:{t:number,countAt?:number}){
+ const p=ease(t,countAt,countAt+2.3);return <div style={{position:'absolute',top:430,width:'100%',textAlign:'center'}}>
   <div style={{fontSize:31,color:C.muted,letterSpacing:4}}>DUNKIRK / OPERATION DYNAMO</div>
   <div style={{fontSize:54,color:C.paper,marginTop:48}}>أكثر من</div>
   <div style={{fontSize:202,lineHeight:1.4,color:C.gold,fontWeight:700,fontVariantNumeric:'tabular-nums',textShadow:'0 0 70px #e9b87520'}}>{arab(338000*p)}</div>
   <div style={{fontSize:48,color:C.paper,marginTop:-5}}>جندي تم إجلاؤهم</div>
-  <svg width="880" height="240" viewBox="0 0 880 240" style={{marginTop:50}}>
+  <svg width="880" height="200" viewBox="0 0 880 240" style={{marginTop:25}}>
    {Array.from({length:126},(_,i)=><circle key={i} cx={20+(i%21)*42} cy={25+Math.floor(i/21)*36} r="4" fill={i/126<p?C.gold:C.muted} opacity={i/126<p?.8:.12}/>)}
   </svg>
-  <div style={{fontSize:25,color:C.muted}}>تمثيل بصري للعدد · وليس عدًّا فرديًّا</div>
+  <div style={{position:'absolute',top:845,left:0,right:0,fontSize:20,color:C.muted}}>تمثيل بصري للعدد · وليس عدًّا فرديًّا</div>
  </div>
 }
 function Words({captions,t}:{captions:any[],t:number}){
@@ -88,7 +88,9 @@ function Episode(props:any){
  const [handle]=useState(()=>delayRender('Load bundled Arabic font'));
  useEffect(()=>{const font=new FontFace('Arabic','url('+staticFile('NotoSansArabic-Bold.ttf')+')');font.load().then(f=>{document.fonts.add(f);continueRender(handle);}).catch(e=>{throw e;});},[handle]);
  const idx=Math.max(0,props.scenes.findIndex((s:any)=>t>=s.start&&t<s.end));
- const s=props.scenes[idx];const local=t-s.start;const intro=ease(local,0,.65);const outro=ease(s.end-t,0,.32);
+ const s=props.scenes[idx];const local=t-s.start;
+ const allWords=props.captions.flatMap((c:any)=>c.words);
+ const cue=(term:string,fallback:number)=>{const w=allWords.find((w:any)=>w.start>=s.start&&w.start<s.end&&w.text.includes(term));return w?w.start-s.start:fallback;};const intro=ease(local,0,.65);const outro=ease(s.end-t,0,.32);
  return <AbsoluteFill style={{background:C.bg,color:C.paper,fontFamily:'Arabic',overflow:'hidden'}}>
   <AbsoluteFill style={{background:'radial-gradient(ellipse at 65% 38%,#20404780,transparent 65%)'}}/>
   <svg width="1080" height="1920" style={{position:'absolute',opacity:.1}}><defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(#grain)" opacity=".25"/></svg>
@@ -98,7 +100,7 @@ function Episode(props:any){
   <div style={{position:'absolute',top:145,left:80,width:70,height:4,background:C.gold}}/>
   <div style={{opacity:intro*outro,transform:'translateY('+((1-intro)*25)+'px)'}}>
    <div dir="rtl" style={{position:'absolute',top:195,left:90,right:90,fontSize:idx===3?67:72,lineHeight:1.65,textAlign:'right'}}>{s.title}</div>
-   {idx===0?<MapScene t={local} paths={props.mapPaths}/>:idx===1?<ShoreScene t={local}/>:idx===2?<FleetScene t={local}/>:<RescueScene t={local}/>}
+   {idx===0?<MapScene t={local} paths={props.mapPaths}/>:idx===1?<ShoreScene t={local} transfer={cue("تنقل",4)}/>:idx===2?<FleetScene t={local} timeline={cue("الإجلاء",3)}/>:<RescueScene t={local} countAt={cue("تلتمية",.3)}/>}
   </div>
   <div style={{position:'absolute',top:1320,left:80,right:80,height:1,background:'#7d9a9c40'}}/>
   <div style={{position:'absolute',top:1352,left:80,color:C.gold,fontSize:22,letterSpacing:3}}>{String(idx+1).padStart(2,'0')} / 04</div>
