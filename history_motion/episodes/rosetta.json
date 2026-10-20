@@ -1,0 +1,15 @@
+{
+  "id":"rosetta-01", "title":"حجر واحد… وثلاث كتابات", "voice":"ar-EG-ShakirNeural", "rate":"-8%",
+  "sources":[
+    {"url":"https://www.britishmuseum.org/sites/default/files/2022-10/Hieroglyphs_unlocking_ancient_Egypt_large_print_guide_The_British_Museum.pdf","supports":["discovery_1799","three_scripts"]},
+    {"url":"https://www.britishmuseum.org/sites/default/files/2020-11/Visitor_Journey_large_print_guide_British_Museum.pdf","supports":["decipherment_1822"]}
+  ],
+  "scenes":[
+    {"id":"hook","headline":"حجر مكسور","kicker":"حكاية حجر رشيد","kind":"stone","text":"إزاي حجر مكسور ساعدنا نقرا كتابة، اختفت قراءتها قرون؟"},
+    {"id":"map","headline":"رشيد • ١٧٩٩","kicker":"دلتا النيل، مصر","kind":"map","text":"في سنة ألف سبعمية تسعة وتسعين، اتلاقى حجر رشيد قرب مدينة رشيد، في دلتا النيل."},
+    {"id":"scripts","headline":"٣ كتابات","kicker":"مرسوم واحد","kind":"bands","text":"على الحجر نفس المرسوم، مكتوب بثلاث كتابات: الهيروغليفية، والديموطيقية، واليونانية القديمة."},
+    {"id":"compare","headline":"مفتاح المقارنة","kicker":"اليونانية كانت مفهومة","kind":"compare","text":"اليونانية كانت مفهومة. فمقارنة النصوص ادّت الباحثين مفتاح مهم، لفهم الكتابات المصرية."},
+    {"id":"year","headline":"١٨٢٢","kicker":"خطوة حاسمة في فك الهيروغليفية","kind":"timeline","text":"وفي سنة ألف تمنمية اتنين وعشرين، أعلن شامبليون تقدّم حاسم في فك الهيروغليفية، ضمن جهود شارك فيها باحثين تانيين."},
+    {"id":"outro","headline":"باب لقراءة التاريخ","kicker":"من أثر صامت… إلى نص مقروء","kind":"stone","text":"حجر مكسور، ساعد يفتح باب لقراءة تاريخ مصر القديمة."}
+  ]
+}

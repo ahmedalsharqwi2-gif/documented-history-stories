@@ -1,0 +1,72 @@
+name: History Motion Pilot
+on:
+  push:
+    branches: [codex/history-motion-pilot]
+    paths: [history_motion/**, .github/workflows/history-motion-pilot.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: history-motion-pilot
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: history_motion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: oven-sh/setup-bun@v2
+      - name: Install audio and rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-noto-core
+          cp /usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf app/public/fonts/
+          cp /usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf app/public/fonts/
+          pip install -r requirements.txt
+          cd app
+          bun install
+          bunx playwright-core install --with-deps chromium
+      - uses: actions/cache@v4
+        with:
+          path: history_motion/.cache/voice
+          key: history-motion-voice-v1-${{ hashFiles('history_motion/episodes/*.json') }}
+      - name: Generate Egyptian narration and measured scene timing
+        run: python scripts/prepare.py
+      - name: Render representative frames with the original adapted engine
+        run: |
+          cd app
+          export CHROME_PATH=$(bun -e "import {chromium} from 'playwright-core'; console.log(chromium.executablePath())")
+          bun scripts/render.ts stills --t 2,10,20,30 --out ../out/stills
+      - name: Render the full vertical pilot
+        run: |
+          cd app
+          export CHROME_PATH=$(bun -e "import {chromium} from 'playwright-core'; console.log(chromium.executablePath())")
+          bun run render
+      - name: Verify final video
+        run: python scripts/verify.py
+      - name: Upload verified video
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-motion-pilot
+          path: |
+            history_motion/out/history-pilot.mp4
+            history_motion/out/verification.json
+            history_motion/data/episode.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload diagnostic frames and timing
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-motion-diagnostics
+          path: |
+            history_motion/out/stills/
+            history_motion/data/
+          if-no-files-found: ignore
+          retention-days: 3
