@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'voice_lab/**'
+      - 'voice_lab/synthesize_sample.py'
+      - 'voice_lab/egyptian-sample.txt'
       - '.github/workflows/voice-lab.yml'
 permissions:
   contents: read
