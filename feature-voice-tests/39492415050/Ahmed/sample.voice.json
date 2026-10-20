@@ -1,0 +1,26 @@
+{
+  "type": "independent_new_number_pronunciation_test",
+  "speaker": "Ahmed",
+  "expected_values": [
+    1964,
+    65,
+    200
+  ],
+  "provider": "VoiceTut-TTS",
+  "model": "mohammedaly22/VoiceTut-TTS",
+  "spoken_text": "سنة أَلْف تِسْعُمِيَّة أَرْبَعَة وَسِتِّين، بدأت عملية الإنقاذ. والارتفاع كان حوالي خَمْسَة وَسِتِّين مِتْر، والنقل حوالي مِيتِين مِتْر.",
+  "normalize": false,
+  "one_shot_scene": true,
+  "num_step": 32,
+  "guidance_scale": 2.0,
+  "speed": 1,
+  "duration": 8.91,
+  "sample_rate": 24000,
+  "elapsed_seconds": 226.29,
+  "seed": 20261020,
+  "sha256": "e67d1320eead0f3f38a5ce3590db4aaee94d9baca7c8dc4b421d5b79c9c99384",
+  "newly_synthesized": true,
+  "reference_video_used": false,
+  "wrapper_commit": "44cba00cd3ddb04b5213353e19e960045e332da7",
+  "backbone_commit": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+}

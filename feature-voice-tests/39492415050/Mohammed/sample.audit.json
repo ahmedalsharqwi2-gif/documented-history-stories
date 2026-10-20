@@ -1,0 +1,115 @@
+{
+  "transcript": "سنة 1964 بدأت عملية الإنقاذ والارتفاع كان حوالي 65 متر والنقل حوالي 200 متر",
+  "words": [
+    {
+      "text": "سنة",
+      "start": 0.0,
+      "end": 0.9,
+      "probability": 0.8564363121986389
+    },
+    {
+      "text": "1964",
+      "start": 0.9,
+      "end": 2.58,
+      "probability": 0.8682404160499573
+    },
+    {
+      "text": "بدأت",
+      "start": 2.58,
+      "end": 3.42,
+      "probability": 0.976876974105835
+    },
+    {
+      "text": "عملية",
+      "start": 3.42,
+      "end": 3.76,
+      "probability": 0.9801957209904989
+    },
+    {
+      "text": "الإنقاذ",
+      "start": 3.76,
+      "end": 4.38,
+      "probability": 0.8909158706665039
+    },
+    {
+      "text": "والارتفاع",
+      "start": 4.38,
+      "end": 5.04,
+      "probability": 0.9041286826133728
+    },
+    {
+      "text": "كان",
+      "start": 5.04,
+      "end": 5.24,
+      "probability": 0.9724236726760864
+    },
+    {
+      "text": "حوالي",
+      "start": 5.24,
+      "end": 6.32,
+      "probability": 0.9750985950231552
+    },
+    {
+      "text": "65",
+      "start": 6.32,
+      "end": 6.64,
+      "probability": 0.958979070186615
+    },
+    {
+      "text": "متر",
+      "start": 6.64,
+      "end": 7.6,
+      "probability": 0.9459084272384644
+    },
+    {
+      "text": "والنقل",
+      "start": 7.6,
+      "end": 8.0,
+      "probability": 0.9499740451574326
+    },
+    {
+      "text": "حوالي",
+      "start": 8.0,
+      "end": 8.36,
+      "probability": 0.9911734163761139
+    },
+    {
+      "text": "200",
+      "start": 8.36,
+      "end": 8.6,
+      "probability": 0.9422017931938171
+    },
+    {
+      "text": "متر",
+      "start": 8.6,
+      "end": 9.02,
+      "probability": 0.9810334146022797
+    }
+  ],
+  "number_checks": {
+    "1964": {
+      "passed": true,
+      "matching_forms": [
+        "1964"
+      ]
+    },
+    "65": {
+      "passed": true,
+      "matching_forms": [
+        "65"
+      ]
+    },
+    "200": {
+      "passed": true,
+      "matching_forms": [
+        "200"
+      ]
+    }
+  },
+  "all_numbers_passed": true,
+  "asr_model": "medium",
+  "prompt_used": false,
+  "language_probability": 1,
+  "speaker": "Mohammed",
+  "duration": 9.04
+}

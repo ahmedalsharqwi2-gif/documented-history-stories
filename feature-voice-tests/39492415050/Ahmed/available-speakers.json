@@ -1,0 +1,173 @@
+[
+  {
+    "speaker_id": "spk_01_male",
+    "speaker_name": "Ahmed",
+    "arabic_name": "أحمد",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "ahmed.wav"
+  },
+  {
+    "speaker_id": "spk_02_male",
+    "speaker_name": "Ali",
+    "arabic_name": "علي",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "ااه، كل ما تيجي تفكر ان الدنيا وحشة و ان حياتك مليانة مشاكل، اِفتكر انك ف نعم كبيرة انت مش عارف عددها.",
+    "audio_filename": "ali.wav"
+  },
+  {
+    "speaker_id": "spk_03_male",
+    "speaker_name": "Hassan",
+    "arabic_name": "حسن",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "بص، يعني انا شايف انك متستعجلش في القرار، خد وقتك و فكر فيه بهدوء الأول.",
+    "audio_filename": "hassan.wav"
+  },
+  {
+    "speaker_id": "spk_04_male",
+    "speaker_name": "Karim",
+    "arabic_name": "كريم",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "بص، يعني انا شايف انك متستعجلش في القرار، خد وقتك و فكر فيه بهدوء الأول.",
+    "audio_filename": "karim.wav"
+  },
+  {
+    "speaker_id": "spk_05_male",
+    "speaker_name": "Mahmoud",
+    "arabic_name": "محمود",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "mahmoud.wav"
+  },
+  {
+    "speaker_id": "spk_06_male",
+    "speaker_name": "Mohammed",
+    "arabic_name": "محمد",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "أنا كنت رايح البيت بعد ما خلصت شغل، بس اكتشفت ان كان عندي meeting مهم بخصوص ال budget بس نسيته خالص",
+    "audio_filename": "mohammed.wav"
+  },
+  {
+    "speaker_id": "spk_07_male",
+    "speaker_name": "Mostafa",
+    "arabic_name": "مصطفى",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "ممكن تبعتلي ال location على WhatsApp عشان أوصل للمكان من غير ما ألفّ كتير؟",
+    "audio_filename": "mostafa.wav"
+  },
+  {
+    "speaker_id": "spk_08_male",
+    "speaker_name": "Ramy",
+    "arabic_name": "رامي",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "ramy.wav"
+  },
+  {
+    "speaker_id": "spk_09_male",
+    "speaker_name": "Shaker",
+    "arabic_name": "شاكر",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "shaker.wav"
+  },
+  {
+    "speaker_id": "spk_10_male",
+    "speaker_name": "Tareq",
+    "arabic_name": "طارق",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "الموضوع فعلا مهم جدا احنا نحتاجين ناخد بالنا الفترة الجاية عشان الموضوع مفيهوش هزار يا جماعة",
+    "audio_filename": "tarek.wav"
+  },
+  {
+    "speaker_id": "spk_11_male",
+    "speaker_name": "Yehia",
+    "arabic_name": "يحيى",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "لما حد يقول: اي حاجة، بييبقا عايز حاجة معينة، بس مش عايز يقول.",
+    "audio_filename": "yehia.wav"
+  },
+  {
+    "speaker_id": "spk_12_male",
+    "speaker_name": "Youssef",
+    "arabic_name": "يوسف",
+    "gender": "male",
+    "tags": [],
+    "reference_text": "أحب اعيد على كل المصريين اللي لسه فعلا بيشعرو بالفخر و معتزين بأرضهم و فاكرين الدم اللي اتدفع فيها",
+    "audio_filename": "youssef.wav"
+  },
+  {
+    "speaker_id": "spk_13_female",
+    "speaker_name": "Hadeer",
+    "arabic_name": "هدير",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "hadeer.wav"
+  },
+  {
+    "speaker_id": "spk_14_female",
+    "speaker_name": "Hanan",
+    "arabic_name": "حنان",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "hanan.wav"
+  },
+  {
+    "speaker_id": "spk_15_female",
+    "speaker_name": "Mariam",
+    "arabic_name": "مريم",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "ال meeting بكرة الصبح بدري، ف ياريت تلبس الحتة اللي ع الحبل الله يباركلك عشان ناخد ال deal ده.",
+    "audio_filename": "mariam.wav"
+  },
+  {
+    "speaker_id": "spk_16_female",
+    "speaker_name": "Rana",
+    "arabic_name": "رنا",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "ااه، كل ما تيجي تفكر ان الدنيا وحشة و ان حياتك مليانة مشاكل، اِفتكر انك ف نعم كبيرة انت مش عارف عددها.",
+    "audio_filename": "rana.wav"
+  },
+  {
+    "speaker_id": "spk_17_female",
+    "speaker_name": "Sarah",
+    "arabic_name": "سارة",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "بص، يعني انا شايف انك متستعجلش في القرار، خد وقتك و فكر فيه بهدوء الأول.",
+    "audio_filename": "sarah.wav"
+  },
+  {
+    "speaker_id": "spk_18_female",
+    "speaker_name": "Yasmin",
+    "arabic_name": "ياسمين",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "ابعتلي ال file النهائي بعد ما تراجع كل التعديلات وتتأكد إن مفيش أي ملاحظات ناقصة، عشان أرفعه للعميل قبل نهاية اليوم.",
+    "audio_filename": "yasmin.wav"
+  },
+  {
+    "speaker_id": "spk_19_female",
+    "speaker_name": "Yara",
+    "arabic_name": "يارا",
+    "gender": "female",
+    "tags": [],
+    "reference_text": "يعني كل ما تيجي تفكر ان الدنيا بايظة و ان الحياة مش قد كدة، اِفتكر ان ربنا موجود و انه قادر على كل شئ.",
+    "audio_filename": "yara.wav"
+  }
+]
