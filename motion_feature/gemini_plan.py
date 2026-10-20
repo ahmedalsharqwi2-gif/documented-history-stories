@@ -83,7 +83,12 @@ SOURCE FACTS:
     attempts=[];last_error="No supported free-tier Gemini model discovered"
     for model in candidates:
         for attempt in range(6):
-            schema={"type":"OBJECT","required":["title","scenes"],"properties":{"title":{"type":"STRING"},"scenes":{"type":"ARRAY","minItems":16,"maxItems":16,"items":{"type":"OBJECT","required":["narration","title","highlight","visual_type","labels","source_ids"],"properties":{"narration":{"type":"STRING","description":"Natural Egyptian Arabic, 26 to 31 spoken words, count carefully; expand tags mentally"},"title":{"type":"STRING"},"highlight":{"type":"STRING"},"visual_type":{"type":"STRING","enum":sorted(VISUALS)},"labels":{"type":"ARRAY","items":{"type":"STRING"}},"source_ids":{"type":"ARRAY","items":{"type":"STRING","enum":[x["id"] for x in FACTS["sources"]]}}}}}}
+            fields={k:{"type":"STRING"} for k in ("narration","title","highlight")}
+            fields["visual_type"]={"type":"STRING","enum":sorted(VISUALS)}
+            fields["labels"]={"type":"ARRAY","items":{"type":"STRING"}}
+            fields["source_ids"]={"type":"ARRAY","items":{"type":"STRING","enum":[x["id"] for x in FACTS["sources"]]}}
+            item={"type":"OBJECT","required":list(fields),"properties":fields}
+            schema={"type":"OBJECT","required":["title","scenes"],"properties":{"title":{"type":"STRING"},"scenes":{"type":"ARRAY","minItems":16,"maxItems":16,"items":item}}}
             payload={"contents":[{"parts":[{"text":prompt}]}],
                 "generationConfig":{"temperature":.55,"maxOutputTokens":12000,"responseMimeType":"application/json","responseSchema":schema}}
             try:
