@@ -1,0 +1,99 @@
+name: Motion Quick Preview
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/motion-quick-preview.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      actions: read
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: '1'
+      HF_HUB_DISABLE_XET: '1'
+      OMP_NUM_THREADS: '4'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: video-toolkit/package-lock.json
+      - uses: actions/download-artifact@v4
+        with:
+          name: motion-script-plan
+          path: episode-work
+          run-id: 39468830702
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: motion-voice-0
+          path: episode-parts
+          run-id: 39468830702
+          github-token: ${{ github.token }}
+      - name: Install preview renderer
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+          python -m pip install 'numpy==1.26.4' 'faster-whisper==1.2.1'
+          npm ci --prefix video-toolkit --no-audit --no-fund
+          cd video-toolkit
+          npx playwright install --with-deps chromium
+      - name: Prepare explicitly labelled first-scene preview at 720x1280
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("motion_episode/produce.py")
+          s=p.read_text()
+          replacements={
+            'for i,s in enumerate(plan["scenes"]):':'for i,s in enumerate(plan["scenes"][:1]):',
+            'events=[s["start"] for s in scenes]+[scenes[3]["start"]+2.9]':'events=[s["start"] for s in scenes]',
+            '!=(1080,1920,"30/1")':'!=(720,1280,"30/1")',
+            '"width":1080,"height":1920':'"width":720,"height":1280',
+            '"scene_count":4':'"scene_count":len(scenes)',
+            '"status":"preview_for_user_review"':'"status":"first_scene_preview_not_full_episode"'
+          }
+          for before,after in replacements.items():
+              if before not in s:raise ValueError("Preview patch target absent: "+before)
+              s=s.replace(before,after)
+          Path("motion_episode/preview_produce.py").write_text(s)
+          r=Path("video-toolkit/scripts/render-episode.mjs")
+          js=r.read_text()
+          before="renderMedia({...options,composition,codec:"
+          if before not in js:raise ValueError("Scale patch target absent")
+          r.write_text(js.replace(before,"renderMedia({...options,composition,scale:2/3,codec:"))
+          PY
+      - name: Render and verify first scene with real new narration and mixed soundtrack
+        run: python motion_episode/preview_produce.py assemble
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: motion-first-scene-preview
+          path: output/
+          retention-days: 14
+      - name: Save playable first-scene preview
+        env:
+          RESULT_BRANCH: codex/motion-preview-${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_id }}
+        run: |
+          target="motion-previews/$RUN_NUMBER"
+          mkdir -p "$target"
+          cp output/* "$target/"
+          printf '%s\n' 'First scene only; 720x1280 preview. Full 1080x1920 episode renders separately.' > "$target/PREVIEW.txt"
+          git switch -c "$RESULT_BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          git commit -m "Save first-scene motion preview with actual VoiceTut narration and soundtrack"
+          git push origin "$RESULT_BRANCH"
