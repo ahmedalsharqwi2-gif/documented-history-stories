@@ -68,6 +68,7 @@ def voice(part):
     plan=json.loads(PLAN.read_text());out=ROOT/"episode-parts";out.mkdir(exist_ok=True)
     generate(plan["scenes"][part]["narration"],out/f"part-{part}.wav")
 def norm(word):
+    word=word.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩","0123456789"))
     word=re.sub(r"[\u064b-\u065f\u0670ـ]","",word)
     return re.sub(r"[^\u0621-\u064a0-9]","",word).replace("أ","ا").replace("إ","ا").replace("آ","ا").replace("ى","ي")
 def caption_timing(model,path,text,duration):
@@ -76,12 +77,25 @@ def caption_timing(model,path,text,duration):
     audio=np.frombuffer(pcm,np.float32)
     segments,_=model.transcribe(audio,language="ar",word_timestamps=True,vad_filter=False,beam_size=5,condition_on_previous_text=False)
     recognized=[{"text":w.word.strip(),"start":float(w.start),"end":float(w.end)} for seg in segments for w in (seg.words or []) if norm(w.word)]
+    # ASR often writes a spoken number as digits. Expand only known episode numbers,
+    # preserving the recognized span rather than pretending new timestamps were measured.
+    expanded=[]
+    number_words={"1940":["ألف","وتسعمية","وأربعين"],"338":["تلتمية","تمانية","وتلاتين"],
+        "338000":["تلتمية","تمانية","وتلاتين","ألف"],"4":["أربعة"]}
+    for w in recognized:
+        words=number_words.get(norm(w["text"]),[w["text"]])
+        step=(w["end"]-w["start"])/len(words)
+        expanded.extend({"text":word,"start":w["start"]+k*step,"end":w["start"]+(k+1)*step} for k,word in enumerate(words))
+    raw_recognized=recognized;recognized=expanded
     expected=text.split();clean_expected=[norm(w) for w in expected];clean_actual=[norm(w["text"]) for w in recognized]
     matcher=SequenceMatcher(None,clean_expected,clean_actual,autojunk=False);anchors={}
     for block in matcher.get_matching_blocks():
         for k in range(block.size):anchors[block.a+k]=recognized[block.b+k]
     coverage=len(anchors)/max(1,len(expected))
-    if coverage<.72:raise ValueError(f"Generated narration failed text match: {coverage:.3f}. Voice will not be replaced.")
+    if coverage<.72:
+        debug=ROOT/"output";debug.mkdir(exist_ok=True)
+        (debug/(Path(path).stem+"-alignment-failed.json")).write_text(json.dumps({"coverage":coverage,"expected":text,"recognized":raw_recognized},ensure_ascii=False,indent=2))
+        raise ValueError(f"Generated narration failed text match: {coverage:.3f}. Voice will not be replaced.")
     timed=[None]*len(expected)
     for i,a in anchors.items():timed[i]={"start":max(0,a["start"]),"end":min(duration,a["end"])}
     i=0
@@ -103,7 +117,7 @@ def caption_timing(model,path,text,duration):
     caps[0]["start"]=0;caps[-1]["end"]=duration
     for ci,c in enumerate(caps):
         c["words"]=[{"text":expected[k],**timed[k]} for k in range(ci*6,min(len(expected),(ci+1)*6))]
-    return caps,{"matched_word_fraction":round(coverage,4),"recognized_text":" ".join(w["text"] for w in recognized),"timing":"ASR anchors plus bounded interpolation for unmatched tokens"}
+    return caps,{"matched_word_fraction":round(coverage,4),"recognized_text":" ".join(w["text"] for w in raw_recognized),"timing":"ASR anchors; known digit-form numbers expanded within their recognized spans; bounded interpolation for unmatched tokens"}
 def map_paths():
     geo=json.loads((ROOT/"history_visual/assets/countries.geojson").read_text())
     paths=[]
