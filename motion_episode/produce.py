@@ -194,24 +194,22 @@ def assemble():
     subprocess.run(["node","scripts/render-episode.mjs"],cwd=ROOT/"video-toolkit",check=True,timeout=600)
     music=ROOT/"assets/music/history_archive_reflection.mp3"
     video=output/"motion-episode.mp4"
-    filters=(
-      f"[1:a]loudnorm=I=-16:TP=-2:LRA=7,asplit=2[voice][control];"
-      f"[2:a]atrim=duration={cursor},asetpts=PTS-STARTPTS,loudnorm=I=-26:TP=-8:LRA=7,"
-      f"afade=t=in:d=1.2,afade=t=out:st={max(0,cursor-2)}:d=2[music];"
-      "[music][control]sidechaincompress=threshold=0.025:ratio=8:attack=15:release=350[ducked];"
-      "[3:a]volume=0.75[sfx];"
-      "[voice][ducked][sfx]amix=inputs=3:duration=first:normalize=0,alimiter=limit=0.94:latency=1[mix]")
-    subprocess.run(["ffmpeg","-y","-v","warning","-i",str(ROOT/"episode-work/silent.mp4"),"-i",str(narration),
-        "-stream_loop","-1","-i",str(music),"-i",str(ROOT/"episode-work/effects.wav"),"-filter_complex",filters,
-        "-map","0:v:0","-map","[mix]","-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000",
+    import sys
+    sys.path.insert(0,str(ROOT))
+    from audio_repair.delivery import mix_audio,verify_tail
+    mixed=ROOT/"episode-work/audio-prepared/mix.wav"
+    normalized=mix_audio(narration,music,ROOT/"episode-work/effects.wav",cursor,mixed)
+    subprocess.run(["ffmpeg","-y","-v","warning","-i",str(ROOT/"episode-work/silent.mp4"),"-i",str(mixed),
+        "-map","0:v:0","-map","1:a:0","-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000",
         "-t",f"{cursor:.6f}","-movflags","+faststart",str(video)],check=True)
+    tail_checks=verify_tail(video,normalized,cursor)
     meta=probe(video);v=next(s for s in meta["streams"] if s["codec_type"]=="video");a=next(s for s in meta["streams"] if s["codec_type"]=="audio")
     if (v["width"],v["height"],v["r_frame_rate"])!=(1080,1920,"30/1"):raise ValueError("Wrong delivery format")
     if abs(float(meta["format"]["duration"])-cursor)>.12:raise ValueError("Final video duration drift")
     if video.stat().st_size>90_000_000:raise ValueError("Preview too large for the result branch")
     subprocess.run(["ffmpeg","-v","error","-xerror","-i",str(video),"-f","null","-"],check=True)
     verification={"passed":True,"duration_seconds":cursor,"width":1080,"height":1920,"fps":30,
-        "decoded_complete":True,"scene_count":4,"word_count":sum(len(c["words"]) for c in captions),
+        "decoded_complete":True,"audio_delivery_checks":tail_checks,"scene_count":4,"word_count":sum(len(c["words"]) for c in captions),
         "voice":"New VoiceTut Mohammed speech, four independent segments; no reference-video voice recording",
         "voice_pcm_before_mix_sha256":sha(narration),"music_file":str(music.relative_to(ROOT)),"music_sha256":sha(music),
         "audio_mix":"Narration -16 LUFS, music -26 LUFS before sidechain ducking, original air-sweep SFX on selected events, peak limiter",

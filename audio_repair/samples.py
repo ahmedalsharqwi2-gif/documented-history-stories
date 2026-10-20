@@ -42,8 +42,12 @@ def edge():
  out=ROOT/'audio-lab/alternative';out.mkdir(parents=True,exist_ok=True);rows=[]
  for name in ['ar-EG-ShakirNeural','ar-EG-SalmaNeural']:
   for kind in ['raw','msa']:
-   target=out/(name+'-'+kind+'.mp3');result=subprocess.run(['edge-tts','--voice',name,'--text',TEXTS[kind],'--write-media',str(target)],capture_output=True,text=True,timeout=100)
-   rows.append({'voice':name,'condition':kind,'generated':result.returncode==0 and target.exists(),'error':result.stderr[-600:] if result.returncode else None})
+   target=out/(name+'-'+kind+'.mp3')
+   try:
+    result=subprocess.run(['edge-tts','--voice',name,'--text',TEXTS[kind],'--write-media',str(target)],capture_output=True,text=True,timeout=70)
+    rows.append({'voice':name,'condition':kind,'generated':result.returncode==0 and target.exists(),'error':result.stderr[-600:] if result.returncode else None})
+   except Exception as e:rows.append({'voice':name,'condition':kind,'generated':False,'error':type(e).__name__})
+   (out/'provider-results.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2))
  (out/'provider-results.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2));print(json.dumps(rows,ensure_ascii=False))
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('mode',choices=['catalogue','generate','audit','edge']);p.add_argument('--speaker');p.add_argument('--condition',default='vowelled');a=p.parse_args()
