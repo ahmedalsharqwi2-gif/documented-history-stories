@@ -14,5 +14,5 @@ for(let i=0;i<props.scenes.length;i++){
  await renderStill({...options,composition,frame,imageFormat:'jpeg',jpegQuality:80,output:path.join(root,'output','scene-'+i+'.jpg')});
 }
 let last=-1;
-await renderMedia({...options,composition,codec:'h264',crf:18,pixelFormat:'yuv420p',outputLocation:path.join(root,'episode-work/silent.mp4'),concurrency:2,onProgress:({progress})=>{const p=Math.floor(progress*10);if(p!==last){console.log('Rendering',p*10+'%');last=p;}}});
-await fs.writeFile(path.join(root,'output/render-settings.json'),JSON.stringify({width:1080,height:1920,fps:30,frames:composition.durationInFrames,codec:'h264',crf:18},null,2));
+await renderMedia({...options,composition,codec:'h264',crf:18,pixelFormat:'yuv420p',outputLocation:path.join(root,'episode-work/silent.mp4'),concurrency:1,disableSharedMemoryCapture:true,disallowParallelEncoding:true,imageFormat:'png',logLevel:'verbose',onProgress:({progress,renderedFrames,encodedFrames})=>{const p=Math.floor(progress*10);if(p!==last){console.log('Rendering',p*10+'%',{renderedFrames,encodedFrames});last=p;}}});
+await fs.writeFile(path.join(root,'output/render-settings.json'),JSON.stringify({width:1080,height:1920,fps:30,frames:composition.durationInFrames,codec:'h264',crf:18,sharedMemoryCapture:false,parallelEncoding:false},null,2));

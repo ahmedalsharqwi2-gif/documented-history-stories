@@ -191,7 +191,7 @@ def assemble():
     (ROOT/"episode-work/render.json").write_text(json.dumps(props,ensure_ascii=False))
     events=[s["start"] for s in scenes]+[scenes[3]["start"]+2.9]
     synth_effects(ROOT/"episode-work/effects.wav",cursor,events)
-    subprocess.run(["node","scripts/render-episode.mjs"],cwd=ROOT/"video-toolkit",check=True)
+    subprocess.run(["node","scripts/render-episode.mjs"],cwd=ROOT/"video-toolkit",check=True,timeout=600)
     music=ROOT/"assets/music/history_archive_reflection.mp3"
     video=output/"motion-episode.mp4"
     filters=(
