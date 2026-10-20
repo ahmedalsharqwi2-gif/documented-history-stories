@@ -293,7 +293,7 @@ jobs:
       - name: Arabic preflight gates (documented history)
         env:
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
-          TTS_ENGINE: "silma"
+          TTS_ENGINE: "voicetut"
         run: |
           test -f state/current_episode.json || { echo "TEXT_GATE: episode artifact missing"; exit 1; }
           TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
@@ -312,9 +312,12 @@ jobs:
           path: state/current_episode.json
           key: prepared-v1-${{ github.repository_id }}-${{ inputs.dry_run || false }}-${{ matrix.date || github.run_id }}-${{ matrix.hour }}
 
-      - name: Generate narration with the selected SILMA reference voice
+      - name: Install the accepted VoiceTut voice in an isolated runtime
+        run: bash voice_provider/install.sh
+
+      - name: Generate narration with accepted VoiceTut Mohammed
         env:
-          TTS_ENGINE: "silma"
+          TTS_ENGINE: "voicetut"
           EDGE_TTS_VOICES: "ar-SA-HamedNeural"
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
           SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
@@ -322,7 +325,7 @@ jobs:
           SILMA_SPEED: "0.96"
           SILMA_GUARD_ENABLED: "true"
           SILMA_GUARD_MIN_MATCH_WORDS: "4"
-          SILMA_FALLBACK_TO_EDGE: "true"
+          SILMA_FALLBACK_TO_EDGE: "false"
           WHISPER_MODEL: "small"
           # Whisper occasionally under-recognizes long Arabic SILMA output;
           # Edge's synthesized Arabic can be valid while Whisper misses

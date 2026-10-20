@@ -426,6 +426,13 @@ def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
 async def synthesize_sentences(sentences: list[str], engine_override: str | None = None) -> list[dict]:
     """يختار محرك الصوت صراحةً؛ SILMA لا يرجع إلى Edge تلقائياً."""
     engine = engine_override or TTS_ENGINE
+    if engine == "voicetut":
+        from voice_provider.client import generate
+        source = CLIPS_DIR / "_voicetut_complete.wav"
+        whole_text = " ".join(str(s).strip() for s in sentences if str(s).strip())
+        await asyncio.to_thread(generate, whole_text, source)
+        return [{"path": source, "duration": probe_duration(source), "events": None,
+                 "sentence": whole_text, "is_silence": False}]
     if engine == "silma":
         try:
             return synthesize_sentences_silma(sentences)
@@ -753,6 +760,8 @@ def synthesize_google_sentences(sentences: list[str], *, slow: bool = False) -> 
 
 
 async def synthesize_with_free_recovery(sentences: list[str], engine_override: str | None = None):
+    if (engine_override or TTS_ENGINE) == "voicetut":
+        return await synthesize_sentences(sentences, "voicetut"), "voicetut"
     if engine_override is None and os.getenv("PREFER_FREE_GOOGLE_TTS", "false").lower() == "true":
         try:
             return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
@@ -900,16 +909,19 @@ def main() -> None:
     CLIPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
-    selected_voice_profile = ""
+    selected_voice_profile = "voicetut:Mohammed" if TTS_ENGINE == "voicetut" else ""
     if TTS_ENGINE == "silma":
         selected_voice_profile = configure_silma_voice_profile()
 
     phonetic_hints = episode.get("phonetic_hints") or []
     voice_text = apply_phonetic_hints(narration, phonetic_hints)
-    voice_text = apply_light_diacritics(voice_text)
-    voice_text, phonemes = prepare_tts_text(
-        voice_text, ROOT_DIR / "config" / "arabic_pronunciation.json"
-    )
+    if TTS_ENGINE != "voicetut":
+        voice_text = apply_light_diacritics(voice_text)
+    phonemes = []
+    if TTS_ENGINE != "voicetut":
+        voice_text, phonemes = prepare_tts_text(
+            voice_text, ROOT_DIR / "config" / "arabic_pronunciation.json"
+        )
     print(f"✅ طبقة النطق: Mantoq/القاموس — {len(phonemes)} phoneme token(s)")
     voice_text = sanitize_tts_punctuation(voice_text)
     synthesize_voice(voice_text)
