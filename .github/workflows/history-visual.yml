@@ -1,0 +1,49 @@
+name: History Photo Motion
+on:
+  push:
+    branches: [codex/history-visual-approved]
+    paths: [history_visual/**, .github/workflows/history-visual.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: history-visual-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  render-approved-sample:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: history_visual/requirements.txt
+      - name: Install renderer dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg libraqm0
+          pip install -r history_visual/requirements.txt
+      - name: Render approved images and original recording
+        run: python history_visual/render.py
+      - name: Verify visuals, original audio, and encoded video
+        run: python history_visual/verify.py
+      - name: Upload verified video and report
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-photo-motion-approved
+          path: |
+            history_visual/output/dunkirk-visual-v2.mp4
+            history_visual/output/verification.json
+            history_visual/output/production.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload preview frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-photo-motion-frames
+          path: history_visual/output/frame-*.jpg
+          if-no-files-found: ignore
+          retention-days: 7
