@@ -1,0 +1,10 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames": 1119,
+  "codec": "h264",
+  "crf": 18,
+  "sharedMemoryCapture": false,
+  "parallelEncoding": false
+}
