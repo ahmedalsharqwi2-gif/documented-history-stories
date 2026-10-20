@@ -1,0 +1,12 @@
+{
+  "speaker": "Mohammed",
+  "condition": "msa",
+  "text": "في عام ألف وتسعمائة وثمانية وستين، نُقِل معبد أبو سمبل. ويجب نطق الجملة الأخيرة كاملة.",
+  "speed": 1.0,
+  "steps": 32,
+  "newly_generated": true,
+  "model": "mohammedaly22/VoiceTut-TTS",
+  "duration": 6.83,
+  "sha256": "7cf7678f7fca9b924057413867f51788aed8d25e4097bf73aadfcc4eb6a239c7",
+  "reference_video_used": false
+}

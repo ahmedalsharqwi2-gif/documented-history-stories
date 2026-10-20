@@ -1,0 +1,75 @@
+{
+  "transcript": "في سنة 1968 نألوا معبد أبو سنبل وآخر جملة لازم تطقال كاملة",
+  "words": [
+    {
+      "text": "في",
+      "start": 0.0,
+      "end": 0.36
+    },
+    {
+      "text": "سنة",
+      "start": 0.36,
+      "end": 0.98
+    },
+    {
+      "text": "1968",
+      "start": 0.98,
+      "end": 2.6
+    },
+    {
+      "text": "نألوا",
+      "start": 2.6,
+      "end": 3.7
+    },
+    {
+      "text": "معبد",
+      "start": 3.7,
+      "end": 3.92
+    },
+    {
+      "text": "أبو",
+      "start": 3.92,
+      "end": 4.12
+    },
+    {
+      "text": "سنبل",
+      "start": 4.12,
+      "end": 4.58
+    },
+    {
+      "text": "وآخر",
+      "start": 4.58,
+      "end": 5.08
+    },
+    {
+      "text": "جملة",
+      "start": 5.08,
+      "end": 5.42
+    },
+    {
+      "text": "لازم",
+      "start": 5.42,
+      "end": 5.76
+    },
+    {
+      "text": "تطقال",
+      "start": 5.76,
+      "end": 6.18
+    },
+    {
+      "text": "كاملة",
+      "start": 6.18,
+      "end": 6.46
+    }
+  ],
+  "number_checks": {
+    "1968": {
+      "passed": true,
+      "matching_forms": [
+        "1968"
+      ]
+    }
+  },
+  "last_word_complete": true,
+  "automatic_result_only_not_subjective_voice_approval": true
+}

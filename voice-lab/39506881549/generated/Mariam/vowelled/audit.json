@@ -1,0 +1,75 @@
+{
+  "transcript": "في سنة 1968 نقلوا معبد أبو سيمبل وأخر الجملة لازم تتقال كاملة",
+  "words": [
+    {
+      "text": "في",
+      "start": 0.0,
+      "end": 0.34
+    },
+    {
+      "text": "سنة",
+      "start": 0.34,
+      "end": 0.9
+    },
+    {
+      "text": "1968",
+      "start": 0.9,
+      "end": 1.88
+    },
+    {
+      "text": "نقلوا",
+      "start": 1.88,
+      "end": 2.36
+    },
+    {
+      "text": "معبد",
+      "start": 2.36,
+      "end": 2.56
+    },
+    {
+      "text": "أبو",
+      "start": 2.56,
+      "end": 2.76
+    },
+    {
+      "text": "سيمبل",
+      "start": 2.76,
+      "end": 3.38
+    },
+    {
+      "text": "وأخر",
+      "start": 3.38,
+      "end": 3.84
+    },
+    {
+      "text": "الجملة",
+      "start": 3.84,
+      "end": 4.1
+    },
+    {
+      "text": "لازم",
+      "start": 4.1,
+      "end": 4.34
+    },
+    {
+      "text": "تتقال",
+      "start": 4.34,
+      "end": 4.66
+    },
+    {
+      "text": "كاملة",
+      "start": 4.66,
+      "end": 4.94
+    }
+  ],
+  "number_checks": {
+    "1968": {
+      "passed": true,
+      "matching_forms": [
+        "1968"
+      ]
+    }
+  },
+  "last_word_complete": true,
+  "automatic_result_only_not_subjective_voice_approval": true
+}

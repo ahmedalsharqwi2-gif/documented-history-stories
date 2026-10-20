@@ -1,0 +1,26 @@
+[
+  {
+    "voice": "ar-EG-ShakirNeural",
+    "condition": "raw",
+    "generated": true,
+    "error": null
+  },
+  {
+    "voice": "ar-EG-ShakirNeural",
+    "condition": "msa",
+    "generated": true,
+    "error": null
+  },
+  {
+    "voice": "ar-EG-SalmaNeural",
+    "condition": "raw",
+    "generated": true,
+    "error": null
+  },
+  {
+    "voice": "ar-EG-SalmaNeural",
+    "condition": "msa",
+    "generated": true,
+    "error": null
+  }
+]

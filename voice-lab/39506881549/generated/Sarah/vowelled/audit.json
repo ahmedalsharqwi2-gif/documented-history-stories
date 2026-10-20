@@ -1,0 +1,75 @@
+{
+  "transcript": "في سنة 1968 نقلوا معبد أبو سنبل وآخر جملة لازم تتقال كاملة",
+  "words": [
+    {
+      "text": "في",
+      "start": 0.0,
+      "end": 0.36
+    },
+    {
+      "text": "سنة",
+      "start": 0.36,
+      "end": 0.9
+    },
+    {
+      "text": "1968",
+      "start": 0.9,
+      "end": 2.22
+    },
+    {
+      "text": "نقلوا",
+      "start": 2.22,
+      "end": 3.28
+    },
+    {
+      "text": "معبد",
+      "start": 3.28,
+      "end": 3.56
+    },
+    {
+      "text": "أبو",
+      "start": 3.56,
+      "end": 3.84
+    },
+    {
+      "text": "سنبل",
+      "start": 3.84,
+      "end": 4.18
+    },
+    {
+      "text": "وآخر",
+      "start": 4.18,
+      "end": 4.62
+    },
+    {
+      "text": "جملة",
+      "start": 4.62,
+      "end": 5.08
+    },
+    {
+      "text": "لازم",
+      "start": 5.08,
+      "end": 5.56
+    },
+    {
+      "text": "تتقال",
+      "start": 5.56,
+      "end": 5.94
+    },
+    {
+      "text": "كاملة",
+      "start": 5.94,
+      "end": 6.24
+    }
+  ],
+  "number_checks": {
+    "1968": {
+      "passed": true,
+      "matching_forms": [
+        "1968"
+      ]
+    }
+  },
+  "last_word_complete": true,
+  "automatic_result_only_not_subjective_voice_approval": true
+}

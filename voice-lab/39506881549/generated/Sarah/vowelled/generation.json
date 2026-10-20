@@ -1,0 +1,12 @@
+{
+  "speaker": "Sarah",
+  "condition": "vowelled",
+  "text": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+  "speed": 1.0,
+  "steps": 32,
+  "newly_generated": true,
+  "model": "mohammedaly22/VoiceTut-TTS",
+  "duration": 6.4,
+  "sha256": "80582fefa78761ee4878f20c33bab8df141090698fc5034d5fd541bd6474c9d2",
+  "reference_video_used": false
+}

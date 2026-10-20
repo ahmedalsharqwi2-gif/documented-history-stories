@@ -1,0 +1,12 @@
+{
+  "speaker": "Mostafa",
+  "condition": "vowelled",
+  "text": "في سَنَة أَلْف تِسْعُمِيَّة تَمَانْيَة وَسِتِّين، نَقَلوا مَعْبَد أبو سِمْبِل. وآخِر جُمْلَة لازِم تِتْقال كامْلَة.",
+  "speed": 1.0,
+  "steps": 32,
+  "newly_generated": true,
+  "model": "mohammedaly22/VoiceTut-TTS",
+  "duration": 5.39,
+  "sha256": "4f434b235c88c591df410ebe6ba4c894780e8df3375f56ca3b060d71f60c6988",
+  "reference_video_used": false
+}
