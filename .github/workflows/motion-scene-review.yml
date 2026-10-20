@@ -55,7 +55,7 @@ jobs:
           const options={serveUrl,id:'MotionEpisode',inputProps:props,browserExecutable:chromium.executablePath(),chromiumOptions:{gl:'swangle'}};
           const composition=await selectComposition(options);
           await fs.mkdir('../scene-review',{recursive:true});
-          for(let i=0;i<4;i++)await renderStill({...options,composition,frame:i*240+99,output:path.resolve('../scene-review/scene-'+i+'.png')});
+          for(let i=0;i<4;i++)await renderStill({...options,composition,frame:i*240+99,imageFormat:'jpeg',jpegQuality:80,output:path.resolve('../scene-review/scene-'+i+'.jpg')});
           await fs.writeFile('../scene-review/README.md','Still-frame visual review only. Word timing in these frames is synthetic; the episode uses actual narration alignment.');
           JS
       - uses: actions/upload-artifact@v4
