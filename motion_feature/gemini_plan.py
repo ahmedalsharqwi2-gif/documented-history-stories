@@ -19,6 +19,11 @@ def check(data):
     if re.search(r"\{[^}]+\}",expand(all_text)):raise ValueError("Unknown narration tag")
     count=len(expand(all_text).split())
     if not 360<=count<=440:raise ValueError(f"Need 360-440 words for >2 minutes; received {count}")
+    markers=r"\b(?:ده|دي|اللي|عشان|مش|إزاي|ازاي|ليه|دلوقتي|كده|كانوا|بقت|بقى|اتنقل|اتعمل|بنحافظ|هنشوف)\b"
+    if len(re.findall(markers,all_text))<18 or sum(bool(re.search(markers,s.get("narration",""))) for s in scenes)<10:
+        raise ValueError("Rewrite in natural spoken Egyptian: at least 18 colloquial markers across at least 10 scenes; formal Arabic is rejected")
+    if any(term in all_text for term in ["أضخم عملية","تاريخ البشرية","دون إلحاق أي ضرر","أحدث وسائل","مناسبات ملكية","الموحدة"]):
+        raise ValueError("Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions")
     known={s["id"] for s in FACTS["sources"]}
     for i,s in enumerate(scenes):
         if not 19<=len(expand(s.get("narration","")).split())<=34:raise ValueError(f"Scene {i} needs 19-34 words")
@@ -46,6 +51,14 @@ def run():
     candidates=[m for m in order if m in names]
     (OUT/"model-discovery.json").write_text(json.dumps({"available_text_models":names,"candidates":candidates},indent=2))
     prompt="""You are the sole scriptwriter and storyboard director for a new Egyptian Arabic motion documentary.
+This is SPOKEN EGYPTIAN, not Modern Standard Arabic. Use ده، دي، اللي، عشان، مش، إزاي،
+ليه، بقى، اتنقل naturally; at least 18 colloquial markers across at least ten scenes.
+Begin with a compelling Egyptian question about the practical puzzle of moving a rock-cut temple,
+not a formal geography introduction. Explain concrete engineering in plain short spoken sentences.
+Avoid ornate adjectives and repeated praise. No unsupported biggest-in-history claims,
+no claim of zero damage and no claim of the latest equipment. Do not say the drafting constraints aloud.
+The 65-metre rise and 200-metre setback are approximate changes from the OLD SITE,
+not a measured height above the lake. Make that reference clear.
 Write an ORIGINAL complete story about the supplied Abu Simbel rescue facts. This is not Dunkirk.
 Return JSON {"title":"Arabic", "scenes":[16 scene objects]}.
 Every scene: narration (Egyptian colloquial Arabic, 22-29 words), title (short Arabic),
@@ -107,3 +120,4 @@ SOURCE FACTS:
     (OUT/"generation-failure.json").write_text(json.dumps({"attempts":attempts,"error":last_error,"substitute_used":False},ensure_ascii=False,indent=2))
     raise RuntimeError("Gemini did not produce a valid original script: "+last_error)
 if __name__=="__main__":run()
+
