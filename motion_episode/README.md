@@ -17,3 +17,7 @@ Quality must be judged from the produced preview. Frame-perfect word timing and 
 **Motion Episode Revision** downloads the prepared script and the four accepted voice artifacts from a source run. It checks out the current main branch, realigns the same audio and renders the revised composition. The result records both the render-source commit and narration-source run. This separates graphic iteration from slow CPU speech generation.
 
 The first history pilot uses source run `39468830702`. A manual revision can specify a different completed source run. Four still frames can also be inspected through **Motion Scene Review**, whose synthetic timestamps are clearly labelled and are not the final audio alignment.
+
+## Full-HD capture reliability
+
+The renderer captures regular PNG frames with shared-memory capture and parallel encoding disabled, then encodes them into H.264. This avoids the full-HD startup stall observed with the external Playwright Chromium. The render subprocess has a 600-second timeout. First-scene 720×1280 previews remain explicitly labelled and never substitute for a full-episode verification report.
