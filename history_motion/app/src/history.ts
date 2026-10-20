@@ -50,11 +50,11 @@ export default class HistoryScene extends Scene{
    const beat=this.beats.find(s=>f.t>=s.start&&f.t<s.end)??this.beats.at(-1)!;
    const p=clamp((f.t-beat.start)/(beat.end-beat.start));const kind=beat.kind;
    const reveal=ease.outCubic(clamp(p*6));
-   const z=kind==='bands'?5.45:kind==='compare'?5.8:6.4;
+   const z=kind==='bands'?7.7:kind==='compare'?8.0:8.9;
    this.camera.position.set(Math.sin(f.t*.10)*.32,.18+Math.sin(f.t*.13)*.10,z-.25*p);
    this.camera.lookAt(0,.13,0);
    this.stone.rotation.y=-.24+Math.sin(f.t*.16)*.13;
-   this.stone.position.x=kind==='map'?-.65:kind==='compare'?-.5:0;
+   this.stone.position.x=kind==='map'?-1.05:kind==='compare'?-.5:0;
    this.stone.scale.setScalar(kind==='map'?.72:1);
    this.dust.rotation.y=f.t*.014;
    clearRT(this.ctx.renderer,out,[.007,.009,.012]);

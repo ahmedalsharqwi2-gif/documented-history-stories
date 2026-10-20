@@ -14,23 +14,32 @@ async def prepare():
  audio=ROOT/'audio';audio.mkdir(exist_ok=True);data=ROOT/'data';data.mkdir(exist_ok=True)
  offset=0.;pcm=[];lyrics=[]
  for i,s in enumerate(ep['scenes']):
-  key=hashlib.sha256((s['text']+ep['voice']+ep['rate']).encode()).hexdigest()[:20]
+  key=hashlib.sha256((s['text']+ep['voice']+ep['rate']+'tts-policy-v2').encode()).hexdigest()[:20]
   mp3=cache/f'{key}.mp3';wav=cache/f'{key}.wav'
   if not wav.exists():
-   for attempt in range(3):
+   provider='edge:'+ep['voice']
+   for attempt in range(2):
     try:
-     await asyncio.wait_for(edge_tts.Communicate(s['text'],ep['voice'],rate=ep['rate']).save(str(mp3)),timeout=80)
+     await asyncio.wait_for(edge_tts.Communicate(s['text'],ep['voice'],rate=ep['rate']).save(str(mp3)),timeout=40)
      run(['ffmpeg','-y','-v','error','-i',str(mp3),'-ar','24000','-ac','1','-c:a','pcm_s16le',str(wav)])
      with wave.open(str(wav)) as w:
       if w.getnframes()<2400:raise RuntimeError('Empty voice output')
      break
-    except Exception:
+    except Exception as exc:
      mp3.unlink(missing_ok=True);wav.unlink(missing_ok=True)
-     if attempt==2:raise
+     if attempt==1:
+      from google_tts import google_arabic_voice
+      print(f'Edge unavailable ({type(exc).__name__}); using Google Arabic fallback',flush=True)
+      await asyncio.to_thread(google_arabic_voice,s['text'],mp3)
+      run(['ffmpeg','-y','-v','error','-i',str(mp3),'-ar','24000','-ac','1','-c:a','pcm_s16le',str(wav)])
+      provider='google-arabic-fallback'
+      break
      await asyncio.sleep(3*(attempt+1))
+   wav.with_suffix('.json').write_text(json.dumps({'provider':provider}))
+  provider=json.loads(wav.with_suffix('.json').read_text())['provider']
   with wave.open(str(wav)) as w:
    samples=w.readframes(w.getnframes());seconds=w.getnframes()/w.getframerate()
-  s['start']=round(offset,4);s['end']=round(offset+seconds+.16,4)
+  s['start']=round(offset,4);s['end']=round(offset+seconds+.16,4);s['voice_provider']=provider
   pcm.extend([samples,b'\0'*round(.16*24000*2)]);offset=s['end']
   # Empty word lists intentionally: these are scene timings, not word alignment.
   lyrics.append({'text':s['text'],'start':s['start'],'end':s['end'],'words':[]})
