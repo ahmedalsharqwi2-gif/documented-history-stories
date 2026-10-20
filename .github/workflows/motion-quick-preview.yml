@@ -91,7 +91,8 @@ jobs:
           mkdir -p "$target"
           cp output/* "$target/"
           printf '%s\n' 'First scene only; 720x1280 preview. Full 1080x1920 episode renders separately.' > "$target/PREVIEW.txt"
-          git switch -c "$RESULT_BRANCH"
+          git fetch origin main
+          git switch --discard-changes -c "$RESULT_BRANCH" origin/main
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$target"
