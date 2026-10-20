@@ -42,7 +42,7 @@ try:
 except ImportError:  # direct `python scripts/generate_voice.py`
     from arabic_guard import validate_narration
 
-TTS_ENGINE = os.getenv("TTS_ENGINE", "silma").strip().lower()
+TTS_ENGINE = os.getenv("TTS_ENGINE", "gemini").strip().lower()
 BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
 BARK_TEXT_TEMP = float(os.getenv("BARK_TEXT_TEMP", "0.7"))
 BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
@@ -426,9 +426,9 @@ def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
 async def synthesize_sentences(sentences: list[str], engine_override: str | None = None) -> list[dict]:
     """يختار محرك الصوت صراحةً؛ SILMA لا يرجع إلى Edge تلقائياً."""
     engine = engine_override or TTS_ENGINE
-    if engine == "voicetut":
+    if engine in {"gemini", "voicetut"}:
         from voice_provider.client import generate
-        source = CLIPS_DIR / "_voicetut_complete.wav"
+        source = CLIPS_DIR / "_charon_complete.wav"
         whole_text = " ".join(str(s).strip() for s in sentences if str(s).strip())
         await asyncio.to_thread(generate, whole_text, source)
         return [{"path": source, "duration": probe_duration(source), "events": None,
@@ -760,8 +760,8 @@ def synthesize_google_sentences(sentences: list[str], *, slow: bool = False) -> 
 
 
 async def synthesize_with_free_recovery(sentences: list[str], engine_override: str | None = None):
-    if (engine_override or TTS_ENGINE) == "voicetut":
-        return await synthesize_sentences(sentences, "voicetut"), "voicetut"
+    if (engine_override or TTS_ENGINE) in {"gemini", "voicetut"}:
+        return await synthesize_sentences(sentences, "gemini"), "gemini"
     if engine_override is None and os.getenv("PREFER_FREE_GOOGLE_TTS", "false").lower() == "true":
         try:
             return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
@@ -909,16 +909,16 @@ def main() -> None:
     CLIPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
-    selected_voice_profile = "voicetut:Mohammed" if TTS_ENGINE == "voicetut" else ""
+    selected_voice_profile = "gemini:Charon" if TTS_ENGINE in {"gemini", "voicetut"} else ""
     if TTS_ENGINE == "silma":
         selected_voice_profile = configure_silma_voice_profile()
 
     phonetic_hints = episode.get("phonetic_hints") or []
     voice_text = apply_phonetic_hints(narration, phonetic_hints)
-    if TTS_ENGINE != "voicetut":
+    if TTS_ENGINE not in {"gemini", "voicetut"}:
         voice_text = apply_light_diacritics(voice_text)
     phonemes = []
-    if TTS_ENGINE != "voicetut":
+    if TTS_ENGINE not in {"gemini", "voicetut"}:
         voice_text, phonemes = prepare_tts_text(
             voice_text, ROOT_DIR / "config" / "arabic_pronunciation.json"
         )

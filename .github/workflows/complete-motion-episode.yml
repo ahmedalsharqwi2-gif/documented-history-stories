@@ -13,6 +13,11 @@ permissions:
 concurrency:
   group: complete-motion-episode
   cancel-in-progress: false
+env:
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY || secrets.GEMINI_API_KEY }}
+  GEMINI_TTS_API_KEY: ${{ secrets.GEMINI_TTS_API_KEY || secrets.GEMINI_API_KEY }}
+
 jobs:
   prepare:
     runs-on: ubuntu-24.04

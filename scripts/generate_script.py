@@ -1067,6 +1067,9 @@ def call_model(
         response = None
         for transient_retry in range(TRANSIENT_RETRIES + 1):
             try:
+                if ACTIVE_PROVIDER == "gemini":
+                    from api_budget import reserve
+                    reserve("text", ACTIVE_MODEL, os.getenv("GEMINI_TEXT_API_KEY") or os.getenv("GEMINI_API_KEY", ""))
                 response = client.models.generate_content(
                     model=ACTIVE_MODEL, contents=contents,
                     config=config_builder(system_prompt, attempt_budget),
@@ -1632,7 +1635,7 @@ def run_single_attempt(
 def generate_episode() -> dict:
     global ACTIVE_PROVIDER, ACTIVE_MODEL, ACTIVE_MODEL_INDEX
     ACTIVE_MODEL_INDEX = 0
-    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    api_key = (os.environ.get("GEMINI_TEXT_API_KEY") or os.environ.get("GEMINI_API_KEY", "")).strip()
     if not api_key and not OPENROUTER_API_KEY and not FALLBACK_API_KEY:
         sys.exit("خطأ: أضف GEMINI_API_KEY أو OPENROUTER_API_KEY أو GROQ_API_KEY إلى GitHub Secrets")
     if api_key and MODEL_CANDIDATES:

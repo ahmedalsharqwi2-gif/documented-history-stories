@@ -55,6 +55,9 @@ permissions:
   issues: write
 
 env:
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY || secrets.GEMINI_API_KEY }}
+  GEMINI_TTS_API_KEY: ${{ secrets.GEMINI_TTS_API_KEY || secrets.GEMINI_API_KEY }}
   CINEMATIC_ENABLED: 'true'
   # Free-only production: repository variables cannot unlock paid endpoints.
   CINEMATIC_FREE_ONLY: 'true'
@@ -293,7 +296,7 @@ jobs:
       - name: Arabic preflight gates (documented history)
         env:
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
-          TTS_ENGINE: "voicetut"
+          TTS_ENGINE: "gemini"
         run: |
           test -f state/current_episode.json || { echo "TEXT_GATE: episode artifact missing"; exit 1; }
           TEXT=$(python -c "import json; print(json.load(open('state/current_episode.json', encoding='utf-8')).get('narration',''))")
@@ -312,12 +315,12 @@ jobs:
           path: state/current_episode.json
           key: prepared-v1-${{ github.repository_id }}-${{ inputs.dry_run || false }}-${{ matrix.date || github.run_id }}-${{ matrix.hour }}
 
-      - name: Install the accepted VoiceTut voice in an isolated runtime
+      - name: Validate the approved Gemini Charon voice
         run: bash voice_provider/install.sh
 
       - name: Generate narration with accepted VoiceTut Mohammed
         env:
-          TTS_ENGINE: "voicetut"
+          TTS_ENGINE: "gemini"
           EDGE_TTS_VOICES: "ar-SA-HamedNeural"
           EDGE_TTS_VOICE: "ar-SA-HamedNeural"
           SILMA_REFERENCE_PROFILE: ${{ github.event.inputs.voice_profile || 'auto' }}
