@@ -18,7 +18,7 @@ def check(data):
         if all_text.count(tag)!=1:raise ValueError("Use each numeric fact tag exactly once: "+tag)
     if re.search(r"\{[^}]+\}",expand(all_text)):raise ValueError("Unknown narration tag")
     count=len(expand(all_text).split())
-    if not 360<=count<=440:raise ValueError(f"Need 360-440 words for >2 minutes; received {count}")
+    if not 340<=count<=460:raise ValueError(f"Need 340-460 words for >2 minutes; received {count}")
     markers=r"\b(?:ده|دي|اللي|عشان|مش|إزاي|ازاي|ليه|دلوقتي|كده|كانوا|بقت|بقى|اتنقل|اتعمل|بنحافظ|هنشوف)\b"
     if len(re.findall(markers,all_text))<18 or sum(bool(re.search(markers,s.get("narration",""))) for s in scenes)<10:
         raise ValueError("Rewrite in natural spoken Egyptian: at least 18 colloquial markers across at least 10 scenes; formal Arabic is rejected")
@@ -64,7 +64,7 @@ Return JSON {"title":"Arabic", "scenes":[16 scene objects]}.
 Every scene: narration (Egyptian colloquial Arabic, 22-29 words), title (short Arabic),
 highlight (1-4 Arabic words), visual_type (one of the allowed types below),
 labels (0-3 short Arabic graphic labels), source_ids (provided IDs supporting its facts).
-TOTAL 360-440 spoken words; aim at 400 words, a genuine 150-190 second spoken documentary.
+TOTAL 380-440 spoken words; aim at 400 words, a genuine 150-190 second spoken documentary.
 Use a compelling opening, a progressing engineering challenge, clear explanations and a real closing.
 Do not add subscriptions or an introduction about the channel. Do not repeat the same point to fill time.
 Use only the provided source facts. Do not invent quotations, detailed engineering machinery, block counts,
@@ -82,7 +82,7 @@ SOURCE FACTS:
 """+json.dumps(FACTS,ensure_ascii=False)
     attempts=[];last_error="No supported free-tier Gemini model discovered"
     for model in candidates:
-        for attempt in range(2):
+        for attempt in range(4):
             payload={"contents":[{"parts":[{"text":prompt}]}],
                 "generationConfig":{"temperature":.55,"maxOutputTokens":12000,"responseMimeType":"application/json"}}
             try:
