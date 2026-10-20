@@ -1,0 +1,57 @@
+{
+  "video_sha256": "450cc4e48937d86d0d80e1e02e67e224907b45d6cd8c9dfc5ed6fc64873cdf91",
+  "all_four_values_confirmed_with_spoken_words": true,
+  "evidence": {
+    "65": [
+      {
+        "scene": 9,
+        "model": "small",
+        "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميا بحوالي خمسة وستين متر فوق المستوى القديم وحوالي ميتين متر بوالبور",
+        "matching_spoken_words": "خمسهوستين"
+      },
+      {
+        "scene": 9,
+        "model": "medium",
+        "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر المية بحوالي خمسة وستين متر فوق المستوى القديم وحوالي ميتين متر جوى البر.",
+        "matching_spoken_words": "خمسهوستين"
+      }
+    ],
+    "200": [
+      {
+        "scene": 9,
+        "model": "small",
+        "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميا بحوالي خمسة وستين متر فوق المستوى القديم وحوالي ميتين متر بوالبور",
+        "matching_spoken_words": "ميتين"
+      },
+      {
+        "scene": 9,
+        "model": "medium",
+        "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر المية بحوالي خمسة وستين متر فوق المستوى القديم وحوالي ميتين متر جوى البر.",
+        "matching_spoken_words": "ميتين"
+      }
+    ],
+    "1964": [
+      {
+        "scene": 3,
+        "model": "small",
+        "transcript": "عملية انقاز أبو سيمبل بدأت سنة الف تسعمية أربعة وستين وتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسورعة",
+        "matching_spoken_words": "الفتسعميهاربعهوستين"
+      }
+    ],
+    "1968": [
+      {
+        "scene": 13,
+        "model": "medium",
+        "transcript": "في سبتمبر سنة ألف تسعمية تمانية وستين خلصت أعمال الإنقاذ وفتتحوا الموقع الجديد وده بين إزاي التنمية والتراث ممكن يمشو سوا من غير تعارض",
+        "matching_spoken_words": "الفتسعميهتمانيهوستين"
+      }
+    ]
+  },
+  "all_decoder_passes_succeeded": false,
+  "limitations": [
+    "Whisper small stopped early on scene 13 when numeric text tokens were suppressed; it did not confirm that year.",
+    "Whisper medium still emitted Arabic digits for scene 3, so its number-word-only test was inconclusive; Whisper small confirmed the spoken words.",
+    "Whisper medium confirmed scene 13 as ألف تسعمية تمانية وستين with no repeated suffix. This resolves the duplicate-looking normalized transcript; it does not certify every aspect of pronunciation or voice quality."
+  ],
+  "subjective_voice_quality_requires_user_review": true
+}
