@@ -93,7 +93,6 @@ function Episode(props:any){
  const cue=(term:string,fallback:number)=>{const w=allWords.find((w:any)=>w.start>=s.start&&w.start<s.end&&w.text.includes(term));return w?w.start-s.start:fallback;};const intro=ease(local,0,.65);const outro=ease(s.end-t,0,.32);
  return <AbsoluteFill style={{background:C.bg,color:C.paper,fontFamily:'Arabic',overflow:'hidden'}}>
   <AbsoluteFill style={{background:'radial-gradient(ellipse at 65% 38%,#20404780,transparent 65%)'}}/>
-  <svg width="1080" height="1920" style={{position:'absolute',opacity:.1}}><defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(#grain)" opacity=".25"/></svg>
   <div style={{position:'absolute',left:75,right:75,top:76,display:'flex',justifyContent:'space-between',fontSize:23,color:C.muted,letterSpacing:3}}>
    <span>HISTORY / 1940</span><span dir="rtl">التاريخ الموثّق</span>
   </div>
