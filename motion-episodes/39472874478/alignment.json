@@ -1,0 +1,57 @@
+[
+  {
+    "matched_word_fraction": 0.7778,
+    "exact_word_fraction": 0.7222,
+    "near_spelling_matches": [
+      {
+        "expected": "اتحاصرت",
+        "recognized": "اتحصرت",
+        "similarity": 0.9231
+      }
+    ],
+    "recognized_text": "في ميو سنة 1940 قوات الحلفاء اتحصرت عن دونكراك في شمال فرنسا وبقى البحر طريق النجاه",
+    "timing": "ASR anchors; known digit-form numbers expanded within their recognized spans; long near-spelling matches in equal-length replacement blocks; bounded interpolation for unmatched tokens",
+    "part": 0
+  },
+  {
+    "matched_word_fraction": 1.0,
+    "exact_word_fraction": 0.9474,
+    "near_spelling_matches": [
+      {
+        "expected": "ساعدت",
+        "recognized": "سعدت",
+        "similarity": 0.8889
+      }
+    ],
+    "recognized_text": "السفن الكبيرة ما كانتش بتوصل لكل مكان على الشاطئ هنا ظهر دور القوارب الصغيرة اللي سعدت تنقل الجنود للسفن",
+    "timing": "ASR anchors; known digit-form numbers expanded within their recognized spans; long near-spelling matches in equal-length replacement blocks; bounded interpolation for unmatched tokens",
+    "part": 1
+  },
+  {
+    "matched_word_fraction": 0.8824,
+    "exact_word_fraction": 0.7647,
+    "near_spelling_matches": [
+      {
+        "expected": "ومراكب",
+        "recognized": "ومركب",
+        "similarity": 0.9091
+      },
+      {
+        "expected": "مدنية",
+        "recognized": "مدانية",
+        "similarity": 0.9091
+      }
+    ],
+    "recognized_text": "قوارب صيد ويخوط ومركب مدانية شركة جنب البحرية عملية الإجلاء استمرت من أواخر مايو لحد أربعة يونيو",
+    "timing": "ASR anchors; known digit-form numbers expanded within their recognized spans; long near-spelling matches in equal-length replacement blocks; bounded interpolation for unmatched tokens",
+    "part": 2
+  },
+  {
+    "matched_word_fraction": 0.7727,
+    "exact_word_fraction": 0.7727,
+    "near_spelling_matches": [],
+    "recognized_text": "في النهاية اتنقز اكثر من 338 ألف جندي انسحاب دون قرق ما كانش انتصار عسكري لكنه انقز قوات تقدر تكمل قتال",
+    "timing": "ASR anchors; known digit-form numbers expanded within their recognized spans; long near-spelling matches in equal-length replacement blocks; bounded interpolation for unmatched tokens",
+    "part": 3
+  }
+]

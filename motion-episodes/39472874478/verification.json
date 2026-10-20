@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "duration_seconds": 37.28,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "decoded_complete": true,
+  "scene_count": 4,
+  "word_count": 76,
+  "voice": "New VoiceTut Mohammed speech, four independent segments; no reference-video voice recording",
+  "voice_pcm_before_mix_sha256": "8ce8eaeab549e113fe203fc3c89bdb3afba94d7734f1110d5af0bbeba57639ee",
+  "music_file": "assets/music/history_archive_reflection.mp3",
+  "music_sha256": "44140e98b18f64dace1675f7c16c9c1f3d5afa70db83284ae94287877677ec15",
+  "audio_mix": "Narration -16 LUFS, music -26 LUFS before sidechain ducking, original air-sweep SFX on selected events, peak limiter",
+  "sfx_events_seconds": [
+    0.0,
+    8.49,
+    17.630000000000003,
+    26.260000000000005,
+    29.160000000000004
+  ],
+  "visuals": "SVG motion graphics, real Natural Earth coastlines, schematic ship positions and routes",
+  "caption_timing": "Whisper small anchors with bounded interpolation. Automatic timing requires user review.",
+  "video_sha256": "eb3c9a81fb73c2403e5352387995844d786abdc7c371cde60bc8659824bebf88",
+  "status": "preview_for_user_review"
+}
