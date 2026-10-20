@@ -22,8 +22,9 @@ def check(data):
     markers=r"\b(?:ده|دي|اللي|عشان|مش|إزاي|ازاي|ليه|دلوقتي|كده|كانوا|بقت|بقى|اتنقل|اتعمل|بنحافظ|هنشوف)\b"
     if len(re.findall(markers,all_text))<18 or sum(bool(re.search(markers,s.get("narration",""))) for s in scenes)<10:
         raise ValueError("Rewrite in natural spoken Egyptian: at least 18 colloquial markers across at least 10 scenes; formal Arabic is rejected")
-    if any(term in all_text for term in ["أضخم عملية","تاريخ البشرية","دون إلحاق أي ضرر","أحدث وسائل","مناسبات ملكية","الموحدة","أعماريين","اتقص في القديم","القدس الأقدس","من غير أي غلط","من غير أي نقص","من غير ما تتأثر بأي ضرر","حملة حماية الآثار النوبية بدأت سنة"]):
-        raise ValueError("Remove unsupported superlatives, absolute damage guarantees and leaked drafting instructions")
+    forbidden=["أضخم عملية","تاريخ البشرية","دون إلحاق أي ضرر","أحدث وسائل","مناسبات ملكية","الموحدة","أعماريين","اتقص في القديم","القدس الأقدس","من غير أي غلط","من غير أي نقص","من غير ما تتأثر بأي ضرر","حملة حماية الآثار النوبية بدأت سنة"]
+    found=[term for term in forbidden if term in all_text]
+    if found:raise ValueError("Replace these exact phrases: "+json.dumps(found,ensure_ascii=False)+". Specifically اتقص في القديم must become اتضرر في العصور القديمة; the statue was damaged, not cut.")
     known={s["id"] for s in FACTS["sources"]}
     for i,s in enumerate(scenes):
         if not 19<=len(expand(s.get("narration","")).split())<=34:raise ValueError(f"Scene {i} needs 19-34 words")
@@ -83,6 +84,7 @@ SOURCE FACTS:
     draft=ROOT/"motion_feature/editorial-draft.json"
     if draft.exists():
         prompt+="\nRevise YOUR OWN previous Gemini draft below. Factual/editorial corrections: 1964 is the beginning of the Abu Simbel rescue ENGINEERING OPERATION, not the wider Nubian campaign (1960). Say عملية إنقاذ أبو سمبل. The old statue was damaged or collapsed in antiquity, not deliberately cut. Use معماريين, not أعماريين. Correct term: قدس الأقداس, not القدس الأقدس. Remove absolute guarantees: no errors, no missing pieces, no damage, exact identicalness, no problems. Describe care and documentation without these claims. Avoid pompous filler such as noble heritage or eternal loss. Scene about the artificial rocky hill must use cutaway, not lift. Scene about international heritage legacy must use network or legacy, not map. The four numbers remain tagged exactly once. Make every sentence conversational Egyptian with simple grammar. Expand to about 420-440 words using useful concrete explanations, not praise. Retain 16 scenes and at least nine distinct visual types.\nPREVIOUS GEMINI DRAFT:\n"+draft.read_text()
+    base_prompt=prompt
     attempts=[];last_error="No supported free-tier Gemini model discovered"
     for model in candidates:
         for attempt in range(6):
@@ -121,7 +123,7 @@ SOURCE FACTS:
             except (ValueError,KeyError,IndexError) as e:
                 last_error=str(e);attempts.append({"model":model,"attempt":attempt+1,"validation_error":str(e)})
                 print("Gemini draft needs repair:",str(e),flush=True)
-                prompt+="\nYour last draft was rejected: "+str(e)+". Each of the 16 scenes must have about 27 words; count the spoken words per scene. Previous JSON for you to REVISE in full, not summarize:\n"+text
+                prompt=base_prompt+"\nYour last draft was rejected: "+str(e)+". Each of the 16 scenes must have about 27 words; count the spoken words per scene. Previous JSON for you to REVISE in full, not summarize:\n"+text
             except Exception as e:
                 last_error=type(e).__name__;attempts.append({"model":model,"attempt":attempt+1,"error":last_error})
                 print("Gemini request failed:",last_error,flush=True)
