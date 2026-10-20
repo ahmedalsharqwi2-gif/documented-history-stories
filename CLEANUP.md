@@ -25,3 +25,17 @@
 - `voice_lab/voicetut_sample.py`
 - `voice_lab/synthesize_sample.py`
 - `voice_lab/egyptian-sample.txt`
+
+حُذفت أيضًا سلاسل إعادة إنتاج نفس الحلقة التجريبية عند workflow_run، لمنع تتابع تشغيلات غير ضرورية. يظل كود الرسوم وإصلاح الصوت متاحًا.
+- `.github/workflows/motion-episode-revision.yml`
+- `.github/workflows/motion-complete-720.yml`
+- `.github/workflows/publish-motion-delivery.yml`
+- `.github/workflows/motion-quick-preview.yml`
+- `.github/workflows/motion-scene-review.yml`
+- `.github/workflows/feature-final-polish.yml`
+- `.github/workflows/feature-number-word-review.yml`
+- `.github/workflows/feature-visual-review.yml`
+- `.github/workflows/gemini-feature-plan.yml`
+- `.github/workflows/history-visual.yml`
+- `.github/workflows/test-story-audio.yml`
+- `.github/workflows/narration_sample.yml`
