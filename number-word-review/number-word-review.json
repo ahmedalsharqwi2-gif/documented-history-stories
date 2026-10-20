@@ -1,0 +1,702 @@
+{
+  "reports": [
+    {
+      "part": 3,
+      "asr_model": "small",
+      "digit_tokens_suppressed": true,
+      "initial_prompt_used": false,
+      "transcript": "عملية انقاز أبو سيمبل بدأت سنة الف تسعمية أربعة وستين وتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسورعة",
+      "words": [
+        {
+          "text": "عملية",
+          "start": 0.0,
+          "end": 0.7
+        },
+        {
+          "text": "انقاز",
+          "start": 0.7,
+          "end": 1.2
+        },
+        {
+          "text": "أبو",
+          "start": 1.2,
+          "end": 1.54
+        },
+        {
+          "text": "سيمبل",
+          "start": 1.54,
+          "end": 1.92
+        },
+        {
+          "text": "بدأت",
+          "start": 1.92,
+          "end": 2.3
+        },
+        {
+          "text": "سنة",
+          "start": 2.3,
+          "end": 2.66
+        },
+        {
+          "text": "الف",
+          "start": 2.66,
+          "end": 2.76
+        },
+        {
+          "text": "تسعمية",
+          "start": 2.76,
+          "end": 3.56
+        },
+        {
+          "text": "أربعة",
+          "start": 3.56,
+          "end": 4.36
+        },
+        {
+          "text": "وستين",
+          "start": 4.36,
+          "end": 5.02
+        },
+        {
+          "text": "وتجمع",
+          "start": 5.02,
+          "end": 6.0
+        },
+        {
+          "text": "خبراء",
+          "start": 6.0,
+          "end": 6.46
+        },
+        {
+          "text": "من",
+          "start": 6.46,
+          "end": 6.62
+        },
+        {
+          "text": "كل",
+          "start": 6.62,
+          "end": 6.86
+        },
+        {
+          "text": "حتة",
+          "start": 6.86,
+          "end": 7.22
+        },
+        {
+          "text": "في",
+          "start": 7.22,
+          "end": 7.3
+        },
+        {
+          "text": "العالم",
+          "start": 7.3,
+          "end": 7.74
+        },
+        {
+          "text": "عشان",
+          "start": 7.74,
+          "end": 8.46
+        },
+        {
+          "text": "يلاقوا",
+          "start": 8.46,
+          "end": 8.84
+        },
+        {
+          "text": "حل",
+          "start": 8.84,
+          "end": 9.12
+        },
+        {
+          "text": "عملي",
+          "start": 9.12,
+          "end": 9.62
+        },
+        {
+          "text": "للمشكلة",
+          "start": 9.62,
+          "end": 10.28
+        },
+        {
+          "text": "الكبيرة",
+          "start": 10.28,
+          "end": 10.7
+        },
+        {
+          "text": "دي",
+          "start": 10.7,
+          "end": 10.9
+        },
+        {
+          "text": "بسورعة",
+          "start": 10.9,
+          "end": 11.3
+        }
+      ],
+      "checks": {
+        "1964": {
+          "matched_spoken_words": "الفتسعميهاربعهوستين",
+          "duplicated_suffix": false,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "part": 9,
+      "asr_model": "small",
+      "digit_tokens_suppressed": true,
+      "initial_prompt_used": false,
+      "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر الميا بحوالي خمسة وستين متر فوق المستوى القديم وحوالي ميتين متر بوالبور",
+      "words": [
+        {
+          "text": "المكان",
+          "start": 0.0,
+          "end": 0.6
+        },
+        {
+          "text": "الجديد",
+          "start": 0.6,
+          "end": 1.18
+        },
+        {
+          "text": "اتحدد",
+          "start": 1.18,
+          "end": 1.76
+        },
+        {
+          "text": "على",
+          "start": 1.76,
+          "end": 1.9
+        },
+        {
+          "text": "مسافة",
+          "start": 1.9,
+          "end": 2.36
+        },
+        {
+          "text": "مرتفعة",
+          "start": 2.36,
+          "end": 2.94
+        },
+        {
+          "text": "بعيد",
+          "start": 2.94,
+          "end": 3.58
+        },
+        {
+          "text": "عن",
+          "start": 3.58,
+          "end": 3.74
+        },
+        {
+          "text": "خطر",
+          "start": 3.74,
+          "end": 4.14
+        },
+        {
+          "text": "الميا",
+          "start": 4.14,
+          "end": 4.56
+        },
+        {
+          "text": "بحوالي",
+          "start": 4.56,
+          "end": 5.52
+        },
+        {
+          "text": "خمسة",
+          "start": 5.52,
+          "end": 6.0
+        },
+        {
+          "text": "وستين",
+          "start": 6.0,
+          "end": 6.64
+        },
+        {
+          "text": "متر",
+          "start": 6.64,
+          "end": 7.06
+        },
+        {
+          "text": "فوق",
+          "start": 7.06,
+          "end": 7.44
+        },
+        {
+          "text": "المستوى",
+          "start": 7.44,
+          "end": 8.18
+        },
+        {
+          "text": "القديم",
+          "start": 8.18,
+          "end": 8.94
+        },
+        {
+          "text": "وحوالي",
+          "start": 8.94,
+          "end": 9.44
+        },
+        {
+          "text": "ميتين",
+          "start": 9.44,
+          "end": 9.76
+        },
+        {
+          "text": "متر",
+          "start": 9.76,
+          "end": 10.62
+        },
+        {
+          "text": "بوالبور",
+          "start": 10.62,
+          "end": 11.36
+        }
+      ],
+      "checks": {
+        "65": {
+          "matched_spoken_words": "خمسهوستين",
+          "duplicated_suffix": false,
+          "passed": true
+        },
+        "200": {
+          "matched_spoken_words": "ميتين",
+          "duplicated_suffix": false,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "part": 13,
+      "asr_model": "small",
+      "digit_tokens_suppressed": true,
+      "initial_prompt_used": false,
+      "transcript": "في سبتمبر، سنة",
+      "words": [
+        {
+          "text": "في",
+          "start": 0.0,
+          "end": 0.28
+        },
+        {
+          "text": "سبتمبر،",
+          "start": 0.28,
+          "end": 1.14
+        },
+        {
+          "text": "سنة",
+          "start": 1.14,
+          "end": 13.02
+        }
+      ],
+      "checks": {
+        "1968": {
+          "matched_spoken_words": null,
+          "duplicated_suffix": false,
+          "passed": false
+        }
+      },
+      "passed": false
+    },
+    {
+      "part": 3,
+      "asr_model": "medium",
+      "digit_tokens_suppressed": true,
+      "initial_prompt_used": false,
+      "transcript": "عملية إنقاذ أبو سيمبل بدأت سنة ١٩٦٤ وتجمع خبراء من كل حتة في العالم عشان يلاقوا حل عملي للمشكلة الكبيرة دي بسرعة",
+      "words": [
+        {
+          "text": "عملية",
+          "start": 0.0,
+          "end": 0.8
+        },
+        {
+          "text": "إنقاذ",
+          "start": 0.8,
+          "end": 1.28
+        },
+        {
+          "text": "أبو",
+          "start": 1.28,
+          "end": 1.62
+        },
+        {
+          "text": "سيمبل",
+          "start": 1.62,
+          "end": 1.98
+        },
+        {
+          "text": "بدأت",
+          "start": 1.98,
+          "end": 2.4
+        },
+        {
+          "text": "سنة",
+          "start": 2.4,
+          "end": 2.74
+        },
+        {
+          "text": "١٩٦٤",
+          "start": 2.74,
+          "end": 5.3
+        },
+        {
+          "text": "وتجمع",
+          "start": 5.3,
+          "end": 6.06
+        },
+        {
+          "text": "خبراء",
+          "start": 6.06,
+          "end": 6.52
+        },
+        {
+          "text": "من",
+          "start": 6.52,
+          "end": 6.76
+        },
+        {
+          "text": "كل",
+          "start": 6.76,
+          "end": 6.96
+        },
+        {
+          "text": "حتة",
+          "start": 6.96,
+          "end": 7.28
+        },
+        {
+          "text": "في",
+          "start": 7.28,
+          "end": 7.38
+        },
+        {
+          "text": "العالم",
+          "start": 7.38,
+          "end": 8.0
+        },
+        {
+          "text": "عشان",
+          "start": 8.0,
+          "end": 8.56
+        },
+        {
+          "text": "يلاقوا",
+          "start": 8.56,
+          "end": 8.92
+        },
+        {
+          "text": "حل",
+          "start": 8.92,
+          "end": 9.2
+        },
+        {
+          "text": "عملي",
+          "start": 9.2,
+          "end": 9.7
+        },
+        {
+          "text": "للمشكلة",
+          "start": 9.7,
+          "end": 10.42
+        },
+        {
+          "text": "الكبيرة",
+          "start": 10.42,
+          "end": 10.78
+        },
+        {
+          "text": "دي",
+          "start": 10.78,
+          "end": 10.9
+        },
+        {
+          "text": "بسرعة",
+          "start": 10.9,
+          "end": 11.34
+        }
+      ],
+      "checks": {
+        "1964": {
+          "matched_spoken_words": null,
+          "duplicated_suffix": false,
+          "passed": false
+        }
+      },
+      "passed": false
+    },
+    {
+      "part": 9,
+      "asr_model": "medium",
+      "digit_tokens_suppressed": true,
+      "initial_prompt_used": false,
+      "transcript": "المكان الجديد اتحدد على مسافة مرتفعة بعيد عن خطر المية بحوالي خمسة وستين متر فوق المستوى القديم وحوالي ميتين متر جوى البر.",
+      "words": [
+        {
+          "text": "المكان",
+          "start": 0.0,
+          "end": 0.68
+        },
+        {
+          "text": "الجديد",
+          "start": 0.68,
+          "end": 1.26
+        },
+        {
+          "text": "اتحدد",
+          "start": 1.26,
+          "end": 1.82
+        },
+        {
+          "text": "على",
+          "start": 1.82,
+          "end": 2.0
+        },
+        {
+          "text": "مسافة",
+          "start": 2.0,
+          "end": 2.44
+        },
+        {
+          "text": "مرتفعة",
+          "start": 2.44,
+          "end": 3.26
+        },
+        {
+          "text": "بعيد",
+          "start": 3.26,
+          "end": 3.64
+        },
+        {
+          "text": "عن",
+          "start": 3.64,
+          "end": 3.86
+        },
+        {
+          "text": "خطر",
+          "start": 3.86,
+          "end": 4.24
+        },
+        {
+          "text": "المية",
+          "start": 4.24,
+          "end": 4.88
+        },
+        {
+          "text": "بحوالي",
+          "start": 4.88,
+          "end": 5.62
+        },
+        {
+          "text": "خمسة",
+          "start": 5.62,
+          "end": 6.1
+        },
+        {
+          "text": "وستين",
+          "start": 6.1,
+          "end": 6.74
+        },
+        {
+          "text": "متر",
+          "start": 6.74,
+          "end": 7.2
+        },
+        {
+          "text": "فوق",
+          "start": 7.2,
+          "end": 7.58
+        },
+        {
+          "text": "المستوى",
+          "start": 7.58,
+          "end": 8.4
+        },
+        {
+          "text": "القديم",
+          "start": 8.4,
+          "end": 9.0
+        },
+        {
+          "text": "وحوالي",
+          "start": 9.0,
+          "end": 9.56
+        },
+        {
+          "text": "ميتين",
+          "start": 9.56,
+          "end": 9.84
+        },
+        {
+          "text": "متر",
+          "start": 9.84,
+          "end": 10.82
+        },
+        {
+          "text": "جوى",
+          "start": 10.82,
+          "end": 11.14
+        },
+        {
+          "text": "البر.",
+          "start": 11.14,
+          "end": 11.36
+        }
+      ],
+      "checks": {
+        "65": {
+          "matched_spoken_words": "خمسهوستين",
+          "duplicated_suffix": false,
+          "passed": true
+        },
+        "200": {
+          "matched_spoken_words": "ميتين",
+          "duplicated_suffix": false,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "part": 13,
+      "asr_model": "medium",
+      "digit_tokens_suppressed": true,
+      "initial_prompt_used": false,
+      "transcript": "في سبتمبر سنة ألف تسعمية تمانية وستين خلصت أعمال الإنقاذ وفتتحوا الموقع الجديد وده بين إزاي التنمية والتراث ممكن يمشو سوا من غير تعارض",
+      "words": [
+        {
+          "text": "في",
+          "start": 0.0,
+          "end": 0.34
+        },
+        {
+          "text": "سبتمبر",
+          "start": 0.34,
+          "end": 1.1
+        },
+        {
+          "text": "سنة",
+          "start": 1.1,
+          "end": 1.64
+        },
+        {
+          "text": "ألف",
+          "start": 1.64,
+          "end": 1.86
+        },
+        {
+          "text": "تسعمية",
+          "start": 1.86,
+          "end": 2.34
+        },
+        {
+          "text": "تمانية",
+          "start": 2.34,
+          "end": 3.24
+        },
+        {
+          "text": "وستين",
+          "start": 3.24,
+          "end": 4.14
+        },
+        {
+          "text": "خلصت",
+          "start": 4.14,
+          "end": 4.68
+        },
+        {
+          "text": "أعمال",
+          "start": 4.68,
+          "end": 5.12
+        },
+        {
+          "text": "الإنقاذ",
+          "start": 5.12,
+          "end": 6.26
+        },
+        {
+          "text": "وفتتحوا",
+          "start": 6.26,
+          "end": 6.98
+        },
+        {
+          "text": "الموقع",
+          "start": 6.98,
+          "end": 7.32
+        },
+        {
+          "text": "الجديد",
+          "start": 7.32,
+          "end": 8.14
+        },
+        {
+          "text": "وده",
+          "start": 8.14,
+          "end": 8.42
+        },
+        {
+          "text": "بين",
+          "start": 8.42,
+          "end": 8.6
+        },
+        {
+          "text": "إزاي",
+          "start": 8.6,
+          "end": 9.22
+        },
+        {
+          "text": "التنمية",
+          "start": 9.22,
+          "end": 9.84
+        },
+        {
+          "text": "والتراث",
+          "start": 9.84,
+          "end": 10.56
+        },
+        {
+          "text": "ممكن",
+          "start": 10.56,
+          "end": 10.92
+        },
+        {
+          "text": "يمشو",
+          "start": 10.92,
+          "end": 11.34
+        },
+        {
+          "text": "سوا",
+          "start": 11.34,
+          "end": 11.84
+        },
+        {
+          "text": "من",
+          "start": 11.84,
+          "end": 12.18
+        },
+        {
+          "text": "غير",
+          "start": 12.18,
+          "end": 12.36
+        },
+        {
+          "text": "تعارض",
+          "start": 12.36,
+          "end": 12.84
+        }
+      ],
+      "checks": {
+        "1968": {
+          "matched_spoken_words": "الفتسعميهتمانيهوستين",
+          "duplicated_suffix": false,
+          "passed": true
+        }
+      },
+      "passed": true
+    }
+  ],
+  "all_passed": false
+}
