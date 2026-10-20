@@ -32,17 +32,14 @@ class VoiceProfileResolverTests(unittest.TestCase):
         selected, _, _, _ = resolve_reference_profile("", ROOT / "assets/voices/voice_profiles.json", ROOT)
         self.assertEqual(selected, catalog["default"])
 
-    def test_both_manual_workflows_offer_every_profile(self):
-        catalog = json.loads((ROOT / "assets/voices/voice_profiles.json").read_text(encoding="utf-8"))
-        workflows = [
-            ROOT / ".github/workflows/main.yml",
-            ROOT / ".github/workflows/test-story-audio.yml",
-        ]
-        for workflow in workflows:
-            content = workflow.read_text(encoding="utf-8")
-            with self.subTest(workflow=workflow.name):
-                for key in catalog["profiles"]:
-                    self.assertIn(f"- {key}", content)
+    def test_production_pins_the_approved_charon_voice(self):
+        accepted = json.loads((ROOT / "config/accepted_voice.json").read_text())
+        self.assertEqual((accepted["provider"], accepted["speaker"]), ("gemini", "Charon"))
+        workflow = (ROOT / ".github/workflows/main.yml").read_text()
+        self.assertIn('TTS_ENGINE: "gemini"', workflow)
+        self.assertNotIn('      voice_profile:', workflow)
+        self.assertNotIn('SILMA_REFERENCE_PROFILE:', workflow)
+        self.assertFalse(accepted['fallback_allowed'])
 
 
 if __name__ == "__main__":
