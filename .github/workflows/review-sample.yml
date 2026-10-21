@@ -21,3 +21,5 @@ jobs:
 # Render the approved narration using native original motion graphics.
 
 # Enforce the historical review JSON schema before spending a TTS request.
+
+# Expand a reviewed short script once, preserving its corrected dates.
