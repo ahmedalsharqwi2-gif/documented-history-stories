@@ -35,6 +35,13 @@ def review(path=Path('state/current_episode.json')):
         if count:
             text=corrected;clean=corrected
             result.setdefault('edits',[]).append('Corrected the conquest year to 1453 using the cited museum anchor')
+    if anchors:
+        # Repair only the observed malformed words; never guess another event's date.
+        text=re.sub(r'(?<!\w)وخمن(?!\w)', 'وخمسين', text)
+        text=re.sub(r'(?<!\w)السصول(?!\w)', 'العصور', text)
+        clean=re.sub(r'[\u064b-\u065fـ]','',text)
+        if not re.search(r'(?:ألف|الف)\s+وربعمية\s+وتلاتة\s+وخمسين',clean):
+            raise ValueError('The conquest year must match the supplied 1453 anchor before TTS')
     print('History editorial result:',json.dumps({'words':len(text.split()),'needs_review':result.get('needs_review'),'edits':result.get('edits')},ensure_ascii=False),flush=True)
     result['narration']=text
     Path('state/history_editorial_review.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')

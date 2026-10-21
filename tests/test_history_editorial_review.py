@@ -17,7 +17,7 @@ class HistoricalEditorialTests(unittest.TestCase):
    try:
     os.chdir(folder)
     short='ده مش عشان اللي '+('كلمة '*138)
-    full='ده مش عشان اللي '+('حكاية '*196)
+    full='ده مش عشان اللي سنة ألف وربعمية وتلاتة وخمسين '+('حكاية '*196)
     with patch.dict(os.environ,{"GEMINI_TEXT_API_KEY":"test-key"}),patch.object(editor,'reserve'),patch.object(editor.requests,'post',side_effect=[self.response(short),self.response(full)]) as post:
      editor.review(p)
     self.assertEqual(post.call_count,2)
@@ -34,4 +34,27 @@ class HistoricalEditorialTests(unittest.TestCase):
     corrected=json.loads(p.read_text())["narration"]
     self.assertNotIn("خمسمية",corrected)
     self.assertIn("ربعمية",corrected)
+   finally:os.chdir(old)
+
+ def test_observed_malformed_date_is_repaired_before_voice(self):
+  with tempfile.TemporaryDirectory() as folder:
+   p=self.episode(folder);old=os.getcwd()
+   try:
+    os.chdir(folder)
+    text='ده مش عشان اللي سنة ألف وربعمية وتلاتة وخمن '+('حكاية '*190)+' على مر السصول.'
+    with patch.dict(os.environ,{"GEMINI_TEXT_API_KEY":"test-key"}),patch.object(editor,'reserve'),patch.object(editor.requests,'post',return_value=self.response(text)):
+     editor.review(p)
+    result=json.loads(p.read_text())["narration"]
+    self.assertIn("ألف وربعمية وتلاتة وخمسين",result)
+    self.assertIn("على مر العصور",result)
+   finally:os.chdir(old)
+ def test_unknown_year_wording_is_blocked_before_voice(self):
+  with tempfile.TemporaryDirectory() as folder:
+   p=self.episode(folder);old=os.getcwd()
+   try:
+    os.chdir(folder)
+    text='ده مش عشان اللي سنة ألف وربعمية وسبعين '+('حكاية '*190)
+    with patch.dict(os.environ,{"GEMINI_TEXT_API_KEY":"test-key"}),patch.object(editor,'reserve'),patch.object(editor.requests,'post',return_value=self.response(text)):
+     with self.assertRaisesRegex(ValueError,'1453 anchor'):editor.review(p)
+    self.assertEqual(json.loads(p.read_text())["narration"],"المسودة القديمة")
    finally:os.chdir(old)
