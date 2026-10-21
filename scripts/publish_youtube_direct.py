@@ -134,7 +134,8 @@ def load_title_and_description() -> tuple[str, str]:
     if not EPISODE_PATH.exists():
         raise RuntimeError(f"state/current_episode.json غير موجود: {EPISODE_PATH}")
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    title = str(episode.get("title", "Documented History Story")).strip()[:100]
+    from scripts.channel_brand import display_title
+    title = display_title(episode.get("title", "Documented History Story"))
     caption = str(episode.get("caption", "")).strip() or title
     source_reference = str(episode.get("source_reference", "")).strip()
     # وصف يوتيوب بيسمح بحد أقصى 5000 حرف، الكابشن الحالي عادة أقصر بكتير.

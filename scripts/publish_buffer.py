@@ -407,7 +407,8 @@ def _run() -> None:
         raise RuntimeError("state/current_episode.json غير موجود.")
 
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    title = str(episode.get("title", "Documented History Story")).strip()
+    from scripts.channel_brand import display_title
+    title = display_title(episode.get("title", "Documented History Story"))
     caption = str(episode.get("caption", "")).strip() or title
     source_reference = str(episode.get("source_reference", "")).strip()
 
