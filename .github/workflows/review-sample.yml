@@ -15,3 +15,7 @@ jobs:
     with:
       dry_run: true
     secrets: inherit
+
+# Review historical dates and Egyptian delivery; render original motion instead of flat fallback cards.
+
+# Render the approved narration using native original motion graphics.
