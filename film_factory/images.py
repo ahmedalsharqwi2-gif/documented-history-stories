@@ -12,7 +12,7 @@ from PIL import Image
 from api_budget import reserve
 
 MODEL = '@cf/black-forest-labs/flux-1-schnell'
-REVISION = 'cinema-scenes-v1'
+REVISION = 'cinema-history-gables-v2'
 
 def decoded_image(response):
     if response.status_code != 200:
@@ -35,7 +35,16 @@ def decoded_image(response):
 
 def photo_prompts(plan,cache):
     world=plan['visual_world']
-    return [world+' '+s['image_prompt']+' Photographic editorial reconstruction, plausible geometry and anatomy, real materials, no text or logos. Main subject within center 60 percent for vertical crop.' for s in plan['scenes']]
+    if plan.get('profile')=='history':
+        world='Historical reconstruction of an anonymous seventeenth century English riverside street. All buildings are plain timber framed gabled houses with sharply triangular pitched roofs and simple chimneys. Close eye-level camera framing below the roofline. Simple wool and linen clothes. Natural firelight, practical period materials, photographic textures. '
+    prompts=[]
+    for scene in plan['scenes']:
+        shot=scene['image_prompt']
+        if plan.get('profile')=='history':
+            shot=re.sub(r'London|Pudding Lane|River Thames','the timber street',shot,flags=re.I)
+            shot=shot.replace('Wide angle drone style historical shot looking down','Eye-level historical view')
+        prompts.append(world+' '+shot+' Photographic editorial reconstruction, plausible geometry and anatomy, real materials, no text or logos. Main subject within center 60 percent for vertical crop.')
+    return prompts
 
 def prepare_images(plan):
     token=os.getenv('CLOUDFLARE_API_TOKEN','').strip();account=os.getenv('CLOUDFLARE_ACCOUNT_ID','').strip()
