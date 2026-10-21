@@ -1,7 +1,6 @@
 
 google-genai
 requests
-edge-tts>=6.1.9
 google-auth
 google-auth-httplib2
 google-api-python-client
@@ -11,3 +10,5 @@ urllib3>=1.26,<2.0
 Pillow>=10.0
 
 stable-ts>=2.18,<3
+
+av<19

@@ -1,151 +1,43 @@
-"""توليد الصوت العربي الكامل وملف الترجمة العربية المتزامنة.
-
-ينتج هذا الملف الصوت العربي وملف ASS العربي فقط، ثم يحدّث ملف الحلقة
-بالمسارات الجديدة. تتم محاذاة الكلمات مع الصوت النهائي باستخدام Whisper،
-مع استخدام التوقيت الاحتياطي عند تعذر المحاذاة.
-"""
-
+"""Generate full Charon narration and measured Arabic captions."""
 from __future__ import annotations
-
-import asyncio
 import difflib
 import json
 import math
 import os
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
-
-# Direct execution (python scripts/generate_voice.py) must see the repository root.
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR=Path(__file__).resolve().parents[1]
+SCRIPT_DIR=Path(__file__).parent
 if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
-
-# عند تشغيل الملف بهذه الصيغة: `python scripts/generate_voice.py`، يضيف
-# Python مجلد scripts فقط إلى sys.path، بينما arabic_pronunciation.py موجود
-# في جذر المستودع. أضف الجذر قبل الاستيراد حتى لا يفشل التشغيل بعد تنزيل
-# جميع المقاطع برسالة ModuleNotFoundError.
-ROOT_DIR = Path(__file__).resolve().parent.parent
-if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
-
-import edge_tts
-try:
-    from .voice_profiles import resolve_reference_profile
-except ImportError:  # direct `python scripts/generate_voice.py`
-    from voice_profiles import resolve_reference_profile
-from arabic_pronunciation import prepare_tts_text
-from arabic_speech_core.ass_text import render_active_arabic_caption, render_arabic_caption, display_word
-try:
-    from .arabic_guard import validate_narration
-except ImportError:  # direct `python scripts/generate_voice.py`
-    from arabic_guard import validate_narration
-
-TTS_ENGINE = os.getenv("TTS_ENGINE", "gemini").strip().lower()
-BARK_HISTORY_PROMPT = os.getenv("BARK_HISTORY_PROMPT", "").strip()
-BARK_TEXT_TEMP = float(os.getenv("BARK_TEXT_TEMP", "0.7"))
-BARK_WAVEFORM_TEMP = float(os.getenv("BARK_WAVEFORM_TEMP", "0.7"))
-XTTS_MODEL = os.getenv("XTTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
-XTTS_SPEAKER_WAV = Path(os.getenv("XTTS_SPEAKER_WAV", "assets/voice_reference.wav"))
-XTTS_USE_GPU = os.getenv("XTTS_USE_GPU", "false").lower() == "true"
-SILMA_REFERENCE_WAV = Path(os.getenv("SILMA_REFERENCE_WAV", "assets/voice_reference_synthetic.wav"))
-SILMA_REFERENCE_TEXT = os.getenv(
-    "SILMA_REFERENCE_TEXT",
-    "في عام 1943، بدأت خطة خداع عسكرية بوثيقة صغيرة، لكنها غيرت مسار معركة كاملة.",
-).strip()
-SILMA_REFERENCE_PROFILE = os.getenv("SILMA_REFERENCE_PROFILE", "").strip()
-SILMA_VOICE_PROFILES_FILE = Path(
-    os.getenv("SILMA_VOICE_PROFILES_FILE", "assets/voices/voice_profiles.json")
-)
-SILMA_SPEED = float(os.getenv("SILMA_SPEED", "0.96"))
-SILMA_GUARD_ENABLED = os.getenv("SILMA_GUARD_ENABLED", "true").lower() == "true"
-SILMA_GUARD_MIN_MATCH_WORDS = int(os.getenv("SILMA_GUARD_MIN_MATCH_WORDS", "2"))
-
-SCRIPT_DIR = Path(__file__).parent
+    sys.path.insert(0,str(ROOT_DIR))
+from arabic_speech_core.ass_text import render_active_arabic_caption, render_arabic_caption, caption_word_groups, display_word
+from scripts.arabic_guard import validate_narration
+from voice_provider.client import generate
 STATE_DIR = ROOT_DIR / "state"
 CLIPS_DIR = ROOT_DIR / "downloaded_clips"
-ASSETS_DIR = ROOT_DIR / "assets"
 EPISODE_PATH = STATE_DIR / "current_episode.json"
-
-# الصوت الأساسي ثم أصوات احتياطية. يمكن تغييرها من GitHub Actions عبر
-# EDGE_TTS_VOICES="ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural"
-VOICE = os.getenv("EDGE_TTS_VOICE", "ar-EG-ShakirNeural")
-VOICE_CANDIDATES = list(dict.fromkeys([
-    item.strip()
-    for item in os.getenv(
-        "EDGE_TTS_VOICES",
-        "ar-EG-ShakirNeural,ar-SA-HamedNeural,ar-SA-ZariyahNeural",
-    ).split(",")
-    if item.strip()
-]))
-if VOICE not in VOICE_CANDIDATES:
-    VOICE_CANDIDATES.insert(0, VOICE)
-EDGE_TTS_RETRIES = int(os.getenv("EDGE_TTS_RETRIES", "3"))
-EDGE_TTS_RETRY_DELAY = float(os.getenv("EDGE_TTS_RETRY_DELAY", "2"))
-RATE = os.getenv("EDGE_TTS_RATE", "-17%")
-PITCH = os.getenv("EDGE_TTS_PITCH", "-5Hz")
-VOLUME = "+0%"
 WORDS_PER_CAPTION_CHUNK = int(os.getenv("WORDS_PER_CAPTION_CHUNK", "4"))
 VIDEO_W = 1080
 VIDEO_H = 1920
-# جميع المخرجات عمودية 9:16؛ الترجمة في المنطقة الآمنة العلوية.
 FULL_CAPTION_BOTTOM_MARGIN = 70
-
-# نموذج Whisper المستخدم لمحاذاة الترجمة مع الصوت الفعلي (انظر
-# align_words_with_whisper أدناه). "base" اختيار متوازن بين السرعة
-# والدقة على معالج عادي؛ يمكن رفعه لـ "small" لدقة أعلى مقابل وقت أطول
-# عبر متغير البيئة WHISPER_MODEL.
 WHISPER_MODEL_SIZE = os.getenv("WHISPER_MODEL", "base")
 ASR_MIN_MATCH_RATIO = float(os.getenv("ASR_MIN_MATCH_RATIO", "0.82"))
-
 VOICE_AUDIO = CLIPS_DIR / "narration_voice.mp3"
 FINAL_AUDIO = CLIPS_DIR / "narration.mp3"
 SUBTITLES = CLIPS_DIR / "narration.ass"
-
-PAUSE_AFTER_ELLIPSIS = 1.3
-PAUSE_AFTER_QUESTION_EXCLAIM = 0.75
-PAUSE_AFTER_PERIOD = 0.45
-DEFAULT_PAUSE = 0.5
-
 ARABIC_DIACRITICS_PATTERN = re.compile(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u08D3-\u08E1\u08E3-\u08FF]")
 _WORD_TOKEN_PATTERN = re.compile(r"[\w\u0600-\u06FF]+", re.UNICODE)
-# علامات تُحذف من النص المرئي فقط حتى يبدو طبيعيًا وغير آلي. نص الراوي
-# الأصلي يظل محتفظًا بها لأن edge-tts يستخدمها لصناعة الوقفات الصحيحة.
 DISPLAY_PUNCTUATION = str.maketrans(".,،؛:!?؟…-—_()[]{}\"«»/\\", " " * 23)
-
-# قاموس تشكيل انتقائي: كل كلمة هنا لها أكثر من قراءة ممكنة بلا تشكيل، لكن
-# قراءة واحدة منها فقط هي المسيطرة فعليًا في سياق سرد ديني/تاريخي —
-# تمامًا مثل مشكلة "زر" (زِرّ الضغط مقابل فعل الزيارة): كلمة بلا تشكيل
-# ممكن يقرأها المحرك بمعنى مختلف تمامًا عن المقصود. أي كلمة يُضاف
-# تشكيلها هنا يجب أن يكون لها قراءة واحدة غالبة بوضوح في هذا السياق.
-HARD_WORDS_DIACRITICS = {
-    "عدة": "عِدّة", "قلبه": "قَلْبه", "همس": "هَمْس", "خطى": "خُطى",
-    "عبرة": "عِبرة", "أمة": "أُمّة", "غزوة": "غَزوة", "فتح": "فَتْح",
-    "نصر": "نَصْر", "هجرة": "هِجرة",
-}
-
+_TRANSCRIPT_CACHE: dict[tuple, list] = {}
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != 0:
         sys.exit("❌ فشل الأمر:\n" + " ".join(command) + "\n\n" + result.stderr)
     return result
-
-
-def configure_silma_voice_profile() -> str:
-    """Resolve the chosen bundled WAV and its exact reference transcript."""
-    global SILMA_REFERENCE_WAV, SILMA_REFERENCE_TEXT
-    selected, label, wav, transcript = resolve_reference_profile(
-        SILMA_REFERENCE_PROFILE,
-        SILMA_VOICE_PROFILES_FILE,
-        ROOT_DIR,
-    )
-    SILMA_REFERENCE_WAV = wav
-    SILMA_REFERENCE_TEXT = transcript
-    print(f"🎙️ ملف الصوت المختار: {label} ({selected})")
-    return selected
-
 
 def save_voice_to_history(episode: dict, selected_voice: str) -> None:
     history_path = ROOT_DIR / "state" / "used_clips.json"
@@ -161,16 +53,13 @@ def save_voice_to_history(episode: dict, selected_voice: str) -> None:
     except (OSError, json.JSONDecodeError):
         print("⚠️ تعذر حفظ اختيار الصوت في سجل الحلقات")
 
-
 def strip_diacritics(text: str) -> str:
     return ARABIC_DIACRITICS_PATTERN.sub("", text)
-
 
 def normalize_text(text: str) -> str:
     # احتفظ بالتشكيل الذي أضافه مدقق Gemini/OpenRouter؛ حذفه هنا يجعل SILMA
     # يخمّن الضمائر والأفعال والحركات من جديد، وهو سبب رئيسي للنطق الخاطئ.
     return re.sub(r"\s+", " ", text).strip()
-
 
 def apply_phonetic_hints(text: str, hints: list[dict]) -> str:
     """يستبدل كل مدخل من phonetic_hints (كلمة أو عبارة كما وردت بالضبط
@@ -197,14 +86,6 @@ def apply_phonetic_hints(text: str, hints: list[dict]) -> str:
                 text = re.sub(pattern, phonetic, text)
     return text
 
-
-def apply_light_diacritics(text: str) -> str:
-    def replace(match: re.Match) -> str:
-        word = match.group(0)
-        return HARD_WORDS_DIACRITICS.get(word, word)
-    return _WORD_TOKEN_PATTERN.sub(replace, text)
-
-
 def sanitize_tts_punctuation(text: str) -> str:
     """Prevent speech engines from reading editorial dashes as 'شرطة'.
 
@@ -215,23 +96,6 @@ def sanitize_tts_punctuation(text: str) -> str:
     text = re.sub(r"[,،\\s]*،(?:\\s*،)+", "، ", text)
     return re.sub(r"\\s+", " ", text).strip()
 
-
-def split_sentences(text: str) -> list[str]:
-    parts = re.split(r"(?<=[.!؟…])\s+", text.strip())
-    return [part.strip() for part in parts if part.strip()]
-
-
-def pause_duration_for(sentence: str) -> float:
-    stripped = sentence.strip()
-    if stripped.endswith("…") or stripped.endswith("..."):
-        return PAUSE_AFTER_ELLIPSIS
-    if stripped.endswith("؟") or stripped.endswith("!"):
-        return PAUSE_AFTER_QUESTION_EXCLAIM
-    if stripped.endswith("."):
-        return PAUSE_AFTER_PERIOD
-    return DEFAULT_PAUSE
-
-
 def probe_duration(path: Path) -> float:
     result = run([
         "ffprobe", "-v", "error", "-show_entries", "format=duration",
@@ -239,301 +103,10 @@ def probe_duration(path: Path) -> float:
     ])
     return float(result.stdout.strip())
 
-
-def build_silence_clip(duration: float, path: Path) -> None:
-    run([
-        "ffmpeg", "-y", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono",
-        "-t", f"{duration:.3f}", "-c:a", "libmp3lame", "-b:a", "192k", str(path),
-    ])
-
-
-def synthesize_sentences_bark(sentences: list[str]) -> list[dict]:
-    """ينتج مقاطع WAV عبر Bark من Suno. Bark لا يعيد WordBoundary؛ لذلك
-    تُستخرج المحاذاة لاحقًا عبر Whisper مثل خطة الاحتياط الحالية."""
-    try:
-        # Bark 0.1.5 يستخدم torch.load بالطريقة القديمة. ابتداءً من
-        # PyTorch 2.6 أصبح weights_only=True هو الافتراضي، ما يمنع تحميل
-        # checkpoints الرسمية. نمرر False صراحةً للملفات التي ينزلها Bark
-        # من مستودع النماذج الرسمي، وهو ما يتوافق مع واجهة Bark الحالية.
-        import torch
-        _torch_load = torch.load
-        def _bark_torch_load(*args, **kwargs):
-            kwargs.setdefault("weights_only", False)
-            return _torch_load(*args, **kwargs)
-        torch.load = _bark_torch_load
-        from bark import generate_audio, preload_models
-        from scipy.io import wavfile
-    except ImportError as exc:
-        raise RuntimeError("تعذر استيراد Bark/Scipy؛ ثبّت suno-bark وscipy") from exc
-
-    print(f"🦜 تحميل نماذج Bark من Suno (history_prompt={BARK_HISTORY_PROMPT})...")
-    preload_models()
-    segments = []
-    for index, raw_sentence in enumerate(sentences):
-        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
-        if not sentence:
-            continue
-        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.wav"
-        print(f"   🦜 Bark: الجملة {index + 1}/{len(sentences)}")
-        audio = generate_audio(
-            sentence,
-            history_prompt=BARK_HISTORY_PROMPT or None,
-            text_temp=BARK_TEXT_TEMP,
-            waveform_temp=BARK_WAVEFORM_TEMP,
-        )
-        wavfile.write(str(seg_path), 24000, audio)
-        duration = probe_duration(seg_path)
-        if duration <= 0:
-            raise RuntimeError("Bark أعاد ملفًا صوتيًا فارغًا")
-        segments.append({
-            "path": seg_path, "duration": duration, "events": None,
-            "sentence": sentence, "is_silence": False,
-        })
-        if index < len(sentences) - 1:
-            pause = pause_duration_for(sentence)
-            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
-            build_silence_clip(pause, pause_path)
-            segments.append({
-                "path": pause_path, "duration": pause, "events": None,
-                "sentence": None, "is_silence": True,
-            })
-    return segments
-
-
-def synthesize_sentences_xtts(sentences: list[str]) -> list[dict]:
-    """ينتج الصوت العربي عبر Coqui XTTS-v2 باستخدام عينة صوت مرجعية واحدة.
-    يتم تحميل النموذج مرة واحدة ثم توليد كل جملة في ملف WAV مستقل."""
-    if not XTTS_SPEAKER_WAV.is_absolute():
-        speaker_wav = ROOT_DIR / XTTS_SPEAKER_WAV
-    else:
-        speaker_wav = XTTS_SPEAKER_WAV
-    if not speaker_wav.exists():
-        raise RuntimeError(
-            f"ملف الصوت المرجعي غير موجود: {speaker_wav}. "
-            "أضف assets/voice_reference.wav أو اضبط XTTS_SPEAKER_WAV."
-        )
-    try:
-        from TTS.api import TTS
-    except ImportError as exc:
-        raise RuntimeError("تعذر استيراد Coqui TTS؛ ثبّت coqui-tts") from exc
-
-    print(f"🐸 تحميل Coqui XTTS-v2: {XTTS_MODEL} (GPU={XTTS_USE_GPU})...")
-    tts = TTS(model_name=XTTS_MODEL, progress_bar=True, gpu=XTTS_USE_GPU)
-    segments = []
-    for index, raw_sentence in enumerate(sentences):
-        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
-        if not sentence:
-            continue
-        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.wav"
-        print(f"   🐸 XTTS: الجملة {index + 1}/{len(sentences)}")
-        tts.tts_to_file(
-            text=sentence,
-            speaker_wav=str(speaker_wav),
-            language="ar",
-            file_path=str(seg_path),
-            split_sentences=False,
-        )
-        duration = probe_duration(seg_path)
-        if duration <= 0:
-            raise RuntimeError("XTTS أعاد ملفًا صوتيًا فارغًا")
-        segments.append({
-            "path": seg_path, "duration": duration, "events": None,
-            "sentence": sentence, "is_silence": False,
-        })
-        if index < len(sentences) - 1:
-            pause = pause_duration_for(sentence)
-            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
-            build_silence_clip(pause, pause_path)
-            segments.append({
-                "path": pause_path, "duration": pause, "events": None,
-                "sentence": None, "is_silence": True,
-            })
-    return segments
-
-
 def _norm_arabic_words(text: str) -> list[str]:
     text = re.sub(r"[\u064B-\u065F\u0670]", "", text or "")
     text = re.sub(r"[^\w\u0600-\u06FF]+", " ", text, flags=re.UNICODE)
     return [w for w in text.lower().split() if w]
-
-
-def detect_silma_reference_leak(audio_path: Path) -> str | None:
-    """Transcribe audio and reject a contiguous phrase copied from SILMA reference."""
-    if not SILMA_GUARD_ENABLED or not SILMA_REFERENCE_TEXT:
-        return None
-    from faster_whisper import WhisperModel
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
-    segments, _ = model.transcribe(str(audio_path), language="ar", word_timestamps=False, vad_filter=False)
-    heard = _norm_arabic_words(" ".join(seg.text or "" for seg in segments))
-    ref = _norm_arabic_words(SILMA_REFERENCE_TEXT)
-    minimum = max(2, min(SILMA_GUARD_MIN_MATCH_WORDS, len(ref)))
-    for size in range(len(ref), minimum - 1, -1):
-        phrase = ref[-size:]
-        for i in range(len(heard) - size + 1):
-            if heard[i:i + size] == phrase:
-                return " ".join(phrase)
-    return None
-
-
-def synthesize_sentences_silma(sentences: list[str]) -> list[dict]:
-    """ينتج الصوت العربي عبر SILMA TTS v1 باستخدام مرجع بشري واحد.
-    يُحمّل النموذج مرة واحدة ثم يولّد ملف WAV لكل جملة."""
-    reference_wav = SILMA_REFERENCE_WAV
-    if not reference_wav.is_absolute():
-        reference_wav = ROOT_DIR / reference_wav
-    if not reference_wav.exists():
-        raise RuntimeError(
-            f"ملف مرجع SILMA غير موجود: {reference_wav}. "
-            "شغّل خطوة إنشاء المرجع الاصطناعي أولاً أو اضبط SILMA_REFERENCE_WAV."
-        )
-    try:
-        from silma_tts.api import SilmaTTS
-    except ImportError as exc:
-        raise RuntimeError("تعذر استيراد SILMA؛ ثبّت silma-tts في بيئة التشغيل") from exc
-
-    print(f"🟣 تحميل SILMA TTS v1 (speed={SILMA_SPEED})...")
-    silma = SilmaTTS()
-    segments = []
-    for index, raw_sentence in enumerate(sentences):
-        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
-        if not sentence:
-            continue
-        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.wav"
-        seg_path.unlink(missing_ok=True)
-        print(f"   🟣 SILMA: الجملة {index + 1}/{len(sentences)}")
-        silma.infer(
-            ref_file=str(reference_wav),
-            ref_text=SILMA_REFERENCE_TEXT or None,
-            gen_text=sentence,
-            file_wave=str(seg_path),
-            seed=None,
-            speed=SILMA_SPEED,
-        )
-        duration = probe_duration(seg_path)
-        if duration <= 0:
-            raise RuntimeError("SILMA أعاد ملفاً صوتياً فارغاً")
-        segments.append({"path": seg_path, "duration": duration, "events": None,
-                         "sentence": sentence, "is_silence": False})
-        if index < len(sentences) - 1:
-            pause = pause_duration_for(sentence)
-            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
-            build_silence_clip(pause, pause_path)
-            segments.append({"path": pause_path, "duration": pause, "events": None,
-                             "sentence": None, "is_silence": True})
-    return segments
-
-
-async def synthesize_sentences(sentences: list[str], engine_override: str | None = None) -> list[dict]:
-    """يختار محرك الصوت صراحةً؛ SILMA لا يرجع إلى Edge تلقائياً."""
-    engine = engine_override or TTS_ENGINE
-    if engine in {"gemini", "voicetut"}:
-        from voice_provider.client import generate
-        source = CLIPS_DIR / "_charon_complete.wav"
-        whole_text = " ".join(str(s).strip() for s in sentences if str(s).strip())
-        await asyncio.to_thread(generate, whole_text, source)
-        return [{"path": source, "duration": probe_duration(source), "events": None,
-                 "sentence": whole_text, "is_silence": False}]
-    if engine == "silma":
-        try:
-            return synthesize_sentences_silma(sentences)
-        except Exception as exc:
-            if engine_override is None and os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() == "true":
-                print(f"⚠️ تعذر SILMA ({exc}) — الرجوع إلى Edge TTS.")
-                return await synthesize_sentences(sentences, "edge")
-            raise
-    if TTS_ENGINE == "xtts":
-        try:
-            return synthesize_sentences_xtts(sentences)
-        except Exception as exc:  # XTTS اختياري؛ لا نسقط النشر بالكامل
-            if os.getenv("XTTS_FALLBACK_TO_EDGE", "true").lower() == "true":
-                print(f"⚠️ تعذر XTTS ({exc}) — الرجوع إلى Edge TTS.")
-            else:
-                raise
-    if TTS_ENGINE == "bark":
-        try:
-            return synthesize_sentences_bark(sentences)
-        except Exception as exc:  # Bark اختياري؛ لا نسقط النشر بالكامل
-            if os.getenv("BARK_FALLBACK_TO_EDGE", "true").lower() == "true":
-                print(f"⚠️ تعذر Bark ({exc}) — الرجوع إلى Edge TTS.")
-            else:
-                raise
-    segments = []
-    for index, raw_sentence in enumerate(sentences):
-        sentence = re.sub(r"\s+", " ", str(raw_sentence)).strip()
-        if not sentence:
-            print(f"⚠️ تم تجاهل جملة فارغة رقم {index + 1}.")
-            continue
-
-        seg_path = CLIPS_DIR / f"_seg_full_{index:03d}.mp3"
-        events = []
-        last_error: Exception | None = None
-        succeeded = False
-
-        for voice in VOICE_CANDIDATES:
-            for retry in range(1, EDGE_TTS_RETRIES + 1):
-                seg_path.unlink(missing_ok=True)
-                events = []
-                try:
-                    communicate = edge_tts.Communicate(
-                        sentence, voice, rate=RATE, pitch=PITCH, volume=VOLUME
-                    )
-                    with seg_path.open("wb") as audio_file:
-                        async for chunk in communicate.stream():
-                            if chunk["type"] == "audio":
-                                audio_file.write(chunk["data"])
-                            elif chunk["type"] == "WordBoundary":
-                                events.append(chunk)
-                    if not seg_path.exists() or seg_path.stat().st_size == 0:
-                        raise RuntimeError("Edge TTS أعاد ملفًا صوتيًا فارغًا")
-                    duration = probe_duration(seg_path)
-                    if duration <= 0:
-                        raise RuntimeError("Edge TTS أعاد مدة صوت تساوي صفرًا")
-                    succeeded = True
-                    print(
-                        f"   🔊 الجملة {index + 1}/{len(sentences)}: "
-                        f"الصوت {voice}، المحاولة {retry}، {duration:.2f} ثانية"
-                    )
-                    break
-                except Exception as exc:  # noqa: BLE001
-                    last_error = exc
-                    seg_path.unlink(missing_ok=True)
-                    print(
-                        f"   ⚠️ فشل Edge TTS في الجملة {index + 1}/{len(sentences)} "
-                        f"بالصوت {voice}، المحاولة {retry}/{EDGE_TTS_RETRIES}: {exc}"
-                    )
-                    if retry < EDGE_TTS_RETRIES:
-                        await asyncio.sleep(EDGE_TTS_RETRY_DELAY * retry)
-            if succeeded:
-                break
-            print(f"   🔁 الانتقال إلى صوت Edge TTS احتياطي بعد فشل {voice}.")
-
-        if not succeeded:
-            preview = sentence[:160].replace("\n", " ")
-            raise RuntimeError(
-                f"تعذر توليد الجملة رقم {index + 1} بكل أصوات Edge TTS. "
-                f"النص: {preview!r}. آخر خطأ: {last_error}"
-            ) from last_error
-
-        segments.append({
-            "path": seg_path,
-            "duration": duration,
-            "events": events,
-            "sentence": sentence,
-            "is_silence": False,
-        })
-        if index < len(sentences) - 1:
-            pause = pause_duration_for(sentence)
-            pause_path = CLIPS_DIR / f"_pause_full_{index:03d}.mp3"
-            build_silence_clip(pause, pause_path)
-            segments.append({
-                "path": pause_path,
-                "duration": pause,
-                "events": None,
-                "sentence": None,
-                "is_silence": True,
-            })
-    return segments
-
 
 def ass_time(seconds: float) -> str:
     centiseconds = max(0, int(round(seconds * 100)))
@@ -542,12 +115,10 @@ def ass_time(seconds: float) -> str:
     secs, cs = divmod(remainder, 100)
     return f"{hours}:{minutes:02d}:{secs:02d}.{cs:02d}"
 
-
 def two_lines_ar(words: list[str]) -> str:
     """يقسم كتلة كلمات عربية إلى سطرين لعرض ترجمة عربية متزامنة كلمة
     بكلمة تقريبًا (تُستخدم لخط الترجمة العربية السفلي)."""
     return render_arabic_caption(words)
-
 
 def validate_caption_chunks(ass_text: str, max_words: int = WORDS_PER_CAPTION_CHUNK) -> None:
     """Fail closed if a subtitle event accidentally contains the whole narration.
@@ -572,7 +143,6 @@ def validate_caption_chunks(ass_text: str, max_words: int = WORDS_PER_CAPTION_CH
             f"الحد الأقصى {max_words}. لن يتم دمج النص الكامل داخل الفيديو."
         )
 
-
 def build_ass_header() -> str:
     """يعرّف تنسيق الترجمة العربية المتزامنة مع الصوت عبر Whisper."""
     style_ar = (
@@ -590,46 +160,6 @@ def build_ass_header() -> str:
         + "\n\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     )
 
-
-# ---------------------------------------------------------------------------
-# مزامنة الترجمة: محاذاة حقيقية بالصوت الفعلي (Whisper) — مع خطة احتياطية
-# ---------------------------------------------------------------------------
-
-def _build_word_events_from_edge_tts(segments: list[dict]) -> list[dict]:
-    """توقيت احتياطي فقط: يعتمد على "WordBoundary" الذي يرجعه edge-tts
-    لكل جملة على حدة، مجمّعًا يدويًا مع مدد السكتات المُدرَجة بينها. لا
-    يُستخدم إلا إذا تعذّرت محاذاة Whisper (انظر align_words_with_whisper)
-    — توقيت edge-tts الذاتي للعربية غير موثوق بما يكفي ليكون المصدر
-    الأساسي، خصوصًا مع تراكم خطأ كل جملة على التي بعدها."""
-    events: list[dict] = []
-    cumulative_seconds = 0.0
-    for segment in segments:
-        if segment["is_silence"]:
-            cumulative_seconds += segment["duration"]
-            continue
-        if segment["events"]:
-            for event in segment["events"]:
-                events.append({
-                    "text": strip_diacritics(event["text"]),
-                    "offset": cumulative_seconds + event["offset"] / 10_000_000,
-                    "duration": event["duration"] / 10_000_000,
-                })
-        else:
-            words = re.findall(r"\S+", segment["sentence"] or "")
-            per_word = segment["duration"] / max(len(words), 1)
-            for word_index, word in enumerate(words):
-                events.append({
-                    "text": strip_diacritics(word),
-                    "offset": cumulative_seconds + word_index * per_word,
-                    "duration": per_word,
-                })
-        cumulative_seconds += segment["duration"]
-    return events
-
-
-
-_TRANSCRIPT_CACHE: dict[tuple, list] = {}
-
 def _cached_whisper_segments(audio_path: Path, model_size: str | None = None) -> list:
     """Reuse one word-timed transcript; invalidate it when audio is rewritten."""
     from faster_whisper import WhisperModel
@@ -637,7 +167,7 @@ def _cached_whisper_segments(audio_path: Path, model_size: str | None = None) ->
     stat = audio_path.stat()
     key = (str(audio_path.resolve()), stat.st_size, stat.st_mtime_ns, model_size)
     if key not in _TRANSCRIPT_CACHE:
-        model = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type="int8")
+        model = WhisperModel(model_size, device="cpu", compute_type="int8")
         result = model.transcribe(str(audio_path), language="ar",
                                   word_timestamps=True, vad_filter=False)
         segments = result[0] if isinstance(result, (tuple, list)) else result
@@ -657,9 +187,8 @@ def assert_audio_matches_script(audio_path: Path, script_text: str) -> float:
     ratio = matched / len(expected)
     print(f"🎧 بوابة ASR العربية: {matched}/{len(expected)} كلمة مطابقة ({ratio:.1%})")
     if ratio < ASR_MIN_MATCH_RATIO:
-        print(f"⚠️ تحذير ASR: تطابق التعرف {ratio:.1%} أقل من {ASR_MIN_MATCH_RATIO:.1%}؛ نواصل بالصوت الموجود، دون اعتماد جودة زائف.")
+        raise RuntimeError(f"Arabic speech mismatch {ratio:.1%}; required {ASR_MIN_MATCH_RATIO:.1%}")
     return ratio
-
 
 def align_words_with_whisper(audio_path: Path, script_words: list[str], *, stronger: bool = False) -> list[dict]:
     """يحاذي script_words مع الصوت الفعلي المُنتَج باستخدام faster-whisper،
@@ -748,108 +277,13 @@ def align_words_with_whisper(audio_path: Path, script_words: list[str], *, stron
     )
     return timings
 
-
-def synthesize_google_sentences(sentences: list[str], *, slow: bool = False) -> list[dict]:
-    from scripts.free_tts_fallback import google_arabic_voice
-    # Provider punctuation supplies pauses; do not add silence per sentence.
-    sentence = " ".join(sentences)
-    path = CLIPS_DIR / "_google_full_000.mp3"
-    google_arabic_voice(sentence, path, slow=slow)
-    return [{"path": path, "duration": probe_duration(path), "events": None,
-             "sentence": sentence, "is_silence": False}]
-
-
-async def synthesize_with_free_recovery(sentences: list[str], engine_override: str | None = None):
-    if (engine_override or TTS_ENGINE) in {"gemini", "voicetut"}:
-        return await synthesize_sentences(sentences, "gemini"), "gemini"
-    if engine_override is None and os.getenv("PREFER_FREE_GOOGLE_TTS", "false").lower() == "true":
-        try:
-            return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
-        except Exception as exc:
-            print(f"Preferred free Arabic TTS unavailable: {type(exc).__name__}")
-    try:
-        return await synthesize_sentences(sentences, engine_override), engine_override or TTS_ENGINE
-    except Exception:
-        if os.getenv("FREE_GOOGLE_TTS_ENABLED", "false").lower() != "true":
-            raise
-        print("Voice provider unavailable; using independent free Google Arabic voice")
-        return await asyncio.to_thread(synthesize_google_sentences, sentences), "google_free"
-
-
 def synthesize_voice(voice_text: str) -> None:
-    sentences = split_sentences(voice_text)
-    if not sentences:
-        sys.exit("❌ النص فارغ ولا يمكن إنشاء صوت.")
-
-    def render_segments(current_segments: list[dict]) -> None:
-        inputs: list[str] = []
-        for segment in current_segments:
-            inputs += ["-i", str(segment["path"])]
-        concat_filter = "".join(f"[{i}:a]" for i in range(len(current_segments))) + f"concat=n={len(current_segments)}:v=0:a=1[aout]"
-        run(["ffmpeg", "-y", *inputs, "-filter_complex", concat_filter, "-map", "[aout]", "-c:a", "libmp3lame", "-b:a", "192k", str(VOICE_AUDIO)])
-
-    segments, engine_used = asyncio.run(synthesize_with_free_recovery(sentences))
-    render_segments(segments)
-    if engine_used == "silma":
-        try:
-            leak = detect_silma_reference_leak(VOICE_AUDIO)
-        except Exception as exc:  # Whisper unavailable/download failure: respect the configured fallback policy.
-            print(f"⚠️ تعذر فحص صوت SILMA عبر Whisper ({exc}).")
-            leak = "whisper_guard_error"
-        if leak:
-            if os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
-                raise RuntimeError(
-                    f"تعذر اعتماد ملف SILMA للصوت المختار ({leak})، ولن أستبدله بصوت Edge مختلف."
-                )
-            print(f"⚠️ تسرّب/خلل في صوت SILMA ({leak}) — إعادة التوليد بـEdge TTS.")
-            for segment in segments:
-                Path(segment["path"]).unlink(missing_ok=True)
-            segments, engine_used = asyncio.run(synthesize_with_free_recovery(sentences, "edge"))
-            render_segments(segments)
-
-    # نفس ترتيب/شكل الكلمات المعروضة كما كانت قبل التعديل (بلا تشكيل،
-    # وبعلامات الترقيم لا تزال ملتصقة — two_lines_ar() تحذفها وقت العرض).
-    display_words = strip_diacritics(voice_text).split()
-
-    try:
-        assert_audio_matches_script(VOICE_AUDIO, voice_text)
-    except RuntimeError as exc:
-        # SILMA can produce intelligible audio while Whisper still misses a
-        # large portion of a long Arabic episode. Do not publish that audio;
-        # regenerate the complete narration with deterministic Edge TTS and
-        # run the same ASR gate again.
-        if TTS_ENGINE != "silma" or os.getenv("SILMA_FALLBACK_TO_EDGE", "true").lower() != "true":
-            raise
-        print(f"⚠️ فشل تطابق SILMA مع النص ({exc}) — إعادة التوليد كاملًا بـEdge TTS.")
-        for segment in segments:
-            Path(segment["path"]).unlink(missing_ok=True)
-        segments, engine_used = asyncio.run(synthesize_with_free_recovery(sentences, "edge"))
-        render_segments(segments)
-        assert_audio_matches_script(VOICE_AUDIO, voice_text)
-    try:
-        all_word_events = align_words_with_whisper(VOICE_AUDIO, display_words)
-    except Exception as exc:
-        if os.getenv("QUALITY_GATES_BLOCKING", "false").lower() == "true":
-            raise
-        # The independent narration check has passed. Use measured sentence
-        # durations (including pauses), avoiding another expensive TTS/ASR pass.
-        print(f"Caption timing warning: {exc}; using measured sentence timing")
-        all_word_events = []
-        cursor = 0.0
-        for segment in segments:
-            duration = float(segment["duration"])
-            if not math.isfinite(duration) or duration <= 0:
-                raise RuntimeError("Invalid sentence audio duration")
-            if not segment["is_silence"]:
-                words = strip_diacritics(segment["sentence"] or "").split()
-                step = duration / max(len(words), 1)
-                for index, word in enumerate(words):
-                    all_word_events.append({"text": word, "offset": cursor + index * step,
-                                            "duration": step})
-            cursor += duration
-        if [event["text"] for event in all_word_events] != display_words:
-            raise RuntimeError("Sentence timing does not cover the approved narration")
-
+    if not voice_text.strip():
+        raise ValueError("Empty narration")
+    generate(voice_text,VOICE_AUDIO)
+    display_words=strip_diacritics(voice_text).split()
+    assert_audio_matches_script(VOICE_AUDIO,voice_text)
+    all_word_events=align_words_with_whisper(VOICE_AUDIO,display_words)
     if not all_word_events:
         sys.exit("❌ تعذر إنشاء توقيت الترجمة.")
 
@@ -883,64 +317,30 @@ def synthesize_voice(voice_text: str) -> None:
     ass_text = build_ass_header() + "\n".join(dialogue_lines) + "\n"
     validate_caption_chunks(ass_text)
     SUBTITLES.write_text(ass_text, encoding="utf-8")
-    for segment in segments:
-        Path(segment["path"]).unlink(missing_ok=True)
 
 
 def prepare_final_audio() -> None:
-    """Publish narration as a clean voice-only track; no background music."""
-    run([
-        "ffmpeg", "-y", "-i", str(VOICE_AUDIO),
-        "-c:a", "libmp3lame", "-b:a", "192k", str(FINAL_AUDIO),
-    ])
+    """Preserve the verified MP3 bytes without another lossy conversion."""
+    shutil.copyfile(VOICE_AUDIO,FINAL_AUDIO)
+
 
 def main() -> None:
-    if not EPISODE_PATH.exists():
-        sys.exit("❌ state/current_episode.json غير موجود.")
-    episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
-    narration = normalize_text(str(episode.get("narration", "")))
-    if not narration:
-        sys.exit("❌ حقل narration غير موجود أو فارغ.")
-    narration_issues = validate_narration(narration)
-    if narration_issues:
-        details = "; ".join(f"{issue.kind}: {issue.sample}" for issue in narration_issues)
-        sys.exit(f"❌ أوقف TTS: narration يحتوي بنية تحريرية أو نصًا غير صالح ({details})")
-
-    CLIPS_DIR.mkdir(parents=True, exist_ok=True)
-    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
-
-    selected_voice_profile = "gemini:Charon" if TTS_ENGINE in {"gemini", "voicetut"} else ""
-    if TTS_ENGINE == "silma":
-        selected_voice_profile = configure_silma_voice_profile()
-
-    phonetic_hints = episode.get("phonetic_hints") or []
-    voice_text = apply_phonetic_hints(narration, phonetic_hints)
-    if TTS_ENGINE not in {"gemini", "voicetut"}:
-        voice_text = apply_light_diacritics(voice_text)
-    phonemes = []
-    if TTS_ENGINE not in {"gemini", "voicetut"}:
-        voice_text, phonemes = prepare_tts_text(
-            voice_text, ROOT_DIR / "config" / "arabic_pronunciation.json"
-        )
-    print(f"✅ طبقة النطق: Mantoq/القاموس — {len(phonemes)} phoneme token(s)")
-    voice_text = sanitize_tts_punctuation(voice_text)
-    synthesize_voice(voice_text)
+    if os.getenv("TTS_ENGINE","gemini").lower()!="gemini":
+        raise ValueError("Production requires Gemini Charon")
+    episode=json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
+    narration=normalize_text(str(episode.get("narration","")))
+    if not narration or validate_narration(narration):
+        raise ValueError("Invalid or empty narration")
+    CLIPS_DIR.mkdir(parents=True,exist_ok=True)
+    spoken=apply_phonetic_hints(narration,episode.get("phonetic_hints") or [])
+    spoken=sanitize_tts_punctuation(spoken)
+    synthesize_voice(spoken)
     prepare_final_audio()
+    episode.pop("parts",None)
+    episode.update(narration=narration,voice_profile="gemini:Charon",voice_audio=str(VOICE_AUDIO),final_audio=str(FINAL_AUDIO),subtitles=str(SUBTITLES))
+    EPISODE_PATH.write_text(json.dumps(episode,ensure_ascii=False,indent=2),encoding="utf-8")
+    save_voice_to_history(episode,"gemini:Charon")
+    print(f"Complete Charon narration and captions: {FINAL_AUDIO}",flush=True)
 
-    episode.pop("parts", None)
-    episode["narration"] = narration
-    episode["voice_profile"] = selected_voice_profile or TTS_ENGINE
-    episode["voice_audio"] = str(VOICE_AUDIO)
-    episode["final_audio"] = str(FINAL_AUDIO)
-    episode["subtitles"] = str(SUBTITLES)
-    EPISODE_PATH.write_text(json.dumps(episode, ensure_ascii=False, indent=2), encoding="utf-8")
-    if selected_voice_profile:
-        save_voice_to_history(episode, selected_voice_profile)
-    print(f"✅ صوت كامل: {FINAL_AUDIO}")
-    print(f"✅ ترجمة عربية متزامنة بالكلمة فقط: {SUBTITLES}")
-    print(f"✅ تلميحات نطق مُطبّقة: {len(phonetic_hints)}")
-    print(f"✅ محرك النطق: {TTS_ENGINE} | أصوات Edge الاحتياطية: {VOICE_CANDIDATES}")
-
-
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
