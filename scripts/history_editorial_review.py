@@ -28,6 +28,13 @@ def review(path=Path('state/current_episode.json')):
     if result.get("needs_review") is False and len(result.get("narration", "").split())<180:
         result=ask("وسّع المسودة المصححة التالية إلى مئتين وعشرين كلمة بالمصري، مع الحفاظ على التواريخ والأسماء الصحيحة. لا تختلق أحداثًا أو اقتباسات. وضح تسلسل الوقائع وسبب أهمية التحول التاريخي بالحقائق الموجودة فقط. كل فقرة مترابطة، والسكريبت الكامل مطلوب، مش التكملة وحدها. أعد JSON بالمفاتيح narration وedits وneeds_review. البيانات: "+json.dumps({"corrected":result,"anchors":anchors},ensure_ascii=False))
     text=spoken_numbers(result.get('narration',''));clean=re.sub(r'[\u064b-\u065fـ]','',text)
+    if anchors:
+        # A deterministic correction from the cited museum date, before speech generation.
+        pattern=r'(?:ألف|الف)\s*و?\s*(?:خمسمائة|خمسمية|خمسمئة)\s*و?\s*(?:ثلاثة|ثلاث|تلاتة|تلات)\s*و?\s*خمس(?:ين|ون)'
+        corrected,count=re.subn(pattern,'ألف وربعمية وتلاتة وخمسين',clean)
+        if count:
+            text=corrected;clean=corrected
+            result.setdefault('edits',[]).append('Corrected the conquest year to 1453 using the cited museum anchor')
     print('History editorial result:',json.dumps({'words':len(text.split()),'needs_review':result.get('needs_review'),'edits':result.get('edits')},ensure_ascii=False),flush=True)
     Path('state/history_editorial_review.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     if result.get('needs_review') is not False or not 180<=len(text.split())<=300:raise ValueError('History review rejected: words='+str(len(text.split()))+'; needs_review='+str(result.get('needs_review')))

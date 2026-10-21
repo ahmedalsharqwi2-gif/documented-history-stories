@@ -23,3 +23,5 @@ jobs:
 # Enforce the historical review JSON schema before spending a TTS request.
 
 # Expand a reviewed short script once, preserving its corrected dates.
+
+# Apply the museum-anchored year correction before speech synthesis.
