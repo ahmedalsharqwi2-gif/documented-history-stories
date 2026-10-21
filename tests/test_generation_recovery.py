@@ -99,7 +99,7 @@ class GenerationRecoveryTests(unittest.TestCase):
         production = workflow['jobs']['produce-and-publish']
         self.assertEqual(production['env']['GEMINI_API_KEY'], '${{ secrets.GEMINI_API_KEY }}')
         self.assertEqual(production['env']['GEMINI_TEXT_API_KEY'], '${{ secrets.GEMINI_TEXT_API_KEY || secrets.GEMINI_API_KEY }}')
-        generation = next(s for s in production['steps'] if s['name'] == 'Produce a fresh documented episode with Charon')
+        generation = next(s for s in production['steps'] if s.get('name') == 'Produce a fresh documented episode with Charon')
         self.assertEqual(generation['run'], 'python -m film_factory.produce history')
 
     def test_empty_gemini_response_switches_instead_of_reparsing(self):
