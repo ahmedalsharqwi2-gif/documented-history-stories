@@ -347,6 +347,35 @@
         "youtube"
       ],
       "confirmed_at": "2026-10-17T08:56:11.662756+00:00"
+    },
+    "immediate approved-photo-v3-history": {
+      "confirmed": true,
+      "receipts": {
+        "facebook": {
+          "id": "6ad9459e7d56fe463dac444f",
+          "due_at": "2026-10-21T23:09:09Z",
+          "run_id": "39690422026",
+          "accepted_at": "2026-10-21T23:07:10.873232+00:00"
+        },
+        "instagram": {
+          "id": "6ad9459f9b7af5217d16c55e",
+          "due_at": "2026-10-21T23:09:09Z",
+          "run_id": "39690422026",
+          "accepted_at": "2026-10-21T23:07:11.525376+00:00"
+        },
+        "youtube": {
+          "id": "ZQKhuB1GJqM",
+          "due_at": "2026-10-22T14:00:00Z",
+          "run_id": "39690422026",
+          "accepted_at": "2026-10-21T23:07:14.113043+00:00"
+        }
+      },
+      "required_services": [
+        "facebook",
+        "instagram",
+        "youtube"
+      ],
+      "confirmed_at": "2026-10-21T23:07:14.114044+00:00"
     }
   }
 }
