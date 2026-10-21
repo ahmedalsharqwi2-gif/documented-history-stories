@@ -19,3 +19,5 @@ jobs:
 # Review historical dates and Egyptian delivery; render original motion instead of flat fallback cards.
 
 # Render the approved narration using native original motion graphics.
+
+# Enforce the historical review JSON schema before spending a TTS request.
