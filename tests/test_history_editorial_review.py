@@ -30,6 +30,8 @@ class HistoricalEditorialTests(unittest.TestCase):
     os.chdir(folder)
     wrong='ده مش عشان اللي سنة ألف وخمسمية وتلاتة وخمسين '+('حكاية '*190)
     with patch.dict(os.environ,{"GEMINI_TEXT_API_KEY":"test-key"}),patch.object(editor,'reserve'),patch.object(editor.requests,'post',return_value=self.response(wrong)):
-     with self.assertRaisesRegex(ValueError,'Incorrect conquest year'):editor.review(p)
-    self.assertEqual(json.loads(p.read_text())["narration"],"المسودة القديمة")
+     editor.review(p)
+    corrected=json.loads(p.read_text())["narration"]
+    self.assertNotIn("خمسمية",corrected)
+    self.assertIn("ربعمية",corrected)
    finally:os.chdir(old)

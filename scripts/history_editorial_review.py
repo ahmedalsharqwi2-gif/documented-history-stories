@@ -36,6 +36,7 @@ def review(path=Path('state/current_episode.json')):
             text=corrected;clean=corrected
             result.setdefault('edits',[]).append('Corrected the conquest year to 1453 using the cited museum anchor')
     print('History editorial result:',json.dumps({'words':len(text.split()),'needs_review':result.get('needs_review'),'edits':result.get('edits')},ensure_ascii=False),flush=True)
+    result['narration']=text
     Path('state/history_editorial_review.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     if result.get('needs_review') is not False or not 180<=len(text.split())<=300:raise ValueError('History review rejected: words='+str(len(text.split()))+'; needs_review='+str(result.get('needs_review')))
     if re.search(r'[A-Za-z0-9٠-٩]',text):raise ValueError('Unspoken script tokens remain')
