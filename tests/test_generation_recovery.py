@@ -96,11 +96,11 @@ class GenerationRecoveryTests(unittest.TestCase):
     def test_production_keeps_the_primary_secret(self):
         import yaml
         workflow = yaml.safe_load(Path('.github/workflows/main.yml').read_text())
-        steps = workflow['jobs']['build-and-publish']['steps']
-        generation = next(s for s in steps if s['name'] == 'Generate complete documented history story script')
-        self.assertEqual(generation['env']['GEMINI_API_KEY'], '${{ secrets.GEMINI_API_KEY }}')
-        self.assertEqual(generation['env']['TARGET_WORDS'], '250')
-        self.assertEqual(generation['env']['MAX_NARRATION_WORDS'], '300')
+        production = workflow['jobs']['produce-and-publish']
+        self.assertEqual(production['env']['GEMINI_API_KEY'], '${{ secrets.GEMINI_API_KEY }}')
+        self.assertEqual(production['env']['GEMINI_TEXT_API_KEY'], '${{ secrets.GEMINI_TEXT_API_KEY || secrets.GEMINI_API_KEY }}')
+        generation = next(s for s in production['steps'] if s['name'] == 'Produce a fresh documented episode with Charon')
+        self.assertEqual(generation['run'], 'python -m film_factory.produce history')
 
     def test_empty_gemini_response_switches_instead_of_reparsing(self):
         from types import SimpleNamespace

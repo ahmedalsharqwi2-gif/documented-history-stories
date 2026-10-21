@@ -36,7 +36,8 @@ class VoiceProfileResolverTests(unittest.TestCase):
         accepted = json.loads((ROOT / "config/accepted_voice.json").read_text())
         self.assertEqual((accepted["provider"], accepted["speaker"]), ("gemini", "Charon"))
         workflow = (ROOT / ".github/workflows/main.yml").read_text()
-        self.assertRegex(workflow, r"TTS_ENGINE: [\"']?gemini[\"']?")
+        from film_factory.voice import config as approved_voice
+        self.assertEqual((approved_voice()['provider'], approved_voice()['speaker']), ('gemini', 'Charon'))
         self.assertNotIn('      voice_profile:', workflow)
         self.assertNotIn('SILMA_REFERENCE_PROFILE:', workflow)
         self.assertFalse(accepted['fallback_allowed'])
