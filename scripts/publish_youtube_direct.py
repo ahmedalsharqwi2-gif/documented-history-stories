@@ -54,7 +54,6 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 YT_CATEGORY_ID = os.environ.get("YT_CATEGORY_ID", "24")
 YT_PRIVACY = os.environ.get("YT_PRIVACY", "public")  # public | unlisted | private
 YT_MADE_FOR_KIDS = os.environ.get("YT_MADE_FOR_KIDS", "false").lower() == "true"
-HISTORICAL_SOURCE = "المصادر والوثائق: تُذكر المراجع المعتمدة للحلقة من ملف الحلقة."
 # الفيديو الطويل أداؤه أفضل مساءً (وقت فراغ فعلي عند المشاهد) بعكس
 # الشورتس اللي أداؤها أفضل صبحًا/ضهرًا. لو الـ workflow بيشتغل صباحًا،
 # القيمة دي بتأجل النشر الفعلي على يوتيوب لنفس اليوم مساءً بدل النشر
@@ -135,17 +134,15 @@ def load_title_and_description() -> tuple[str, str]:
         raise RuntimeError(f"state/current_episode.json غير موجود: {EPISODE_PATH}")
     episode = json.loads(EPISODE_PATH.read_text(encoding="utf-8"))
     from scripts.channel_brand import display_title
-    title = display_title(episode.get("title", "Documented History Story"))
+    title = display_title(episode.get("title", "Horror Episode"))
     caption = str(episode.get("caption", "")).strip() or title
-    source_reference = str(episode.get("source_reference", "")).strip()
     # وصف يوتيوب بيسمح بحد أقصى 5000 حرف، الكابشن الحالي عادة أقصر بكتير.
-    source_block = f"\n\nالمصادر والوثائق:\n- {source_reference}" if source_reference else ""
-    description = f"{caption[:4650]}{source_block}\n\n#تاريخ #وثائقي #قصص_موثقة".strip()
+    description = caption[:4900]
     return title, description
 
 
 def upload_video(youtube, video_path: Path, title: str, description: str) -> str:
-    status: dict = {"selfDeclaredMadeForKids": YT_MADE_FOR_KIDS}
+    status: dict = {"selfDeclaredMadeForKids": YT_MADE_FOR_KIDS, "containsSyntheticMedia": True}
     from scripts.publication_state import immediate_requested
     if immediate_requested():
         status["privacyStatus"] = "public"
@@ -162,8 +159,10 @@ def upload_video(youtube, video_path: Path, title: str, description: str) -> str
 
     body = {
         "snippet": {
-            "title": title or "Documented History Story",
+            "title": title or "Horror Episode",
             "description": description,
+            "tags": json.loads(EPISODE_PATH.read_text()).get("tags", []),
+            "defaultAudioLanguage": "ar",
             "categoryId": YT_CATEGORY_ID,
         },
         "status": status,
@@ -208,9 +207,8 @@ def main() -> int:
             credentials = load_credentials()
             video_id = upload_video(build("youtube", "v3", credentials=credentials), VIDEO_PATH, title, description)
         if os.getenv("PUBLICATION_RECEIPTS_ENABLED", "false").lower() == "true":
-            from scripts.publication_state import record_receipt, immediate_requested
-            due_at = datetime.now(timezone.utc).isoformat(timespec="seconds") if immediate_requested() else os.getenv("PUBLISH_DUE_AT")
-            record_receipt("youtube", video_id, due_at)
+            from scripts.publication_state import record_receipt
+            record_receipt("youtube", video_id, os.getenv("PUBLISH_DUE_AT"))
         print(f"✅ تم قبول فيديو يوتيوب: https://youtu.be/{video_id}")
     except Exception as exc:
         print(f"❌ YouTube publication failed: {exc}")
