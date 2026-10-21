@@ -25,3 +25,5 @@ jobs:
 # Expand a reviewed short script once, preserving its corrected dates.
 
 # Apply the museum-anchored year correction before speech synthesis.
+
+# Source-first narration; reuse only the matching reviewed-text cache revision.
