@@ -27,3 +27,4 @@ jobs:
 # Apply the museum-anchored year correction before speech synthesis.
 
 # Source-first narration; reuse only the matching reviewed-text cache revision.
+# Review sample trigger requested 2026-10-21; dry_run, no social publishing.
