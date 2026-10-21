@@ -1,0 +1,31 @@
+{
+  "name": "Inspect historical review evidence",
+  "on": {
+    "workflow_dispatch": {},
+    "push": {
+      "branches": [
+        "main"
+      ],
+      "paths": [
+        ".github/workflows/review-inspect.yml"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "write",
+    "actions": "read"
+  },
+  "jobs": {
+    "inspect": {
+      "uses": "ahmedalsharqwi2-gif/science-discovery-shorts/.github/workflows/review-delivery.yml@6ce58e6a05380f596dbee2c1d8dd98231fcf51a1",
+      "with": {
+        "run_id": "39543608752",
+        "artifact_name": "review-evidence-39543608752",
+        "asset_name": "history-review.mp4",
+        "release_tag": "history-review-2026-10-21",
+        "inspect_only": true
+      },
+      "secrets": "inherit"
+    }
+  }
+}
