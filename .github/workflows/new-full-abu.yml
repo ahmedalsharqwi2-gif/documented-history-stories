@@ -21,8 +21,16 @@ jobs:
           python-version: '3.11'
       - name: Install audiovisual tools
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y ffmpeg fonts-dejavu-core
-          python -m pip install opencv-python-headless pillow numpy
+          python -m pip install opencv-python-headless pillow numpy imageio-ffmpeg
+          mkdir -p "$HOME/.local/bin"
+          python - <<'PY'
+          import imageio_ffmpeg,os,pathlib
+          src=imageio_ffmpeg.get_ffmpeg_exe()
+          target=pathlib.Path.home()/'.local/bin/ffmpeg'
+          target.symlink_to(src)
+          with open(os.environ['GITHUB_PATH'],'a') as f:f.write(str(target.parent)+'\n')
+          print('FFmpeg installed via Python:',src)
+          PY
       - name: Generate NEW narration and entire movie
         run: PYTHONPATH=. python scripts/produce_new_abu_simbel.py
       - name: Upload complete episode without publishing
