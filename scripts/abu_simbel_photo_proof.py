@@ -20,11 +20,7 @@ xx=x/W; yy=y/H
 rng=np.random.default_rng(9)
 dust=np.column_stack([rng.uniform(0,W,105),rng.uniform(0,H,105),rng.uniform(.3,1.5,105)])
 font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
-try:
- from bidi.algorithm import get_display
- import arabic_reshaper
- shape=lambda s:get_display(arabic_reshaper.reshape(s))
-except ImportError:shape=lambda s:s
+shape=lambda s:s
 f1=ImageFont.truetype(font,40); f2=ImageFont.truetype(font,22)
 pr=subprocess.Popen(['ffmpeg','-y','-loglevel','error','-f','rawvideo','-pix_fmt','bgr24','-s',f'{W}x{H}','-r',str(fps),'-i','-','-c:v','libx264','-crf','21','-preset','veryfast','-pix_fmt','yuv420p','abu-simbel-cinematic-proof.mp4'],stdin=subprocess.PIPE)
 for j in range(frames):
@@ -60,8 +56,8 @@ for j in range(frames):
  # frame treatments, restrained title card rather than decorative lines across subject
  d.rectangle((0,0,W,160),fill=(3,11,19,int(130*fade)))
  d.rectangle((0,770,W,H),fill=(3,11,19,int(168*fade)))
- d.text((W/2,46),shape('أبو سمبل'),font=f1,anchor='mt',fill=(247,213,161,int(255*fade)),stroke_width=1,stroke_fill=(15,18,20,int(180*fade)))
- d.text((W/2,828),shape('حين انتقل المعبد لينجو من الغرق'),font=f2,anchor='mt',fill=(240,242,230,int(255*fade)))
+ d.text((W/2,46),shape('أبو سمبل'),font=f1,anchor='mt',direction='rtl',fill=(247,213,161,int(255*fade)),stroke_width=1,stroke_fill=(15,18,20,int(180*fade)))
+ d.text((W/2,828),shape('حين انتقل المعبد لينجو من الغرق'),font=f2,anchor='mt',direction='rtl',fill=(240,242,230,int(255*fade)))
  d.text((W/2,892),'ABU SIMBEL  •  1964—1968',font=f2,anchor='mt',fill=(231,180,113,int(220*fade)))
  frame=cv2.cvtColor(np.array(overlay.convert('RGB')),cv2.COLOR_RGB2BGR)
  pr.stdin.write(frame.tobytes())
