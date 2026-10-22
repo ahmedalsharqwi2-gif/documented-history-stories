@@ -1,7 +1,15 @@
 {
   "name": "Photographic cinema review — no social publishing",
   "on": {
-    "workflow_dispatch": {}
+    "workflow_dispatch": {},
+    "push": {
+      "branches": [
+        "main"
+      ],
+      "paths": [
+        ".github/workflows/cinema-review.yml"
+      ]
+    }
   },
   "permissions": {
     "contents": "read"
