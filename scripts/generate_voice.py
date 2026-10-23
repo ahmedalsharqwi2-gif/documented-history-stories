@@ -35,7 +35,7 @@ DISPLAY_PUNCTUATION = str.maketrans(".,،؛:!?؟…-—_()[]{}\"«»/\\", " " * 
 _TRANSCRIPT_CACHE: dict[tuple, list] = {}
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = subprocess.run(command, capture_output=True, text=True, check=True)
     if result.returncode != 0:
         sys.exit("❌ فشل الأمر:\n" + " ".join(command) + "\n\n" + result.stderr)
     return result
