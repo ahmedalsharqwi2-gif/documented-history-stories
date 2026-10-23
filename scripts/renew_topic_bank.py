@@ -164,7 +164,7 @@ def build_candidates(trend_values: dict[str, float], youtube_items: list[dict[st
         if key and key not in grouped_items:
             grouped_items[key] = item
     candidates: list[Candidate] = []
-    for idx, item in enumerate(grouped_items.values()):
+    for _, item in enumerate(grouped_items.values()):
         title = item["title"]
         # Stronger signals are the trend group peak and an actual YouTube hit.
         trend_raw = max(merged.values())
