@@ -1,0 +1,203 @@
+name: Manual History Text and Narration
+run-name: Manual history text/audio — ${{ inputs.topic }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "موضوع واقعة تاريخية واحدة؛ لا تضع تعليمات أو أسرارًا هنا"
+        required: true
+        type: string
+      voice:
+        description: "الصوت العربي المصري العام — ليس صوت Manus الداخلي نفسه"
+        required: true
+        type: choice
+        default: ar-EG-ShakirNeural
+        options:
+          - ar-EG-ShakirNeural
+          - ar-EG-SalmaNeural
+
+permissions:
+  contents: read
+
+concurrency:
+  group: manual-history-text-audio-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate-text-and-audio:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: "1"
+      HISTORY_SOURCE_GATE_ENABLED: "false"
+      QUALITY_GATES_BLOCKING: "false"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Install FFmpeg and project dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-noto-core
+          python -m pip install --upgrade pip
+          python -m pip install -r scripts/requirements.txt
+
+      - name: Prepare a one-topic temporary bank
+        env:
+          DISPATCH_TOPIC: ${{ inputs.topic }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          topic = " ".join(os.environ.get("DISPATCH_TOPIC", "").split())
+          if not topic:
+              raise SystemExit("A history topic is required.")
+          if len(topic) > 180:
+              raise SystemExit("Topic must be 180 characters or fewer.")
+          if any(ord(char) < 32 for char in topic):
+              raise SystemExit("Topic must not contain control characters.")
+          topic = topic.replace("|", "／")
+          bank = Path("TOPIC_BANK.md")
+          bank.write_text(
+              "# Temporary manual topic bank\n\n"
+              "| # | topic | hook | visual keywords |\n"
+              "|---:|---|---|---|\n"
+              f"| 1 | {topic} | | |\n",
+              encoding="utf-8",
+          )
+          print(f"Prepared one manual topic: {topic}")
+          PY
+
+      - name: Discover available text-generation models
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
+          LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
+          LLM_FALLBACK_MODELS: ${{ vars.LLM_FALLBACK_MODELS || 'openai/gpt-oss-120b,openai/gpt-oss-20b,llama-3.3-70b-versatile' }}
+          OPENROUTER_API_KEY: ""
+          MODEL_POLICY_FILE: config/model_policy.json
+        run: python scripts/model_preflight.py
+
+      - name: Generate the historical script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_FALLBACK_API_KEY: ${{ secrets.LLM_FALLBACK_API_KEY || secrets.GROQ_API_KEY }}
+          LLM_FALLBACK_ENDPOINT: ${{ vars.LLM_FALLBACK_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions' }}
+          LLM_FALLBACK_MAX_TOKENS: "6000"
+          LLM_SEND_REASONING_EFFORT: "false"
+          LLM_FALLBACK_REASONING_EFFORT: low
+          OPENROUTER_API_KEY: ""
+          OPENROUTER_TIMEOUT: "45"
+          OPENROUTER_MAX_TOKENS: "2200"
+          GEMINI_THINKING_BUDGET: "0"
+          STORY_MAX_TOKENS: "8000"
+          FINALIZE_MAX_TOKENS: "4000"
+          TARGET_WORDS: "250"
+          MAX_NARRATION_WORDS: "300"
+          ACCEPTABLE_MIN_WORDS: "180"
+          OPENROUTER_MIN_WORDS: "180"
+          MAX_FULL_ATTEMPTS: "2"
+          MAX_EXPANSION_ROUNDS: "3"
+          SINGLE_PASS_GENERATION: "false"
+          TRANSIENT_RETRIES: "2"
+          BUDGET_RETRIES: "1"
+          TOPIC_BANK_REQUIRED: "true"
+          TOPIC_SELECTION_MODE: bank
+          TOPIC_ROTATION_SEED: ${{ github.run_id }}
+          TOPIC_PERFORMANCE_FILE: state/topic_performance.json
+        run: python scripts/generate_script.py
+
+      - name: Generate Egyptian Arabic narration audio
+        env:
+          TTS_ENGINE: edge
+          EDGE_TTS_VOICE: ${{ inputs.voice }}
+          EDGE_TTS_VOICES: ${{ inputs.voice }}
+          EDGE_TTS_RATE: "-17%"
+          EDGE_TTS_PITCH: "-2Hz"
+          WHISPER_MODEL: small
+          ASR_MIN_MATCH_RATIO: "0.55"
+          MANTOQ_REQUIRED: "false"
+        run: python scripts/generate_voice.py
+
+      - name: Validate and package text and audio only
+        env:
+          SELECTED_VOICE: ${{ inputs.voice }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import shutil
+          import subprocess
+          from pathlib import Path
+
+          episode_path = Path("state/current_episode.json")
+          audio_path = Path("downloaded_clips/narration.mp3")
+          caption_path = Path("downloaded_clips/narration.ass")
+          if not episode_path.is_file() or not audio_path.is_file():
+              raise SystemExit("The episode JSON or narration audio is missing.")
+          episode = json.loads(episode_path.read_text(encoding="utf-8"))
+          narration = str(episode.get("narration", "")).strip()
+          if not narration:
+              raise SystemExit("Generated narration is empty.")
+          duration = float(subprocess.check_output([
+              "ffprobe", "-v", "error", "-show_entries", "format=duration",
+              "-of", "default=noprint_wrappers=1:nokey=1", str(audio_path)
+          ], text=True).strip())
+          if not 0 < duration <= 180:
+              raise SystemExit(f"Audio duration must be between 0 and 180 seconds; got {duration:.2f}.")
+          output = Path("workflow-output")
+          output.mkdir(parents=True, exist_ok=True)
+          shutil.copy2(episode_path, output / "episode.json")
+          (output / "narration.txt").write_text(
+              f"{episode.get('title', '').strip()}\n\n{narration}\n",
+              encoding="utf-8",
+          )
+          shutil.copy2(audio_path, output / "narration.mp3")
+          voice_track = Path("downloaded_clips/narration_voice.mp3")
+          if voice_track.is_file():
+              shutil.copy2(voice_track, output / "narration_voice.mp3")
+          if caption_path.is_file():
+              shutil.copy2(caption_path, output / "narration.ass")
+          metadata = {
+              "tts_engine": "Microsoft Edge online TTS via edge-tts",
+              "voice": os.environ["SELECTED_VOICE"],
+              "voice_is_not_the_internal_Manus_voice": True,
+              "duration_seconds": round(duration, 2),
+              "automatic_publication": False,
+              "human_fact_review_required": True,
+          }
+          (output / "generation.json").write_text(
+              json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          summary = Path(os.environ["GITHUB_STEP_SUMMARY"])
+          summary.write_text(
+              "## Text and narration generated\n\n"
+              f"- Title: {episode.get('title', '')}\n"
+              f"- Narration words: {len(narration.split())}\n"
+              f"- Audio duration: {duration:.1f} seconds\n"
+              f"- Voice: `{os.environ['SELECTED_VOICE']}`\n"
+              "- Output: downloadable workflow artifacts only; no video render or publication.\n"
+              "- Review historical claims and sources before using the script.\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload text and narration as workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-text-audio-${{ github.run_id }}
+          path: workflow-output/
+          if-no-files-found: error
+          retention-days: 14
