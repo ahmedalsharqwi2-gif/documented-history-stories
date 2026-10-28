@@ -35,7 +35,7 @@ class VoiceProfileResolverTests(unittest.TestCase):
     def test_production_pins_the_approved_charon_voice(self):
         accepted = json.loads((ROOT / "config/accepted_voice.json").read_text())
         self.assertEqual((accepted["provider"], accepted["speaker"]), ("gemini", "Charon"))
-        workflow = (ROOT / ".github/workflows/motion-production.yml").read_text()
+        workflow = (ROOT / ".github/workflows/professional-daily.yml").read_text()
         from film_factory.voice import config as approved_voice
         self.assertEqual((approved_voice()['provider'], approved_voice()['speaker']), ('gemini', 'Charon'))
         self.assertNotIn('      voice_profile:', workflow)
