@@ -1,0 +1,28 @@
+{
+  "removed_workflows": [
+    "abu-simbel-photo-proof.yml",
+    "charon-api-integration.yml",
+    "cinema-review.yml",
+    "main.yml",
+    "new-full-abu.yml",
+    "photo-motion.yml",
+    "reference-quality-probe.yml",
+    "renew-topic-bank.yml",
+    "review-inspect.yml",
+    "review-sample.yml",
+    "sound-review.yml"
+  ],
+  "retired_direct_entrypoints": [
+    "history_visual/render.py",
+    "scripts/assemble_video.py",
+    "scripts/cinematic_production.py",
+    "scripts/finish_audio_review.py",
+    "scripts/refresh_approved_sample.py",
+    "photo_motion/engine.py",
+    "scripts/hybrid_vertical_pipeline.py",
+    "scripts/publish_buffer.py",
+    "scripts/publish_youtube_direct.py",
+    "film_factory/publish.py"
+  ],
+  "profile": "history"
+}

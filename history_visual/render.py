@@ -143,4 +143,5 @@ def main():
  source=ROOT/'assets/reference-audio.flac'
  subprocess.run(['ffmpeg','-y','-v','error','-i',str(out/'picture.mp4'),'-i',str(source),'-map','0:v','-map','1:a','-c:v','copy','-c:a','aac','-b:a','256k','-t',str(DURATION),'-movflags','+faststart',str(out/'dunkirk-visual-v2.mp4')],check=True)
  (out/'production.json').write_text(json.dumps({'duration':DURATION,'fps':FPS,'width':W,'height':H,'audio':'Unchanged first 11.5 seconds of user-supplied 135999.mp4, re-encoded for final AAC. No new TTS, speed change or pitch change.','images':'Generated illustrative reconstructions using built-in image generation, not archival photos.','cartography':'Natural Earth 1:50m admin0, regional locator only; no claimed battle-front geometry.','limits':'This is a visual/audio reference comparison. Matching the same voice for new text is not solved by reusing this excerpt.'},indent=2))
-if __name__=='__main__':main()
+if __name__ == '__main__':
+    raise SystemExit('Retired production path. Run: python -m motion_factory.produce history')
