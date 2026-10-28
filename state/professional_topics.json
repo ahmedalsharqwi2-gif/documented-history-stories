@@ -7,7 +7,7 @@
       "canonical_subject": "Pont du Gard",
       "title": "جسر بون دو جار: تحفة الرومان المائية",
       "url": "https://whc.unesco.org/en/list/344/",
-      "status": "reserved",
+      "status": "rendered",
       "story": {
         "title": "جسر بون دو جار: تحفة الرومان المائية",
         "canonical_subject": "Pont du Gard",
@@ -102,7 +102,8 @@
           "issues": []
         }
       },
-      "reserved_at": "2026-10-28T23:27:46.413622+00:00"
+      "reserved_at": "2026-10-28T23:27:46.413622+00:00",
+      "video_sha256": "ed876497bc73d51fbe7a7afc87eb9775481e86f52ad5c96a10c5449a9b4c0da3"
     }
   ]
 }
