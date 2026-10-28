@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "episodes": [
+    {
+      "slot": "review-40787364902",
+      "topic_key": "pont-du-gard-aqueduct",
+      "canonical_subject": "Pont du Gard",
+      "title": "جسر بون دو جار: تحفة الرومان المائية",
+      "url": "https://whc.unesco.org/en/list/344/",
+      "status": "reserved",
+      "story": {
+        "title": "جسر بون دو جار: تحفة الرومان المائية",
+        "canonical_subject": "Pont du Gard",
+        "suitable": true,
+        "facts": [
+          "The Pont du Gard was built shortly before the Christian era.",
+          "The aqueduct of Nîmes is almost fifty kilometers long.",
+          "The bridge stands nearly fifty meters high and has three levels."
+        ],
+        "milestones": [
+          "القرن الأول",
+          "ألف وتسعمائه وخمسه وثمانين"
+        ],
+        "scenes": [
+          {
+            "id": "scene_1",
+            "label": "جسر بون دو جار",
+            "narration": "ده منظر بون دو جار الخارجي اللي بيظهر كتحفة معمارية عظيمة في الطبيعة.",
+            "labels": [
+              "بون دو جار"
+            ]
+          },
+          {
+            "id": "scene_2",
+            "label": "ثلاثة مستويات",
+            "narration": "الأقواس الهندسية دي متشكلة في ثلاثة مستويات عشان تحمل الميه ببراعة شديدة.",
+            "labels": [
+              "ثلاثة مستويات"
+            ]
+          },
+          {
+            "id": "scene_3",
+            "label": "الدعامات المقطوعة",
+            "narration": "القطاع ده بيوضح شكل الدعامات اللي اتبنت عشان تقاوم مياه النهر الفجائية.",
+            "labels": [
+              "الدعامات"
+            ]
+          },
+          {
+            "id": "scene_4",
+            "label": "مسار الميه",
+            "narration": "قناة الميه مش بتعدي إلا من خلال المسار المخصص اللي بيعبر نهر الغاردون.",
+            "labels": []
+          },
+          {
+            "id": "scene_5",
+            "label": "الوحدات المتكررة",
+            "narration": "الوحدات الهندسية دي المتكررة بتدي الجسر المظهر المتناسق اللي بنشوفه قدامنا دلوقتي.",
+            "labels": [
+              "الوحدات الهندسية"
+            ]
+          },
+          {
+            "id": "scene_6",
+            "label": "المقطع العرضي",
+            "narration": "المقطع ده بيورينا الأحجار الكبيرة اللي استخدموها المهندسين الرومان عشان بناء الصرح.",
+            "labels": [
+              "المقطع ده"
+            ]
+          },
+          {
+            "id": "scene_7",
+            "label": "تجميع الأحجار",
+            "narration": "عملية التجميع دي بتظهر علامات النجارين اللي كانت بتحدد مكان كل حجر بدقة.",
+            "labels": [
+              "عملية التجميع"
+            ]
+          },
+          {
+            "id": "scene_8",
+            "label": "المنظر الخارجي النهائي",
+            "narration": "المشهد الخارجي ده بيبين ازاي الصرح ده بيحافظ على مكانته التاريخية لحد النهاردة.",
+            "labels": [
+              "المشهد الخارجي"
+            ]
+          }
+        ],
+        "profile": "history",
+        "series": "نقص ونروى",
+        "visual_family": "architecture",
+        "variant": "aqueduct",
+        "topic_key": "pont-du-gard-aqueduct",
+        "source": {
+          "url": "https://whc.unesco.org/en/list/344/",
+          "publisher": "UNESCO"
+        },
+        "fiction": false,
+        "documented": true,
+        "editorial_review": {
+          "supported": true,
+          "novel": true,
+          "issues": []
+        }
+      },
+      "reserved_at": "2026-10-28T23:27:46.413622+00:00"
+    }
+  ]
+}
