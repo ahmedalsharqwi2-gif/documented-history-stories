@@ -1,0 +1,151 @@
+{
+  "file": "professional-review.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 44.2,
+  "voice": "original Gemini Charon",
+  "asr_model": "medium",
+  "independent_asr_word_coverage": 0.89,
+  "visual_gate": {
+    "passed": true,
+    "duration": 44.2,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "method": "within-scene diagram-region pixel changes",
+    "scenes": [
+      {
+        "scene": 1,
+        "diagram_spatial_std": [
+          53.349532484044126,
+          53.10306906484165,
+          53.54529082852407
+        ],
+        "changed_pixel_ratios": [
+          0.13203941120607787,
+          0.10009496676163343
+        ],
+        "passed": true
+      },
+      {
+        "scene": 2,
+        "diagram_spatial_std": [
+          25.823631693385074,
+          29.092235508687246,
+          33.54330792531806
+        ],
+        "changed_pixel_ratios": [
+          0.1682573599240266,
+          0.1984567901234568
+        ],
+        "passed": true
+      },
+      {
+        "scene": 3,
+        "diagram_spatial_std": [
+          37.147263215121576,
+          34.901393411269055,
+          37.413321585328035
+        ],
+        "changed_pixel_ratios": [
+          0.0990622032288699,
+          0.10836894586894587
+        ],
+        "passed": true
+      },
+      {
+        "scene": 4,
+        "diagram_spatial_std": [
+          51.216859632229756,
+          47.808924139691506,
+          52.23649535095034
+        ],
+        "changed_pixel_ratios": [
+          0.2719848053181387,
+          0.29678300094966764
+        ],
+        "passed": true
+      },
+      {
+        "scene": 5,
+        "diagram_spatial_std": [
+          25.953671915127316,
+          25.799755838069704,
+          24.50519966194428
+        ],
+        "changed_pixel_ratios": [
+          0.1172602089268756,
+          0.10770417853751187
+        ],
+        "passed": true
+      },
+      {
+        "scene": 6,
+        "diagram_spatial_std": [
+          56.362538819916146,
+          56.55803279806218,
+          56.64863624145538
+        ],
+        "changed_pixel_ratios": [
+          0.03913817663817664,
+          0.04684235517568851
+        ],
+        "passed": true
+      },
+      {
+        "scene": 7,
+        "diagram_spatial_std": [
+          51.97456054309385,
+          52.51296547845716,
+          53.849573241003355
+        ],
+        "changed_pixel_ratios": [
+          0.2781339031339031,
+          0.11194207027540361
+        ],
+        "passed": true
+      },
+      {
+        "scene": 8,
+        "diagram_spatial_std": [
+          53.18497984226555,
+          52.905561517713274,
+          53.57777719800981
+        ],
+        "changed_pixel_ratios": [
+          0.1092948717948718,
+          0.09940645773979108
+        ],
+        "passed": true
+      }
+    ],
+    "note": "Technical blank/freeze detection only; not a judgement of artistic or factual quality."
+  },
+  "audio_tail": {
+    "audio_seconds": 44.2,
+    "video_seconds": 44.2,
+    "difference_seconds": 0.0,
+    "last_speech_window_correlation": 0.9761282801628113,
+    "audio_tail_checked": true,
+    "silence_padding_used_to_hide_lost_speech": false
+  },
+  "music": "Original composed score",
+  "music_bpm": 104,
+  "source": {
+    "url": "https://whc.unesco.org/en/list/344/",
+    "publisher": "UNESCO"
+  },
+  "topic_key": "pont-du-gard-aqueduct",
+  "profile": "history",
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": []
+  },
+  "render": "Three.js procedural geometry, physical lighting, custom skin shader, layered optical bloom",
+  "reference_audio_reused": false,
+  "automatically_published": false,
+  "status": "Technical checks passed; artistic judgement requires viewing the complete film."
+}
