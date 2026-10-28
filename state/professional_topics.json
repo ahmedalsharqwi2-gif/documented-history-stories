@@ -5,11 +5,11 @@
       "slot": "review-40787364902",
       "topic_key": "pont-du-gard-aqueduct",
       "canonical_subject": "Pont du Gard",
-      "title": "جسر بون دو جار: تحفة الرومان المائية",
+      "title": "بون دو جار: جسر بيشيل ميه",
       "url": "https://whc.unesco.org/en/list/344/",
-      "status": "rendered",
+      "status": "reserved",
       "story": {
-        "title": "جسر بون دو جار: تحفة الرومان المائية",
+        "title": "بون دو جار: جسر بيشيل ميه",
         "canonical_subject": "Pont du Gard",
         "suitable": true,
         "facts": [
@@ -23,66 +23,68 @@
         ],
         "scenes": [
           {
-            "id": "scene_1",
-            "label": "جسر بون دو جار",
-            "narration": "ده منظر بون دو جار الخارجي اللي بيظهر كتحفة معمارية عظيمة في الطبيعة.",
-            "labels": [
-              "بون دو جار"
-            ]
+            "id": "scene-1",
+            "label": "جسر بيشيل ميه",
+            "visual_mode": "hero",
+            "narration": "الجسر ده مش مجرد طريق فوق نهر. بون دو جار كان جزء من نظام روماني لنقل الميه.",
+            "labels": [],
+            "evidence_quote": "under license CC-BY-SA IGO 3.0 جسر غارد تم تشييد جسر غارد قبل الحقبة المسيحية بفترة"
           },
           {
-            "id": "scene_2",
+            "id": "scene-2",
             "label": "ثلاثة مستويات",
-            "narration": "الأقواس الهندسية دي متشكلة في ثلاثة مستويات عشان تحمل الميه ببراعة شديدة.",
-            "labels": [
-              "ثلاثة مستويات"
-            ]
+            "visual_mode": "levels",
+            "narration": "بص على الأقواس اللي فوق بعض. هنا ثلاثة مستويات، والمستوى العلوي هو اللي بيشيل قناة الميه.",
+            "labels": [],
+            "evidence_quote": "بتصوّرهم هذا الجسر الذي يبلغ طوله 50 كيلومتراً على ثلاثة مستويات 275متراً، ابتكر الهندسون المائيون"
           },
           {
-            "id": "scene_3",
-            "label": "الدعامات المقطوعة",
-            "narration": "القطاع ده بيوضح شكل الدعامات اللي اتبنت عشان تقاوم مياه النهر الفجائية.",
-            "labels": [
-              "الدعامات"
-            ]
+            "id": "scene-3",
+            "label": "القوس من جوه",
+            "visual_mode": "arch",
+            "narration": "الرومان استخدموا الأقواس في البناء ده. الرسم التوضيحي بيفصل شكل القوس، عشان نشوف ترتيب أجزائه من غير الزحمة.",
+            "labels": [],
+            "evidence_quote": "rollers composed of voussoirs bearing engraved positioning marks. In the series of Roman aqueducts, this"
           },
           {
-            "id": "scene_4",
-            "label": "مسار الميه",
-            "narration": "قناة الميه مش بتعدي إلا من خلال المسار المخصص اللي بيعبر نهر الغاردون.",
-            "labels": []
+            "id": "scene-4",
+            "label": "الميه من فوق",
+            "visual_mode": "water",
+            "narration": "الميه كانت بتعدي في قناة فوق الجسر، والنهر بيجري تحته. دي وظيفتين مختلفتين في نفس المنظر.",
+            "labels": [],
+            "evidence_quote": "bridge rising to nearly 48.77 m, it enabled the water conduit to cross the Gardon"
           },
           {
-            "id": "scene_5",
-            "label": "الوحدات المتكررة",
-            "narration": "الوحدات الهندسية دي المتكررة بتدي الجسر المظهر المتناسق اللي بنشوفه قدامنا دلوقتي.",
-            "labels": [
-              "الوحدات الهندسية"
-            ]
+            "id": "scene-5",
+            "label": "وحدات بتتكرر",
+            "visual_mode": "levels",
+            "narration": "تكرار الأقواس هو اللي بيدي الجسر شكله المميز. بس بص كويس: الأقواس الصغيرة فوق مختلفة عن الكبيرة تحت.",
+            "labels": [],
+            "evidence_quote": "a triple performance with its three levels of arches of unequal dimensions and is characterized"
           },
           {
-            "id": "scene_6",
-            "label": "المقطع العرضي",
-            "narration": "المقطع ده بيورينا الأحجار الكبيرة اللي استخدموها المهندسين الرومان عشان بناء الصرح.",
-            "labels": [
-              "المقطع ده"
-            ]
+            "id": "scene-6",
+            "label": "بناء بالحجر",
+            "visual_mode": "material",
+            "narration": "الحجر عنصر أساسي في الصرح ده. المجسم بيفصل كتل توضيحية عشان يقرّب لك فكرة البناء، مش مقاسات أصلية.",
+            "labels": [],
+            "evidence_quote": "marks of the quarrymen’s and stonecutters’ tools, and sometimes the coding of the stones, with"
           },
           {
-            "id": "scene_7",
-            "label": "تجميع الأحجار",
-            "narration": "عملية التجميع دي بتظهر علامات النجارين اللي كانت بتحدد مكان كل حجر بدقة.",
-            "labels": [
-              "عملية التجميع"
-            ]
+            "id": "scene-7",
+            "label": "نشوف التركيب",
+            "visual_mode": "assembly",
+            "narration": "خلينا نفصل المجسم ونرجّعه تاني. دي طريقة لشرح تركيب الجسر، مش تسجيل للخطوات اللي اتنفذت وقت بنائه.",
+            "labels": [],
+            "evidence_quote": "figures and letters, showing their position in the assembly schema. The precision in execution meets"
           },
           {
-            "id": "scene_8",
-            "label": "المنظر الخارجي النهائي",
-            "narration": "المشهد الخارجي ده بيبين ازاي الصرح ده بيحافظ على مكانته التاريخية لحد النهاردة.",
-            "labels": [
-              "المشهد الخارجي"
-            ]
+            "id": "scene-8",
+            "label": "الهندسة اللي فضلت",
+            "visual_mode": "hero",
+            "narration": "بون دو جار فضل شاهد على هندسة الرومان في نقل الميه. المرة الجاية تشوف أقواس، اسأل نفسك: كانت بتخدم إيه؟",
+            "labels": [],
+            "evidence_quote": "of Roman aqueduct works, the Pont du Gard bears unique witness to the technique of"
           }
         ],
         "profile": "history",
@@ -100,7 +102,8 @@
           "supported": true,
           "novel": true,
           "issues": []
-        }
+        },
+        "revision": "source-checked narration and topic-specific authored visual modes"
       },
       "reserved_at": "2026-10-28T23:27:46.413622+00:00",
       "video_sha256": "ed876497bc73d51fbe7a7afc87eb9775481e86f52ad5c96a10c5449a9b4c0da3"
