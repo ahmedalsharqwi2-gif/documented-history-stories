@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "ده منظر بون دو جار الخارجي اللي بيظهر كتحفة معمارية عظيمة في الطبيعة. الأقواس الهندسية دي متشكلة في ثلاثة مستويات عشان تحمل الميه ببراعة شديدة. القطاع ده بيوضح شكل الدعامات اللي اتبنت عشان تقاوم مياه النهر الفجائية. قناة الميه مش بتعدي إلا من خلال المسار المخصص اللي بيعبر نهر الغاردون. الوحدات الهندسية دي المتكررة بتدي الجسر المظهر المتناسق اللي بنشوفه قدامنا دلوقتي. المقطع ده بيورينا الأحجار الكبيرة اللي استخدموها المهندسين الرومان عشان بناء الصرح. عملية التجميع دي بتظهر علامات النجارين اللي كانت بتحدد مكان كل حجر بدقة. المشهد الخارجي ده بيبين ازاي الصرح ده بيحافظ على مكانته التاريخية لحد النهاردة.",
+  "interaction_id": "v1_Chc5WVRpYW8tZEpLWEZxdHNQa3JYRGlBRRIXOVlUaWFvLWRKS1hGcXRzUGtyWERpQUU",
+  "duration": 44.2,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "1a05c45644c865cf88edcc292088c91e0b1c9260ab0a331ef64e4901de61ad4c",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": false,
+  "output_sha256": "1a05c45644c865cf88edcc292088c91e0b1c9260ab0a331ef64e4901de61ad4c"
+}
