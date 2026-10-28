@@ -1,5 +1,5 @@
 {
-  "name": "Professional daily factory — history",
+  "name": "Professional daily factory — history — legacy history compatibility fix",
   "on": {
     "push": {
       "branches": [
