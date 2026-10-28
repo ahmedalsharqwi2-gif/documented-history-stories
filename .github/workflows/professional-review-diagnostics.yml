@@ -19,7 +19,7 @@
       "runs-on": "ubuntu-latest",
       "env": {
         "GITHUB_TOKEN": "${{ github.token }}",
-        "INSPECT_RUN_ID": "40786167645"
+        "INSPECT_RUN_ID": "40790456913"
       },
       "steps": [
         {
