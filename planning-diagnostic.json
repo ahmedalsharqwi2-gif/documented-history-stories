@@ -1,0 +1,9 @@
+{
+  "prior_run": "40790456913",
+  "planning_error_lines": [
+    "2026-10-28T23:54:45.6027559Z Traceback (most recent call last):",
+    "2026-10-28T23:54:45.6038776Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/recover_review.py\", line 45, in <module>",
+    "2026-10-28T23:54:45.6041030Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/editorial.py\", line 25, in verify_evidence",
+    "2026-10-28T23:54:45.6072998Z ValueError: Every scene needs a short verbatim supporting source excerpt"
+  ]
+}
