@@ -1,0 +1,10 @@
+{
+  "prior_run": "40786167645",
+  "planning_error_lines": [
+    "2026-10-28T23:17:11.2044630Z Traceback (most recent call last):",
+    "2026-10-28T23:17:11.2057705Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/cli.py\", line 38, in <module>",
+    "2026-10-28T23:17:11.2060452Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/cli.py\", line 32, in main",
+    "2026-10-28T23:17:11.2063238Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/editorial.py\", line 107, in prepare",
+    "2026-10-28T23:17:11.2067717Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/editorial.py\", line 107, in <setcomp>"
+  ]
+}
