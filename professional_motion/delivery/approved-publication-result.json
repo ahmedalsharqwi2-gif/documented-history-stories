@@ -1,0 +1,27 @@
+{
+  "accepted_by_every_destination": true,
+  "receipts": {
+    "youtube": {
+      "id": "6ae39f8798c11c76e374e988",
+      "due_at": "2026-10-29T19:35:27Z",
+      "run_id": "40940996759",
+      "accepted_at": "2026-10-29T19:33:28.115517+00:00"
+    },
+    "instagram": {
+      "id": "6ae39f888828b976bca3a37b",
+      "due_at": "2026-10-29T19:35:27Z",
+      "run_id": "40940996759",
+      "accepted_at": "2026-10-29T19:33:28.761422+00:00"
+    },
+    "facebook": {
+      "id": "6ae39f8902b1fcfd3e15dc54",
+      "due_at": "2026-10-29T19:35:27Z",
+      "run_id": "40940996759",
+      "accepted_at": "2026-10-29T19:33:29.453772+00:00"
+    }
+  },
+  "title": "نقص ونروى | الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب",
+  "video_sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
+  "mode": "immediate",
+  "public_live_status_verified": false
+}
