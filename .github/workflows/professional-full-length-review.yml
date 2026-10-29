@@ -1,5 +1,5 @@
 {
-  "name": "Improved full-length cinematic review — documented-history-stories",
+  "name": "Full-length review with explicit verified writer recovery — documented-history-stories",
   "on": {
     "push": {
       "branches": [
@@ -89,7 +89,7 @@
           "name": "Author a different full-length story, source claims, title and topical hashtags",
           "id": "prepare",
           "if": "steps.decision.outputs.run == 'true'",
-          "run": "python -m professional_motion.cli prepare history --slot \"${{ steps.decision.outputs.slot }}\""
+          "run": "python -m professional_motion.prepare_review prepare history --slot \"${{ steps.decision.outputs.slot }}\""
         },
         {
           "name": "Persist the reserved plot before any synthesis",
