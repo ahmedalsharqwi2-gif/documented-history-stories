@@ -1,0 +1,11 @@
+{
+  "prior_run": "40845204981",
+  "planning_error_lines": [
+    "2026-10-29T08:52:39.1120846Z Traceback (most recent call last):",
+    "2026-10-29T08:52:39.1128849Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/cli.py\", line 38, in <module>",
+    "2026-10-29T08:52:39.1130160Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/cli.py\", line 32, in main",
+    "2026-10-29T08:52:39.1131538Z   File \"/home/runner/work/documented-history-stories/documented-history-stories/professional_motion/editorial.py\", line 236, in prepare",
+    "2026-10-29T08:52:39.1152088Z ##[error]    raise RuntimeError('No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video')",
+    "2026-10-29T08:52:39.1159223Z RuntimeError: No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video"
+  ]
+}
