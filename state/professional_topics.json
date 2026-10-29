@@ -7,7 +7,7 @@
       "canonical_subject": "Pont du Gard",
       "title": "بون دو جار: جسر بيشيل ميه",
       "url": "https://whc.unesco.org/en/list/344/",
-      "status": "reserved",
+      "status": "rendered",
       "story": {
         "title": "بون دو جار: جسر بيشيل ميه",
         "canonical_subject": "Pont du Gard",
@@ -106,7 +106,7 @@
         "revision": "source-checked narration and topic-specific authored visual modes"
       },
       "reserved_at": "2026-10-28T23:27:46.413622+00:00",
-      "video_sha256": "ed876497bc73d51fbe7a7afc87eb9775481e86f52ad5c96a10c5449a9b4c0da3"
+      "video_sha256": "ec56531df497874d266488e1dca6f7314759068c98b1eb4dd608e48ebe51d6c3"
     }
   ]
 }
