@@ -1,5 +1,5 @@
 {
-  "name": "Caption-safe full-length film with advisory style review — documented-history-stories",
+  "name": "Produce source-reviewed Giza film from verified Egyptian Ministry facts",
   "on": {
     "push": {
       "branches": [
@@ -86,10 +86,10 @@
           }
         },
         {
-          "name": "Author a different full-length story, source claims, title and topical hashtags",
+          "name": "Complete the saved Giza topic using actually retrieved official facts",
           "id": "prepare",
           "if": "steps.decision.outputs.run == 'true'",
-          "run": "python -m professional_motion.prepare_review prepare history --slot \"${{ steps.decision.outputs.slot }}\""
+          "run": "python -m professional_motion.revise_history_review"
         },
         {
           "name": "Persist the reserved plot before any synthesis",

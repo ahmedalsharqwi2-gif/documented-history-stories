@@ -4,7 +4,7 @@ import re
 
 
 def norm(s):
-    return re.sub(r'[^\u0621-\u064a]','',s).translate(str.maketrans({'أ':'ا','إ':'ا','آ':'ا','ة':'ه','ى':'ي'}))
+    return re.sub(r'[^a-z0-9\u0621-\u064a]','',s.lower()).translate(str.maketrans({'أ':'ا','إ':'ا','آ':'ا','ة':'ه','ى':'ي'}))
 
 
 # Known English loanword spellings recognized by multilingual ASR. This is not

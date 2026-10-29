@@ -9,7 +9,7 @@ from .style_warnings import note
 ROOT=Path(__file__).resolve().parent
 STATE=Path('state/professional_topics.json')
 BRANDS={'science':'اسرار الكون','horror':'ملفات غامضه','history':'نقص ونروى','news':'ai على السريع'}
-ALLOWED=('nasa.gov','grc.nasa.gov','science.nasa.gov','rmg.co.uk','smithsonianmag.com','smarthistory.org','whc.unesco.org','blog.google','blogs.nvidia.com','huggingface.co','deepmind.google','openai.com')
+ALLOWED=('egymonuments.gov.eg','en.wikipedia.org','nasa.gov','grc.nasa.gov','science.nasa.gov','rmg.co.uk','smithsonianmag.com','smarthistory.org','whc.unesco.org','blog.google','blogs.nvidia.com','huggingface.co','deepmind.google','openai.com')
 FAMILIES={'science':{'space','field','wave','octopus'},'horror':{'maritime','haunted_interior'},'history':{'architecture'},'news':{'compute'}}
 REVIEW={'type':'OBJECT','properties':{'supported':{'type':'BOOLEAN'},'novel':{'type':'BOOLEAN'},'issues':{'type':'ARRAY','items':{'type':'STRING'}}},'required':['supported','novel','issues']}
 SCHEMA={'type':'OBJECT','properties':{'title':{'type':'STRING'},'canonical_subject':{'type':'STRING'},'suitable':{'type':'BOOLEAN'},'facts':{'type':'ARRAY','items':{'type':'STRING'}},'milestones':{'type':'ARRAY','items':{'type':'STRING'}},'scenes':{'type':'ARRAY','minItems':8,'maxItems':8,'items':{'type':'OBJECT','properties':{'id':{'type':'STRING'},'label':{'type':'STRING'},'narration':{'type':'STRING'},'labels':{'type':'ARRAY','items':{'type':'STRING'}}},'required':['id','label','narration','labels']}}},'required':['title','canonical_subject','suitable','facts','milestones','scenes']}

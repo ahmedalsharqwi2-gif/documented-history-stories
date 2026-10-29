@@ -101,8 +101,14 @@ export function channelStage(scene){
  curve(pump,[[0,-.8,0],[.8,-.8,0],[1,.1,0],[1.5,.1,0]],brass,.09);
  const pumpDrop=mesh(pump,new THREE.SphereGeometry(.09,12,10),aqua,1.5,0,0);
  const arena=group('arena'),arenaTiers=[];for(let floor=0;floor<3;floor++){const tier=new THREE.Group();tier.userData.tier=floor;arena.add(tier);arenaTiers.push(tier);for(let i=0;i<28;i++){const a=i/28*TAU,x=Math.cos(a)*2.2,z=Math.sin(a)*1.5,y=-1.15+floor*.72;mesh(tier,new THREE.CylinderGeometry(.07,.08,.7,8),stone,x,y,z);const arch=mesh(tier,new THREE.TorusGeometry(.19,.055,6,18,Math.PI),stone,x,y+.3,z);arch.rotation.y=-a+Math.PI/2;}}
- const pyramid=group('pyramid');const pyr=mesh(pyramid,new THREE.ConeGeometry(2.7,3.3,4),stone,0,-.05,0);pyr.rotation.y=Math.PI/4;
- for(let i=0;i<7;i++){const e=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(3.7-i*.45,.01,3.7-i*.45)),new THREE.LineBasicMaterial({color:0xaa8050}));e.position.y=-1.5+i*.44;pyramid.add(e);}
+ const pyramid=group('pyramid');const pyr=mesh(pyramid,new THREE.ConeGeometry(2.7,2.43,4),stone.clone(),0,-.05,0);pyr.rotation.y=Math.PI/4;
+ for(let i=0;i<7;i++){const e=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(3.7-i*.5,.01,3.7-i*.5)),new THREE.LineBasicMaterial({color:0xaa8050}));e.position.y=-1.2+i*.33;pyramid.add(e);}
+ const pyramidInterior=new THREE.Group();pyramid.add(pyramidInterior);
+ const chamberGlow=emit(0x8de7dc),galleryGlow=emit(0xefbb80);
+ const chambers=[box(pyramidInterior,.48,.25,.48,chamberGlow,0,-1.9,0),box(pyramidInterior,.42,.23,.44,chamberGlow,-.18,-.45,0),box(pyramidInterior,.48,.25,.48,chamberGlow,.08,.12,0)];
+ curve(pyramidInterior,[[-.62,-.75,.1],[-.3,-.3,.1],[.08,.12,.1]],galleryGlow,.035);
+ curve(pyramidInterior,[[-.8,-1.03,.1],[-.35,-1.23,.1],[0,-1.9,.1]],galleryGlow,.025);
+ const casing=mesh(pyramid,new THREE.ConeGeometry(2.73,2.46,4),mat(0xe4dfcf,.65),0,-.05,0);casing.rotation.y=Math.PI/4;
  // Material and structural forces: non-quantitative explanatory diagrams.
  const structure=group('structure');
  const ribs=[];for(let i=0;i<8;i++){const a=i/8*TAU;const c=curve(structure,[[Math.cos(a)*1.8,-1,Math.sin(a)*1.8],[Math.cos(a)*1.2,1,Math.sin(a)*1.2],[0,1.7,0]],brass,.045);ribs.push(c);}
@@ -172,7 +178,13 @@ export function channelStage(scene){
    const contract=story.visual_contract;
    if(contract && (!contract.allowed_modes?.includes(mode)||contract.focus!==story.variant))throw Error('Architecture view conflicts with source geometry contract');
    if(story.variant==='pyramid' && ['arch','water'].includes(mode))throw Error('Pyramid cannot show an aqueduct or dome view');
+   const cutaway=story.variant==='pyramid'&&mode==='section';pyramidInterior.visible=cutaway;
+   if(pyr.material.transparent!==cutaway){pyr.material.transparent=cutaway;pyr.material.needsUpdate=true;}pyr.material.opacity=cutaway?.16:1;pyr.material.depthWrite=!cutaway;
+   casing.visible=story.variant==='pyramid'&&mode==='assembly'&&p>.48;
+   chambers.forEach((o,i)=>o.scale.setScalar(1+.06*Math.sin(local*1.4+i)));
+
    g=mode?modes[mode]:hero;
+   if(cutaway)g.position.y=.18;
    const tiers=contract?.tier_count??3;
    if(!Number.isInteger(tiers)||tiers<1||tiers>3)throw Error('Unsupported architecture tier count');
    bridgeTiers.forEach((o,i)=>o.visible=i<tiers);arenaTiers.forEach((o,i)=>o.visible=i<tiers);
