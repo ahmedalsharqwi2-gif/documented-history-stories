@@ -252,13 +252,33 @@
       "title": "الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب",
       "canonical_subject": "great-pyramid-giza-unesco",
       "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
-      "status": "rendered",
+      "status": "scheduled",
       "video_sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
       "one_off_publication": {
-        "status": "submitting",
+        "status": "accepted",
         "approved_video_sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
         "media_id": "approved-history-40930406419",
-        "title": "نقص ونروى | الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب"
+        "title": "نقص ونروى | الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب",
+        "receipts": {
+          "youtube": {
+            "id": "6ae39f8798c11c76e374e988",
+            "due_at": "2026-10-29T19:35:27Z",
+            "run_id": "40940996759",
+            "accepted_at": "2026-10-29T19:33:28.115517+00:00"
+          },
+          "instagram": {
+            "id": "6ae39f888828b976bca3a37b",
+            "due_at": "2026-10-29T19:35:27Z",
+            "run_id": "40940996759",
+            "accepted_at": "2026-10-29T19:33:28.761422+00:00"
+          },
+          "facebook": {
+            "id": "6ae39f8902b1fcfd3e15dc54",
+            "due_at": "2026-10-29T19:35:27Z",
+            "run_id": "40940996759",
+            "accepted_at": "2026-10-29T19:33:29.453772+00:00"
+          }
+        }
       }
     }
   ]

@@ -378,13 +378,33 @@
       "confirmed_at": "2026-10-21T23:07:14.114044+00:00"
     },
     "immediate approved-history-40930406419": {
-      "confirmed": false,
-      "receipts": {},
+      "confirmed": true,
+      "receipts": {
+        "youtube": {
+          "id": "6ae39f8798c11c76e374e988",
+          "due_at": "2026-10-29T19:35:27Z",
+          "run_id": "40940996759",
+          "accepted_at": "2026-10-29T19:33:28.115517+00:00"
+        },
+        "instagram": {
+          "id": "6ae39f888828b976bca3a37b",
+          "due_at": "2026-10-29T19:35:27Z",
+          "run_id": "40940996759",
+          "accepted_at": "2026-10-29T19:33:28.761422+00:00"
+        },
+        "facebook": {
+          "id": "6ae39f8902b1fcfd3e15dc54",
+          "due_at": "2026-10-29T19:35:27Z",
+          "run_id": "40940996759",
+          "accepted_at": "2026-10-29T19:33:29.453772+00:00"
+        }
+      },
       "required_services": [
         "facebook",
         "instagram",
         "youtube"
-      ]
+      ],
+      "confirmed_at": "2026-10-29T19:33:29.454873+00:00"
     }
   }
 }
