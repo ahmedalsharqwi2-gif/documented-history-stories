@@ -6,10 +6,10 @@ r=requests.get(f'https://api.github.com/repos/{repo}/actions/runs/{run}/logs',he
 rows=[]
 with zipfile.ZipFile(io.BytesIO(r.content)) as z:
  for name in z.namelist():
-  if 'Choose a genuinely new sourced topic' not in name:continue
+  if not any(x in name for x in ('Choose a genuinely new sourced topic','Author a different full-length story')):continue
   text=z.read(name).decode('utf8','replace')
   for line in text.splitlines():
-   if re.search(r'RuntimeError:|ValueError:|HTTPError:|Traceback|File "/|Skipped|No unused',line) and not re.search(r'KEY|TOKEN|SECRET|Authorization|password|CLIENT_ID',line,re.I):rows.append(line[:800])
+   if re.search(r'RuntimeError:|ValueError:|HTTPError:|TypeError:|UnboundLocalError:|BudgetExceeded:|Traceback|File "/|Skipped|No unused',line) and not re.search(r'KEY|TOKEN|SECRET|Authorization|password|CLIENT_ID',line,re.I):rows.append(line[:800])
 out=Path('professional_motion/delivery');out.mkdir(exist_ok=True)
 (out/'planning-diagnostic.json').write_text(json.dumps({'prior_run':run,'planning_error_lines':rows[-25:]},indent=2))
 def git(*a,data=None):return subprocess.check_output(['git',*a],input=data).decode().strip()
