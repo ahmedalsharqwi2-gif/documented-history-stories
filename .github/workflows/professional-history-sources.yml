@@ -1,0 +1,40 @@
+{
+  "name": "Read-only historical source availability",
+  "on": {
+    "push": {
+      "branches": [
+        "codex/daily-professional-factory"
+      ],
+      "paths": [
+        ".github/workflows/professional-history-sources.yml"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "write",
+    "actions": "read"
+  },
+  "jobs": {
+    "diagnose": {
+      "runs-on": "ubuntu-latest",
+      "env": {
+        "GITHUB_TOKEN": "${{ github.token }}",
+        "INSPECT_RUN_ID": "40845204981"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4"
+        },
+        {
+          "uses": "actions/setup-python@v5",
+          "with": {
+            "python-version": "3.11"
+          }
+        },
+        {
+          "run": "python -m pip install requests beautifulsoup4\npython professional_motion/check_history_sources.py"
+        }
+      ]
+    }
+  }
+}
