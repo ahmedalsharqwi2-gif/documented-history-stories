@@ -1,0 +1,11 @@
+{
+  "profile": "history",
+  "existing_bindings_confirmed_by_user": true,
+  "confirmation_date_cairo": "2026-10-29",
+  "confirmation": "User confirmed existing repository account connections despite display-name differences. IDs remain pinned to their verified provider services.",
+  "buffer_channel_ids": {
+    "youtube": "6ab67b4fea19ca0bdee58218",
+    "facebook": "6ab67b0dea19ca0bdee58014",
+    "instagram": "6ab67accea19ca0bdee57e17"
+  }
+}
