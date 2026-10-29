@@ -1,5 +1,5 @@
 {
-  "name": "Capture exact saved Giza draft source support without generation",
+  "name": "Capture official Giza evidence with safe stage diagnostics",
   "on": {
     "push": {
       "branches": [
