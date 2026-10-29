@@ -1,11 +1,21 @@
 {
   "profile": "history",
-  "run_id": "40790914989",
-  "duration": 63.12,
-  "sha256": "ec56531df497874d266488e1dca6f7314759068c98b1eb4dd608e48ebe51d6c3",
-  "review_approved_by_user": false,
+  "run_id": "40930406419",
+  "duration": 134.24,
+  "sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
+  "review_approved_by_user": true,
+  "publication_status": "sent",
+  "youtube_url": "https://www.youtube.com/shorts/VCWM3pCU5dg",
+  "daily_schedule": {
+    "timezone": "Africa/Cairo",
+    "production": "09:00",
+    "publication": "17:00",
+    "executor": "GitHub Actions",
+    "delivery": "Buffer",
+    "enabled": true
+  },
   "downloads": {
-    "720p": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-video-40790914989/review-720p.mp4",
-    "1080p": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-video-40790914989/review-1080p.mp4"
+    "720p": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-video-40930406419/review-720p.mp4",
+    "1080p": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-video-40930406419/review-1080p.mp4"
   }
 }
