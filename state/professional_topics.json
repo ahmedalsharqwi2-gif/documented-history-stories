@@ -107,6 +107,152 @@
       },
       "reserved_at": "2026-10-28T23:27:46.413622+00:00",
       "video_sha256": "ec56531df497874d266488e1dca6f7314759068c98b1eb4dd608e48ebe51d6c3"
+    },
+    {
+      "slot": "review-40930406419",
+      "topic_key": "great-pyramid-giza-unesco",
+      "story": {
+        "title": "الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب",
+        "canonical_subject": "great-pyramid-giza-unesco",
+        "topic_key": "great-pyramid-giza-unesco",
+        "suitable": true,
+        "facts": [
+          "Khufu’s tomb",
+          "Local limestone core and high-quality casing from Turah transported by ship",
+          "Three chambers",
+          "Grand Gallery leading to King’s Chamber",
+          "Original height about 146.5 m",
+          "Complete construction method remains uncertain"
+        ],
+        "milestones": [],
+        "scenes": [
+          {
+            "id": "scene_1",
+            "label": "الهرم كان شكله مختلف",
+            "visual_mode": "hero",
+            "narration": "الهرم الأكبر اللي قدامك مش كان شكله كده طول الوقت. الحجر اللي بنشوفه النهارده كان مستخبي تحت كسوة أفتح وأنعم. وده يفتح سؤال أهم من حجمه: المواد دي وصلت للمكان واتجمعت إزاي؟",
+            "labels": [],
+            "evidence_quote": "Over time, most of the smooth white limestone casing was removed, which lowered the pyramid's",
+            "evidence_source": "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+          },
+          {
+            "id": "scene_2",
+            "label": "خوفو والعجيبة الباقية",
+            "visual_mode": "levels",
+            "narration": "ده هرم الملك خوفو، واتعمل كمقبرة ليه. ومن عجائب الدنيا السبع القديمة، هو الوحيد اللي لسه باقي لحد النهارده. يعني إحنا مش قدام شكل مشهور وخلاص؛ إحنا قدام أثر جمع بين العمارة ووظيفة المقبرة الملكية.",
+            "labels": [],
+            "evidence_quote": "The Great Pyramid, the tomb of King Khufu (c.2589–2566 BC), with its original height of",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          },
+          {
+            "id": "scene_3",
+            "label": "الجسم غير الكسوة",
+            "visual_mode": "material",
+            "narration": "حسب وزارة السياحة والآثار، جسم الهرم اتبنى من حجر جيري محلي، لكن الكسوة الخارجية كانت من حجر جيري عالي الجودة. الفرق ده مهم: الحجر اللي بيكوّن الجسم مش بالضرورة هو نفس الحجر اللي كان بيحدد شكل السطح.",
+            "labels": [],
+            "evidence_quote": "made of local limestone, but its exterior was once entirely covered with high quality limestone.",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          },
+          {
+            "id": "scene_4",
+            "label": "الحجر وصل بمراكب",
+            "visual_mode": "assembly",
+            "narration": "حجر الكسوة اتجاب من طرة، جنوب المعادي، واتنقل بالسفن. قبل ما نفكر في رفع الحجر، فيه رحلة نقل لازم تحصل. تخيل ترتيب وصول المواد لمشروع بالحجم ده؛ البناء هنا مش شكل هندسي بس، دي كمان حكاية تنظيم ونقل.",
+            "labels": [],
+            "evidence_quote": "These casing stones were brought from Turah, south of Maadi, by ship. On the inside,",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          },
+          {
+            "id": "scene_5",
+            "label": "تلات حجرات من جوه",
+            "visual_mode": "section",
+            "narration": "الهرم مش كتلة مصمتة من غير فراغات. المصدر الرسمي بيذكر تلات حجرات: واحدة محفورة في الصخر تحت الهرم، واتنين أعلى منها جوه البناء نفسه. المقطع التوضيحي بيقرّب الفكرة، مش بيعرض خريطة بمقاسات أصلية لكل ممر وحجرة.",
+            "labels": [],
+            "evidence_quote": "On the inside, the pyramid has three chambers, one cut into the bedrock underneath, and",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          },
+          {
+            "id": "scene_6",
+            "label": "الطريق لغرفة الملك",
+            "visual_mode": "section",
+            "narration": "في الحجرة العلوية، غرفة الملك، لسه التابوت موجود. والوصول ليها بيكون عبر البهو الكبير، وهو ممر صاعد ضخم بتوصفه الوزارة كعمل مميز في الهندسة والعمارة القديمة. هنا التفاصيل اللي جوه مهمة زي الشكل الخارجي اللي كلنا عارفينه.",
+            "labels": [],
+            "evidence_quote": "The sarcophagus in which Khufu was once laid to rest can still be seen in",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          },
+          {
+            "id": "scene_7",
+            "label": "ارتفاع عاش آلاف السنين",
+            "visual_mode": "hero",
+            "narration": "الارتفاع الأصلي، حسب المصدر الرسمي، كان حوالي مية وستة وأربعين متر ونص. والهرم فضل أعلى بناء في العالم لآلاف السنين. الرقم مش مجرد معلومة نحفظها؛ بص لحجم المشروع، وفكر في رحلة الحجر من المحجر لحد مكانه.",
+            "labels": [],
+            "evidence_quote": "original height of 146.5 meters, was the tallest structure in the world for 3,800 years.",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          },
+          {
+            "id": "scene_8",
+            "label": "المعروف واللي لسه محل بحث",
+            "visual_mode": "levels",
+            "narration": "بس ضخامة الأثر ما تديناش حق نخترع تفاصيل. الوزارة بتوضح إن طريقة البناء مش محسومة بكل تفاصيلها لحد النهارده. نعرف مواد، ونقل، وحجرات موجودة فعلًا؛ والأسئلة الباقية محتاجة دليل. عشان كده، حكاية الهرم الحقيقية أقوى من حكاية سهلة من غير مصدر.",
+            "labels": [],
+            "evidence_quote": "To this day, it is not entirely certain how this was done. The Great Pyramid",
+            "evidence_source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+          }
+        ],
+        "profile": "history",
+        "series": "نقص ونروى",
+        "visual_family": "architecture",
+        "variant": "pyramid",
+        "visual_contract": {
+          "focus": "pyramid",
+          "shape": "smooth_sided",
+          "scope": "Focus on the smooth-sided Giza pyramids; do not use this model for the stepped pyramid at Saqqara.",
+          "diagram_only": true,
+          "allowed_modes": [
+            "hero",
+            "levels",
+            "section",
+            "material",
+            "assembly"
+          ],
+          "forbidden_features": [
+            "dome_ribs",
+            "oculus",
+            "arches"
+          ]
+        },
+        "source": {
+          "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+          "publisher": "وزارة السياحة والآثار المصرية",
+          "title": "The Great Pyramid"
+        },
+        "fiction": false,
+        "documented": true,
+        "hashtags": [
+          "الهرم_الأكبر",
+          "خوفو",
+          "آثار_مصر",
+          "تاريخ_مصر"
+        ],
+        "editorial_review": {
+          "supported": true,
+          "novel": true,
+          "issues": [],
+          "review_type": "Codex source and visual review of the saved, unpublished Giza topic",
+          "source_response_sha256": "f903491a1fcbe8e6cfdc93af042e1acec1a84baf73ba4a03c72dc787a4c77bbe",
+          "secondary_response_sha256": "356c9ea99f258ccb4cf962c4167ebc8f808a2ca67cb00388b81e1c53e4fa19f7",
+          "checks": [
+            "Use only the verified official Ministry description and the recorded public reference",
+            "Remove unverified law number and 80-percent property-scope claim",
+            "Clearly label internal diagram schematic, not surveyed reconstruction",
+            "Distinguish documented features from uncertain construction details"
+          ]
+        }
+      },
+      "title": "الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب",
+      "canonical_subject": "great-pyramid-giza-unesco",
+      "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+      "status": "reserved"
     }
   ]
 }
