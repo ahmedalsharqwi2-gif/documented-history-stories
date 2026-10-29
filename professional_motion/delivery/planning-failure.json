@@ -1,0 +1,10 @@
+{
+  "error_class": "RuntimeError",
+  "editorial_http_codes": [
+    "503"
+  ],
+  "local_safety_budget_reached": false,
+  "incomplete_response": false,
+  "no_unused_topic": false,
+  "raw_provider_response_included": false
+}
