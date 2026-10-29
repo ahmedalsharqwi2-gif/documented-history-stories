@@ -253,7 +253,13 @@
       "canonical_subject": "great-pyramid-giza-unesco",
       "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
       "status": "rendered",
-      "video_sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4"
+      "video_sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
+      "one_off_publication": {
+        "status": "submitting",
+        "approved_video_sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
+        "media_id": "approved-history-40930406419",
+        "title": "نقص ونروى | الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب"
+      }
     }
   ]
 }

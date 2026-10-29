@@ -376,6 +376,15 @@
         "youtube"
       ],
       "confirmed_at": "2026-10-21T23:07:14.114044+00:00"
+    },
+    "immediate approved-history-40930406419": {
+      "confirmed": false,
+      "receipts": {},
+      "required_services": [
+        "facebook",
+        "instagram",
+        "youtube"
+      ]
     }
   }
 }
