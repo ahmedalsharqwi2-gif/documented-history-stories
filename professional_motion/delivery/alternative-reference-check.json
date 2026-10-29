@@ -1,0 +1,29 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+    "http_status": 200,
+    "title": "Great Pyramid of Giza - Wikipedia",
+    "final_url": "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+    "body_sha256": "356c9ea99f258ccb4cf962c4167ebc8f808a2ca67cb00388b81e1c53e4fa19f7",
+    "body_words": 12501,
+    "quote": "The Great Pyramid of Giza [ a ] is the largest of the Egyptian pyramids and the most famous landmark of the Giza pyramid complex in Giza , Egypt. It is the oldest of the Seven Wonders of the Ancient World , and the only wonder that has remained largely intact. The Great Pyramid served as the tomb of Egyptian Pharaoh Khufu (\"Cheops\"), who ruled during the Fourth Dynasty of the Old Kingdom . It was built c. 2600 BC [ 3 ] over a period of about 26 years. [ 4 ] Initially standing at 146.6 metres (481 feet) , the Great Pyramid was the world's tallest human-made structure for more than 3,700 years. Over time, most of the smooth white limestone casing was removed, which lowered the pyramid's height to the current 138.5 metres (454.4 ft) ; what is seen today is the underlying core structure. Each side of the base was measured to be about 230.3 metres (755.6 ft) in length, giving a volume of roughly 2.6"
+  },
+  {
+    "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "http_status": 200,
+    "title": "The Great Pyramid  - Discover Egypt's Monuments - Ministry of Tourism and Antiquities",
+    "final_url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "body_sha256": "f903491a1fcbe8e6cfdc93af042e1acec1a84baf73ba4a03c72dc787a4c77bbe",
+    "body_words": 206,
+    "quote": "The Great Pyramid, the tomb of King Khufu (c.2589–2566 BC), with its original height of 146.5 meters, was the tallest structure in the world for 3,800 years. It remains the last surviving member of the Seven Wonders of the Ancient World, and took an estimated 10 to 20 years to build. To this day, it is not entirely certain how this was done. The Great Pyramid is made of local limestone, but its exterior was once entirely covered with high quality limestone. These casing stones were brought from Turah, south of Maadi, by ship. On the inside, the pyramid has three chambers, one cut into the bedrock underneath, and two high up within the masonry itself, a feature that no other pyramid possesses. The sarcophagus in which Khufu was once laid to rest can still be seen in the upper of these two rooms, the King’s Chamber. This room is accessed through the Grand Gallery, a majestic corbelled ascending passage, and a masterpiece of ancient engineering and architecture. Two large"
+  },
+  {
+    "url": "https://www.smithsonianmag.com/history/the-worlds-oldest-papyrus-and-what-it-can-tell-us-about-the-great-pyramids-180956597/",
+    "http_status": 200,
+    "title": "Can Cypress Trees Help Suppress Wildfires?",
+    "final_url": "https://www.smithsonianmag.com/innovation/can-cypress-trees-help-suppress-wildfires-180956597/",
+    "body_sha256": "30b44cc6f5b846034fda09f2f59add9e62ae00def49ffb2b80d3678c16b1f2ae",
+    "body_words": 653,
+    "quote": "It’s been a brutal summer for wildfires in the American West. In the hottest year to date, flames are bearing down on northern California, western Washington has scorched, and more than 5 million acres burned across Alaska. As the wildfires smolder, across the pond, researchers from Italy and Spain are looking at a particular tree's natural resistance to fires, and how that might be used to temper these disasters. They have found that cypress trees ignite seven times slower than other tree species that are native to the same area. “The peculiar flammability traits of cypress are not a real mystery,” says Gianni Della Rocca, the lead author on the study published in the Journal of Environmental Management . “The physical, chemical and biological characteristic of this species makes it not immediately prone to fire. It means that cypress burns, but it takes longer to catch fire than other Mediterranean species.” The group conducted a series of tests on the Cupressus sempervirens species, which is native to the Mediterranean. In"
+  }
+]
