@@ -1,0 +1,17 @@
+[
+  {
+    "topic_key": "pantheon-rome-dome",
+    "error_class": "HTTPError",
+    "validation": "Source request failed"
+  },
+  {
+    "topic_key": "roman-colosseum-structure",
+    "error_class": "HTTPError",
+    "validation": "Source request failed"
+  },
+  {
+    "topic_key": "great-pyramid-construction",
+    "error_class": "HTTPError",
+    "validation": "Source request failed"
+  }
+]
