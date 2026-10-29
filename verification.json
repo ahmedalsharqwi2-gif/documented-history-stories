@@ -1,0 +1,189 @@
+{
+  "file": "professional-review.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 134.24,
+  "story_sha256": "5c4d65e2ab31b9b38b53c942fbd2823277bd72e9661658906a98aee27b6fd5c4",
+  "voice": "original Gemini Charon",
+  "asr_model": "medium+small",
+  "independent_asr_word_coverage": 0.8835616438356164,
+  "exact_token_coverage": 0.8835616438356164,
+  "speech_matching_method": "Exact-token ensemble anchors; supplied-script phrase captions; no active-word precision claim",
+  "known_name_normalization_applied": false,
+  "visual_gate": {
+    "passed": true,
+    "duration": 134.266667,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "method": "within-scene diagram-region pixel changes",
+    "scenes": [
+      {
+        "scene": 1,
+        "diagram_spatial_std": [
+          50.36707236031679,
+          51.302808835805244,
+          51.12612215665696
+        ],
+        "changed_pixel_ratios": [
+          0.06863722697056031,
+          0.021367521367521368
+        ],
+        "passed": true
+      },
+      {
+        "scene": 2,
+        "diagram_spatial_std": [
+          49.9067437512213,
+          51.47280333747262,
+          51.009218683468625
+        ],
+        "changed_pixel_ratios": [
+          0.0691358024691358,
+          0.06895773979107313
+        ],
+        "passed": true
+      },
+      {
+        "scene": 3,
+        "diagram_spatial_std": [
+          46.852116880141786,
+          46.775144927616275,
+          46.96790118257751
+        ],
+        "changed_pixel_ratios": [
+          0.11248812915479582,
+          0.09185660018993352
+        ],
+        "passed": true
+      },
+      {
+        "scene": 4,
+        "diagram_spatial_std": [
+          49.60036703144718,
+          66.53648169870688,
+          66.03538907281529
+        ],
+        "changed_pixel_ratios": [
+          0.288164767331434,
+          0.07039411206077872
+        ],
+        "passed": true
+      },
+      {
+        "scene": 5,
+        "diagram_spatial_std": [
+          33.4346816560302,
+          33.663872839283805,
+          34.54706757805456
+        ],
+        "changed_pixel_ratios": [
+          0.044361348528015196,
+          0.0721747388414055
+        ],
+        "passed": true
+      },
+      {
+        "scene": 6,
+        "diagram_spatial_std": [
+          34.861792756464055,
+          35.219784149036236,
+          34.644010136803935
+        ],
+        "changed_pixel_ratios": [
+          0.09855175688509021,
+          0.10988841405508072
+        ],
+        "passed": true
+      },
+      {
+        "scene": 7,
+        "diagram_spatial_std": [
+          51.09595857774893,
+          51.54519900226165,
+          50.98981825196305
+        ],
+        "changed_pixel_ratios": [
+          0.028834283000949666,
+          0.024465811965811966
+        ],
+        "passed": true
+      },
+      {
+        "scene": 8,
+        "diagram_spatial_std": [
+          50.91843296020718,
+          51.17871111874458,
+          50.14428986237242
+        ],
+        "changed_pixel_ratios": [
+          0.016832858499525167,
+          0.043209876543209874
+        ],
+        "passed": true
+      }
+    ],
+    "note": "Technical blank/freeze detection only; not a judgement of artistic or factual quality."
+  },
+  "audio_tail": {
+    "audio_seconds": 134.24,
+    "video_seconds": 134.24,
+    "difference_seconds": 0.0,
+    "last_speech_window_correlation": 0.9926971197128296,
+    "audio_tail_checked": true,
+    "silence_padding_used_to_hide_lost_speech": false
+  },
+  "publication_metadata": {
+    "title": "نقص ونروى | الهرم الأكبر.. حكاية الحجر اللي وصل بالمراكب",
+    "caption": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: وزارة السياحة والآثار المصرية\nhttps://egymonuments.gov.eg/monuments/the-great-pyramid/\n#الهرم_الأكبر #خوفو #آثار_مصر #تاريخ_مصر",
+    "description": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: وزارة السياحة والآثار المصرية\nhttps://egymonuments.gov.eg/monuments/the-great-pyramid/\n#الهرم_الأكبر #خوفو #آثار_مصر #تاريخ_مصر",
+    "tags": [
+      "الهرم_الأكبر",
+      "خوفو",
+      "آثار_مصر",
+      "تاريخ_مصر"
+    ],
+    "hashtags": [
+      "#الهرم_الأكبر",
+      "#خوفو",
+      "#آثار_مصر",
+      "#تاريخ_مصر"
+    ],
+    "source_url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "containsSyntheticMedia": true
+  },
+  "duration_policy": {
+    "minimum_exclusive": 90,
+    "maximum_exclusive": 180
+  },
+  "music_target_lufs": -27,
+  "music": "Original composed score",
+  "music_bpm": 104,
+  "source": {
+    "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "publisher": "وزارة السياحة والآثار المصرية",
+    "title": "The Great Pyramid"
+  },
+  "topic_key": "great-pyramid-giza-unesco",
+  "profile": "history",
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": [],
+    "review_type": "Codex source and visual review of the saved, unpublished Giza topic",
+    "source_response_sha256": "f903491a1fcbe8e6cfdc93af042e1acec1a84baf73ba4a03c72dc787a4c77bbe",
+    "secondary_response_sha256": "356c9ea99f258ccb4cf962c4167ebc8f808a2ca67cb00388b81e1c53e4fa19f7",
+    "checks": [
+      "Use only the verified official Ministry description and the recorded public reference",
+      "Remove unverified law number and 80-percent property-scope claim",
+      "Clearly label internal diagram schematic, not surveyed reconstruction",
+      "Distinguish documented features from uncertain construction details"
+    ]
+  },
+  "render": "Three.js procedural geometry, physical lighting, custom skin shader, layered optical bloom",
+  "reference_audio_reused": false,
+  "automatically_published": false,
+  "status": "Technical checks passed; artistic judgement requires viewing the complete film."
+}
