@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://smarthistory.org/the-pantheon/",
+    "status": 403,
+    "final_url": "https://smarthistory.org/the-pantheon/",
+    "title": "Just a moment...",
+    "body_characters": 58,
+    "xml_rows": null
+  },
+  {
+    "url": "https://whc.unesco.org/en/list/86/",
+    "status": 200,
+    "final_url": "https://whc.unesco.org/en/list/86/",
+    "title": "Memphis and its Necropolis – the Pyramid Fields from Giza to Dahshur - UNESCO World Heritage Centre",
+    "body_characters": 13388,
+    "xml_rows": null
+  },
+  {
+    "url": "https://whc.unesco.org/en/list/311/",
+    "status": 200,
+    "final_url": "https://whc.unesco.org/en/list/311/",
+    "title": "Old Town of Segovia and its Aqueduct - UNESCO World Heritage Centre",
+    "body_characters": 13218,
+    "xml_rows": null
+  },
+  {
+    "url": "https://whc.unesco.org/en/list/164/",
+    "status": 200,
+    "final_url": "https://whc.unesco.org/en/list/164/",
+    "title": "Arles, Roman and Romanesque Monuments - UNESCO World Heritage Centre",
+    "body_characters": 11947,
+    "xml_rows": null
+  },
+  {
+    "url": "https://whc.unesco.org/en/list/xml/",
+    "status": 200,
+    "final_url": "https://whc.unesco.org/en/list/xml/",
+    "title": "",
+    "body_characters": 1442830,
+    "xml_rows": 1273
+  },
+  {
+    "url": "https://www.khanacademy.org/humanities/ancient-art-civilizations/roman/middle-empire/a/the-pantheon",
+    "status": 200,
+    "final_url": "https://www.khanacademy.org/humanities/ancient-art-civilizations/roman/middle-empire/a/the-pantheon",
+    "title": "Client Challenge",
+    "body_characters": 315,
+    "xml_rows": null
+  }
+]
