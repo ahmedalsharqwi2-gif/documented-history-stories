@@ -1,0 +1,156 @@
+{
+  "file": "professional-review.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 63.12,
+  "voice": "original Gemini Charon",
+  "asr_model": "medium",
+  "independent_asr_word_coverage": 0.8857142857142857,
+  "visual_gate": {
+    "passed": true,
+    "duration": 63.133333,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "method": "within-scene diagram-region pixel changes",
+    "scenes": [
+      {
+        "scene": 1,
+        "diagram_spatial_std": [
+          40.69750419026256,
+          41.51414230356091,
+          39.91344652137226
+        ],
+        "changed_pixel_ratios": [
+          0.17377730294396962,
+          0.13894824311490978
+        ],
+        "passed": true
+      },
+      {
+        "scene": 2,
+        "diagram_spatial_std": [
+          35.55481798075887,
+          40.65176977842117,
+          43.56605300873439
+        ],
+        "changed_pixel_ratios": [
+          0.31238129154795824,
+          0.38017568850902184
+        ],
+        "passed": true
+      },
+      {
+        "scene": 3,
+        "diagram_spatial_std": [
+          16.99507347028045,
+          17.34167405824412,
+          17.43944169373887
+        ],
+        "changed_pixel_ratios": [
+          0.02364672364672365,
+          0.024074074074074074
+        ],
+        "passed": true
+      },
+      {
+        "scene": 4,
+        "diagram_spatial_std": [
+          46.28979697018928,
+          50.247486922980485,
+          44.765330086132465
+        ],
+        "changed_pixel_ratios": [
+          0.2655389363722697,
+          0.33592117758784423
+        ],
+        "passed": true
+      },
+      {
+        "scene": 5,
+        "diagram_spatial_std": [
+          39.907219144424495,
+          41.591112720389575,
+          41.612793527771984
+        ],
+        "changed_pixel_ratios": [
+          0.1336894586894587,
+          0.10986467236467236
+        ],
+        "passed": true
+      },
+      {
+        "scene": 6,
+        "diagram_spatial_std": [
+          44.81557941141292,
+          44.72928509441286,
+          44.56649198777828
+        ],
+        "changed_pixel_ratios": [
+          0.08004510921177588,
+          0.06805555555555555
+        ],
+        "passed": true
+      },
+      {
+        "scene": 7,
+        "diagram_spatial_std": [
+          39.31673247988172,
+          41.54526775703336,
+          41.58431348662927
+        ],
+        "changed_pixel_ratios": [
+          0.4098290598290598,
+          0.10969848053181387
+        ],
+        "passed": true
+      },
+      {
+        "scene": 8,
+        "diagram_spatial_std": [
+          40.9454561436536,
+          41.54087046606482,
+          41.47393560766069
+        ],
+        "changed_pixel_ratios": [
+          0.10622032288698956,
+          0.11551519468186135
+        ],
+        "passed": true
+      }
+    ],
+    "note": "Technical blank/freeze detection only; not a judgement of artistic or factual quality."
+  },
+  "audio_tail": {
+    "audio_seconds": 63.12,
+    "video_seconds": 63.12,
+    "difference_seconds": 0.0,
+    "last_speech_window_correlation": 0.9821567535400391,
+    "audio_tail_checked": true,
+    "silence_padding_used_to_hide_lost_speech": false
+  },
+  "music": "Original composed score",
+  "music_bpm": 104,
+  "source": {
+    "url": "https://whc.unesco.org/en/list/344/",
+    "publisher": "UNESCO"
+  },
+  "topic_key": "pont-du-gard-aqueduct",
+  "profile": "history",
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": []
+  },
+  "render": "Three.js procedural geometry, physical lighting, custom skin shader, layered optical bloom",
+  "reference_audio_reused": false,
+  "automatically_published": false,
+  "status": "Technical checks passed; artistic judgement requires viewing the complete film.",
+  "music_target_lufs": -27,
+  "music_reduction_db": 4,
+  "voice_regenerated": false,
+  "video_frames_unchanged": true,
+  "original_voice_sha256": "d30435925d81a4db84f3ec87d0961ef081345a0f24aae02cacdccc9536478989"
+}
