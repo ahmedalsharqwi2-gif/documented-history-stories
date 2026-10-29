@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "الهرم الأكبر اللي قدامك مش كان شكله كده طول الوقت. الحجر اللي بنشوفه النهارده كان مستخبي تحت كسوة أفتح وأنعم. وده يفتح سؤال أهم من حجمه: المواد دي وصلت للمكان واتجمعت إزاي؟ ده هرم الملك خوفو، واتعمل كمقبرة ليه. ومن عجائب الدنيا السبع القديمة، هو الوحيد اللي لسه باقي لحد النهارده. يعني إحنا مش قدام شكل مشهور وخلاص؛ إحنا قدام أثر جمع بين العمارة ووظيفة المقبرة الملكية. حسب وزارة السياحة والآثار، جسم الهرم اتبنى من حجر جيري محلي، لكن الكسوة الخارجية كانت من حجر جيري عالي الجودة. الفرق ده مهم: الحجر اللي بيكوّن الجسم مش بالضرورة هو نفس الحجر اللي كان بيحدد شكل السطح. حجر الكسوة اتجاب من طرة، جنوب المعادي، واتنقل بالسفن. قبل ما نفكر في رفع الحجر، فيه رحلة نقل لازم تحصل. تخيل ترتيب وصول المواد لمشروع بالحجم ده؛ البناء هنا مش شكل هندسي بس، دي كمان حكاية تنظيم ونقل. الهرم مش كتلة مصمتة من غير فراغات. المصدر الرسمي بيذكر تلات حجرات: واحدة محفورة في الصخر تحت الهرم، واتنين أعلى منها جوه البناء نفسه. المقطع التوضيحي بيقرّب الفكرة، مش بيعرض خريطة بمقاسات أصلية لكل ممر وحجرة. في الحجرة العلوية، غرفة الملك، لسه التابوت موجود. والوصول ليها بيكون عبر البهو الكبير، وهو ممر صاعد ضخم بتوصفه الوزارة كعمل مميز في الهندسة والعمارة القديمة. هنا التفاصيل اللي جوه مهمة زي الشكل الخارجي اللي كلنا عارفينه. الارتفاع الأصلي، حسب المصدر الرسمي، كان حوالي مية وستة وأربعين متر ونص. والهرم فضل أعلى بناء في العالم لآلاف السنين. الرقم مش مجرد معلومة نحفظها؛ بص لحجم المشروع، وفكر في رحلة الحجر من المحجر لحد مكانه. بس ضخامة الأثر ما تديناش حق نخترع تفاصيل. الوزارة بتوضح إن طريقة البناء مش محسومة بكل تفاصيلها لحد النهارده. نعرف مواد، ونقل، وحجرات موجودة فعلًا؛ والأسئلة الباقية محتاجة دليل. عشان كده، حكاية الهرم الحقيقية أقوى من حكاية سهلة من غير مصدر.",
+  "interaction_id": "v1_ChdmNF9qYXZIUU5QYTRxdHNQNjlmaWtBOBIXZjRfamF2SFFOUGE0cXRzUDY5ZmlrQTg",
+  "duration": 134.24,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "ec2dd61f1707c2d39c57e0d3d9071b7fc53001978c906ce5b9628fecaae18391",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": false,
+  "output_sha256": "ec2dd61f1707c2d39c57e0d3d9071b7fc53001978c906ce5b9628fecaae18391"
+}
