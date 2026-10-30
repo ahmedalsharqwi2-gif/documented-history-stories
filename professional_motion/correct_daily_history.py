@@ -41,12 +41,14 @@ def update():
  subprocess.run(['ffmpeg','-v','error','-i',str(video),'-f','null','-'],check=True)
  from film_factory.buffer import ContentPublisher
  os.environ['PRODUCTION_MEDIA_ID']=SLOT+'-corrected';url=ContentPublisher()._release_asset_url(video)
+ posts()  # Recheck the deadline and existing scheduled IDs after media upload.
  episode['media_correction']={'status':'updating_existing_posts','old_post_ids':IDS,'corrected_video_sha256':checksum,'media_url':url};e.save(data);subprocess.run([sys.executable,'-m','professional_motion.persist_state'],check=True)
  for service,identifier in IDS.items():
   mutation='mutation { editPost(input:{id:'+json.dumps(identifier)+', assets:[{video:{url:'+json.dumps(url)+'}}], mode:customScheduled, dueAt:'+json.dumps(DUE)+'}) { ... on PostActionSuccess {post {id channelId status dueAt assets {id source}}} ... on MutationError {message} } }'
   result=query(mutation)['editPost'];r=result.get('post')
   if not r or r['id']!=identifier:raise RuntimeError('Buffer did not confirm editing the existing post')
  after=posts();receipts={}
+ (delivery/'asset-update-observations.json').write_text(json.dumps(after,ensure_ascii=False,indent=2))
  for service,r in after.items():
   if not any(a.get('source')==url for a in r['assets']):raise ValueError('Buffer asset source does not match the corrected MP4')
   receipts[service]={'id':r['id'],'channel_id':r['channelId'],'scheduled_at':r['dueAt'],'status':r['status'],'media_url':url,'video_sha256':checksum,'verified_at':datetime.now(timezone.utc).isoformat(),'same_post_updated':True}
