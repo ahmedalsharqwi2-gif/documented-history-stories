@@ -23,7 +23,7 @@ def posts():
  validate_slot(DUE);rows={}
  bindings=json.loads(Path('config/professional_destinations.json').read_text())['buffer_channel_ids']
  for service,identifier in IDS.items():
-  r=query('query { post(input:{id:'+json.dumps(identifier)+'}) {id channelId status dueAt assets {id source}} }')['post']
+  r=query('query { post(input:{id:'+json.dumps(identifier)+'}) {id channelId text status dueAt assets {id source}} }')['post']
   if r['id']!=identifier or r['channelId']!=bindings[service] or r['status']!='scheduled' or datetime.fromisoformat(r['dueAt'].replace('Z','+00:00'))!=datetime.fromisoformat(DUE.replace('Z','+00:00')):raise ValueError('Existing post/channel/schedule changed; refuse correction')
   rows[service]=r
  return rows
@@ -56,7 +56,12 @@ def update():
  posts()  # Recheck the deadline and existing scheduled IDs after media upload.
  episode['media_correction']={'status':'updating_existing_posts','old_post_ids':IDS,'corrected_video_sha256':checksum,'media_url':url};e.save(data);subprocess.run([sys.executable,'-m','professional_motion.persist_state'],check=True)
  for service,identifier in IDS.items():
-  mutation='mutation { editPost(input:{id:'+json.dumps(identifier)+', assets:[{video:{url:'+json.dumps(url)+'}}], mode:customScheduled, dueAt:'+json.dumps(DUE)+'}) { ... on PostActionSuccess {post {id channelId status dueAt assets {id source}}} ... on MutationError {message} } }'
+  from .metadata import make
+  title=make(episode['story'],'history')['title']
+  if service=='youtube':metadata='metadata:{youtube:{title:'+json.dumps(title,ensure_ascii=False)+',categoryId:"27",privacy:public,madeForKids:false,notifySubscribers:false}}'
+  elif service=='facebook':metadata='metadata:{facebook:{type:post}}'
+  else:metadata='metadata:{instagram:{type:reel,shouldShareToFeed:true}}'
+  mutation='mutation { editPost(input:{id:'+json.dumps(identifier)+',text:'+json.dumps(before[service]['text'],ensure_ascii=False)+', assets:[{video:{url:'+json.dumps(url)+'}}], '+metadata+', mode:customScheduled, dueAt:'+json.dumps(DUE)+'}) { ... on PostActionSuccess {post {id channelId status dueAt assets {id source}}} ... on MutationError {message} } }'
   result=query(mutation)['editPost'];r=result.get('post')
   (delivery/('edit-response-'+service+'.json')).write_text(json.dumps(result,ensure_ascii=False,indent=2))
   if not r or r['id']!=identifier:raise RuntimeError('Buffer did not confirm editing the existing post')

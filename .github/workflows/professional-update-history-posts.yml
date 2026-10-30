@@ -1,5 +1,5 @@
 {
-  "name": "Reconcile existing history video edits with actual provider mutation responses",
+  "name": "Keep original scheduled post IDs while supplying required network edit metadata",
   "on": {
     "push": {
       "branches": [
