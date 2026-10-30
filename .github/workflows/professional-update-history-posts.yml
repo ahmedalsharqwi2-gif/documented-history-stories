@@ -1,0 +1,74 @@
+{
+  "name": "Update existing history posts to the corrected verified MP4 without new posts",
+  "on": {
+    "push": {
+      "branches": [
+        "main"
+      ],
+      "paths": [
+        ".github/workflows/professional-update-history-posts.yml"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "write"
+  },
+  "jobs": {
+    "update-existing-posts": {
+      "runs-on": "ubuntu-24.04",
+      "env": {
+        "PYTHONPATH": "${{ github.workspace }}",
+        "PYTHONUNBUFFERED": "1",
+        "GITHUB_TOKEN": "${{ github.token }}",
+        "GH_RELEASE_TOKEN": "${{ github.token }}",
+        "BUFFER_API_KEY": "${{ secrets.BUFFER_API_KEY }}",
+        "BUFFER_CHANNEL_IDS": "${{ secrets.BUFFER_CHANNEL_IDS || vars.BUFFER_CHANNEL_IDS }}",
+        "YT_CLIENT_ID": "${{ secrets.YT_CLIENT_ID }}",
+        "YT_CLIENT_SECRET": "${{ secrets.YT_CLIENT_SECRET }}",
+        "YT_REFRESH_TOKEN": "${{ secrets.YT_REFRESH_TOKEN }}",
+        "YT_REFRESH_TOKEN_FALLBACK": "${{ secrets.YT_REFRESH_TOKEN_FALLBACK }}",
+        "BUFFER_YOUTUBE_CHANNEL_ID": "${{ secrets.BUFFER_YOUTUBE_CHANNEL_ID }}",
+        "BUFFER_FACEBOOK_CHANNEL_ID": "${{ secrets.BUFFER_FACEBOOK_CHANNEL_ID }}",
+        "BUFFER_INSTAGRAM_CHANNEL_ID": "${{ secrets.BUFFER_INSTAGRAM_CHANNEL_ID }}",
+        "BUFFER_TIKTOK_CHANNEL_ID": "${{ secrets.BUFFER_TIKTOK_CHANNEL_ID }}",
+        "DURABLE_SUBMISSION_GUARD": "true",
+        "CORRECTED_MEDIA_RUN": "41058540009"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "ref": "main",
+            "fetch-depth": 0
+          }
+        },
+        {
+          "uses": "actions/setup-python@v5",
+          "with": {
+            "python-version": "3.11"
+          }
+        },
+        {
+          "run": "sudo apt-get update -qq\nsudo apt-get install -y ffmpeg\npython -m pip install requests beautifulsoup4 numpy Pillow google-api-python-client google-auth-oauthlib"
+        },
+        {
+          "run": "python -m professional_motion.correct_daily_history update"
+        },
+        {
+          "name": "Persist correction receipts on all outcomes",
+          "if": "always()",
+          "run": "python -m professional_motion.persist_state"
+        },
+        {
+          "name": "Retain actual correction and scheduling evidence",
+          "if": "always()",
+          "run": "python -m professional_motion.review_evidence"
+        }
+      ],
+      "concurrency": {
+        "group": "professional-daily-history",
+        "cancel-in-progress": false
+      }
+    }
+  }
+}

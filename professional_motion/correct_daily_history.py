@@ -3,10 +3,22 @@ import hashlib,json,os,subprocess,sys
 from datetime import datetime,timezone
 from pathlib import Path
 from . import editorial as e
-from film_factory.publish import query
+import requests
 from scripts.daily_schedule import validate_slot
 IDS={'youtube':'6ae48f48abdb62a0e37cc839','facebook':'6ae48f4ae560b6bf642a6b22','instagram':'6ae48f4de560b6bf642a6bc5'}
 DUE='2026-10-30T15:00:00Z';SLOT='daily-2026-10-30'
+def query(text):
+ key=os.environ['BUFFER_API_KEY']
+ response=requests.post('https://api.buffer.com',headers={'Authorization':'Bearer '+key},json={'query':text},timeout=60)
+ try:payload=response.json()
+ except ValueError:payload={'errors':[{'message':'Non-JSON provider response'}]}
+ if response.status_code!=200 or payload.get('errors'):
+  out=Path('professional_motion/delivery');out.mkdir(exist_ok=True)
+  errors=[str(e.get('message','Provider error')).replace(key,'[redacted]')[:600] for e in payload.get('errors',[])]
+  (out/'correction-error.json').write_text(json.dumps({'http_status':response.status_code,'messages':errors},ensure_ascii=False,indent=2))
+  raise RuntimeError('Buffer correction API failed; safe provider details retained in correction-error.json')
+ return payload['data']
+
 def posts():
  validate_slot(DUE);rows={}
  bindings=json.loads(Path('config/professional_destinations.json').read_text())['buffer_channel_ids']
@@ -31,7 +43,7 @@ def prepare():
  print('Source-checked same-episode correction prepared; original Buffer IDs retained')
 
 def update():
- before=posts();run=os.environ['GITHUB_RUN_ID'];subprocess.run(['git','fetch','origin','refs/heads/codex/professional-video-'+run],check=True)
+ before=posts();run=os.getenv('CORRECTED_MEDIA_RUN') or os.environ['GITHUB_RUN_ID'];subprocess.run(['git','fetch','origin','refs/heads/codex/professional-video-'+run],check=True)
  ref=subprocess.check_output(['git','rev-parse','FETCH_HEAD'],text=True).strip()
  out=Path('professional_motion/output');out.mkdir(exist_ok=True);delivery=Path('professional_motion/delivery');delivery.mkdir(exist_ok=True)
  video=out/'corrected.mp4';video.write_bytes(subprocess.check_output(['git','show',ref+':review-1080p.mp4']))
