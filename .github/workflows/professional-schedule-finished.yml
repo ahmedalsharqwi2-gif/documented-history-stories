@@ -1,0 +1,79 @@
+{
+  "name": "Schedule the verified new Segovia film at 17 Cairo without re-rendering",
+  "on": {
+    "push": {
+      "branches": [
+        "main"
+      ],
+      "paths": [
+        ".github/workflows/professional-schedule-finished.yml"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "write"
+  },
+  "concurrency": {
+    "group": "professional-daily-history",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "schedule-finished": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 20,
+      "env": {
+        "PYTHONPATH": "${{ github.workspace }}",
+        "PYTHONUNBUFFERED": "1",
+        "GITHUB_TOKEN": "${{ github.token }}",
+        "GH_RELEASE_TOKEN": "${{ github.token }}",
+        "BUFFER_API_KEY": "${{ secrets.BUFFER_API_KEY }}",
+        "BUFFER_CHANNEL_IDS": "${{ secrets.BUFFER_CHANNEL_IDS || vars.BUFFER_CHANNEL_IDS }}",
+        "YT_CLIENT_ID": "${{ secrets.YT_CLIENT_ID }}",
+        "YT_CLIENT_SECRET": "${{ secrets.YT_CLIENT_SECRET }}",
+        "YT_REFRESH_TOKEN": "${{ secrets.YT_REFRESH_TOKEN }}",
+        "YT_REFRESH_TOKEN_FALLBACK": "${{ secrets.YT_REFRESH_TOKEN_FALLBACK }}",
+        "BUFFER_YOUTUBE_CHANNEL_ID": "${{ secrets.BUFFER_YOUTUBE_CHANNEL_ID }}",
+        "BUFFER_FACEBOOK_CHANNEL_ID": "${{ secrets.BUFFER_FACEBOOK_CHANNEL_ID }}",
+        "BUFFER_INSTAGRAM_CHANNEL_ID": "${{ secrets.BUFFER_INSTAGRAM_CHANNEL_ID }}",
+        "BUFFER_TIKTOK_CHANNEL_ID": "${{ secrets.BUFFER_TIKTOK_CHANNEL_ID }}",
+        "DURABLE_SUBMISSION_GUARD": "true"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "fetch-depth": 0
+          }
+        },
+        {
+          "uses": "actions/setup-python@v5",
+          "with": {
+            "python-version": "3.11"
+          }
+        },
+        {
+          "name": "Install publication dependencies only",
+          "run": "sudo apt-get update -qq\nsudo apt-get install -y ffmpeg\npython -m pip install requests beautifulsoup4 google-api-python-client google-auth-oauthlib numpy Pillow"
+        },
+        {
+          "name": "Schedule the same newly rendered film at the absolute Cairo slot",
+          "run": "python -m professional_motion.schedule_finished_daily"
+        },
+        {
+          "name": "Preserve partial receipts even if submission failed",
+          "if": "always()",
+          "run": "python -m professional_motion.persist_state"
+        },
+        {
+          "name": "Deliver safe provider receipts",
+          "if": "always()",
+          "env": {
+            "REVIEW_STAGE": "approved-publication",
+            "REVIEW_ONLY": "false"
+          },
+          "run": "python -m professional_motion.review_evidence"
+        }
+      ]
+    }
+  }
+}
