@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "في وسط إسبانيا، وفوق صخور الوادي، بيظهر أثر مش بيختفي من الذاكرة. دي قناطر سيغوفيا الرومانية اللي بتعتبر شاهد حي على هندسة زمان. البناء ده لسه واقف قدامنا بكل هيبة، وبيحكي قصة مدينة كاملة اتربطت بالميه اللي ماشية فوق الأقواس. تاريخ القناطر دي بيرجع لقرابة العام خمسين من الحقبة المسيحية. الإمبراطورية الرومانية سابت وراها شواهد هندسية كتيرة، بس الصرح ده اتحفظ بشكل نادر ومذهل. إزاي قدر البناء ده يفضل ثابت كل القرون دي من غير ما يقع؟ ده اللي بتكشفه تفاصيل التصميم. لو بصيت على الهيكل، هتلاقي طبقتين من القناطر فوق بعض بانتظام دقيق. الطبقات دي مش شكل جمالي وبس، دي طريقة هندسية مدروسة عشان توزع الوزن الهائل. القناطر المزدوجة دي بتدي المبنى صلابة تخلي الرياح والعوامل الجوية ما يأثروش عليه بسهولة. المشروع الضخم ده بيوصل طوله الإجمالي إلى ثمانمائة وثلاثة عشر متراً. الهيكل بيتكون من أربعة قطاعات مستقيمة وممرين علويين بيشيلهم عدد ضخم من الأعمدة. والأعمدة دي هي اللي شايلة العبء كله وراسمة شكل الوادي بطريقة فريدة. في أوطى نقطة من الوادي، اليونسكو بتسجل ارتفاع القنطرة بثمانية وعشرين متراً ونصف المتر فوق الأرض. وبحسب وصفها، صفوف الأقواس شايلها 128 دعامة. الأرقام دي بتوضح حجم المنشأ اللي باقي لحد النهارده، وبتخلينا نفرق بين وصف الأثر نفسه وبين أي مبانٍ تانية اتذكرت في نفس الصفحة. لما تتفرج على القنطرة، بص للمجرى اللي فوق صفوف الأقواس. الفكرة الأساسية للقناطر المائية هي نقل الميه عبر اختلافات في مستوى الأرض. وفي سيغوفيا، المصدر بيسجل ارتفاع المنشأ وطوله وتكوين الأقواس، ودي تفاصيل نقدر نشرحها من غير ما نفترض إن التصميم منع كل تسريب أو ركود. مع مرور الزمن، خضع الأثر ده لقوانين حماية صارمة عشان يفضل محافظ على شكله الأصلي. الحكومة الإسبانية والجهات المعنية فرضت قواعد دقيقة لأي أعمال ترميم أو تنقيب. الإجراءات دي بتضمن إن أي تدخل هندسي ما يضرش بالقيمة التاريخية الفريدة للمكان. في النهاية، القناطر دي بقت الرمز الحقيقي لمدينة سيغوفيا واللي ما ينفعش تتفصل عنها أبداً. الصرح ده لسه بيجمع بين روعة الهندسة القديمة وقوة التحمل اللي تحدت الزمن. أثر بيثبت إن الإنجازات العظيمة ممكن تعيش آلاف السنين لتلهم الأجيال.",
+  "interaction_id": "v1_ChdNWlBrYXR2UEo5V1J5dE1QOHRuaW1RdxIXTVpQa2F0dlBKOVdSeXRNUDh0bmltUXc",
+  "duration": 153.36,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "0a2740b5c9ed2c840b8b662da0a94229d59bcf7d68a45f48f55f5eca9ef467ca",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": false,
+  "output_sha256": "0a2740b5c9ed2c840b8b662da0a94229d59bcf7d68a45f48f55f5eca9ef467ca"
+}

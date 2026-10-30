@@ -1,0 +1,157 @@
+{
+  "title": "قناطر سيغوفيا: الميه فوق المدينة",
+  "canonical_subject": "segovia-aqueduct-unesco",
+  "suitable": true,
+  "facts": [
+    "قناطر سيغوفيا الرومانية بنيت قرابة العام خمسين من الحقبة المسيحية.",
+    "البناء الضخم ذو القناطر المزدوجة يبلغ طوله مائة وثلاثة وثمانين متراً.",
+    "المنشأة تتكون من أربعة قطاعات مستقيمة وممرين علويين يحملهما مائة وثمانية وعشرون عموداً.",
+    "في أدنى نقطة من الوادي، يرتفع القنطر ثمانية وعشرين متراً ونصف المتر عن سطح الأرض."
+  ],
+  "milestones": [
+    "العام خمساد للميلاد",
+    "العام ألف وتسعمائة وخمسة وثمانون",
+    "القانون رقم اثني عشر لعام ألفين واثنين"
+  ],
+  "scenes": [
+    {
+      "id": "scene_1",
+      "label": "قناطر سيغوفيا",
+      "narration": "في وسط إسبانيا، وفوق صخور الوادي، بيظهر أثر مش بيختفي من الذاكرة. دي قناطر سيغوفيا الرومانية اللي بتعتبر شاهد حي على هندسة زمان. البناء ده لسه واقف قدامنا بكل هيبة، وبيحكي قصة مدينة كاملة اتربطت بالميه اللي ماشية فوق الأقواس.",
+      "labels": [
+        "قناطر سيغوفيا الرومانية"
+      ],
+      "visual_mode": "hero",
+      "evidence_excerpt_id": 9,
+      "evidence_quote": "Roman aqueduct of Segovia, probably built c. A.D. 50, is remarkably well preserved. This impressive"
+    },
+    {
+      "id": "scene_2",
+      "label": "تاريخ البناء",
+      "narration": "تاريخ القناطر دي بيرجع لقرابة العام خمسين من الحقبة المسيحية. الإمبراطورية الرومانية سابت وراها شواهد هندسية كتيرة، بس الصرح ده اتحفظ بشكل نادر ومذهل. إزاي قدر البناء ده يفضل ثابت كل القرون دي من غير ما يقع؟ ده اللي بتكشفه تفاصيل التصميم.",
+      "labels": [
+        "قرابة العام خمسين"
+      ],
+      "visual_mode": "material",
+      "evidence_excerpt_id": 9,
+      "evidence_quote": "Roman aqueduct of Segovia, probably built c. A.D. 50, is remarkably well preserved. This impressive"
+    },
+    {
+      "id": "scene_3",
+      "label": "القناطر المزدوجة",
+      "narration": "لو بصيت على الهيكل، هتلاقي طبقتين من القناطر فوق بعض بانتظام دقيق. الطبقات دي مش شكل جمالي وبس، دي طريقة هندسية مدروسة عشان توزع الوزن الهائل. القناطر المزدوجة دي بتدي المبنى صلابة تخلي الرياح والعوامل الجوية ما يأثروش عليه بسهولة.",
+      "labels": [
+        "القناطر المزدوجة"
+      ],
+      "visual_mode": "arch",
+      "evidence_excerpt_id": 10,
+      "evidence_quote": "construction, with its two tiers of arches, forms part of the setting of the magnificent"
+    },
+    {
+      "id": "scene_4",
+      "label": "تفاصيل الأبعاد",
+      "narration": "المشروع الضخم ده بيوصل طوله الإجمالي إلى ثمانمائة وثلاثة عشر متراً. الهيكل بيتكون من أربعة قطاعات مستقيمة وممرين علويين بيشيلهم عدد ضخم من الأعمدة. والأعمدة دي هي اللي شايلة العبء كله وراسمة شكل الوادي بطريقة فريدة.",
+      "labels": [
+        "ثمانمائة وثلاثة عشر متراً"
+      ],
+      "visual_mode": "levels",
+      "evidence_excerpt_id": 54,
+      "evidence_quote": "It is an enormous construction of masonry, 813 m in length, consisting of four straight"
+    },
+    {
+      "id": "scene_5",
+      "label": "أعمدة الوادي",
+      "narration": "في أوطى نقطة من الوادي، اليونسكو بتسجل ارتفاع القنطرة بثمانية وعشرين متراً ونصف المتر فوق الأرض. وبحسب وصفها، صفوف الأقواس شايلها 128 دعامة. الأرقام دي بتوضح حجم المنشأ اللي باقي لحد النهارده، وبتخلينا نفرق بين وصف الأثر نفسه وبين أي مبانٍ تانية اتذكرت في نفس الصفحة.",
+      "labels": [
+        "أدنى نقطة من الوادي"
+      ],
+      "visual_mode": "section",
+      "evidence_excerpt_id": 55,
+      "evidence_quote": "segments and two superimposed arcades borne by 128 pillars. At the lowest point of the"
+    },
+    {
+      "id": "scene_6",
+      "label": "حركة الميه",
+      "narration": "لما تتفرج على القنطرة، بص للمجرى اللي فوق صفوف الأقواس. الفكرة الأساسية للقناطر المائية هي نقل الميه عبر اختلافات في مستوى الأرض. وفي سيغوفيا، المصدر بيسجل ارتفاع المنشأ وطوله وتكوين الأقواس، ودي تفاصيل نقدر نشرحها من غير ما نفترض إن التصميم منع كل تسريب أو ركود.",
+      "labels": [
+        "المجرى المائي العلوي"
+      ],
+      "visual_mode": "water",
+      "evidence_excerpt_id": 17,
+      "evidence_quote": "under license CC-BY-SA IGO 3.0 مدينة سيغوفيا القديمة وقنواتها للإمداد بالماء بُنيت قنوات سيغوفيا الرومانيّة"
+    },
+    {
+      "id": "scene_7",
+      "label": "حماية التراث",
+      "narration": "مع مرور الزمن، خضع الأثر ده لقوانين حماية صارمة عشان يفضل محافظ على شكله الأصلي. الحكومة الإسبانية والجهات المعنية فرضت قواعد دقيقة لأي أعمال ترميم أو تنقيب. الإجراءات دي بتضمن إن أي تدخل هندسي ما يضرش بالقيمة التاريخية الفريدة للمكان.",
+      "labels": [
+        "قوانين حماية صارمة"
+      ],
+      "visual_mode": "assembly",
+      "evidence_excerpt_id": 93,
+      "evidence_quote": "highest level of protection according to the current cultural heritage laws in Spain. Therefore, any"
+    },
+    {
+      "id": "scene_8",
+      "label": "رمز المدينة",
+      "narration": "في النهاية، القناطر دي بقت الرمز الحقيقي لمدينة سيغوفيا واللي ما ينفعش تتفصل عنها أبداً. الصرح ده لسه بيجمع بين روعة الهندسة القديمة وقوة التحمل اللي تحدت الزمن. أثر بيثبت إن الإنجازات العظيمة ممكن تعيش آلاف السنين لتلهم الأجيال.",
+      "labels": [],
+      "visual_mode": "hero",
+      "evidence_excerpt_id": 64,
+      "evidence_quote": "urban site. The Aqueduct is the symbol of the city and can in no way"
+    }
+  ],
+  "hashtags": [
+    "قناطر_سيغوفيا",
+    "التراث_العالمي",
+    "هندسة_رومانية",
+    "إسبانيا"
+  ],
+  "profile": "history",
+  "series": "نقص ونروى",
+  "visual_family": "architecture",
+  "variant": "aqueduct",
+  "topic_key": "segovia-aqueduct-unesco",
+  "source": {
+    "url": "https://whc.unesco.org/en/list/311/",
+    "publisher": "UNESCO World Heritage Centre",
+    "title": "قناطر سيغوفيا: الميه فوق المدينة"
+  },
+  "fiction": false,
+  "documented": true,
+  "visual_contract": {
+    "focus": "aqueduct",
+    "tier_count": 2,
+    "diagram_only": true,
+    "allowed_modes": [
+      "hero",
+      "levels",
+      "arch",
+      "section",
+      "water",
+      "material",
+      "assembly"
+    ],
+    "forbidden_features": [
+      "dome_ribs",
+      "oculus"
+    ],
+    "scope": "Show only the stated focal structure as a schematic; do not claim a surveyed replica of the whole heritage site or invent construction measurements."
+  },
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": [],
+    "model": "gemini-3.5-flash-lite"
+  },
+  "writer_model": "gemini-3.5-flash-lite",
+  "post_edit_review": {
+    "reviewer": "Codex",
+    "checks": [
+      "Correct the pillar count to the official 128",
+      "Remove the unsupported guarantee against all leaks and stagnation",
+      "Keep source attribution and distinguish source figures from generic aqueduct function"
+    ],
+    "source_body_sha256": "cc3726c8c2d93e526d8b40d2f5c7abe3750e9cbd83d996bc2bc1a543bf48ac29"
+  }
+}
