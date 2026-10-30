@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "في وسط إسبانيا، وفوق صخور الوادي، بيظهر أثر مش بيختفي من الذاكرة. دي قناطر سيغوفيا الرومانية اللي بتعتبر شاهد حي على هندسة زمان. البناء ده لسه واقف قدامنا بكل هيبة، وبيحكي قصة مدينة كاملة اتربطت بالميه اللي ماشية فوق السحاب. تاريخ القناطر دي بيرجع لقرابة العام خمسين من الحقبة المسيحية. الإمبراطورية الرومانية سابت وراها شواهد هندسية كتيرة، بس الصرح ده اتحفظ بشكل نادر ومذهل. إزاي قدر البناء ده يفضل ثابت كل القرون دي من غير ما يقع؟ ده اللي بتكشفه تفاصيل التصميم. لو بصيت على الهيكل، هتلاقي طبقتين من القناطر فوق بعض بانتظام دقيق. الطبقات دي مش شكل جمالي وبس، دي طريقة هندسية مدروسة عشان توزع الوزن الهائل. القناطر المزدوجة دي بتدي المبنى صلابة تخلي الرياح والعوامل الجوية ما يأثروش عليه بسهولة. المشروع الضخم ده بيوصل طوله الإجمالي إلى ثمانمائة وثلاثة عشر متراً. الهيكل بيتكون من أربعة قطاعات مستقيمة وممرين علويين بيشيلهم عدد ضخم من الأعمدة. والأعمدة دي هي اللي شايلة العبء كله وراسمة شكل الوادي بطريقة فريدة. في أدنى نقطة من الوادي، بيرتفع القنطر مسافة ثمانية وعشرين متراً ونصف المتر عن سطح الأرض. المائة وستة وعشرون عموداً أو أكتر بتتحمل الضغط الهائل ده بكل ثبات. الصرح ده بيوضح إزاي كانت الإدارة الرومانية بتوظف الموارد عشان توصل الميه للمرتفعات. المجرى المائي العلوي كان بيلعب دور حيوي في حياة السكان اليومية عبر نقل الميه من مسافات بعيدة. الميه دي ما كانتش مجرد رفاهية، دي كانت عصب الحياة اللي قامت عليه مجتمعات كاملة. جریان الميه جوه القناة اتقان تصميمه عشان يمنع أي تسريب أو ركود. مع مرور الزمن، خضع الأثر ده لقوانين حماية صارمة عشان يفضل محافظ على شكله الأصلي. الحكومة الإسبانية والجهات المعنية فرضت قواعد دقيقة لأي أعمال ترميم أو تنقيب. الإجراءات دي بتضمن إن أي تدخل هندسي ما يضرش بالقيمة التاريخية الفريدة للمكان. في النهاية، القناطر دي بقت الرمز الحقيقي لمدينة سيغوفيا واللي ما ينفعش تتفصل عنها أبداً. الصرح ده لسه بيجمع بين روعة الهندسة القديمة وقوة التحمل اللي تحدت الزمن. أثر بيثبت إن الإنجازات العظيمة ممكن تعيش آلاف السنين لتلهم الأجيال.",
+  "interaction_id": "v1_ChdCb3JrYW9DZEZ1MlJqTWNQeF9LRjZBbxIXQm9ya2FvQ2RGdTJSak1jUHhfS0Y2QW8",
+  "duration": 153.24,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "d2505d3e04381f4b148014c6e0fc492600cf80d5a7cd72c7ffd0e1c764150d4e",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": false,
+  "output_sha256": "d2505d3e04381f4b148014c6e0fc492600cf80d5a7cd72c7ffd0e1c764150d4e"
+}
