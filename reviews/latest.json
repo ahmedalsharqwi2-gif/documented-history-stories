@@ -1,21 +1,14 @@
 {
   "profile": "history",
-  "run_id": "40930406419",
-  "duration": 134.24,
-  "sha256": "b3e7d3087e666da0e7e8d6a5c27467d68fcc49e930fed890ee87f8f23f1ab2b4",
-  "review_approved_by_user": true,
-  "publication_status": "sent",
-  "youtube_url": "https://www.youtube.com/shorts/VCWM3pCU5dg",
-  "daily_schedule": {
-    "timezone": "Africa/Cairo",
-    "production": "09:00",
-    "publication": "17:00",
-    "executor": "GitHub Actions",
-    "delivery": "Buffer",
-    "enabled": true
-  },
-  "downloads": {
-    "720p": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-video-40930406419/review-720p.mp4",
-    "1080p": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-video-40930406419/review-1080p.mp4"
-  }
+  "date": "2026-10-30",
+  "production_run": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41058540009",
+  "duration": 153.366667,
+  "sha256": "5e86d1838c39279eb97b8d99d9bf02ec023e3b74bef6b9c9171bcac36a21e267",
+  "download": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4",
+  "publication_status": "scheduled",
+  "publication_local_time": "17:00 Africa/Cairo",
+  "verified_destinations": 3,
+  "actual_provider_audit": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/professional-review-run-41064476565/professional_motion/delivery/daily-publication-audit.json",
+  "branding_applies_to_future_films": true,
+  "original_logo_installed": false
 }
