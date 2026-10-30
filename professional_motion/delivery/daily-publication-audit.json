@@ -1,0 +1,32 @@
+{
+  "profile": "history",
+  "slot": "daily-2026-10-30",
+  "checked_at": "2026-10-30T13:35:19.822674+00:00",
+  "video_sha256": "5e86d1838c39279eb97b8d99d9bf02ec023e3b74bef6b9c9171bcac36a21e267",
+  "due_at": "2026-10-30T15:00:00+00:00",
+  "no_posts_created": true,
+  "verified": true,
+  "posts": {
+    "youtube": {
+      "post_id": "6ae48f48abdb62a0e37cc839",
+      "channel_id": "6ab67b4fea19ca0bdee58218",
+      "scheduled_at": "2026-10-30T15:00:00.000Z",
+      "status": "scheduled",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+    },
+    "facebook": {
+      "post_id": "6ae48f4ae560b6bf642a6b22",
+      "channel_id": "6ab67b0dea19ca0bdee58014",
+      "scheduled_at": "2026-10-30T15:00:00.000Z",
+      "status": "scheduled",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+    },
+    "instagram": {
+      "post_id": "6ae48f4de560b6bf642a6bc5",
+      "channel_id": "6ab67accea19ca0bdee57e17",
+      "scheduled_at": "2026-10-30T15:00:00.000Z",
+      "status": "scheduled",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+    }
+  }
+}
