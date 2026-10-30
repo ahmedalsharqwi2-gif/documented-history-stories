@@ -287,7 +287,7 @@
       "canonical_subject": "segovia-aqueduct-unesco",
       "title": "قناطر سيغوفيا: الميه فوق المدينة",
       "url": "https://whc.unesco.org/en/list/311/",
-      "status": "reserved",
+      "status": "rendered",
       "story": {
         "title": "قناطر سيغوفيا: الميه فوق المدينة",
         "canonical_subject": "segovia-aqueduct-unesco",
@@ -436,7 +436,8 @@
         },
         "writer_model": "gemini-3.5-flash-lite"
       },
-      "reserved_at": "2026-10-30T12:13:54.543314+00:00"
+      "reserved_at": "2026-10-30T12:13:54.543314+00:00",
+      "video_sha256": "b76bc2a6e2037514fd533a0500af833b6c16fe2f1950bf469c2609a481dcfefc"
     }
   ]
 }
