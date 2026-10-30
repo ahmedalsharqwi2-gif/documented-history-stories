@@ -413,7 +413,15 @@
         "facebook",
         "instagram",
         "youtube"
-      ]
+      ],
+      "submissions": {
+        "youtube": {
+          "channel_id": "6ab67b4fea19ca0bdee58218",
+          "scheduled_at": "2026-10-30T15:00:00Z",
+          "status": "submitting",
+          "created_at": "2026-10-30T12:36:21.943384+00:00"
+        }
+      }
     }
   }
 }
