@@ -480,7 +480,17 @@
           "verified_at": "2026-10-30T12:36:29.751697+00:00"
         }
       },
-      "correction_original_video_sha256": "b76bc2a6e2037514fd533a0500af833b6c16fe2f1950bf469c2609a481dcfefc"
+      "correction_original_video_sha256": "b76bc2a6e2037514fd533a0500af833b6c16fe2f1950bf469c2609a481dcfefc",
+      "media_correction": {
+        "status": "updating_existing_posts",
+        "old_post_ids": {
+          "youtube": "6ae48f48abdb62a0e37cc839",
+          "facebook": "6ae48f4ae560b6bf642a6b22",
+          "instagram": "6ae48f4de560b6bf642a6bc5"
+        },
+        "corrected_video_sha256": "5e86d1838c39279eb97b8d99d9bf02ec023e3b74bef6b9c9171bcac36a21e267",
+        "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+      }
     }
   ]
 }
