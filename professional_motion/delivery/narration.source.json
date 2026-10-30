@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "في جنوب فرنسا، عَدّت منظمة اليونسكو مدينة آرل مثالاً لتكيّف مدينة قديمة مع العصور الوسطى. جوهرة المكان ده هي ساحة آرل الرومانية اللي بترجع أصولها للقرن الأول قبل الميلاد، وشهدت تحولات معمارية تاريخية ضخمة على مر العصور. خلال القرن الرابع، وصلت المدينة لمرتبة العاصمة السياسية والدينية، وعاش المكان عصراً ذهبياً ثانياً. الهياكل المعمارية القديمة دي فضلت راسخة في النسيج الحضري، وكونت معالم بارزة واضحة للعيان في شوارع المدينة العتيقة. مع دخول العصور الوسطى، وبالتحديد في القرنين الحادي والثاني عشر، اتغير دور الساحة جذرياً. المبنى الضخم ده متحولش لمجرد أطلال، ده اتحول بالفعل إلى قلعة حصينة وسط المدينة، واستخدمت الجدران الرومانية لأغراض دفاعية جديدة. المهندسون والنحاتون في الفترة دي استمدوا إلهامهم من الفن القديم. التأثير ده ظهر بوضوح في تصميم المباني الكبرى المحيطة بالساحة، عشان يفضل الطابع الروماني هو الأساس اللي اتبنت عليه الهوية المعمارية في إقليم البروفانس. المدينة حافظت على شكلها التاريخي جوه الأسوار الدفاعية القديمة. المكونات الأساسية للساحة والمعالم المجاورة بتبين بوضوح إزاي استمر تخطيط الشوارع والمساحات العامة من العصور القديمة لحد العصور الوسطى بدون تغيير هدمي شامل. رغم اختلاف حالات الحفظ للمباني الاثرية الثمانية الرئيسية، إلا أن أصالتها تظل ثابتة ومؤكدة. الهياكل دي خضعت لبرامج حماية مشددة تحت قانون التراث الفرنسي لضمان بقاء تفاصيلها المعمارية واضحة للباحثين والزوار. خلال القرنين التاسع عشر والعشرين، تمت عمليات ترميم محددة على المسرح والساحة. الأعمال دي استهدفت استعادة جزء من وظائف المباني التاريخية الأصلية، من غير ما تأثر على أصالة الأجزاء القديمة المتبقية منها. اليوم، بتنفذ مدينة آرل برنامج تدخل متعدد السنوات ضمن خطة حماية شاملة مساحتها خمسة وستين هكتاراً. الخطوات دي بتضمن استمرار القيمة العالمية المتميزة للموقع، وبتجمع بين التنمية المستدامة وحماية الآثار الرومانية التاريخية.",
+  "interaction_id": "v1_ChdkQUhsYW82bUY5WFp5dE1Qd1B1dW1RVRIXZEFIbGFvNm1GOVhaeXRNUHdQdXVtUVU",
+  "duration": 136.76,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "35f847d36fc1a828567ed026e3361bde36234f59fdbc8d5a37faa1d2b2791e83",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": false,
+  "output_sha256": "35f847d36fc1a828567ed026e3361bde36234f59fdbc8d5a37faa1d2b2791e83"
+}

@@ -1,0 +1,141 @@
+{
+  "title": "ساحة آرل: مبنى روماني اتغير دوره",
+  "canonical_subject": "arles-amphitheatre-unesco",
+  "suitable": true,
+  "facts": [
+    "يعود بناء ساحة آرل الرومانية إلى القرن الأول قبل الميلاد.",
+    "تُعتبر الحلبة جزءاً من المعالم الرومانية المسجلة في مدينة آرل.",
+    "تحولت الحلبة الرومانية لاحقاً خلال العصور الوسطى إلى قلعة دفاعية.",
+    "شهدت المعالم ترميمات في القرنين التاسع عشر والعشرين لاستعادة بعض وظائفها."
+  ],
+  "milestones": [
+    "القرن الأول قبل الميلاد",
+    "القرن الرابع",
+    "العصور الوسطى"
+  ],
+  "scenes": [
+    {
+      "id": "scene_1",
+      "label": "مقدمة ساحة آرل",
+      "narration": "في جنوب فرنسا، عَدّت منظمة اليونسكو مدينة آرل مثالاً لتكيّف مدينة قديمة مع العصور الوسطى. جوهرة المكان ده هي ساحة آرل الرومانية اللي بترجع أصولها للقرن الأول قبل الميلاد، وشهدت تحولات معمارية تاريخية ضخمة على مر العصور.",
+      "labels": [
+        "ساحة آرل الرومانية"
+      ],
+      "visual_mode": "hero",
+      "evidence_excerpt_id": 58,
+      "evidence_quote": "preserves an outstanding ensemble of Roman monuments, the oldest of which—the amphitheatre (arena), the Roman"
+    },
+    {
+      "id": "scene_2",
+      "label": "العصر الذهبي الثاني",
+      "narration": "خلال القرن الرابع، وصلت المدينة لمرتبة العاصمة السياسية والدينية، وعاش المكان عصراً ذهبياً ثانياً. الهياكل المعمارية القديمة دي فضلت راسخة في النسيج الحضري، وكونت معالم بارزة واضحة للعيان في شوارع المدينة العتيقة.",
+      "labels": [],
+      "visual_mode": "levels",
+      "evidence_excerpt_id": 61,
+      "evidence_quote": "the urban facilities introduced into Gaul by the Romans. During Late Antiquity (4th–6th centuries), Arles"
+    },
+    {
+      "id": "scene_3",
+      "label": "التحول إلى قلعة",
+      "narration": "مع دخول العصور الوسطى، وبالتحديد في القرنين الحادي والثاني عشر، اتغير دور الساحة جذرياً. المبنى الضخم ده متحولش لمجرد أطلال، ده اتحول بالفعل إلى قلعة حصينة وسط المدينة، واستخدمت الجدران الرومانية لأغراض دفاعية جديدة.",
+      "labels": [],
+      "visual_mode": "arch",
+      "evidence_excerpt_id": 66,
+      "evidence_quote": "within the Mediterranean world. The amphitheatre was turned into a fortress, while the baths of"
+    },
+    {
+      "id": "scene_4",
+      "label": "استمرار التأثير القديم",
+      "narration": "المهندسون والنحاتون في الفترة دي استمدوا إلهامهم من الفن القديم. التأثير ده ظهر بوضوح في تصميم المباني الكبرى المحيطة بالساحة، عشان يفضل الطابع الروماني هو الأساس اللي اتبنت عليه الهوية المعمارية في إقليم البروفانس.",
+      "labels": [
+        "الفن القديم"
+      ],
+      "visual_mode": "material",
+      "evidence_excerpt_id": 68,
+      "evidence_quote": "the enduring influence of Antiquity on the development of Provençal art. Its portal was inaugurated"
+    },
+    {
+      "id": "scene_5",
+      "label": "النسيج العمراني المتوارث",
+      "narration": "المدينة حافظت على شكلها التاريخي جوه الأسوار الدفاعية القديمة. المكونات الأساسية للساحة والمعالم المجاورة بتبين بوضوح إزاي استمر تخطيط الشوارع والمساحات العامة من العصور القديمة لحد العصور الوسطى بدون تغيير هدمي شامل.",
+      "labels": [],
+      "visual_mode": "assembly",
+      "evidence_excerpt_id": 79,
+      "evidence_quote": "of the city’s Roman monuments. The historic centre has preserved the integrity of its medieval"
+    },
+    {
+      "id": "scene_6",
+      "label": "حالة الحفظ والتوثيق",
+      "narration": "رغم اختلاف حالات الحفظ للمباني الاثرية الثمانية الرئيسية، إلا أن أصالتها تظل ثابتة ومؤكدة. الهياكل دي خضعت لبرامج حماية مشددة تحت قانون التراث الفرنسي لضمان بقاء تفاصيلها المعمارية واضحة للباحثين والزوار.",
+      "labels": [
+        "قانون التراث"
+      ],
+      "visual_mode": "section",
+      "evidence_excerpt_id": 84,
+      "evidence_quote": "monuments are in varying states of conservation, yet their authenticity is indisputable. Restorations undertaken in"
+    },
+    {
+      "id": "scene_7",
+      "label": "أعمال الترميم الحديثة",
+      "narration": "خلال القرنين التاسع عشر والعشرين، تمت عمليات ترميم محددة على المسرح والساحة. الأعمال دي استهدفت استعادة جزء من وظائف المباني التاريخية الأصلية، من غير ما تأثر على أصالة الأجزاء القديمة المتبقية منها.",
+      "labels": [],
+      "visual_mode": "levels",
+      "evidence_excerpt_id": 85,
+      "evidence_quote": "the 19th and 20th centuries on the theatre and amphitheatre, aimed at restoring part of"
+    },
+    {
+      "id": "scene_8",
+      "label": "الخلاصة والإدارة المستدامة",
+      "narration": "اليوم، بتنفذ مدينة آرل برنامج تدخل متعدد السنوات ضمن خطة حماية شاملة مساحتها خمسة وستين هكتاراً. الخطوات دي بتضمن استمرار القيمة العالمية المتميزة للموقع، وبتجمع بين التنمية المستدامة وحماية الآثار الرومانية التاريخية.",
+      "labels": [
+        "خطة حماية شاملة"
+      ],
+      "visual_mode": "hero",
+      "evidence_excerpt_id": 98,
+      "evidence_quote": "the property. The city of Arles implements a comprehensive policy through a multi-year intervention programme,"
+    }
+  ],
+  "hashtags": [
+    "آرل",
+    "آثار_رومانية",
+    "اليونسكو",
+    "تراث"
+  ],
+  "profile": "history",
+  "series": "نقص ونروى",
+  "visual_family": "architecture",
+  "variant": "arena",
+  "topic_key": "arles-amphitheatre-unesco",
+  "source": {
+    "url": "https://whc.unesco.org/en/list/164/",
+    "publisher": "UNESCO World Heritage Centre",
+    "title": "ساحة آرل: مبنى روماني اتغير دوره"
+  },
+  "fiction": false,
+  "documented": true,
+  "visual_contract": {
+    "focus": "arena",
+    "tier_count": 2,
+    "diagram_only": true,
+    "allowed_modes": [
+      "hero",
+      "levels",
+      "arch",
+      "section",
+      "material",
+      "assembly"
+    ],
+    "forbidden_features": [
+      "dome_ribs",
+      "oculus"
+    ],
+    "scope": "Show only the stated focal structure as a schematic; do not claim a surveyed replica of the whole heritage site or invent construction measurements."
+  },
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": [],
+    "model": "gemini-3.5-flash-lite"
+  },
+  "writer_model": "gemini-3.5-flash-lite"
+}
