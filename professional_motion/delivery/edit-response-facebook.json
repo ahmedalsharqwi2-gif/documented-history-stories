@@ -1,0 +1,14 @@
+{
+  "post": {
+    "id": "6ae48f4ae560b6bf642a6b22",
+    "channelId": "6ab67b0dea19ca0bdee58014",
+    "status": "scheduled",
+    "dueAt": "2026-10-30T15:00:00.000Z",
+    "assets": [
+      {
+        "id": null,
+        "source": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+      }
+    ]
+  }
+}
