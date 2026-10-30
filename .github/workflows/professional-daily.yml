@@ -25,6 +25,11 @@
           "type": "string",
           "default": "review",
           "required": false
+        },
+        "render_correction_only": {
+          "type": "boolean",
+          "required": false,
+          "default": false
         }
       }
     }
@@ -90,7 +95,10 @@
         {
           "name": "Check review approval and Cairo civil-time guard",
           "id": "decision",
-          "run": "python -m professional_motion.cli decision history --mode \"${{ inputs.mode || 'review' }}\""
+          "run": "python -m professional_motion.cli decision history --mode \"${{ inputs.mode || 'review' }}\"",
+          "env": {
+            "RENDER_CORRECTION_ONLY": "${{ inputs.render_correction_only }}"
+          }
         },
         {
           "name": "Install narration and alignment dependencies",

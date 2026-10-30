@@ -28,6 +28,7 @@ def main():
     if a.action=='decision':
         if (a.mode=='daily' or os.getenv('GITHUB_EVENT_NAME')=='schedule') and os.getenv('GITHUB_ACTIONS')=='true' and os.getenv('GITHUB_REF_NAME')!='main':raise PermissionError('Daily production uses main durable state only')
         d=decision(a.profile,a.mode,os.getenv('GITHUB_EVENT_NAME','workflow_dispatch'))
+        if os.getenv('RENDER_CORRECTION_ONLY')=='true':d['publish']=False
         if os.getenv('GITHUB_OUTPUT'):
             with open(os.environ['GITHUB_OUTPUT'],'a') as f:
                 for k,v in d.items():f.write(k+'='+(str(v).lower() if isinstance(v,bool) else str(v))+'\n')
