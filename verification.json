@@ -1,0 +1,181 @@
+{
+  "file": "professional-review.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 153.36,
+  "story_sha256": "fe906c38cb90ea5605c4d174522c3713bcff4586df2d3cd581a91cfbe6938294",
+  "voice": "original Gemini Charon",
+  "asr_model": "medium",
+  "independent_asr_word_coverage": 0.8632218844984803,
+  "exact_token_coverage": 0.8632218844984803,
+  "speech_matching_method": "Exact-token ensemble anchors; supplied-script phrase captions; no active-word precision claim",
+  "known_name_normalization_applied": false,
+  "visual_gate": {
+    "passed": true,
+    "duration": 153.366667,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "method": "within-scene diagram-region pixel changes",
+    "scenes": [
+      {
+        "scene": 1,
+        "diagram_spatial_std": [
+          43.788688505430144,
+          43.77995864425668,
+          43.590467450701205
+        ],
+        "changed_pixel_ratios": [
+          0.13232431149097815,
+          0.14453941120607788
+        ],
+        "passed": true
+      },
+      {
+        "scene": 2,
+        "diagram_spatial_std": [
+          44.48785164966775,
+          50.76746380352988,
+          56.20588306193389
+        ],
+        "changed_pixel_ratios": [
+          0.3966999050332384,
+          0.43719135802469133
+        ],
+        "passed": true
+      },
+      {
+        "scene": 3,
+        "diagram_spatial_std": [
+          19.823739398629485,
+          19.43659172307573,
+          19.479096405163528
+        ],
+        "changed_pixel_ratios": [
+          0.026982431149097815,
+          0.0461301044634378
+        ],
+        "passed": true
+      },
+      {
+        "scene": 4,
+        "diagram_spatial_std": [
+          50.52714392634021,
+          52.466303554574864,
+          49.46786410213434
+        ],
+        "changed_pixel_ratios": [
+          0.2975664767331434,
+          0.30936609686609684
+        ],
+        "passed": true
+      },
+      {
+        "scene": 5,
+        "diagram_spatial_std": [
+          26.956671431029765,
+          27.775488322861623,
+          25.103641494372564
+        ],
+        "changed_pixel_ratios": [
+          0.03034188034188034,
+          0.1266025641025641
+        ],
+        "passed": true
+      },
+      {
+        "scene": 6,
+        "diagram_spatial_std": [
+          46.02396005252389,
+          46.18150918608657,
+          45.58592194989674
+        ],
+        "changed_pixel_ratios": [
+          0.10051044634377967,
+          0.15405982905982907
+        ],
+        "passed": true
+      },
+      {
+        "scene": 7,
+        "diagram_spatial_std": [
+          43.62615687582739,
+          40.709243493741006,
+          40.72364005490503
+        ],
+        "changed_pixel_ratios": [
+          0.1386633428300095,
+          0.0997269705603039
+        ],
+        "passed": true
+      },
+      {
+        "scene": 8,
+        "diagram_spatial_std": [
+          42.95806439524768,
+          40.422054715004045,
+          40.220700016468705
+        ],
+        "changed_pixel_ratios": [
+          0.12780151946818613,
+          0.11336657169990504
+        ],
+        "passed": true
+      }
+    ],
+    "note": "Technical blank/freeze detection only; not a judgement of artistic or factual quality."
+  },
+  "audio_tail": {
+    "audio_seconds": 153.36,
+    "video_seconds": 153.36,
+    "difference_seconds": 0.0,
+    "last_speech_window_correlation": 0.986434280872345,
+    "audio_tail_checked": true,
+    "silence_padding_used_to_hide_lost_speech": false
+  },
+  "publication_metadata": {
+    "title": "نقص ونروى | قناطر سيغوفيا: الميه فوق المدينة",
+    "caption": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/311/\n#قناطر_سيغوفيا #التراث_العالمي #هندسة_رومانية #إسبانيا",
+    "description": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/311/\n#قناطر_سيغوفيا #التراث_العالمي #هندسة_رومانية #إسبانيا",
+    "tags": [
+      "قناطر_سيغوفيا",
+      "التراث_العالمي",
+      "هندسة_رومانية",
+      "إسبانيا"
+    ],
+    "hashtags": [
+      "#قناطر_سيغوفيا",
+      "#التراث_العالمي",
+      "#هندسة_رومانية",
+      "#إسبانيا"
+    ],
+    "source_url": "https://whc.unesco.org/en/list/311/",
+    "containsSyntheticMedia": true
+  },
+  "duration_policy": {
+    "minimum_exclusive": 90,
+    "maximum_exclusive": 180
+  },
+  "music_target_lufs": -27,
+  "music": "Original composed score",
+  "music_bpm": 104,
+  "source": {
+    "url": "https://whc.unesco.org/en/list/311/",
+    "publisher": "UNESCO World Heritage Centre",
+    "title": "قناطر سيغوفيا: الميه فوق المدينة"
+  },
+  "topic_key": "segovia-aqueduct-unesco",
+  "profile": "history",
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": [],
+    "model": "gemini-3.5-flash-lite"
+  },
+  "render": "Three.js procedural geometry, physical lighting, custom skin shader, layered optical bloom",
+  "reference_audio_reused": false,
+  "automatically_published": false,
+  "status": "Technical checks passed; artistic judgement requires viewing the complete film."
+}
