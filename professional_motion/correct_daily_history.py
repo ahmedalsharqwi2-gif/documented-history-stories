@@ -58,6 +58,7 @@ def update():
  for service,identifier in IDS.items():
   mutation='mutation { editPost(input:{id:'+json.dumps(identifier)+', assets:[{video:{url:'+json.dumps(url)+'}}], mode:customScheduled, dueAt:'+json.dumps(DUE)+'}) { ... on PostActionSuccess {post {id channelId status dueAt assets {id source}}} ... on MutationError {message} } }'
   result=query(mutation)['editPost'];r=result.get('post')
+  (delivery/('edit-response-'+service+'.json')).write_text(json.dumps(result,ensure_ascii=False,indent=2))
   if not r or r['id']!=identifier:raise RuntimeError('Buffer did not confirm editing the existing post')
  after=posts();receipts={}
  (delivery/'asset-update-observations.json').write_text(json.dumps(after,ensure_ascii=False,indent=2))

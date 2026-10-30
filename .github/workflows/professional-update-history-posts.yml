@@ -1,5 +1,5 @@
 {
-  "name": "Update existing history posts to the corrected verified MP4 without new posts",
+  "name": "Reconcile existing history video edits with actual provider mutation responses",
   "on": {
     "push": {
       "branches": [
