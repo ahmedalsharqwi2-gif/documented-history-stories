@@ -1,0 +1,36 @@
+{
+  "due_at": "2026-10-30T15:00:00Z",
+  "scheduled": true,
+  "receipts": {
+    "youtube": {
+      "id": "6ae48f48abdb62a0e37cc839",
+      "due_at": "2026-10-30T15:00:00Z",
+      "run_id": "41056485350",
+      "accepted_at": "2026-10-30T12:36:24.379486+00:00",
+      "channel_id": "6ab67b4fea19ca0bdee58218",
+      "scheduled_at": "2026-10-30T15:00:00+00:00",
+      "status": "scheduled",
+      "verified_at": "2026-10-30T12:36:29.392500+00:00"
+    },
+    "facebook": {
+      "id": "6ae48f4ae560b6bf642a6b22",
+      "due_at": "2026-10-30T15:00:00Z",
+      "run_id": "41056485350",
+      "accepted_at": "2026-10-30T12:36:26.710598+00:00",
+      "channel_id": "6ab67b0dea19ca0bdee58014",
+      "scheduled_at": "2026-10-30T15:00:00+00:00",
+      "status": "scheduled",
+      "verified_at": "2026-10-30T12:36:29.575744+00:00"
+    },
+    "instagram": {
+      "id": "6ae48f4de560b6bf642a6bc5",
+      "due_at": "2026-10-30T15:00:00Z",
+      "run_id": "41056485350",
+      "accepted_at": "2026-10-30T12:36:29.202540+00:00",
+      "channel_id": "6ab67accea19ca0bdee57e17",
+      "scheduled_at": "2026-10-30T15:00:00+00:00",
+      "status": "scheduled",
+      "verified_at": "2026-10-30T12:36:29.751697+00:00"
+    }
+  }
+}
