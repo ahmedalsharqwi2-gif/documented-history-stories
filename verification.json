@@ -1,0 +1,183 @@
+{
+  "file": "professional-review.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 136.76,
+  "story_sha256": "dbcaea91f50d83b3fec835c88c23a8602a4a020d49a3cbbbc5a8ef1dfeade300",
+  "voice": "original Gemini Charon",
+  "asr_model": "medium+small",
+  "independent_asr_word_coverage": 0.8636363636363636,
+  "exact_token_coverage": 0.8636363636363636,
+  "speech_matching_method": "Exact-token ensemble anchors; supplied-script phrase captions; no active-word precision claim",
+  "known_name_normalization_applied": false,
+  "visual_gate": {
+    "passed": true,
+    "duration": 136.766667,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "method": "within-scene diagram-region pixel changes",
+    "scenes": [
+      {
+        "scene": 1,
+        "diagram_spatial_std": [
+          44.81679130374454,
+          44.996106317749295,
+          44.758898937287505
+        ],
+        "changed_pixel_ratios": [
+          0.27099952516619186,
+          0.27099952516619186
+        ],
+        "passed": true
+      },
+      {
+        "scene": 2,
+        "diagram_spatial_std": [
+          44.111739723124884,
+          45.56309359232471,
+          43.926930060065416
+        ],
+        "changed_pixel_ratios": [
+          0.27881054131054134,
+          0.249667616334283
+        ],
+        "passed": true
+      },
+      {
+        "scene": 3,
+        "diagram_spatial_std": [
+          17.39130505965575,
+          17.002353218757303,
+          17.11086946312505
+        ],
+        "changed_pixel_ratios": [
+          0.03009259259259259,
+          0.03856837606837607
+        ],
+        "passed": true
+      },
+      {
+        "scene": 4,
+        "diagram_spatial_std": [
+          60.79372727741099,
+          62.46061397754037,
+          60.25461888059629
+        ],
+        "changed_pixel_ratios": [
+          0.25782288698955363,
+          0.3074786324786325
+        ],
+        "passed": true
+      },
+      {
+        "scene": 5,
+        "diagram_spatial_std": [
+          44.672793760753905,
+          44.97775320113301,
+          44.61869623078093
+        ],
+        "changed_pixel_ratios": [
+          0.259639126305793,
+          0.2587250712250712
+        ],
+        "passed": true
+      },
+      {
+        "scene": 6,
+        "diagram_spatial_std": [
+          46.06839436555145,
+          46.20147594035866,
+          46.535218064895396
+        ],
+        "changed_pixel_ratios": [
+          0.21258309591642924,
+          0.2784306742640076
+        ],
+        "passed": true
+      },
+      {
+        "scene": 7,
+        "diagram_spatial_std": [
+          44.707231929388854,
+          44.92250270827522,
+          44.84213850552257
+        ],
+        "changed_pixel_ratios": [
+          0.26197768281101613,
+          0.2495607787274454
+        ],
+        "passed": true
+      },
+      {
+        "scene": 8,
+        "diagram_spatial_std": [
+          44.67641539388852,
+          45.002239547749596,
+          44.67424843130554
+        ],
+        "changed_pixel_ratios": [
+          0.2610636277302944,
+          0.26253561253561253
+        ],
+        "passed": true
+      }
+    ],
+    "note": "Technical blank/freeze detection only; not a judgement of artistic or factual quality."
+  },
+  "audio_tail": {
+    "audio_seconds": 136.76,
+    "video_seconds": 136.76,
+    "difference_seconds": 0.0,
+    "last_speech_window_correlation": 0.9944907426834106,
+    "audio_tail_checked": true,
+    "silence_padding_used_to_hide_lost_speech": false
+  },
+  "publication_metadata": {
+    "title": "نقص ونروى | ساحة آرل: مبنى روماني اتغير دوره",
+    "caption": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/164/\n#آرل #آثار_رومانية #اليونسكو #تراث",
+    "description": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/164/\n#آرل #آثار_رومانية #اليونسكو #تراث",
+    "tags": [
+      "آرل",
+      "آثار_رومانية",
+      "اليونسكو",
+      "تراث"
+    ],
+    "hashtags": [
+      "#آرل",
+      "#آثار_رومانية",
+      "#اليونسكو",
+      "#تراث"
+    ],
+    "source_url": "https://whc.unesco.org/en/list/164/",
+    "containsSyntheticMedia": true
+  },
+  "duration_policy": {
+    "minimum_exclusive": 90,
+    "maximum_exclusive": 180
+  },
+  "music_target_lufs": -27,
+  "music": "Original composed score",
+  "music_bpm": 104,
+  "source": {
+    "url": "https://whc.unesco.org/en/list/164/",
+    "publisher": "UNESCO World Heritage Centre",
+    "title": "ساحة آرل: مبنى روماني اتغير دوره"
+  },
+  "topic_key": "arles-amphitheatre-unesco",
+  "profile": "history",
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": [],
+    "model": "gemini-3.5-flash-lite"
+  },
+  "render": "Three.js geometry and lighting with reference editorial frame; bloom disabled",
+  "visual_style": "reference",
+  "review_watermark": true,
+  "reference_audio_reused": false,
+  "automatically_published": false,
+  "status": "Technical checks passed; artistic judgement requires viewing the complete film."
+}
