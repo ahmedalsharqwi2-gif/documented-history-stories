@@ -189,6 +189,32 @@
         ],
         "scope": "Show only the stated focal structure as a schematic; do not claim a surveyed replica of the whole heritage site or invent construction measurements."
       }
+    },
+    {
+      "key": "unesco-38-arena",
+      "family": "architecture",
+      "variant": "arena",
+      "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+      "publisher": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/38/",
+      "visual_contract": {
+        "focus": "arena",
+        "tier_count": 3,
+        "diagram_only": true,
+        "allowed_modes": [
+          "hero",
+          "levels",
+          "arch",
+          "section",
+          "material",
+          "assembly"
+        ],
+        "forbidden_features": [
+          "dome_ribs",
+          "oculus"
+        ],
+        "scope": "Show only the stated focal structure as a schematic; do not claim a surveyed replica of the whole heritage site or invent construction measurements."
+      }
     }
   ],
   "news": []
