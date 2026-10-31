@@ -75,7 +75,7 @@ def canonical(url):
 
 
 def evidence(url):
-    canonical(url);r=requests.get(url,timeout=40,headers={'User-Agent':'ArabicDocumentaryMotion/2.0'});r.raise_for_status();canonical(r.url)
+    canonical(url);r=requests.get(url,timeout=40,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36'});r.raise_for_status();canonical(r.url)
     soup=BeautifulSoup(r.text,'html.parser')
     for node in soup(['script','style','nav','footer','header','aside']):node.decompose()
     body=soup.find('article') or soup.find('main') or soup
