@@ -1,0 +1,181 @@
+{
+  "file": "professional-review.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 136.0,
+  "story_sha256": "84483e36168dfa684f8c18289a1a68645267c1922f9e64d04760e01677685214",
+  "voice": "original Gemini Charon",
+  "asr_model": "medium+small",
+  "independent_asr_word_coverage": 0.8777777777777778,
+  "exact_token_coverage": 0.8777777777777778,
+  "speech_matching_method": "Exact-token ensemble anchors; supplied-script phrase captions; no active-word precision claim",
+  "known_name_normalization_applied": false,
+  "visual_gate": {
+    "passed": true,
+    "duration": 136.0,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "method": "within-scene diagram-region pixel changes",
+    "scenes": [
+      {
+        "scene": 1,
+        "diagram_spatial_std": [
+          40.86925548082134,
+          40.97806086326171,
+          40.661734247377275
+        ],
+        "changed_pixel_ratios": [
+          0.4206908831908832,
+          0.39588081671415004
+        ],
+        "passed": true
+      },
+      {
+        "scene": 2,
+        "diagram_spatial_std": [
+          44.21260745729895,
+          50.50869772220042,
+          55.83149447069109
+        ],
+        "changed_pixel_ratios": [
+          0.3960826210826211,
+          0.4387701804368471
+        ],
+        "passed": true
+      },
+      {
+        "scene": 3,
+        "diagram_spatial_std": [
+          30.04760604645764,
+          30.163065072330994,
+          30.073332206762707
+        ],
+        "changed_pixel_ratios": [
+          0.38664529914529916,
+          0.4016263057929725
+        ],
+        "passed": true
+      },
+      {
+        "scene": 4,
+        "diagram_spatial_std": [
+          24.4997892728523,
+          21.47293192392613,
+          25.24153734283579
+        ],
+        "changed_pixel_ratios": [
+          0.07731481481481481,
+          0.14196343779677112
+        ],
+        "passed": true
+      },
+      {
+        "scene": 5,
+        "diagram_spatial_std": [
+          40.70544384447864,
+          40.93905114106175,
+          40.770211137932
+        ],
+        "changed_pixel_ratios": [
+          0.38977920227920226,
+          0.3237773029439696
+        ],
+        "passed": true
+      },
+      {
+        "scene": 6,
+        "diagram_spatial_std": [
+          41.885626398768814,
+          41.99568165747484,
+          42.28329946125809
+        ],
+        "changed_pixel_ratios": [
+          0.3739078822412156,
+          0.43536324786324787
+        ],
+        "passed": true
+      },
+      {
+        "scene": 7,
+        "diagram_spatial_std": [
+          40.810970449214615,
+          40.97690509930812,
+          40.67766051065528
+        ],
+        "changed_pixel_ratios": [
+          0.39093067426400757,
+          0.3998931623931624
+        ],
+        "passed": true
+      },
+      {
+        "scene": 8,
+        "diagram_spatial_std": [
+          44.21877424585817,
+          44.103483494230005,
+          44.29025816504036
+        ],
+        "changed_pixel_ratios": [
+          0.11781813865147199,
+          0.1061965811965812
+        ],
+        "passed": true
+      }
+    ],
+    "note": "Technical blank/freeze detection only; not a judgement of artistic or factual quality."
+  },
+  "audio_tail": {
+    "audio_seconds": 136.0,
+    "video_seconds": 136.0,
+    "difference_seconds": 0.0,
+    "last_speech_window_correlation": 0.993654191493988,
+    "audio_tail_checked": true,
+    "silence_padding_used_to_hide_lost_speech": false
+  },
+  "publication_metadata": {
+    "title": "نقص ونروى | مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+    "caption": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/38/\n#تونس #آثار #مدر_ج_الجم_الكولوسيوم_الإفريقي_في",
+    "description": "رسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/38/\n#تونس #آثار #مدر_ج_الجم_الكولوسيوم_الإفريقي_في",
+    "tags": [
+      "تونس",
+      "آثار",
+      "مدر_ج_الجم_الكولوسيوم_الإفريقي_في"
+    ],
+    "hashtags": [
+      "#تونس",
+      "#آثار",
+      "#مدر_ج_الجم_الكولوسيوم_الإفريقي_في"
+    ],
+    "source_url": "https://whc.unesco.org/en/list/38/",
+    "containsSyntheticMedia": true
+  },
+  "duration_policy": {
+    "minimum_exclusive": 90,
+    "maximum_exclusive": 180
+  },
+  "music_target_lufs": -27,
+  "music": "Original composed score",
+  "music_bpm": 104,
+  "source": {
+    "url": "https://whc.unesco.org/en/list/38/",
+    "publisher": "UNESCO World Heritage Centre",
+    "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس"
+  },
+  "topic_key": "unesco-38-arena",
+  "profile": "history",
+  "editorial_review": {
+    "supported": true,
+    "novel": true,
+    "issues": [],
+    "model": "gemini-3.5-flash-lite"
+  },
+  "render": "Three.js procedural geometry, physical lighting, custom skin shader, layered optical bloom",
+  "visual_style": "original",
+  "review_watermark": false,
+  "reference_audio_reused": false,
+  "automatically_published": false,
+  "status": "Technical checks passed; artistic judgement requires viewing the complete film."
+}
