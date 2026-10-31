@@ -17,6 +17,7 @@ test('cinema preserves sourced two-tier aqueduct geometry and uses bounded shado
  const geometry=()=>{const records=[];channel.root.traverse(o=>{if(o.isMesh)records.push([o.uuid,o.geometry.uuid,o.geometry.attributes.position.count,Array.from(o.geometry.attributes.position.array)]);});return records;};
  const before=geometry(),renderer={shadowMap:{enabled:false}},cinema=installHistoryCinema({renderer,scene,camera,root:channel.root});
  assert.deepEqual(geometry(),before);assert.ok(cinema.materialCount>0);assert.equal(renderer.shadowMap.enabled,true);
+ const surfaces=new Set();channel.root.traverse(o=>{if(o.isMesh&&o.material.bumpMap)surfaces.add(o.material.bumpMap.name);});assert.ok(surfaces.has('history-v2-stone'));assert.ok(surfaces.has('history-v2-wood'));
  const bridge=channel.root.getObjectByName('aqueduct');assert.equal(bridge.children.filter(o=>o.userData.tier!==undefined&&o.visible).length,2);
  cinema.update({progress:0,index:0,story});const start=camera.position.clone();
  cinema.update({progress:1,index:0,story});assert.ok(camera.position.distanceTo(start)>.5);

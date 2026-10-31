@@ -12,7 +12,7 @@ export function historySurface(kind='stone',size=128){
  }
  const texture=new THREE.DataTexture(pixels,size,size,THREE.RGBAFormat);
  texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.repeat.set(2,2);
- texture.magFilter=THREE.LinearFilter;texture.minFilter=THREE.LinearFilter;texture.needsUpdate=true;
+ texture.name='history-v2-'+kind;texture.magFilter=THREE.LinearFilter;texture.minFilter=THREE.LinearFilter;texture.needsUpdate=true;
  return texture;
 }
 
@@ -26,8 +26,9 @@ export function installHistoryCinema({renderer,scene,camera,root}){
    if(!material.isMeshStandardMaterial||material.transparent||(material.emissiveIntensity>.5&&material.emissive?.getHex()>0))return material;
    if(adapted.has(material))return adapted.get(material);
    const copy=material.clone();
-   if(material.roughness>=.65){copy.bumpMap=surfaces.stone;copy.bumpScale=.026;copy.roughnessMap=surfaces.stone;}
-   else if(material.color.r>.1&&material.color.r>material.color.b*1.3&&material.metalness<.2){copy.bumpMap=surfaces.wood;copy.bumpScale=.018;}
+   const timber=material.color.r<.3&&material.color.r>material.color.b*1.8&&material.metalness<.2;
+   if(timber){copy.bumpMap=surfaces.wood;copy.bumpScale=.018;copy.roughnessMap=surfaces.wood;}
+   else if(material.roughness>=.65){copy.bumpMap=surfaces.stone;copy.bumpScale=.026;copy.roughnessMap=surfaces.stone;}
    copy.roughness=Math.max(.3,copy.roughness);adapted.set(material,copy);shaded++;
    return copy;
   };
