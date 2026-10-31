@@ -1,0 +1,62 @@
+{
+  "profile": "history",
+  "pipeline": "v2",
+  "purpose": "silent technical visual review only",
+  "acceptance_passed": false,
+  "fresh_film": false,
+  "publishable": false,
+  "automatic_publication": false,
+  "file_name": "history-v2-silent-technical.mp4",
+  "sha256": "0b01bd3a5de717ca5520f9630aed28f6ba2aff7f6c36a32026057b070a9d9fd2",
+  "bytes": 5521190,
+  "duration": 32.0,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "decoded_video_frames": 960,
+  "video_codec": "h264",
+  "audio_streams": 0,
+  "full_video_decode": "PASS",
+  "visual_inspection": {
+    "beginning_seconds": 1,
+    "middle_seconds": 16,
+    "ending_seconds": 30.5,
+    "two_tier_geometry_preserved": true,
+    "safe_review_label_present": true,
+    "source_label_readable": true,
+    "limitations": "Silent technical demonstration, not a freshly narrated film and not editorial acceptance."
+  },
+  "original_logo_installed": false,
+  "render": {
+    "pipeline": "v2",
+    "delivery_directory": "/workspace/setup/history-v2-technical",
+    "duration": 32,
+    "from": 0,
+    "to": 32,
+    "start_frame": 0,
+    "end_frame": 960,
+    "total_frames": 960,
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "originalVoice": false,
+    "visual_style": "reference",
+    "review": true,
+    "story_sha256": "aeb846c3df701ce13168ecd550062984428e67872eec1b9444a27b83ecfc5a62",
+    "branding": {
+      "profile": "history",
+      "logoApplied": false
+    },
+    "cinema": {
+      "pipeline": "v2",
+      "materialCount": 137
+    },
+    "errors": []
+  },
+  "blockers": [
+    "Gemini credential unavailable for fresh Charon narration",
+    "Original gold history logo file absent",
+    "Archived full narrations found contain factual or wording defects; rejected as accurate acceptance films"
+  ],
+  "source_legacy_state_changed": false
+}
