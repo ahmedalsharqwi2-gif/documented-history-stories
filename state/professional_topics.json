@@ -650,7 +650,7 @@
       "canonical_subject": "unesco-38-arena",
       "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
       "url": "https://whc.unesco.org/en/list/38/",
-      "status": "reserved",
+      "status": "rendered",
       "story": {
         "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
         "canonical_subject": "unesco-38-arena",
@@ -818,7 +818,8 @@
         "no_silence_padding": true,
         "no_speed_change": true
       },
-      "narration_revision_attempts": 1
+      "narration_revision_attempts": 1,
+      "video_sha256": "07c75365c282019769c81c53d00f53335a55b6a7e7161e67bbb3655a695aa3f9"
     }
   ]
 }
