@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "في مدينة الجم الصغيرة بتونس، ترتفع الآثار المهيبة لأكبر كوليزيه في شمال إفريقيا. المكان ده بيجسد عظومة الإمبراطورية الرومانية وامتداد نفوذها في إفريقيا من خلال مبنى ضخم وشاهد على التاريخ. المدرّج الضخم ده كان يقدر يستوعب أعداد كبيرة جداً من المشاهدين وصلت لحد خمسة وثلاثين ألف متفرج. الرقم ده بيوضح حجم الفعاليات الشعبية والجماهيرية اللي كانت بتتعمل جوه المعلم ده في الزمن ده. بدأ بناء هذا المعلم الفريد في حدود عام مئتين وثمانية وثلاثين للميلاد. التصميم ده ما اتعملش على سفح جبل زي غيره، ده اتبنى بالكامل على أرض مستوية وبطريقة هندسية مميزة. المبنى مش بس قائم على أرض مستوية، ده مبني بالكامل من كتل حجرية ضخمة ومتحررة من أي أساسات تقليدية تحت الأرض. الاعتماد هنا كان على توازن الكتل الحجرية بدقة شديدة. الواجهة الخارجية للمدرّج بتتكون من مستويات متعددة من العقود ذات الطراز المعماري الروماني المعروف. التصميم ده بيشبه كولوسيوم روما من غير ما يكون نسخة مطابقة تماماً ليه في كل التفاصيل. لما ندخل جوه المعلم، هنلاقي أن معظم البنية التحتية الخاصة بصفوف المقاعد لسه محفوظة بشكل جيد. جدار المنصة والساحة والممرات السفلية تحت الأرض موجودة بحالتها الأصلية تقريباً. وجود مبنى ضخمة بالشكل ده في مقاطعة بعيدة بيعكس مدى رخاء مدينة ثيسدروس القديمة اللي هي الجم دلوقتي، وازدهار تجارتها زمن الإمبراطورية الرومانية بكل تفاصيلها. لحد النهاردة، بيمثل مدرّج الجم شاهداً فريداً على فن العمارة الرومانية المخصصة للفعاليات الجماهيرية في إفريقيا، وبيحافظ على قيمته التاريخية والأثرية الكبيرة وسط التغيرات المحيطة.",
+  "interaction_id": "v1_ChZtUUhtYXFpWUZKcl9qckVQN2RuTkNBEhZtUUhtYXFpWUZKcl9qckVQN2RuTkNB",
+  "duration": 111.44,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "cf10aca5b82939922aed29f939049db05903858fa9a531057013e1aeedda9338",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": false,
+  "output_sha256": "cf10aca5b82939922aed29f939049db05903858fa9a531057013e1aeedda9338"
+}
