@@ -643,6 +643,164 @@
       },
       "reserved_at": "2026-10-30T20:43:28.648655+00:00",
       "video_sha256": "c24715b3f1181537767cdbfbd0a915c79f5ead1aede3beb00fc57fee44f06a3e"
+    },
+    {
+      "slot": "daily-2026-10-31",
+      "topic_key": "unesco-38-arena",
+      "canonical_subject": "unesco-38-arena",
+      "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+      "url": "https://whc.unesco.org/en/list/38/",
+      "status": "reserved",
+      "story": {
+        "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+        "canonical_subject": "unesco-38-arena",
+        "suitable": true,
+        "facts": [
+          "يقع مدرّج الجم في تونس ويعتبر أكبر كوليزيه في شمال إفريقيا.",
+          "تبلغ سعة المدرّج نحو خمسة وثلاثين ألف مشاهد.",
+          "بدأت أعمال بناء المعلم في عام مئتين وثمانية وثلاثين للميلاد.",
+          "بُني بالكامل من كتل حجرية دون قواعد أو أساسات تحتية."
+        ],
+        "milestones": [
+          "القرن الثالث",
+          "عام 238",
+          "عام 1979"
+        ],
+        "scenes": [
+          {
+            "id": "scene_1",
+            "label": "الموقع والآثار",
+            "narration": "في مدينة الجم الصغيرة بتونس، ترتفع الآثار المهيبة لأكبر كوليزيه في شمال إفريقيا. المكان ده بيجسد عظومة الإمبراطورية الرومانية وامتداد نفوذها في إفريقيا من خلال مبنى ضخم وشاهد على التاريخ.",
+            "labels": [
+              "الآثار المهيبة"
+            ],
+            "visual_mode": "hero",
+            "evidence_excerpt_id": 15,
+            "evidence_quote": "الجم الروماني ترتفع في مدينة الجم الصغيرة الآثار المهيبة لأكبر كوليزيه في شمال افريقيا وهو"
+          },
+          {
+            "id": "scene_2",
+            "label": "السعة الجماهيرية",
+            "narration": "المدرّج الضخم ده كان يقدر يستوعب أعداد كبيرة جداً من المشاهدين وصلت لحد خمسة وثلاثين ألف متفرج. الرقم ده بيوضح حجم الفعاليات الشعبية والجماهيرية اللي كانت بتتعمل جوه المعلم ده في الزمن ده.",
+            "labels": [
+              "خمسة وثلاثين ألف متفرج"
+            ],
+            "visual_mode": "levels",
+            "evidence_excerpt_id": 16,
+            "evidence_quote": "عبارة عن مدرّج روماني ضخم يتسع لما يعادل 35000 مشاهد. ويجسّد هذا البناء العائد الى"
+          },
+          {
+            "id": "scene_3",
+            "label": "التأسيس والبناء",
+            "narration": "بدأ بناء هذا المعلم الفريد في حدود عام مئتين وثمانية وثلاثين للميلاد. التصميم ده ما اتعملش على سفح جبل زي غيره، ده اتبنى بالكامل على أرض مستوية وبطريقة هندسية مميزة.",
+            "labels": [
+              "أرض مستوية"
+            ],
+            "visual_mode": "assembly",
+            "evidence_excerpt_id": 49,
+            "evidence_quote": "but on flat ground and supported by a complex system of arches. The monument of"
+          },
+          {
+            "id": "scene_4",
+            "label": "الكتل الحجرية",
+            "narration": "المبنى مش بس قائم على أرض مستوية، ده مبني بالكامل من كتل حجرية ضخمة ومتحررة من أي أساسات تقليدية تحت الأرض. الاعتماد هنا كان على توازن الكتل الحجرية بدقة شديدة.",
+            "labels": [
+              "كتل حجرية"
+            ],
+            "visual_mode": "material",
+            "evidence_excerpt_id": 37,
+            "evidence_quote": "amphitheatre is built entirely of stone blocks, with no foundations and free-standing. In this respect"
+          },
+          {
+            "id": "scene_5",
+            "label": "العقود والواجهات",
+            "narration": "الواجهة الخارجية للمدرّج بتتكون من مستويات متعددة من العقود ذات الطراز المعماري الروماني المعروف. التصميم ده بيشبه كولوسيوم روما من غير ما يكون نسخة مطابقة تماماً ليه في كل التفاصيل.",
+            "labels": [],
+            "visual_mode": "arch",
+            "evidence_excerpt_id": 41,
+            "evidence_quote": "amphitheatres in the world. Its facade comprises three levels of arcades of Corinthian or composite"
+          },
+          {
+            "id": "scene_6",
+            "label": "البنية الداخلية",
+            "narration": "لما ندخل جوه المعلم، هنلاقي أن معظم البنية التحتية الخاصة بصفوف المقاعد لسه محفوظة بشكل جيد. جدار المنصة والساحة والممرات السفلية تحت الأرض موجودة بحالتها الأصلية تقريباً.",
+            "labels": [
+              "الممرات السفلية"
+            ],
+            "visual_mode": "section",
+            "evidence_excerpt_id": 43,
+            "evidence_quote": "The wall of the podium, the arena and the underground passages are practically intact. This"
+          },
+          {
+            "id": "scene_7",
+            "label": "الازدهار والتاريخ",
+            "narration": "وجود مبنى ضخمة بالشكل ده في مقاطعة بعيدة بيعكس مدى رخاء مدينة ثيسدروس القديمة اللي هي الجم دلوقتي، وازدهار تجارتها زمن الإمبراطورية الرومانية بكل تفاصيلها.",
+            "labels": [
+              "مدينة ثيسدروس"
+            ],
+            "visual_mode": "hero",
+            "evidence_excerpt_id": 46,
+            "evidence_quote": "the prosperity of the small city of Thysdrus (current El Jem) at the time of"
+          },
+          {
+            "id": "scene_8",
+            "label": "الإرث الحالي",
+            "narration": "لحد النهاردة، بيمثل مدرّج الجم شاهداً فريداً على فن العمارة الرومانية المخصصة للفعاليات الجماهيرية في إفريقيا، وبيحافظ على قيمته التاريخية والأثرية الكبيرة وسط التغيرات المحيطة.",
+            "labels": [
+              "فن العمارة الرومانية"
+            ],
+            "visual_mode": "levels",
+            "evidence_excerpt_id": 35,
+            "evidence_quote": "synthesis The Amphitheatre of El Jem bears outstanding witness to Roman architecture, notably monuments built"
+          }
+        ],
+        "hashtags": [
+          "مدرج_الجم",
+          "تونس",
+          "آثار_رومانية"
+        ],
+        "editorial_warnings": [
+          "Write 260–330 spoken words for a natural film between 90 and 180 seconds"
+        ],
+        "profile": "history",
+        "series": "نقص ونروى",
+        "visual_family": "architecture",
+        "variant": "arena",
+        "topic_key": "unesco-38-arena",
+        "source": {
+          "url": "https://whc.unesco.org/en/list/38/",
+          "publisher": "UNESCO World Heritage Centre",
+          "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس"
+        },
+        "fiction": false,
+        "documented": true,
+        "visual_contract": {
+          "focus": "arena",
+          "tier_count": 3,
+          "diagram_only": true,
+          "allowed_modes": [
+            "hero",
+            "levels",
+            "arch",
+            "section",
+            "material",
+            "assembly"
+          ],
+          "forbidden_features": [
+            "dome_ribs",
+            "oculus"
+          ],
+          "scope": "Show only the stated focal structure as a schematic; do not claim a surveyed replica of the whole heritage site or invent construction measurements."
+        },
+        "editorial_review": {
+          "supported": true,
+          "novel": true,
+          "issues": [],
+          "model": "gemini-3.5-flash-lite"
+        },
+        "writer_model": "gemini-3.5-flash-lite"
+      },
+      "reserved_at": "2026-10-31T14:56:22.500470+00:00"
     }
   ]
 }
