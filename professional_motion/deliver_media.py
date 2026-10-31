@@ -16,7 +16,12 @@ files={'review-1080p.mp4':video,'review-720p.mp4':out/'review-720p.mp4','verific
 entries=[]
 for name,path in files.items():entries.append('100644 blob '+git('hash-object','-w',str(path))+'\t'+name+'\n')
 tree=git('mktree',data=''.join(entries).encode());commit=git('-c','user.name=review-delivery-bot','-c','user.email=bot@users.noreply.github.com','commit-tree',tree,'-m','Verified '+report['profile']+' review media [skip ci]')
-git('push','origin',commit+':refs/heads/'+branch)
+# Preserve an existing review branch on retries; never overwrite delivered media.
+remote=subprocess.run(['git','ls-remote','--heads','origin',branch],capture_output=True,text=True,check=True).stdout.strip()
+if remote:
+ print('Review delivery branch already exists:',branch)
+else:
+ git('push','origin',commit+':refs/heads/'+branch)
 if os.getenv('GITHUB_STEP_SUMMARY'):
  with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('### Actual review video\n\n[Watch 720p]('+base+'review-720p.mp4) · [Download 1080p]('+base+'review-1080p.mp4)\n')
 print(base+'review-720p.mp4')
