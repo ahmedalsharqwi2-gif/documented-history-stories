@@ -39,7 +39,7 @@ try{
  const startFrame=splitting?Math.floor(totalFrames*part/parts):Math.ceil(from*fps),endFrame=splitting?Math.floor(totalFrames*(part+1)/parts):Math.ceil(to*fps);
  if(!Number.isFinite(from)||!Number.isFinite(to)||from<0||to<=from||to>duration+.001)throw Error('Invalid render interval');
  const outputName=path.basename(flag('--output','visuals.mp4'));const partial=startFrame>0||endFrame<totalFrames;
- console.log(JSON.stringify({duration,originalVoice:!!timing,webgl:await page.evaluate(()=>document.querySelector('canvas:not(#text)').getContext('webgl2')?.getParameter(7937))}));
+ console.log(JSON.stringify({duration,originalVoice:!!timing?.audio_sha256,webgl:await page.evaluate(()=>document.querySelector('canvas:not(#text)').getContext('webgl2')?.getParameter(7937))}));
  const stills=process.argv.includes('--stills');
  if(stills){
   for(const [i,t] of [2.7,7,12,18,24,30,36.5,43].entries()){
@@ -58,5 +58,5 @@ try{
   }
   ff.stdin.end();const [code]=await completed;if(code!==0)throw Error('FFmpeg failed');
  }
- await writeFile(path.join(output,partial?outputName+'.json':'render.json'),JSON.stringify({pipeline,delivery_directory:delivery,duration,from,to,start_frame:startFrame,end_frame:endFrame,total_frames:totalFrames,fps,width:1080,height:1920,originalVoice:!!timing,visual_style:style,review:process.argv.includes('--review'),story_sha256:storyHash,branding:await page.evaluate(()=>window.brandingStatus),cinema:await page.evaluate(()=>window.cinemaStatus),errors},null,2));
+ await writeFile(path.join(output,partial?outputName+'.json':'render.json'),JSON.stringify({pipeline,delivery_directory:delivery,duration,from,to,start_frame:startFrame,end_frame:endFrame,total_frames:totalFrames,fps,width:1080,height:1920,originalVoice:!!timing?.audio_sha256,visual_style:style,review:process.argv.includes('--review'),story_sha256:storyHash,branding:await page.evaluate(()=>window.brandingStatus),cinema:await page.evaluate(()=>window.cinemaStatus),errors},null,2));
 }finally{if(encoder&&encoder.exitCode===null)encoder.kill('SIGTERM');await browser.close();server.close();}
