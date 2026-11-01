@@ -1,8 +1,10 @@
 {
   "profile": "history",
   "review_only": true,
-  "launch": "source-bound-scene-id-fix-2026-11-01-1",
+  "launch": "resume-retained-history-audio-2026-11-01-1",
   "no_social_posts": true,
   "prior_failure": "41315328358",
-  "retain_raw_drafts": true
+  "retain_raw_drafts": true,
+  "resume_slot": "candidate-history-2082ae2eff684e9993cf52ca5f36e11e",
+  "resume_from_run": 41349661788
 }
