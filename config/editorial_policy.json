@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "profile": "history",
+  "external_sources_required": false,
+  "independent_scientific_review_required": false,
+  "topic_history_required": true,
+  "video_fingerprint_required": true,
+  "publication_receipts_required": true,
+  "daily_publication": {
+    "time": "17:00",
+    "timezone": "Africa/Cairo",
+    "missed_slot": "skip_without_rollover"
+  },
+  "editorial_mode": "general_knowledge",
+  "categories": [
+    "civilizations",
+    "inventions",
+    "daily_life",
+    "trade",
+    "cities",
+    "historical_events"
+  ],
+  "source": "Explicit repository-owner instruction in current resumed conversation on 2026-11-01"
+}
