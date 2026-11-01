@@ -1,0 +1,120 @@
+{
+  "profile": "history",
+  "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+  "kind": "read_only_diagnostic",
+  "stage": "success",
+  "run_id": "41349495203",
+  "run_attempt": "1",
+  "source_commit": "fb2b77731adf00b7861990c887fdc77358daf558",
+  "target_run": "41349016613",
+  "observed_at": "2026-11-01T20:57:57.404695+00:00",
+  "no_provider_calls": true,
+  "no_posts_created": true,
+  "evidence": [
+    {
+      "file": "run-41349016613-1/generation-failure.json",
+      "data": {
+        "slot": "candidate-history-4e797a050cbc4dc9a4cfc95690f8d757",
+        "profile": "history",
+        "error_class": "RuntimeError",
+        "reservation_retained": false,
+        "publishable": false,
+        "failed_phase": "story_or_reservation",
+        "measured_narration_seconds": null,
+        "timing_present": false
+      }
+    },
+    {
+      "file": "run-41349016613-1/professional_motion/delivery/planning-errors.json",
+      "data": [
+        {
+          "topic_key": "unesco-1303-cast_iron_trough",
+          "error_class": "ValueError",
+          "validation": "Directed shots must match authored scene identities"
+        }
+      ]
+    },
+    {
+      "file": "run-41349016613-1/professional_motion/delivery/candidate-status.json",
+      "data": [
+        {
+          "key": "unesco-1303-cast_iron_trough",
+          "title": "Pontcysyllte Aqueduct and Canal",
+          "family": "architecture",
+          "variant": "cast_iron_trough",
+          "published": null,
+          "already_reserved": false
+        },
+        {
+          "key": "great-pyramid-giza-unesco",
+          "title": "هرم الجيزة: إيه المعروف وإيه المختلف عليه؟",
+          "family": "architecture",
+          "variant": "pyramid",
+          "published": null,
+          "already_reserved": true
+        },
+        {
+          "key": "segovia-aqueduct-unesco",
+          "title": "قناطر سيغوفيا: الميه فوق المدينة",
+          "family": "architecture",
+          "variant": "aqueduct",
+          "published": null,
+          "already_reserved": true
+        },
+        {
+          "key": "arles-amphitheatre-unesco",
+          "title": "ساحة آرل: مبنى روماني اتغير دوره",
+          "family": "architecture",
+          "variant": "arena",
+          "published": null,
+          "already_reserved": true
+        },
+        {
+          "key": "pont-du-gard-aqueduct",
+          "title": "جسر بيشيل الميه: بون دو جار",
+          "family": "architecture",
+          "variant": "aqueduct",
+          "published": null,
+          "already_reserved": true
+        },
+        {
+          "key": "unesco-38-arena",
+          "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+          "family": "architecture",
+          "variant": "arena",
+          "published": null,
+          "already_reserved": true
+        }
+      ]
+    },
+    {
+      "file": "0_candidate.txt",
+      "error_lines": [
+        "2026-11-01T20:53:33.4318257Z Traceback (most recent call last):",
+        "2026-11-01T20:53:33.4352569Z ##[error]    raise RuntimeError('No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video')",
+        "2026-11-01T20:53:33.4359122Z RuntimeError: No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video",
+        "2026-11-01T20:53:46.3445379Z     \"error_class\": \"RuntimeError\",",
+        "2026-11-01T20:53:46.3447386Z         \"error_class\": \"ValueError\",",
+        "2026-11-01T20:53:46.3457093Z   \"evidence_error_class\": \"ValueError\","
+      ]
+    },
+    {
+      "file": "candidate/11_Generate a new reserved source-backed story and full Charon film in isolation.txt",
+      "error_lines": [
+        "2026-11-01T20:53:33.4318208Z Traceback (most recent call last):",
+        "2026-11-01T20:53:33.4352558Z ##[error]    raise RuntimeError('No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video')",
+        "2026-11-01T20:53:33.4359112Z RuntimeError: No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video"
+      ]
+    },
+    {
+      "file": "candidate/14_Retain final review status and verified movie Release.txt",
+      "error_lines": [
+        "2026-11-01T20:53:46.3445378Z     \"error_class\": \"RuntimeError\",",
+        "2026-11-01T20:53:46.3447384Z         \"error_class\": \"ValueError\",",
+        "2026-11-01T20:53:46.3457092Z   \"evidence_error_class\": \"ValueError\","
+      ]
+    }
+  ],
+  "errors": [],
+  "provider_http_statuses": []
+}
