@@ -1,0 +1,20 @@
+{
+  "profile": "history",
+  "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+  "run_id": "41315328370",
+  "run_attempt": "1",
+  "source_commit": "45aab0b3894c5e3e642af4982ce8da5fb642236e",
+  "stage": "started",
+  "requested_stage": "started",
+  "observed_at": "2026-11-01T14:16:05.032729+00:00",
+  "review_only": true,
+  "automatically_published": false,
+  "cutover_eligible": false,
+  "complete_film_verified": false,
+  "media_url": null,
+  "credential_presence": {
+    "GEMINI_API_KEY": false,
+    "GEMINI_TEXT_API_KEY": false,
+    "GEMINI_TTS_API_KEY": false
+  }
+}
