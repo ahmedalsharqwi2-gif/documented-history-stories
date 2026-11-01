@@ -4,17 +4,98 @@
   "run_id": "41350831647",
   "run_attempt": "1",
   "source_commit": "f711aba930806253aaf9a8593aea49a37c2ee2e2",
-  "stage": "started",
-  "requested_stage": "started",
-  "observed_at": "2026-11-01T21:12:57.561249+00:00",
+  "stage": "failure",
+  "requested_stage": "success",
+  "observed_at": "2026-11-01T22:12:28.499760+00:00",
   "review_only": true,
   "automatically_published": false,
   "cutover_eligible": false,
-  "complete_film_verified": false,
+  "complete_film_verified": true,
   "media_url": null,
   "credential_presence": {
     "GEMINI_API_KEY": true,
     "GEMINI_TEXT_API_KEY": true,
     "GEMINI_TTS_API_KEY": true
-  }
+  },
+  "generation_result": {
+    "slot": "candidate-history-2082ae2eff684e9993cf52ca5f36e11e",
+    "profile": "history",
+    "topic_key": "unesco-1303-cast_iron_trough",
+    "duration": 124.16,
+    "story_sha256": "65dba44b049549c768dc29bd1a22c8607209fe111882009178289f46bd67cd2b",
+    "audio_sha256": "ce18d97bfd6bd4ebea2e12ffb0ab26dc23054d1ff5c91279ee973de3fb014eb8",
+    "fresh_topic_verified": true,
+    "publishable": false
+  },
+  "planning_evidence": {
+    "candidate-status.json": [
+      {
+        "key": "unesco-1303-cast_iron_trough",
+        "title": "Pontcysyllte Aqueduct and Canal",
+        "family": "architecture",
+        "variant": "cast_iron_trough",
+        "published": null,
+        "already_reserved": false
+      },
+      {
+        "key": "great-pyramid-giza-unesco",
+        "title": "هرم الجيزة: إيه المعروف وإيه المختلف عليه؟",
+        "family": "architecture",
+        "variant": "pyramid",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "segovia-aqueduct-unesco",
+        "title": "قناطر سيغوفيا: الميه فوق المدينة",
+        "family": "architecture",
+        "variant": "aqueduct",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "arles-amphitheatre-unesco",
+        "title": "ساحة آرل: مبنى روماني اتغير دوره",
+        "family": "architecture",
+        "variant": "arena",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "pont-du-gard-aqueduct",
+        "title": "جسر بيشيل الميه: بون دو جار",
+        "family": "architecture",
+        "variant": "aqueduct",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "unesco-38-arena",
+        "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+        "family": "architecture",
+        "variant": "arena",
+        "published": null,
+        "already_reserved": true
+      }
+    ]
+  },
+  "video_sha256": "c497a140e1a2aafeada6a8ba3e742d9a04884789103236b85da77d9562e4eb25",
+  "verification_sha256": "a4744c3a38213cf1abcda45386804e89a8906842351341cef0cb8ee6a80ecea5",
+  "duration": 124.166667,
+  "width": 1080,
+  "height": 1920,
+  "decode": "PASS",
+  "generation_report_present": true,
+  "generation_report_sha256": "eff31a5a4fdfb20523353fccb699d3e541a9b01a5e274c169276e95529ca28e9",
+  "generation_report_fresh_topic_claim": true,
+  "generation_origin": "supplied_delivery_not_new_generation_verified",
+  "fresh_topic_verified": false,
+  "narration_provenance": {
+    "provider": "Gemini TTS",
+    "voice": "Charon",
+    "interaction_id": "v1_Chd2YWpuYW9iQ082eXBfUFVQbW9TMmtRZxIXdmFqbmFvYkNPNnlwX1BVUG1vUzJrUWc",
+    "sha256": "ce18d97bfd6bd4ebea2e12ffb0ab26dc23054d1ff5c91279ee973de3fb014eb8",
+    "output_sha256": "ce18d97bfd6bd4ebea2e12ffb0ab26dc23054d1ff5c91279ee973de3fb014eb8"
+  },
+  "evidence_error_class": "RuntimeError"
 }
