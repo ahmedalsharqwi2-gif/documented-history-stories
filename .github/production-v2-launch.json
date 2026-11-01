@@ -1,7 +1,8 @@
 {
   "profile": "history",
   "review_only": true,
-  "launch": "schema-fixed-full-film-2026-11-01-1",
+  "launch": "source-bound-scene-id-fix-2026-11-01-1",
   "no_social_posts": true,
-  "prior_failure": "41315328358"
+  "prior_failure": "41315328358",
+  "retain_raw_drafts": true
 }
