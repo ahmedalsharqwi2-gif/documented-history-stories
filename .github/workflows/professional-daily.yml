@@ -24,7 +24,7 @@ name: Professional full-length daily film — history
         - original
         default: reference
   schedule:
-  - cron: 10 18 * * *
+  - cron: 0 7 * * *
   workflow_call:
     inputs:
       pipeline:
