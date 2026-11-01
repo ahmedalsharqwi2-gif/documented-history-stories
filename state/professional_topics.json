@@ -821,6 +821,162 @@
       "narration_revision_attempts": 1,
       "video_sha256": "790be90184e3cf78a1d34c41769c6ddfcf7b013779a1494e06e31d7e27905394",
       "publication_video_sha256": "1ad9ef7fd7b91f7db7090075a730ed9345dcb7675e6ca75a53dfb573f13f77d3"
+    },
+    {
+      "slot": "daily-2026-11-02",
+      "topic_key": "unesco-1303-cast_iron_trough",
+      "canonical_subject": "unesco-1303-cast_iron_trough",
+      "title": "قناة بونكتيسيلت: هندسة الحديد المسبوك في ويلز",
+      "url": "https://whc.unesco.org/en/list/1303/",
+      "status": "reserved",
+      "story": {
+        "title": "قناة بونكتيسيلت: هندسة الحديد المسبوك في ويلز",
+        "canonical_subject": "unesco-1303-cast_iron_trough",
+        "suitable": true,
+        "facts": [
+          "قناة بونكتيسيلت تقع في شمال شرق مقاطعة ويلز ويبلغ طولها ثمانية عشر كيلومترا.",
+          "تم استكمال بناء القنطرة في بداية القرن التاسع عشر وتحديدا في عام 1805.",
+          "صمم المهندس المدني توماس تيلفورد هذا المشروع ضمن منجزات الثورة الصناعية.",
+          "استخدم في بناء القناة معدن المسبوك والحديد المزخرف لإنشاء قناطر خفيفة وقوية.",
+          "تم بناء القنطرة دون استخدام أي كوابح أو أهوسة لتجاوز التضاريس الوعرة."
+        ],
+        "milestones": [
+          "بداية القرن التاسع عشر",
+          "عام 1805",
+          "الثورة الصناعية"
+        ],
+        "scenes": [
+          {
+            "id": "scene_1",
+            "label": "قناة بونكتيسيلت",
+            "narration": "في شمال شرق مقاطعة ويلز، وتحديداً في أجواء الثورة الصناعية، ظهر إنجاز هندسي ضخم بيمتد لمسافة ثمانية عشر كيلومتراً. المشروع ده بيعكس تحدي كبير للبيئة الجغرافية الوعرة اللي اختاروها عشان تمر منها المية من غير أي كوابح تقليدية تعطل حركة النقل المائي.",
+            "labels": [
+              "إنجاز هندسي ضخم"
+            ],
+            "visual_mode": "hero",
+            "evidence_excerpt_id": 8,
+            "evidence_quote": "Indicators Pontcysyllte Aqueduct and Canal Situated in north-eastern Wales, the 18 kilometre long Pontcysyllte Aqueduct"
+          },
+          {
+            "id": "scene_2",
+            "label": "تصميم توماس تيلفورد",
+            "narration": "المهندس المدني الشهير توماس تيلفورد هو اللي وضع التصميم الأساسي للعمل ده. الرؤية الهندسية اعتمدت على إيجاد حلول جريئة وغير معتادة لتجاوز المرتفعات والوديان، وهو الأمر اللي تطلب تفكير مختلف تماماً عن الطرق القديمة اللي كانت بتعتمد على الإنشاءات الحجرية الضخمة لوحدها.",
+            "labels": [
+              "المهندس المدني الشهير توماس تيلفورد"
+            ],
+            "visual_mode": "section",
+            "evidence_excerpt_id": 12,
+            "evidence_quote": "The aqueduct is a pioneering masterpiece of engineering and monumental metal architecture, conceived by the"
+          },
+          {
+            "id": "scene_3",
+            "label": "المعدن المسبوك",
+            "narration": "السر الأساسي في نجاح التصميم ده كان استخدام المعدن المسبوك والحديد المزخرف في هيكل القناة. المادتين دول سمحوا بإنشاء قناطر بتتسم بالخفة والصلابة في نفس الوقت، وده أدى لشكل نهائي بيجمع بين الضخامة والرشاقة الهندسية الواضحة لكل عابر.",
+            "labels": [
+              "المعدن المسبوك والحديد المزخرف"
+            ],
+            "visual_mode": "material",
+            "evidence_excerpt_id": 13,
+            "evidence_quote": "celebrated civil engineer Thomas Telford. The use of both cast and wrought iron in the"
+          },
+          {
+            "id": "scene_4",
+            "label": "بدون كوابح",
+            "narration": "من أبرز الخصائص التشغيلية للقناة إنها اتبلت وبُنيت من غير استخدام أي كوابح نهائياً على طول مسارها. ده تطلب دقة بالسنتيمتر في توزيع المية ووزنها داخل المجرى المصنوع من الحديد، عشان يفضل التدفق مستمر ومنتظم من غير ما يشكل ضغط مدمر على الجوانب.",
+            "labels": [
+              "من غير استخدام أي كوابح"
+            ],
+            "visual_mode": "water",
+            "evidence_excerpt_id": 11,
+            "evidence_quote": "canal required substantial, bold civil engineering solutions, especially as it was built without using locks."
+          },
+          {
+            "id": "scene_5",
+            "label": "تجميع الأجزاء",
+            "narration": "العمل اعتمد على تجميع أجزاء معدنية متكررة بدقة متناهية فوق دعامات حجرية مرتفعة ورقيقة. التناغم بين الدعامات الحجرية وأحواض الحديد المسبوك عكس تطور صناعة الحديد البريطانية وقتها وقدرتها على إنتاج قطع متطابقة تتحمل الأوزان الهائلة بمرور الزمن.",
+            "labels": [
+              "دعامات حجرية مرتفعة ورقيقة"
+            ],
+            "visual_mode": "assembly",
+            "evidence_excerpt_id": 65,
+            "evidence_quote": "Thomas Telford. It was constructed using metal arches supported by tall, slender masonry piers. The"
+          },
+          {
+            "id": "scene_6",
+            "label": "اكتمال البناء",
+            "narration": "استكمال بناء القنطرة دي جه في بداية القرن التاسع عشر، وتحديداً في عام 1805، لتصبح نموذج متفرد لكل مشاريع النقل المائي بعدها. الفترة دي شهدت طفرة حقيقية في تطبيقات الحديد الهيكلي وتطوير شبكات الملاحة الصناعية في أوروبا كلها.",
+            "labels": [
+              "بداية القرن التاسع عشر"
+            ],
+            "visual_mode": "hero",
+            "evidence_excerpt_id": 20,
+            "evidence_quote": "exploit du génie civil de la Révolution industrielle. Achevé au début du XIXème siècle, le"
+          },
+          {
+            "id": "scene_7",
+            "label": "أعمال الصيانة",
+            "narration": "مع مرور العقود، واجهت المنشأة تحديات تخص ثبات الجوانب الحجرية والردم القديم. عمليات الترميم والإصلاح استلزمت أحياناً استخدام تقنيات حديثة مختلفة عن المواد الأصلية، مثل الصفائح المعدنية والخرسانة، عشان تفضل القناة محافظة على كفاءتها التشغيلية ومياهها جارية.",
+            "labels": [],
+            "visual_mode": "section",
+            "evidence_excerpt_id": 84,
+            "evidence_quote": "initial backfills, both for structural resistance and waterproofing: concrete, steel pilings, geotextiles, etc. From the"
+          },
+          {
+            "id": "scene_8",
+            "label": "التأثير العالمي",
+            "narration": "في النهاية، فضلت قناة بونكتيسيلت شاهد حي على قدرة العقل البشري على تطويع الطبيعة الصعبة. الأسلوب الابتكاري اللي استخدمه تيلفورد في دمج الحديد والمجرى المائي ما وقفش تأثيره عند ويلز، ده اتخذته مشاريع هندسية كتيرة حول العالم مرجع أساسي لها.",
+            "labels": [
+              "قناة بونكتيسيلت"
+            ],
+            "visual_mode": "water",
+            "evidence_excerpt_id": 17,
+            "evidence_quote": "also recognized as an innovative ensemble that inspired many projects all over the world. Description"
+          }
+        ],
+        "hashtags": [
+          "قناة_بونكتيسيلت",
+          "الثورة_الصناعية",
+          "توماس_تيلفورد"
+        ],
+        "profile": "history",
+        "series": "نقص ونروى",
+        "visual_family": "architecture",
+        "variant": "cast_iron_trough",
+        "topic_key": "unesco-1303-cast_iron_trough",
+        "source": {
+          "url": "https://whc.unesco.org/en/list/1303/",
+          "publisher": "UNESCO World Heritage Centre",
+          "title": "Pontcysyllte Aqueduct and Canal"
+        },
+        "fiction": false,
+        "documented": true,
+        "visual_contract": {
+          "focus": "cast_iron_trough",
+          "material": "cast_iron",
+          "scope": "Only an illustrative section of the cast-iron trough and supporting stone pier; do not invent a whole-bridge span count, dimensions, Roman arches, or a construction event.",
+          "diagram_only": true,
+          "allowed_modes": [
+            "hero",
+            "section",
+            "water",
+            "material",
+            "assembly"
+          ],
+          "forbidden_features": [
+            "dome_ribs",
+            "oculus",
+            "arches"
+          ]
+        },
+        "editorial_review": {
+          "supported": true,
+          "novel": true,
+          "issues": [],
+          "model": "gemini-3.5-flash-lite"
+        },
+        "writer_model": "gemini-3.5-flash-lite"
+      },
+      "reserved_at": "2026-11-01T23:28:49.599334+00:00"
     }
   ]
 }
