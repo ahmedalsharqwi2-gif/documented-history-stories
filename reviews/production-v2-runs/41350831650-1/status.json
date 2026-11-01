@@ -4,17 +4,89 @@
   "run_id": "41350831650",
   "run_attempt": "1",
   "source_commit": "f711aba930806253aaf9a8593aea49a37c2ee2e2",
-  "stage": "started",
-  "requested_stage": "started",
-  "observed_at": "2026-11-01T21:12:50.201420+00:00",
+  "stage": "success",
+  "requested_stage": "success",
+  "observed_at": "2026-11-01T21:12:55.386996+00:00",
   "review_only": true,
   "automatically_published": false,
   "cutover_eligible": false,
   "complete_film_verified": false,
   "media_url": null,
-  "credential_presence": {
-    "GEMINI_API_KEY": false,
-    "GEMINI_TEXT_API_KEY": false,
-    "GEMINI_TTS_API_KEY": false
-  }
+  "kind": "buffer_audit",
+  "buffer_audit": {
+    "checked_at": "2026-11-01T21:12:53.759117+00:00",
+    "profile": "history",
+    "read_only": true,
+    "live_access_available": true,
+    "episodes": [
+      {
+        "slot": "daily-2026-10-30",
+        "video_sha256": "5e86d1838c39279eb97b8d99d9bf02ec023e3b74bef6b9c9171bcac36a21e267",
+        "retained_status": "scheduled",
+        "due_at": "2026-10-30T15:00:00Z",
+        "live_verified": true,
+        "posts": {
+          "youtube": {
+            "retained_post_id": "6ae48f48abdb62a0e37cc839",
+            "expected_channel_id": "6ab67b4fea19ca0bdee58218",
+            "retained_status": "scheduled",
+            "live_checked": true,
+            "observed_post_id": "6ae48f48abdb62a0e37cc839",
+            "channel_id": "6ab67b4fea19ca0bdee58218",
+            "status": "sent",
+            "scheduled_at": "2026-10-30T15:00:00.000Z",
+            "sent_at": "2026-10-30T15:00:59.346Z",
+            "external_link": "https://www.youtube.com/shorts/2Asj3H2N2zM",
+            "media_urls": [
+              "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+            ],
+            "post_and_channel_match": true,
+            "due_matches": true,
+            "media_matches": true,
+            "verified": true
+          },
+          "facebook": {
+            "retained_post_id": "6ae48f4ae560b6bf642a6b22",
+            "expected_channel_id": "6ab67b0dea19ca0bdee58014",
+            "retained_status": "scheduled",
+            "live_checked": true,
+            "observed_post_id": "6ae48f4ae560b6bf642a6b22",
+            "channel_id": "6ab67b0dea19ca0bdee58014",
+            "status": "sent",
+            "scheduled_at": "2026-10-30T15:00:00.000Z",
+            "sent_at": "2026-10-30T15:01:05.406Z",
+            "external_link": "https://www.facebook.com/reel/2180688865991321/",
+            "media_urls": [
+              "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+            ],
+            "post_and_channel_match": true,
+            "due_matches": true,
+            "media_matches": true,
+            "verified": true
+          },
+          "instagram": {
+            "retained_post_id": "6ae48f4de560b6bf642a6bc5",
+            "expected_channel_id": "6ab67accea19ca0bdee57e17",
+            "retained_status": "scheduled",
+            "live_checked": true,
+            "observed_post_id": "6ae48f4de560b6bf642a6bc5",
+            "channel_id": "6ab67accea19ca0bdee57e17",
+            "status": "sent",
+            "scheduled_at": "2026-10-30T15:00:00.000Z",
+            "sent_at": "2026-10-30T15:03:04.522Z",
+            "external_link": "https://www.instagram.com/reel/DfH2yvngQM-/",
+            "media_urls": [
+              "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-10-30-corrected/science-video-daily-2026-10-30-corrected.mp4"
+            ],
+            "post_and_channel_match": true,
+            "due_matches": true,
+            "media_matches": true,
+            "verified": true
+          }
+        },
+        "no_posts_created": true
+      }
+    ]
+  },
+  "audit_report_sha256": "8980fa72859eb49dfe0fc8ff6bd64f15518547b487df5beff72fd681ab1171cd"
 }
