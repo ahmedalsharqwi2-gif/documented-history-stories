@@ -1,6 +1,7 @@
 {
   "profile": "history",
   "review_only": true,
-  "launch": "full-topic-directed-review-2",
-  "no_social_posts": true
+  "launch": "schema-fixed-full-film-2026-11-01-1",
+  "no_social_posts": true,
+  "prior_failure": "41315328358"
 }
