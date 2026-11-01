@@ -1,0 +1,42 @@
+{
+  "profile": "history",
+  "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+  "kind": "read_only_diagnostic",
+  "stage": "success",
+  "run_id": "41261002624",
+  "run_attempt": "1",
+  "source_commit": "0331361c8af52ba0696369400b89515f2bca58ad",
+  "target_run": "41260396971",
+  "observed_at": "2026-11-01T01:25:19.971046+00:00",
+  "no_provider_calls": true,
+  "no_posts_created": true,
+  "evidence": [
+    {
+      "file": "0_candidate.txt",
+      "error_lines": [
+        "2026-11-01T01:17:52.2672820Z Traceback (most recent call last):",
+        "2026-11-01T01:17:52.2708135Z ##[error]    raise RuntimeError('No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video')",
+        "2026-11-01T01:17:52.2716728Z RuntimeError: No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video",
+        "2026-11-01T01:18:02.1209847Z     \"error_class\": \"RuntimeError\",",
+        "2026-11-01T01:18:02.1214125Z   \"evidence_error_class\": \"ValueError\","
+      ]
+    },
+    {
+      "file": "candidate/11_Generate a new reserved source-backed story and full Charon film in isolation.txt",
+      "error_lines": [
+        "2026-11-01T01:17:52.2672773Z Traceback (most recent call last):",
+        "2026-11-01T01:17:52.2708121Z ##[error]    raise RuntimeError('No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video')",
+        "2026-11-01T01:17:52.2716715Z RuntimeError: No unused, evidence-backed topic fits the supported scene families; refusing a repeated or invented video"
+      ]
+    },
+    {
+      "file": "candidate/14_Retain final review status and verified movie Release.txt",
+      "error_lines": [
+        "2026-11-01T01:18:02.1209843Z     \"error_class\": \"RuntimeError\",",
+        "2026-11-01T01:18:02.1214119Z   \"evidence_error_class\": \"ValueError\","
+      ]
+    }
+  ],
+  "errors": [],
+  "provider_http_statuses": []
+}
