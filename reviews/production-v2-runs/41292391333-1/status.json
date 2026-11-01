@@ -1,0 +1,60 @@
+{
+  "profile": "history",
+  "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+  "run_id": "41292391333",
+  "run_attempt": "1",
+  "source_commit": "816aff2152b94532084b4c8804ffd7f06793ec79",
+  "kind": "official_source_probe",
+  "stage": "success",
+  "observed_at": "2026-11-01T09:16:28.491087+00:00",
+  "read_only": true,
+  "no_provider_calls": true,
+  "no_posts_created": true,
+  "sources": [
+    {
+      "requested_url": "https://colosseo.it/en/area/the-colosseum/",
+      "authority": "colosseo.it",
+      "verified": false,
+      "tls_verification": true,
+      "keyless_get_only": true,
+      "final_url": "https://colosseo.it/en/area/the-colosseum/",
+      "http_status": 200,
+      "title": "The Colosseum - Parco archeologico del Colosseo",
+      "canonical_url": "https://colosseo.it/en/area/the-colosseum/",
+      "body_word_count": 42,
+      "evidence_sha256": "8cd997c60c7a9b0b30b09e9b4c153150fabbf8806d73a2eac3aadd5a94e7e67a",
+      "excerpts": [
+        "Colosseum, Roman Forum and Palatine Valid 24h, for a single access to the Colosseum (first"
+      ],
+      "quoted_words": 15,
+      "geometry_inference": null,
+      "geometry_note": "No tier count or geometry is inferred. Any contract must cite an explicit source statement.",
+      "problem": "Official response lacks sufficient readable article text"
+    },
+    {
+      "requested_url": "https://whc.unesco.org/en/list/1303/",
+      "authority": "whc.unesco.org",
+      "verified": true,
+      "tls_verification": true,
+      "keyless_get_only": true,
+      "final_url": "https://whc.unesco.org/en/list/1303/",
+      "http_status": 200,
+      "title": "Pontcysyllte Aqueduct and Canal - UNESCO World Heritage Centre",
+      "canonical_url": "https://whc.unesco.org/en/list/1303/",
+      "body_word_count": 1667,
+      "evidence_sha256": "ff14596680250c26171988ee814c237de2ea18feb74449bd09985c82b6942a61",
+      "excerpts": [
+        "the property Search The List Pontcysyllte Aqueduct and Canal Print Share on social media Facebook",
+        "Heritage Terms / Policies Syndication Pontcysyllte Aqueduct and Canal Description Maps Documents Gallery Video Indicators",
+        "Wales, the 18 kilometre long Pontcysyllte Aqueduct and Canal is a feat of civil engineering",
+        "setting, the building of the canal required substantial, bold civil engineering solutions, especially as it",
+        "aqueduct enabled the construction of arches that were light and d strong, producing an overall",
+        "under license CC-BY-SA IGO 3.0 Pont-canal et canal de Pontcysyllte Situés au nord-est du pays"
+      ],
+      "quoted_words": 90,
+      "geometry_inference": null,
+      "geometry_note": "No tier count or geometry is inferred. Any contract must cite an explicit source statement."
+    }
+  ],
+  "all_requested_pages_verified": false
+}
