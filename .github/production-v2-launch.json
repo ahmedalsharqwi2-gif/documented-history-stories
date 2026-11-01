@@ -1,10 +1,10 @@
 {
   "profile": "history",
   "review_only": true,
-  "launch": "resume-retained-history-audio-2026-11-01-1",
+  "launch": "final-film-for-2026-11-02-at-17-cairo",
   "no_social_posts": true,
   "prior_failure": "41315328358",
   "retain_raw_drafts": true,
-  "resume_slot": "candidate-history-2082ae2eff684e9993cf52ca5f36e11e",
-  "resume_from_run": 41349661788
+  "production_film": true,
+  "publication_date": "2026-11-02"
 }
