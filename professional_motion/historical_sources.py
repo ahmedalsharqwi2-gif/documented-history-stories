@@ -43,6 +43,7 @@ def visual_contract(identifier,title,description):
     identifier=str(identifier);text=(title+' '+description).lower()
     # Verified complete source pages; exact views are limited to their focal structure.
     known={
+        '1303':{'focus':'cast_iron_trough','material':'cast_iron','scope':'Only an illustrative section of the cast-iron trough and supporting stone pier; do not invent a whole-bridge span count, dimensions, Roman arches, or a construction event.'},
         '344':{'focus':'aqueduct','tier_count':3},
         '311':{'focus':'aqueduct','tier_count':2},
         '164':{'focus':'arena','tier_count':2},
@@ -63,11 +64,12 @@ def visual_contract(identifier,title,description):
     focus=result['focus']
     result['diagram_only']=True
     result['allowed_modes']={
+        'cast_iron_trough':['hero','section','water','material','assembly'],
         'aqueduct':['hero','levels','arch','section','water','material','assembly'],
         'arena':['hero','levels','arch','section','material','assembly'],
         'pyramid':['hero','levels','section','material','assembly'],
     }[focus]
-    result['forbidden_features']=['dome_ribs','oculus']+(['arches'] if focus=='pyramid' else [])
+    result['forbidden_features']=['dome_ribs','oculus']+(['arches'] if focus in ('pyramid','cast_iron_trough') else [])
     result.setdefault('scope','Show only the stated focal structure as a schematic; do not claim a surveyed replica of the whole heritage site or invent construction measurements.')
     return result
 
@@ -99,6 +101,8 @@ def candidates(now=None,fetch=None):
     now=now or datetime.now(timezone.utc);fetch=fetch or requests.get
     bank=json.loads((ROOT/'catalog.json').read_text())['history']
     rows=[r for r in bank if r.get('url','').startswith('https://whc.unesco.org/en/list/') and r.get('visual_contract')]
+    trough={'key':'unesco-1303-cast_iron_trough','family':'architecture','variant':'cast_iron_trough','title':'Pontcysyllte Aqueduct and Canal','publisher':'UNESCO World Heritage Centre','url':canonical_site('1303'),'visual_contract':visual_contract('1303','Pontcysyllte Aqueduct and Canal','cast iron trough supported by stone piers')}
+    if not any(r['url'].rstrip('/')==trough['url'].rstrip('/') for r in rows):rows.insert(0,trough)
     seen={r['url'].rstrip('/') for r in rows}
     try:
         response=fetch(XML_URL,headers=HEADERS,timeout=35);response.raise_for_status()

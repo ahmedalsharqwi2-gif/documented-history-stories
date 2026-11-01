@@ -1,0 +1,328 @@
+{
+  "version": 1,
+  "profile": "history",
+  "worlds": {
+    "aqueduct_valley": {
+      "focus": "aqueduct",
+      "source_ids": [
+        "311",
+        "344"
+      ],
+      "settings": [
+        "valley_route",
+        "stone_workbench",
+        "pier_foundation",
+        "arch_assembly",
+        "channel_cutaway",
+        "water_route",
+        "inspection_walkway",
+        "valley_overview"
+      ],
+      "objects": [
+        "terrain_and_aqueduct",
+        "stone_block",
+        "pier",
+        "voussoirs_and_keystone",
+        "water_channel",
+        "flow_markers",
+        "channel_and_joint",
+        "whole_crossing"
+      ],
+      "actions": [
+        "reveal_crossing",
+        "inspect_surface",
+        "trace_load",
+        "place_keystone",
+        "reveal_water_section",
+        "follow_water",
+        "inspect_joint",
+        "reveal_system"
+      ],
+      "shots": [
+        "wide_establishing",
+        "macro_detail",
+        "low_angle",
+        "lateral_close",
+        "section_push",
+        "tracking",
+        "inspection_close",
+        "pullback"
+      ],
+      "focal_objects": [
+        "terrain_and_aqueduct",
+        "stone_block",
+        "pier",
+        "voussoirs_and_keystone",
+        "water_channel",
+        "flow_markers",
+        "channel_and_joint",
+        "whole_crossing"
+      ],
+      "minimum_distinct_settings": 4,
+      "compatible_beats": [
+        {
+          "setting": "valley_route",
+          "focal_object": "terrain_and_aqueduct",
+          "action": "reveal_crossing"
+        },
+        {
+          "setting": "stone_workbench",
+          "focal_object": "stone_block",
+          "action": "inspect_surface"
+        },
+        {
+          "setting": "pier_foundation",
+          "focal_object": "pier",
+          "action": "trace_load"
+        },
+        {
+          "setting": "arch_assembly",
+          "focal_object": "voussoirs_and_keystone",
+          "action": "place_keystone"
+        },
+        {
+          "setting": "channel_cutaway",
+          "focal_object": "water_channel",
+          "action": "reveal_water_section"
+        },
+        {
+          "setting": "water_route",
+          "focal_object": "flow_markers",
+          "action": "follow_water"
+        },
+        {
+          "setting": "inspection_walkway",
+          "focal_object": "channel_and_joint",
+          "action": "inspect_joint"
+        },
+        {
+          "setting": "valley_overview",
+          "focal_object": "whole_crossing",
+          "action": "reveal_system"
+        }
+      ],
+      "subject_contract": {
+        "required_source_url_contains": "https://whc.unesco.org/en/list/",
+        "supported_topic_keys": [
+          "segovia-aqueduct-unesco",
+          "pont-du-gard-aqueduct",
+          "unesco-311-aqueduct",
+          "unesco-344-aqueduct"
+        ]
+      }
+    },
+    "arena_complex": {
+      "focus": "arena",
+      "source_ids": [
+        "164",
+        "38"
+      ],
+      "settings": [
+        "city_exterior",
+        "seating_bowl",
+        "radial_passage",
+        "tier_cutaway",
+        "arch_detail",
+        "circulation_diagram",
+        "conservation_workbench",
+        "arena_overview"
+      ],
+      "objects": [
+        "elliptical_enclosure",
+        "seating_steps",
+        "radial_corridor",
+        "source_tiers",
+        "arch_and_load",
+        "route_markers",
+        "stone_joint",
+        "whole_complex"
+      ],
+      "actions": [
+        "enter_complex",
+        "reveal_seating",
+        "follow_passage",
+        "reveal_tiers",
+        "trace_load",
+        "follow_routes",
+        "inspect_surface",
+        "pull_out"
+      ],
+      "shots": [
+        "wide_establishing",
+        "interior_orbit",
+        "corridor_tracking",
+        "section_push",
+        "macro_detail",
+        "overhead",
+        "inspection_close",
+        "pullback"
+      ],
+      "focal_objects": [
+        "elliptical_enclosure",
+        "seating_steps",
+        "radial_corridor",
+        "source_tiers",
+        "arch_and_load",
+        "route_markers",
+        "stone_joint",
+        "whole_complex"
+      ],
+      "minimum_distinct_settings": 4,
+      "compatible_beats": [
+        {
+          "setting": "city_exterior",
+          "focal_object": "elliptical_enclosure",
+          "action": "enter_complex"
+        },
+        {
+          "setting": "seating_bowl",
+          "focal_object": "seating_steps",
+          "action": "reveal_seating"
+        },
+        {
+          "setting": "radial_passage",
+          "focal_object": "radial_corridor",
+          "action": "follow_passage"
+        },
+        {
+          "setting": "tier_cutaway",
+          "focal_object": "source_tiers",
+          "action": "reveal_tiers"
+        },
+        {
+          "setting": "arch_detail",
+          "focal_object": "arch_and_load",
+          "action": "trace_load"
+        },
+        {
+          "setting": "circulation_diagram",
+          "focal_object": "route_markers",
+          "action": "follow_routes"
+        },
+        {
+          "setting": "conservation_workbench",
+          "focal_object": "stone_joint",
+          "action": "inspect_surface"
+        },
+        {
+          "setting": "arena_overview",
+          "focal_object": "whole_complex",
+          "action": "pull_out"
+        }
+      ],
+      "subject_contract": {
+        "required_source_url_contains": "https://whc.unesco.org/en/list/",
+        "supported_topic_keys": [
+          "arles-amphitheatre-unesco",
+          "unesco-164-arena",
+          "unesco-38-arena"
+        ]
+      }
+    },
+    "canal_trough": {
+      "focus": "cast_iron_trough",
+      "source_ids": [
+        "1303"
+      ],
+      "settings": [
+        "canal_bank",
+        "iron_workbench",
+        "pier_section",
+        "trough_assembly",
+        "water_cutaway",
+        "towpath_route",
+        "joint_inspection",
+        "canal_overview"
+      ],
+      "objects": [
+        "trough_section_and_bank",
+        "iron_plate",
+        "stone_pier_section",
+        "iron_trough",
+        "water_and_iron_section",
+        "towpath_and_water",
+        "trough_joint",
+        "illustrative_canal_section"
+      ],
+      "actions": [
+        "reveal_section",
+        "inspect_surface",
+        "trace_support",
+        "join_trough_section",
+        "reveal_water_section",
+        "follow_water",
+        "inspect_joint",
+        "reveal_system"
+      ],
+      "shots": [
+        "wide_establishing",
+        "macro_detail",
+        "low_angle",
+        "lateral_close",
+        "section_push",
+        "tracking",
+        "inspection_close",
+        "pullback"
+      ],
+      "focal_objects": [
+        "trough_section_and_bank",
+        "iron_plate",
+        "stone_pier_section",
+        "iron_trough",
+        "water_and_iron_section",
+        "towpath_and_water",
+        "trough_joint",
+        "illustrative_canal_section"
+      ],
+      "minimum_distinct_settings": 4,
+      "compatible_beats": [
+        {
+          "setting": "canal_bank",
+          "focal_object": "trough_section_and_bank",
+          "action": "reveal_section"
+        },
+        {
+          "setting": "iron_workbench",
+          "focal_object": "iron_plate",
+          "action": "inspect_surface"
+        },
+        {
+          "setting": "pier_section",
+          "focal_object": "stone_pier_section",
+          "action": "trace_support"
+        },
+        {
+          "setting": "trough_assembly",
+          "focal_object": "iron_trough",
+          "action": "join_trough_section"
+        },
+        {
+          "setting": "water_cutaway",
+          "focal_object": "water_and_iron_section",
+          "action": "reveal_water_section"
+        },
+        {
+          "setting": "towpath_route",
+          "focal_object": "towpath_and_water",
+          "action": "follow_water"
+        },
+        {
+          "setting": "joint_inspection",
+          "focal_object": "trough_joint",
+          "action": "inspect_joint"
+        },
+        {
+          "setting": "canal_overview",
+          "focal_object": "illustrative_canal_section",
+          "action": "reveal_system"
+        }
+      ],
+      "subject_contract": {
+        "required_source_url_contains": "/en/list/1303/",
+        "supported_topic_keys": [
+          "unesco-1303-cast_iron_trough"
+        ]
+      }
+    }
+  }
+}

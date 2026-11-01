@@ -35,7 +35,8 @@ class OfficialHistoricalSourcesTests(unittest.TestCase):
     def test_feed_failure_keeps_verified_topics_and_date_order_is_stable(self):
         fetch=Mock(side_effect=requests.ConnectionError('unavailable'))
         rows=h.candidates(fetch=fetch)
-        self.assertEqual(len(rows),4)
+        urls={row['url'].rstrip('/') for row in rows}
+        self.assertTrue({'https://whc.unesco.org/en/list/'+site for site in ('86','164','311','344','1303')} <= urls)
         reply=Mock(content=xml((99991,'Two-level Aqueduct','A historic aqueduct and important ancient route. '*4+' This structure has two levels.')))
         reply.raise_for_status.return_value=None
         now=datetime(2026,10,29,tzinfo=timezone.utc)

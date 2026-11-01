@@ -30,7 +30,7 @@ try{
  let timing;try{timing=JSON.parse(await readFile(path.join(delivery,'timing.json'),'utf8'));}catch{}
  const storyHash=createHash('sha256').update(await readFile(path.join(delivery,'story.json'))).digest('hex');
  if(timing&&timing.story_sha256!==storyHash)throw Error('Story changed after measured voice timing');
- const duration=timing?.duration||46.5;const fps=30;
+ const duration=timing?.duration||46.5;const fps=Number(flag('--fps',30));if(!Number.isInteger(fps)||fps<12||fps>30)throw Error('Frame rate must be12..30');
  const splitting=process.argv.includes('--part'),part=Number(flag('--part',0)),parts=Number(flag('--parts',1));
  if(!Number.isInteger(part)||!Number.isInteger(parts)||parts<1||part<0||part>=parts)throw Error('Invalid frame partition');
  if(splitting&&(process.argv.includes('--from')||process.argv.includes('--to')))throw Error('Choose frame partitions or time intervals');
@@ -58,5 +58,5 @@ try{
   }
   ff.stdin.end();const [code]=await completed;if(code!==0)throw Error('FFmpeg failed');
  }
- await writeFile(path.join(output,partial?outputName+'.json':'render.json'),JSON.stringify({pipeline,delivery_directory:delivery,duration,from,to,start_frame:startFrame,end_frame:endFrame,total_frames:totalFrames,fps,width:1080,height:1920,originalVoice:!!timing?.audio_sha256,visual_style:style,review:process.argv.includes('--review'),story_sha256:storyHash,branding:await page.evaluate(()=>window.brandingStatus),cinema:await page.evaluate(()=>window.cinemaStatus),errors},null,2));
+ await writeFile(path.join(output,partial?outputName+'.json':'render.json'),JSON.stringify({pipeline,delivery_directory:delivery,duration,from,to,start_frame:startFrame,end_frame:endFrame,total_frames:totalFrames,fps,width:1080,height:1920,originalVoice:!!timing?.audio_sha256,visual_style:style,review:process.argv.includes('--review'),story_sha256:storyHash,branding:await page.evaluate(()=>window.brandingStatus),cinema:await page.evaluate(()=>window.cinemaStatus),topic_director:await page.evaluate(()=>window.historyDirectorStatus),errors},null,2));
 }finally{if(encoder&&encoder.exitCode===null)encoder.kill('SIGTERM');await browser.close();server.close();}

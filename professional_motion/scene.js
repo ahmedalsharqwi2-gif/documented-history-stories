@@ -4,6 +4,7 @@ import {loadBranding,drawBranding} from './branding.js';
 import {drawCaption} from './caption_layout.js';
 import {hauntedStage} from './haunted.js';
 import {channelStage} from './channels.js';
+import {createHistoryDirector} from './history_topic_director.js';
 import * as THREE from 'three';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
@@ -170,7 +171,9 @@ const channel=channelStage(scene);
 const storyResponse=await fetch('./delivery/story.json');if(!storyResponse.ok)throw Error('Missing authored daily story');
 let config=await storyResponse.json();const brandMark=await loadBranding(config.profile);const headerLeft=brandMark?235:75,headerRuleY=brandMark?208:142,headerIndexY=brandMark?255:202;window.brandingStatus={profile:config.profile,logoApplied:!!brandMark};const useOctopus=config.visual_family==='octopus',useHaunted=config.visual_family==='haunted_interior';
 const haunted=useHaunted?hauntedStage(scene):null;
-const cinemaV2=new URLSearchParams(location.search).get('pipeline')==='v2'?installHistoryCinema({renderer,scene,camera,root:channel.root}):null;
+const historyDirector=new URLSearchParams(location.search).get('pipeline')==='v2'&&config.profile==='history'?createHistoryDirector(scene,config):null;
+window.historyDirectorStatus=historyDirector?.plan||null;
+const cinemaV2=new URLSearchParams(location.search).get('pipeline')==='v2'?installHistoryCinema({renderer,scene,camera,root:historyDirector?.root||channel.root}):null;
 window.cinemaStatus={pipeline:cinemaV2?'v2':'legacy',materialCount:cinemaV2?.materialCount||0};
 if(useHaunted){scene.fog.density=.043;renderer.toneMappingExposure=1.22;scene.traverse(o=>{if(o.isDirectionalLight)o.intensity*=.30;if(o.isHemisphereLight)o.intensity*=.55;});ambient.intensity=1.0;}
 const backdrop={science:0x030c14,horror:0x030b10,history:0x100d09,news:0x090713}[config.profile];
@@ -276,7 +279,7 @@ window.renderAt=(time,duration=D)=>{
  const sceneStart=times[index]*D,sceneEnd=(times[index+1]??1)*D,local=t-sceneStart,p=clamp(local/(sceneEnd-sceneStart));
  uniforms.clock.value=t;uniforms.morph.value=index===6?(.5-.5*Math.cos(p*Math.PI*2)):0;
  if(useOctopus)poseOctopus(t);
- octopus.visible=useOctopus&&[0,1,6,7].includes(index);macro.visible=useOctopus&&[2,3].includes(index);neural.visible=useOctopus&&index===4;layers.visible=useOctopus&&index===5;reef.visible=useOctopus&&index===6;channel.root.visible=!useOctopus&&!useHaunted;if(!useOctopus&&!useHaunted)channel.update(config,index,local,p,t);
+ octopus.visible=useOctopus&&[0,1,6,7].includes(index);macro.visible=useOctopus&&[2,3].includes(index);neural.visible=useOctopus&&index===4;layers.visible=useOctopus&&index===5;reef.visible=useOctopus&&index===6;channel.root.visible=!historyDirector&&!useOctopus&&!useHaunted;if(!historyDirector&&!useOctopus&&!useHaunted)channel.update(config,index,local,p,t);
  octopus.scale.setScalar(index===0?.78+.14*ease(p*2):index===6?.85:index===7?.9:.91);
  octopus.position.set(index===0?Math.sin(t*.3)*.08:0,index===0?-.4+.25*ease(p*2):-.25,0);
  octopus.rotation.set(.08*Math.sin(t*.3),index===0?-.45+.5*ease(p):.12*Math.sin(t*.2),index===0?-.18*(1-ease(p)):.035*Math.sin(t*.3));
@@ -292,7 +295,8 @@ window.renderAt=(time,duration=D)=>{
  photons.forEach((m,i)=>{const q=(local*.35+i*.13)%1,travel=q<.5?q*2:2-q*2;m.position.set(-1.5+(i%4)+Math.max(0,q-.5)*.8,1.7-travel*2.5,Math.sin(i)*.8);m.material.color.setHex(q<.5?0xe2f6ff:0x87d5ff);});
  if(useHaunted){const beat=timing?.scenes[index]?.scare_beat;const view=haunted.update(config,index,local,p,t,beat===undefined?-1:t-beat);camera.position.set(...view.position);camera.lookAt(...view.target);}
  if(cinemaV2)cinemaV2.update({progress:p,index,story:config});
- dust.visible=!useHaunted;shafts.forEach(o=>o.visible=!useHaunted);
+ if(historyDirector){historyDirector.update(index,p,t,camera);renderer.setClearColor(config.visual_plan.world==='arena_complex'?0x786047:0x789aab);}
+ dust.visible=!historyDirector&&!useHaunted;shafts.forEach(o=>o.visible=!historyDirector&&!useHaunted);
  dust.rotation.y=t*.012;dust.position.y=Math.sin(t*.11)*.5;shafts.forEach((m,i)=>m.material.uniforms.opacity.value=.025+.015*(.5+.5*Math.sin(t*.2+i)));
  if(new URLSearchParams(location.search).get('style')==='reference')renderer.render(scene,camera);else composer.render();if(useOctopus)drawText(t,index,local,p);else drawChannelText(t,index,local,p);if(new URLSearchParams(location.search).get('style')==='reference')drawReferenceLayout(ctx,{story:config,timing,index,time:t,local,duration:D,review:new URLSearchParams(location.search).get('review')==='true',logo:!!brandMark});drawBranding(ctx,brandMark);
  return {scene:index+1,time:t,duration:D,originalVoice:!!timing?.audio_sha256};

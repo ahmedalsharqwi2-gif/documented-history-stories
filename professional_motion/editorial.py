@@ -186,7 +186,7 @@ def write_sourced(row,profile,previous):
     row=dict(row)
     if row.get('visual_contract'):
         site=row.get('url','').rstrip('/').rsplit('/',1)[-1]
-        row['focal_subject']={'86':'Only the smooth-sided Giza pyramids; never Saqqara, Memphis city or the whole UNESCO property','164':'Only the Arles Roman amphitheatre, not the forum cryptoporticus, theatre, churches or the whole city','311':'Only the Roman aqueduct of Segovia, not the old town or cathedral','344':'Only the Pont du Gard aqueduct bridge'}.get(site,row.get('title','')+' — only the '+row['visual_contract']['focus'])
+        row['focal_subject']={'1303':'Only a source-supported cast-iron trough section of Pontcysyllte Aqueduct; do not show Roman stone arches or invent complete bridge span counts or construction activity','86':'Only the smooth-sided Giza pyramids; never Saqqara, Memphis city or the whole UNESCO property','164':'Only the Arles Roman amphitheatre, not the forum cryptoporticus, theatre, churches or the whole city','311':'Only the Roman aqueduct of Segovia, not the old town or cathedral','344':'Only the Pont du Gard aqueduct bridge'}.get(site,row.get('title','')+' — only the '+row['visual_contract']['focus'])
     delivery=ROOT/'delivery';delivery.mkdir(exist_ok=True)
     if profile=='news':
         from news.editor import article
