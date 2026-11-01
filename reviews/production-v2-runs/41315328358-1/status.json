@@ -4,9 +4,9 @@
   "run_id": "41315328358",
   "run_attempt": "1",
   "source_commit": "45aab0b3894c5e3e642af4982ce8da5fb642236e",
-  "stage": "started",
-  "requested_stage": "started",
-  "observed_at": "2026-11-01T14:16:10.775229+00:00",
+  "stage": "failure",
+  "requested_stage": "failure",
+  "observed_at": "2026-11-01T14:17:32.052386+00:00",
   "review_only": true,
   "automatically_published": false,
   "cutover_eligible": false,
@@ -16,5 +16,69 @@
     "GEMINI_API_KEY": true,
     "GEMINI_TEXT_API_KEY": true,
     "GEMINI_TTS_API_KEY": true
-  }
+  },
+  "generation_failure": {
+    "slot": "candidate-history-38e05eb9fc7a481a8e8010a7c181d431",
+    "profile": "history",
+    "error_class": "RuntimeError",
+    "reservation_retained": false,
+    "legacy_film_not_used_as_fallback": true,
+    "publishable": false,
+    "failed_phase": "story_or_reservation",
+    "measured_narration_seconds": null,
+    "timing_present": false
+  },
+  "planning_evidence": {
+    "candidate-status.json": [
+      {
+        "key": "unesco-1303-cast_iron_trough",
+        "title": "Pontcysyllte Aqueduct and Canal",
+        "family": "architecture",
+        "variant": "cast_iron_trough",
+        "published": null,
+        "already_reserved": false
+      },
+      {
+        "key": "great-pyramid-giza-unesco",
+        "title": "هرم الجيزة: إيه المعروف وإيه المختلف عليه؟",
+        "family": "architecture",
+        "variant": "pyramid",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "segovia-aqueduct-unesco",
+        "title": "قناطر سيغوفيا: الميه فوق المدينة",
+        "family": "architecture",
+        "variant": "aqueduct",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "arles-amphitheatre-unesco",
+        "title": "ساحة آرل: مبنى روماني اتغير دوره",
+        "family": "architecture",
+        "variant": "arena",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "pont-du-gard-aqueduct",
+        "title": "جسر بيشيل الميه: بون دو جار",
+        "family": "architecture",
+        "variant": "aqueduct",
+        "published": null,
+        "already_reserved": true
+      },
+      {
+        "key": "unesco-38-arena",
+        "title": "مدرّج الجم: الكولوسيوم الإفريقي في تونس",
+        "family": "architecture",
+        "variant": "arena",
+        "published": null,
+        "already_reserved": true
+      }
+    ]
+  },
+  "evidence_error_class": "ValueError"
 }
