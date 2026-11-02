@@ -108,6 +108,14 @@
           "run": "python -m unittest discover -s remotion_factory/tests -q"
         },
         {
+          "name": "Read historical provider failures and actual-media fingerprints without sending",
+          "if": "github.event_name == 'push'",
+          "env": {
+            "REMOTION_PROFILE": "history"
+          },
+          "run": "python - <<'PY'\nimport json,subprocess\nfrom pathlib import Path\nr=json.loads(Path('.github/remotion-health-request.json').read_text())\nif r.get('legacy_diagnostic'):subprocess.run(['python','-m','remotion_factory.legacy_diagnostic'],check=True)\nPY"
+        },
+        {
           "name": "Independently verify scheduler, actual movie and three live destination receipts",
           "run": "python -m remotion_factory.health"
         },
