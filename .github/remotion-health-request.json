@@ -2,8 +2,6 @@
   "date": "2026-11-02",
   "phase": "postpublish",
   "legacy_diagnostic": true,
-  "error_post_ids": [
-    "6ae88513c5c4672c3e730ca7"
-  ],
-  "revision": 6
+  "connection_only": true,
+  "revision": 7
 }

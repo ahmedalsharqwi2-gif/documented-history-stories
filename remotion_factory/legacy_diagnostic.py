@@ -10,6 +10,16 @@ def main():
  request=read_json('.github/remotion-health-request.json',{})
  day=instant(request['date']+'T12:00:00Z').date();due=target_due(day)
  fields='id channelId status dueAt sentAt externalLink assets{source}'
+ if request.get('connection_only'):
+  schema=query('query {__type(name:"Channel"){fields{name type{kind name ofType{kind name}}}}}')
+  names=[]
+  for f in schema['__type']['fields']:
+   t=f['type'];t=t.get('ofType') if t['kind']=='NON_NULL' else t
+   if t and t.get('kind') in ('SCALAR','ENUM') and any(k in f['name'].lower() for k in ('disconnect','reconnect','status','paused')):names.append(f['name'])
+  observed=[]
+  for org in query('query {account {organizations {id}}}')['account']['organizations']:
+   observed.extend(query('query {channels(input:{organizationId:'+json.dumps(org['id'])+'}){id service '+' '.join(names)+'}}')['channels'])
+  path='reviews/daily_health/legacy-reconciliation/current-connections-'+os.environ['GITHUB_RUN_ID']+'.json';write_json(path,{'schema':schema,'channels':observed});print(path);return
  if request.get('error_post_ids'):
   result={identifier:query('query {post(input:{id:'+json.dumps(identifier)+'}){id channelId status dueAt createdAt updatedAt via allowedActions error{message supportUrl}}}')['post'] for identifier in request['error_post_ids']}
   path='reviews/daily_health/legacy-reconciliation/provider-failures-'+os.environ['GITHUB_RUN_ID']+'.json';write_json(path,result);print(path);return
