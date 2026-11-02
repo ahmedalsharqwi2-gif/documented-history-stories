@@ -1,0 +1,137 @@
+{
+  "profile": "history",
+  "series": "نقص ونروى",
+  "title": "إزاي أنقذوا أبو سمبل من الغرق؟",
+  "canonical_subject": "abu-simbel-relocation-1960s",
+  "topic_key": "remotion-abu-simbel-relocation-1960s",
+  "source": {
+    "url": "https://whc.unesco.org/en/activities/1296",
+    "publisher": "UNESCO World Heritage Centre",
+    "title": "Working Together: Abu Simbel"
+  },
+  "scenes": [
+    {
+      "label": "معبد اتحرك من مكانه",
+      "narration": "الوش الحجري اللي قدامك مش قطعة ديكور بتترفع. دي صورة من إنقاذ أبو سمبل، لما معبد منحوت في الصخر كان لازم يتفك ويتنقل. السؤال المرعب وقتها: إزاي تنقذ أثر ضخم، من غير ما تضيع ملامحه؟",
+      "visual": {
+        "kind": "photo",
+        "asset": "media/history-lift.jpg",
+        "asset_label": "صورة أرشيفية • Per-Olow Anderson / Public domain"
+      },
+      "id": "scene_1",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "الخطر جاي من المياه",
+      "narration": "مع بناء السد العالي، خزان المياه الجديد كان هيغطي مواقع أثرية في النوبة. مصر والسودان طلبوا مساعدة اليونسكو، لأن التحدي ماكانش نقل تمثال صغير. كان إنقاذ معابد كاملة، قبل ما المياه توصل لمكانها.",
+      "visual": {
+        "kind": "map",
+        "longitude": 31.6258,
+        "latitude": 22.3372,
+        "zoom": 4.8,
+        "detail": "أبو سمبل • جنوب مصر"
+      },
+      "id": "scene_2",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "نداء أنقذ معابد",
+      "narration": "في مارس سنة ألف وتسعمية وستين، انطلقت حملة دولية لإنقاذ آثار النوبة. اتجمع مهندسين وأثريين وخبراء من بلاد مختلفة. والاختيار هنا ماكانش مجرد تصوير الآثار قبل اختفائها، لكن محاولة الاحتفاظ بيها فعلًا، للأجيال اللي جاية.",
+      "visual": {
+        "kind": "photo",
+        "asset": "media/history-document.jpg",
+        "asset_label": "وثيقة حملة اليونسكو • Public domain"
+      },
+      "id": "scene_3",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "الحل: نفك الصخر",
+      "narration": "الخطة كانت جريئة: تفكيك أجزاء المعبد، ونقلها لأرض أعلى، وبعدها تجميعها من جديد. مش تكسير عشوائي ولا بناء نسخة شبهه. الفكرة كانت الاحتفاظ بالحجارة الأصلية، وبترتيبها وعلاقتها ببعض، عشان المعبد يفضل هو نفسه بعد النقل.",
+      "visual": {
+        "kind": "temple"
+      },
+      "id": "scene_4",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "كل قطعة ليها مكان",
+      "narration": "الكتل الحجرية اتقطعت واترقمت واتنقلت للتخزين، وبعدها رجعت تتجمع في الموقع الجديد. الترقيم هنا كان ضروري، لأن أي قطعة لو راحت في مكان غلط هتغيّر الشكل. الصورة الأرشيفية بتورينا حجم الشغل اللي اتعمل فعلًا.",
+      "visual": {
+        "kind": "photo",
+        "asset": "media/history-lift.jpg",
+        "asset_label": "توثيق فعلي لرفع جزء من التمثال • Public domain"
+      },
+      "id": "scene_5",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "جبل جديد يحمي الأصل",
+      "narration": "في الموقع الأعلى، اتعمل تكوين صخري صناعي يحتضن المعابد بعد إعادة تجميعها. اللي بيزور المكان النهارده ممكن يشوف واجهة عظيمة، من غير ما ينتبه إن إنقاذها احتاج نقل أجزاء الصخر نفسه، مش مجرد تحويل طريق المياه حواليه.",
+      "visual": {
+        "kind": "photo",
+        "asset": "media/history-old.jpg",
+        "asset_label": "صورة تاريخية للموقع • Museo Egizio / CC0"
+      },
+      "id": "scene_6",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "اليوم اللي اكتمل فيه الإنقاذ",
+      "narration": "في اتنين وعشرين سبتمبر سنة ألف وتسعمية تمانية وستين، افتُتح أبو سمبل في موقعه الجديد. وحملة إنقاذ آثار النوبة كانت أوسع من المعبدين دول؛ استمرت بعد كده لإنقاذ مواقع تانية، ومنها معابد فيلة.",
+      "visual": {
+        "kind": "timeline",
+        "timeline": [
+          {
+            "year": "1960",
+            "text": "انطلاق حملة إنقاذ آثار النوبة"
+          },
+          {
+            "year": "1968",
+            "text": "افتتاح أبو سمبل في موقعه الجديد"
+          }
+        ]
+      },
+      "id": "scene_7",
+      "labels": [],
+      "visual_mode": "hero"
+    },
+    {
+      "label": "الأثر الأصلي فضل موجود",
+      "narration": "الحكاية الحقيقية دي مش عن أثر نجا بالحظ. دي عن قرار، وتعاون، وتفاصيل تنفيذ ماكانش ينفع تتساب للصدفة. أبو سمبل فضِل موجود، لأن ناس قررت إن التنمية وحماية الذاكرة ممكن يمشوا مع بعض، بدل ما واحدة تمسح التانية.",
+      "visual": {
+        "kind": "photo",
+        "asset": "media/history-lift.jpg",
+        "asset_label": "الصورة الأصلية لعملية الإنقاذ • Public domain"
+      },
+      "id": "scene_8",
+      "labels": [],
+      "visual_mode": "hero"
+    }
+  ],
+  "fiction": false,
+  "documented": true,
+  "facts": [],
+  "milestones": [],
+  "suitable": true,
+  "hashtags": [
+    "أبو_سمبل",
+    "إنقاذ_الآثار",
+    "تاريخ"
+  ],
+  "editorial_review": {
+    "performed_by": "source-grounded authored script",
+    "supported": true,
+    "novel": true,
+    "fiction_disclosed": false,
+    "no_invented_witness_dialogue": true
+  },
+  "visual_family": "remotion_documentary",
+  "variant": "history"
+}
