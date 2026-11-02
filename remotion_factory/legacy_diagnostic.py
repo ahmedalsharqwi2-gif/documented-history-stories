@@ -10,6 +10,9 @@ def main():
  request=read_json('.github/remotion-health-request.json',{})
  day=instant(request['date']+'T12:00:00Z').date();due=target_due(day)
  fields='id channelId status dueAt sentAt externalLink assets{source}'
+ if request.get('error_post_ids'):
+  result={identifier:query('query {post(input:{id:'+json.dumps(identifier)+'}){id channelId status dueAt createdAt updatedAt via allowedActions error{message supportUrl}}}')['post'] for identifier in request['error_post_ids']}
+  path='reviews/daily_health/legacy-reconciliation/provider-failures-'+os.environ['GITHUB_RUN_ID']+'.json';write_json(path,result);print(path);return
  try:schema=query('query {__type(name:"Post"){fields{name type{kind name ofType{kind name}}}}}')
  except RuntimeError:schema={}
  if request.get('schema_only'):
