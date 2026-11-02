@@ -1019,7 +1019,7 @@
       "canonical_subject": "ancient-egyptian-irrigation-nile",
       "title": "سحر النيل الأزرق.. حكاية فيضان السد العالي القديم",
       "knowledge_category": "daily_life",
-      "status": "publishing",
+      "status": "scheduled",
       "story": {
         "title": "سحر النيل الأزرق.. حكاية فيضان السد العالي القديم",
         "canonical_subject": "ancient-egyptian-irrigation-nile",
@@ -1793,7 +1793,40 @@
       },
       "requested_due_at": "2026-11-02T15:00:00Z",
       "video_sha256": "7e5b11fa078f5849ab77e9727f114d12a559f598b86e267655c1378a20076116",
-      "publication_video_sha256": "7e5b11fa078f5849ab77e9727f114d12a559f598b86e267655c1378a20076116"
+      "publication_video_sha256": "7e5b11fa078f5849ab77e9727f114d12a559f598b86e267655c1378a20076116",
+      "due_at": "2026-11-02T15:00:00Z",
+      "receipts": {
+        "instagram": {
+          "id": "6ae86fac97ae21595d527f27",
+          "due_at": "2026-11-02T15:00:00Z",
+          "run_id": "41431892158",
+          "accepted_at": "2026-11-02T11:10:36.710952+00:00",
+          "channel_id": "6ab67accea19ca0bdee57e17",
+          "scheduled_at": "2026-11-02T15:00:00+00:00",
+          "status": "scheduled",
+          "verified_at": "2026-11-02T11:10:42.129299+00:00"
+        },
+        "facebook": {
+          "id": "6ae86faffec752487326e991",
+          "due_at": "2026-11-02T15:00:00Z",
+          "run_id": "41431892158",
+          "accepted_at": "2026-11-02T11:10:39.609490+00:00",
+          "channel_id": "6ab67b0dea19ca0bdee58014",
+          "scheduled_at": "2026-11-02T15:00:00+00:00",
+          "status": "scheduled",
+          "verified_at": "2026-11-02T11:10:42.276134+00:00"
+        },
+        "youtube": {
+          "id": "6ae86fb15b555ff1cf0125c8",
+          "due_at": "2026-11-02T15:00:00Z",
+          "run_id": "41431892158",
+          "accepted_at": "2026-11-02T11:10:41.892375+00:00",
+          "channel_id": "6ab67b4fea19ca0bdee58218",
+          "scheduled_at": "2026-11-02T15:00:00+00:00",
+          "status": "scheduled",
+          "verified_at": "2026-11-02T11:10:42.427365+00:00"
+        }
+      }
     }
   ],
   "rescheduling_history": {
