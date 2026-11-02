@@ -1,0 +1,17 @@
+{
+  "provider": "Gemini TTS",
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "style": "Egyptian Arabic ar-EG, native conversational Cairo accent. Mature warm male documentary storyteller, low resonant register, clear exact articulation, measured pace around 140 words per minute. Say the year numbers naturally in Egyptian Arabic. Preserve every word and sentence of the transcript, finish the last sentence clearly. No music, no sound effects, no singing, no spoken instructions.\nEgyptian Arabic cinematic historical explanation, clear grounded delivery. Start with curiosity, build momentum, thoughtful final payoff. No music or sound effects. Read only the supplied words. Finish the last sentence. Clear natural pace.",
+  "text": "في شمال شرق مقاطعة ويلز، وتحديداً في أجواء الثورة الصناعية، ظهر إنجاز هندسي ضخم بيمتد لمسافة ثمانية عشر كيلومتراً. المشروع ده بيعكس تحدي كبير للبيئة الجغرافية الوعرة اللي اختاروها عشان تمر منها المية من غير أي كوابح تقليدية تعطل حركة النقل المائي. المهندس المدني الشهير توماس تيلفورد هو اللي وضع التصميم الأساسي للعمل ده. الرؤية الهندسية اعتمدت على إيجاد حلول جريئة وغير معتادة لتجاوز المرتفعات والوديان، وهو الأمر اللي تطلب تفكير مختلف تماماً عن الطرق القديمة اللي كانت بتعتمد على الإنشاءات الحجرية الضخمة لوحدها. السر الأساسي في نجاح التصميم ده كان استخدام المعدن المسبوك والحديد المزخرف في هيكل القناة. المادتين دول سمحوا بإنشاء قناطر بتتسم بالخفة والصلابة في نفس الوقت، وده أدى لشكل نهائي بيجمع بين الضخامة والرشاقة الهندسية الواضحة لكل عابر. من أبرز الخصائص التشغيلية للقناة إنها اتبلت وبُنيت من غير استخدام أي كوابح نهائياً على طول مسارها. ده تطلب دقة بالسنتيمتر في توزيع المية ووزنها داخل المجرى المصنوع من الحديد، عشان يفضل التدفق مستمر ومنتظم من غير ما يشكل ضغط مدمر على الجوانب. العمل اعتمد على تجميع أجزاء معدنية متكررة بدقة متناهية فوق دعامات حجرية مرتفعة ورقيقة. التناغم بين الدعامات الحجرية وأحواض الحديد المسبوك عكس تطور صناعة الحديد البريطانية وقتها وقدرتها على إنتاج قطع متطابقة تتحمل الأوزان الهائلة بمرور الزمن. استكمال بناء القنطرة دي جه في بداية القرن التاسع عشر، وتحديداً في عام 1805، لتصبح نموذج متفرد لكل مشاريع النقل المائي بعدها. الفترة دي شهدت طفرة حقيقية في تطبيقات الحديد الهيكلي وتطوير شبكات الملاحة الصناعية في أوروبا كلها. مع مرور العقود، واجهت المنشأة تحديات تخص ثبات الجوانب الحجرية والردم القديم. عمليات الترميم والإصلاح استلزمت أحياناً استخدام تقنيات حديثة مختلفة عن المواد الأصلية، مثل الصفائح المعدنية والخرسانة، عشان تفضل القناة محافظة على كفاءتها التشغيلية ومياهها جارية. في النهاية، فضلت قناة بونكتيسيلت شاهد حي على قدرة العقل البشري على تطويع الطبيعة الصعبة. الأسلوب الابتكاري اللي استخدمه تيلفورد في دمج الحديد والمجرى المائي ما وقفش تأثيره عند ويلز، ده اتخذته مشاريع هندسية كتيرة حول العالم مرجع أساسي لها.",
+  "interaction_id": "v1_ChdOTXZuYXNyQUJ0Yml5dE1QMFlpWTZBRRIXTk12bmFzckFCdGJpeXRNUDBZaVk2QUU",
+  "duration": 155.32,
+  "sample_rate": 24000,
+  "channels": 1,
+  "sha256": "d2c529f189484727fc7144e15ae71f2d16c7be74f809215d4424ebeb4a4efa65",
+  "newly_synthesized": true,
+  "original_video_audio_used": false,
+  "fallback_used": false,
+  "cache_hit": true,
+  "output_sha256": "d2c529f189484727fc7144e15ae71f2d16c7be74f809215d4424ebeb4a4efa65"
+}
