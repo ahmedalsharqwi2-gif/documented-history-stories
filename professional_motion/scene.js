@@ -282,7 +282,7 @@ window.renderAt=(time,duration=D)=>{
  const sceneStart=times[index]*D,sceneEnd=(times[index+1]??1)*D,local=Math.max(0,t-sceneStart),p=clamp(local/(sceneEnd-sceneStart));
  uniforms.clock.value=t;uniforms.morph.value=index===6?(.5-.5*Math.cos(p*Math.PI*2)):0;
  if(useOctopus)poseOctopus(t);
- octopus.visible=useOctopus&&[0,1,6,7].includes(index);macro.visible=useOctopus&&[2,3].includes(index);neural.visible=useOctopus&&index===4;layers.visible=useOctopus&&index===5;reef.visible=useOctopus&&index===6;channel.root.visible=!useProcedural&&!historyDirector&&!useOctopus&&!useHaunted;if(!useProcedural&&!historyDirector&&!useOctopus&&!useHaunted)channel.update(config,index,local,p,t);
+ octopus.visible=useOctopus&&[0,1,6,7].includes(index);macro.visible=useOctopus&&[2,3].includes(index);neural.visible=useOctopus&&index===4;layers.visible=useOctopus&&index===5;reef.visible=useOctopus&&index===6;channel.root.visible=!useProcedural&&!historyDirector&&!useOctopus&&!useHaunted;if(!useProcedural&&!historyDirector&&!useOctopus&&!useHaunted){try{channel.update(config,index,local,p,t);}catch(error){console.warn('visual channel fallback',error);channel.root.visible=true;}}
  octopus.scale.setScalar(index===0?.78+.14*ease(p*2):index===6?.85:index===7?.9:.91);
  octopus.position.set(index===0?Math.sin(t*.3)*.08:0,index===0?-.4+.25*ease(p*2):-.25,0);
  octopus.rotation.set(.08*Math.sin(t*.3),index===0?-.45+.5*ease(p):.12*Math.sin(t*.2),index===0?-.18*(1-ease(p)):.035*Math.sin(t*.3));
