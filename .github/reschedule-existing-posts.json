@@ -1,0 +1,22 @@
+{
+  "request_id": "owner-retime-2026-11-02-1700",
+  "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+  "slot": "daily-2026-11-02",
+  "video_sha256": "5f609f7b5bc2b40f01f7a2ac6d1202b2f19dab804103fb26b0a0d6ca19cf7c58",
+  "old_due_at": "2026-11-03T15:00:00Z",
+  "new_due_at": "2026-11-02T15:00:00Z",
+  "posts": {
+    "youtube": {
+      "id": "6ae852295e62d9a270f8faef",
+      "channel_id": "6ab67b4fea19ca0bdee58218"
+    },
+    "instagram": {
+      "id": "6ae8522b55a230dd719f00cf",
+      "channel_id": "6ab67accea19ca0bdee57e17"
+    },
+    "facebook": {
+      "id": "6ae8522ddd7a4869734ca6ad",
+      "channel_id": "6ab67b0dea19ca0bdee58014"
+    }
+  }
+}
