@@ -1,7 +1,26 @@
 {
-  "head": "6081aa97c14bd254d56cfed0cabe086ce3b395b8",
-  "run_id": "41540149449",
-  "disabled": [],
+  "head": "d70200a435c92cb315286266c5786996e9906ed1",
+  "run_id": "41540643851",
+  "disabled": [
+    {
+      "id": 382968830,
+      "name": "Verify immediate publication delivery",
+      "path": ".github/workflows/verify_immediate_delivery.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 390501061,
+      "name": "History Motion Pilot",
+      "path": ".github/workflows/history-motion-pilot.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 391110208,
+      "name": "Daily Egyptian AI News",
+      "path": ".github/workflows/daily-ai-news.yml",
+      "state": "disabled_manually"
+    }
+  ],
   "active": [
     {
       "id": 370389212,
@@ -40,26 +59,7 @@
       "state": "active"
     }
   ],
-  "unknown_preserved": [
-    {
-      "id": 382968830,
-      "name": "Verify immediate publication delivery",
-      "path": ".github/workflows/verify_immediate_delivery.yml",
-      "state": "active"
-    },
-    {
-      "id": 390501061,
-      "name": "History Motion Pilot",
-      "path": ".github/workflows/history-motion-pilot.yml",
-      "state": "active"
-    },
-    {
-      "id": 391110208,
-      "name": "Daily Egyptian AI News",
-      "path": ".github/workflows/daily-ai-news.yml",
-      "state": "active"
-    }
-  ],
+  "unknown_preserved": [],
   "errors": [],
   "run_deletions": 0,
   "artifact_deletions": 0,
