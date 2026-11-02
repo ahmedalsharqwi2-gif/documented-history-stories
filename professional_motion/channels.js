@@ -168,7 +168,7 @@ export function channelStage(scene){
    ice.forEach(o=>o.visible=story.variant==='polar');ocean.material.color.setHex(story.variant==='polar'?0x143e51:0x092f4a);
    ships.forEach((s,i)=>{s.rotation.set(Math.sin(t*.7+i)*.035,Math.sin(t*.13)*.12,Math.sin(t*.8+i)*.045);s.position.y=(i?.1:-.2)+Math.sin(t*.8+i)*.035;s.userData.sails.forEach(o=>{const pos=o.geometry.attributes.position;for(let k=0;k<pos.count;k++)pos.setZ(k,.03+Math.sin(pos.getX(k)*3+t*.8)*.05);pos.needsUpdate=true;o.geometry.computeVertexNormals();});});
    const positions=ocean.geometry.attributes.position;for(let k=0;k<positions.count;k++)positions.setZ(k,Math.sin(positions.getX(k)*2+t)*.035+Math.sin(positions.getY(k)*2-t*.8)*.025);positions.needsUpdate=true;ocean.geometry.computeVertexNormals();
-   routePoint.position.copy(route.curve.getPoint((local*.12)%1));scanRings.forEach((o,i)=>o.scale.setScalar(.7+((local*.18+i*.22)%1)));
+   if(route?.curve)routePoint.position.copy(route.curve.getPoint((local*.12)%1));scanRings.forEach((o,i)=>o.scale.setScalar(.7+((local*.18+i*.22)%1)));
    wreckShip.rotation.y=.15*Math.sin(local*.2);
    if(index===2)g.scale.setScalar(1.18);
   }else if(family==='architecture'){
@@ -205,7 +205,7 @@ export function channelStage(scene){
   }else if(family==='compute'){
    const modes={chip,network,comparison:compare,deployment:racks,flow:network,limits:compare};const mode=story.scenes[index].visual_mode;g=mode?modes[mode]:[chip,network,network,compare,racks,chip,compare,chip][index];if(!g)throw Error('Unsupported computing visual mode');
    cores.forEach((o,i)=>o.material=i%5?violet:aqua);leds.forEach((o,i)=>o.visible=Math.sin(local*3+i)>.0);
-   pulses.forEach((o,i)=>o.position.copy(links[i].getPoint((local*.32+i*.037)%1)));compareDot.position.set(Math.sin(local)*1.2,.7*Math.cos(local*.7),.25);
+   pulses.forEach((o,i)=>{const link=links[i%links.length];if(link)o.position.copy(link.getPoint((local*.32+i*.037)%1));});compareDot.position.set(Math.sin(local)*1.2,.7*Math.cos(local*.7),.25);
    if(g===chip){g.rotation.x=.38;g.rotation.y=.1+local*.1;}
   }else if(family==='space'){
    const mode=story.scenes[index].visual_mode||'hero';
