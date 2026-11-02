@@ -1,6 +1,6 @@
 {
   "apply": true,
-  "scope": "Resume remaining inspected branches after bounded recovery ref checks",
+  "scope": "Finish guarded cleanup only after GitHub API budget is available; retain all previous reports",
   "keep": [
     "main",
     "open PR branches",
@@ -8,5 +8,5 @@
     "production_v2 recovery/state/source/diagnostic refs",
     "all topic histories/receipts/voice originals"
   ],
-  "revision": 3
+  "revision": 4
 }

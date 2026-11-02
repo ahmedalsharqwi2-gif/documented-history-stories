@@ -31,7 +31,7 @@
   "jobs": {
     "cleanup": {
       "runs-on": "ubuntu-24.04",
-      "timeout-minutes": 35,
+      "timeout-minutes": 100,
       "env": {
         "PYTHONPATH": "${{ github.workspace }}",
         "PYTHONUNBUFFERED": "1",
@@ -54,6 +54,10 @@
         {
           "name": "Install inventory and regression prerequisites",
           "run": "python -m pip install requests beautifulsoup4"
+        },
+        {
+          "name": "Inspect API budget and wait for its advertised reset before cleanup",
+          "run": "python - <<'PY'\nimport os,time,json,requests\nr=requests.get('https://api.github.com/rate_limit',headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'Accept':'application/vnd.github+json'},timeout=30)\nr.raise_for_status()\ncore=r.json()['resources']['core']\nprint(json.dumps({'github_core_remaining':core['remaining'],'github_core_limit':core['limit'],'reset_epoch':core['reset']}))\nif core['remaining']<650:\n delay=max(0,core['reset']-int(time.time())+10)\n if delay>3700:raise SystemExit('Rate budget reset too distant; no mutations')\n print('Waiting for GitHub core API budget before inventory; no production or social calls',flush=True)\n while delay>0:\n  pause=min(30,delay);time.sleep(pause);delay-=pause\nPY"
         },
         {
           "name": "Verify protected refs, active work and cache-only deletion guards",
