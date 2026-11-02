@@ -12,6 +12,13 @@ def main():
  fields='id channelId status dueAt sentAt externalLink assets{source}'
  try:schema=query('query {__type(name:"Post"){fields{name type{kind name ofType{kind name}}}}}')
  except RuntimeError:schema={}
+ if request.get('schema_only'):
+  data={'post':schema,'related':{}}
+  for f in (schema.get('__type') or {}).get('fields',[]):
+   if any(k in f['name'].lower() for k in ('error','fail','reason')):
+    t=f['type'];t=t.get('ofType') if t['kind']=='NON_NULL' else t
+    if t and t.get('name') and t.get('kind')=='OBJECT':data['related'][t['name']]=query('query {__type(name:'+json.dumps(t['name'])+'){fields{name type{kind name ofType{kind name}}}}}')
+  path='reviews/daily_health/legacy-reconciliation/provider-schema-'+os.environ['GITHUB_RUN_ID']+'.json';write_json(path,data);print(path);return
  selected=[]
  for f in (schema.get('__type') or {}).get('fields',[]):
   t=f['type'];t=t.get('ofType') if t['kind']=='NON_NULL' else t

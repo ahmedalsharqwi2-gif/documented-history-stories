@@ -2,5 +2,6 @@
   "date": "2026-11-02",
   "phase": "postpublish",
   "legacy_diagnostic": true,
-  "revision": 4
+  "schema_only": true,
+  "revision": 5
 }
