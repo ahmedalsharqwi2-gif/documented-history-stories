@@ -2,7 +2,7 @@
   "version": 1,
   "episodes": {
     "remotion-2026-11-04-history": {
-      "status": "rendered",
+      "status": "publishing",
       "canonical_subject": "abu-simbel-relocation-1960s",
       "title": "إزاي أنقذوا أبو سمبل من الغرق؟",
       "story_sha256": "725613425b7004e122cbaf47c0f845d084ae6071f3f4cd06b3f25f3e61b79f16",
@@ -17,7 +17,8 @@
       "coverage": 0.9,
       "video_sha256": "6a51613189c9e6b45d36ae0a904a29c06e03b0031614440a6ee43ac6c2aa6733",
       "render_run": 41491508662,
-      "source_evidence_file": "professional_motion/output/remotion-validation.json"
+      "source_evidence_file": "professional_motion/output/remotion-validation.json",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4"
     }
   }
 }
