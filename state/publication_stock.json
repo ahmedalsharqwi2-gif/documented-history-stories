@@ -475,6 +475,15 @@
         "instagram",
         "youtube"
       ]
+    },
+    "stock 2026-11-03 17 Cairo": {
+      "confirmed": false,
+      "receipts": {},
+      "required_services": [
+        "facebook",
+        "instagram",
+        "youtube"
+      ]
     }
   }
 }
