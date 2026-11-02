@@ -1,0 +1,150 @@
+{
+  "recovery_ref": "archive/housekeeping-41535731740-1/main-before-cleanup",
+  "verified_original_blobs": true,
+  "removed": [
+    {
+      "path": ".github/workflows/complete-existing-request.yml",
+      "sha": "cf45d193755f8ce3a50030077c958187102494fb"
+    },
+    {
+      "path": ".github/workflows/daily-production-v3.yml",
+      "sha": "2be37ae32239894dc8f24dd4daace67342c9e9df"
+    },
+    {
+      "path": ".github/workflows/history-frame-repair.yml",
+      "sha": "1beb1ec2d2c355b8497e136dc0c2c124f0fc3873"
+    },
+    {
+      "path": ".github/workflows/image-fallback-ci.yml",
+      "sha": "fe4dce80991dd3b59af46751f493cc63ef36643b"
+    },
+    {
+      "path": ".github/workflows/motion-kit-validation.yml",
+      "sha": "80d0480901e2b385fd0b0fa0b86b1036a1322aec"
+    },
+    {
+      "path": ".github/workflows/produce-new-today.yml",
+      "sha": "9705c5b96d8e7afc732069e91e0535bf4904e9fb"
+    },
+    {
+      "path": ".github/workflows/production-v2-audit.yml",
+      "sha": "13a08b941055866cf5636547809f37f45ae780a6"
+    },
+    {
+      "path": ".github/workflows/production-v2-cancel-redundant-history.yml",
+      "sha": "e98e58d5dc81a02a740779d2a635c37b9d29239b"
+    },
+    {
+      "path": ".github/workflows/production-v2-diagnose.yml",
+      "sha": "38fda9ac58965212e75d1aadf682c82445ba3314"
+    },
+    {
+      "path": ".github/workflows/production-v2-generate.yml",
+      "sha": "c75508d357690d26a61e31255dd048e2b49a8a53"
+    },
+    {
+      "path": ".github/workflows/production-v2-review.yml",
+      "sha": "6872313279b232db550b29ee1db69bd24bd8cbff"
+    },
+    {
+      "path": ".github/workflows/production-v2-sources.yml",
+      "sha": "3ef40308b60ca3c5be506aa3329f0af9abcd2bd5"
+    },
+    {
+      "path": ".github/workflows/professional-approved-review.yml",
+      "sha": "1c7da7da950f9e48029ad1b8306d2cf761154b48"
+    },
+    {
+      "path": ".github/workflows/professional-audit-daily-release.yml",
+      "sha": "e74d6d28ca170ad1dc254e189614d67861e2a358"
+    },
+    {
+      "path": ".github/workflows/professional-channel-check.yml",
+      "sha": "a0ec1b5f040a7e1693332339ca2ed2aef4ca82dc"
+    },
+    {
+      "path": ".github/workflows/professional-correct-history.yml",
+      "sha": "bd99ceffdabb1609f2aeb3f12df372ac8d95c698"
+    },
+    {
+      "path": ".github/workflows/professional-corrected-review.yml",
+      "sha": "a9478196fc357ed83adc5ee2a442bc72f8df7d89"
+    },
+    {
+      "path": ".github/workflows/professional-daily.yml",
+      "sha": "dc12d6292ae1706f3e735904f3ad84c5f30fe1fa"
+    },
+    {
+      "path": ".github/workflows/professional-delivery-audit.yml",
+      "sha": "f708f461d735b4204103a4eb714dd877443d7b0b"
+    },
+    {
+      "path": ".github/workflows/professional-full-length-review.yml",
+      "sha": "41f2445c09716b61f23118c745be7f9dad224f3e"
+    },
+    {
+      "path": ".github/workflows/professional-history-source-review.yml",
+      "sha": "fa0df0522441cbe2056e1684bacfc120aaacbc93"
+    },
+    {
+      "path": ".github/workflows/professional-history-sources.yml",
+      "sha": "a4e0842d9564ffbeeb327ca3d68855fbac118939"
+    },
+    {
+      "path": ".github/workflows/professional-pipeline-validation.yml",
+      "sha": "fd77fc49d9d28cba85f9727cfcd012db678b5d79"
+    },
+    {
+      "path": ".github/workflows/professional-quieter-review.yml",
+      "sha": "2fff1f23f2ab2c200b51ad47a4ded28e1989da5a"
+    },
+    {
+      "path": ".github/workflows/professional-review-diagnostics.yml",
+      "sha": "32a0fa3732ddfb0892100213ad619e8c12b33590"
+    },
+    {
+      "path": ".github/workflows/professional-review-download.yml",
+      "sha": "5b5709de1ec97965c37e39a1c68d5be38979c7b8"
+    },
+    {
+      "path": ".github/workflows/professional-schedule-finished.yml",
+      "sha": "cf85e2cc0e86ed59543ddc5872d417b81ebb4ede"
+    },
+    {
+      "path": ".github/workflows/professional-start-today.yml",
+      "sha": "fedecce0ed120cc98b15efbaf6f3422fe424febf"
+    },
+    {
+      "path": ".github/workflows/professional-update-history-posts.yml",
+      "sha": "271d2227d1a263f9de06509728df05802e7bb3c5"
+    },
+    {
+      "path": ".github/workflows/reschedule-existing-posts.yml",
+      "sha": "956f26cb4db5ff5b3b784da8a8358dbc139f9aa0"
+    },
+    {
+      "path": ".github/workflows/scene-director-ci.yml",
+      "sha": "073c3ce6ce17fcdde3321b8aeb872f94360c64f2"
+    },
+    {
+      "path": ".github/workflows/visual-quality-gate.yml",
+      "sha": "be18c3a9ebe7802f9f89e9ea2d1aff44aea0275a"
+    }
+  ],
+  "active_paths": [
+    ".github/workflows/remotion-daily.yml",
+    ".github/workflows/remotion-health.yml",
+    ".github/workflows/remotion-cleanup.yml",
+    ".github/workflows/arabic_guard.yml",
+    ".github/workflows/validation.yml",
+    ".github/workflows/checks.yml"
+  ],
+  "ci_consolidation": "All retired engine test jobs retained in checks.yml; original Arabic and repository validation checks retain their own definitions",
+  "scheduled_workflows": [
+    "remotion-daily.yml",
+    "remotion-health.yml"
+  ],
+  "social_mutations": 0,
+  "generation_calls": 0,
+  "run_deletions": 0
+}
