@@ -66,7 +66,7 @@
         },
         {
           "name": "Render an exact quarter of the real-timing full-resolution frames",
-          "run": "args=(--style \"$REVIEW_VISUAL_STYLE\")\nif [ \"$IS_REVIEW\" = \"true\" ]; then args+=(--review); fi\nnode professional_motion/render.mjs --pipeline v2 \"${args[@]}\" --part ${{ matrix.part }} --parts 4 --output chunk-${{ matrix.part }}.mp4",
+          "run": "args=(--style \"$REVIEW_VISUAL_STYLE\")\nif [ \"$IS_REVIEW\" = \"true\" ]; then args+=(--review); fi\nnode professional_motion/render.mjs --pipeline v2 --output-dir professional_motion/output \"${args[@]}\" --part ${{ matrix.part }} --parts 4 --output chunk-${{ matrix.part }}.mp4",
           "env": {
             "REVIEW_VISUAL_STYLE": "original",
             "IS_REVIEW": "false"

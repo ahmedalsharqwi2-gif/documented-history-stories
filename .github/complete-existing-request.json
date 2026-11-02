@@ -1,1 +1,9 @@
-{"profile":"history","source_run":41424421021,"slot":"requested-2026-11-02-history","due_at":"2026-11-02T15:00:00Z","publication_title":"النيل والري: حكاية الزراعة على ضفاف النهر","no_new_text_or_tts":true}
+{
+  "profile": "history",
+  "source_run": 41424421021,
+  "slot": "requested-2026-11-02-history",
+  "due_at": "2026-11-02T15:00:00Z",
+  "publication_title": "النيل والري: حكاية الزراعة على ضفاف النهر",
+  "no_new_text_or_tts": true,
+  "recovery_revision": "Explicit shared chunk output directory; same retained narration and full exact frames"
+}
