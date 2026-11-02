@@ -1,10 +1,115 @@
 {
   "repository": "ahmedalsharqwi2-gif/documented-history-stories",
-  "run_id": "41533600553",
-  "apply": false,
-  "started_at": "2026-11-02T22:01:38.183018+00:00",
-  "errors": [],
-  "deleted_branches": [],
+  "run_id": "41535731740",
+  "apply": true,
+  "started_at": "2026-11-02T22:15:54.360372+00:00",
+  "errors": [
+    "Recovery ref not independently confirmed"
+  ],
+  "deleted_branches": [
+    {
+      "name": "codex/abu-simbel-feature-39493924939",
+      "sha": "bc946f2d640faa3124bad45bb08d5872b6bcea69",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/abu-simbel-feature-39493924939"
+    },
+    {
+      "name": "codex/abu-simbel-polished-39504425549",
+      "sha": "0a84dbb5d58e651a716f9ede341a2bf57b96f6d7",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/abu-simbel-polished-39504425549"
+    },
+    {
+      "name": "codex/abu-simbel-review-39493181433",
+      "sha": "f2ae0b0f496f37dc01033049549e138be2aca9fb",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/abu-simbel-review-39493181433"
+    },
+    {
+      "name": "codex/audio-tail-fixed-39506881549",
+      "sha": "1cf9bb363ef487a8d3be170acfbb644898721224",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/audio-tail-fixed-39506881549"
+    },
+    {
+      "name": "codex/destination-check-40838587594",
+      "sha": "e7861826c45167be350cefed6b9b2b2701c6b427",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/destination-check-40838587594"
+    },
+    {
+      "name": "codex/feature-voices-39492415050",
+      "sha": "13e0997d329f082bbf2f5c2e4e512d92ddaa3c11",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/feature-voices-39492415050"
+    },
+    {
+      "name": "codex/gemini-feature-plan-39491573950",
+      "sha": "c652befffe82623f80a9c1e01d9fad9de217eaa3",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/gemini-feature-plan-39491573950"
+    },
+    {
+      "name": "codex/gemini-feature-plan-39492414918",
+      "sha": "6ede5ae23da446b582624d88a86aa492d0eaee9f",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/gemini-feature-plan-39492414918"
+    },
+    {
+      "name": "codex/gemini-feature-plan-39492761167",
+      "sha": "c9773b8217cde3a477ee03968920f9dd78095d46",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/gemini-feature-plan-39492761167"
+    },
+    {
+      "name": "codex/gemini-feature-plan-39493383245",
+      "sha": "9a3af9cae78367f16e1d68a1b865c4dd739d1a13",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/gemini-feature-plan-39493383245"
+    },
+    {
+      "name": "codex/gemini-feature-plan-39493595312",
+      "sha": "2f9cb60769c92f8ca4be8cd02ef87dbc6151b4ad",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/gemini-feature-plan-39493595312"
+    },
+    {
+      "name": "codex/gemini-feature-plan-39493811652",
+      "sha": "031d71bb57c5a06ddb904b004be1b034b9f559a2",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/gemini-feature-plan-39493811652"
+    },
+    {
+      "name": "codex/history-sources-40850589079",
+      "sha": "542e3027d058af85313c48eb9ed0f965ab2598f5",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/history-sources-40850589079"
+    },
+    {
+      "name": "codex/listening-pack-39508482132",
+      "sha": "b7325054a1b40f527b73e3b054c8180721723009",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/listening-pack-39508482132"
+    },
+    {
+      "name": "codex/motion-720-39477077642",
+      "sha": "6e07cdcfcf77389bd1d1a3d58a40b6518010d351",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/motion-720-39477077642"
+    },
+    {
+      "name": "codex/motion-delivery-39477690294",
+      "sha": "0e2c9917f559427730b2517eaed912c2b8fc4c8b",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/motion-delivery-39477690294"
+    },
+    {
+      "name": "codex/motion-preview-39474026827",
+      "sha": "e061a721059f153385803b45e4ca0c6c269467c2",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41535731740-1/codex/motion-preview-39474026827"
+    }
+  ],
   "retained": [
     {
       "name": "ci/full-test-discovery",
@@ -77,10 +182,6 @@
     {
       "name": "codex/professional-review-run-40930406419",
       "reason": "keep_workflow_reference"
-    },
-    {
-      "name": "codex/professional-review-run-41354642231",
-      "reason": "keep_recent_commit_under24hours"
     },
     {
       "name": "codex/professional-review-run-41362217463",
@@ -275,7 +376,7 @@
   "generation_calls": 0,
   "social_mutations": 0,
   "default_branch": "main",
-  "main_before": "e05a1014de8a567a0bd3751a45b2472e2f44437d",
+  "main_before": "4367529a7400a7b9e91378af0e79498ef08b39b4",
   "branch_count": 143,
   "planned_branches": [
     {
@@ -574,6 +675,11 @@
       "reason": "completed_run_snapshot_older_than24hours_not_referenced"
     },
     {
+      "name": "codex/professional-review-run-41354642231",
+      "sha": "157c1c18e7a09802e0875ec925f6887e164fa19f",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced"
+    },
+    {
       "name": "codex/professional-video-40787364902",
       "sha": "cf6a3a650f7cfe5ea1a863db536966c54211e334",
       "reason": "completed_run_snapshot_older_than24hours_not_referenced"
@@ -665,6 +771,7 @@
     }
   ],
   "planned_paths": [],
-  "passed": true,
-  "finished_at": "2026-11-02T22:03:26.430793+00:00"
+  "main_recovery_tag": "archive/housekeeping-41535731740-1/main-before-cleanup",
+  "passed": false,
+  "finished_at": "2026-11-02T22:18:25.614114+00:00"
 }
