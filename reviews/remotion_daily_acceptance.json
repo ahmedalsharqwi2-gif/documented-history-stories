@@ -1,0 +1,66 @@
+{
+  "profile": "history",
+  "schedule": {
+    "timezone": "Africa/Cairo",
+    "production": "09:00",
+    "publication": "17:00",
+    "publication_day_offset": 0,
+    "first_scheduled_clock_execution_not_yet_observed": true
+  },
+  "full_film": {
+    "title": "إزاي أنقذوا أبو سمبل من الغرق؟",
+    "slot": "remotion-2026-11-04-history",
+    "duration": 131.1,
+    "sha256": "6a51613189c9e6b45d36ae0a904a29c06e03b0031614440a6ee43ac6c2aa6733",
+    "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4",
+    "render_run": 41491508662,
+    "publication_due": "2026-11-04T15:00:00Z"
+  },
+  "receipts": {
+    "youtube": {
+      "phase": "verified",
+      "channel_id": "6ab67b4fea19ca0bdee58218",
+      "due_at": "2026-11-04T15:00:00Z",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4",
+      "created_at": "2026-11-02T18:17:07.475765+00:00",
+      "id": "6ae8d3a5a1cb4345befc76eb",
+      "accepted_at": "2026-11-02T18:17:09.747451+00:00",
+      "status": "scheduled",
+      "scheduled_at": "2026-11-04T15:00:00.000Z",
+      "verified_at": "2026-11-02T18:17:11.322028+00:00"
+    },
+    "facebook": {
+      "phase": "verified",
+      "channel_id": "6ab67b0dea19ca0bdee58014",
+      "due_at": "2026-11-04T15:00:00Z",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4",
+      "created_at": "2026-11-02T18:17:12.913017+00:00",
+      "id": "6ae8d3aaa1cb4345befc78a2",
+      "accepted_at": "2026-11-02T18:17:14.949291+00:00",
+      "status": "scheduled",
+      "scheduled_at": "2026-11-04T15:00:00.000Z",
+      "verified_at": "2026-11-02T18:17:16.760748+00:00"
+    },
+    "instagram": {
+      "phase": "verified",
+      "channel_id": "6ab67accea19ca0bdee57e17",
+      "due_at": "2026-11-04T15:00:00Z",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4",
+      "created_at": "2026-11-02T18:17:18.484746+00:00",
+      "id": "6ae8d3b0a1cb4345befc7b18",
+      "accepted_at": "2026-11-02T18:17:20.323175+00:00",
+      "status": "scheduled",
+      "scheduled_at": "2026-11-04T15:00:00.000Z",
+      "verified_at": "2026-11-02T18:17:21.876760+00:00"
+    }
+  },
+  "final_no_duplicate_test": {
+    "run": 41503131987,
+    "url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41503131987",
+    "status": "success"
+  },
+  "legacy_cron_archived_and_disabled": true,
+  "visible_hashtags_enabled_for_future_production": true,
+  "first_embedded_hashtag_film": false,
+  "review_samples_published": false
+}
