@@ -1020,7 +1020,7 @@
       "requested_due_at": "2026-11-02T15:00:00Z",
       "posts": {
         "youtube": {
-          "phase": "intent",
+          "phase": "uncertain",
           "before": {
             "id": "6ae852295e62d9a270f8faef",
             "channelId": "6ab67b4fea19ca0bdee58218",
