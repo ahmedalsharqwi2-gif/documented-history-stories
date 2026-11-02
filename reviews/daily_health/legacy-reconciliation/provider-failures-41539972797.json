@@ -1,0 +1,29 @@
+{
+  "6ae88513c5c4672c3e730ca7": {
+    "id": "6ae88513c5c4672c3e730ca7",
+    "channelId": "6ab67b4fea19ca0bdee58218",
+    "status": "error",
+    "dueAt": "2026-11-02T15:00:00.000Z",
+    "createdAt": "2026-11-02T12:41:55.061Z",
+    "updatedAt": "2026-11-02T12:48:01.996Z",
+    "via": "buffer",
+    "allowedActions": [
+      "addPostToQueue",
+      "publishPostNow",
+      "updatePost",
+      "movePostToDraft",
+      "publishPostNext",
+      "updatePostSchedule",
+      "removePostScheduledTime",
+      "updatePostTags",
+      "addPostNote",
+      "duplicatePost",
+      "deletePost",
+      "updateShopGridLink"
+    ],
+    "error": {
+      "message": "It looks like Buffer has lost authorization to post on your behalf. Please refresh your channel to resume scheduling.",
+      "supportUrl": null
+    }
+  }
+}
