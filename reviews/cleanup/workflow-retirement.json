@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "kind": "Superseded one-off workflow retirement",
+  "checked_head": "3dc637dbacbfe3f790d102c49517b298e9d52b90",
+  "retired": [
+    {
+      "path": ".github/workflows/remotion-voice.yml",
+      "sha": "0a0011d368b6883004dcc99b4827aea6dff6e863",
+      "backup": "archive/housekeeping-41535731740-1/main-before-cleanup"
+    },
+    {
+      "path": ".github/workflows/remotion-complete.yml",
+      "sha": "6f953dd95bd3e33bb165de728fdeff34ebef2fce",
+      "backup": "archive/housekeeping-41535731740-1/main-before-cleanup"
+    }
+  ],
+  "preserved": [
+    "daily09Cairo-production-and17Cairo-publication",
+    "independent-health-monitor",
+    "all-topic-and-publication-ledgers",
+    "all-production-and-review-media"
+  ],
+  "social_mutations": 0,
+  "generation_calls": 0,
+  "verification": "All retired paths absent from current main tree; active daily, health and cleanup workflows and registry present; each original blob independently matched its recovery tag"
+}
