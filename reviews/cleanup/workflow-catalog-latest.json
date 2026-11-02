@@ -1,26 +1,7 @@
 {
-  "head": "d70200a435c92cb315286266c5786996e9906ed1",
-  "run_id": "41540643851",
-  "disabled": [
-    {
-      "id": 382968830,
-      "name": "Verify immediate publication delivery",
-      "path": ".github/workflows/verify_immediate_delivery.yml",
-      "state": "disabled_manually"
-    },
-    {
-      "id": 390501061,
-      "name": "History Motion Pilot",
-      "path": ".github/workflows/history-motion-pilot.yml",
-      "state": "disabled_manually"
-    },
-    {
-      "id": 391110208,
-      "name": "Daily Egyptian AI News",
-      "path": ".github/workflows/daily-ai-news.yml",
-      "state": "disabled_manually"
-    }
-  ],
+  "head": "8014e6de1dbceccdf92d7003da294e2483989cfd",
+  "run_id": "41543376503",
+  "disabled": [],
   "active": [
     {
       "id": 370389212,
