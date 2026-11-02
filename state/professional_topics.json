@@ -1013,5 +1013,67 @@
         }
       }
     }
-  ]
+  ],
+  "rescheduling_history": {
+    "owner-retime-2026-11-02-1700": {
+      "old_due_at": "2026-11-03T15:00:00Z",
+      "requested_due_at": "2026-11-02T15:00:00Z",
+      "posts": {
+        "youtube": {
+          "phase": "intent",
+          "before": {
+            "id": "6ae852295e62d9a270f8faef",
+            "channelId": "6ab67b4fea19ca0bdee58218",
+            "status": "scheduled",
+            "dueAt": "2026-11-03T15:00:00.000Z",
+            "text": "نقص ونروى | قناة بونكتيسيلت: هندسة الحديد المسبوك في ويلز\n\nرسوم توضيحية وإعادة تمثيل درامية؛ ليست تسجيلًا للأحداث.\nالمصدر: UNESCO World Heritage Centre\nhttps://whc.unesco.org/en/list/1303/\n#قناة_بونكتيسيلت #الثورة_الصناعية #توماس_تيلفورد",
+            "shareMode": "customScheduled",
+            "schedulingType": "automatic",
+            "assets": [
+              {
+                "source": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/auto-publish-daily-2026-11-02/science-video-daily-2026-11-02.mp4"
+              }
+            ]
+          },
+          "old_receipt": {
+            "id": "6ae852295e62d9a270f8faef",
+            "channel_id": "6ab67b4fea19ca0bdee58218"
+          },
+          "requested_due_at": "2026-11-02T15:00:00Z"
+        }
+      },
+      "original_episode_receipts": {
+        "youtube": {
+          "id": "6ae852295e62d9a270f8faef",
+          "due_at": "2026-11-03T15:00:00Z",
+          "run_id": "41416797198",
+          "accepted_at": "2026-11-02T09:04:41.495273+00:00",
+          "channel_id": "6ab67b4fea19ca0bdee58218",
+          "scheduled_at": "2026-11-03T15:00:00+00:00",
+          "status": "scheduled",
+          "verified_at": "2026-11-02T09:04:46.066926+00:00"
+        },
+        "instagram": {
+          "id": "6ae8522b55a230dd719f00cf",
+          "due_at": "2026-11-03T15:00:00Z",
+          "run_id": "41416797198",
+          "accepted_at": "2026-11-02T09:04:43.581128+00:00",
+          "channel_id": "6ab67accea19ca0bdee57e17",
+          "scheduled_at": "2026-11-03T15:00:00+00:00",
+          "status": "scheduled",
+          "verified_at": "2026-11-02T09:04:46.302853+00:00"
+        },
+        "facebook": {
+          "id": "6ae8522ddd7a4869734ca6ad",
+          "due_at": "2026-11-03T15:00:00Z",
+          "run_id": "41416797198",
+          "accepted_at": "2026-11-02T09:04:45.910726+00:00",
+          "channel_id": "6ab67b0dea19ca0bdee58014",
+          "scheduled_at": "2026-11-03T15:00:00+00:00",
+          "status": "scheduled",
+          "verified_at": "2026-11-02T09:04:46.530108+00:00"
+        }
+      }
+    }
+  }
 }
