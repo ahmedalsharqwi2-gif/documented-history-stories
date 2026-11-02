@@ -1012,6 +1012,786 @@
           "verified_at": "2026-11-02T09:04:46.530108+00:00"
         }
       }
+    },
+    {
+      "slot": "requested-2026-11-02-history",
+      "topic_key": "knowledge-ancient-egyptian-irrigation-nile",
+      "canonical_subject": "ancient-egyptian-irrigation-nile",
+      "title": "سحر النيل الأزرق.. حكاية فيضان السد العالي القديم",
+      "knowledge_category": "daily_life",
+      "status": "reserved",
+      "story": {
+        "title": "سحر النيل الأزرق.. حكاية فيضان السد العالي القديم",
+        "canonical_subject": "ancient-egyptian-irrigation-nile",
+        "suitable": true,
+        "facts": [
+          "اعتمد المصريون القدماء على النيل في حياتهم اليومية وتدبير شؤون الزراعة."
+        ],
+        "milestones": [
+          "تأسيس نظام إدارة المياه والجسور لحماية المحاصيل من الفيضان."
+        ],
+        "scenes": [
+          {
+            "id": "scene_1",
+            "label": "شروق الشمس على النيل",
+            "narration": "في كل صباح بكر على ضفاف نهر النيل الخالد تبدأ حياة الفلاحين بتفقد مناسيب المياه بانتظام شديد بينما الشمس تشرق ببطء وتنعكس أشعتها الذهبية الصافية على مياه النهر الجارية لتضيء البيوت المجاورة والأشجار الخضراء المحيطة بالمكان كله",
+            "labels": [],
+            "visual_mode": "hero",
+            "environment": "landscape",
+            "objects": [
+              {
+                "kind": "river",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  2.5,
+                  1,
+                  2.5
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#1e90ff",
+                "motion": "flow"
+              },
+              {
+                "kind": "house",
+                "position": [
+                  -3,
+                  1,
+                  -2
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  0.5,
+                  0
+                ],
+                "color": "#deb887",
+                "motion": "none"
+              },
+              {
+                "kind": "tree",
+                "position": [
+                  3,
+                  1.5,
+                  -1
+                ],
+                "scale": [
+                  1.2,
+                  1.5,
+                  1.2
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#228b22",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              0,
+              5,
+              14
+            ],
+            "camera_end": [
+              0,
+              4,
+              12
+            ],
+            "visual_change": "الشمس تشرق ببطء وتنعكس على مياه النهر الجارية."
+          },
+          {
+            "id": "scene_2",
+            "label": "بناء الجسور والقنوات",
+            "narration": "استخدم الأجداد الحجارة الصلبة والتربة المتينة لبناء جسور قوية تقي الحقول غضب الفيضان المفاجئ كل عام حيث تتجمع طبقات الصخور والأتربة فوق بعضها البعض لتشكل سداً منيعاً يحمي الأرض ويتم نقل المواد بواسطة العربات وال صناديق الخشبية",
+            "labels": [],
+            "visual_mode": "hero",
+            "environment": "ancient_city",
+            "objects": [
+              {
+                "kind": "rock_layers",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  2,
+                  1.5,
+                  2
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#b8860b",
+                "motion": "assemble"
+              },
+              {
+                "kind": "cart",
+                "position": [
+                  -2,
+                  0,
+                  1
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  -0.4,
+                  0
+                ],
+                "color": "#cd853f",
+                "motion": "drift"
+              },
+              {
+                "kind": "box",
+                "position": [
+                  2.5,
+                  0.5,
+                  -1
+                ],
+                "scale": [
+                  0.8,
+                  0.8,
+                  0.8
+                ],
+                "rotation": [
+                  0,
+                  1.2,
+                  0
+                ],
+                "color": "#8b4513",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              -2,
+              6,
+              13
+            ],
+            "camera_end": [
+              1,
+              5,
+              11
+            ],
+            "visual_change": "تتجمع طبقات الصخور والأتربة لتشكل سداً منيعاً ضد المياه."
+          },
+          {
+            "id": "scene_3",
+            "label": "استخدام الساقية للري",
+            "narration": "تم ابتكار الساقية التقليدية العريقة لرفع المياه بسهولة نحو قنوات الري الضيقة الممتدة بين الحقول الزراعية المتباعدة حيث تدور تروس الساقية المصنوعة بعناية بانتظام لتدفع المياه المتدفقة نحو القنوات بجوار مجرى النهر الجاري طوال الوقت",
+            "labels": [
+              "الساقية"
+            ],
+            "visual_mode": "hero",
+            "environment": "landscape",
+            "objects": [
+              {
+                "kind": "gear",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1.8,
+                  1.8,
+                  1.8
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#d2b48c",
+                "motion": "spin"
+              },
+              {
+                "kind": "cylinder",
+                "position": [
+                  0,
+                  -1.5,
+                  0
+                ],
+                "scale": [
+                  1.5,
+                  0.5,
+                  1.5
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#8b5a2b",
+                "motion": "none"
+              },
+              {
+                "kind": "river",
+                "position": [
+                  0,
+                  -2,
+                  2
+                ],
+                "scale": [
+                  3,
+                  0.2,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#4682b4",
+                "motion": "flow"
+              }
+            ],
+            "camera_start": [
+              0,
+              4,
+              15
+            ],
+            "camera_end": [
+              0,
+              3,
+              10
+            ],
+            "visual_change": "تدور تروس الساقية بانتظام لتدفع المياه نحو القنوات."
+          },
+          {
+            "id": "scene_4",
+            "label": "دور الفلاح المصري",
+            "narration": "عمل الفلاح المصري بجد عظيم وأعد كفاحا طويلا وشاقا لضمان وفرة المحاصيل الزاهية وإطعام أفراد المجتمع في كل موسم زراعي حيث ينمو النبات الأخضر الناضر بشكل جميل أمام الشخص الواقف بجوار النباتات والأوراق الخضراء المنعشة",
+            "labels": [
+              "الفلاح المصري"
+            ],
+            "visual_mode": "hero",
+            "environment": "landscape",
+            "objects": [
+              {
+                "kind": "person",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  1.2,
+                  1.5,
+                  1.2
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#ffdab9",
+                "motion": "none"
+              },
+              {
+                "kind": "leaf",
+                "position": [
+                  1.5,
+                  0.5,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  0.8,
+                  0
+                ],
+                "color": "#556b2f",
+                "motion": "grow"
+              },
+              {
+                "kind": "table",
+                "position": [
+                  -2,
+                  -0.8,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#a0522d",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              3,
+              5,
+              12
+            ],
+            "camera_end": [
+              -1,
+              4,
+              11
+            ],
+            "visual_change": "ينمو النبات أخضر ناضراً أمام الشخص الواقف."
+          },
+          {
+            "id": "scene_5",
+            "label": "تسجيل المنسوب والفيضان",
+            "narration": "دون الحكماء قياسات الفيضان بدقة بالغة على جدران المعابد الحجرية العريقة لتقدير الضرائب بدقة وتحديد مواسم الحصاد القادمة بينما تفتح اللفائف القديمة والوثائق الملكية لتظهر عليها الرموز والخطوط المصرية التاريخية البارزة لكل الأجيال",
+            "labels": [
+              "جدران المعابد"
+            ],
+            "visual_mode": "hero",
+            "environment": "ancient_city",
+            "objects": [
+              {
+                "kind": "temple",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  2,
+                  2,
+                  2
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#f4a460",
+                "motion": "none"
+              },
+              {
+                "kind": "scroll",
+                "position": [
+                  -1.8,
+                  -0.5,
+                  1
+                ],
+                "scale": [
+                  0.8,
+                  0.8,
+                  0.8
+                ],
+                "rotation": [
+                  0.2,
+                  0.5,
+                  0
+                ],
+                "color": "#fff8dc",
+                "motion": "open"
+              },
+              {
+                "kind": "document",
+                "position": [
+                  1.8,
+                  -0.5,
+                  1
+                ],
+                "scale": [
+                  0.8,
+                  0.8,
+                  0.8
+                ],
+                "rotation": [
+                  -0.2,
+                  -0.5,
+                  0
+                ],
+                "color": "#faebd7",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              0,
+              6,
+              14
+            ],
+            "camera_end": [
+              0,
+              4,
+              10
+            ],
+            "visual_change": "تفتح اللفائف القديمة لتظهر عليها الرموز والخطوط."
+          },
+          {
+            "id": "scene_6",
+            "label": "احتفالات موسم الحصاد",
+            "narration": "مع انحسار مياه الفيضان تعود الأرض إلى صطوتها الخضراء اليانعة وتبدأ احتفالات الشعب العارمة فرحا بالخير الوفير والمحصول الطيب حيث تتأرجح الفوانيس المضيئة وتضيء المكان بأكمله احتفالاً بالحصاد السعيد وسط الأشجار والترتيبات الاحتفالية الجميلة",
+            "labels": [
+              "احتفالات الشعب"
+            ],
+            "visual_mode": "hero",
+            "environment": "landscape",
+            "objects": [
+              {
+                "kind": "lantern",
+                "position": [
+                  0,
+                  1,
+                  0
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#ff4500",
+                "motion": "swing"
+              },
+              {
+                "kind": "tree",
+                "position": [
+                  -2.5,
+                  0,
+                  -1
+                ],
+                "scale": [
+                  1.5,
+                  2,
+                  1.5
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#32cd32",
+                "motion": "none"
+              },
+              {
+                "kind": "box",
+                "position": [
+                  2,
+                  -1,
+                  1
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ],
+                "rotation": [
+                  0,
+                  0.7,
+                  0
+                ],
+                "color": "#daa520",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              -2,
+              5,
+              13
+            ],
+            "camera_end": [
+              2,
+              4,
+              11
+            ],
+            "visual_change": "تتأرجح الفوانيس وتضيء المكان احتفالاً بالحصاد."
+          },
+          {
+            "id": "scene_7",
+            "label": "استقرار التجارة النهرية",
+            "narration": "تتحرك المراكب الشراعية المحملة بمختلف البضائع بيسر وسهولة عبر مياه النيل الصافية لتربط بين المدن والقرى المصرية في كل اتجاه حيث تطفو السفينة فوق سطح المياه الزرقاء وتتحرك ببطء وثبات مع التيار العذب وبجانبها الصناديق",
+            "labels": [],
+            "visual_mode": "hero",
+            "environment": "harbor",
+            "objects": [
+              {
+                "kind": "ship",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  2,
+                  1.5,
+                  2
+                ],
+                "rotation": [
+                  0,
+                  0.3,
+                  0
+                ],
+                "color": "#8b4513",
+                "motion": "float"
+              },
+              {
+                "kind": "river",
+                "position": [
+                  0,
+                  -1,
+                  0
+                ],
+                "scale": [
+                  4,
+                  0.2,
+                  3
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#00ced1",
+                "motion": "flow"
+              },
+              {
+                "kind": "box",
+                "position": [
+                  0.5,
+                  0.8,
+                  0
+                ],
+                "scale": [
+                  0.6,
+                  0.6,
+                  0.6
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#cd853f",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              3,
+              5,
+              14
+            ],
+            "camera_end": [
+              -2,
+              4,
+              10
+            ],
+            "visual_change": "تطفو السفينة فوق المياه وتتحرك ببطء مع التيار."
+          },
+          {
+            "id": "scene_8",
+            "label": "إرث حضاري خالد",
+            "narration": "هكذا صنع الأجداد العظام ملحمة البقاء والتطور على هذه الأرض الطيبة فظل النيل العظيم شريان الحياة الأبدي وصانع الحضارة العريقة عبر كل العصور بينما ينبض الكريستال بنور خافت وساحر يعلو المعبد الأثري الخالد والكرة المضيئة",
+            "labels": [
+              "ملحمة البقاء",
+              "شريان الحياة"
+            ],
+            "visual_mode": "hero",
+            "environment": "ancient_city",
+            "objects": [
+              {
+                "kind": "temple",
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": [
+                  2.2,
+                  2.2,
+                  2.2
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#d2b48c",
+                "motion": "none"
+              },
+              {
+                "kind": "crystal",
+                "position": [
+                  0,
+                  2,
+                  0
+                ],
+                "scale": [
+                  0.8,
+                  1.2,
+                  0.8
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#00ffff",
+                "motion": "pulse"
+              },
+              {
+                "kind": "sphere",
+                "position": [
+                  0,
+                  -1.5,
+                  0
+                ],
+                "scale": [
+                  1.5,
+                  0.2,
+                  1.5
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "color": "#c0c0c0",
+                "motion": "none"
+              }
+            ],
+            "camera_start": [
+              0,
+              6,
+              15
+            ],
+            "camera_end": [
+              0,
+              4,
+              11
+            ],
+            "visual_change": "ينبض الكريستال بنور خافت يعلو المعبد الأثري الخالد."
+          }
+        ],
+        "hashtags": [
+          "#تاريخ_مصر",
+          "#نهر_النيل",
+          "#الحضارة_الفرعونية"
+        ],
+        "profile": "history",
+        "series": "نقص ونروى",
+        "topic_key": "knowledge-ancient-egyptian-irrigation-nile",
+        "knowledge_category": "daily_life",
+        "visual_family": "architecture",
+        "variant": "procedural",
+        "fiction": false,
+        "documented": false,
+        "source": {
+          "kind": "general_knowledge",
+          "publisher": "نقص ونروى",
+          "url": "",
+          "title": ""
+        },
+        "editorial_policy": {
+          "external_sources_required": false,
+          "independent_scientific_review_required": false
+        },
+        "visual_plan": {
+          "version": 1,
+          "world": "procedural_story",
+          "scenes": [
+            {
+              "id": "scene_1",
+              "setting": "landscape",
+              "focal_object": "river",
+              "action": "flow",
+              "shot": "authored_camera",
+              "state_change": "الشمس تشرق ببطء وتنعكس على مياه النهر الجارية."
+            },
+            {
+              "id": "scene_2",
+              "setting": "ancient_city",
+              "focal_object": "rock_layers",
+              "action": "assemble",
+              "shot": "authored_camera",
+              "state_change": "تتجمع طبقات الصخور والأتربة لتشكل سداً منيعاً ضد المياه."
+            },
+            {
+              "id": "scene_3",
+              "setting": "landscape",
+              "focal_object": "gear",
+              "action": "spin",
+              "shot": "authored_camera",
+              "state_change": "تدور تروس الساقية بانتظام لتدفع المياه نحو القنوات."
+            },
+            {
+              "id": "scene_4",
+              "setting": "landscape",
+              "focal_object": "person",
+              "action": "none",
+              "shot": "authored_camera",
+              "state_change": "ينمو النبات أخضر ناضراً أمام الشخص الواقف."
+            },
+            {
+              "id": "scene_5",
+              "setting": "ancient_city",
+              "focal_object": "temple",
+              "action": "none",
+              "shot": "authored_camera",
+              "state_change": "تفتح اللفائف القديمة لتظهر عليها الرموز والخطوط."
+            },
+            {
+              "id": "scene_6",
+              "setting": "landscape",
+              "focal_object": "lantern",
+              "action": "swing",
+              "shot": "authored_camera",
+              "state_change": "تتأرجح الفوانيس وتضيء المكان احتفالاً بالحصاد."
+            },
+            {
+              "id": "scene_7",
+              "setting": "harbor",
+              "focal_object": "ship",
+              "action": "float",
+              "shot": "authored_camera",
+              "state_change": "تطفو السفينة فوق المياه وتتحرك ببطء مع التيار."
+            },
+            {
+              "id": "scene_8",
+              "setting": "ancient_city",
+              "focal_object": "temple",
+              "action": "none",
+              "shot": "authored_camera",
+              "state_change": "ينبض الكريستال بنور خافت يعلو المعبد الأثري الخالد."
+            }
+          ]
+        },
+        "visual_sequence_sha256": "d396bd3c5062b6ad9dd79bf1bdc28c4bcabb115d54c316bc1289618819063e43",
+        "editorial_review": {
+          "performed": false,
+          "required": false,
+          "reason": "Owner permits general knowledge and original fiction without mandatory external sources or independent fact-check"
+        }
+      },
+      "requested_due_at": "2026-11-02T15:00:00Z"
     }
   ],
   "rescheduling_history": {
@@ -1121,9 +1901,10 @@
   "requested_production": {
     "requested-2026-11-02-history": {
       "started_at": "2026-11-02T09:56:13.848967+00:00",
-      "phase": "writing",
+      "phase": "story_ready",
       "request_id": "owner-new-today-2026-11-02",
-      "due_at": "2026-11-02T15:00:00Z"
+      "due_at": "2026-11-02T15:00:00Z",
+      "topic_key": "knowledge-ancient-egyptian-irrigation-nile"
     }
   }
 }
