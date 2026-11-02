@@ -1,12 +1,377 @@
 {
   "repository": "ahmedalsharqwi2-gif/documented-history-stories",
-  "run_id": "41536263482",
+  "run_id": "41536790045",
   "apply": true,
-  "started_at": "2026-11-02T22:19:34.911634+00:00",
-  "errors": [
-    "GitHub audit API unavailable: HTTP403"
+  "started_at": "2026-11-02T22:23:10.578143+00:00",
+  "errors": [],
+  "deleted_branches": [
+    {
+      "name": "codex/motion-scene-review-39469046225",
+      "sha": "ed09b5be48ac766ad1ecea7041cf3a847d89349b",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/motion-scene-review-39469046225"
+    },
+    {
+      "name": "codex/motion-scene-review-39469330166",
+      "sha": "9074a48b70eb2d7d0fa9b71578b6b6ffde1fe32f",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/motion-scene-review-39469330166"
+    },
+    {
+      "name": "codex/neural-clarity-39507203933",
+      "sha": "967e773bd9dff3b27d83f5d8c5b99ac18ae3638b",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/neural-clarity-39507203933"
+    },
+    {
+      "name": "codex/number-word-review-39495512243",
+      "sha": "f65b8f82506e4af3eb558500af5e62ca9a4078b9",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/number-word-review-39495512243"
+    },
+    {
+      "name": "codex/number-word-review-39495568204",
+      "sha": "891f03bb60a7f408a46ec0a17d8481c35c535b25",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/number-word-review-39495568204"
+    },
+    {
+      "name": "codex/planning-diagnostic-40786167645",
+      "sha": "dc48cc2fb89e91b996a9022f2090e90b9b97b7bd",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/planning-diagnostic-40786167645"
+    },
+    {
+      "name": "codex/planning-diagnostic-40790456913",
+      "sha": "864dfc046ffa54068b0624db38c58ce061648dd3",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/planning-diagnostic-40790456913"
+    },
+    {
+      "name": "codex/planning-diagnostic-40845204981",
+      "sha": "3481e5b07fb69c01374361f54d3356df479a0a33",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/planning-diagnostic-40845204981"
+    },
+    {
+      "name": "codex/professional-review-run-40786167645",
+      "sha": "2fab53bb1f0e249f1b5edc06b899b65b68fb54f7",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40786167645"
+    },
+    {
+      "name": "codex/professional-review-run-40787364902",
+      "sha": "6be19120c9e29dcb5bda935573866957975a59f1",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40787364902"
+    },
+    {
+      "name": "codex/professional-review-run-40790456913",
+      "sha": "37835acc0c1c23b37a78b30cbc71280900a273e1",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40790456913"
+    },
+    {
+      "name": "codex/professional-review-run-40790914989",
+      "sha": "a42adbb3d4e893fa151508d112560bde8f295932",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40790914989"
+    },
+    {
+      "name": "codex/professional-review-run-40845204981",
+      "sha": "c2d4a535d8b6095341f111ec0179a83e0e7ddfed",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40845204981"
+    },
+    {
+      "name": "codex/professional-review-run-40848287724",
+      "sha": "1e3535a8e9ccfefbf1f0000628b94e91642c0b27",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40848287724"
+    },
+    {
+      "name": "codex/professional-review-run-40878055147",
+      "sha": "592bd24e509c7746b29d697adffd6811b2eb455d",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40878055147"
+    },
+    {
+      "name": "codex/professional-review-run-40894338308",
+      "sha": "f178965884ff8f76869bcd8d55d8af66dfc2926c",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40894338308"
+    },
+    {
+      "name": "codex/professional-review-run-40896845658",
+      "sha": "f312edea2af8d6466dfb77e72d98b13aa353fdaa",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40896845658"
+    },
+    {
+      "name": "codex/professional-review-run-40898546271",
+      "sha": "f7d163af027455b862357ba814a94d2dbeb894cb",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40898546271"
+    },
+    {
+      "name": "codex/professional-review-run-40926037711",
+      "sha": "8ae5f92316ff67d16c563bfa4e15af18911d3451",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40926037711"
+    },
+    {
+      "name": "codex/professional-review-run-40927032316",
+      "sha": "939d6f19c23f883e1c7b6abfc4d0f8e16acada9f",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40927032316"
+    },
+    {
+      "name": "codex/professional-review-run-40928402745",
+      "sha": "d20d70c6cec51a887a83c30ad30a971e27a8c976",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40928402745"
+    },
+    {
+      "name": "codex/professional-review-run-40940996759",
+      "sha": "98a8cff0ac75abad16b2aabb672f838931669873",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40940996759"
+    },
+    {
+      "name": "codex/professional-review-run-40941614759",
+      "sha": "eb8938fae1119e9c19cebe1546c22eabaf6643e3",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40941614759"
+    },
+    {
+      "name": "codex/professional-review-run-40941849274",
+      "sha": "abb62de878dd5ddcd863df51193dfadc7a7f4df4",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40941849274"
+    },
+    {
+      "name": "codex/professional-review-run-40942152970",
+      "sha": "77f2499424ebdc97672692d6d965412671a1a7d1",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40942152970"
+    },
+    {
+      "name": "codex/professional-review-run-40947224449",
+      "sha": "7e701c2bf7ef2f9c3034e55a53c8d11753822951",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-40947224449"
+    },
+    {
+      "name": "codex/professional-review-run-41053670613",
+      "sha": "9958396aa6f628ae93f22095875c0c617c9ce446",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41053670613"
+    },
+    {
+      "name": "codex/professional-review-run-41056485350",
+      "sha": "686dbba7295a43d349c7cbc6d52200b542bb2a29",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41056485350"
+    },
+    {
+      "name": "codex/professional-review-run-41058540009",
+      "sha": "7652f94bd2e6f2f08232c1511cade7e848e99026",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41058540009"
+    },
+    {
+      "name": "codex/professional-review-run-41062285616",
+      "sha": "0a0e2dd1440c11524a0329031af85b799c51b198",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41062285616"
+    },
+    {
+      "name": "codex/professional-review-run-41063028411",
+      "sha": "b0dc3052ce9a6d7111597a1ac4db943f06ba5300",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41063028411"
+    },
+    {
+      "name": "codex/professional-review-run-41063563019",
+      "sha": "e2b26151ecbdc49713e3ebf4e214b7b2ff193580",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41063563019"
+    },
+    {
+      "name": "codex/professional-review-run-41064476565",
+      "sha": "5d583e27959d36248bcf6c64e4a6b20547482a24",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41064476565"
+    },
+    {
+      "name": "codex/professional-review-run-41125283816",
+      "sha": "6246cbd054aba50ef30959f7295d9c0ffdfc66e4",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41125283816"
+    },
+    {
+      "name": "codex/professional-review-run-41198207920",
+      "sha": "185403f75ec66a40e691f740109a839f88058b87",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41198207920"
+    },
+    {
+      "name": "codex/professional-review-run-41198958391",
+      "sha": "ef4f540a15395cac4af443a63b8f584c854c2d73",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41198958391"
+    },
+    {
+      "name": "codex/professional-review-run-41210683899",
+      "sha": "0cca24127c3b5652f55ded96565855311da58722",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41210683899"
+    },
+    {
+      "name": "codex/professional-review-run-41212282206",
+      "sha": "dbfaec2b439e0984b45fdc43f0f89fd02cdca26c",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41212282206"
+    },
+    {
+      "name": "codex/professional-review-run-41213383614",
+      "sha": "4b03043e713337fcdb76721fdaba88b29283c459",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41213383614"
+    },
+    {
+      "name": "codex/professional-review-run-41227920950",
+      "sha": "6bc5c90d05f5f21f66c6bfb49a7a1bc597bd2f0e",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41227920950"
+    },
+    {
+      "name": "codex/professional-review-run-41230059577",
+      "sha": "edc9ebca6247b4366083588b9799cbbbeb75af3e",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41230059577"
+    },
+    {
+      "name": "codex/professional-review-run-41231445178",
+      "sha": "20d5f527482599880cd967764f1524e7668edc60",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41231445178"
+    },
+    {
+      "name": "codex/professional-review-run-41354642231",
+      "sha": "157c1c18e7a09802e0875ec925f6887e164fa19f",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-review-run-41354642231"
+    },
+    {
+      "name": "codex/professional-video-40787364902",
+      "sha": "cf6a3a650f7cfe5ea1a863db536966c54211e334",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-40787364902"
+    },
+    {
+      "name": "codex/professional-video-40790914989",
+      "sha": "31526e0b4e6606971345f85677f527e05a56ea4f",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-40790914989"
+    },
+    {
+      "name": "codex/professional-video-40840861542",
+      "sha": "a63bbd3ad0711f021b3681662e585a9c04ce082c",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-40840861542"
+    },
+    {
+      "name": "codex/professional-video-41053670613",
+      "sha": "70008938c3de5bb21710778feeb283b94e7e0e94",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41053670613"
+    },
+    {
+      "name": "codex/professional-video-41058540009",
+      "sha": "ff23be369647489cee600c3e0ed2964f944edfc8",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41058540009"
+    },
+    {
+      "name": "codex/professional-video-41125283816",
+      "sha": "cf7f580636cfa2852cab130558f0b3083fe3b6af",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41125283816"
+    },
+    {
+      "name": "codex/professional-video-41213383614",
+      "sha": "1e5b5b51db8cdad1c3a3ba91fbe06b5bfa9e1b50",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41213383614"
+    },
+    {
+      "name": "codex/professional-video-41227920950",
+      "sha": "dc101a9e95028bf40f005a3653ed68ef4344d9fe",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41227920950"
+    },
+    {
+      "name": "codex/professional-video-41230059577",
+      "sha": "492913e56cb29a1241b31ff4f0832506215224bc",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41230059577"
+    },
+    {
+      "name": "codex/professional-video-41231445178",
+      "sha": "bc06c9fe465413d460456a67ba3612c2720878ea",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/professional-video-41231445178"
+    },
+    {
+      "name": "codex/replace-production-with-motion",
+      "sha": "a929bae60c1a4f6164c4c5c36dfa262e4915de98",
+      "reason": "fully_merged_into_current_main_and_inactive",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/replace-production-with-motion"
+    },
+    {
+      "name": "codex/voice-catalogue-39506881549",
+      "sha": "4f3ead1523e64e4a40127eb8ed9a74a132a4fc44",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/voice-catalogue-39506881549"
+    },
+    {
+      "name": "codex/voice-lab-39506881549",
+      "sha": "54d35f0910410a234c7ab8b183a92d807f9b8b4e",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/voice-lab-39506881549"
+    },
+    {
+      "name": "codex/voice-sample-39458028602",
+      "sha": "3a0d179755ff676b034d0b4bfbdf275dca73a421",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/voice-sample-39458028602"
+    },
+    {
+      "name": "codex/voice-sample-39464051074",
+      "sha": "659fa4c7dbbbcf13f84f473248f9741717eb8b4e",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/voice-sample-39464051074"
+    },
+    {
+      "name": "codex/voicetut-sample-39464050913",
+      "sha": "62f8232248fc5ca35df88bb27fe6447f40a82285",
+      "reason": "completed_run_snapshot_older_than24hours_not_referenced",
+      "recovery_tag": "archive/housekeeping-41536790045-1/codex/voicetut-sample-39464050913"
+    },
+    {
+      "name": "fix/cairo-batch-slots-20261012",
+      "sha": "3047b1a16c3a98c325aacf5f7966838abe4023dc",
+      "reason": "fully_merged_into_current_main_and_inactive",
+      "recovery_tag": "archive/housekeeping-41536790045-1/fix/cairo-batch-slots-20261012"
+    },
+    {
+      "name": "fix/rolling-stock-confirmed-publication",
+      "sha": "e7e3ef1e86ed50ea49af365e14d4e0aba23ea9a7",
+      "reason": "fully_merged_into_current_main_and_inactive",
+      "recovery_tag": "archive/housekeeping-41536790045-1/fix/rolling-stock-confirmed-publication"
+    }
   ],
-  "deleted_branches": [],
   "retained": [
     {
       "name": "ci/full-test-discovery",
@@ -273,7 +638,7 @@
   "generation_calls": 0,
   "social_mutations": 0,
   "default_branch": "main",
-  "main_before": "d19fe8984834224d5396de082ce1e7d59328e00d",
+  "main_before": "3dc637dbacbfe3f790d102c49517b298e9d52b90",
   "branch_count": 126,
   "planned_branches": [
     {
@@ -583,6 +948,8 @@
     }
   ],
   "planned_paths": [],
-  "passed": false,
-  "finished_at": "2026-11-02T22:20:59.946285+00:00"
+  "main_recovery_tag": "archive/housekeeping-41536790045-1/main-before-cleanup",
+  "cache_cleanup_commit": null,
+  "passed": true,
+  "finished_at": "2026-11-02T22:27:30.436624+00:00"
 }
