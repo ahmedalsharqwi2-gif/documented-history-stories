@@ -1019,7 +1019,7 @@
       "canonical_subject": "ancient-egyptian-irrigation-nile",
       "title": "سحر النيل الأزرق.. حكاية فيضان السد العالي القديم",
       "knowledge_category": "daily_life",
-      "status": "reserved",
+      "status": "rendered",
       "story": {
         "title": "سحر النيل الأزرق.. حكاية فيضان السد العالي القديم",
         "canonical_subject": "ancient-egyptian-irrigation-nile",
@@ -1791,7 +1791,8 @@
           "reason": "Owner permits general knowledge and original fiction without mandatory external sources or independent fact-check"
         }
       },
-      "requested_due_at": "2026-11-02T15:00:00Z"
+      "requested_due_at": "2026-11-02T15:00:00Z",
+      "video_sha256": "7e5b11fa078f5849ab77e9727f114d12a559f598b86e267655c1378a20076116"
     }
   ],
   "rescheduling_history": {
