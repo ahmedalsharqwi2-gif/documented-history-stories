@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-02",
+  "profile": "history",
+  "phase": "postpublish",
+  "checked_at": "2026-11-02T22:40:49.471726+00:00",
+  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41539194446",
+  "report_path": "reviews/daily_health/2026-11-02/41539194446-1.json",
+  "publication_due_utc": "2026-11-02T15:00:00+00:00",
+  "errors": [
+    "youtube: missing post or duplicate posts at17Cairo"
+  ],
+  "passed": false,
+  "generation_calls": 0,
+  "publication_mutations": 0,
+  "preview": false,
+  "scheduler": {
+    "observed": false,
+    "reason": "Monitoring was activated after this date morning; no historical9am success claimed"
+  },
+  "observed_receipts": {
+    "youtube": [],
+    "facebook": [
+      {
+        "id": "6ae885153911b6a45d4ce4a3",
+        "channelId": "6ab67b0dea19ca0bdee58014",
+        "status": "sent",
+        "dueAt": "2026-11-02T15:00:00.000Z",
+        "sentAt": "2026-11-02T15:01:52.012Z",
+        "externalLink": "https://facebook.com/1617161116007635"
+      }
+    ],
+    "instagram": [
+      {
+        "id": "6ae88518c5c4672c3e730e7d",
+        "channelId": "6ab67accea19ca0bdee57e17",
+        "status": "sent",
+        "dueAt": "2026-11-02T15:00:00.000Z",
+        "sentAt": "2026-11-02T15:04:49.125Z",
+        "externalLink": "https://www.instagram.com/reel/DfPlR-sCE_D/"
+      }
+    ]
+  }
+}
