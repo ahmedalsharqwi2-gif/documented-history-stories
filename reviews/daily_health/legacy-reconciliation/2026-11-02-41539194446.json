@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-02",
+  "read_only": true,
+  "generation_calls": 0,
+  "publication_mutations": 0,
+  "post_fields": [
+    "text"
+  ],
+  "channels": {
+    "youtube": [
+      {
+        "id": "6ae88513c5c4672c3e730ca7",
+        "channelId": "6ab67b4fea19ca0bdee58218",
+        "status": "error",
+        "dueAt": "2026-11-02T15:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null,
+        "text": "في عام 1187، قاد صلاح الدين الأيوبي الطريق من حطين إلى القدس. قصة معركة، حصار، وقرار تاريخي غيّر مسار المنطقة. #صلاح_الدين #القدس #التاريخ",
+        "assets": [
+          {
+            "host": "files.manuscdn.com",
+            "source_url_sha256": "3d2a1769f67cbf16ec2a84f9921128d2ccab6e0e10cde8be7b295e801ebe48b4",
+            "sha256": "f49f17c9ce760e594b4ed6ac5a31edb8540f1123abb2635b769c84a5ed7d2a27",
+            "bytes": 117583794,
+            "duration": 157.64
+          }
+        ]
+      }
+    ],
+    "facebook": [
+      {
+        "id": "6ae885153911b6a45d4ce4a3",
+        "channelId": "6ab67b0dea19ca0bdee58014",
+        "status": "sent",
+        "dueAt": "2026-11-02T15:00:00.000Z",
+        "sentAt": "2026-11-02T15:01:52.012Z",
+        "externalLink": "https://facebook.com/1617161116007635",
+        "text": "في عام 1187، قاد صلاح الدين الأيوبي الطريق من حطين إلى القدس. قصة معركة، حصار، وقرار تاريخي غيّر مسار المنطقة. #صلاح_الدين #القدس #التاريخ",
+        "assets": [
+          {
+            "host": "files.manuscdn.com",
+            "source_url_sha256": "3d2a1769f67cbf16ec2a84f9921128d2ccab6e0e10cde8be7b295e801ebe48b4",
+            "sha256": "f49f17c9ce760e594b4ed6ac5a31edb8540f1123abb2635b769c84a5ed7d2a27",
+            "bytes": 117583794,
+            "duration": 157.64
+          }
+        ]
+      }
+    ],
+    "instagram": [
+      {
+        "id": "6ae88518c5c4672c3e730e7d",
+        "channelId": "6ab67accea19ca0bdee57e17",
+        "status": "sent",
+        "dueAt": "2026-11-02T15:00:00.000Z",
+        "sentAt": "2026-11-02T15:04:49.125Z",
+        "externalLink": "https://www.instagram.com/reel/DfPlR-sCE_D/",
+        "text": "في عام 1187، قاد صلاح الدين الأيوبي الطريق من حطين إلى القدس. قصة معركة، حصار، وقرار تاريخي غيّر مسار المنطقة. #صلاح_الدين #القدس #التاريخ",
+        "assets": [
+          {
+            "host": "files.manuscdn.com",
+            "source_url_sha256": "3d2a1769f67cbf16ec2a84f9921128d2ccab6e0e10cde8be7b295e801ebe48b4",
+            "sha256": "f49f17c9ce760e594b4ed6ac5a31edb8540f1123abb2635b769c84a5ed7d2a27",
+            "bytes": 117583794,
+            "duration": 157.64
+          }
+        ]
+      }
+    ]
+  },
+  "known_posts": {
+    "6ae86fac97ae21595d527f27": {
+      "unavailable": "RuntimeError"
+    },
+    "6ae86faffec752487326e991": {
+      "unavailable": "RuntimeError"
+    },
+    "6ae86fb15b555ff1cf0125c8": {
+      "unavailable": "RuntimeError"
+    },
+    "6ae885153911b6a45d4ce4a3": {
+      "id": "6ae885153911b6a45d4ce4a3",
+      "channelId": "6ab67b0dea19ca0bdee58014",
+      "status": "sent",
+      "dueAt": "2026-11-02T15:00:00.000Z",
+      "sentAt": "2026-11-02T15:01:52.012Z",
+      "externalLink": "https://facebook.com/1617161116007635",
+      "text": "في عام 1187، قاد صلاح الدين الأيوبي الطريق من حطين إلى القدس. قصة معركة، حصار، وقرار تاريخي غيّر مسار المنطقة. #صلاح_الدين #القدس #التاريخ",
+      "assets": [
+        {
+          "host": "files.manuscdn.com",
+          "source_url_sha256": "3d2a1769f67cbf16ec2a84f9921128d2ccab6e0e10cde8be7b295e801ebe48b4",
+          "sha256": "f49f17c9ce760e594b4ed6ac5a31edb8540f1123abb2635b769c84a5ed7d2a27",
+          "bytes": 117583794,
+          "duration": 157.64
+        }
+      ]
+    },
+    "6ae88518c5c4672c3e730e7d": {
+      "id": "6ae88518c5c4672c3e730e7d",
+      "channelId": "6ab67accea19ca0bdee57e17",
+      "status": "sent",
+      "dueAt": "2026-11-02T15:00:00.000Z",
+      "sentAt": "2026-11-02T15:04:49.125Z",
+      "externalLink": "https://www.instagram.com/reel/DfPlR-sCE_D/",
+      "text": "في عام 1187، قاد صلاح الدين الأيوبي الطريق من حطين إلى القدس. قصة معركة، حصار، وقرار تاريخي غيّر مسار المنطقة. #صلاح_الدين #القدس #التاريخ",
+      "assets": [
+        {
+          "host": "files.manuscdn.com",
+          "source_url_sha256": "3d2a1769f67cbf16ec2a84f9921128d2ccab6e0e10cde8be7b295e801ebe48b4",
+          "sha256": "f49f17c9ce760e594b4ed6ac5a31edb8540f1123abb2635b769c84a5ed7d2a27",
+          "bytes": 117583794,
+          "duration": 157.64
+        }
+      ]
+    }
+  },
+  "errors": []
+}
