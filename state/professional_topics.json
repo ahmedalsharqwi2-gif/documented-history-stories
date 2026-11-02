@@ -1020,7 +1020,7 @@
       "requested_due_at": "2026-11-02T15:00:00Z",
       "posts": {
         "youtube": {
-          "phase": "intent",
+          "phase": "rejected",
           "before": {
             "id": "6ae852295e62d9a270f8faef",
             "channelId": "6ab67b4fea19ca0bdee58218",
@@ -1039,7 +1039,8 @@
             "id": "6ae852295e62d9a270f8faef",
             "channel_id": "6ab67b4fea19ca0bdee58218"
           },
-          "requested_due_at": "2026-11-02T15:00:00Z"
+          "requested_due_at": "2026-11-02T15:00:00Z",
+          "provider_message": "Invalid post: Post must have either text or media., YouTube posts require a video., YouTube posts require a title., YouTube posts require a category."
         }
       },
       "original_episode_receipts": {
