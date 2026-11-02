@@ -1,0 +1,32 @@
+{
+  "removed_default_branch_definitions": [
+    ".github/workflows/verify_immediate_delivery.yml",
+    ".github/workflows/history-motion-pilot.yml",
+    ".github/workflows/daily-ai-news.yml"
+  ],
+  "prior_disabled_workflow_ids": [
+    {
+      "id": 382968830,
+      "name": "Verify immediate publication delivery",
+      "path": ".github/workflows/verify_immediate_delivery.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 390501061,
+      "name": "History Motion Pilot",
+      "path": ".github/workflows/history-motion-pilot.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 391110208,
+      "name": "Daily Egyptian AI News",
+      "path": ".github/workflows/daily-ai-news.yml",
+      "state": "disabled_manually"
+    }
+  ],
+  "inert_registration_commit": "edfbe90c25d3014cb85c5dd3721f920b37048edf",
+  "historical_run_deletions": 0,
+  "artifact_deletions": 0,
+  "social_mutations": 0,
+  "generation_calls": 0
+}
