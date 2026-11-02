@@ -1117,5 +1117,13 @@
         }
       ]
     }
+  },
+  "requested_production": {
+    "requested-2026-11-02-history": {
+      "started_at": "2026-11-02T09:56:13.848967+00:00",
+      "phase": "writing",
+      "request_id": "owner-new-today-2026-11-02",
+      "due_at": "2026-11-02T15:00:00Z"
+    }
   }
 }
