@@ -97,11 +97,12 @@ def publication_caption(root,report,entry,publication):
  tags=['#'+str(t).lstrip('#').strip().replace(' ','_') for t in story.get('hashtags',[])[:5]]
  if tags:caption+='\n'+' '.join(tags)
  if source.get('url'):caption+='\nالمصدر: '+source['url']
- credits=report.get('licensed_assets',{}).get('assets',[])
- if credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in credits}))
+ asset_credits=report.get('licensed_assets',{}).get('assets',[])
+ if asset_credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in asset_credits}))
  return title,caption
 def main():
- req=read_request();repo,profile=identity();approval=json.loads(Path(os.getenv('REMOTION_APPROVAL_PATH','.github/remotion-publish-request.json')).read_text());root=Path(os.getenv('REMOTION_COMPLETED_DIR','completed'))
+ """Schedule one reviewed film and durably verify all three destination receipts."""
+ req=read_request();_,profile=identity();approval=json.loads(Path(os.getenv('REMOTION_APPROVAL_PATH','.github/remotion-publish-request.json')).read_text());root=Path(os.getenv('REMOTION_COMPLETED_DIR','completed'))
  movie,report,digest=reviewed_movie(root,approval,profile,req)
  publication=verify_publication(movie.parent,report)
  mapping=destinations(profile);due=req['due_at'];entry=None

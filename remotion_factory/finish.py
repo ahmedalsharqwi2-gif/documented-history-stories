@@ -14,6 +14,7 @@ def validate_render(render):
  meta=probe(OUT/'visuals.mp4');video=next(s for s in meta['streams'] if s['codec_type']=='video')
  if (video['width'],video['height'])!=(1080,1920) or int(video['nb_frames'])!=render['total_frames']:raise ValueError('Rendered frames or geometry do not cover the full narration')
 def main():
+ """Mix the full original narration and retain verified render evidence."""
  req=read_request();story=json.loads((DELIVERY/'story.json').read_text());timing=json.loads((DELIVERY/'timing.json').read_text());render=json.loads((OUT/'render.json').read_text());duration=timing['duration']
  validate_render(render)
  build(duration,[s['start'] for s in timing['scenes']],OUT,story['profile'])
