@@ -1,0 +1,76 @@
+{
+  "request": {
+    "request_id": "noon-trial-2026-11-04",
+    "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+    "approved_by_owner": true,
+    "slot": "remotion-2026-11-04-history",
+    "source_due_at": "2026-11-04T15:00:00Z",
+    "target_due_at": "2026-11-04T10:00:00Z",
+    "video_sha256": "6a51613189c9e6b45d36ae0a904a29c06e03b0031614440a6ee43ac6c2aa6733",
+    "post_ids": {
+      "youtube": "6ae8d3a5a1cb4345befc76eb",
+      "facebook": "6ae8d3aaa1cb4345befc78a2",
+      "instagram": "6ae8d3b0a1cb4345befc7b18"
+    }
+  },
+  "before": {
+    "youtube": {
+      "id": "6ae8d3a5a1cb4345befc76eb",
+      "channelId": "6ab67b4fea19ca0bdee58218",
+      "status": "scheduled",
+      "dueAt": "2026-11-04T15:00:00.000Z",
+      "text": "إزاي أنقذوا أبو سمبل من الغرق؟\nالمصدر: https://whc.unesco.org/en/activities/1296\nصور ورسومات أرشيفية: \"Per-Olow\" - Per-Olow Anderson (1921-1989), Public domain, UNESCO",
+      "assets": [
+        {
+          "source": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4"
+        }
+      ],
+      "metadata": {
+        "__typename": "YoutubePostMetadata",
+        "title": "إزاي أنقذوا أبو سمبل من الغرق؟",
+        "category": {
+          "categoryId": "27"
+        },
+        "privacy": "public",
+        "madeForKids": false,
+        "notifySubscribers": false
+      }
+    },
+    "facebook": {
+      "id": "6ae8d3aaa1cb4345befc78a2",
+      "channelId": "6ab67b0dea19ca0bdee58014",
+      "status": "scheduled",
+      "dueAt": "2026-11-04T15:00:00.000Z",
+      "text": "إزاي أنقذوا أبو سمبل من الغرق؟\nالمصدر: https://whc.unesco.org/en/activities/1296\nصور ورسومات أرشيفية: \"Per-Olow\" - Per-Olow Anderson (1921-1989), Public domain, UNESCO",
+      "assets": [
+        {
+          "source": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4"
+        }
+      ],
+      "metadata": {
+        "__typename": "FacebookPostMetadata",
+        "type": "post"
+      }
+    },
+    "instagram": {
+      "id": "6ae8d3b0a1cb4345befc7b18",
+      "channelId": "6ab67accea19ca0bdee57e17",
+      "status": "scheduled",
+      "dueAt": "2026-11-04T15:00:00.000Z",
+      "text": "إزاي أنقذوا أبو سمبل من الغرق؟\nالمصدر: https://whc.unesco.org/en/activities/1296\nصور ورسومات أرشيفية: \"Per-Olow\" - Per-Olow Anderson (1921-1989), Public domain, UNESCO",
+      "assets": [
+        {
+          "source": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-remotion-2026-11-04-history/history-remotion-2026-11-04-history.mp4"
+        }
+      ],
+      "metadata": {
+        "__typename": "InstagramPostMetadata",
+        "type": "reel",
+        "shouldShareToFeed": true
+      }
+    }
+  },
+  "complete": false,
+  "generation_calls": 0,
+  "new_posts": 0
+}
