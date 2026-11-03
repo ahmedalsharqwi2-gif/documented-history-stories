@@ -12,10 +12,12 @@ FPS = 30
 
 
 def sha(path):
+    """Hash retained artifact bytes for episode binding."""
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def clean_title(value):
+    """Normalize and validate complete Arabic publication text."""
     if not isinstance(value, str):
         raise ValueError('Publication title must be text, never a JSON object or array')
     title = ' '.join(unicodedata.normalize('NFKC', value).split()).strip()
@@ -32,6 +34,7 @@ def clean_title(value):
 
 
 def metadata(story, story_digest):
+    """Build the versioned title and cover contract for one story."""
     title = clean_title(story.get('title'))
     cover = story.get('cover_text') or title
     cover = clean_title(cover)
@@ -77,6 +80,7 @@ def verify(root, report):
 
 
 def video_asset(url, service, package=None):
+    """Select the opening cover only on a destination that supports the offset."""
     video = {'url': url}
     if service == 'instagram' and package:
         video['metadata'] = {'thumbnailOffset': package['cover_offset_ms']}

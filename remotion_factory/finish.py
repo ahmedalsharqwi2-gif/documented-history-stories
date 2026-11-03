@@ -7,12 +7,15 @@ from .score import build
 from .audio_delivery import probe,mix_audio,verify_tail,run
 OUT=Path('professional_motion/output')
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-def main():
- req=read_request();story=json.loads((DELIVERY/'story.json').read_text());timing=json.loads((DELIVERY/'timing.json').read_text());render=json.loads((OUT/'render.json').read_text());duration=timing['duration']
+def validate_render(render):
+ """Require a full render bound to the original speech, script and frame geometry."""
  if render.get('pipeline')!='remotion' or render.get('render_mode')!='video' or render.get('review') or render.get('errors') or not render.get('originalVoice'):raise ValueError('Only a completed original-voice Remotion film can finish')
  if render['story_sha256']!=sha(DELIVERY/'story.json') or render['audio_sha256']!=sha(DELIVERY/'narration.wav'):raise ValueError('Source changed after rendering')
  meta=probe(OUT/'visuals.mp4');video=next(s for s in meta['streams'] if s['codec_type']=='video')
  if (video['width'],video['height'])!=(1080,1920) or int(video['nb_frames'])!=render['total_frames']:raise ValueError('Rendered frames or geometry do not cover the full narration')
+def main():
+ req=read_request();story=json.loads((DELIVERY/'story.json').read_text());timing=json.loads((DELIVERY/'timing.json').read_text());render=json.loads((OUT/'render.json').read_text());duration=timing['duration']
+ validate_render(render)
  build(duration,[s['start'] for s in timing['scenes']],OUT,story['profile'])
  voice=mix_audio(DELIVERY/'narration.wav',OUT/'score.wav',OUT/'sfx.wav',duration,OUT/'mix.wav')
  movie=OUT/'remotion-complete.mp4'

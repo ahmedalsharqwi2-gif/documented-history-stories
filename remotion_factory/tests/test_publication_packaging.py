@@ -1,3 +1,4 @@
+"""Regression tests for episode-bound publication titles and covers."""
 import json
 import tempfile
 import unittest
@@ -9,11 +10,14 @@ from remotion_factory.publish import submit_one
 
 
 class PublicationPackage(unittest.TestCase):
+ """Exercise title validation, cover integrity and destination payloads."""
  def test_serialized_or_truncated_titles_stop_before_generation(self):
+  """Verify serialized or truncated titles stop before generation."""
   for value in ('[', '{', ['علم'], {'title':'علم'}, 'عنوان '+('طويل '*30), 'عنوان [من مصفوفة]'):
    with self.subTest(value=value), self.assertRaises(ValueError):clean_title(value)
 
  def test_retained_title_keeps_its_meaning_and_new_cover_is_short(self):
+  """Verify retained title keeps its meaning and new cover is short."""
   story={'profile':'science','title':'اسرار الكون | إزاي الصوت بينتقل في الهوا؟'}
   result=metadata(story,'story-digest')
   self.assertEqual(result['title'],'إزاي الصوت بينتقل في الهوا؟')
@@ -25,12 +29,14 @@ class PublicationPackage(unittest.TestCase):
 
  @staticmethod
  def make_proof(root):
+  """Create matching publication metadata and a cover fixture."""
   package=metadata({'profile':'science','title':'إزاي الصوت بينتقل؟','cover_text':'الصوت بيوصل إزاي؟'},'script-sha')
   (root/'publication.json').write_text(json.dumps(package,ensure_ascii=False))
   Image.new('RGB',(1080,1920),'navy').save(root/'cover.png')
   return {'profile':'science','story_sha256':'script-sha','publication':package,'renderer':{'publication_sha256':sha(root/'publication.json'),'cover_sha256':sha(root/'cover.png')}}
 
  def test_recovered_cover_must_match_the_exact_story_and_bytes(self):
+  """Verify recovered cover must match the exact story and bytes."""
   with tempfile.TemporaryDirectory() as directory:
    root=Path(directory);report=self.make_proof(root)
    self.assertEqual(verify(root,report)['title'],'إزاي الصوت بينتقل؟')
@@ -41,6 +47,7 @@ class PublicationPackage(unittest.TestCase):
    with self.assertRaisesRegex(ValueError,'Cover image changed'):verify(root,report)
 
  def test_packaged_movie_cannot_drop_proof_but_legacy_movie_is_unchanged(self):
+  """Verify packaged movie cannot drop proof but legacy movie is unchanged."""
   self.assertIsNone(verify(Path('.'),{'renderer':{}}))
   with self.assertRaisesRegex(ValueError,'proof missing'):verify(Path('.'),{'renderer':{'publication_sha256':'expected'}})
 
@@ -48,6 +55,7 @@ class PublicationPackage(unittest.TestCase):
  @patch('remotion_factory.publish.query')
  @patch('remotion_factory.publish.queued',return_value=[])
  def test_only_instagram_gets_supported_cover_frame_and_retry_sends_once(self,queued,query,lookup):
+  """Verify only instagram gets supported cover frame and retry sends once."""
   due='2026-11-05T15:00:00Z';url='https://example.org/complete.mp4'
   package=metadata({'profile':'science','title':'إزاي الصوت بينتقل؟'},'script-sha')
   for service in ('youtube','facebook','instagram'):

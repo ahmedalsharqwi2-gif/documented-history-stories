@@ -78,8 +78,8 @@ def submit_one(service,destination,due,url,title,caption,record,persist,publicat
  actual=lookup(record['id'])
  if actual.get('id')!=record['id'] or not matches(actual,channel,due,url):raise ValueError('Independent same-ID scheduled-state verification failed')
  record.update(phase='verified',status='scheduled',scheduled_at=actual['dueAt'],verified_at=datetime.now(timezone.utc).isoformat());persist()
-def main():
- req=read_request();repo,profile=identity();approval=json.loads(Path(os.getenv('REMOTION_APPROVAL_PATH','.github/remotion-publish-request.json')).read_text());root=Path(os.getenv('REMOTION_COMPLETED_DIR','completed'))
+def reviewed_movie(root,approval,profile,req):
+ """Validate the exact approved full film and enforce duration and news freshness."""
  movies=list(root.glob('**/remotion-complete.mp4'))
  if len(movies)!=1:raise ValueError('Exactly one full retained movie required')
  movie=movies[0];report=json.loads((movie.parent/'remotion-validation.json').read_text());digest=hashlib.sha256(movie.read_bytes()).hexdigest()
@@ -90,6 +90,19 @@ def main():
   if not published or not timedelta(0)<=instant(req['due_at'])-instant(published)<=timedelta(hours=72):raise ValueError('News must still be fresh at actual publication time')
  meta=probe(movie);duration=float(meta['format']['duration']);minimum=60 if profile=='news' else 90
  if not minimum<duration<180:raise ValueError('Actual movie fails the permanent owner duration rule')
+ return movie,report,digest
+def publication_caption(root,report,entry,publication):
+ """Build destination text from the retained story, approved title and credits."""
+ source=report['source'];story_path=next((p for p in root.glob('**/story.json') if hashlib.sha256(p.read_bytes()).hexdigest()==report.get('story_sha256')),None);story=json.loads(story_path.read_text()) if story_path else {};title=report.get('title') or story.get('title') or entry['title'];title=publication['title'] if publication else title;caption=title
+ tags=['#'+str(t).lstrip('#').strip().replace(' ','_') for t in story.get('hashtags',[])[:5]]
+ if tags:caption+='\n'+' '.join(tags)
+ if source.get('url'):caption+='\nالمصدر: '+source['url']
+ credits=report.get('licensed_assets',{}).get('assets',[])
+ if credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in credits}))
+ return title,caption
+def main():
+ req=read_request();repo,profile=identity();approval=json.loads(Path(os.getenv('REMOTION_APPROVAL_PATH','.github/remotion-publish-request.json')).read_text());root=Path(os.getenv('REMOTION_COMPLETED_DIR','completed'))
+ movie,report,digest=reviewed_movie(root,approval,profile,req)
  publication=verify_publication(movie.parent,report)
  mapping=destinations(profile);due=req['due_at'];entry=None
  def check(data):
@@ -100,12 +113,7 @@ def main():
  url=entry.get('media_url') or release_asset(movie,req['slot'],profile)
  def media(data):data['episodes'][req['slot']].update(media_url=url,status='publishing')
  mutate(media)
- source=report['source'];story_path=next((p for p in root.glob('**/story.json') if hashlib.sha256(p.read_bytes()).hexdigest()==report.get('story_sha256')),None);story=json.loads(story_path.read_text()) if story_path else {};title=report.get('title') or story.get('title') or entry['title'];title=publication['title'] if publication else title;caption=title
- tags=['#'+str(t).lstrip('#').strip().replace(' ','_') for t in story.get('hashtags',[])[:5]]
- if tags:caption+='\n'+' '.join(tags)
- if source.get('url'):caption+='\nالمصدر: '+source['url']
- credits=report.get('licensed_assets',{}).get('assets',[])
- if credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in credits}))
+ title,caption=publication_caption(root,report,entry,publication)
  for service,destination in mapping.items():
   record=dict(entry.get('receipts',{}).get(service,{}))
   def persist():
