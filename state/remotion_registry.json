@@ -60,7 +60,7 @@
       "time_change_receipts": {
         "noon-trial-2026-11-04": {
           "youtube": {
-            "phase": "acknowledged",
+            "phase": "verified",
             "post_id": "6ae8d3a5a1cb4345befc76eb",
             "before": {
               "id": "6ae8d3a5a1cb4345befc76eb",
@@ -83,7 +83,10 @@
                 "madeForKids": false,
                 "notifySubscribers": false
               }
-            }
+            },
+            "service": "youtube",
+            "due_at": "2026-11-04T10:00:00.000Z",
+            "verified_at": "2026-11-03T20:08:31.798805+00:00"
           }
         }
       }
