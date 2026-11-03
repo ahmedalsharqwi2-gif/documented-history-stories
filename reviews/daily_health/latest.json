@@ -1,96 +1,102 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "profile": "history",
-  "phase": "postpublish",
-  "checked_at": "2026-11-03T18:54:51.711586+00:00",
-  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41698164809",
-  "report_path": "reviews/daily_health/2026-11-03/41698164809-1.json",
-  "publication_due_utc": "2026-11-03T15:00:00+00:00",
-  "errors": [
-    "No successful clock-triggered daily run for this date; manual recovery and dry-run tests do not count as the automatic clock"
-  ],
-  "passed": false,
+  "phase": "prepublish",
+  "checked_at": "2026-11-03T20:10:27.499378+00:00",
+  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41709850984",
+  "report_path": "reviews/daily_health/2026-11-04/41709850984-1.json",
+  "publication_due_utc": "2026-11-04T10:00:00+00:00",
+  "errors": [],
+  "passed": true,
   "generation_calls": 0,
   "publication_mutations": 0,
-  "preview": false,
+  "preview": true,
+  "scheduler": {
+    "observed": false,
+    "reason": "Transition inventory retained; first automatic evening run targets November 5"
+  },
   "observed_receipts": {
     "youtube": [
       {
-        "id": "6ae852295e62d9a270f8faef",
+        "id": "6ae8d3a5a1cb4345befc76eb",
         "channelId": "6ab67b4fea19ca0bdee58218",
-        "status": "sent",
-        "dueAt": "2026-11-03T15:00:00.000Z",
-        "sentAt": "2026-11-03T15:03:45.309Z",
-        "externalLink": "https://www.youtube.com/shorts/g000VjcPsmI"
+        "status": "scheduled",
+        "dueAt": "2026-11-04T10:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null
       }
     ],
     "facebook": [
       {
-        "id": "6ae8522ddd7a4869734ca6ad",
+        "id": "6ae8d3aaa1cb4345befc78a2",
         "channelId": "6ab67b0dea19ca0bdee58014",
-        "status": "sent",
-        "dueAt": "2026-11-03T15:00:00.000Z",
-        "sentAt": "2026-11-03T15:03:48.653Z",
-        "externalLink": "https://www.facebook.com/reel/1896150735089427/"
+        "status": "scheduled",
+        "dueAt": "2026-11-04T10:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null
       }
     ],
     "instagram": [
       {
-        "id": "6ae8522b55a230dd719f00cf",
+        "id": "6ae8d3b0a1cb4345befc7b18",
         "channelId": "6ab67accea19ca0bdee57e17",
-        "status": "sent",
-        "dueAt": "2026-11-03T15:00:00.000Z",
-        "sentAt": "2026-11-03T15:05:17.627Z",
-        "externalLink": "https://www.instagram.com/reel/DfSKSV6k4FN/"
+        "status": "scheduled",
+        "dueAt": "2026-11-04T10:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null
       }
     ]
   },
   "receipts": {
     "youtube": {
-      "id": "6ae852295e62d9a270f8faef",
+      "id": "6ae8d3a5a1cb4345befc76eb",
       "channelId": "6ab67b4fea19ca0bdee58218",
-      "status": "sent",
-      "dueAt": "2026-11-03T15:00:00.000Z",
-      "sentAt": "2026-11-03T15:03:45.309Z",
-      "externalLink": "https://www.youtube.com/shorts/g000VjcPsmI"
+      "status": "scheduled",
+      "dueAt": "2026-11-04T10:00:00.000Z",
+      "sentAt": null,
+      "externalLink": null
     },
     "facebook": {
-      "id": "6ae8522ddd7a4869734ca6ad",
+      "id": "6ae8d3aaa1cb4345befc78a2",
       "channelId": "6ab67b0dea19ca0bdee58014",
-      "status": "sent",
-      "dueAt": "2026-11-03T15:00:00.000Z",
-      "sentAt": "2026-11-03T15:03:48.653Z",
-      "externalLink": "https://www.facebook.com/reel/1896150735089427/"
+      "status": "scheduled",
+      "dueAt": "2026-11-04T10:00:00.000Z",
+      "sentAt": null,
+      "externalLink": null
     },
     "instagram": {
-      "id": "6ae8522b55a230dd719f00cf",
+      "id": "6ae8d3b0a1cb4345befc7b18",
       "channelId": "6ab67accea19ca0bdee57e17",
-      "status": "sent",
-      "dueAt": "2026-11-03T15:00:00.000Z",
-      "sentAt": "2026-11-03T15:05:17.627Z",
-      "externalLink": "https://www.instagram.com/reel/DfSKSV6k4FN/"
+      "status": "scheduled",
+      "dueAt": "2026-11-04T10:00:00.000Z",
+      "sentAt": null,
+      "externalLink": null
     }
   },
   "episode": {
-    "slot": "daily-2026-11-02",
-    "title": "قناة بونكتيسيلت: هندسة الحديد المسبوك في ويلز",
-    "pipeline": "legacy",
-    "expected_sha256": "5f609f7b5bc2b40f01f7a2ac6d1202b2f19dab804103fb26b0a0d6ca19cf7c58"
+    "slot": "remotion-2026-11-04-history",
+    "title": "إزاي أنقذوا أبو سمبل من الغرق؟",
+    "pipeline": "remotion",
+    "expected_sha256": "6a51613189c9e6b45d36ae0a904a29c06e03b0031614440a6ee43ac6c2aa6733"
   },
   "technical": {
     "passed": true,
-    "sha256": "5f609f7b5bc2b40f01f7a2ac6d1202b2f19dab804103fb26b0a0d6ca19cf7c58",
+    "sha256": "6a51613189c9e6b45d36ae0a904a29c06e03b0031614440a6ee43ac6c2aa6733",
     "full_decode": true,
-    "duration": 155.333333,
+    "duration": 131.1,
     "width": 1080,
     "height": 1920,
-    "audio_mean_db": -18.8,
+    "audio_mean_db": -19.5,
     "actual_visual_samples": 12,
     "unique_visual_samples": 12,
-    "checked_at": "2026-11-02T23:04:34.976769+00:00",
+    "checked_at": "2026-11-02T19:04:42.166660+00:00",
     "scope": "Independent technical media check; no claim of human narrative or scientific review",
     "reused_immutable_media_check": true,
     "live_asset_metadata_verified": true
   },
-  "media_binding": "Three live sent post IDs match retained original submission receipts; original release SHA independently verified. Platform-transcoded bytes are not claimed identical."
+  "media_binding": "Same live scheduled source URL and independently hashed original",
+  "production_at_cairo": "2026-11-03T19:00:00+02:00",
+  "publication_at_cairo": "2026-11-04T12:00:00+02:00",
+  "hours_until_publication": 13.83,
+  "readiness": "verified"
 }
