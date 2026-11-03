@@ -23,7 +23,8 @@ class PublicationPackage(unittest.TestCase):
   story['cover_text']=' '.join(['كلمة']*8)
   with self.assertRaises(ValueError):metadata(story,'story-digest')
 
- def make_proof(self,root):
+ @staticmethod
+ def make_proof(root):
   package=metadata({'profile':'science','title':'إزاي الصوت بينتقل؟','cover_text':'الصوت بيوصل إزاي؟'},'script-sha')
   (root/'publication.json').write_text(json.dumps(package,ensure_ascii=False))
   Image.new('RGB',(1080,1920),'navy').save(root/'cover.png')
@@ -54,7 +55,7 @@ class PublicationPackage(unittest.TestCase):
     query.reset_mock();query.return_value={'createPost':{'post':{'id':'accepted'}}}
     lookup.return_value={'id':'accepted','channelId':'owned','status':'scheduled','dueAt':due,'assets':[{'source':url}]}
     record={};saved=[]
-    submit_one(service,{'channel':'owned'},due,url,package['title'],'وصف الحلقة',record,lambda:saved.append(dict(record)),package)
+    submit_one(service,{'channel':'owned'},due,url,package['title'],'وصف الحلقة',record,lambda saved=saved, record=record:saved.append(dict(record)),package)
     payload=query.call_args.args[1]['input']
     asset=payload['assets'][0]['video']
     self.assertEqual(asset.get('metadata'),{'thumbnailOffset':200} if service=='instagram' else None)
