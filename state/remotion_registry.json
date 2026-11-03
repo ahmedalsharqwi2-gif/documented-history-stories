@@ -112,7 +112,7 @@
             "verified_at": "2026-11-03T20:08:36.589896+00:00"
           },
           "instagram": {
-            "phase": "intent",
+            "phase": "acknowledged",
             "post_id": "6ae8d3b0a1cb4345befc7b18",
             "before": {
               "id": "6ae8d3b0a1cb4345befc7b18",
