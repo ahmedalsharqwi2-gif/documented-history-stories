@@ -196,21 +196,8 @@ def alert(report):
  if existing:
   gh('/issues/'+str(existing['number']),'PATCH',{'state':'closed' if report['passed'] else 'open','body':body})
  elif not report['passed']:gh('/issues','POST',{'title':title,'body':body})
-def main():
- parser=argparse.ArgumentParser();parser.add_argument('--date');parser.add_argument('--phase',choices=['auto','prepublish','postpublish'],default='auto');args=parser.parse_args();repo,profile=identity();now=datetime.now(timezone.utc);event=read_json(os.environ.get('GITHUB_EVENT_PATH',''),{}) or {};created=instant((gh('/actions/runs/'+os.environ['GITHUB_RUN_ID']) or {})['created_at']);policy=read_json('config/remotion_health.json',{})
- if os.getenv('GITHUB_EVENT_NAME')=='schedule' and not schedule_allowed(created,event.get('schedule','')):print('Other DST checkpoint; no duplicate audit');return
- inputs=event.get('inputs',{})
- if os.getenv('GITHUB_EVENT_NAME')=='push':inputs=read_json('.github/remotion-health-request.json',{}) or {}
- raw_date=args.date or inputs.get('date');day=datetime.fromisoformat(raw_date).date() if raw_date else audit_day(created.astimezone(CAIRO));due=target_due(day);phase=args.phase if args.phase!='auto' else inputs.get('phase','auto')
- if phase=='auto':phase='postpublish' if now>=due+timedelta(minutes=20) else 'prepublish'
- activation=instant(policy['activated_at_utc']);first_day=activation.astimezone(CAIRO).date()+timedelta(days=1)
- if not raw_date and (day<first_day or now<production_at(day)):print('Monitoring starts at first morning after activation; no false historical alert');return
- run_url='https://github.com/'+repo+'/actions/runs/'+os.environ['GITHUB_RUN_ID'];path='reviews/daily_health/'+day.isoformat()+'/'+os.environ['GITHUB_RUN_ID']+'-'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.json'
- report={'date':day.isoformat(),'profile':profile,'phase':phase,'checked_at':now.isoformat(),'run_url':run_url,'report_path':path,'publication_due_utc':due.isoformat(),'errors':[],'passed':False,'generation_calls':0,'publication_mutations':0,'preview':day>now.astimezone(CAIRO).date()}
- if day>=first_day and automatic_expected(day) and now>=production_at(day)+timedelta(minutes=20):
-  try:report['scheduler']=scheduler(day)
-  except Exception as exc:report['errors'].append(str(exc) if isinstance(exc,AuditFailure) else 'Scheduler verification unavailable: '+type(exc).__name__)
- else:report['scheduler']={'observed':False,'reason':'Transition inventory retained; first automatic evening run targets November 5' if not automatic_expected(day) else 'Configured production clock not due yet; no automatic success claimed'}
+def inspect_live_posts(day,due,phase,profile,report):
+ """Verify exact provider receipts and immutable full-film evidence."""
  try:
   mapping=destinations(profile);rows={}
   for service,destination in mapping.items():
@@ -224,12 +211,9 @@ def main():
   report['episode']={k:episode.get(k) for k in ('slot','title','pipeline','expected_sha256')};report['technical']=verify_media(url,episode,profile)
   report['media_binding']='Same live scheduled source URL and independently hashed original' if phase!='postpublish' else 'Three live sent post IDs match retained original submission receipts; original release SHA independently verified. Platform-transcoded bytes are not claimed identical.'
  except Exception as exc:report['errors'].append(str(exc) if isinstance(exc,(AuditFailure,DestinationUnavailable)) else 'Live media/provider verification unavailable: '+type(exc).__name__)
- if os.getenv('GITHUB_EVENT_NAME')=='workflow_run' and event.get('workflow_run',{}).get('conclusion') not in ('success','skipped'):report['errors'].append('Production workflow failed/cancelled; inspect its retained evidence')
- report['production_at_cairo']=production_at(day).isoformat()
- report['publication_at_cairo']=due.astimezone(CAIRO).isoformat()
- report['hours_until_publication']=round((due-now).total_seconds()/3600,2)
- report['readiness']='verified' if report.get('technical',{}).get('passed') and len(report.get('receipts',{}))==3 else 'needs_attention'
- report['passed']=not report['errors']
+
+def persist_report(report,path,profile,phase):
+ """Retain audit evidence, summarize readiness and reconcile the own-repository alert."""
  try:write_json(path,report);write_json('reviews/daily_health/latest.json',report)
  except Exception as exc:report['passed']=False;report['errors'].append('Audit persistence failed: '+type(exc).__name__)
  Path('health-output').mkdir(exist_ok=True);Path('health-output/report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
@@ -241,5 +225,36 @@ def main():
   try:write_json(path,report);write_json('reviews/daily_health/latest.json',report)
   except Exception:pass
  print(json.dumps({'passed':report['passed'],'date':report['date'],'phase':phase,'errors':report['errors'],'generation_calls':0,'publication_mutations':0},ensure_ascii=False))
+
+def audit_context():
+ """Resolve the audit's publication date and phase from the actual Cairo event."""
+ parser=argparse.ArgumentParser();parser.add_argument('--date');parser.add_argument('--phase',choices=['auto','prepublish','postpublish'],default='auto');args=parser.parse_args();repo,profile=identity();now=datetime.now(timezone.utc);event=read_json(os.environ.get('GITHUB_EVENT_PATH',''),{}) or {};created=instant((gh('/actions/runs/'+os.environ['GITHUB_RUN_ID']) or {})['created_at']);policy=read_json('config/remotion_health.json',{})
+ if os.getenv('GITHUB_EVENT_NAME')=='schedule' and not schedule_allowed(created,event.get('schedule','')):print('Other DST checkpoint; no duplicate audit');return
+ inputs=event.get('inputs',{})
+ if os.getenv('GITHUB_EVENT_NAME')=='push':inputs=read_json('.github/remotion-health-request.json',{}) or {}
+ raw_date=args.date or inputs.get('date');day=datetime.fromisoformat(raw_date).date() if raw_date else audit_day(created.astimezone(CAIRO));due=target_due(day);phase=args.phase if args.phase!='auto' else inputs.get('phase','auto')
+ if phase=='auto':phase='postpublish' if now>=due+timedelta(minutes=20) else 'prepublish'
+ activation=instant(policy['activated_at_utc']);first_day=activation.astimezone(CAIRO).date()+timedelta(days=1)
+ if not raw_date and (day<first_day or now<production_at(day)):print('Monitoring starts at first morning after activation; no false historical alert');return
+ return repo,profile,now,event,created,day,due,phase,first_day
+
+def main():
+ context=audit_context()
+ if context is None:return
+ repo,profile,now,event,created,day,due,phase,first_day=context
+ run_url='https://github.com/'+repo+'/actions/runs/'+os.environ['GITHUB_RUN_ID'];path='reviews/daily_health/'+day.isoformat()+'/'+os.environ['GITHUB_RUN_ID']+'-'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.json'
+ report={'date':day.isoformat(),'profile':profile,'phase':phase,'checked_at':now.isoformat(),'run_url':run_url,'report_path':path,'publication_due_utc':due.isoformat(),'errors':[],'passed':False,'generation_calls':0,'publication_mutations':0,'preview':day>now.astimezone(CAIRO).date()}
+ if day>=first_day and automatic_expected(day) and now>=production_at(day)+timedelta(minutes=20):
+  try:report['scheduler']=scheduler(day)
+  except Exception as exc:report['errors'].append(str(exc) if isinstance(exc,AuditFailure) else 'Scheduler verification unavailable: '+type(exc).__name__)
+ else:report['scheduler']={'observed':False,'reason':'Transition inventory retained; first automatic evening run targets November 5' if not automatic_expected(day) else 'Configured production clock not due yet; no automatic success claimed'}
+ inspect_live_posts(day,due,phase,profile,report)
+ if os.getenv('GITHUB_EVENT_NAME')=='workflow_run' and event.get('workflow_run',{}).get('conclusion') not in ('success','skipped'):report['errors'].append('Production workflow failed/cancelled; inspect its retained evidence')
+ report['production_at_cairo']=production_at(day).isoformat()
+ report['publication_at_cairo']=due.astimezone(CAIRO).isoformat()
+ report['hours_until_publication']=round((due-now).total_seconds()/3600,2)
+ report['readiness']='verified' if report.get('technical',{}).get('passed') and len(report.get('receipts',{}))==3 else 'needs_attention'
+ report['passed']=not report['errors']
+ persist_report(report,path,profile,phase)
  if not report['passed']:sys.exit(1)
 if __name__=='__main__':main()
