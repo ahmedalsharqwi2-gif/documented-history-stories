@@ -102,13 +102,17 @@ def validate(story,profile,source):
   if s['diagram'] not in MODES:raise ValueError('Unsupported visual plan')
   if any(len(x)>35 for x in s['labels']):raise ValueError('Diagram label too long')
   if profile!='stickman' and (' '.join(s['evidence_quote'].split()) not in ' '.join(source.split()) or not 4<=len(s['evidence_quote'].split())<=18):raise ValueError('Actual supporting excerpt required for each factual scene')
+def fresh_news(rows,due_at):
+ """Keep only news published no more than seventy-two hours before release."""
+ due=datetime.fromisoformat(due_at.replace('Z','+00:00'))
+ return [r for r in rows if r.get('published') and timedelta(0)<=due-datetime.fromisoformat(r['published'].replace('Z','+00:00'))<=timedelta(hours=72)]
+
 def unseen_candidates(req,seen_urls,seen_topics):
  """Filter retained topics and enforce news freshness before selecting a source."""
  profile=req['profile']
  rows=[r for r in candidates(profile) if (not r.get('url') or r['url'] not in seen_urls) and r.get('canonical_subject') not in seen_topics]
  if profile=='news':
-  due=datetime.fromisoformat(req['due_at'].replace('Z','+00:00'))
-  rows=[r for r in rows if r.get('published') and timedelta(0)<=due-datetime.fromisoformat(r['published'].replace('Z','+00:00'))<=timedelta(hours=72)]
+  rows=fresh_news(rows,req['due_at'])
  if profile=='stickman':rows=[r for r in rows if r['canonical_subject'] not in seen_topics]
  return rows
 
@@ -161,6 +165,11 @@ def author(req,_entry):
  Path('professional_motion/delivery').mkdir(parents=True,exist_ok=True);Path('professional_motion/delivery/editorial-draft.json').write_text(json_text(draft))
  if draft['canonical_subject'] in seen_topics:raise ValueError('Underlying topic already produced')
  story=planned_story(draft,profile,row)
+ return independently_reviewed(req,story,row,source,seen_topics)
+
+def independently_reviewed(req,story,row,source,seen_topics):
+ """Retain review intent and require the original independent review to pass."""
+ slot=req['slot']
  # The reviewer sees the exact draft and source independently; it cannot rewrite it.
  story_document=document_write(slot,'story',story)
  def review_intent(data):data['episodes'][slot].update(status='review_requested',story_document=story_document,canonical_subject=story['canonical_subject'],title=story['title'])
