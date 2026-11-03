@@ -83,4 +83,23 @@ class AuthorIntegration(unittest.TestCase):
         self.assertTrue(ask.call_args.kwargs.get('review',ask.call_args.args[2] if len(ask.call_args.args)>2 else False))
         self.assertTrue(state['episodes']['slot']['editorial_review']['passed'])
 
+class SourceSelection(unittest.TestCase):
+    def test_used_and_stale_news_are_not_reintroduced(self):
+        from unittest.mock import patch
+        from remotion_factory import author as module
+        rows=[{'url':'used','canonical_subject':'used-topic','published':'2026-11-04T08:00:00Z'},
+              {'url':'stale','canonical_subject':'old-news','published':'2026-10-30T08:00:00Z'},
+              {'url':'fresh','canonical_subject':'fresh-topic','published':'2026-11-04T08:00:00Z'}]
+        with patch.object(module,'candidates',return_value=rows):
+            result=module.unseen_candidates({'profile':'news','due_at':'2026-11-04T10:00:00Z'},{'used'},{'used-topic'})
+        self.assertEqual([row['url'] for row in result],['fresh'])
+
+    def test_bad_source_can_be_skipped_before_any_generation(self):
+        from unittest.mock import patch
+        from remotion_factory import author as module
+        rows=[{'url':'bad'},{'url':'readable'}]
+        with patch.object(module,'read_source',side_effect=[ValueError('unreadable'),'Actual source']),patch.object(module,'ask_once') as ask:
+            self.assertEqual(module.readable_source(rows),(rows[1],'Actual source'))
+            ask.assert_not_called()
+
 if __name__ == '__main__': unittest.main()

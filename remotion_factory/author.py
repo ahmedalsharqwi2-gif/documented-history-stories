@@ -102,22 +102,30 @@ def validate(story,profile,source):
   if s['diagram'] not in MODES:raise ValueError('Unsupported visual plan')
   if any(len(x)>35 for x in s['labels']):raise ValueError('Diagram label too long')
   if profile!='stickman' and (' '.join(s['evidence_quote'].split()) not in ' '.join(source.split()) or not 4<=len(s['evidence_quote'].split())<=18):raise ValueError('Actual supporting excerpt required for each factual scene')
+def unseen_candidates(req,seen_urls,seen_topics):
+ """Filter retained topics and enforce news freshness before selecting a source."""
+ profile=req['profile']
+ rows=[r for r in candidates(profile) if (not r.get('url') or r['url'] not in seen_urls) and r.get('canonical_subject') not in seen_topics]
+ if profile=='news':
+  due=datetime.fromisoformat(req['due_at'].replace('Z','+00:00'))
+  rows=[r for r in rows if r.get('published') and timedelta(0)<=due-datetime.fromisoformat(r['published'].replace('Z','+00:00'))<=timedelta(hours=72)]
+ if profile=='stickman':rows=[r for r in rows if r['canonical_subject'] not in seen_topics]
+ return rows
+
+def readable_source(rows):
+ """Choose a readable reviewed source without any generation request."""
+ for row in rows[:12]:
+  try:return row,read_source(row)
+  except (requests.RequestException,ValueError):continue
+ raise ValueError('No new readable topic available; no invented source or repeated story')
+
 def retained_draft(req,current,seen_urls,seen_topics):
  """Load an acknowledged draft or retain one original writing response."""
  slot=req['slot'];profile=req['profile']
  if current.get('raw_draft') or current.get('draft_document'):
   draft=current.get('raw_draft') or document_read(current['draft_document']);row=current['source_selection'];source=current.get('source_text') or document_read(current['source_document'])['text']
  else:
-  rows=[r for r in candidates(profile) if (not r.get('url') or r['url'] not in seen_urls) and r.get('canonical_subject') not in seen_topics]
-  if profile=='news':
-   due=datetime.fromisoformat(req['due_at'].replace('Z','+00:00'))
-   rows=[r for r in rows if r.get('published') and timedelta(0)<=due-datetime.fromisoformat(r['published'].replace('Z','+00:00'))<=timedelta(hours=72)]
-  if profile=='stickman':rows=[r for r in rows if r['canonical_subject'] not in seen_topics]
-  source=None;row=None;errors=[]
-  for candidate in rows[:12]:
-   try:source=read_source(candidate);row=candidate;break
-   except (requests.RequestException,ValueError) as exc:errors.append(type(exc).__name__)
-  if row is None:raise ValueError('No new readable topic available; no invented source or repeated story')
+  row,source=readable_source(unseen_candidates(req,seen_urls,seen_topics))
   source_document=document_write(slot,'source',{'selection':row,'text':source})
   def intent(data):data['episodes'][slot].update(status='author_requested',source_selection=row,source={'url':row.get('url')},source_document=source_document,writer_run=int(os.environ['GITHUB_RUN_ID']))
   mutate(intent)
@@ -130,7 +138,16 @@ def retained_draft(req,current,seen_urls,seen_topics):
   def retain(data):data['episodes'][slot].update(status='draft_retained',draft_document=draft_document)
   mutate(retain)
  return draft,row,source
-def author(req,entry):
+def planned_story(draft,profile,row):
+ """Attach scene visuals to the exact validated narration."""
+ story={**draft,'profile':profile,'series':SERIES[profile],'fiction':profile=='stickman','documented':profile!='stickman','topic_key':'remotion-'+draft['canonical_subject'],'source':{k:row[k] for k in ('url','title','publisher','published') if k in row}}
+ for i,s in enumerate(story['scenes']):
+  s.update(id='scene_'+str(i+1),visual_mode='hero')
+  s['visual']={'kind':'explainer','kicker':s['diagram'],'labels':s['labels']}
+  if profile=='stickman':s['visual']={'kind':'whatif','kicker':ACTIONS[i],'scenario':row['scenario'],'labels':s['labels']}
+  elif i in (1,5) and row.get('latitude') is not None:s['visual']={'kind':'map','latitude':row['latitude'],'longitude':row['longitude'],'zoom':row.get('zoom',4),'detail':row['title'][:70]}
+ return story
+def author(req,_entry):
  """Validate, correct once and independently review the retained episode."""
  slot=req['slot'];profile=req['profile'];current=local()['episodes'][slot]
  if current.get('authored_story') or current.get('story_document'):
@@ -143,12 +160,7 @@ def author(req,entry):
  draft=checked_draft(slot,draft,profile,source,row,validate,ask_once,SCHEMA,local()['episodes'][slot],mutate,document_write)
  Path('professional_motion/delivery').mkdir(parents=True,exist_ok=True);Path('professional_motion/delivery/editorial-draft.json').write_text(json_text(draft))
  if draft['canonical_subject'] in seen_topics:raise ValueError('Underlying topic already produced')
- story={**draft,'profile':profile,'series':SERIES[profile],'fiction':profile=='stickman','documented':profile!='stickman','topic_key':'remotion-'+draft['canonical_subject'],'source':{k:row[k] for k in ('url','title','publisher','published') if k in row}}
- for i,s in enumerate(story['scenes']):
-  s.update(id='scene_'+str(i+1),visual_mode='hero')
-  s['visual']={'kind':'explainer','kicker':s['diagram'],'labels':s['labels']}
-  if profile=='stickman':s['visual']={'kind':'whatif','kicker':ACTIONS[i],'scenario':row['scenario'],'labels':s['labels']}
-  elif i in (1,5) and row.get('latitude') is not None:s['visual']={'kind':'map','latitude':row['latitude'],'longitude':row['longitude'],'zoom':row.get('zoom',4),'detail':row['title'][:70]}
+ story=planned_story(draft,profile,row)
  # The reviewer sees the exact draft and source independently; it cannot rewrite it.
  story_document=document_write(slot,'story',story)
  def review_intent(data):data['episodes'][slot].update(status='review_requested',story_document=story_document,canonical_subject=story['canonical_subject'],title=story['title'])
