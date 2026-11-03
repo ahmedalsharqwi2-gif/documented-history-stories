@@ -6,6 +6,7 @@ import requests
 from .prepare import read_request
 from .state import identity,mutate
 from .audio_delivery import probe
+from .packaging import video_asset,verify as verify_publication
 def instant(value):return datetime.fromisoformat(value.replace('Z','+00:00')).astimezone(timezone.utc)
 def query(text,variables=None):
  r=requests.post('https://api.buffer.com',headers={'Authorization':'Bearer '+os.environ['BUFFER_API_KEY'].strip()},json={'query':text,**({'variables':variables} if variables else {})},timeout=60)
@@ -56,7 +57,7 @@ def release_asset(movie,slot,profile):
  r.raise_for_status();asset=r.json()
  if asset.get('digest')!='sha256:'+digest:raise ValueError('Uploaded production fingerprint was not independently confirmed')
  return asset['browser_download_url']
-def submit_one(service,destination,due,url,title,caption,record,persist):
+def submit_one(service,destination,due,url,title,caption,record,persist,publication=None):
  channel=destination['channel']
  if not record.get('id'):
   rows=queued(destination,due);same=[p for p in rows if matches(p,channel,due,url)]
@@ -65,7 +66,7 @@ def submit_one(service,destination,due,url,title,caption,record,persist):
   elif record.get('phase') in ('intent','uncertain'):raise ValueError('Previous submission is unacknowledged; reconciliation is required, not another send')
   else:
    record.update(phase='intent',channel_id=channel,due_at=due,media_url=url,created_at=datetime.now(timezone.utc).isoformat());persist()
-   payload={'channelId':channel,'text':caption[:2200] if service=='tiktok' else caption,'mode':'customScheduled','schedulingType':'automatic','dueAt':due,'assets':[{'video':{'url':url}}]}
+   payload={'channelId':channel,'text':caption[:2200] if service=='tiktok' else caption,'mode':'customScheduled','schedulingType':'automatic','dueAt':due,'assets':[video_asset(url,service,publication)]}
    metadata={'youtube':{'title':title[:100],'categoryId':'27','privacy':'public','madeForKids':False,'notifySubscribers':False},'facebook':{'type':'post'},'instagram':{'type':'reel','shouldShareToFeed':True}}
    if service in metadata:payload['metadata']={service:metadata[service]}
    try:
@@ -77,8 +78,8 @@ def submit_one(service,destination,due,url,title,caption,record,persist):
  actual=lookup(record['id'])
  if actual.get('id')!=record['id'] or not matches(actual,channel,due,url):raise ValueError('Independent same-ID scheduled-state verification failed')
  record.update(phase='verified',status='scheduled',scheduled_at=actual['dueAt'],verified_at=datetime.now(timezone.utc).isoformat());persist()
-def main():
- req=read_request();repo,profile=identity();approval=json.loads(Path(os.getenv('REMOTION_APPROVAL_PATH','.github/remotion-publish-request.json')).read_text());root=Path(os.getenv('REMOTION_COMPLETED_DIR','completed'))
+def reviewed_movie(root,approval,profile,req):
+ """Validate the exact approved full film and enforce duration and news freshness."""
  movies=list(root.glob('**/remotion-complete.mp4'))
  if len(movies)!=1:raise ValueError('Exactly one full retained movie required')
  movie=movies[0];report=json.loads((movie.parent/'remotion-validation.json').read_text());digest=hashlib.sha256(movie.read_bytes()).hexdigest()
@@ -89,6 +90,21 @@ def main():
   if not published or not timedelta(0)<=instant(req['due_at'])-instant(published)<=timedelta(hours=72):raise ValueError('News must still be fresh at actual publication time')
  meta=probe(movie);duration=float(meta['format']['duration']);minimum=60 if profile=='news' else 90
  if not minimum<duration<180:raise ValueError('Actual movie fails the permanent owner duration rule')
+ return movie,report,digest
+def publication_caption(root,report,entry,publication):
+ """Build destination text from the retained story, approved title and credits."""
+ source=report['source'];story_path=next((p for p in root.glob('**/story.json') if hashlib.sha256(p.read_bytes()).hexdigest()==report.get('story_sha256')),None);story=json.loads(story_path.read_text()) if story_path else {};title=report.get('title') or story.get('title') or entry['title'];title=publication['title'] if publication else title;caption=title
+ tags=['#'+str(t).lstrip('#').strip().replace(' ','_') for t in story.get('hashtags',[])[:5]]
+ if tags:caption+='\n'+' '.join(tags)
+ if source.get('url'):caption+='\nالمصدر: '+source['url']
+ asset_credits=report.get('licensed_assets',{}).get('assets',[])
+ if asset_credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in asset_credits}))
+ return title,caption
+def main():
+ """Schedule one reviewed film and durably verify all three destination receipts."""
+ req=read_request();_,profile=identity();approval=json.loads(Path(os.getenv('REMOTION_APPROVAL_PATH','.github/remotion-publish-request.json')).read_text());root=Path(os.getenv('REMOTION_COMPLETED_DIR','completed'))
+ movie,report,digest=reviewed_movie(root,approval,profile,req)
+ publication=verify_publication(movie.parent,report)
  mapping=destinations(profile);due=req['due_at'];entry=None
  def check(data):
   nonlocal entry
@@ -98,12 +114,7 @@ def main():
  url=entry.get('media_url') or release_asset(movie,req['slot'],profile)
  def media(data):data['episodes'][req['slot']].update(media_url=url,status='publishing')
  mutate(media)
- source=report['source'];story_path=next((p for p in root.glob('**/story.json') if hashlib.sha256(p.read_bytes()).hexdigest()==report.get('story_sha256')),None);story=json.loads(story_path.read_text()) if story_path else {};title=report.get('title') or story.get('title') or entry['title'];caption=title
- tags=['#'+str(t).lstrip('#').strip().replace(' ','_') for t in story.get('hashtags',[])[:5]]
- if tags:caption+='\n'+' '.join(tags)
- if source.get('url'):caption+='\nالمصدر: '+source['url']
- credits=report.get('licensed_assets',{}).get('assets',[])
- if credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in credits}))
+ title,caption=publication_caption(root,report,entry,publication)
  for service,destination in mapping.items():
   record=dict(entry.get('receipts',{}).get(service,{}))
   def persist():
@@ -112,7 +123,7 @@ def main():
     if old.get('id') and record.get('id')!=old['id']:raise ValueError('Accepted provider ID cannot be replaced')
     e['receipts'][service]=dict(record)
    mutate(update)
-  submit_one(service,destination,due,url,title,caption,record,persist)
+  submit_one(service,destination,due,url,title,caption,record,persist,publication)
  def done(data):
   e=data['episodes'][req['slot']]
   if len(e.get('receipts',{}))!=3 or not all(r.get('phase')=='verified' and r.get('id') for r in e['receipts'].values()):raise ValueError('Three independently verified receipts required')
