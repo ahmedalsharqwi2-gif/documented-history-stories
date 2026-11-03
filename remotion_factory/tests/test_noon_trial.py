@@ -45,3 +45,18 @@ class NoonTrial(unittest.TestCase):
         now=datetime(2026,11,5,7,tzinfo=timezone.utc)
         with self.assertRaisesRegex(ValueError,'Explicit publication date'):
             slot_for(now,'workflow_dispatch',now=now)
+
+    def test_summary_keeps_preparation_and_release_dates(self):
+        """Exercise report persistence with a real summary file after orchestration refactoring."""
+        import os
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch
+        from remotion_factory.health import persist_report
+        report={'passed':True,'date':'2026-11-05','errors':[],'production_at_cairo':'2026-11-04T19:00:00+02:00','publication_at_cairo':'2026-11-05T12:00:00+02:00','readiness':'verified'}
+        with tempfile.TemporaryDirectory() as folder:
+            summary=Path(folder)/'summary.md'
+            with patch('remotion_factory.health.write_json'),patch('remotion_factory.health.alert'),patch('remotion_factory.health.Path'),patch.dict(os.environ,{'GITHUB_STEP_SUMMARY':str(summary)}):
+                persist_report(report,'report.json','history','prepublish')
+            self.assertIn('2026-11-04T19:00',summary.read_text())
+            self.assertIn('2026-11-05T12:00',summary.read_text())

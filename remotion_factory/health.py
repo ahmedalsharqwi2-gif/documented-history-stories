@@ -218,7 +218,7 @@ def persist_report(report,path,profile,phase):
  except Exception as exc:report['passed']=False;report['errors'].append('Audit persistence failed: '+type(exc).__name__)
  Path('health-output').mkdir(exist_ok=True);Path('health-output/report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  if os.getenv('GITHUB_STEP_SUMMARY'):
-  with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write(('✅' if report['passed'] else '🚨')+' '+profile+' '+day.isoformat()+' '+phase+'\n\nPreparation: '+report['production_at_cairo']+'\nPublication: '+report['publication_at_cairo']+'\nReadiness: '+report['readiness']+'\n\n'+('\n'.join('- '+e for e in report['errors']) or 'Full video and three live destination receipts verified.')+'\n')
+  with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write(('✅' if report['passed'] else '🚨')+' '+profile+' '+report['date']+' '+phase+'\n\nPreparation: '+report['production_at_cairo']+'\nPublication: '+report['publication_at_cairo']+'\nReadiness: '+report['readiness']+'\n\n'+('\n'.join('- '+e for e in report['errors']) or 'Full video and three live destination receipts verified.')+'\n')
  try:alert(report)
  except Exception as exc:
   report['errors'].append('GitHub issue alert unavailable: '+type(exc).__name__);report['passed']=False;Path('health-output/report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
