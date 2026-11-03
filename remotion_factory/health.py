@@ -236,12 +236,12 @@ def audit_context():
  if phase=='auto':phase='postpublish' if now>=due+timedelta(minutes=20) else 'prepublish'
  activation=instant(policy['activated_at_utc']);first_day=activation.astimezone(CAIRO).date()+timedelta(days=1)
  if not raw_date and (day<first_day or now<production_at(day)):print('Monitoring starts at first morning after activation; no false historical alert');return
- return repo,profile,now,event,created,day,due,phase,first_day
+ return repo,profile,now,event,day,due,phase,first_day
 
 def main():
  context=audit_context()
  if context is None:return
- repo,profile,now,event,created,day,due,phase,first_day=context
+ repo,profile,now,event,day,due,phase,first_day=context
  run_url='https://github.com/'+repo+'/actions/runs/'+os.environ['GITHUB_RUN_ID'];path='reviews/daily_health/'+day.isoformat()+'/'+os.environ['GITHUB_RUN_ID']+'-'+os.environ.get('GITHUB_RUN_ATTEMPT','1')+'.json'
  report={'date':day.isoformat(),'profile':profile,'phase':phase,'checked_at':now.isoformat(),'run_url':run_url,'report_path':path,'publication_due_utc':due.isoformat(),'errors':[],'passed':False,'generation_calls':0,'publication_mutations':0,'preview':day>now.astimezone(CAIRO).date()}
  if day>=first_day and automatic_expected(day) and now>=production_at(day)+timedelta(minutes=20):
