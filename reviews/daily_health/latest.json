@@ -2,15 +2,15 @@
   "date": "2026-11-04",
   "profile": "history",
   "phase": "prepublish",
-  "checked_at": "2026-11-03T20:13:54.241722+00:00",
-  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41710410577",
-  "report_path": "reviews/daily_health/2026-11-04/41710410577-1.json",
+  "checked_at": "2026-11-04T07:02:01.968081+00:00",
+  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41789389475",
+  "report_path": "reviews/daily_health/2026-11-04/41789389475-1.json",
   "publication_due_utc": "2026-11-04T10:00:00+00:00",
   "errors": [],
   "passed": true,
   "generation_calls": 0,
   "publication_mutations": 0,
-  "preview": true,
+  "preview": false,
   "scheduler": {
     "observed": false,
     "reason": "Transition inventory retained; first automatic evening run targets November 5"
@@ -97,6 +97,6 @@
   "media_binding": "Same live scheduled source URL and independently hashed original",
   "production_at_cairo": "2026-11-03T19:00:00+02:00",
   "publication_at_cairo": "2026-11-04T12:00:00+02:00",
-  "hours_until_publication": 13.77,
+  "hours_until_publication": 2.97,
   "readiness": "verified"
 }
