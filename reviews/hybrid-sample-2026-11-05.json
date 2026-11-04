@@ -1,0 +1,31 @@
+{
+  "date_cairo": "2026-11-05",
+  "profile": "history",
+  "branch": "codex/hybrid-samples-2026-11-05",
+  "base_sha": "4a45e12b2c24b8b48e01042b65bf7085453a7bb5",
+  "review_only": true,
+  "publication_enabled": false,
+  "artistic_approval": "pending_owner_review",
+  "active_daily_configuration_changed": false,
+  "sample": {
+    "url": "https://drive.google.com/file/d/1qvmpClrVoM7BBHLVlDUWY9jn-PJlkzol/view?usp=drivesdk",
+    "id": "1qvmpClrVoM7BBHLVlDUWY9jn-PJlkzol",
+    "size": 40215064,
+    "private": true,
+    "sha256": "cd1c8438c4bafb356a6b5c2c0b74118165f2b083916957308cafcd43064c5253",
+    "duration": 29.033333
+  },
+  "actual_integration": [
+    "photo_motion.engine.Renderer.shot",
+    "Remotion"
+  ],
+  "technical_validation": "hybrid_review/output/history-verification.json",
+  "tests": {
+    "typescript_passed": true,
+    "python_compile_passed": true,
+    "micelle_geometry_direction_passed": true,
+    "full_video_decode_passed": true,
+    "final_mix_correlation": 0.99975
+  },
+  "generalization": "Only after owner reviews the two distinct samples"
+}
