@@ -1,0 +1,101 @@
+{
+  "title": "اكتشف أسرار أهرامات الجيزة ودهشور وتاريخ ممفيس العريق",
+  "canonical_subject": "unesco-site-86",
+  "hashtags": [
+    "مصر_القديمة",
+    "الأهرامات",
+    "التاريخ",
+    "اليونسكو"
+  ],
+  "scenes": [
+    {
+      "label": "العاصمة الأولى",
+      "narration": "قامت مدينة ممفيس لتكون أول عاصمة لمصر القديمة في مركز السهل الفيضي للجانب الغربي من النيل، حيث تحكمت في مدخل الدلتا وطرق التجارة لتصبح مقرا حيويا.",
+      "evidence_quote": "Memphis is located in the center of the floodplain of the western side of the Nile",
+      "diagram": "flow",
+      "labels": [
+        "عاصمة",
+        "تاريخ",
+        "مصر"
+      ]
+    },
+    {
+      "label": "عالم الآلهة",
+      "narration": "كانت ممفيس مركزا مقدسا للإله بتاح الذي اعتبره السكان إلها للخلق وراعي الحرف والصناعات اليدوية المتقنة داخل المعابد الكبرى.",
+      "evidence_quote": "Ptah was the local god of Memphis, the god of creation",
+      "diagram": "layers",
+      "labels": [
+        "إله",
+        "معبد",
+        "تراث"
+      ]
+    },
+    {
+      "label": "تطور المقابر",
+      "narration": "امتدت مقابر مدينة ممفيس من هضبة الجيزة إلى دهشور، لتشهد على مراحل تطور بناء المقابر الملكية بدءا من المصطبات وحتى الشكل الهرمي.",
+      "evidence_quote": "evidence of the development of the royal tombs from the early shape called mastaba",
+      "diagram": "flow",
+      "labels": [
+        "مقابر",
+        "مصطبة",
+        "تطور"
+      ]
+    },
+    {
+      "label": "معجزة الجيزة",
+      "narration": "تضم هذه المنطقة الهرم الأكبر للملك خوفو في الجيزة، والذي يعد العجيبة الوحيدة الباقية حتى يومنا هذا من عجائب الدنيا السبع القديمة.",
+      "evidence_quote": "the Great Pyramid of Khufu is the only surviving wonder of the ancient world",
+      "diagram": "compare",
+      "labels": [
+        "خوفو",
+        "معجزة",
+        "هندسة"
+      ]
+    },
+    {
+      "label": "هرم سقارة",
+      "narration": "يبرز هرم زوسر الحجري المدرج في سقارة كأقدم هرم تم تشييده ضمن مجمع معماري فريد يعكس قوة التنظيم الإداري للحضارة المصرية.",
+      "evidence_quote": "the limestone step pyramid of Djoser, the oldest pyramid to be constructed",
+      "diagram": "layers",
+      "labels": [
+        "سقارة",
+        "زوسر",
+        "حجار"
+      ]
+    },
+    {
+      "label": "آلاف المقابر",
+      "narration": "يزخر الموقع بأكثر من تسعة آلاف مقبرة محفورة في الصخور تعود لفترات تاريخية مختلفة تقدم للباحثين أدلة قيمة لفهم تفاصيل الحياة القديمة.",
+      "evidence_quote": "there are more than nine thousand rock-cut tombs, from different historic periods",
+      "diagram": "cycle",
+      "labels": [
+        "قبور",
+        "صخور",
+        "تاريخ"
+      ]
+    },
+    {
+      "label": "تقنيات البناء",
+      "narration": "لقد ضمنت دقة تقنيات البناء الهندسي القديمة بقاء المقاومة الهيكلية للآثار صامدة في وجه القوى الطبيعية مع المحافظة على قيمتها التاريخية.",
+      "evidence_quote": "The perfection of ancient building techniques has ensured the structural resistance",
+      "diagram": "compare",
+      "labels": [
+        "بناء",
+        "مقاومة",
+        "طبيعة"
+      ]
+    },
+    {
+      "label": "تحديات الحماية",
+      "narration": "يعاني الموقع اليوم من تحديات ومخاطر واسعة ناتجة عن ضغوط التنمية الحضرية والتوسع العمراني، مما يجعله بحاجة ماسة لخطط إدارة شاملة تحميه.",
+      "evidence_quote": "a comprehensive management plan for the overall property has not been formulated",
+      "diagram": "flow",
+      "labels": [
+        "حماية",
+        "تنمية",
+        "مخاطر"
+      ]
+    }
+  ],
+  "cover_text": "أسرار أهرامات مصر"
+}
