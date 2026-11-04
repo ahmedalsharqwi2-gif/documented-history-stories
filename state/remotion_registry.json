@@ -148,7 +148,7 @@
     "daily-remotion-2026-11-05-history": {
       "profile": "history",
       "due_at": "2026-11-05T10:00:00Z",
-      "status": "review_requested",
+      "status": "authored",
       "source_run": 41904622517,
       "created_at": "2026-11-04T20:14:53.184640+00:00",
       "source_selection": {
@@ -203,7 +203,15 @@
         "sha256": "c3fd2a200d0575b84d530107f4abf75e68dddf876186e441e4e85fea915f101a"
       },
       "canonical_subject": "unesco-site-86",
-      "title": "أهرامات الجيزة مش لوحدها.. إيه حكاية ممفيس القديمة؟"
+      "title": "أهرامات الجيزة مش لوحدها.. إيه حكاية ممفيس القديمة؟",
+      "editorial_review": {
+        "supported": true,
+        "engaging": true,
+        "novel": true,
+        "visuals_match": true,
+        "issues": [],
+        "passed": true
+      }
     }
   },
   "cutover_evidence": {
