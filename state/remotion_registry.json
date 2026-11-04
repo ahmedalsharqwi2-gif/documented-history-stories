@@ -166,8 +166,8 @@
       },
       "writer_run": 41904622517,
       "draft_document": {
-        "path": "state/remotion_documents/daily-remotion-2026-11-05-history-draft-683aa349af8381d2.json",
-        "sha256": "683aa349af8381d2a322983207b1fc46f6902002580b8e747e1a328df6c1ce36"
+        "path": "state/remotion_documents/daily-remotion-2026-11-05-history-manual-draft-3852f090783c7b76.json",
+        "sha256": "3852f090783c7b76f4929f619845224d4747bb7d5d16815bbb8d952b5c72e1a2"
       },
       "draft_repair": {
         "phase": "rejected",
@@ -180,7 +180,24 @@
           "sha256": "fc2d47c5ba95bc0d28d19e3e751912ca3c913ac66c31e5c31efdc0f72e88dbb4"
         },
         "failure": "Draft word budget fails natural-duration preflight; no TTS requested"
-      }
+      },
+      "draft_revision_history": [
+        {
+          "previous_document": {
+            "path": "state/remotion_documents/daily-remotion-2026-11-05-history-draft-683aa349af8381d2.json",
+            "sha256": "683aa349af8381d2a322983207b1fc46f6902002580b8e747e1a328df6c1ce36"
+          },
+          "previous_correction_document": {
+            "path": "state/remotion_documents/daily-remotion-2026-11-05-history-corrected-draft-fc2d47c5ba95bc0d.json",
+            "sha256": "fc2d47c5ba95bc0d28d19e3e751912ca3c913ac66c31e5c31efdc0f72e88dbb4"
+          },
+          "correction_document": {
+            "path": "state/remotion_documents/daily-remotion-2026-11-05-history-manual-draft-3852f090783c7b76.json",
+            "sha256": "3852f090783c7b76f4929f619845224d4747bb7d5d16815bbb8d952b5c72e1a2"
+          },
+          "reason": "Manual same-topic edit of retained prose to measured word budget; no third writer request, no voice requested; exact supporting source excerpts verified"
+        }
+      ]
     }
   },
   "cutover_evidence": {
