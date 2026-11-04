@@ -168,6 +168,13 @@
       "draft_document": {
         "path": "state/remotion_documents/daily-remotion-2026-11-05-history-draft-683aa349af8381d2.json",
         "sha256": "683aa349af8381d2a322983207b1fc46f6902002580b8e747e1a328df6c1ce36"
+      },
+      "draft_repair": {
+        "phase": "requested",
+        "original_sha256": "74708c3b33a70e4fd653dfe4423f5703e05af1523c2462f43ba06eb950cb4a5f",
+        "problem": "Draft word budget fails natural-duration preflight; no TTS requested",
+        "maximum_requests": 1,
+        "voice_requests": 0
       }
     }
   },
