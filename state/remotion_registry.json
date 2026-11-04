@@ -221,7 +221,16 @@
       "video_sha256": "7025f07021dfa22dbcf741ebb30a71df3fbaed5ac269183cffb7fec2d01f9417",
       "render_run": 41917097674,
       "source_evidence_file": "professional_motion/output/remotion-validation.json",
-      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4"
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+      "receipts": {
+        "youtube": {
+          "phase": "intent",
+          "channel_id": "6ab67b4fea19ca0bdee58218",
+          "due_at": "2026-11-05T10:00:00Z",
+          "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+          "created_at": "2026-11-04T21:42:22.628946+00:00"
+        }
+      }
     }
   },
   "cutover_evidence": {
