@@ -148,7 +148,7 @@
     "daily-remotion-2026-11-05-history": {
       "profile": "history",
       "due_at": "2026-11-05T10:00:00Z",
-      "status": "voice_ready",
+      "status": "rendered",
       "source_run": 41917097674,
       "created_at": "2026-11-04T20:14:53.184640+00:00",
       "source_selection": {
@@ -214,10 +214,13 @@
       },
       "story_sha256": "c3fd2a200d0575b84d530107f4abf75e68dddf876186e441e4e85fea915f101a",
       "voice_request_run": 41917097674,
-      "duration": 133.52,
+      "duration": 133.533333,
       "audio_sha256": "a4ba4a64b48a749c513d076dea9c8060062354f981708f10266c517493108644",
       "timing_sha256": "64322dca87acefe9a0b9be75f6d30f3a389b1b6b3f2f436bdee38084280d22dd",
-      "coverage": 0.925
+      "coverage": 0.925,
+      "video_sha256": "7025f07021dfa22dbcf741ebb30a71df3fbaed5ac269183cffb7fec2d01f9417",
+      "render_run": 41917097674,
+      "source_evidence_file": "professional_motion/output/remotion-validation.json"
     }
   },
   "cutover_evidence": {
