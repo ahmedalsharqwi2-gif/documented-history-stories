@@ -1,0 +1,199 @@
+{
+  "title": "أهرامات الجيزة مش لوحدها.. إيه حكاية ممفيس القديمة؟",
+  "canonical_subject": "unesco-site-86",
+  "hashtags": [
+    "مصر_القديمة",
+    "الأهرامات",
+    "التاريخ",
+    "اليونسكو"
+  ],
+  "scenes": [
+    {
+      "label": "العاصمة الأولى",
+      "narration": "أهرامات الجيزة مش حكاية تلات مباني وبس. وراها مدينة كانت مركز حكم اسمه ممفيس. موقعها قرب مدخل الدلتا وطرق التجارة خلّاها مكان مهم للسيطرة على شمال مصر وجنوبها، مش مجرد عنوان على الخريطة.",
+      "evidence_quote": "Its fame comes from its being the first Capital of Ancient Egypt",
+      "diagram": "flow",
+      "labels": [
+        "عاصمة",
+        "تاريخ",
+        "مصر"
+      ],
+      "id": "scene_1",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "flow",
+        "labels": [
+          "عاصمة",
+          "تاريخ",
+          "مصر"
+        ]
+      }
+    },
+    {
+      "label": "عالم الآلهة",
+      "narration": "في ممفيس، الحكم والدين والحرف كانوا قريبين من بعض. أهل المدينة قدّسوا بتاح باعتباره إله الخلق وراعي الصنّاع. والمعابد والقصور كانت حواليها ورش وأحياء سكنية؛ يعني هنا ناس عاشت واشتغلت، مش آثار ساكتة بس.",
+      "evidence_quote": "Ptah was the local god of Memphis, the god of creation",
+      "diagram": "layers",
+      "labels": [
+        "إله",
+        "معبد",
+        "تراث"
+      ],
+      "id": "scene_2",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "layers",
+        "labels": [
+          "إله",
+          "معبد",
+          "تراث"
+        ]
+      }
+    },
+    {
+      "label": "تطور المقابر",
+      "narration": "ولما تبص على مقابر المنطقة، بتشوف تاريخ كامل بيتغير قدامك. من المصطبة للشكل الهرمي، أشكال الدفن الملكي اتطورت عبر الزمن. والموقع الممتد بين الجيزة وسقارة ودهشور بيجمع شواهد على التطور ده في مكان واحد.",
+      "evidence_quote": "evidence of the development of the royal tombs",
+      "diagram": "flow",
+      "labels": [
+        "مقابر",
+        "مصطبة",
+        "تطور"
+      ],
+      "id": "scene_3",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "flow",
+        "labels": [
+          "مقابر",
+          "مصطبة",
+          "تطور"
+        ]
+      }
+    },
+    {
+      "label": "معجزة الجيزة",
+      "narration": "وسط المشهد ده، هرم خوفو ليه مكانة خاصة: هو العجيبة الوحيدة الباقية من عجائب العالم القديم. واليونسكو بتشير إن العلماء لسه بيدرسوا طريقة بنائه. السؤال مش سحر ولا لغز خارق؛ ده بحث في شغل هندسي.",
+      "evidence_quote": "the Great Pyramid of Khufu is the only surviving wonder of the ancient world",
+      "diagram": "compare",
+      "labels": [
+        "خوفو",
+        "معجزة",
+        "هندسة"
+      ],
+      "id": "scene_4",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "compare",
+        "labels": [
+          "خوفو",
+          "معجزة",
+          "هندسة"
+        ]
+      }
+    },
+    {
+      "label": "هرم سقارة",
+      "narration": "لكن بداية الحكاية مش عند خوفو. في سقارة، هرم زوسر المدرج بيشهد على مرحلة مبكرة من البناء الحجري الضخم. تركيب المجمع وتنظيمه بيورّونا قدرة العاصمة القديمة على إدارة مشروع كبير، قبل صورة الهرم الملساء المشهورة.",
+      "evidence_quote": "the limestone step pyramid of Djoser, the oldest pyramid to be constructed",
+      "diagram": "layers",
+      "labels": [
+        "سقارة",
+        "زوسر",
+        "بناء حجري"
+      ],
+      "id": "scene_5",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "layers",
+        "labels": [
+          "سقارة",
+          "زوسر",
+          "بناء حجري"
+        ]
+      }
+    },
+    {
+      "label": "آلاف المقابر",
+      "narration": "والأهرامات مش كل اللي موجود. وصف اليونسكو للموقع بيذكر أكتر من تسعة آلاف مقبرة محفورة في الصخر، من فترات مختلفة. المقابر والمعابد وبقايا التجمعات بتدي الباحثين أدلة على الحياة القديمة، أوسع بكتير من قصة الملوك وحدهم.",
+      "evidence_quote": "there are more than nine thousand rock-cut tombs, from different historic periods",
+      "diagram": "cycle",
+      "labels": [
+        "قبور",
+        "صخور",
+        "تاريخ"
+      ],
+      "id": "scene_6",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "cycle",
+        "labels": [
+          "قبور",
+          "صخور",
+          "تاريخ"
+        ]
+      }
+    },
+    {
+      "label": "تقنيات البناء",
+      "narration": "إزاي آثار كتير منها فضلت واقفة؟ جزء من الإجابة في دقة تقنيات البناء القديمة، اللي ساعدت المنشآت الرئيسية تقاوم عوامل الطبيعة. لكن بقاء المبنى مش معناه إن كل تفاصيله سليمة؛ الزمن سبّب أضرار خلّت أسطحه عرضة للتلف.",
+      "evidence_quote": "The perfection of ancient building techniques has ensured the structural resistance",
+      "diagram": "compare",
+      "labels": [
+        "بناء",
+        "مقاومة",
+        "طبيعة"
+      ],
+      "id": "scene_7",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "compare",
+        "labels": [
+          "بناء",
+          "مقاومة",
+          "طبيعة"
+        ]
+      }
+    },
+    {
+      "label": "تحديات الحماية",
+      "narration": "وده يغيّر طريقة زيارتك للمكان: حماية المنطقة مش حماية هرم واحد بس. التوسع العمراني ممكن يضغط على سياقها بين النيل والصحرا. اللي بنحافظ عليه حكاية عاصمة ومقابر وناس، مترابطة مع بعض، مش مجرد صورة قدام الأهرامات.",
+      "evidence_quote": "vulnerable to development, as well as to the indirect impacts of urban growth",
+      "diagram": "flow",
+      "labels": [
+        "حماية",
+        "تنمية",
+        "مخاطر"
+      ],
+      "id": "scene_8",
+      "visual_mode": "hero",
+      "visual": {
+        "kind": "explainer",
+        "kicker": "flow",
+        "labels": [
+          "حماية",
+          "تنمية",
+          "مخاطر"
+        ]
+      }
+    }
+  ],
+  "cover_text": "وراء الأهرامات مدينة كاملة",
+  "profile": "history",
+  "series": "نقص ونروى",
+  "fiction": false,
+  "documented": true,
+  "topic_key": "remotion-unesco-site-86",
+  "source": {
+    "url": "https://whc.unesco.org/en/list/86/",
+    "title": "Memphis and its Necropolis – the Pyramid Fields from Giza to Dahshur",
+    "publisher": "UNESCO"
+  }
+}
