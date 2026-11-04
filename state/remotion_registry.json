@@ -148,7 +148,7 @@
     "daily-remotion-2026-11-05-history": {
       "profile": "history",
       "due_at": "2026-11-05T10:00:00Z",
-      "status": "author_requested",
+      "status": "draft_retained",
       "source_run": 41904622517,
       "created_at": "2026-11-04T20:14:53.184640+00:00",
       "source_selection": {
@@ -164,7 +164,11 @@
         "path": "state/remotion_documents/daily-remotion-2026-11-05-history-source-5b0bd19772a75dfb.json",
         "sha256": "5b0bd19772a75dfbd725aba6fed100fdae3c8cbf572a31e57deafdbd1c7ddc5b"
       },
-      "writer_run": 41904622517
+      "writer_run": 41904622517,
+      "draft_document": {
+        "path": "state/remotion_documents/daily-remotion-2026-11-05-history-draft-683aa349af8381d2.json",
+        "sha256": "683aa349af8381d2a322983207b1fc46f6902002580b8e747e1a328df6c1ce36"
+      }
     }
   },
   "cutover_evidence": {
