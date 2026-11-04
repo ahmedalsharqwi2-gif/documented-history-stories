@@ -234,6 +234,13 @@
           "status": "scheduled",
           "scheduled_at": "2026-11-05T10:00:00.000Z",
           "verified_at": "2026-11-04T21:42:26.096569+00:00"
+        },
+        "facebook": {
+          "phase": "intent",
+          "channel_id": "6ab67b0dea19ca0bdee58014",
+          "due_at": "2026-11-05T10:00:00Z",
+          "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+          "created_at": "2026-11-04T21:42:27.393464+00:00"
         }
       }
     }
