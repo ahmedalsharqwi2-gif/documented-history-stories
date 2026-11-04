@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-05",
+  "profile": "history",
+  "phase": "prepublish",
+  "checked_at": "2026-11-04T22:25:10.740913+00:00",
+  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/41924994801",
+  "report_path": "reviews/daily_health/2026-11-05/41924994801-1.json",
+  "publication_due_utc": "2026-11-05T10:00:00+00:00",
+  "errors": [
+    "No successful clock-triggered daily run for this date; manual recovery and dry-run tests do not count as the automatic clock"
+  ],
+  "passed": false,
+  "generation_calls": 0,
+  "publication_mutations": 0,
+  "preview": false,
+  "observed_receipts": {
+    "youtube": [
+      {
+        "id": "6aeba6c0dce07267a194bfb9",
+        "channelId": "6ab67b4fea19ca0bdee58218",
+        "status": "scheduled",
+        "dueAt": "2026-11-05T10:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null
+      }
+    ],
+    "facebook": [
+      {
+        "id": "6aeba6c5dce07267a194c04a",
+        "channelId": "6ab67b0dea19ca0bdee58014",
+        "status": "scheduled",
+        "dueAt": "2026-11-05T10:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null
+      }
+    ],
+    "instagram": [
+      {
+        "id": "6aeba6ca4cb090f0ac3ea70c",
+        "channelId": "6ab67accea19ca0bdee57e17",
+        "status": "scheduled",
+        "dueAt": "2026-11-05T10:00:00.000Z",
+        "sentAt": null,
+        "externalLink": null
+      }
+    ]
+  },
+  "receipts": {
+    "youtube": {
+      "id": "6aeba6c0dce07267a194bfb9",
+      "channelId": "6ab67b4fea19ca0bdee58218",
+      "status": "scheduled",
+      "dueAt": "2026-11-05T10:00:00.000Z",
+      "sentAt": null,
+      "externalLink": null
+    },
+    "facebook": {
+      "id": "6aeba6c5dce07267a194c04a",
+      "channelId": "6ab67b0dea19ca0bdee58014",
+      "status": "scheduled",
+      "dueAt": "2026-11-05T10:00:00.000Z",
+      "sentAt": null,
+      "externalLink": null
+    },
+    "instagram": {
+      "id": "6aeba6ca4cb090f0ac3ea70c",
+      "channelId": "6ab67accea19ca0bdee57e17",
+      "status": "scheduled",
+      "dueAt": "2026-11-05T10:00:00.000Z",
+      "sentAt": null,
+      "externalLink": null
+    }
+  },
+  "episode": {
+    "slot": "daily-remotion-2026-11-05-history",
+    "title": "أهرامات الجيزة مش لوحدها.. إيه حكاية ممفيس القديمة؟",
+    "pipeline": "remotion",
+    "expected_sha256": "7025f07021dfa22dbcf741ebb30a71df3fbaed5ac269183cffb7fec2d01f9417"
+  },
+  "technical": {
+    "passed": true,
+    "sha256": "7025f07021dfa22dbcf741ebb30a71df3fbaed5ac269183cffb7fec2d01f9417",
+    "full_decode": true,
+    "duration": 133.533333,
+    "width": 1080,
+    "height": 1920,
+    "audio_mean_db": -19.3,
+    "actual_visual_samples": 12,
+    "unique_visual_samples": 12,
+    "checked_at": "2026-11-04T21:44:32.386775+00:00",
+    "scope": "Independent technical media check; no claim of human narrative or scientific review",
+    "reused_immutable_media_check": true,
+    "live_asset_metadata_verified": true
+  },
+  "media_binding": "Same live scheduled source URL and independently hashed original",
+  "production_at_cairo": "2026-11-04T19:00:00+02:00",
+  "publication_at_cairo": "2026-11-05T12:00:00+02:00",
+  "hours_until_publication": 11.58,
+  "readiness": "verified"
+}
