@@ -148,7 +148,7 @@
     "daily-remotion-2026-11-05-history": {
       "profile": "history",
       "due_at": "2026-11-05T10:00:00Z",
-      "status": "draft_retained",
+      "status": "review_requested",
       "source_run": 41904622517,
       "created_at": "2026-11-04T20:14:53.184640+00:00",
       "source_selection": {
@@ -197,7 +197,13 @@
           },
           "reason": "Manual same-topic edit of retained prose to measured word budget; no third writer request, no voice requested; exact supporting source excerpts verified"
         }
-      ]
+      ],
+      "story_document": {
+        "path": "state/remotion_documents/daily-remotion-2026-11-05-history-story-c3fd2a200d0575b8.json",
+        "sha256": "c3fd2a200d0575b84d530107f4abf75e68dddf876186e441e4e85fea915f101a"
+      },
+      "canonical_subject": "unesco-site-86",
+      "title": "أهرامات الجيزة مش لوحدها.. إيه حكاية ممفيس القديمة؟"
     }
   },
   "cutover_evidence": {
