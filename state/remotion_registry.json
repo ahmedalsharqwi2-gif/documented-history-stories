@@ -260,6 +260,13 @@
           "verified_at": "2026-11-04T21:42:35.953069+00:00"
         }
       }
+    },
+    "daily-remotion-2026-11-06-history": {
+      "profile": "history",
+      "due_at": "2026-11-06T10:00:00Z",
+      "status": "author_pending",
+      "source_run": 42070311648,
+      "created_at": "2026-11-05T17:01:01.362207+00:00"
     }
   },
   "cutover_evidence": {
