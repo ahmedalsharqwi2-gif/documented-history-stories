@@ -170,7 +170,7 @@ function environment(group,name){
  }
 }
 export function proceduralDirector(scene,story){
- if(story.visual_plan?.world!=='procedural_story'||story.scenes?.length!==8)throw Error('An authored declarative eight-scene plan is required');
+ if(story.visual_plan?.world!=='procedural_story'||!(story.scenes?.length===8||(story.profile==='history'&&story.locked_template_version===1&&story.scenes?.length===9)))throw Error('An authored declarative eight-scene plan is required');
  const root=new THREE.Group();scene.add(root);
  const stages=story.scenes.map(s=>{
   if(!Array.isArray(s.objects)||s.objects.length<1||s.objects.length>16)throw Error('Invalid object count');
