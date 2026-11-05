@@ -17,7 +17,8 @@ def main():
  """Mix the full original narration and retain verified render evidence."""
  req=read_request();story=json.loads((DELIVERY/'story.json').read_text());timing=json.loads((DELIVERY/'timing.json').read_text());render=json.loads((OUT/'render.json').read_text());duration=timing['duration']
  validate_render(render)
- build(duration,[s['start'] for s in timing['scenes']],OUT,story['profile'])
+ from .identity import scene_plan
+ build(duration,[s['start'] for s in timing['scenes']],OUT,story['profile'],episode_key=story['topic_key'],scene_kinds=[s['hero_object'] for s in scene_plan(story)['scenes']])
  voice=mix_audio(DELIVERY/'narration.wav',OUT/'score.wav',OUT/'sfx.wav',duration,OUT/'mix.wav')
  movie=OUT/'remotion-complete.mp4'
  run(['-i',OUT/'visuals.mp4','-i',OUT/'mix.wav','-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-ar','48000','-movflags','+faststart',movie])
@@ -32,7 +33,8 @@ def main():
   from .packaging import verify as verify_publication
   verify_publication(OUT,validation)
  (OUT/'remotion-validation.json').write_text(json.dumps(validation,ensure_ascii=False,indent=2)+'\n')
- (OUT/'credits.json').write_text(json.dumps({'sources':story['source'],'assets':evidence,'music':'Original score composed for this episode','voice':'Original Gemini Charon; current repository credentials'},ensure_ascii=False,indent=2)+'\n')
+ (OUT/'credits.json').write_text(json.dumps({'sources':story['source'],'assets':evidence,'music':json.loads((OUT/'score.json').read_text()),'voice':{'provider':'Gemini TTS','original_retained_audio':True,'dialogue':bool(story.get('dialogue_enabled')),'repository_credentials_unchanged':True}},ensure_ascii=False,indent=2)+'\n')
  def ready(data):data['episodes'][req['slot']].update(status='rendered',video_sha256=validation['video_sha256'],duration=actual,render_run=int(__import__('os').environ['GITHUB_RUN_ID']),source_evidence_file='professional_motion/output/remotion-validation.json')
  mutate(ready);print(json.dumps({'status':'full_film_rendered','duration':actual,'sha256':validation['video_sha256'],'submitted_to_any_platform':False}))
 if __name__=='__main__':main()
+
