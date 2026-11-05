@@ -1,0 +1,13 @@
+{
+  "version": "channel-identities-v1",
+  "profile": "history",
+  "name": "ذاكرة تتحرك",
+  "background": "#18201d",
+  "ink": "#fff8e8",
+  "accent": "#edc37a",
+  "visual": "full-bleed archival photographs, Photo Motion camera, geographic context and artifact details",
+  "sound": "bowed strings, breathy flute, frame drum and paper transitions",
+  "enabled": true,
+  "approval_basis": "Owner approved the two real hybrid samples and requested channel-by-channel adaptation on 2026-11-05",
+  "schedule_and_publication_configuration_changed": false
+}
