@@ -98,7 +98,9 @@ def publication_caption(root,report,entry,publication):
  if tags:caption+='\n'+' '.join(tags)
  if source.get('url'):caption+='\nالمصدر: '+source['url']
  asset_credits=report.get('licensed_assets',{}).get('assets',[])
- if asset_credits:caption+='\nصور ورسومات أرشيفية: '+', '.join(sorted({str(a.get('artist') or 'Public domain').strip() for a in asset_credits}))
+ if asset_credits:
+  from .asset_credits import format_credits
+  caption+='\nاعتمادات الصور:\n'+format_credits(asset_credits)
  return title,caption
 def main():
  """Schedule one reviewed film and durably verify all three destination receipts."""
@@ -130,3 +132,4 @@ def main():
   e.update(status='scheduled',due_at=due)
  mutate(done);print(json.dumps({'status':'scheduled','profile':profile,'due_at':due,'media_url':url,'receipts_verified':3}))
 if __name__=='__main__':main()
+
