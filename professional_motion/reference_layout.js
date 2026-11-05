@@ -2,7 +2,7 @@
 // measured speech remain owned by the existing production renderer.
 import {drawCaption} from './caption_layout.js';
 export const REFERENCE_STYLE = 'reference-editorial-v1';
-const THEMES={science:['#67dce8','أسرار الكون','SCIENCE'],horror:['#9fc8be','ملفات غامضة','MYSTERIES'],history:['#e7bd7a','حكايات التاريخ','HISTORY'],news:['#67dce8','على السريع','AI NEWS']};
+const THEMES={science:['#67dce8','أسرار الكون','SCIENCE'],horror:['#9fc8be','ملفات غامضة','MYSTERIES'],history:['#e7bd7a','نقص ونروي','HISTORY'],news:['#67dce8','على السريع','AI NEWS']};
 const clamp=x=>Math.max(0,Math.min(1,x));
 export function wrapText(ctx,value,maxWidth){
  const rows=[''];for(const word of String(value||'').trim().split(/\s+/)){

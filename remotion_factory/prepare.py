@@ -29,7 +29,7 @@ def restore(entry,story_hash):
  for name,content in files.items():(DELIVERY/name).write_bytes(content)
 def main():
  req=read_request();story=json.loads(Path(os.getenv('REMOTION_EPISODE_PATH','config/remotion_episode.json')).read_text());_,profile=identity()
- if story['profile']!=profile or len(story['scenes'])!=8:raise ValueError('Eight authored scenes for this profile required')
+ if story['profile']!=profile or len(story['scenes'])!=(9 if story.get('visual_template_version')==1 else 8):raise ValueError('The retained narrative scene count is required')
  if profile in ('history','horror') and (story.get('fiction') or not story.get('documented') or not story.get('source',{}).get('url')):raise ValueError('History and horror must be sourced true events; invented stories are forbidden')
  raw=(json.dumps(story,ensure_ascii=False,indent=2)+'\n').encode();digest=hashlib.sha256(raw).hexdigest();old=None
  from .packaging import metadata
