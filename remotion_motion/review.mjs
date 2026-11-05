@@ -22,7 +22,7 @@ const serveUrl=await bundle({entryPoint:path.join(project,'src/index.ts'),public
 if(composition.width!==t.canvas.w||composition.height!==t.canvas.h||composition.fps!==t.canvas.fps||composition.width>=composition.height)throw Error('Wrong vertical canvas');
 if(stills){for(let i=0;i<episode.scenes.length;i++)await renderStill({serveUrl,composition,inputProps,browserExecutable,chromiumOptions,frame:Math.round(episode.scenes[i].start*30),output:path.join(output,`shot-${i}.png`),overwrite:false,onBrowserLog:log=>{if(log.type==='error')console.error(log.text)}});}
 else{
- const video=path.join(output,'review.mp4');await renderMedia({serveUrl,composition,inputProps,browserExecutable,chromiumOptions,codec:'h264',pixelFormat:'yuv420p',crf:19,muted:silent,concurrency:2,outputLocation:video,overwrite:false});
+ const video=path.join(output,'review.mp4');let lastProgress=-150;await renderMedia({onProgress:({renderedFrames,encodedFrames})=>{if(renderedFrames-lastProgress>=150){lastProgress=renderedFrames;console.info(JSON.stringify({stage:'render',renderedFrames,encodedFrames,totalFrames:composition.durationInFrames}));}},serveUrl,composition,inputProps,browserExecutable,chromiumOptions,codec:'h264',pixelFormat:'yuv420p',crf:19,muted:silent,concurrency:2,outputLocation:video,overwrite:false});
  await audit({serveUrl,composition,inputProps,browserExecutable,chromiumOptions,output,video});
 }
 await fs.writeFile(path.join(output,'review.json'),JSON.stringify({publishable:false,review_only:true,diagnostic_stills:stills,narration_present:!silent&&!!episode.audio,duration:episode.duration,hook_line:episode.hook_line,template_version:t.version,width:t.canvas.w,height:t.canvas.h,fps:t.canvas.fps,props_path:source},null,2),{flag:'wx'});

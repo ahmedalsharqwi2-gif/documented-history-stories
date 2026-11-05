@@ -13,7 +13,14 @@ function shape(kind,color){
  if(kind==='pyramid'){
   const stone=material(0xc7a26c);const o=mesh(g,new THREE.ConeGeometry(1.8,2.6,4),stone,0,-.05);o.rotation.y=Math.PI/4;box(3.3,.15,3.3,0,-1.4,0,material(0xa98b61));
  }else if(kind==='egypt_temple'){
-  const stone=material(0xc6a16b);box(4,3.1,.6,0,.05,-.7,stone);box(4.5,.22,1.5,0,-1.5,-.2,stone);box(.75,1.8,.7,0,-.5,-.3,dark);
+  // Abu Simbel: rock-cut Egyptian facade and four seated colossi, never a Greek colonnade.
+  // The grid is an explanatory decomposition, not an asserted survey of actual cutting seams.
+  const stone=material(0xc6a16b);g.userData.templeBlocks=[];
+  for(let row=0;row<4;row++)for(let col=0;col<6;col++){
+   const b=box(.66,.765,.6,-1.675+col*.67,1.205-row*.78,-.7,stone);
+   b.userData.home=b.position.clone();b.userData.direction=new THREE.Vector3((col-2.5)*.085,(1.5-row)*.06,.1*((row+col)%2));g.userData.templeBlocks.push(b);
+  }
+  box(4.5,.22,1.5,0,-1.5,-.2,stone);box(.75,1.8,.12,0,-.5,-.36,dark);
   for(const x of [-1.5,-.6,.6,1.5]){box(.48,1.1,.45,x,-.1,0,stone);mesh(g,new THREE.SphereGeometry(.24,20,12),stone,x,.7,0);box(.5,.55,.7,x,-.8,.2,stone);box(.18,.8,.18,x-.14,-1.05,.52,stone);box(.18,.8,.18,x+.14,-1.05,.52,stone);}
  }else if(kind==='bacterium'){
   const body=mesh(g,new THREE.CapsuleGeometry(.46,1.1,10,24),material(color,{roughness:.35}));body.rotation.z=Math.PI/2;
@@ -197,7 +204,8 @@ export function proceduralDirector(scene,story){
    if(s.motion==='orbit'){o.position.x+=Math.cos(phase)*.55;o.position.z+=Math.sin(phase)*.55;}
    if(s.motion==='grow')o.scale.multiplyScalar(.25+.75*q);
    if(s.motion==='assemble'){o.position.y+=(1-q)*(1+i%3)*.7;o.rotation.y+=(1-q)*.8;}
-   if(s.motion==='split')o.position.x+=(i%2?1:-1)*q*.85;
+   if(s.motion==='split'){if(o.userData.templeBlocks)o.userData.templeBlocks.forEach(b=>b.position.copy(b.userData.home).addScaledVector(b.userData.direction,q));else o.position.x+=(i%2?1:-1)*q*.85;}
+   if(s.motion==='assemble'&&o.userData.templeBlocks){o.position.set(...s.position);o.rotation.set(...s.rotation);o.userData.templeBlocks.forEach(b=>b.position.copy(b.userData.home).addScaledVector(b.userData.direction,1-q));}
    if(s.motion==='swing'){const part=o.userData.swingPart||o;part.rotation.z=s.kind==='door'?0:Math.sin(phase)*.55;if(s.kind==='door')part.rotation.y=q*1.25;}
    if(s.motion==='flow'){
     if(o.userData.flowDot){const dot=o.userData.flowDot,x=(t*.5)%4;dot.position.set(x<1?-1+2*x:x<2?1:x<3?1-2*(x-2):-1,.12,x<1?-.6:x<2?-.6+1.2*(x-1):x<3?.6:.6-1.2*(x-3));}
