@@ -1,0 +1,426 @@
+{
+  "request_id": "owner-replace-five-identity-films-2026-11-05",
+  "repository": "ahmedalsharqwi2-gif/documented-history-stories",
+  "episode_key": "daily-remotion-2026-11-05-history",
+  "due_at": "2026-11-05T10:00:00Z",
+  "owner_approved_exact_full_file": true,
+  "authorization": "User explicitly asked to replace the five noon posts today with these exact five reviewed full films. Preserve IDs and due time; no new posts.",
+  "old_video_sha256": "7025f07021dfa22dbcf741ebb30a71df3fbaed5ac269183cffb7fec2d01f9417",
+  "old_media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+  "posts": {
+    "youtube": {
+      "phase": "verified",
+      "channel_id": "6ab67b4fea19ca0bdee58218",
+      "due_at": "2026-11-05T10:00:00Z",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+      "created_at": "2026-11-04T21:42:22.628946+00:00",
+      "id": "6aeba6c0dce07267a194bfb9",
+      "accepted_at": "2026-11-04T21:42:24.634757+00:00",
+      "status": "scheduled",
+      "scheduled_at": "2026-11-05T10:00:00.000Z",
+      "verified_at": "2026-11-04T21:42:26.096569+00:00"
+    },
+    "facebook": {
+      "phase": "verified",
+      "channel_id": "6ab67b0dea19ca0bdee58014",
+      "due_at": "2026-11-05T10:00:00Z",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+      "created_at": "2026-11-04T21:42:27.393464+00:00",
+      "id": "6aeba6c5dce07267a194c04a",
+      "accepted_at": "2026-11-04T21:42:29.158844+00:00",
+      "status": "scheduled",
+      "scheduled_at": "2026-11-05T10:00:00.000Z",
+      "verified_at": "2026-11-04T21:42:30.573812+00:00"
+    },
+    "instagram": {
+      "phase": "verified",
+      "channel_id": "6ab67accea19ca0bdee57e17",
+      "due_at": "2026-11-05T10:00:00Z",
+      "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-05-history/history-daily-remotion-2026-11-05-history.mp4",
+      "created_at": "2026-11-04T21:42:31.887262+00:00",
+      "id": "6aeba6ca4cb090f0ac3ea70c",
+      "accepted_at": "2026-11-04T21:42:34.349031+00:00",
+      "status": "scheduled",
+      "scheduled_at": "2026-11-05T10:00:00.000Z",
+      "verified_at": "2026-11-04T21:42:35.953069+00:00"
+    }
+  },
+  "new_video_sha256": "c3063a60b07f373ffb79a5bb8963cc00fe7f17d1a7acc980fad0bfc4176b1468",
+  "new_media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/approved-identity-2026-11-05/identity-full-review.mp4",
+  "story": {
+    "profile": "history",
+    "series": "نقص ونروى",
+    "title": "إزاي أنقذوا أبو سمبل من الغرق؟",
+    "canonical_subject": "abu-simbel-relocation-1960s",
+    "topic_key": "remotion-abu-simbel-relocation-1960s",
+    "source": {
+      "url": "https://whc.unesco.org/en/activities/1296",
+      "publisher": "UNESCO World Heritage Centre",
+      "title": "Working Together: Abu Simbel"
+    },
+    "scenes": [
+      {
+        "label": "معبد اتحرك من مكانه",
+        "narration": "الوش الحجري اللي قدامك مش قطعة ديكور بتترفع. دي صورة من إنقاذ أبو سمبل، لما معبد منحوت في الصخر كان لازم يتفك ويتنقل. السؤال المرعب وقتها: إزاي تنقذ أثر ضخم، من غير ما تضيع ملامحه؟",
+        "visual": {
+          "kind": "photo",
+          "asset": "media/history-lift.jpg",
+          "asset_label": "صورة أرشيفية • Per-Olow Anderson / Public domain"
+        },
+        "id": "scene_1",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "الخطر جاي من المياه",
+        "narration": "مع بناء السد العالي، خزان المياه الجديد كان هيغطي مواقع أثرية في النوبة. مصر والسودان طلبوا مساعدة اليونسكو، لأن التحدي ماكانش نقل تمثال صغير. كان إنقاذ معابد كاملة، قبل ما المياه توصل لمكانها.",
+        "visual": {
+          "kind": "map",
+          "longitude": 31.6258,
+          "latitude": 22.3372,
+          "zoom": 4.8,
+          "detail": "أبو سمبل • جنوب مصر"
+        },
+        "id": "scene_2",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "نداء أنقذ معابد",
+        "narration": "في مارس سنة ألف وتسعمية وستين، انطلقت حملة دولية لإنقاذ آثار النوبة. اتجمع مهندسين وأثريين وخبراء من بلاد مختلفة. والاختيار هنا ماكانش مجرد تصوير الآثار قبل اختفائها، لكن محاولة الاحتفاظ بيها فعلًا، للأجيال اللي جاية.",
+        "visual": {
+          "kind": "photo",
+          "asset": "media/history-document.jpg",
+          "asset_label": "وثيقة حملة اليونسكو • Public domain"
+        },
+        "id": "scene_3",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "الحل: نفك الصخر",
+        "narration": "الخطة كانت جريئة: تفكيك أجزاء المعبد، ونقلها لأرض أعلى، وبعدها تجميعها من جديد. مش تكسير عشوائي ولا بناء نسخة شبهه. الفكرة كانت الاحتفاظ بالحجارة الأصلية، وبترتيبها وعلاقتها ببعض، عشان المعبد يفضل هو نفسه بعد النقل.",
+        "visual": {
+          "kind": "temple"
+        },
+        "id": "scene_4",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "كل قطعة ليها مكان",
+        "narration": "الكتل الحجرية اتقطعت واترقمت واتنقلت للتخزين، وبعدها رجعت تتجمع في الموقع الجديد. الترقيم هنا كان ضروري، لأن أي قطعة لو راحت في مكان غلط هتغيّر الشكل. الصورة الأرشيفية بتورينا حجم الشغل اللي اتعمل فعلًا.",
+        "visual": {
+          "kind": "photo",
+          "asset": "media/history-lift.jpg",
+          "asset_label": "توثيق فعلي لرفع جزء من التمثال • Public domain"
+        },
+        "id": "scene_5",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "جبل جديد يحمي الأصل",
+        "narration": "في الموقع الأعلى، اتعمل تكوين صخري صناعي يحتضن المعابد بعد إعادة تجميعها. اللي بيزور المكان النهارده ممكن يشوف واجهة عظيمة، من غير ما ينتبه إن إنقاذها احتاج نقل أجزاء الصخر نفسه، مش مجرد تحويل طريق المياه حواليه.",
+        "visual": {
+          "kind": "photo",
+          "asset": "media/history-old.jpg",
+          "asset_label": "صورة تاريخية للموقع • Museo Egizio / CC0"
+        },
+        "id": "scene_6",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "اليوم اللي اكتمل فيه الإنقاذ",
+        "narration": "في اتنين وعشرين سبتمبر سنة ألف وتسعمية تمانية وستين، افتُتح أبو سمبل في موقعه الجديد. وحملة إنقاذ آثار النوبة كانت أوسع من المعبدين دول؛ استمرت بعد كده لإنقاذ مواقع تانية، ومنها معابد فيلة.",
+        "visual": {
+          "kind": "timeline",
+          "timeline": [
+            {
+              "year": "1960",
+              "text": "انطلاق حملة إنقاذ آثار النوبة"
+            },
+            {
+              "year": "1968",
+              "text": "افتتاح أبو سمبل في موقعه الجديد"
+            }
+          ]
+        },
+        "id": "scene_7",
+        "labels": [],
+        "visual_mode": "hero"
+      },
+      {
+        "label": "الأثر الأصلي فضل موجود",
+        "narration": "الحكاية الحقيقية دي مش عن أثر نجا بالحظ. دي عن قرار، وتعاون، وتفاصيل تنفيذ ماكانش ينفع تتساب للصدفة. أبو سمبل فضِل موجود، لأن ناس قررت إن التنمية وحماية الذاكرة ممكن يمشوا مع بعض، بدل ما واحدة تمسح التانية.",
+        "visual": {
+          "kind": "photo",
+          "asset": "media/history-lift.jpg",
+          "asset_label": "الصورة الأصلية لعملية الإنقاذ • Public domain"
+        },
+        "id": "scene_8",
+        "labels": [],
+        "visual_mode": "hero"
+      }
+    ],
+    "fiction": false,
+    "documented": true,
+    "facts": [],
+    "milestones": [],
+    "suitable": true,
+    "hashtags": [
+      "أبو_سمبل",
+      "إنقاذ_الآثار",
+      "تاريخ"
+    ],
+    "editorial_review": {
+      "performed_by": "source-grounded authored script",
+      "supported": true,
+      "novel": true,
+      "fiction_disclosed": false,
+      "no_invented_witness_dialogue": true
+    },
+    "visual_family": "remotion_documentary",
+    "variant": "history"
+  },
+  "timing_sha256": "468ebefbad8c01979899775c613947afffb5a90a9cb7af076f86e6a58b6bb13f",
+  "qa": {
+    "repo": "documented-history-stories",
+    "profile": "history",
+    "status": "complete_private_qa_film_technically_verified",
+    "review_only": true,
+    "publishable": false,
+    "scheduled": false,
+    "voice_generation_calls": 0,
+    "publication_calls": 0,
+    "duration": 131.1,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "movie_sha256": "c3063a60b07f373ffb79a5bb8963cc00fe7f17d1a7acc980fad0bfc4176b1468",
+    "original_voice_sha256": "bb13dd19c06141b454a7f25f1e083015ecd538ce573d4a54cddd49a2ca9dd312",
+    "original_story_sha256": "725613425b7004e122cbaf47c0f845d084ae6071f3f4cd06b3f25f3e61b79f16",
+    "full_decode_passed": true,
+    "frames": 3933,
+    "audio_tail": {
+      "audio_seconds": 131.08,
+      "video_seconds": 131.08,
+      "difference_seconds": 0.0,
+      "last_speech_window_correlation": 0.9933454990386963,
+      "audio_tail_checked": true,
+      "silence_padding_used_to_hide_lost_speech": false
+    },
+    "scene_images": [
+      {
+        "name": "remotion-shot-1.png",
+        "sha256": "9e6427db27943420970533b4e714a8283868b40ba630c444fcce81b2984fc462"
+      },
+      {
+        "name": "remotion-shot-2.png",
+        "sha256": "0c95b881d46f75ae9d9c890c126e9a6d75d890c1c9a5142ef3ad6fafba2885b0"
+      },
+      {
+        "name": "remotion-shot-3.png",
+        "sha256": "546ba274b508a4f7acbfe9f923e1bef56092778bce971a2909644149a41ed521"
+      },
+      {
+        "name": "remotion-shot-4.png",
+        "sha256": "09f92e7dcc10cb9ae8d76ce80b10aa0bb2a723271bdbe707172278801fad00a9"
+      },
+      {
+        "name": "remotion-shot-5.png",
+        "sha256": "a7f6a96ed0873a0ab8aafc0cc822dae810863c0b0b48d3384a20fb81c528bfe7"
+      },
+      {
+        "name": "remotion-shot-6.png",
+        "sha256": "862bcec13d682cdf4ddb070d6bf18d8d0771580c92e51960389953d222c6aa5e"
+      },
+      {
+        "name": "remotion-shot-7.png",
+        "sha256": "00e512029adc017a38e223805709a5c8822a5f5b91296e5d4552a97e3dabb756"
+      },
+      {
+        "name": "remotion-shot-8.png",
+        "sha256": "245939cf492fb643a2916875a5c7de1e74fb58139d8874138d80344ac0f650ac"
+      }
+    ],
+    "unique_scene_images": 8,
+    "identity": {
+      "version": "channel-identities-v1",
+      "profile": "history",
+      "name": "ذاكرة تتحرك",
+      "background": "#18201d",
+      "ink": "#fff8e8",
+      "accent": "#edc37a",
+      "visual": "full-bleed archival photographs, Photo Motion camera, geographic context and artifact details",
+      "sound": "bowed strings, breathy flute, frame drum and paper transitions"
+    },
+    "sound": {
+      "profile": "history",
+      "bpm": 65,
+      "sound_identity": "bowed strings, flute and frame drum",
+      "seed": 4024460806,
+      "episode_key_sha256": "efe06606b3d6ffbf715af849cf2be67b548f2676c68bbdfdf2d8b97436c06ab6",
+      "duration": 131.08,
+      "cues": [
+        {
+          "type": "archive_paper",
+          "at": 0,
+          "scene_object": "egypt_temple"
+        },
+        {
+          "type": "archive_paper",
+          "at": 15.14,
+          "scene_object": "egypt_temple"
+        },
+        {
+          "type": "archive_paper",
+          "at": 29.020000000000003,
+          "scene_object": "document"
+        },
+        {
+          "type": "archive_paper",
+          "at": 45.18,
+          "scene_object": "egypt_temple"
+        },
+        {
+          "type": "archive_paper",
+          "at": 62.34,
+          "scene_object": "document"
+        },
+        {
+          "type": "archive_paper",
+          "at": 77.54,
+          "scene_object": "rock_layers"
+        },
+        {
+          "type": "archive_paper",
+          "at": 95.42,
+          "scene_object": "egypt_temple"
+        },
+        {
+          "type": "archive_paper",
+          "at": 111.8,
+          "scene_object": "document"
+        }
+      ],
+      "original_composition": true,
+      "reference_audio_sampled": false,
+      "score_sha256": "2eee110bf008f9bff3947a1023e7d71ef25ad8fe35f93454ee25e792dc08ed23"
+    },
+    "renderer": {
+      "pipeline": "remotion",
+      "renderer": "Remotion4.0.540",
+      "duration": 131.08,
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "originalVoice": true,
+      "review": false,
+      "story_sha256": "725613425b7004e122cbaf47c0f845d084ae6071f3f4cd06b3f25f3e61b79f16",
+      "audio_sha256": "bb13dd19c06141b454a7f25f1e083015ecd538ce573d4a54cddd49a2ca9dd312",
+      "total_frames": 3933,
+      "rendered_frames": 3933,
+      "render_mode": "video",
+      "visual_style": "ذاكرة تتحرك",
+      "identity_version": "channel-identities-v1",
+      "identity_plan_sha256": "d97e6e71993db8aa740ab16ebe5ca5af713ec13b310206184eb5cd1f363f2da5",
+      "burned_hashtags": [
+        "أبو_سمبل",
+        "إنقاذ_الآثار",
+        "تاريخ"
+      ],
+      "errors": [],
+      "renderer_sources": {
+        "src/AdventurePlate.tsx": "da8a8c16496723b0ff44412cd771909e82cfdad33c95e3e2e36e1540cf2e739a",
+        "src/Documentary.tsx": "77661efe40f83978040e2215972057c430cdf7f1ede8c2b52945e9836fdf2556",
+        "src/ExplainerPlate.tsx": "3ec96774f04e1aeffc9c5ca2cd9a9918815b41dfe5bcd26ed0857d7c207c386b",
+        "src/IdentityFilm.tsx": "e4ae4cebc55175f496abad12b548ed6e1ff9631c3ef4c52ab8d814d083952ac4",
+        "src/IdentityStickman.tsx": "ced2f0ecb0ef26fe01c3740495e5807c3ec99dd941a0893665685cec9365183f",
+        "src/LearningDevice.tsx": "0f6e5d1a54e3b7b67333d292281dc9a39483e9f02ee7e94bb9f26ee1ab08da88",
+        "src/LegacyWorld.tsx": "f83f66d937393d6f7180db6ad11caad2667d8a2acc300303d745b2d7ddc6523d",
+        "src/MapPlate.tsx": "9f5beb4bb0a5451d8b8ae438ca2b247f10c11742ceae2e6378067d7751354745",
+        "src/MotionFinish.tsx": "c01d9c9e0e7c4b0f1fc7e7ed7c4e66dce6b93e9188fb459f6e02eb6908748f2f",
+        "src/OpeningCover.tsx": "64e114f1531ce5676c4d4ab8d63757bf1ebdf20dcd7ae2b9c95389d78ec74ea7",
+        "src/Root.tsx": "c5f240f57d18387c8d047fdcc731e5775694278ed89bc2407afc85898872fb47",
+        "src/SciencePlate.tsx": "35064313d2afdd40e3cf5c0f8e04307c64c544fff554539f465444624e22f830",
+        "src/StickmanPlate.tsx": "a2249b511f86dcd9aa5b554bbb4e11e5494edee4e1de1bb1900e481410d39288",
+        "src/WhatIfPlate.tsx": "fbcd98d7212e65f83acca8a55d6b61a698f9651c7cf3ea3516d6083f84cdecfa",
+        "src/index.ts": "28c07a9c5b90643adcecc9e9235322ab175ab5c423bc4f0c813ecfb06e23ff56",
+        "src/types.ts": "696c6f841288407c611d0007c4e743010c10af6610c1f61717970e8934e977a7",
+        "render.mjs": "aa2155b7d533bcf2621cffc7b2e1faf0bdb61b7c8bbf16c80f8f0b0d680860fe",
+        "package.json": "422907b1c8db1264e6ff674d5faa386e69fc6b713b8869e7347617b081c8951a",
+        "package-lock.json": "32147035bebea55f6b61667031723a159347192ec99968b8de33b57c7416c3c1",
+        "visual-overrides.json": "e7a13610af470eea3a4f8e0d9b80fad904caeb322103d3399ad21cdcaf7a2fae",
+        "../professional_motion/procedural_story.js": "f7b23780e7c37c28c4245e1513f8bebdb4d04baf500d1376eebbd1c22472349b",
+        "../professional_motion/identity_stage.js": "d8bd47fa0c1118ee358453f1a2a1aa6f74774c1ee82b965e03fc7332e99a230a",
+        "../professional_motion/cinema.js": "37954e44c4362a83df34e5523b768026a90bd06d4cf257bc1fd91eae49083667",
+        "../professional_motion/science_shots.js": "d051358861c5e2a6a55b43a2a0c6f9ca295fe082ad262bf3e48781cb92913df7"
+      },
+      "local_qa_reconstruction_update": {
+        "review_only": true,
+        "start_frame": 1355,
+        "end_frame": 1869,
+        "frames": 515,
+        "reason": "A temple is the subject; do not confuse rock-cut architecture with geological rock layers",
+        "source_scene_id": "scene_4",
+        "preceding_and_following_scene_content_reused": true,
+        "source_voice_unchanged": true,
+        "original_picture_sha256": "90fb70e16a7b195c5abf3cf62f730492a6e010e5faa3ba9b399cb28f39920d9a",
+        "final_picture_sha256": "804c4c4f2c00b623032dc5f4c3576b12b238c36dcbac269d6ea7dc198fca3fab"
+      }
+    },
+    "technical_checks_are_not_a_guarantee_of_engagement": true
+  },
+  "caption": "إزاي أنقذوا أبو سمبل من الغرق؟\n#أبو_سمبل #إنقاذ_الآثار #تاريخ\nالمصدر: https://whc.unesco.org/en/activities/1296\nاعتمادات الصور (قص وتحريك بصري):\n\"Per-Olow\" - Per-Olow Anderson (1921-1989) — Public domain — https://commons.wikimedia.org/wiki/File:Abusimbel.jpg\nPublic domain — CC0 — https://commons.wikimedia.org/wiki/File:Nubia,_Temples_of_Abu_Simbel,_Pictures,_photo_4_of_7_-_Archivio_fotografico_Museo_Egizio,_Turin_Album2_092.jpg\nUNESCO — Public domain — https://commons.wikimedia.org/wiki/File:Abu_Simbel_in_the_1961_UNESCO_Courier_-_UNESCO_documents_regarding_the_International_Campaign_to_Save_the_Monuments_of_Nubia.png",
+  "hashtags": "#أبو_سمبل #إنقاذ_الآثار #تاريخ",
+  "owner_approved_git_blob_transport": true,
+  "transport_parts": [
+    {
+      "blob_sha": "fe38d66c39ff0206b05b4e388b205b5731308641",
+      "sha256": "1e75828b98dc1f6e76d84d8cdc6a0cfe95b43aa785018e356868bd992502a725",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "ea1fb2d3470717dec0f5c06cb06d8d658a7d1e8b",
+      "sha256": "f9a8122725450ee75e2b7d2130d7a81c8cb866bda2e4aa8666f87f3510dcd9b0",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "63aff021761e51598bda69e79a883964e575c417",
+      "sha256": "83c61f4ada91107cf8c51a12b84721fb2522178584ec41641a7dc97fe3acc1f9",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "daeea7b67e783be2bceb533e2709c28bf9d40d12",
+      "sha256": "781a808cf93e32078bbf194c7122f443ed9fc12b6a6a52ef6fba7a4f388bd3c3",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "21e263ec3422116a7a623d28593b04dedc62dbdb",
+      "sha256": "e04d87b77aa5cdd0326f8d4d3296986157b77275f517b00229bc47e1ef60561c",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "45659f24d2b4621c014646fd5e8b15719f0303b9",
+      "sha256": "2513b3539e697ebe6d2b95cb2924fc57c76a08a0fd7069163c2d03afb16edaa4",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "210bcfc4d36cbec01f80bc4b2050b6d8e98ccffb",
+      "sha256": "1406cc3a5347f2a87263b6806df00f0a2c263960e30dfc900da593751dab9d47",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "d012b93c7b582f239e8c72e4374f134133c36d5e",
+      "sha256": "cb04176db8fb14d759df6b63bf715cc1f93addd79752ddfc361c8a7fab5e1cb9",
+      "size": 8388608
+    },
+    {
+      "blob_sha": "30e8668b408aaf75656ef6b777dfb7e673e6fb2d",
+      "sha256": "583ac3b10ad0a1942892b4053cc47bf52cba92a5b8dd0d5cf588e0ec1b766f6f",
+      "size": 1666251
+    }
+  ]
+}
