@@ -421,11 +421,11 @@
       },
       "writer_run": 42244674282,
       "draft_document": {
-        "path": "state/remotion_documents/daily-remotion-2026-11-10-history-draft-b91902d4c4a5b48b.json",
-        "sha256": "b91902d4c4a5b48b0fc1d10ace40fb5329c1c2c142e20c0dcf402390c217dd6d"
+        "path": "state/remotion_documents/daily-remotion-2026-11-10-history-corrected-draft-4a6375cb923e741d.json",
+        "sha256": "4a6375cb923e741d064ead56c00a39c4ceedd4f0b49aa6971fa08dc9a708d2d8"
       },
       "draft_repair": {
-        "phase": "received",
+        "phase": "validated",
         "original_sha256": "652e93b9da005101792ae2148c65aead0742edcc1443c979a615b1c6707c2f19",
         "problem": "Draft word budget fails natural-duration preflight: actual 381, required 240-370; no TTS requested",
         "maximum_requests": 1,
@@ -434,7 +434,20 @@
           "path": "state/remotion_documents/daily-remotion-2026-11-10-history-corrected-draft-4a6375cb923e741d.json",
           "sha256": "4a6375cb923e741d064ead56c00a39c4ceedd4f0b49aa6971fa08dc9a708d2d8"
         }
-      }
+      },
+      "draft_revision_history": [
+        {
+          "previous_document": {
+            "path": "state/remotion_documents/daily-remotion-2026-11-10-history-draft-b91902d4c4a5b48b.json",
+            "sha256": "b91902d4c4a5b48b0fc1d10ace40fb5329c1c2c142e20c0dcf402390c217dd6d"
+          },
+          "reason": "Draft word budget fails natural-duration preflight: actual 381, required 240-370; no TTS requested",
+          "correction_document": {
+            "path": "state/remotion_documents/daily-remotion-2026-11-10-history-corrected-draft-4a6375cb923e741d.json",
+            "sha256": "4a6375cb923e741d064ead56c00a39c4ceedd4f0b49aa6971fa08dc9a708d2d8"
+          }
+        }
+      ]
     }
   },
   "cutover_evidence": {
