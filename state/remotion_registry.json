@@ -309,7 +309,7 @@
     "daily-remotion-2026-11-08-history": {
       "profile": "history",
       "due_at": "2026-11-08T10:00:00Z",
-      "status": "draft_retained",
+      "status": "review_requested",
       "source_run": 42237914898,
       "created_at": "2026-11-06T14:53:30.823654+00:00",
       "source_selection": {
@@ -341,7 +341,13 @@
           "sha256": "dc909b8cc1ba575306d6aee2bef314e53c7e6194e35a5bf1fb2c53657dbfaac9"
         },
         "failure": "Draft word budget fails natural-duration preflight: actual 191, required 240-370; no TTS requested"
-      }
+      },
+      "story_document": {
+        "path": "state/remotion_documents/daily-remotion-2026-11-08-history-story-8938f37e00e17ace.json",
+        "sha256": "8938f37e00e17ace2645e537aee745bc99f909f371fc329f660fed480c32de78"
+      },
+      "canonical_subject": "unesco-site-438",
+      "title": "قصة سور الصين العظيم اللي جمع حصون التاريخ"
     }
   },
   "cutover_evidence": {
