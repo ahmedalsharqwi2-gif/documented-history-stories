@@ -309,7 +309,7 @@
     "daily-remotion-2026-11-08-history": {
       "profile": "history",
       "due_at": "2026-11-08T10:00:00Z",
-      "status": "voice_requested",
+      "status": "voice_ready",
       "source_run": 42240016128,
       "created_at": "2026-11-06T14:53:30.823654+00:00",
       "source_selection": {
@@ -357,7 +357,11 @@
         "passed": true
       },
       "story_sha256": "8938f37e00e17ace2645e537aee745bc99f909f371fc329f660fed480c32de78",
-      "voice_request_run": 42240016128
+      "voice_request_run": 42240016128,
+      "duration": 129.84,
+      "audio_sha256": "9e88fac2f0e87dbfb66f5a2f16c5d081c794cb0bba92a61fd9d9a1f42894d505",
+      "timing_sha256": "2a21bc4d066b952a00dbe2c825de7e7f87883abe5e823c3d77082d1343970c7c",
+      "coverage": 0.9131944444444444
     }
   },
   "cutover_evidence": {
