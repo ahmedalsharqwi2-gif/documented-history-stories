@@ -1,0 +1,159 @@
+{
+  "title": "قصة سور الصين العظيم اللي جمع حصون التاريخ",
+  "canonical_subject": "unesco-site-438",
+  "hashtags": [
+    "تاريخ",
+    "سور_الصين_العظيم",
+    "آثار",
+    "اليونسكو",
+    "معلومات"
+  ],
+  "scenes": [
+    {
+      "label": "بداية التأسيس والربط",
+      "narration": "تخيل إنك ماشي في شمال الصين وتتفاجأ بسور طوله بيعدي آلاف الكيلومترات بيحكي قصة صراع قديم. في القرن الثالث قبل الميلاد قرر الإمبراطور كين شين هوانغ إنه يربط حصون قديمة ببعضها عشان يعمل نظام دفاع واحد يحمي البلد من الهجمات.",
+      "evidence_quote": "In c. 220 B.C., under Qin Shi Huang, sections of earlier fortifications were joined together to form a united defence system",
+      "diagram": "flow",
+      "labels": [
+        "إمبراطورية",
+        "تأسيس",
+        "دفاع"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "transfer",
+      "shot_type": "chronology",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "ancient Chinese fortifications map and parchment document",
+      "visual_rationale": "Shows an old map and documents being unrolled to trace the initial joining of early fortifications."
+    },
+    {
+      "label": "استمرار البناء في العصور اللاحقة",
+      "narration": "الشغل ما وقفتش عند الفترة دي بل كمل عبر عصور مختلفة لحد ما جه وقت سلالة مينغ وبنى الجزء الأكبر اللي الناس بتشوفه النهاردة. العمل الضخم ده اتطور بمرور السنين عشان يتحول لأعظم منشأة عسكرية في تاريخ البشرية كلها.",
+      "evidence_quote": "Construction continued up to the Ming dynasty (1368–1644), when the Great Wall became the world's largest military structure.",
+      "diagram": "layers",
+      "labels": [
+        "سلالة مينغ",
+        "تطور",
+        "تحصين"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "temple",
+      "object_motion": "grow",
+      "image_query": "Ming dynasty brick wall architecture and masonry details",
+      "visual_rationale": "Presents layers of masonry and stone construction expanding across mountains."
+    },
+    {
+      "label": "المكونات المعمارية والأبراج",
+      "narration": "السور مش مجرد حيطة عادية دي شبكة معقدة فيها أبراج مراقبة وطرق للخيول وحصون قوية متوزعة بدقة. كل تفصيلة هندسية هنا كانت محسوبة عشان تدي الجنود أفضل ميزة استراتيجية وقت الخطر وتضمن سرعة توصيل الإشارات.",
+      "evidence_quote": "Its main body consists of walls, horse tracks, watch towers, and shelters on the wall, and includes fortresses and passes",
+      "diagram": "compare",
+      "labels": [
+        "أبراج",
+        "هندسة",
+        "مراقبة"
+      ],
+      "secondary_object": "cart",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "house",
+      "object_motion": "none",
+      "image_query": "Great Wall watchtower and horse track path structure",
+      "visual_rationale": "Highlights the watchtowers and paths integrated into the mountain ridge."
+    },
+    {
+      "label": "الاندماج مع الطبيعة والجبال",
+      "narration": "المهندسين زمان استغلوا تضاريس الجبال الصعبة وبنوا السور كأنه جزء من الصخر نفسه. التمويج ده خلى السور ماشي مع خطوط الطبيعة بطريقة مذهلة بتثبت عبقرية التخطيط العسكري والتنفيذ الميداني من غير تخريب للبيئة.",
+      "evidence_quote": "the perfect integration of the Great Wall with the topography, to form a meandering landscape feature",
+      "diagram": "cycle",
+      "labels": [
+        "تضاريس",
+        "جبال",
+        "توافق بيئي"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "rock_layers",
+      "object_motion": "flow",
+      "image_query": "Great Wall winding across mountain ridge topography landscape",
+      "visual_rationale": "Illustrates how the stone wall curves along natural terrain contours."
+    },
+    {
+      "label": "التفاعل بين الحضارات",
+      "narration": "وجود السور ده كان مرآة لصدام وتبادل ثقافي طويل بين المجتمعات الزراعية المستقرة والشعوب البدوية في الشمال. التاريخ هنا مش مجرد حجارة محطوطة فوق بعضها دي حكايات بشرية وتغيرات اجتماعية كبرى حصلت بسبب الحدود دي.",
+      "evidence_quote": "The Great Wall reflects collision and exchanges between agricultural civilizations and nomadic civilizations",
+      "diagram": "compare",
+      "labels": [
+        "حضارات",
+        "تبادل",
+        "تاريخ"
+      ],
+      "secondary_object": "person",
+      "interaction": "separate",
+      "shot_type": "archive",
+      "hero_object": "scroll",
+      "object_motion": "drift",
+      "image_query": "ancient Asian nomadic and agricultural civilization artifacts",
+      "visual_rationale": "Compares historical artifacts representing agricultural and nomadic cultures."
+    },
+    {
+      "label": "القيمة الرمزية في الأدب",
+      "narration": "بسبب المعاناة الكبيرة اللي واجهتها الأجيال في بنائه دخل السور في قلب الأدب والشعر الصيني القديم. الشعراء كتبوا عن التضحيات دي والقصائد فضلت تحكي للأجيال الحكاية كرمز وطني بيحمي هوية البلد وشعبها على مر العصور.",
+      "evidence_quote": "Because its construction implied suffering, it is one of the essential references in Chinese literature",
+      "diagram": "flow",
+      "labels": [
+        "أدب",
+        "شعر",
+        "رمز وطني"
+      ],
+      "secondary_object": "book",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "book",
+      "object_motion": "pulse",
+      "image_query": "ancient Chinese literature scroll and poetry manuscripts",
+      "visual_rationale": "Displays ancient poetry manuscripts mentioning the wall's construction."
+    },
+    {
+      "label": "الحفاظ والحماية الحديثة",
+      "narration": "الموقع العظيم ده دخل قايمة التراث العالمي لليونسكو عشان يحموه من التدهور والزحف العمراني والسياحي غير المدروس. القوانين والخطط التنظيمية النهاردة بتشتغل بحذر عشان تحافظ على كل طوبة أصلية وتمنع أي إضرار ببيئة السور المحيطة بيه.",
+      "evidence_quote": "The Regulations on the Protection of the Great Wall promulgated in 2006 is the specific legal document",
+      "diagram": "layers",
+      "labels": [
+        "حماية",
+        "تراث عالمي",
+        "قوانين"
+      ],
+      "secondary_object": "document",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "none",
+      "image_query": "UNESCO heritage conservation document and Great Wall site",
+      "visual_rationale": "Shows official protection paperwork alongside archival preservation views."
+    },
+    {
+      "label": "الاستدامة والتحديات الحالية",
+      "narration": "التحدي الأكبر النهاردة هو إزاي نوازن بين زيارات ملايين السياح وحماية الأثر الضخم ده من التلف الطبيعي والبشري. الاستدامة بقت هي المفتاح عشان السور يفضل واقف وشاهد على عراقة التاريخ وبطولات البشر اللي بنوه زمان.",
+      "evidence_quote": "a harmonious relationship featuring sustainable development between heritage protection and social economy",
+      "diagram": "cycle",
+      "labels": [
+        "استدامة",
+        "سياحة",
+        "مستقبل"
+      ],
+      "secondary_object": "person",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "person",
+      "object_motion": "none",
+      "image_query": "tourists visiting preserved sections of the Great Wall of China",
+      "visual_rationale": "Shows modern visitors walking near a well-preserved watchtower under management."
+    }
+  ],
+  "cover_text": "قصة بناء سور الصين",
+  "director_version": "v1"
+}
