@@ -271,7 +271,7 @@
     "daily-remotion-2026-11-07-history": {
       "profile": "history",
       "due_at": "2026-11-07T10:00:00Z",
-      "status": "author_requested",
+      "status": "draft_retained",
       "source_run": 42228789620,
       "created_at": "2026-11-06T13:51:11.807555+00:00",
       "source_selection": {
@@ -288,8 +288,11 @@
         "sha256": "5f0049966855b7cef4eb1d07934d932edeb35d61d8e1607dc381f16d99a14de2"
       },
       "writer_run": 42228789620,
-      "recovery_requested": true,
-      "recovery_reason": "Confirmed prior author request ended non-200 before draft; Gemini diagnostic now returned HTTP 200; reuse retained source only."
+      "recovery_reason": "Confirmed prior author request ended non-200 before draft; Gemini diagnostic now returned HTTP 200; reuse retained source only.",
+      "draft_document": {
+        "path": "state/remotion_documents/daily-remotion-2026-11-07-history-draft-8cd37cd711325f1b.json",
+        "sha256": "8cd37cd711325f1b255e1cde98ec67362e5175f3dbd34edfb7fe1ac48bc3f58e"
+      }
     }
   },
   "cutover_evidence": {
