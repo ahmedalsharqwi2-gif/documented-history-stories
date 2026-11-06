@@ -403,7 +403,7 @@
     "daily-remotion-2026-11-10-history": {
       "profile": "history",
       "due_at": "2026-11-10T10:00:00Z",
-      "status": "authored",
+      "status": "voice_requested",
       "source_run": 42244674282,
       "created_at": "2026-11-06T15:37:07.643796+00:00",
       "source_selection": {
@@ -462,7 +462,8 @@
         "issues": [],
         "passed": true
       },
-      "story_sha256": "a744c1d5663647765dfc5576fbff294f7fc68f2f5b3be622e322fc01568506f2"
+      "story_sha256": "a744c1d5663647765dfc5576fbff294f7fc68f2f5b3be622e322fc01568506f2",
+      "voice_request_run": 42244674282
     }
   },
   "cutover_evidence": {
