@@ -1,0 +1,153 @@
+{
+  "title": "إزاي السور العظيم اتجمع في سلسلة دفاعية واحدة؟",
+  "canonical_subject": "unesco-site-438",
+  "hashtags": [],
+  "scenes": [
+    {
+      "label": "البداية التاريخية",
+      "narration": "في قرابة العام مئتين وعشرين قبل الميلاد، أخذ القيصر كين شين هوانغ قرارا جريئا بربط حصون الشمال القديمة معا لتشكيل نظام دفاعي متكامل يحمي حدود البلاد من أي هجمات خارجية محتملة واجهت الإمبراطورية وقتها واستدعت تدخلا عاجلا.",
+      "evidence_quote": "In c. 220 B.C., under Qin Shi Huang, sections of earlier fortifications were joined together",
+      "diagram": "flow",
+      "labels": [
+        "سور",
+        "تاريخ",
+        "دفاع"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "contrast",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "ancient fortifications map scroll",
+      "visual_rationale": "Shows an ancient parchment map being unfurled to illustrate the initial strategic joining of disparate northern defensive sections."
+    },
+    {
+      "label": "استمرار البناء",
+      "narration": "لم تتوقف أعمال الإنشاء عند ذلك الحد بل تتابعت عبر العصور وصولا إلى فترة حكم سلالة مينغ العريقة بين عامي ألف وثلاثمائة وثمانية وستين وألف وستمائة وأربعة وأربعين لتشهد تلك المرحلة طفرة هائلة في حجم العمل وضخامة الإمكانيات الهندسية.",
+      "evidence_quote": "Construction continued up to the Ming dynasty (1368–1644)",
+      "diagram": "layers",
+      "labels": [
+        "عصور",
+        "بناء",
+        "تطوير"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "approach",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "grow",
+      "image_query": "Ming dynasty brick wall structure",
+      "visual_rationale": "Focuses on stacked stone layers to demonstrate how construction expanded and solidified during successive imperial dynasties."
+    },
+    {
+      "label": "الضخامة العسكرية",
+      "narration": "هذه الجهود المتواصلة عبر السنين أثمرت عن أعظم إبداع عسكري عملاق عرفه التاريخ البشري على الإطلاق، حيث امتدت التحصينات لمسافات شاسعة تجاوزت عشرين ألف كيلومتر لتغطي التضاريس الوعرة وتثبت كفاءة استثنائية في التخطيط.",
+      "evidence_quote": "the Great Wall became the world's largest military structure",
+      "diagram": "compare",
+      "labels": [
+        "هندسة",
+        "مقياس",
+        "عملاق"
+      ],
+      "secondary_object": "mountain",
+      "interaction": "encircle",
+      "shot_type": "reconstruction",
+      "hero_object": "shield",
+      "object_motion": "none",
+      "image_query": "Great Wall winding over mountains",
+      "visual_rationale": "Presents a wide aerial perspective highlighting the massive scale of the military structure winding across mountain ridges."
+    },
+    {
+      "label": "القيمة المعمارية",
+      "narration": "ولا توزي أهمية السور التاريخية والإستراتيجية سوى قيمته الهندسية العالية، إذ تظهر عبقرية التصميم في كيفية دمج الحجارة والأسوار بانسجام تام مع الطبيعة الجغرافية الصعبة والقمم الجبلية العالية دون الإخلال بمتانة التحصينات.",
+      "evidence_quote": "Its historic and strategic importance is matched only by its architectural significance",
+      "diagram": "layers",
+      "labels": [
+        "عمارة",
+        "استراتيجية",
+        "تصميم"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "crystal",
+      "object_motion": "pulse",
+      "image_query": "watchtower masonry detail",
+      "visual_rationale": "Examines the precise interlocking brickwork and watchtower architecture integrated naturally into the rocky terrain."
+    },
+    {
+      "label": "طبيعة التضاريس",
+      "narration": "يبدأ السور الهائل من الشرق عند شانهوايغوان في مقاطعة خبي ويمتد ليستقر غربا عند جيايوغوان في مقاطعة غانسو، مما يعكس قدرة هندسية فائقة على تطويع الجغرافيات المختلفة وربط الحصون عبر ممرات صعبة المراس.",
+      "evidence_quote": "The Great Wall begins in the east at Shanhaiguan in Hebei province and ends at Jiayuguan in Gansu province",
+      "diagram": "flow",
+      "labels": [
+        "امتداد",
+        "جغرافيا",
+        "حدود"
+      ],
+      "secondary_object": "river",
+      "interaction": "approach",
+      "shot_type": "chronology",
+      "hero_object": "network",
+      "object_motion": "flow",
+      "image_query": "Great Wall route spanning provinces",
+      "visual_rationale": "Traces the geographic expanse across desert and mountain borders from eastern terminals to western fortresses."
+    },
+    {
+      "label": "التبادل الحضاري",
+      "narration": "يعكس هذا الأثر التاريخي الضخم طموح الإمبراطوريات المركزية وحجم الاحتكاك والتواصل المستمر بين الحضارات الزراعية والمجتمعات البدوية في الصين القديمة، مما خلق تفاعلات معقدة أثرت تاريخ المنطقة طوال قرون عديدة.",
+      "evidence_quote": "The Great Wall reflects collision and exchanges between agricultural civilizations and nomadic civilizations",
+      "diagram": "compare",
+      "labels": [
+        "حضارة",
+        "تفاعل",
+        "تاريخ"
+      ],
+      "secondary_object": "cart",
+      "interaction": "transfer",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "ancient cultural exchange silk road",
+      "visual_rationale": "Displays archival illustrations depicting historical exchanges and border encounters between different societal groups."
+    },
+    {
+      "label": "قوانين الحماية",
+      "narration": "وفي العصور الحديثة، خضعت أجزاء السور المختلفة لقوانين حماية صارمة تم إقرارها لتنظيم عمليات الترميم والحفاظ على الأصالة المعمارية، وضمان بقاء المعلم التاريخي سالما للأجيال القادمة رغم تحديات السياحة والعوامل الطبيعية.",
+      "evidence_quote": "The Regulations on the Protection of the Great Wall promulgated in 2006 is the specific legal document",
+      "diagram": "flow",
+      "labels": [
+        "قوانين",
+        "حماية",
+        "ترميم"
+      ],
+      "secondary_object": "book",
+      "interaction": "transfer",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "none",
+      "image_query": "conservation regulation text document",
+      "visual_rationale": "Shows official preservation law documents and blueprints utilized by heritage management authorities."
+    },
+    {
+      "label": "التراث العالمي",
+      "narration": "بفضل قيمته العالمية الفريدة وتكامله المعماري والتاريخي، تم إدراج السور العظيم ضمن قائمة التراث العالمي لتوثيق عبقرية البناء البشري واستمرار الجهود المبذولة لصيانته كرمز وطني وثقافي بارز يحكي قصص الماضي العريق.",
+      "evidence_quote": "The Great Wall has an incomparable symbolic significance in the history of China",
+      "diagram": "cycle",
+      "labels": [
+        "تراث",
+        "عالمي",
+        "صيانة"
+      ],
+      "secondary_object": "temple",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "UNESCO heritage site Great Wall sunset",
+      "visual_rationale": "Captures a majestic panoramic sunset view over the preserved fortification ridge celebrating its enduring global heritage status."
+    }
+  ],
+  "cover_text": "قصة بناء السور العظيم",
+  "director_version": "v1.0"
+}
