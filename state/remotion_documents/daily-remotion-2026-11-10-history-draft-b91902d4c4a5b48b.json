@@ -1,0 +1,159 @@
+{
+  "title": "قصة بركان بومبي اللي دفن مدينة بحالها في ثواني",
+  "canonical_subject": "unesco-site-829",
+  "hashtags": [
+    "بومبي",
+    "تاريخ",
+    "آثار",
+    "إيطاليا",
+    "يونسكو"
+  ],
+  "scenes": [
+    {
+      "label": "انفجار بركان فيزوف",
+      "narration": "تخيل إنك قاعد في بيتك وفجأة الجبل اللي جنبك يقرر ينفجر ويطرد حمم نارية وبركان غريب يغطي السما كلها. ده اللي حصل بالظبط في مدينة بومبي الرومانية العظيمة يوم 24 أغسطس سنة تسعة وسبعين لما بركان فيزوف قرر ينهي كل الحياة هناك في ثواني معدودة ويدفن مدينتين بحالهم تحت رماد سخن نار.",
+      "evidence_quote": "When Vesuvius erupted on 24 August AD 79, it engulfed the two flourishing Roman towns",
+      "diagram": "flow",
+      "labels": [
+        "بركان",
+        "فيزوف",
+        "كارثة"
+      ],
+      "secondary_object": "none",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "volcano",
+      "object_motion": "shake",
+      "image_query": "Mount Vesuvius eruption painting historical",
+      "visual_rationale": "مشهد واسع لبركان فيزوف وهو ينفجر ويقذف الحمم والرماد فوق المدن الرومانية."
+    },
+    {
+      "label": "اكتشاف بومبي وهركولانيوم",
+      "narration": "السنين عدت والناس نسيت اللي حصل خالص لحد ما جه منتصف القرن الثامن عشر والناس بدأت تحفر وتكتشف العجب تحت الأرض. لقوا مدينة بومبي التجارية الواسعة ومدينة هركولانيوم الأصغر منها بس المحفوظة بشكل يذهل العقل، وكل ده ظهر قدامنا عشان يحكي قصة ناس عاشت هنا زمان وماتت فجأة.",
+      "evidence_quote": "These have been progressively excavated and made accessible to the public since the mid-18th century",
+      "diagram": "compare",
+      "labels": [
+        "حفر",
+        "آثار",
+        "اكتشاف"
+      ],
+      "secondary_object": "house",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "temple",
+      "object_motion": "drift",
+      "image_query": "Pompeii ruins excavation historical site",
+      "visual_rationale": "عرض لأطلال مدينة بومبي والشوارع المرصوفة بعد إزالة الرماد عنها."
+    },
+    {
+      "label": "جدران وفيلا أوبلونتيس",
+      "narration": "مش بس كده، ده إحنا لو دخلنا فيلا أوبلونتيس اللي في تورّي أنّونزياتا هنلاقي رسوم جدارية ملونة وفضلات أكل وأثاث خشبي متفحم لكنه سليم. الرسوم دي بتوريك إزاي الأغنياء زمان كانوا عايشين في ترف شديد وبذخ مفيش زيه قبل ما البركان يجي ويدمر كل مظاهر الرفاهية دي في ليلة واحدة.",
+      "evidence_quote": "superb wall paintings of the Villa Oplontis at Torre Annunziata give a vivid impression",
+      "diagram": "layers",
+      "labels": [
+        "رسوم",
+        "جدارية",
+        "ترف"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "contrast",
+      "shot_type": "artifact",
+      "hero_object": "house",
+      "object_motion": "none",
+      "image_query": "Villa of Poppaea Oplontis frescoes wall paintings",
+      "visual_rationale": "تقريب على الرسوم الجدارية الملونة داخل الفيلا الرومانية."
+    },
+    {
+      "label": "شوارع بومبي وبيوتها",
+      "narration": "المميز هنا إن بومبي هي المدينة الوحيدة في العالم اللي سابت لنا صورة كاملة لمدينة رومانية قديمة بكل تفاصيلها من غير أي نقص. الشوارع ممهدة والبيوت ليها أفنية داخلية واسعة والمتاجر لسه فيها جرار النبيذ الكبيرة مرمية مكانها كأن أصحابها سابوها من خمس دقايق ورايحين مشوار قريب.",
+      "evidence_quote": "Pompeii, with its well-preserved buildings in an excavated area of 44 ha, is the only archaeological site",
+      "diagram": "flow",
+      "labels": [
+        "شوارع",
+        "بيوت",
+        "رومان"
+      ],
+      "secondary_object": "ship",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "house",
+      "object_motion": "none",
+      "image_query": "Pompeii ancient Roman streets and paved roads",
+      "visual_rationale": "شوارع بومبي الحجرية القديمة والأرصفة والمنازل المتبقية."
+    },
+    {
+      "label": "حفظ الآثار العضوية",
+      "narration": "الحرارة الشديدة والرماد البركاني عملوا مفعول السحر في حفظ حاجات عمرك ما تتخيل إنها تعيش ألفين سنة. المواد العضوية والأكل والأثاث اتفحموا صح بس فضلوا محافظين على شكلهم، وده خلانا نعرف تفاصيل الحياة اليومية للناس دي وإزاي كانوا بيأكلوا ويشربوا ويديروا حياتهم بكل دقة.",
+      "evidence_quote": "Organic matter was often carbonized by the high temperatures and exceptionally preserved finds",
+      "diagram": "layers",
+      "labels": [
+        "عضوي",
+        "حفظ",
+        "تفاصيل"
+      ],
+      "secondary_object": "document",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "scroll",
+      "object_motion": "none",
+      "image_query": "Herculaneum carbonized organic remains artifacts",
+      "visual_rationale": "عرض لقطع أثرية وأطعمة متفحمة محفوظة داخل المتحف."
+    },
+    {
+      "label": "جرافيتي ووثائق بومبي",
+      "narration": "ولو مشيت في شوارع بومبي هتلاقي على الحيطان جرافيتي وكتابات سياسية واعلانات لانتخابات كانت هتحصل ساعة الانفجار، ده غير ألواح الشمع ولفائف البردي اللي اتلاقيت في هركولانيوم وفيها نصوص فلسفية وقانونية بتوريك إن المجتمع ده كان معقد ومثقف وبيعج بالحياة والنشاط لحد آخر لحظة.",
+      "evidence_quote": "A special feature of Pompeii is the wealth of graffiti on its walls",
+      "diagram": "compare",
+      "labels": [
+        "جرافيتي",
+        "وثائق",
+        "انتخابات"
+      ],
+      "secondary_object": "monitor",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "document",
+      "object_motion": "none",
+      "image_query": "Ancient Roman graffiti and papyrus scrolls",
+      "visual_rationale": "لقطة مقربة لنصوص وخطوط قديمة مكتوبة على الجدران ولفائف البردي."
+    },
+    {
+      "label": "قوالب الضحايا بالجبس",
+      "narration": "لكن أكتر حاجة مؤثرة ومرعبة في نفس الوقت هي قوالب الضحايا اللي اتعملت لما العلماء صبوا جبس في الفراغات اللي سابها جسم البشر والحيوانات جوه الرماد. القوالب دي نقلت لنا اللحظات الأخيرة للناس وهم بيحاولوا يهربوا من الموت، وساپت لنا دليل مادي حقيقي على هول الكارثة الإنسانية دي.",
+      "evidence_quote": "plaster was poured into voids found in the volcanic material and which allowed casts to be made",
+      "diagram": "flow",
+      "labels": [
+        "ضحايا",
+        "جبس",
+        "قوالب"
+      ],
+      "secondary_object": "person",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "person",
+      "object_motion": "none",
+      "image_query": "Pompeii plaster casts of victims human bodies",
+      "visual_rationale": "عرض لقوالب الجبس الشهيرة لضحايا بركان بومبي في وضعياتهم الأخيرة."
+    },
+    {
+      "label": "المتحف المفتوح والتراث",
+      "narration": "النهارده المدن دي بقت متحف مفتوح فريد من نوعه بيجذب ملايين السياح كل سنة عشان يشوفوا بنفسهم عظمة التاريخ الروماني. ورغم إن البركان دمر كل حاجة زمان، إلا إنه في نفس الوقت حفظ لنا الحكاية كاملة وخلى بومبي حية لحد النهارده كأنها مستنية رجوع أصحابها في أي وقت.",
+      "evidence_quote": "the presentation of Herculaneum to the public as an open-air museum, perhaps Europe’s first",
+      "diagram": "cycle",
+      "labels": [
+        "متحف",
+        "تراث",
+        "سياحة"
+      ],
+      "secondary_object": "temple",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Pompeii archaeological park open air museum Italy",
+      "visual_rationale": "مشهد عام لزوار المتحف المفتوح في أراضي بومبي الأثرية."
+    }
+  ],
+  "cover_text": "مدينة مدفونة تحت الرماد",
+  "director_version": "v1"
+}
