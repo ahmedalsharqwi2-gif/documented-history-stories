@@ -15,7 +15,7 @@ ACTIONS=('impact','experiment','escalation','fail','discovery','adapt','solution
 SCENARIOS=('sleep','phone','ocean','tiny','giant','freeze','gravity','earth-stop')
 def json_text(value):return json.dumps(value,ensure_ascii=False,indent=2)+'\n'
 def used():
- rows=list(local()['episodes'].values())
+ rows=[entry for entry in local()['episodes'].values() if entry.get('media_url') or entry.get('status') not in {'draft_retained','author_pending','author_requested','review_prepared','review_requested','voice_requested'}]
  for name in ('state/professional_topics.json','state/film_topics.json','state/topic_history.json'):
   p=Path(name)
   if not p.exists():continue
@@ -209,4 +209,3 @@ def independently_reviewed(req,story,row,source,seen_topics):
  mutate(save)
  if not review['passed']:raise ValueError('Independent editorial review rejected this retained draft; no new TTS or rewrite')
  return story
-
