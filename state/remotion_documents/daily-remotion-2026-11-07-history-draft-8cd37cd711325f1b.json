@@ -1,0 +1,153 @@
+{
+  "title": "قصة بومبي وهركولانيوم تحت الرماد",
+  "canonical_subject": "unesco-site-829",
+  "hashtags": [],
+  "scenes": [
+    {
+      "label": "الثوران البركاني",
+      "narration": "في الرابع والعشرين من شهر آب في عام تسعة وسبعين ميلادية، حدث انفجار مهول لبركان فيزوف أدى إلى طمر مدينتي بومبي وهركولانيوم الرومانيتين بالكامل تحت طبقات سميكة من الرماد البركاني الحارق، مما أنهى حياة كاملة في لحظات معدودة وأوقف حركة التاريخ بشكل مفاجئ ومرعب.",
+      "evidence_quote": "When Vesuvius erupted on 24 August AD 79, it engulfed the two flourishing Roman towns of Pompei and Herculaneum",
+      "diagram": "flow",
+      "labels": [
+        "بركان",
+        "رماد",
+        "كارثة"
+      ],
+      "secondary_object": "none",
+      "interaction": "none",
+      "shot_type": "chronology",
+      "hero_object": "volcano",
+      "object_motion": "shake",
+      "image_query": "Mount Vesuvius eruption ash flow",
+      "visual_rationale": "Shows the violent volcanic eruption covering the landscape in dark ash."
+    },
+    {
+      "label": "اكتشاف بومبي التجارية",
+      "narration": "منذ منتصف القرن الثامن عشر، بدأت عمليات التنقيب المستمرة تكشف تدريجيا عن مساحات واسعة من مدينة بومبي التجارية، لتظهر المعالم المعمارية بوضوح تام وتتيح للزوار فرصة الاطلاع المباشر على التخطيط العمراني الروماني القديم بكل تفاصيله الدقيقة ومرافقه العامة المتنوعة.",
+      "evidence_quote": "The vast expanse of the commercial town of Pompei contrasts with the smaller but better-preserved remains",
+      "diagram": "compare",
+      "labels": [
+        "بومبي",
+        "آثار",
+        "تنقيب"
+      ],
+      "secondary_object": "house",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Pompeii ancient Roman street ruins",
+      "visual_rationale": "Contrasts the wide excavated commercial streets of Pompeii with surrounding ruins."
+    },
+    {
+      "label": "هركولانيوم المحفوظة",
+      "narration": "بالمقارنة مع بومبي، فإن مدينة هركولانيوم الصغيرة تميزت ببقاء مبانيها وبعض طوابقها العلوية بحالة حفظ استثنائية بفضل التدفقات الفتاتية البركانية الكثيفة التي غطتها، مما ساعد على حماية العناصر العضوية والأثاث الخشبي من التلف التام عبر القرون الطويلة.",
+      "evidence_quote": "Herculaneum’s urban districts and seafront display a higher level of preservation with noteworthy conservation of upper floors",
+      "diagram": "layers",
+      "labels": [
+        "هركولانيوم",
+        "حفظ",
+        "مباني"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "house",
+      "object_motion": "drift",
+      "image_query": "Herculaneum preserved buildings seafront",
+      "visual_rationale": "Illustrates the multi-layered preservation of Herculaneum structures near the sea."
+    },
+    {
+      "label": "جدران أُبلونتيس المترفة",
+      "narration": "تضم تورّي أنّونزياتا فيلا أُبلونتيس الفخمة التي تحتوي على رسوم جدارية زاهية ومتقنة للغاية، وهي تعكس بوضوح تام نمط الحياة المترف والبذخ الشديد الذي استمتع به المواطنون الأثرياء في بدايات الإمبراطورية الرومانية عبر فنون رسم وهمية تحاكي الحدائق والمداخل.",
+      "evidence_quote": "superb wall paintings of the Villa Oplontis at Torre Annunziata give a vivid impression of the opulent lifestyle",
+      "diagram": "compare",
+      "labels": [
+        "فيلات",
+        "رسوم",
+        "أثرياء"
+      ],
+      "secondary_object": "document",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "document",
+      "object_motion": "none",
+      "image_query": "Villa Oplontis frescoes wall paintings",
+      "visual_rationale": "Focuses on the detailed illusionistic wall paintings inside the suburban villa."
+    },
+    {
+      "label": "قوالب الضحايا البشرية",
+      "narration": "شهدت مواقع التنقيب تجارب أثرية فريدة تمثلت في صب الجبس داخل الفراغات التي تركها الضحايا والحيوانات المتحللة تحت الرماد، مما سمح بتشكيل قوالب دقيقة تظهر ملامح اللحظات الأخيرة لأولئك البشر وتوثق معاناتهم الإنسانية وسط الكارثة المفاجئة.",
+      "evidence_quote": "plaster was poured into voids found in the volcanic material and which allowed casts to be made of the forms",
+      "diagram": "flow",
+      "labels": [
+        "ضحايا",
+        "جبس",
+        "قوالب"
+      ],
+      "secondary_object": "fossil",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "fossil",
+      "object_motion": "none",
+      "image_query": "Pompeii human plaster casts victims",
+      "visual_rationale": "Displays the plaster cast technique capturing the exact shape of eruption victims."
+    },
+    {
+      "label": "لفائف البردي القديمة",
+      "narration": "تم العثور في فيلا البردي بمدينة هركولانيوم على أكثر من ألف وثمانمائة لفيفة بردي تحتوي على نصوص فلسفية يونانية قيمة، وعلى الرغم من تفحمها جراء الحرارة الشديدة، إلا أنها قدمت أدلة استثنائية على أهمية النصوص والمكتوبات في الحياة الفكرية والسياسية الرومانية.",
+      "evidence_quote": "more than 1,800 papyri scrolls containing Greek philosophical texts were found at the Villa of the Papyri",
+      "diagram": "layers",
+      "labels": [
+        "بردي",
+        "نصوص",
+        "فلسفة"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "scroll",
+      "object_motion": "none",
+      "image_query": "Villa of the Papyri carbonized scrolls",
+      "visual_rationale": "Highlights the carbonized ancient papyrus scrolls discovered during excavations."
+    },
+    {
+      "label": "أدوات الحياة اليومية",
+      "narration": "احتفظت المتاجر والمنازل المكتشفة في الموقعين بكميات هائلة من الأدوات المنزلية وأواني التخزين الفخارية الضخمة المعروفة بالأمفورات، وهي شواهد مادية حية تكشف تفاصيل الأنشطة التجارية والاقتصادية اليومية لسكان تلك المدن الرومانية المزدهرة قبيل الانفجار.",
+      "evidence_quote": "The town is also noteworthy for the completeness of its shops, still containing equipment such as enormous wine jars",
+      "diagram": "compare",
+      "labels": [
+        "أواني",
+        "متاجر",
+        "اقتصاد"
+      ],
+      "secondary_object": "cart",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "cart",
+      "object_motion": "none",
+      "image_query": "ancient Roman amphora jars Pompeii shop",
+      "visual_rationale": "Shows preserved large amphora storage jars inside an ancient Roman shop."
+    },
+    {
+      "label": "التراث العالمي المتكامل",
+      "narration": "تُشكل هذه المناطق الأثرية المجتمعة وحدة متكاملة ومحمية ضمن قائمة التراث العالمي لليونسكو، حيث توفر صورة شاملة وغير مسبوقة عن الحضارة الرومانية القديمة في لحظة تاريخية واحدة، وتستمر في جذب ملايين الزوار والباحثين لدراسة الماضي الإنساني بدقة.",
+      "evidence_quote": "provide a complete and vivid picture of society and daily life at a specific moment in the past that is unparalleled elsewhere",
+      "diagram": "cycle",
+      "labels": [
+        "تراث",
+        "يونسكو",
+        "آثار"
+      ],
+      "secondary_object": "temple",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Pompeii archaeological park general view UNESCO",
+      "visual_rationale": "Provides a broad overview of the preserved UNESCO archaeological zone."
+    }
+  ],
+  "cover_text": "بومبي تحت الرماد",
+  "director_version": "v1"
+}
