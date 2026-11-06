@@ -386,6 +386,13 @@
       "draft_document": {
         "path": "state/remotion_documents/daily-remotion-2026-11-09-history-draft-64c9b8fa23cc218d.json",
         "sha256": "64c9b8fa23cc218d3b48175420d7c6eb84715e7dc4881e62342570e91bb25d66"
+      },
+      "draft_repair": {
+        "phase": "requested",
+        "original_sha256": "0eb7cfa78fe5018da47c63e23feecbeaaa1b60569e9f49da159f3f38cee8fb57",
+        "problem": "Draft word budget fails natural-duration preflight: actual 485, required 240-370; no TTS requested",
+        "maximum_requests": 1,
+        "voice_requests": 0
       }
     }
   },
