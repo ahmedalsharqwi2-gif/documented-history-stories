@@ -309,8 +309,8 @@
     "daily-remotion-2026-11-08-history": {
       "profile": "history",
       "due_at": "2026-11-08T10:00:00Z",
-      "status": "authored",
-      "source_run": 42237914898,
+      "status": "voice_requested",
+      "source_run": 42240016128,
       "created_at": "2026-11-06T14:53:30.823654+00:00",
       "source_selection": {
         "title": "The Great Wall",
@@ -356,7 +356,8 @@
         "issues": [],
         "passed": true
       },
-      "story_sha256": "8938f37e00e17ace2645e537aee745bc99f909f371fc329f660fed480c32de78"
+      "story_sha256": "8938f37e00e17ace2645e537aee745bc99f909f371fc329f660fed480c32de78",
+      "voice_request_run": 42240016128
     }
   },
   "cutover_evidence": {
