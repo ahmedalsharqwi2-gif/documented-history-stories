@@ -1,0 +1,158 @@
+{
+  "title": "إزاي الإمبراطور شاه جهان بنى أقوى تحفة هندسية في العالم؟",
+  "canonical_subject": "unesco-site-252",
+  "hashtags": [
+    "تاريخ",
+    "عجائب_الدنيا",
+    "الهند",
+    "اثار"
+  ],
+  "scenes": [
+    {
+      "label": "بناء الضريح",
+      "narration": "إيه اللي يخلي إمبراطور مغولي يبني صرح عظيم من الرخام الأبيض في مدينة أغرا بالهند؟ الحكاية بدأت سنة ألف ستمائة واثنين وثلاثين لما الملك شاه جهان قرر يخلد ذكرى مراته مومتاز. الإمبراطور جاب أفضل الصنايعية والمعماريين من كل حتة عشان يبنوا تحفة معمارية مالهاش مثيل في التاريخ.",
+      "evidence_quote": "built by Mughal Emperor Shah Jahan in memory of his wife Mumtaz Mahal",
+      "diagram": "flow",
+      "labels": [
+        "بناء",
+        "رخام أبيض",
+        "الإمبراطور شاه جهان"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "transfer",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Taj Mahal exterior white marble mausoleum architecture",
+      "visual_rationale": "مشهد عام لضريح تاج محل المصنوع من الرخام الأبيض مع تفاصيل الحديقة المحيطة به لإظهار حجم البناء الضخم."
+    },
+    {
+      "label": "تخطيط الحديقة",
+      "narration": "التصميم الهندسي ماكنش بس الضريح لوحده، ده امتد لحديقة ضخمة مساحتها سبعة عشر هكتاراً على ضفة نهر يامونا. المهندسين عملوا حركة عبقرية جداً وحطوا القبر في طرف الحديقة مش في النص. الخطوة دي زودت عمق ومنظور بصري رهيب يخلي اللي يتفرج يحس بإحساس مختلف كلياً وبإبهار غير مسبوق.",
+      "evidence_quote": "placing of tomb at one end of the quadripartite garden rather than in the exact centre",
+      "diagram": "compare",
+      "labels": [
+        "حديقة مغولية",
+        "نهر يامونا",
+        "منظور بصري"
+      ],
+      "secondary_object": "river",
+      "interaction": "approach",
+      "shot_type": "place",
+      "hero_object": "river",
+      "object_motion": "flow",
+      "image_query": "Yamuna river view and Mughal garden layout of Taj Mahal",
+      "visual_rationale": "خريطة توضيحية للحديقة المقسمة لأربع أجزاء مع نهر يامونا بجانب الضريح."
+    },
+    {
+      "label": "الزخرفة والأحجار",
+      "narration": "الرخام الأبيض مش هو السر لوحده، ده الحوائط مليانة شغل نقش وتطعيم بالأحجار الكريمة وشبه الكريمة بدقة تخلي الزهور والنباتات تبان كأنها حقيقية. الشغل ده اتعمل بواسطة صنايعية ماهرين رصعوا الأطر والأعمدة بأحجار ملونة بتدي درجات وألوان متغيرة مع حالة الجو ونور الشمس قدام عينك في كل وقت.",
+      "evidence_quote": "The relief work in marble and inlay with precious and semi precious stones make it a monument apart",
+      "diagram": "layers",
+      "labels": [
+        "أحجار كريمة",
+        "نقش مرمر",
+        "زهور مزخرفة"
+      ],
+      "secondary_object": "document",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "crystal",
+      "object_motion": "spin",
+      "image_query": "Taj Mahal marble inlay precious stones floral pattern close up",
+      "visual_rationale": "لقطة مقربة جداً لتفاصيل التطعيم بالأحجار الملونة على الرخام الأبيض."
+    },
+    {
+      "label": "المآذن الأربع",
+      "narration": "ولأول مرة في تاريخ العمارة المغولية، ظهرت أربع مآذن حرة واقفة على أطراف المنصة المرتفعة دي. المآذن مش مجرد شكل جمالي وخلاص، دي بتدي أبعاد ثلاثية ومرجعية فضائية للمبنى كله تخليك تحس بضخامته من أي زاوية. الدقة دي بتبرز مدى عبقرية المهندس المعماري أستاذ أحمد لاهوري في توجيه العناصر الهندسية بدقة.",
+      "evidence_quote": "The four free-standing minarets at the corners of the platform added a hitherto unknown dimension",
+      "diagram": "flow",
+      "labels": [
+        "مآذن حرة",
+        "أبعاد ثلاثية",
+        "منصة مرتفعة"
+      ],
+      "secondary_object": "temple",
+      "interaction": "encircle",
+      "shot_type": "archive",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Taj Mahal four minarets symmetrical architectural view",
+      "visual_rationale": "إظهار المآذن الأربع المحيطة بالضريح من زوايا مختلفة لإثبات التناسق الهندسي."
+    },
+    {
+      "label": "المسجد ودار الضيافة",
+      "narration": "جنب الضريح الأساسي، فيه مبنيين متطابقين تماماً مصنوعين من الحجر الرملي الأحمر اللي بيدي تباين لوني مذهل مع الرخام الأبيض الناصع. المبنى الأولاني هو المسجد والثاني دار الضيافة، والاتنين بيتميزوا بقاعة صلاة ضخمة بثلاث قباب وأقواس مزينة بنقوش حجرية في قمة الروعة والإتقان طوال اليوم.",
+      "evidence_quote": "The mosque and the guest house in the Taj Mahal complex are built of red sandstone",
+      "diagram": "compare",
+      "labels": [
+        "حجر رملي أحمر",
+        "مسجد",
+        "دار الضيافة"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "rock_layers",
+      "object_motion": "none",
+      "image_query": "Red sandstone mosque and guest house at Taj Mahal complex",
+      "visual_rationale": "مقارنة بصرية بين الحجر الرملي الأحمر للمسجد والرخام الأبيض للضريح."
+    },
+    {
+      "label": "البوابة الكبرى",
+      "narration": "المدخل الرئيسي للضريح مش مجرد باب عادي، ده صرح مهيب واقف في نص الجدار الجنوبي للساحة الأمامية للمجمع. البوابة دي معمورة بطريقة تخليك وأنت داخل تحس كأنك بتتنقل لعالم تاني، وهي مزينة بآيات قرآنية مكتوبة بخط عربي بحرفية عالية جداً ساعدت الباحثين بعد كده في تحديد الخط الزمني لبناء المجمع بكل دقة.",
+      "evidence_quote": "The existence of several historical and Quaranic inscriptions in Arabic script have facilitated setting the chronology",
+      "diagram": "flow",
+      "labels": [
+        "البوابة الكبرى",
+        "خط عربي",
+        "آيات قرآنية"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "scroll",
+      "object_motion": "none",
+      "image_query": "Taj Mahal main gateway Arabic Quranic inscriptions calligaphy",
+      "visual_rationale": "لقطة مقربة لنقوش الآيات القرآنية المكتوبة بخط عربي على البوابة الكبرى."
+    },
+    {
+      "label": "القبور الحقيقية والوهمية",
+      "narration": "لما تدخل جوه القبة الكبيرة، هتلاقي مقبرة مومتاز في النص بالظبط، وبعدين جه بعدها مقبرة الإمبراطور شاه جهان بعد تلاتين سنة واتحطت جنبه على الغرب. اللعبة هنا إن التوابيت العلوية دي مجرد شكل وهمي للتزيين، لأن القبور الحقيقية بتنزل تحت خالص في السرداب السفلي عشان تحمي جثامين الملوك.",
+      "evidence_quote": "The upper cenotaphs are only illusory and the real graves are in the lower tomb chamber",
+      "diagram": "layers",
+      "labels": [
+        "سرداب سفلي",
+        "توابيت وهمية",
+        "مقابر ملكية"
+      ],
+      "secondary_object": "temple",
+      "interaction": "separate",
+      "shot_type": "archive",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Taj Mahal inner chamber marble lattice screen cenotaphs",
+      "visual_rationale": "مخطط أو صورة توضيحية لغرفة الدفن العلوية والسرداب السفلي تحت الأرض."
+    },
+    {
+      "label": "الحماية والبيئة",
+      "narration": "عشان التحفة دي تفضل محفوظة ضد أي تلوث أو عوامل جوية، المحكمة العليا في الهند أصدرت قرارات صارمة بمنع استخدام الفحم في الصناعات القريبة. الحكومة خصصت مساحة عشرة آلاف وأربعمائة كيلو متر مربع حوالين الضريح عشان تضمن بقاء الرخام الأبيض محتفظ بلمعانه ونقاء ألوانه لمئات السنين الجاية من غير أي تدهور.",
+      "evidence_quote": "An area of 10,400 sq km around the Taj Mahal is defined to protect the monument from pollution",
+      "diagram": "flow",
+      "labels": [
+        "حماية البيئة",
+        "منطقة عازلة",
+        "مكافحة التلوث"
+      ],
+      "secondary_object": "network",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "network",
+      "object_motion": "pulse",
+      "image_query": "Taj Trapezium Zone environmental protection area map Taj Mahal",
+      "visual_rationale": "خريطة تفاعلية توضح المنطقة العازلة والمحمية حول ضريح تاج محل لمنع التلوث."
+    }
+  ],
+  "cover_text": "أسرار بناء تاج محل",
+  "director_version": "v1"
+}
