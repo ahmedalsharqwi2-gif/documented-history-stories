@@ -2,9 +2,9 @@
   "date": "2026-11-07",
   "profile": "history",
   "phase": "prepublish",
-  "checked_at": "2026-11-06T21:26:27.577612+00:00",
-  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/42296666113",
-  "report_path": "reviews/daily_health/2026-11-07/42296666113-1.json",
+  "checked_at": "2026-11-06T21:30:49.375610+00:00",
+  "run_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/actions/runs/42297239242",
+  "report_path": "reviews/daily_health/2026-11-07/42297239242-1.json",
   "publication_due_utc": "2026-11-07T10:00:00+00:00",
   "errors": [
     "No successful clock-triggered daily run for this date; manual recovery and dry-run tests do not count as the automatic clock",
@@ -21,6 +21,6 @@
   },
   "production_at_cairo": "2026-11-06T19:00:00+02:00",
   "publication_at_cairo": "2026-11-07T12:00:00+02:00",
-  "hours_until_publication": 12.56,
+  "hours_until_publication": 12.49,
   "readiness": "needs_attention"
 }
