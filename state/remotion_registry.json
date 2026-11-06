@@ -362,6 +362,13 @@
       "audio_sha256": "9e88fac2f0e87dbfb66f5a2f16c5d081c794cb0bba92a61fd9d9a1f42894d505",
       "timing_sha256": "2a21bc4d066b952a00dbe2c825de7e7f87883abe5e823c3d77082d1343970c7c",
       "coverage": 0.9131944444444444
+    },
+    "daily-remotion-2026-11-09-history": {
+      "profile": "history",
+      "due_at": "2026-11-09T10:00:00Z",
+      "status": "author_pending",
+      "source_run": 42243407556,
+      "created_at": "2026-11-06T15:29:06.064097+00:00"
     }
   },
   "cutover_evidence": {
