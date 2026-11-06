@@ -1,0 +1,158 @@
+{
+  "title": "إزاي ضريح تاج محل اتبنى وبقى تحفة الهند؟",
+  "canonical_subject": "unesco-site-252",
+  "hashtags": [
+    "تاج_محل",
+    "تاريخ",
+    "هند",
+    "عمارة"
+  ],
+  "scenes": [
+    {
+      "label": "بناء الضريح",
+      "narration": "تخيل إن الإمبراطور شاه جهان قرر يبني أضخم ضريح في الدنيا عشان يخلد ذكرى مراته المفضلة ممتاز محل سنة الف وستمية وواحد وثلاثين في مدينة أغرا. البناء ده مش مجرد مقبرة عادية، ده بدأ يغير شكل العمارة في الهند كلها بطريقة مذهلة وكل الناس بقت مستنية تشوف إيه اللي هيحصل في النهاية.",
+      "evidence_quote": "An immense mausoleum of white marble, built in Agra between 1631 and 1648",
+      "diagram": "flow",
+      "labels": [
+        "شاه جهان",
+        "ممتاز محل",
+        "مقام أبيض"
+      ],
+      "secondary_object": "document",
+      "interaction": "transfer",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "grow",
+      "image_query": "Taj Mahal exterior view Agra",
+      "visual_rationale": "يظهر الضريح الأبيض وهو يرتفع تدريجياً ليوضح حجم البداية الضخمة."
+    },
+    {
+      "label": "المهندسون والحرفيون",
+      "narration": "عشان المشروع ده يطلع مظبوط، الإمبراطور جاب صنايعية ونحاتين ورسامين من الإمبراطورية كلها وكمان من آسيا الوسطى وإيران عشان يشتغلوا بدقة. الحرفيين دول اشتغلوا ليل نهار عشان يظبطوا التفاصيل الصعبة دي، والمشروع كبر وبقى بيضم آلاف العمال اللي بيحاولوا يطلعوا أفضل تحفة فنية ممكن تتخيلها.",
+      "evidence_quote": "masons, stone-cutters, inlayers, carvers, painters, calligraphers, dome builders and other artisans were requisitioned",
+      "diagram": "compare",
+      "labels": [
+        "حرفيون",
+        "نقش",
+        "آسيا الوسطى"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "person",
+      "object_motion": "assemble",
+      "image_query": "craftsmen carving marble Taj Mahal",
+      "visual_rationale": "يعرض الحرفيون وهم يعملون بتفاصيل دقيقة على الأحجار والنقوش."
+    },
+    {
+      "label": "المهندس الرئيسي",
+      "narration": "المهندس الرئيسي أستاذ أحمد لاهوري كان هو العقل المدبر اللي وراء التصميم العبقري ده كله والتنسيق بين الأجزاء المختلفة. التنسيق ده خلق تناغم عجيب بين الفراغات والكتُل المعمارية، وكمان الظلال والأقواس اللي بتخلي المبنى يتغير شكله مع كل حركة للشمس طول اليوم بطريقة ساحرة.",
+      "evidence_quote": "Ustad-Ahmad Lahori was the main architect of the Taj Mahal",
+      "diagram": "layers",
+      "labels": [
+        "أحمد لاهوري",
+        "تصميم",
+        "أقواس ودوم"
+      ],
+      "secondary_object": "book",
+      "interaction": "contrast",
+      "shot_type": "artifact",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "architectural drawing plans Taj Mahal",
+      "visual_rationale": "تظهر الرسومات الهندسية القديمة وهي توضح تفاصيل الأقواس والقباب."
+    },
+    {
+      "label": "الحديقة الرباعية",
+      "narration": "العبقرية مش بس في المبنى نفسه، دي كمان في تخطيط الحديقة الواسعة اللي بتغطي حوالي سبع عشرة هكتار والضريح محطوط في طرفها مش في النص بالظبط. التوزيع ده ادى عمق وبُعد بصري رهيب للمشهد كله، وخلى الزائر يشعر بجمال مختلف وهو ماشي في الممرات المتقاطعة بتاعة الحديقة.",
+      "evidence_quote": "placing of tomb at one end of the quadripartite garden rather than in the exact centre",
+      "diagram": "cycle",
+      "labels": [
+        "حديقة",
+        "تخطيط",
+        "عمق بصري"
+      ],
+      "secondary_object": "tree",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Taj Mahal garden layout Yamuna river",
+      "visual_rationale": "كاميرا متحركة توضح موقع الضريح في طرف الحديقة الواسعة."
+    },
+    {
+      "label": "المآذن والأبراج",
+      "narration": "عشان يكملوا البناء صح، عملوا أربع مآذن حرة واقفة في أركان المنصة الأساسية ودي كانت حاجة جديدة تماماً في العمارة المغولية وقتها. المآذن دي مش بس بتدي مرجع مكاني للمكان، دي كمان بتدي تأثير ثلاثي الأبعاد بيخلي المبنى كأنه مجسم حي قدام عينك في أي وقت.",
+      "evidence_quote": "The four free-standing minarets at the corners of the platform added a hitherto unknown dimension",
+      "diagram": "layers",
+      "labels": [
+        "مآذن",
+        "أبعاد",
+        "عمارة مغولية"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "approach",
+      "shot_type": "chronology",
+      "hero_object": "temple",
+      "object_motion": "pulse",
+      "image_query": "Taj Mahal minarets structural view",
+      "visual_rationale": "تسليط الضوء على إحدى المآذن الأربعة وهي ترتفع بجانب المنصة."
+    },
+    {
+      "label": "الأحجار الكريمة",
+      "narration": "لو دخلت جوه هتلاقي شاشات رخام مثقوبة ومزخرفة بأحجار كريمة وشبه كريمة مرسومة بدقة شديدة تخليهم كأنهم ورد حقيقي بيلمع. النقش ده اتعمل بحرفنة عالية جداً والألوان بتتدرج بطريقة تخلي الورود والشجر اللي على الحوائط تبان كأنها حية وناطقة قدام كل اللي بيبص عليها.",
+      "evidence_quote": "The borders of the frames are inlaid with precious stones representing flowers executed with wonderful perfection",
+      "diagram": "compare",
+      "labels": [
+        "أحجار كريمة",
+        "رخام",
+        "زخارف"
+      ],
+      "secondary_object": "crystal",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "crystal",
+      "object_motion": "spin",
+      "image_query": "Taj Mahal marble inlay precious stones flowers",
+      "visual_rationale": "لقطة مقربة جداً تظهر الأحجار الملونة وهي تشكل تفاصيل الزهور على الرخام."
+    },
+    {
+      "label": "المسجد وبيت الضيافة",
+      "narration": "المجمع كله مش بس مقبرة، ده بيضم كمان مسجد وبيت ضيافة مبنيين بالحجر الرملي الأحمر عشان يعملوا تباين لوني رائع مع الرخام الأبيض اللي في النص. المبنيين متطابقين تماماً وعندهم قاعات صلاة ضخمة بتظهر روعة الفن الإسلامي في كل زاوية من زوايا المكان.",
+      "evidence_quote": "The mosque and the guest house in the Taj Mahal complex are built of red sandstone in contrast",
+      "diagram": "compare",
+      "labels": [
+        "مسجد",
+        "حجر أحمر",
+        "تناسق"
+      ],
+      "secondary_object": "house",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Taj Mahal mosque red sandstone architecture",
+      "visual_rationale": "يظهر المسجد المصنوع من الحجر الأحمر بجانب الضريح الأبيض."
+    },
+    {
+      "label": "الحماية والصيانة",
+      "narration": "عشان التحفة دي تفضل محفوظة زي ما هي عبر السنين، الحكومة والهيئات المختصة عملت محطات مراقبة للهواء عشان تمنع التلوث يدمر الرخام. القوانين كمان منعت أي صناعات ملوثة قريبة من المنطقة عشان نضمن إن الأجيال الجاية تشوف الجمال ده بنفس النقاء والروعة دي للابد.",
+      "evidence_quote": "an air control monitoring station is installed to constantly monitor air quality and control decay factors",
+      "diagram": "flow",
+      "labels": [
+        "حماية",
+        "تلوث",
+        "صيانة"
+      ],
+      "secondary_object": "server",
+      "interaction": "encircle",
+      "shot_type": "chronology",
+      "hero_object": "network",
+      "object_motion": "float",
+      "image_query": "Taj Mahal conservation air monitoring station",
+      "visual_rationale": "تظهر محطات المراقبة الحديثة وهي تحيط بالمنطقة لحمايتها من التلوث."
+    }
+  ],
+  "cover_text": "قصة بناء تاج محل",
+  "director_version": "v1"
+}
