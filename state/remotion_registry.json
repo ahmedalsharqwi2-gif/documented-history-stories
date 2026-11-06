@@ -287,7 +287,9 @@
         "path": "state/remotion_documents/daily-remotion-2026-11-07-history-source-5f0049966855b7ce.json",
         "sha256": "5f0049966855b7cef4eb1d07934d932edeb35d61d8e1607dc381f16d99a14de2"
       },
-      "writer_run": 42228789620
+      "writer_run": 42228789620,
+      "recovery_requested": true,
+      "recovery_reason": "Confirmed prior author request ended non-200 before draft; Gemini diagnostic now returned HTTP 200; reuse retained source only."
     }
   },
   "cutover_evidence": {
