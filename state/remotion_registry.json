@@ -331,7 +331,7 @@
         "sha256": "614e81b718e5a7ea1953061eea295406982ddb36a68ecd05dd40220f76acf03d"
       },
       "draft_repair": {
-        "phase": "received",
+        "phase": "rejected",
         "original_sha256": "7a20df70c14e29ed50c96688b45020d3ee9d0ddb1efa37123c60f51018eddc4f",
         "problem": "Three to five topical on-screen hashtags required before synthesis",
         "maximum_requests": 1,
@@ -339,7 +339,8 @@
         "document": {
           "path": "state/remotion_documents/daily-remotion-2026-11-08-history-corrected-draft-dc909b8cc1ba5753.json",
           "sha256": "dc909b8cc1ba575306d6aee2bef314e53c7e6194e35a5bf1fb2c53657dbfaac9"
-        }
+        },
+        "failure": "Draft word budget fails natural-duration preflight: actual 191, required 240-370; no TTS requested"
       }
     }
   },
