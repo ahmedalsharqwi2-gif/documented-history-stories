@@ -327,8 +327,8 @@
       },
       "writer_run": 42237914898,
       "draft_document": {
-        "path": "state/remotion_documents/daily-remotion-2026-11-08-history-draft-614e81b718e5a7ea.json",
-        "sha256": "614e81b718e5a7ea1953061eea295406982ddb36a68ecd05dd40220f76acf03d"
+        "path": "state/remotion_documents/daily-remotion-2026-11-08-history-draft-fce9e277ad9f0f4c.json",
+        "sha256": "fce9e277ad9f0f4c6cae3853c5a3049e8cbead74a5a57c3ea115bf168cf457e1"
       },
       "draft_repair": {
         "phase": "rejected",
