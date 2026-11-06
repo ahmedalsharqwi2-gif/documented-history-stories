@@ -292,6 +292,13 @@
       "draft_document": {
         "path": "state/remotion_documents/daily-remotion-2026-11-07-history-draft-8cd37cd711325f1b.json",
         "sha256": "8cd37cd711325f1b255e1cde98ec67362e5175f3dbd34edfb7fe1ac48bc3f58e"
+      },
+      "draft_repair": {
+        "phase": "requested",
+        "original_sha256": "8e5d733ee5b9fb279481736ba4848dd9d4f1872710465e28eae2eb7e035ee0c6",
+        "problem": "Three to five topical on-screen hashtags required before synthesis",
+        "maximum_requests": 1,
+        "voice_requests": 0
       }
     }
   },
