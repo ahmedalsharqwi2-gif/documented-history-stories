@@ -290,8 +290,8 @@
       "writer_run": 42228789620,
       "recovery_reason": "Confirmed prior author request ended non-200 before draft; Gemini diagnostic now returned HTTP 200; reuse retained source only.",
       "draft_document": {
-        "path": "state/remotion_documents/daily-remotion-2026-11-07-history-draft-8cd37cd711325f1b.json",
-        "sha256": "8cd37cd711325f1b255e1cde98ec67362e5175f3dbd34edfb7fe1ac48bc3f58e"
+        "path": "state/remotion_documents/daily-remotion-2026-11-07-history-draft-7ef88b677333f8e0.json",
+        "sha256": "7ef88b677333f8e08a14ee112dbef89793165c7fc3c1d14c665822a0415e3aeb"
       },
       "draft_repair": {
         "phase": "rejected",
