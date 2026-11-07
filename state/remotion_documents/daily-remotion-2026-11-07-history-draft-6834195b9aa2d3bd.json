@@ -1,0 +1,158 @@
+{
+  "title": "إزاي بركان فيزوف حفظ مدن رومانية بحالها؟",
+  "canonical_subject": "unesco-site-829",
+  "hashtags": [
+    "بومبي",
+    "تاريخ",
+    "آثار",
+    "إيطاليا"
+  ],
+  "scenes": [
+    {
+      "label": "انفجار بركان فيزوف",
+      "narration": "تخيل إنك قاعد في بيتك وفجأة في يوم صيفي سنة تسعة وسبعين ميلادية، جبل فيزوف بينفجر بكل قوته وغضب الطبيعة لوحده. البركان ده رمى طمي ورماد بركاني بكميات مرعبة على مدينتين رومانيتين كاملتين وهما بومبي وهركولانيوم من غير ما حد يلحق يهرب.",
+      "evidence_quote": "When Vesuvius erupted on 24 August AD 79, it engulfed the two flourishing Roman towns of Pompei and Herculaneum",
+      "diagram": "flow",
+      "labels": [
+        "فيزوف",
+        "بركان",
+        "بومبي"
+      ],
+      "secondary_object": "none",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "volcano",
+      "object_motion": "shake",
+      "image_query": "Mount Vesuvius eruption overview",
+      "visual_rationale": "Wide shot showing the massive volcano shaking and releasing a dense cloud of dark ash over the surrounding landscape."
+    },
+    {
+      "label": "طمر مدينة بومبي بالرماد",
+      "narration": "المدينة الكبيرة بومبي اتغطت تماماً بطبقة سميكة جداً من الرماد وخصوصاً الحصى البركاني اللي سموه لابيلي. الستارة السوداء دي قفلت على الشوارع والبيوت والأسواق، وخلت المدينة تختفي تحت الأرض كأنها ما كانتش موجودة أصلاً لحد ما الزمن نساها قرون طويلة.",
+      "evidence_quote": "Pompei was buried largely by a thick layer of volcanic ash and lapilli",
+      "diagram": "layers",
+      "labels": [
+        "رماد",
+        "حصى",
+        "طمر"
+      ],
+      "secondary_object": "none",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "rock_layers",
+      "object_motion": "drift",
+      "image_query": "Pompeii thick volcanic ash layer excavation",
+      "visual_rationale": "Close-up geological strata revealing the heavy grey ash layers covering ancient building walls."
+    },
+    {
+      "label": "تدفق الحمم على هركولانيوم",
+      "narration": "أما مدينة هركولانيوم القريبة فكان ليها مصير تاني مختلف شوية بس مرعب برضه، عشان هي اتعرضت لتدفقات فتاتية بركانية سريعة ومحرقة نزلت عليها زي السيل. الحرارة العالية دي حرقت كل المواد العضوية الموجودة وسابتها متفحمة بس محفوظة بدقة شديدة تحت الأرض.",
+      "evidence_quote": "Herculaneum disappeared under pyroclastic surges and flows",
+      "diagram": "flow",
+      "labels": [
+        "هركولانيوم",
+        "حمم",
+        "حرارة"
+      ],
+      "secondary_object": "none",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "volcano",
+      "object_motion": "flow",
+      "image_query": "Herculaneum ancient ruins stone architecture",
+      "visual_rationale": "Tracking shot along preserved stone buildings showing the charred structural remains left by pyroclastic flows."
+    },
+    {
+      "label": "اكتشاف الآثار في القرن الثامن عشر",
+      "narration": "من نص القرن الثامن عشر الميلادي والناس بدأت تكتشف وتنقّب بالتدريج في الموقعين دول عشان تطلع الكنوز دي للنور وتاني مرة ترجع الحياة للمكان. عمليات الحفر وضحت الفرق الواضح بين اتساع بومبي التجارية وبين تفاصيل البيوت المحفوظة كويس أوي في هركولانيوم.",
+      "evidence_quote": "These have been progressively excavated and made accessible to the public since the mid-18th century",
+      "diagram": "compare",
+      "labels": [
+        "تنقيب",
+        "القرن الثامن عشر",
+        "اكتشاف"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "approach",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "18th century archaeological excavation map Pompeii",
+      "visual_rationale": "Old historical map and document lying on a wooden table, illuminated by warm light, showing early excavation notes."
+    },
+    {
+      "label": "رسومات فيلا أُبلونتيس الملونة",
+      "narration": "وفي منطقة تورّي أنّونزياتا وتحديداً في فيلا أُبلونتيس، الرسوم الجدارية لسه باقية بنضارتها وألوانها الساحرة لحد دلوقتي. الفريسكو ده بيوريك إزاي الأغنيا أيام الإمبراطورية الرومانية كانوا بيعيشوا في رفاهية تامة وبيصرفوا ببذخ على ديكورات بيوتهم الواسعة ومناظرهم الطبيعية المرسومة بدقة.",
+      "evidence_quote": "superb wall paintings of the Villa Oplontis at Torre Annunziata give a vivid impression of the opulent lifestyle",
+      "diagram": "layers",
+      "labels": [
+        "أُبلونتيس",
+        "رسومات",
+        "جداريات"
+      ],
+      "secondary_object": "temple",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "house",
+      "object_motion": "none",
+      "image_query": "Villa of Poppaea Oplontis frescoes wall paintings",
+      "visual_rationale": "Close-up detail of elaborate Roman wall frescoes showing columns and illusionistic garden views."
+    },
+    {
+      "label": "قوالب الضحايا بالجبس",
+      "narration": "العلماء عملوا تجربة ذكية جداً في بومبي لما لقوا فراغات في الرماد نتيجة تحلل الأجسام، فصبّوا جواها جبس عشان يطلعوا بقوالب دقيقة بتوريك اللحظة الأخيرة للناس وهي بتصارع الموت. الطريقة دي خلتنا نشوف حقيقة اللي حصل بعنينا وبطريقة تخلي الواحد يقف عاجز قدام هول الصدمة.",
+      "evidence_quote": "plaster was poured into voids found in the volcanic material and which allowed casts to be made of the forms",
+      "diagram": "flow",
+      "labels": [
+        "قوالب",
+        "جبس",
+        "ضحايا"
+      ],
+      "secondary_object": "person",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "sculpture",
+      "object_motion": "assemble",
+      "image_query": "Pompeii plaster cast victim human body",
+      "visual_rationale": "Detailed shot of an ancient plaster cast showing human form preserved inside the volcanic cavity."
+    },
+    {
+      "label": "هياكل هركولانيوم على الشاطئ",
+      "narration": "على شاطئ البحر القديم في هركولانيوم، التنقيبات كشفت عن أكتر من تلاتمية هيكل عظمي لناس لقوا نفسهم محشورين في الملاجئ ومش عارفين يهربوا من الموت المحقق. دراسة الهياكل دي والتفاصيل بتاعتها وضحت للباحثين معلومات نادرة عن صحتهم وطريقة حياتهم قبل الكارثة الكبرى.",
+      "evidence_quote": "about 300 skeletons were discovered along the ancient shoreline",
+      "diagram": "layers",
+      "labels": [
+        "شاطئ",
+        "هياكل",
+        "عظام"
+      ],
+      "secondary_object": "ship",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "fossil",
+      "object_motion": "none",
+      "image_query": "Herculaneum ancient shoreline boat chambers skeletons",
+      "visual_rationale": "Archaeological site view showing stone arches along the ancient waterfront where skeletons were found."
+    },
+    {
+      "label": "المتحف المفتوح والدروس المستفادة",
+      "narration": "النهارده المواقع دي اتحولت لواحد من أهم المتاحف المفتوحة في العالم كله عشان تعلمنا إزاي التاريخ ممكن يفضل عايش وسطنا رغم كل الدمار. المدن دي بتفضل شاهد حي بيخلد قصة بشر واجهوا لحظة حاسمة وسابوا لنا أثر فريد من نوعه لحد يومنا ده.",
+      "evidence_quote": "presentation of Herculaneum to the public as an open-air museum, perhaps Europe’s first",
+      "diagram": "flow",
+      "labels": [
+        "متحف",
+        "تراث",
+        "عالمي"
+      ],
+      "secondary_object": "monitor",
+      "interaction": "none",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Pompeii archaeological park general view tourists",
+      "visual_rationale": "Panoramic shot of the excavated Roman streets with paved stones and ancient storefronts under sunlight."
+    }
+  ],
+  "cover_text": "بركان بومبي المرعب",
+  "director_version": "v1.0"
+}
