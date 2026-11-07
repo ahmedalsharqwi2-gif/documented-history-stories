@@ -540,13 +540,16 @@
           "verified_at": "2026-11-07T22:46:27.021917+00:00"
         },
         "instagram": {
-          "phase": "acknowledged",
+          "phase": "verified",
           "channel_id": "6ab67accea19ca0bdee57e17",
           "due_at": "2026-11-10T10:00:00Z",
           "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-10-history/history-daily-remotion-2026-11-10-history.mp4",
           "created_at": "2026-11-07T22:46:28.329676+00:00",
           "id": "6aefaa46004e4879a7835c79",
-          "accepted_at": "2026-11-07T22:46:30.179311+00:00"
+          "accepted_at": "2026-11-07T22:46:30.179311+00:00",
+          "status": "scheduled",
+          "scheduled_at": "2026-11-10T10:00:00.000Z",
+          "verified_at": "2026-11-07T22:46:31.436192+00:00"
         }
       }
     },
