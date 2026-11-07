@@ -368,11 +368,13 @@
       "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-08-history/history-daily-remotion-2026-11-08-history.mp4",
       "receipts": {
         "youtube": {
-          "phase": "intent",
+          "phase": "acknowledged",
           "channel_id": "6ab67b4fea19ca0bdee58218",
           "due_at": "2026-11-08T10:00:00Z",
           "media_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/releases/download/production-daily-remotion-2026-11-08-history/history-daily-remotion-2026-11-08-history.mp4",
-          "created_at": "2026-11-07T20:42:37.312949+00:00"
+          "created_at": "2026-11-07T20:42:37.312949+00:00",
+          "id": "6aef8d3f229bf05daf726a95",
+          "accepted_at": "2026-11-07T20:42:39.180713+00:00"
         }
       }
     },
