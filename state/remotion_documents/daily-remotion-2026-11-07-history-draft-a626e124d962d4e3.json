@@ -1,0 +1,159 @@
+{
+  "title": "إزاي بركان فيزوف حفظ مدينتين تحت الرماد؟",
+  "canonical_subject": "unesco-site-829",
+  "hashtags": [
+    "بومبي",
+    "تاريخ",
+    "آثار",
+    "إيطاليا",
+    "اليونسكو"
+  ],
+  "scenes": [
+    {
+      "label": "انفجار بركان فيزوف",
+      "narration": "تخيل إنك ماشي في شوارع مدينة رومانية مزدهرة وفجأة في سنة تسعة وسبعين ميلادية، بركان فيزوف بيثور بعنف رهيب ويدمر كل حاجة قدامه. البركان ده مدفون تحت طبقات سميكة من الرماد والحمم، والمدن دي اختفت تماماً عن الوعي لفترات طويلة جداً لحد ما ظهرت للدنيا.",
+      "evidence_quote": "When Vesuvius erupted on 24 August AD 79, it engulfed the two flourishing Roman towns",
+      "diagram": "flow",
+      "labels": [
+        "بركان",
+        "فيزوف",
+        "كارثة"
+      ],
+      "secondary_object": "none",
+      "interaction": "none",
+      "shot_type": "chronology",
+      "hero_object": "volcano",
+      "object_motion": "shake",
+      "image_query": "Mount Vesuvius eruption painting historical",
+      "visual_rationale": "Shows the violent eruption of Mount Vesuvius with ash filling the sky and covering the Roman towns."
+    },
+    {
+      "label": "اكتشاف بومبي التجارية",
+      "narration": "من نص القرن الثامن عشر، الناس بدأت تحفر وتكتشف الآثار دي وتدخل جوه بومبي وتشوف حجمها الواسع كمدينة تجارية كبيرة. البيوت والشوارع كانت لسه محتفظة بتفاصيل الحياة اليومية، وده قدم لنا صورة كاملة عن شكل المدينة القديمة والناس كانت عايشة إزاي هناك.",
+      "evidence_quote": "The vast expanse of the commercial town of Pompei contrasts with the smaller but better-preserved",
+      "diagram": "compare",
+      "labels": [
+        "بومبي",
+        "تجارة",
+        "حفريات"
+      ],
+      "secondary_object": "house",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "house",
+      "object_motion": "drift",
+      "image_query": "Pompeii ancient commercial street ruins",
+      "visual_rationale": "Presents the vast excavated commercial streets and buildings of Pompeii showing daily life layout."
+    },
+    {
+      "label": "بقايا هركولانيوم المحفوظة",
+      "narration": "وعلى الناحية التانية، مدينة هركولانيوم كانت أصغر في المساحة بس الحفظ فيها كان أعلى بكتير عشان تدفقات الحمم والحرارة العالية. الحرارة دي حرقت المواد العضوية وخلت الأثاث الخشبي والأكل يفضلوا محافظين على شكلهم بشكل مذهل نادراً ما بنلاقيه في مكان تاني.",
+      "evidence_quote": "Herculaneum disappeared under pyroclastic surges and flows",
+      "diagram": "layers",
+      "labels": [
+        "هركولانيوم",
+        "حفظ",
+        "أثاث"
+      ],
+      "secondary_object": "tree",
+      "interaction": "encircle",
+      "shot_type": "artifact",
+      "hero_object": "fossil",
+      "object_motion": "none",
+      "image_query": "Herculaneum preserved wooden structures and ruins",
+      "visual_rationale": "Highlights the well-preserved structures and organic remnants found under pyroclastic flows in Herculaneum."
+    },
+    {
+      "label": "رسوم فيلا أوبلونتيس",
+      "narration": "وفي تورّي أنّونزياتا، وبالتحديد في فيلا أوبلونتيس، الفخامة والترف ظاهرين قوي في الرسوم الجدارية الرائعة اللي بتعكس حياة الأثرياء. الرسوم دي بتدينا إحساس حي بطريقة لبسهم وبيوتهم وديكوراتها اللي عمالة تنبض بالحياة رغم مرور القرون الطويلة عليها من غير ما تضيع.",
+      "evidence_quote": "superb wall paintings of the Villa Oplontis at Torre Annunziata give a vivid impression",
+      "diagram": "compare",
+      "labels": [
+        "أوبلونتيس",
+        "رسوم",
+        "ترف"
+      ],
+      "secondary_object": "temple",
+      "interaction": "approach",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Villa of Poppaea Oplontis frescoes wall paintings",
+      "visual_rationale": "Focuses on the vibrant illusionistic wall paintings and frescoes preserved inside the luxury villa."
+    },
+    {
+      "label": "قوالب الضحايا بالجبس",
+      "narration": "العلماء لقوا طريقة عبقرية جداً لما اكتشفوا الفراغات اللي سابها جسم البشر والحيوانات تحت الرماد بعد ما تحللوا مع الوقت. صبوا جبس جوه الفراغات دي عشان يعملوا قوالب دقيقة بتوريك ملامح اللحظات الأخيرة لكل شخص وهو بيحاول يهرب من الكارثة المرعبة دي.",
+      "evidence_quote": "plaster was poured into voids found in the volcanic material and which allowed casts to be made",
+      "diagram": "flow",
+      "labels": [
+        "قوالب",
+        "جبس",
+        "ضحايا"
+      ],
+      "secondary_object": "person",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "sphere",
+      "object_motion": "assemble",
+      "image_query": "Pompeii human plaster casts victims",
+      "visual_rationale": "Shows the archaeological plaster casts created from the cavities left by victims in the volcanic ash."
+    },
+    {
+      "label": "برديات وفيديوهات هركولانيوم",
+      "narration": "مش بس مباني، دي هركولانيوم كمان ظهر فيها أكتر من ألف وثمانمية لفافة بردي بتحتوي على نصوص فلسفية يونانية قديمة قيمة جداً. ولقوا كمان ألواح شمع عليها عقود قانونية وتفاصيل بتوضح لنا طبيعة الحياة الفكرية والاجتماعية في المجتمع الروماني وقتها.",
+      "evidence_quote": "more than 1,800 papyri scrolls containing Greek philosophical texts were found",
+      "diagram": "layers",
+      "labels": [
+        "برديات",
+        "نصوص",
+        "فلسفة"
+      ],
+      "secondary_object": "document",
+      "interaction": "approach",
+      "shot_type": "artifact",
+      "hero_object": "scroll",
+      "object_motion": "none",
+      "image_query": "Herculaneum carbonized papyri scrolls ancient",
+      "visual_rationale": "Displays ancient carbonized papyri scrolls and wax tablets containing Greek philosophical texts."
+    },
+    {
+      "label": "المتحف المفتوح والترميم",
+      "narration": "المواقع دي اتحولت مع الوقت لأول متحف مفتوح في أوروبا، والناس بقت تيجي تزورها عشان تشوف التاريخ بعنيها وتفهم تفاصيل الحياة. الحكومة والجهات المسؤولة اشتغلوا سنين طويلة عشان يرمموا المباني ويحموا الأجزاء المعرضة للانهيار بسبب العوامل الجوية والضغط البشري المستمر.",
+      "evidence_quote": "presentation of Herculaneum to the public as an open-air museum, perhaps Europe’s first",
+      "diagram": "flow",
+      "labels": [
+        "متحف",
+        "ترميم",
+        "تراث"
+      ],
+      "secondary_object": "house",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "house",
+      "object_motion": "drift",
+      "image_query": "Herculaneum open air museum ruins walkway",
+      "visual_rationale": "Presents the modern open-air museum setup with walkways allowing visitors to explore the ancient ruins."
+    },
+    {
+      "label": "التحديات المستمرة وحماية الآثار",
+      "narration": "طبعاً حماية مدينة بحجم بومبي وهركولانيوم مش حاجة سهلة أبداً وبتتطلب مجهودات ضخمة ومستمرة من مشاريع الاتحاد الأوروبي والفرق العلمية المتخصصة. الإدارة الجديدة بتهتم بترميم أحياء كاملة مش مجرد مباني فردية عشان تضمن إن الكنز التاريخي الفريد ده يفضل باقي للأجيال الجاية.",
+      "evidence_quote": "a major public-private partnership, the Herculaneum Conservation Project, has shaped conservation",
+      "diagram": "cycle",
+      "labels": [
+        "حماية",
+        "مشاريع",
+        "مستقبل"
+      ],
+      "secondary_object": "network",
+      "interaction": "encircle",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "pulse",
+      "image_query": "archaeological conservation work in Pompeii ruins",
+      "visual_rationale": "Illustrates ongoing restoration work and conservation efforts by specialists to protect the UNESCO site."
+    }
+  ],
+  "cover_text": "مدن تحت الرماد",
+  "director_version": "v1"
+}
