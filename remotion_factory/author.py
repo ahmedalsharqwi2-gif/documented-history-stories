@@ -191,7 +191,7 @@ def author(req,_entry):
  from .editorial_recovery import checked_draft
  draft=checked_draft(slot,draft,profile,source,row,validate,ask_once,SCHEMA,local()['episodes'][slot],mutate,document_write,lambda value:narrow_excerpts(value,source))
  Path('professional_motion/delivery').mkdir(parents=True,exist_ok=True);Path('professional_motion/delivery/editorial-draft.json').write_text(json_text(draft))
- if draft['canonical_subject'] in seen_topics:raise ValueError('Underlying topic already produced')
+ if draft['canonical_subject'] in seen_topics and draft['canonical_subject']!=row.get('canonical_subject'):raise ValueError('Underlying topic already produced')
  story=planned_story(draft,profile,row)
  return independently_reviewed(req,story,row,source,seen_topics)
 
