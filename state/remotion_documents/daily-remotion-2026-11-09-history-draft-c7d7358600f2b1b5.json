@@ -1,0 +1,158 @@
+{
+  "title": "إزاي العمارة الهندية خلّدت قصة حب ملكية؟",
+  "canonical_subject": "unesco-site-252",
+  "hashtags": [
+    "تاريخ",
+    "الهند",
+    "معالم",
+    "عمارة"
+  ],
+  "scenes": [
+    {
+      "label": "بناء الضريح",
+      "narration": "عشان يخلد ذكرى زوجته الغالية، الإمبراطور المغولي شاه جهان أمر ببناء ضريح من الرخام الأبيض الصافي على ضفة نهر يامونا، وبدأت الأعمال الهندسية الكبرى سنة الف تمنمات اتنين وثلاثين وعمل فيها آلاف العمال والمهندسين من كل مكان.",
+      "evidence_quote": "built by Mughal Emperor Shah Jahan in memory of his wife Mumtaz Mahal",
+      "diagram": "flow",
+      "labels": [
+        "شاه جهان",
+        "مملكة مغولية",
+        "رخام أبيض"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "transfer",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "assemble",
+      "image_query": "Taj Mahal exterior white marble mausoleum Agra India",
+      "visual_rationale": "Shows the grand white marble mausoleum complex standing by the river bank under clear daylight."
+    },
+    {
+      "label": "المهندس الرئيسي",
+      "narration": "التصميم الهندسي المذهل ده مش مجرد صدفة، ده كان بفضل المهندس أستاذ أحمد لاهوري اللي جمع بين التوازن الدقيق والتناسق الفني، وظهرت العناصر المعمارية متناغمة بشكل بديع ومبهر جداً لكل اللي بيزوره لحد النهاردة في مدينة أغرا.",
+      "evidence_quote": "Ustad-Ahmad Lahori was the main architect of the Taj Mahal",
+      "diagram": "compare",
+      "labels": [
+        "تصميم",
+        "هندسة",
+        "أحمد لاهوري"
+      ],
+      "secondary_object": "document",
+      "interaction": "contrast",
+      "shot_type": "chronology",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "architectural blueprints and historical Persian design manuscripts",
+      "visual_rationale": "Displays ancient architectural calculation sketches alongside the monumental structure."
+    },
+    {
+      "label": "الحدائق والتقسيم",
+      "narration": "المكان كله مبني على نظام الحديقة المربعة المتقاطعة، والضريح مش في النص بالضبط زي العادة، دي كانت حركة ذكية من المهندسين عشان تدي عمق وبُعد بصري يخلي الزائر يشوف المبنى بمنظور مختلف ومبهر من مسافات بعيدة.",
+      "evidence_quote": "placing of tomb at one end of the quadripartite garden rather than in the exact centre",
+      "diagram": "layers",
+      "labels": [
+        "حديقة مغولية",
+        "منظور",
+        "تنسيق"
+      ],
+      "secondary_object": "tree",
+      "interaction": "approach",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "Taj Mahal vast Mughal garden layout and pathways",
+      "visual_rationale": "Highlights the symmetrical quadripartite garden intersecting pathways leading to the main tomb."
+    },
+    {
+      "label": "الأبراج والمآذن",
+      "narration": "الأربع مآذن الكبيرة اللي محيطة بالمنصة مش بس لشكل جمالي، دي بتدي للمبنى تأثير ثلاثي الأبعاد وعمق مكاني فريد من نوعه، وبتحدد زوايا الضريح بوضوح هندسي دقيق بيبهر أي حد يتأمل تفاصيل البناء من بعيد.",
+      "evidence_quote": "The four free-standing minarets at the corners of the platform added a hitherto unknown dimension",
+      "diagram": "compare",
+      "labels": [
+        "مآذن",
+        "أبعاد",
+        "منصة"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "none",
+      "shot_type": "artifact",
+      "hero_object": "temple",
+      "object_motion": "spin",
+      "image_query": "Taj Mahal corner minaret tower architectural detail",
+      "visual_rationale": "Focuses on one of the tall, standing white marble minarets at the corner of the raised platform."
+    },
+    {
+      "label": "النقوش والأحجار",
+      "narration": "لو قربت من الحوائط هتلاقي شغل نقش وتطعيم بالأحجار الكريمة وشبه الكريمة مرسومة باتقان شديد، والأوراق والورد المصنوعين من الحجار الملونة بيبانوا كأنهم حقيقيين تماماً من كتر دقة الشغل ومهارة الحرفيين اللي نفذوه.",
+      "evidence_quote": "The borders of the frames are inlaid with precious stones representing flowers executed with wonderful perfection",
+      "diagram": "layers",
+      "labels": [
+        "أحجار كريمة",
+        "نقش",
+        "تطعيم"
+      ],
+      "secondary_object": "crystal",
+      "interaction": "encircle",
+      "shot_type": "artifact",
+      "hero_object": "crystal",
+      "object_motion": "pulse",
+      "image_query": "close up pietra dura inlay precious stones Taj Mahal marble wall",
+      "visual_rationale": "A macro view showing floral semi-precious stone inlay patterns embedded directly into white marble."
+    },
+    {
+      "label": "المسجد وبيت الضيافة",
+      "narration": "جنب الضريح الأساسي فيه مبنيين متطابقين تماماً مبنيين بالرمل الأحمر عشان يعملوا تباين لوني قوي مع الرخام الأبيض، واحد فيهم بيشتغل مسجد والثاني بيت ضيافة بيخدموا الزوار والمصلين اللي بييجوا للمجمع باستمرار.",
+      "evidence_quote": "The mosque and the guest house in the Taj Mahal complex are built of red sandstone in contrast to the marble tomb",
+      "diagram": "compare",
+      "labels": [
+        "حجر أحمر",
+        "مسجد",
+        "تباين لوني"
+      ],
+      "secondary_object": "temple",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "red sandstone mosque building adjacent to Taj Mahal",
+      "visual_rationale": "Shows the matching red sandstone guest house structure mirroring the mosque across the courtyard."
+    },
+    {
+      "label": "القبور الحقيقية",
+      "narration": "القاعات العلوية فيها تابوتان وهميان للملكة وزوجها الإمبراطور شاه جهان، لكن القبور الحقيقية موجودة تحت في الغرفة السفلية المظلمة، ودي كانت عادة متبعة في كل المقابر الملكية المغولية عبر التاريخ القديم.",
+      "evidence_quote": "The upper cenotaphs are only illusory and the real graves are in the lower tomb chamber",
+      "diagram": "flow",
+      "labels": [
+        "قبور",
+        "سرداب",
+        "توابيت"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "transfer",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "drift",
+      "image_query": "historical cross section plan of Taj Mahal lower crypt and upper chamber",
+      "visual_rationale": "Illustrates the interior architectural layout showing upper cenotaphs and lower crypt."
+    },
+    {
+      "label": "حماية التراث",
+      "narration": "عشان نحافظ على التحفة المعمارية دي من التلوث وأضرار البيئة المحيطة، الحكومة الهندية منعت استخدام الفحم في الصناعات القريبة من المنطقة وعلّقت محطات مراقبة جوية مستمرة عشان تضمن بقاء الضريح سليم وجميل لكل الأجيال الجاية.",
+      "evidence_quote": "Supreme Court of India in December, 1996, delivered a ruling banning use of coal/coke in industries located in the Taj Trapezium Zone",
+      "diagram": "flow",
+      "labels": [
+        "حماية بيئية",
+        "تلوث",
+        "ترميم"
+      ],
+      "secondary_object": "network",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "network",
+      "object_motion": "none",
+      "image_query": "air pollution control monitoring station and green trees around Taj Mahal",
+      "visual_rationale": "Depicts modern conservation zones and air monitoring equipment installed around the heritage site."
+    }
+  ],
+  "cover_text": "جمال تاج محل",
+  "director_version": "v1"
+}
