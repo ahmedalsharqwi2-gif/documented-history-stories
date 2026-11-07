@@ -642,9 +642,9 @@
     }
   },
   "cutover_evidence": {
-    "slot": "daily-remotion-2026-11-08-history",
-    "video_sha256": "cca11629586ed9ecb332a7f1b6d84cbf57ad2714749019e0c24654d9437d687f",
-    "run": 42269336700,
+    "slot": "daily-remotion-2026-11-10-history",
+    "video_sha256": "567854110dd150a94d1c119873cf55fbbff17651681ebb50c1f2d9da587e8558",
+    "run": 42421515011,
     "ready": true
   }
 }
