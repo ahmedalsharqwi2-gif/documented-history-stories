@@ -1,0 +1,151 @@
+{
+  "title": "إزاي تاج محل مبني بذكاء يخدع العين كده؟",
+  "canonical_subject": "unesco-site-252",
+  "hashtags": [
+    "معماري",
+    "تاريخ",
+    "الهند",
+    "تاج_محل"
+  ],
+  "scenes": [
+    {
+      "label": "بناء الضريح",
+      "narration": "في عام ألف ستمستاشر اتنين وتلاتين، الإمبراطور شاه جهان قرر يبني ضريح أبيض ضخم في مدينة أغرا عشان يخلد بيه ذكرى مراته الحبيبة ممتاز محل، وجاب أحسن الصنايعية من وسط آسيا وإيران عشان ينفذوا التحفة دي بناءً على أوامر ملكية صارمة.",
+      "evidence_quote": "built by Mughal Emperor Shah Jahan in memory of his wife Mumtaz Mahal with construction starting in 1632 AD",
+      "diagram": "flow",
+      "labels": [
+        "شاه جهان",
+        "ممتاز محل",
+        "أغرا"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "transfer",
+      "shot_type": "archive",
+      "hero_object": "temple",
+      "object_motion": "assemble",
+      "image_query": "historic painting of Mughal emperor Shah Jahan",
+      "visual_rationale": "Shows the architectural blueprint scroll being handed over to workers to establish the starting point of construction in Agra."
+    },
+    {
+      "label": "الموقع النهري",
+      "narration": "المبنى اتزرع في الضفة اليمين لنهر يامونا جوه حديقة مغولية مساحتها تقريبًا سبعتاشر هكتار، والموقع ده مكنش عشوائي أبدًا، ده اتقاس بعناية عشان يدي إحساس بالاتساع والعمق والهدوء البصري اللي بيخطف الأنظار من أول نظرة.",
+      "evidence_quote": "The Taj Mahal is located on the right bank of the Yamuna River in a vast Mughal garden that encompasses nearly 17 hectares",
+      "diagram": "layers",
+      "labels": [
+        "نهر يامونا",
+        "حديقة مغولية"
+      ],
+      "secondary_object": "river",
+      "interaction": "approach",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "drift",
+      "image_query": "Taj Mahal situated along the Yamuna riverbank with gardens",
+      "visual_rationale": "Presents the wider landscape view showing the river flowing past the grand garden surrounding the monument."
+    },
+    {
+      "label": "توزيع القبة والحديقة",
+      "narration": "المهندسين عملوا حركة عبقرية لما حطوا المقبرة في طرف الحديقة الرباعية بدل ما يحطوها في النص بالضبط، الحركة دي زودت العمق والمنظور البصري للرؤية البعيدة للمبنى وخلت شكله يبان أضخم بكتير وأكثر درامية لكل اللي بيزوره.",
+      "evidence_quote": "One such genius planning is the placing of tomb at one end of the quadripartite garden rather than in the exact centre",
+      "diagram": "compare",
+      "labels": [
+        "تصميم رباعي",
+        "منظور بصري"
+      ],
+      "secondary_object": "book",
+      "interaction": "contrast",
+      "shot_type": "reconstruction",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "architectural layout diagram of Taj Mahal gardens",
+      "visual_rationale": "Compares central placement versus offset garden placement using a top-down architectural diagram."
+    },
+    {
+      "label": "المآذن الأربع",
+      "narration": "الأربع مآذن اللي واقفين على أطراف المنصة أضافوا بُعد تالت مكنش معروف قبل كده في العمارة المغولية، مش بس بيعطوا إطار مكاني للموقع، دول بيدوا تأثير مجسم يخلي المبنى كأنه مجسم حي قدام العين.",
+      "evidence_quote": "The four free-standing minarets at the corners of the platform added a hitherto unknown dimension to the Mughal architecture",
+      "diagram": "cycle",
+      "labels": [
+        "مآذن حرة",
+        "تأثير مجسم"
+      ],
+      "secondary_object": "pillar",
+      "interaction": "encircle",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "pulse",
+      "image_query": "close up of the minarets at Taj Mahal corners",
+      "visual_rationale": "Focuses on the corner minarets to show how they frame the main structure and create three-dimensional depth."
+    },
+    {
+      "label": "الأحجار الكريمة",
+      "narration": "الجدران مش مجرد رخام أبيض وخلاص، دي متزيّنة بأحجار كريمة وشبه كريمة مرسومة بدقة شديدة على شكل زهور، لدرجة إن الألوان والظلال بتخلي الورود المرسومة تبان كأنها حقيقية وناطقة قدام عين الناظر.",
+      "evidence_quote": "The borders of the frames are inlaid with precious stones representing flowers executed with wonderful perfection",
+      "diagram": "layers",
+      "labels": [
+        "رخام أبيض",
+        "تطعيم أحجار"
+      ],
+      "secondary_object": "crystal",
+      "interaction": "transfer",
+      "shot_type": "artifact",
+      "hero_object": "crystal",
+      "object_motion": "spin",
+      "image_query": "close up inlay work of precious stones on Taj Mahal marble",
+      "visual_rationale": "Highlights the intricate floral mosaic patterns and gemstone inlays on the marble surface."
+    },
+    {
+      "label": "المسجد وبيت الضيافة",
+      "narration": "على يمين وشمين الضريح اتبنى مسجد وبيت ضيافة من الحجر الرملي الأحمر، الاتنين متطابقين تمامًا عشان يعملوا تباين لوني قوي مع بياض الرخام الناصع في النص، وده بيدي للمجمّع ككل توازن بصري مدهش.",
+      "evidence_quote": "Both the mosque and the guest house are the identical structures. They have an oblong massive prayer hall",
+      "diagram": "compare",
+      "labels": [
+        "حجر رملي",
+        "مسجد مطابق"
+      ],
+      "secondary_object": "rock_layers",
+      "interaction": "contrast",
+      "shot_type": "place",
+      "hero_object": "temple",
+      "object_motion": "none",
+      "image_query": "red sandstone mosque structure beside Taj Mahal",
+      "visual_rationale": "Contrasts the red sandstone buildings on the sides with the central white marble mausoleum."
+    },
+    {
+      "label": "القبور الحقيقية والوهمية",
+      "narration": "المقابر اللي فوق اللي الناس بتشوفها دي مجرد قبور وهمية للزينة فقط، بينما القبور الحقيقية للملك والملكة موجودة تحت في سرداب سفلي بعيد عن الأنظار، ودي كانت عادة متبعة في كل مقابر المغول الملكية الكبرى.",
+      "evidence_quote": "The upper cenotaphs are only illusory and the real graves are in the lower tomb chamber",
+      "diagram": "layers",
+      "labels": [
+        "سرداب سفلي",
+        "قبور وهمية"
+      ],
+      "secondary_object": "scroll",
+      "interaction": "none",
+      "shot_type": "reconstruction",
+      "hero_object": "temple",
+      "object_motion": "drift",
+      "image_query": "underground crypt chamber of Taj Mahal",
+      "visual_rationale": "Shows a cutaway architectural view demonstrating the upper ornamental cenotaphs versus the lower actual graves."
+    },
+    {
+      "label": "منطقة حماية التلوث",
+      "narration": "عشان نحافظ على التحفة دي من عوادم الصناعة والتلوث، المحكمة العليا في الهند أصدرت سنة ألف تسمية ستة وتسعين قرار بمنع استخدام الفحم في نطاق مساحته عشر آلاف كيلو متر مربع، عشان الرخام يفضل محافظ على لمعانه.",
+      "evidence_quote": "The Supreme Court of India in December, 1996, delivered a ruling banning use of coal/coke in industries located in the TTZ",
+      "diagram": "flow",
+      "labels": [
+        "منطقة حماية",
+        "محكمة عليا"
+      ],
+      "secondary_object": "document",
+      "interaction": "transfer",
+      "shot_type": "archive",
+      "hero_object": "document",
+      "object_motion": "none",
+      "image_query": "historic legal document of India Supreme Court ruling",
+      "visual_rationale": "Displays the official court restriction document used to enforce environmental protection around the monument."
+    }
+  ],
+  "cover_text": "سر بناء تاج محل",
+  "director_version": "v1"
+}
