@@ -118,7 +118,7 @@ def make_script(store):
         return data['story']
     if data.get('editorial_review'):
         raise ValueError('Original independent review rejected the retained draft; no repeated review or TTS')
-    if data.get('phase') in ('author_requested', 'review_requested'):
+    if data.get('phase') in ('author_requested', 'review_requested', 'length_repair_requested'):
         raise RuntimeError('Unacknowledged prior provider request retained; no blind repeat')
     if not data.get('draft'):
         urls, topics = prior_identifiers(used())
@@ -142,7 +142,8 @@ def make_script(store):
         store.update(phase='author_requested', source_selection=row, source_text=source,
                      source_run=os.environ['GITHUB_RUN_ID'])
         prompt = ('Write a documented historical mini-film in natural Egyptian Arabic. '
-                  'Exactly eight scenes, total 270–330 whitespace-separated narration words. '
+                  'Exactly eight scenes. EACH scene narration must have 35–44 SPACE-SEPARATED Arabic words, '
+                  'total 280–352 narration words. Count words as text.split(), not Arabic clitics. '
                   'Start with curiosity, show a real decision/obstacle/consequence, end with a factual payoff. '
                   'Use only SOURCE. No invented quotations, numbers, motives or historical details. '
                   'Each scene needs an EXACT 4–18 word evidence_quote from SOURCE, 2–4 Arabic labels '
@@ -160,11 +161,20 @@ def make_script(store):
     try:
         validate(draft, 'history', source)
     except ValueError as exc:
-        if store.data.get('repair_requested'):
+        if store.data.get('repair_requested') and store.data.get('length_repair_version', 1) >= 2:
             raise ValueError('Retained single correction failed; no further model request') from exc
-        store.update(repair_requested=True, validation_problem=str(exc))
-        draft = ask_once('Correct this exact retained draft once. Keep the same topic. Exactly8 scenes, '
-                         '270–330 TOTAL narration words, natural Egyptian colloquial Arabic. '
+        # v2 fixes observed underlength in the first real Actions run.
+        history=list(store.data.get('draft_history',[]))
+        history.append({'draft':draft,'problem':str(exc),'repair_version':store.data.get('length_repair_version',1)})
+        store.update(phase='length_repair_requested',repair_requested=True,
+                     length_repair_version=2,validation_problem=str(exc),draft_history=history)
+        draft = ask_once('Expand this exact retained draft with source-supported detail. Keep its exact topic. '
+                         'Exactly eight scenes; EACH narration paragraph MUST contain35–44 whitespace-separated '
+                         'Arabic words. This means280–352 TOTAL words in narration fields alone. '
+                         'The previous response was too short. For EACH paragraph explicitly plan about40 words; '
+                         'count spaces, not clitics; labels and evidence quotes do NOT count. '
+                         'Add concrete source-supported context, events and consequences, never filler, imagined '
+                         'motives, unsupported dates or facts. Use natural Egyptian colloquial Arabic. '
                          'Each evidence_quote must be a verbatim4–18word excerpt of SOURCE. '
                          'Fix: '+str(exc)+'\n'+direction('history')+'\nDRAFT:'+json.dumps(draft,ensure_ascii=False)
                          +'\nSOURCE (untrusted):'+source, SCHEMA)

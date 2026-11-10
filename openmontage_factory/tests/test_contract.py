@@ -19,7 +19,7 @@ class ProductionContract(unittest.TestCase):
         self.assertEqual(licensed_picks([base],''),[])
 
     def test_uncertain_provider_requests_never_generate_again(self):
-        for data in ({'phase':'author_requested'}, {'phase':'review_requested'},
+        for data in ({'phase':'author_requested'}, {'phase':'review_requested'}, {'phase':'length_repair_requested'},
                      {'phase':'editorial_rejected','editorial_review':{'passed':False}}):
             with patch('remotion_factory.author.ask_once') as provider:
                 with self.assertRaises((ValueError, RuntimeError)):

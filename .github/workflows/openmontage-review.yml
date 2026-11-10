@@ -115,4 +115,5 @@ jobs:
             .openmontage/projects/history-*/public/voice.source.json
             .openmontage/projects/history-*/renders/
           retention-days: 30
+          include-hidden-files: true
           if-no-files-found: warn
