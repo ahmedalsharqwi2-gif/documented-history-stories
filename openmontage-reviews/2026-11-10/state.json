@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "rendering",
+  "phase": "complete",
   "review_only": true,
   "published": false,
   "source_selection": {
@@ -603,5 +603,9 @@
   },
   "voice_path": "openmontage-reviews/2026-11-10/narration.wav",
   "voice_sha256": "e72cb23f0b10731c3d86d12b6bb055c85b5b653ed57ea9b0c53e9972ed1cc442",
-  "canonical_subject": "unesco-site-483"
+  "canonical_subject": "unesco-site-483",
+  "video_url": "https://github.com/ahmedalsharqwi2-gif/documented-history-stories/raw/refs/heads/codex/openmontage-review-state/openmontage-reviews/2026-11-10/sample.mp4",
+  "video_sha256": "0ca0a1e908c51b8540b018e1e08d0a755f98148381a66c323647929895c397eb",
+  "duration": 160.789,
+  "run_id": "42759921160"
 }
