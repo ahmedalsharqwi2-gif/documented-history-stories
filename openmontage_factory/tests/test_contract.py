@@ -1,10 +1,15 @@
 import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
-from openmontage_factory.run import parse_day, licensed_picks, make_script
+from openmontage_factory.run import parse_day, licensed_picks, make_script, subject_query
 
 
 class ProductionContract(unittest.TestCase):
+    def test_subject_query_keeps_the_actual_place_not_generic_shot_words(self):
+        story={'source':{'title':'Pre-Hispanic City of Chichen-Itza'},'scenes':[
+            {'image_query':'Chichen Itza cenote'}, {'image_query':'Chichen Itza Nunnery building'},
+            {'image_query':'El Castillo Chichen Itza architecture'}, {'image_query':'INAH Mexico sign'}]}
+        self.assertEqual(subject_query(story),'Chichen Itza')
     def test_review_date_cannot_be_a_path(self):
         for invalid in ('../main','2026-2-1','2026-02-30','2026-11-10/secret'):
             with self.assertRaises(ValueError):parse_day(invalid)

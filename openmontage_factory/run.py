@@ -9,6 +9,7 @@ import base64
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -244,27 +245,46 @@ def measured_voice(store, story, public, artifacts):
     return timing
 
 
+def subject_query(story):
+    """Keep repeated proper-name tokens, dropping overly specific shot modifiers."""
+    from collections import Counter
+    from remotion_factory.visual_assets import tokens
+    queries=[s.get('image_query','') for s in story['scenes']]
+    frequency=Counter(word for query in queries for word in tokens(query))
+    common={word for word,count in frequency.items() if count>=max(2,len(queries)//2)}
+    ordered=[]
+    for word in re.findall(r'[A-Za-z0-9]+',story['source']['title']+' '+queries[0]):
+        if word.lower() in common and word.lower() not in [x.lower() for x in ordered]:ordered.append(word)
+    return ' '.join(ordered) if len(ordered)>=2 else story['source']['title']
+
+
 def acquire(registry, story, project):
     picks=[]; seen=set(); by_scene={}; reports=[]; searches={}
     for i,scene in enumerate(story['scenes']):
-        query=scene.get('image_query') or story['source']['title']
-        if query not in searches:
-            searches[query]=registry.get('direct_clip_search').execute({'output_dir':str(project/'assets/media'),
-                'queries':[{'query':query,'kind':'image','slot_id':scene['id']}],
-                'sources':['wikimedia'],'clips_per_query':20,'timeout_seconds':90})
-        result=searches[query]
-        reports.append({'query':query,'result':result.__dict__})
-        dump(project/'artifacts/acquisition.json',reports)
-        if not result.success:
-            raise RuntimeError('OpenMontage source acquisition failed; no placeholder picture used')
-        candidates=licensed_picks(result.data.get('clips',[]),query)
-        selected=next((p for p in candidates if p['clip_id'] not in seen),None)
+        exact_query=scene.get('image_query') or story['source']['title']
+        selected=None
+        for query in dict.fromkeys([exact_query,subject_query(story),story['source']['title']]):
+            if query not in searches:
+                searches[query]=registry.get('direct_clip_search').execute({'output_dir':str(project/'assets/media'),
+                    'queries':[{'query':query,'kind':'image','slot_id':scene['id']}],
+                    'sources':['wikimedia'],'clips_per_query':20,'timeout_seconds':90})
+            result=searches[query]
+            reports.append({'query':query,'scene_id':scene['id'],'result':result.__dict__})
+            dump(project/'artifacts/acquisition.json',reports)
+            if not result.success:
+                continue
+            candidates=licensed_picks(result.data.get('clips',[]),query)
+            selected=next((p for p in candidates if p['clip_id'] not in seen),None)
+            if selected is not None:
+                break
         if selected is None:
             raise ValueError('No distinct high-resolution licensed subject match for scene '+scene['id'])
         seen.add(selected['clip_id']); dest=project/'public'/f'scene-{i}.jpg'
         shutil.copyfile(selected['path'],dest)
-        selected={**selected,'public_path':dest.name,'scene_id':scene['id'],'search_query':query}
+        selected={**selected,'public_path':dest.name,'scene_id':scene['id'],'search_query':query,
+                  'imagery_scope':'scene detail' if query==exact_query else 'actual site context; not evidence of the exact narrated detail'}
         picks.append(selected);by_scene[scene['id']]=selected
+        print(json.dumps({'media_scene':i+1,'query':query,'imagery_scope':selected['imagery_scope']},ensure_ascii=False),flush=True)
     return picks,by_scene
 
 
