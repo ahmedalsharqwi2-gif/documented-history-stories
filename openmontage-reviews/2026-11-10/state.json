@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "draft_retained",
+  "phase": "length_repair_requested",
   "review_only": true,
   "published": false,
   "source_selection": {
@@ -171,5 +171,170 @@
     "director_version": "v1.1"
   },
   "repair_requested": true,
-  "validation_problem": "Draft word budget fails natural-duration preflight: actual 147, required 240-370; no TTS requested"
+  "validation_problem": "Draft word budget fails natural-duration preflight: actual 169, required 240-370; no TTS requested",
+  "length_repair_version": 2,
+  "draft_history": [
+    {
+      "draft": {
+        "title": "رحلة في مدينة شيشين ايتزا الأثرية وتاريخ حضارة المايا",
+        "canonical_subject": "unesco-site-483",
+        "hashtags": [
+          "#شيشين_ايتزا",
+          "#تاريخ_المايا",
+          "#التراث_العالمي",
+          "#المكسيك"
+        ],
+        "scenes": [
+          {
+            "label": "الاستكشاف والأصل",
+            "narration": "اتأسست المدينة المقدسة دي في الفترة الكلاسيكية قريباً جداً من تجويفين طبيعيين سمحوا للناس بالوصول للمياه الجوفية في المنطقة وتوفيرها.",
+            "evidence_quote": "This sacred site was one of the greatest Mayan centres of the Yucatán peninsula.",
+            "diagram": "flow",
+            "labels": [
+              "شيشين ايتزا",
+              "شبه جزيرة يوكاتان",
+              "المياه الجوفية"
+            ],
+            "secondary_object": "river",
+            "interaction": "approach",
+            "shot_type": "place",
+            "hero_object": "temple",
+            "object_motion": "drift",
+            "image_query": "Chichen Itza cenote",
+            "visual_rationale": "Shows the natural sinkhole near the ancient structures to illustrate the water source."
+          },
+          {
+            "label": "المباني الأولى",
+            "narration": "بدأ بنا المعالم الأولى للموقع بين القرنين السادس والعشر بأسلوب المايا المميز اللي كان شائع وقتها في المناطق الشمالية والجنوبية لتلال بوش.",
+            "evidence_quote": "They were constructed between the 6th and the 10th centuries in the characteristic Maya style",
+            "diagram": "layers",
+            "labels": [
+              "الفترة الكلاسيكية",
+              "طراز المايا",
+              "هلال بوش"
+            ],
+            "secondary_object": "scroll",
+            "interaction": "none",
+            "shot_type": "archive",
+            "hero_object": "pyramid",
+            "object_motion": "none",
+            "image_query": "Chichen Itza Nunnery building",
+            "visual_rationale": "Presents early architectural structures built in the classic Maya style."
+          },
+          {
+            "label": "وصول التولتيك",
+            "narration": "حصل تحول كبير بعد كده مع هجرة محاربي التولتيك من الهضبة المكسيكية للجنوب خلال القرن العاشر الميلادي عشان يتوسع النفوذ بشكل واضح.",
+            "evidence_quote": "corresponded to the migration of Toltec warriors",
+            "diagram": "flow",
+            "labels": [
+              "محاربو التولتيك",
+              "الهضبة المكسيكية",
+              "القرن العاشر"
+            ],
+            "secondary_object": "shield",
+            "interaction": "approach",
+            "shot_type": "chronology",
+            "hero_object": "person",
+            "object_motion": "flow",
+            "image_query": "Toltec warriors relief Chichen Itza",
+            "visual_rationale": "Highlights sculptural evidence of the Toltec migration and warrior presence."
+          },
+          {
+            "label": "دمج الحضارات",
+            "narration": "أدى دمج تقنيات البناء عند المايا مع العناصر الجديدة اللي جت من وسط المكسيك لظهور طراز معماري فريد بيعكس عملية التثاقف الحضاري.",
+            "evidence_quote": "construction techniques with new elements from central Mexico",
+            "diagram": "compare",
+            "labels": [
+              "دمج التقنيات",
+              "وسط المكسيك",
+              "التثاقف الحضاري"
+            ],
+            "secondary_object": "document",
+            "interaction": "transfer",
+            "shot_type": "artifact",
+            "hero_object": "temple",
+            "object_motion": "none",
+            "image_query": "El Castillo Chichen Itza architecture",
+            "visual_rationale": "Contrasts architectural elements to show the fusion between Maya and Toltec traditions."
+          },
+          {
+            "label": "معبد كوكولكان",
+            "narration": "اتشيد بعد كده معبد كوكولكان المعروف باسم إل كاستيلو كواحد من أهم المعالم البارزة والمحاطة بالشرفات والمجمعات النصبية الكبرى للموقع.",
+            "evidence_quote": "also known as the Temple of Kukulkan",
+            "diagram": "layers",
+            "labels": [
+              "معبد كوكولكان",
+              "إل كاستيلو",
+              "المجمعات الكبرى"
+            ],
+            "secondary_object": "pyramid",
+            "interaction": "none",
+            "shot_type": "place",
+            "hero_object": "pyramid",
+            "object_motion": "none",
+            "image_query": "Temple of Kukulkan El Castillo",
+            "visual_rationale": "Focuses on the massive step pyramid structure of El Castillo."
+          },
+          {
+            "label": "المرصد الفلكي",
+            "narration": "بيحتوي المكان برضه على مرصد استثنائي اسمه إل كراكول بيمتاز بسلمه الحلزوني اللي كان مخصص لمراقبة النجوم والأفلاك السماوية بعناية.",
+            "evidence_quote": "a circular stellar observatory whose spiral staircase accounts for its name",
+            "diagram": "cycle",
+            "labels": [
+              "المرصد الفلكي",
+              "إل كراكول",
+              "السلم الحلزوني"
+            ],
+            "secondary_object": "sphere",
+            "interaction": "orbit",
+            "shot_type": "artifact",
+            "hero_object": "temple",
+            "object_motion": "spin",
+            "image_query": "El Caracol observatory Chichen Itza",
+            "visual_rationale": "Displays the round observatory tower highlighting its unique circular design."
+          },
+          {
+            "label": "التراجع والانهيار",
+            "narration": "بعد القرن الثالث عشر ما بقتش تتبني آثار كبرى جديدة في المدينة اللي شهدت تراجع سريع بعد حوالي سنة ألف وأربعمائة وأربعين ميلادية.",
+            "evidence_quote": "After the 13th century no major monuments seem to have been constructed",
+            "diagram": "flow",
+            "labels": [
+              "القرن الثالث عشر",
+              "تراجع المدينة",
+              "عام ١٤٤٠"
+            ],
+            "secondary_object": "rock_layers",
+            "interaction": "separate",
+            "shot_type": "chronology",
+            "hero_object": "rock_layers",
+            "object_motion": "drift",
+            "image_query": "Chichen Itza ruins architecture overview",
+            "visual_rationale": "Illustrates the chronological decline and abandonment of the settlement over centuries."
+          },
+          {
+            "label": "الحماية والاكتشاف",
+            "narration": "الأطلال دي فضللت مدفونة لحد ما اتخضعت للحفريات المنظمة سنة ألف وثمانمائة وواحداً وأربعين ميلادية لتخضع اليوم لقوانين حماية التراث.",
+            "evidence_quote": "The ruins were not excavated until 1841 A.D.",
+            "diagram": "flow",
+            "labels": [
+              "حفريات ١٨٤١",
+              "المعهد الوطني",
+              "حماية التراث"
+            ],
+            "secondary_object": "document",
+            "interaction": "transfer",
+            "shot_type": "archive",
+            "hero_object": "document",
+            "object_motion": "none",
+            "image_query": "INAH Mexico archaeological site sign",
+            "visual_rationale": "Shows official preservation notices and historical documents related to the site excavation."
+          }
+        ],
+        "cover_text": "شيشين ايتزا تراث المايا",
+        "director_version": "v1.1"
+      },
+      "problem": "Draft word budget fails natural-duration preflight: actual 169, required 240-370; no TTS requested",
+      "repair_version": 1
+    }
+  ]
 }
