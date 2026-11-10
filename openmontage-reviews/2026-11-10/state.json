@@ -24,7 +24,7 @@
     "scenes": [
       {
         "label": "الاستكشاف والأصل",
-        "narration": "تأسست هذه المدينة المقدسة خلال الفترة الكلاسيكية بالقرب من تجويفين طبيعيين سمحا بالوصول إلى المياه الجوفية في المنطقة وتوفيرها.",
+        "narration": "اتأسست المدينة المقدسة دي في الفترة الكلاسيكية قريباً جداً من تجويفين طبيعيين سمحوا للناس بالوصول للمياه الجوفية في المنطقة وتوفيرها.",
         "evidence_quote": "This sacred site was one of the greatest Mayan centres of the Yucatán peninsula.",
         "diagram": "flow",
         "labels": [
@@ -42,7 +42,7 @@
       },
       {
         "label": "المباني الأولى",
-        "narration": "بنيت المعالم الأولى بين القرنين السادس والعشر بأسلوب المايا المميز والشائع في مناطق هلال بوش الشمالية والجنوبية.",
+        "narration": "بدأ بنا المعالم الأولى للموقع بين القرنين السادس والعشر بأسلوب المايا المميز اللي كان شائع وقتها في المناطق الشمالية والجنوبية لتلال بوش.",
         "evidence_quote": "They were constructed between the 6th and the 10th centuries in the characteristic Maya style",
         "diagram": "layers",
         "labels": [
@@ -60,8 +60,8 @@
       },
       {
         "label": "وصول التولتيك",
-        "narration": "وافق الاستيطان الثاني هجرة محاربي التولتيك من الهضبة المكسيكية نحو الجنوب خلال القرن العاشر الميلادي وتوسع النفوذ.",
-        "evidence_quote": "The second settlement of Chichen-Itza corresponded to the migration of Toltec warriors",
+        "narration": "حصل تحول كبير بعد كده مع هجرة محاربي التولتيك من الهضبة المكسيكية للجنوب خلال القرن العاشر الميلادي عشان يتوسع النفوذ بشكل واضح.",
+        "evidence_quote": "corresponded to the migration of Toltec warriors",
         "diagram": "flow",
         "labels": [
           "محاربو التولتيك",
@@ -78,8 +78,8 @@
       },
       {
         "label": "دمج الحضارات",
-        "narration": "أدى دمج تقنيات البناء لدى المايا مع العناصر الجديدة من وسط المكسيك إلى ظهور طراز معماري فريد يعكس عملية التثاقف.",
-        "evidence_quote": "The fusion of the Maya construction techniques with new elements from central Mexico",
+        "narration": "أدى دمج تقنيات البناء عند المايا مع العناصر الجديدة اللي جت من وسط المكسيك لظهور طراز معماري فريد بيعكس عملية التثاقف الحضاري.",
+        "evidence_quote": "construction techniques with new elements from central Mexico",
         "diagram": "compare",
         "labels": [
           "دمج التقنيات",
@@ -96,8 +96,8 @@
       },
       {
         "label": "معبد كوكولكان",
-        "narration": "شيد معبد كوكولكان المعروف باسم إل كاستيلو كواحد من أهم المعالم البارزة والمحاطة بالشرفات والمجمعات النصبية الكبرى.",
-        "evidence_quote": "El Castillo also known as the Temple of Kukulkan",
+        "narration": "اتشيد بعد كده معبد كوكولكان المعروف باسم إل كاستيلو كواحد من أهم المعالم البارزة والمحاطة بالشرفات والمجمعات النصبية الكبرى للموقع.",
+        "evidence_quote": "also known as the Temple of Kukulkan",
         "diagram": "layers",
         "labels": [
           "معبد كوكولكان",
@@ -114,8 +114,8 @@
       },
       {
         "label": "المرصد الفلكي",
-        "narration": "يحتوي الموقع على مرصد استثنائي يسمى إل كراكول يتميز بسلمه الحلبي المخصص لمراقبة النجوم والأفلاك السماوية.",
-        "evidence_quote": "the Caracol a circular stellar observatory whose spiral staircase accounts for its name",
+        "narration": "بيحتوي المكان برضه على مرصد استثنائي اسمه إل كراكول بيمتاز بسلمه الحلزوني اللي كان مخصص لمراقبة النجوم والأفلاك السماوية بعناية.",
+        "evidence_quote": "a circular stellar observatory whose spiral staircase accounts for its name",
         "diagram": "cycle",
         "labels": [
           "المرصد الفلكي",
@@ -132,8 +132,8 @@
       },
       {
         "label": "التراجع والانهيار",
-        "narration": "بعد القرن الثالث عشر لم تُبنى آثار كبرى جديدة في الموقع الذي شهد تراجعاً سريعاً بعد حوالي عام ألف وأربعمائة وأربعين ميلادية.",
-        "evidence_quote": "After the 13th century no major monuments seem to have been constructed and the city rapidly declined",
+        "narration": "بعد القرن الثالث عشر ما بقتش تتبني آثار كبرى جديدة في المدينة اللي شهدت تراجع سريع بعد حوالي سنة ألف وأربعمائة وأربعين ميلادية.",
+        "evidence_quote": "After the 13th century no major monuments seem to have been constructed",
         "diagram": "flow",
         "labels": [
           "القرن الثالث عشر",
@@ -150,7 +150,7 @@
       },
       {
         "label": "الحماية والاكتشاف",
-        "narration": "لم تُحفر الأطلال بشكل منظم حتى عام ألف وثمانمنة وواحداً وأربعين ميلادية، لتخضع اليوم لقوانين المعهد الوطني للأنساب والتاريخ.",
+        "narration": "الأطلال دي فضللت مدفونة لحد ما اتخضعت للحفريات المنظمة سنة ألف وثمانمائة وواحداً وأربعين ميلادية لتخضع اليوم لقوانين حماية التراث.",
         "evidence_quote": "The ruins were not excavated until 1841 A.D.",
         "diagram": "flow",
         "labels": [
@@ -168,7 +168,7 @@
       }
     ],
     "cover_text": "شيشين ايتزا تراث المايا",
-    "director_version": "v1.0"
+    "director_version": "v1.1"
   },
   "repair_requested": true,
   "validation_problem": "Draft word budget fails natural-duration preflight: actual 147, required 240-370; no TTS requested"
