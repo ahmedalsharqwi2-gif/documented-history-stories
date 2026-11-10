@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "voice_requested",
+  "phase": "voice_ready",
   "review_only": true,
   "published": false,
   "source_selection": {
@@ -600,5 +600,7 @@
     "visuals_match": true,
     "issues": [],
     "passed": true
-  }
+  },
+  "voice_path": "openmontage-reviews/2026-11-10/narration.wav",
+  "voice_sha256": "e72cb23f0b10731c3d86d12b6bb055c85b5b653ed57ea9b0c53e9972ed1cc442"
 }
