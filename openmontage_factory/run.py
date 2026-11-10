@@ -13,6 +13,8 @@ import re
 import shutil
 import subprocess
 import sys
+import time
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -260,17 +262,72 @@ def subject_query(story):
     return ' '.join(ordered) if len(ordered)>=2 else story['source']['title']
 
 
+@contextmanager
+def conservative_commons(seen):
+    """Rank metadata before downloading ONE image; honor Commons throttling.
+
+    Keep using the registered OpenMontage acquisition tool, but narrow its
+    adapter candidates before its bulk downloader sees them. Restore the
+    adapter methods after this isolated, single-threaded production stage.
+    """
+    from tools.video.stock_sources.wikimedia import WikimediaSource
+    original_search=WikimediaSource.search
+    original_download=WikimediaSource.download
+    cache={};next_download=[0.0]
+
+    def selective_search(source,query,filters):
+        if query not in cache:
+            cache[query]=original_search(source,query,filters)
+        candidates={c.clip_id:c for c in cache[query] if c.clip_id not in seen
+                    and c.extra.get('mime','').startswith(('image/jpeg','image/png','image/tiff','image/webp'))}
+        rows=[{'clip_id':c.clip_id,'width':c.width,'height':c.height,'license':c.license,
+               'source_tags':c.source_tags,'source_url':c.source_url} for c in candidates.values()]
+        return [candidates[row['clip_id']] for row in licensed_picks(rows,query)[:2]]
+
+    def paced_download(source,candidate,out_path):
+        pause=max(0,next_download[0]-time.monotonic())
+        if pause:
+            time.sleep(pause)
+        next_download[0]=time.monotonic()+5
+        try:
+            return original_download(source,candidate,out_path)
+        except requests.HTTPError as exc:
+            if exc.response is not None and exc.response.status_code==429:
+                try:
+                    pause=max(60,float(exc.response.headers.get('Retry-After','60')))
+                except ValueError:
+                    from email.utils import parsedate_to_datetime
+                    try:
+                        pause=max(60,parsedate_to_datetime(exc.response.headers['Retry-After']).timestamp()-time.time())
+                    except (ValueError,KeyError,TypeError):
+                        pause=60
+                next_download[0]=time.monotonic()+pause
+            raise
+
+    WikimediaSource.search=selective_search
+    WikimediaSource.download=paced_download
+    try:
+        yield
+    finally:
+        WikimediaSource.search=original_search
+        WikimediaSource.download=original_download
+
+
 def acquire(registry, story, project):
-    picks=[]; seen=set(); by_scene={}; reports=[]; searches={}
+    seen=set()
+    with conservative_commons(seen):
+        return acquire_scenes(registry,story,project,seen)
+
+
+def acquire_scenes(registry, story, project, seen):
+    picks=[]; by_scene={}; reports=[]
     for i,scene in enumerate(story['scenes']):
         exact_query=scene.get('image_query') or story['source']['title']
-        selected=None
+        selected=None;selected_query=None
         for query in dict.fromkeys([exact_query,subject_query(story),story['source']['title']]):
-            if query not in searches:
-                searches[query]=registry.get('direct_clip_search').execute({'output_dir':str(project/'assets/media'),
-                    'queries':[{'query':query,'kind':'image','slot_id':scene['id']}],
-                    'sources':['wikimedia'],'clips_per_query':20,'timeout_seconds':90})
-            result=searches[query]
+            result=registry.get('direct_clip_search').execute({'output_dir':str(project/'assets/media'),
+                'queries':[{'query':query,'kind':'image','slot_id':scene['id']}],
+                'sources':['wikimedia'],'clips_per_query':1,'timeout_seconds':150})
             reports.append({'query':query,'scene_id':scene['id'],'result':result.__dict__})
             dump(project/'artifacts/acquisition.json',reports)
             if not result.success:
@@ -278,6 +335,7 @@ def acquire(registry, story, project):
             candidates=licensed_picks(result.data.get('clips',[]),query)
             selected=next((p for p in candidates if p['clip_id'] not in seen),None)
             if selected is not None:
+                selected_query=query
                 break
         if selected is None:
             raise ValueError('No distinct high-resolution licensed subject match for scene '+scene['id'])
@@ -287,10 +345,10 @@ def acquire(registry, story, project):
         from PIL import Image, ImageOps
         with Image.open(selected['path']) as original:
             ImageOps.exif_transpose(original).convert('RGB').save(dest,'JPEG',quality=94)
-        selected={**selected,'public_path':dest.name,'scene_id':scene['id'],'search_query':query,
-                  'imagery_scope':'scene detail' if query==exact_query else 'actual site context; not evidence of the exact narrated detail'}
+        selected={**selected,'public_path':dest.name,'scene_id':scene['id'],'search_query':selected_query,
+                  'imagery_scope':'scene detail' if selected_query==exact_query else 'actual site context; not evidence of the exact narrated detail'}
         picks.append(selected);by_scene[scene['id']]=selected
-        print(json.dumps({'media_scene':i+1,'query':query,'imagery_scope':selected['imagery_scope']},ensure_ascii=False),flush=True)
+        print(json.dumps({'media_scene':i+1,'query':selected_query,'imagery_scope':selected['imagery_scope']},ensure_ascii=False),flush=True)
     return picks,by_scene
 
 
