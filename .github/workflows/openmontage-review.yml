@@ -117,3 +117,11 @@ jobs:
           retention-days: 30
           include-hidden-files: true
           if-no-files-found: warn
+      - name: Preserve provider budget and voice cache on failures too
+        if: always() && steps.clock.outputs.run == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .voice_cache
+            state/api_budget.sqlite3
+          key: openmontage-history-${{ github.run_id }}-${{ github.run_attempt }}-provider-state

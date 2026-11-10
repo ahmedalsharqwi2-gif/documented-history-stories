@@ -26,6 +26,13 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def media_executable(name):
+    executable = shutil.which(name)
+    if not executable:
+        raise RuntimeError('Required media executable unavailable: ' + name)
+    return executable
+
+
 def dump(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -211,7 +218,7 @@ def measured_voice(store, story, public, artifacts):
         voice_path=f'openmontage-reviews/{store.day}/narration.wav'
         store.put(voice_path, wav.read_bytes())
         store.update(phase='voice_ready', voice_path=voice_path, voice_sha256=sha(wav))
-    duration = float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',str(wav)]))
+    duration = float(subprocess.check_output([media_executable('ffprobe'),'-v','error','-show_entries','format=duration','-of','csv=p=0',str(wav)]))
     if not 90 < duration < 180:
         raise ValueError(f'Full original Charon duration {duration:.2f}s outside channel policy; no stretching or padding')
     from faster_whisper import WhisperModel
@@ -220,7 +227,7 @@ def measured_voice(store, story, public, artifacts):
         model=WhisperModel(name,device='cpu',compute_type='int8',cpu_threads=2)
         segments,_=model.transcribe(str(wav),language='ar',word_timestamps=True,beam_size=5,vad_filter=False)
         words=[{'text':w.word.strip(),'start':float(w.start),'end':float(w.end)} for s in segments for w in s.words or []]
-        del model
+        model = None  # Release model memory before potentially loading the next ASR model.
         dump(artifacts/f'asr-{name}.json', {'recognized_words':words})
         transcripts.append((name,words))
         try:
@@ -289,7 +296,9 @@ def main():
     timing=measured_voice(store,story,public,project/'artifacts')
     music=Path('assets/music/history_stone_echoes.mp3').resolve()
     shutil.copy(music,public/'music.mp3')
-    font=next(Path('/usr/share/fonts').rglob('NotoKufiArabic-Regular.ttf'))
+    font=next(Path('/usr/share/fonts').rglob('NotoKufiArabic-Regular.ttf'),None)
+    if font is None:
+        raise RuntimeError('Arabic font unavailable; install fonts-noto-core')
     shutil.copy(font,public/'arabic.ttf')
     props={'title':story['title'],'source':story['source'],'duration':timing['duration'],
            'captions':timing['caption_groups'],'scenes':[{**s,'photo':by_scene[s['id']]['public_path'],
@@ -318,9 +327,11 @@ def main():
     dump(project/'artifacts/compose-result.json',result.__dict__)
     if not result.success:raise RuntimeError('OpenMontage compose failed: '+str(result.error))
     movie=project/'renders/sample.mp4'
-    subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(movie),'-f','null','-'],check=True)
-    meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-show_streams','-of','json',str(movie)]))
-    video=next(s for s in meta['streams'] if s['codec_type']=='video')
+    subprocess.run([media_executable('ffmpeg'),'-v','error','-xerror','-i',str(movie),'-f','null','-'],check=True)
+    meta=json.loads(subprocess.check_output([media_executable('ffprobe'),'-v','error','-show_format','-show_streams','-of','json',str(movie)]))
+    video=next((s for s in meta['streams'] if s['codec_type']=='video'),None)
+    if video is None:
+        raise ValueError('Rendered output has no video stream')
     if (video['width'],video['height'])!=(720,1280) or abs(float(meta['format']['duration'])-timing['duration'])>.1:
         raise ValueError('Rendered output does not match the full original narration')
     if not any(s['codec_type']=='audio' for s in meta['streams']):raise ValueError('Audio missing')
@@ -333,10 +344,10 @@ def main():
     output=Path('openmontage-output');output.mkdir(exist_ok=True)
     shutil.copy(movie,output/'sample.mp4')
     shutil.copytree(project/'artifacts',output/'evidence',dirs_exist_ok=True)
-    credits={'source':story['source'],'photos':[{k:p.get(k) for k in ('creator','license','source_url','search_query')} for p in picks],
+    media_credits={'source':story['source'],'photos':[{k:p.get(k) for k in ('creator','license','source_url','search_query')} for p in picks],
              'adaptations':'Animated crops, grading, titles and caption overlays. Attribution retained. CC BY-SA adaptations follow the source license.',
              'voice':'New Charon from this repository credentials','music':'Original owner repository music','publication':'Review only; not submitted to social platforms'}
-    dump(output/'credits.json',credits)
+    dump(output/'credits.json',media_credits)
     media_path=f'openmontage-reviews/{day}/sample.mp4'
     store.put(media_path,movie.read_bytes())
     store.put(f'openmontage-reviews/{day}/credits.json',(output/'credits.json').read_bytes())
