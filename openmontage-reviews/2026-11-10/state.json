@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "voice_ready",
+  "phase": "rendering",
   "review_only": true,
   "published": false,
   "source_selection": {
@@ -602,5 +602,6 @@
     "passed": true
   },
   "voice_path": "openmontage-reviews/2026-11-10/narration.wav",
-  "voice_sha256": "e72cb23f0b10731c3d86d12b6bb055c85b5b653ed57ea9b0c53e9972ed1cc442"
+  "voice_sha256": "e72cb23f0b10731c3d86d12b6bb055c85b5b653ed57ea9b0c53e9972ed1cc442",
+  "canonical_subject": "unesco-site-483"
 }
