@@ -1,0 +1,115 @@
+name: OpenMontage — automatic history review
+
+on:
+  push:
+    branches: [codex/openmontage-auto-review]
+    paths:
+      - 'openmontage_factory/**'
+      - '.github/workflows/openmontage-review.yml'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Review date YYYY-MM-DD; same date resumes retained work'
+        required: false
+        type: string
+  schedule:
+    - cron: '0 6,7 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: professional-daily-history
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY || secrets.GEMINI_API_KEY }}
+      GEMINI_TTS_API_KEY: ${{ secrets.GEMINI_TTS_API_KEY || secrets.GEMINI_API_KEY }}
+      OPENMONTAGE_ROOT: ${{ github.workspace }}/.openmontage
+      HF_HOME: ${{ github.workspace }}/.cache/huggingface
+      SAMPLE_DATE: ${{ inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select the Cairo daily trigger
+        id: clock
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          allowed = os.environ['GITHUB_EVENT_NAME'] != 'schedule' or datetime.now(ZoneInfo('Africa/Cairo')).hour == 9
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write('run=' + str(allowed).lower() + '\n')
+          PY
+      - uses: actions/setup-python@v5
+        if: steps.clock.outputs.run == 'true'
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        if: steps.clock.outputs.run == 'true'
+        with:
+          node-version: '24'
+      - name: Verify repository credentials exist without displaying them
+        if: steps.clock.outputs.run == 'true'
+        run: |
+          python - <<'PY'
+          import os
+          missing = [name for name in ('GEMINI_TEXT_API_KEY','GEMINI_TTS_API_KEY') if not os.environ.get(name)]
+          if missing:
+              raise SystemExit('Missing GitHub Actions secrets: ' + ', '.join(missing))
+          print('Text and original Charon credentials are configured; no values displayed.')
+          PY
+      - name: Install media runtime and pinned OpenMontage
+        if: steps.clock.outputs.run == 'true'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-core libnss3 libgbm1 libasound2t64
+          git init .openmontage
+          git -C .openmontage remote add origin https://github.com/OpenMontageInc/OpenMontage.git
+          git -C .openmontage fetch --depth 1 origin fecb9a1e3cc23ef84de30b272059457a427f16f8
+          git -C .openmontage checkout --detach FETCH_HEAD
+          python -m pip install -r .openmontage/requirements.txt beautifulsoup4 faster-whisper==1.2.1
+          npm ci --prefix .openmontage/remotion-composer --ignore-scripts --no-audit --no-fund
+          cd .openmontage/remotion-composer
+          npx remotion browser ensure
+      - uses: actions/cache@v4
+        if: steps.clock.outputs.run == 'true'
+        with:
+          path: |
+            .cache/huggingface
+            .voice_cache
+            state/api_budget.sqlite3
+          key: openmontage-history-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            openmontage-history-
+      - name: Verify production adapter regressions
+        if: steps.clock.outputs.run == 'true'
+        run: python -m unittest discover -s openmontage_factory/tests -v
+      - name: New source → reviewed script → original Charon → licensed images → OpenMontage render
+        if: steps.clock.outputs.run == 'true'
+        run: |
+          if [ -n "$SAMPLE_DATE" ]; then
+            python -m openmontage_factory.run --date "$SAMPLE_DATE"
+          else
+            python -m openmontage_factory.run
+          fi
+      - name: Retain movie, exact voice and diagnostic evidence
+        if: always() && steps.clock.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: openmontage-history-review-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            openmontage-output/
+            .openmontage/projects/history-*/artifacts/
+            .openmontage/projects/history-*/public/voice.wav
+            .openmontage/projects/history-*/public/voice.source.json
+            .openmontage/projects/history-*/renders/
+          retention-days: 30
+          if-no-files-found: warn
