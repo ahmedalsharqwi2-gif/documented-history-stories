@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "draft_retained",
+  "phase": "review_requested",
   "review_only": true,
   "published": false,
   "source_selection": {
@@ -336,5 +336,261 @@
       "problem": "Draft word budget fails natural-duration preflight: actual 169, required 240-370; no TTS requested",
       "repair_version": 1
     }
-  ]
+  ],
+  "story": {
+    "title": "رحلة في مدينة شيشين ايتزا الأثرية وتاريخ حضارة المايا",
+    "canonical_subject": "unesco-site-483",
+    "hashtags": [
+      "#شيشين_ايتزا",
+      "#تاريخ_المايا",
+      "#التراث_العالمي",
+      "#المكسيك"
+    ],
+    "scenes": [
+      {
+        "label": "الاستكشاف والأصل",
+        "narration": "تأسست هذه المدينة المقدسة خلال الفترة الكلاسيكية بالقرب من تجويفين طبيعيين سمحا للسكان بالوصول للمياه الجوفية الوفيرة في شبه جزيرة يوكاتان وتلبية احتياجاتهم اليومية بشكل مستدام طوال العصور المختلفة لتستمر الحياة في الموقع وتزدهر.",
+        "evidence_quote": "This sacred site was one of the greatest Mayan centres of the Yucatán peninsula.",
+        "diagram": "flow",
+        "labels": [
+          "شيشين ايتزا",
+          "شبه جزيرة يوكاتان",
+          "المياه الجوفية"
+        ],
+        "secondary_object": "river",
+        "interaction": "approach",
+        "shot_type": "place",
+        "hero_object": "temple",
+        "object_motion": "drift",
+        "image_query": "Chichen Itza cenote",
+        "visual_rationale": "Shows the natural sinkhole near the ancient structures to illustrate the water source.",
+        "id": "scene_1",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "flow",
+          "labels": [
+            "شيشين ايتزا",
+            "شبه جزيرة يوكاتان",
+            "المياه الجوفية"
+          ]
+        }
+      },
+      {
+        "label": "المباني الأولى",
+        "narration": "بدأ بناء المعالم الأولى للموقع بين القرنين السادس والعاشر الميلادي وفق طراز المايا المميز الذي انتشر حينها بوضوح في المناطق الشمالية والجنوبية لتلال بوش ليترك لنا أدلة معمارية واضحة على تطور القدرات الهندسية والثقافية مبكراً.",
+        "evidence_quote": "They were constructed between the 6th and the 10th centuries in the characteristic Maya style",
+        "diagram": "layers",
+        "labels": [
+          "الفترة الكلاسيكية",
+          "طراز المايا",
+          "تلال بوش"
+        ],
+        "secondary_object": "scroll",
+        "interaction": "none",
+        "shot_type": "archive",
+        "hero_object": "pyramid",
+        "object_motion": "none",
+        "image_query": "Chichen Itza Nunnery building",
+        "visual_rationale": "Presents early architectural structures built in the classic Maya style.",
+        "id": "scene_2",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "layers",
+          "labels": [
+            "الفترة الكلاسيكية",
+            "طراز المايا",
+            "تلال بوش"
+          ]
+        }
+      },
+      {
+        "label": "وصول التولتيك",
+        "narration": "شهد التاريخ المحلي للموقع تحولاً كبيراً مع هجرة محاربي التولتيك من الهضبة المكسيكية نحو الجنوب خلال القرن العاشر الميلادي مما أدى إلى توسيع النفوذ السياسي والعسكري بشكل ملحوظ وتغيير ملامح الحياة اليومية في المدينة بصورة جذرية.",
+        "evidence_quote": "corresponded to the migration of Toltec warriors",
+        "diagram": "flow",
+        "labels": [
+          "محاربو التولتيك",
+          "الهضبة المكسيكية",
+          "القرن العاشر"
+        ],
+        "secondary_object": "shield",
+        "interaction": "approach",
+        "shot_type": "chronology",
+        "hero_object": "person",
+        "object_motion": "flow",
+        "image_query": "Toltec warriors relief Chichen Itza",
+        "visual_rationale": "Highlights sculptural evidence of the Toltec migration and warrior presence.",
+        "id": "scene_3",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "flow",
+          "labels": [
+            "محاربو التولتيك",
+            "الهضبة المكسيكية",
+            "القرن العاشر"
+          ]
+        }
+      },
+      {
+        "label": "دمج الحضارات",
+        "narration": "أدى دمج تقنيات البناء الخاصة بالمايا مع العناصر المعمارية الجديدة القادمة من وسط المكسيك إلى ظهور طراز فريد يعكس عملية التثاقف الحضاري العميق ويجعل من هذه المعالم شاهداً حياً على تواصل الشعوب وتلاقح ثقافاتها المختلفة بانسجام تام.",
+        "evidence_quote": "construction techniques with new elements from central Mexico",
+        "diagram": "compare",
+        "labels": [
+          "دمج التقنيات",
+          "وسط المكسيك",
+          "التثاقف الحضاري"
+        ],
+        "secondary_object": "document",
+        "interaction": "transfer",
+        "shot_type": "artifact",
+        "hero_object": "temple",
+        "object_motion": "none",
+        "image_query": "El Castillo Chichen Itza architecture",
+        "visual_rationale": "Contrasts architectural elements to show the fusion between Maya and Toltec traditions.",
+        "id": "scene_4",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "compare",
+          "labels": [
+            "دمج التقنيات",
+            "وسط المكسيك",
+            "التثاقف الحضاري"
+          ]
+        }
+      },
+      {
+        "label": "معبد كوكولكان",
+        "narration": "تشيد هذا المعبد الشهير باسم إل كاستيلو ليكون واحداً من أبرز المعالم المعمارية المحاطة بالشرفات الواسعة والمجمعات النصبية الكبرى التي تعبر عن روعة العمارة القديمة وقدرة المهندسين على توثيق المعتقدات الفلكية والدينية ببراعة فائقة.",
+        "evidence_quote": "also known as the Temple of Kukulkan",
+        "diagram": "layers",
+        "labels": [
+          "معبد كوكولكان",
+          "إل كاستيلو",
+          "المجمعات الكبرى"
+        ],
+        "secondary_object": "pyramid",
+        "interaction": "none",
+        "shot_type": "place",
+        "hero_object": "pyramid",
+        "object_motion": "none",
+        "image_query": "Temple of Kukulkan El Castillo",
+        "visual_rationale": "Focuses on the massive step pyramid structure of El Castillo.",
+        "id": "scene_5",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "layers",
+          "labels": [
+            "معبد كوكولكان",
+            "إل كاستيلو",
+            "المجمعات الكبرى"
+          ]
+        }
+      },
+      {
+        "label": "المرصد الفلكي",
+        "narration": "يحتوي الموقع أيضاً على مرصد استثنائي دقيق يعرف باسم إل كراكول يتميز بسلمه الحلزوني الفريد الذي تم تصميمه خصيصاً لمراقبة حركة النجوم والأفلاك بدقة بالغة ومساعدة الكهنة على رصد الظواهر الفلكية المرتبطة بمواسم الزراعة والحصاد.",
+        "evidence_quote": "a circular stellar observatory whose spiral staircase accounts for its name",
+        "diagram": "cycle",
+        "labels": [
+          "المرصد الفلكي",
+          "إل كراكول",
+          "السلم الحلزوني"
+        ],
+        "secondary_object": "sphere",
+        "interaction": "orbit",
+        "shot_type": "artifact",
+        "hero_object": "temple",
+        "object_motion": "spin",
+        "image_query": "El Caracol observatory Chichen Itza",
+        "visual_rationale": "Displays the round observatory tower highlighting its unique circular design.",
+        "id": "scene_6",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "cycle",
+          "labels": [
+            "المرصد الفلكي",
+            "إل كراكول",
+            "السلم الحلزوني"
+          ]
+        }
+      },
+      {
+        "label": "التراجع والانهيار",
+        "narration": "بعد انقضاء القرن الثالث عشر توقفت عمليات تشييد الآثار الكبرى الجديدة في المدينة التي دخلت مرحلة تراجع سريع وحتمي بعد نحو عام ألف وأربعمائة وأربعين ميلادية لتفقد المدينة تدريجياً دورها السياسي والحضاري الهام وتصبح أطلالاً مهجورة.",
+        "evidence_quote": "After the 13th century no major monuments seem to have been constructed",
+        "diagram": "flow",
+        "labels": [
+          "القرن الثالث عشر",
+          "تراجع المدينة",
+          "عام ١٤٤٠"
+        ],
+        "secondary_object": "rock_layers",
+        "interaction": "separate",
+        "shot_type": "chronology",
+        "hero_object": "rock_layers",
+        "object_motion": "drift",
+        "image_query": "Chichen Itza ruins architecture overview",
+        "visual_rationale": "Illustrates the chronological decline and abandonment of the settlement over centuries.",
+        "id": "scene_7",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "flow",
+          "labels": [
+            "القرن الثالث عشر",
+            "تراجع المدينة",
+            "عام ١٤٤٠"
+          ]
+        }
+      },
+      {
+        "label": "الحماية والاكتشاف",
+        "narration": "ظلت هذه الأطلال العريقة مدفونة وسط الغابات لفترات طويلة حتى بدأت الحفريات العلمية المنظمة لأول مرة سنة ألف وثمانمائة وواحداً وأربعين ميلادية لتخضع الآثار اليوم لقوانين صارمة تحمي تراث الإنسانية وتضمن بقاءه للأجيال القادمة.",
+        "evidence_quote": "The ruins were not excavated until 1841 A.D.",
+        "diagram": "flow",
+        "labels": [
+          "حفريات ١٨٤١",
+          "التراث العالمي",
+          "حماية الآثار"
+        ],
+        "secondary_object": "document",
+        "interaction": "transfer",
+        "shot_type": "archive",
+        "hero_object": "document",
+        "object_motion": "none",
+        "image_query": "INAH Mexico archaeological site sign",
+        "visual_rationale": "Shows official preservation notices and historical documents related to the site excavation.",
+        "id": "scene_8",
+        "visual_mode": "hero",
+        "visual": {
+          "kind": "explainer",
+          "kicker": "flow",
+          "labels": [
+            "حفريات ١٨٤١",
+            "التراث العالمي",
+            "حماية الآثار"
+          ]
+        }
+      }
+    ],
+    "cover_text": "شيشين ايتزا تراث المايا",
+    "director_version": "v1.2",
+    "profile": "history",
+    "series": "نقص ونروى",
+    "fiction": false,
+    "documented": true,
+    "topic_key": "remotion-unesco-site-483",
+    "source": {
+      "url": "https://whc.unesco.org/en/list/483/",
+      "title": "Pre-Hispanic City of Chichen-Itza",
+      "publisher": "UNESCO"
+    }
+  }
 }
