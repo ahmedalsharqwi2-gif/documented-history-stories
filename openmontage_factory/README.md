@@ -22,6 +22,8 @@ the same date resumes acknowledged work. A completed date never generates again.
 
 Outputs: the Actions artifact contains MP4, source/ASR/compose evidence and credits;
 the run summary links a downloadable MP4 on the separate review branch. This is
+720×1280 H.264/AAC review delivery with capped video bitrate; the complete
+original speech duration is checked after encoding. This is
 photo-based production: real licensed stills with authored motion and Arabic phrase
 captions, not AI-generated video or newly recorded archival footage. Every scene
 requires its own subject-matched high-resolution image. An over-specific shot

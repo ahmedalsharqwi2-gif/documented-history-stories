@@ -463,6 +463,17 @@ def validate_movie(movie, timing, story, picks, public):
     return report
 
 
+def encode_delivery(movie):
+    """Bound review download size while preserving the entire timeline/audio."""
+    delivery=movie.with_name('review.mp4')
+    subprocess.run([media_executable('ffmpeg'),'-hide_banner','-loglevel','error','-y',
+                    '-i',str(movie),'-c:v','libx264','-preset','fast','-crf','24',
+                    '-maxrate','2M','-bufsize','4M','-pix_fmt','yuv420p',
+                    '-c:a','aac','-b:a','128k','-movflags','+faststart',str(delivery)],
+                   check=True,timeout=1800)
+    return delivery
+
+
 def deliver_review(store, story, picks, project, movie, report):
     day = store.day
     output=Path('openmontage-output');output.mkdir(exist_ok=True)
@@ -496,6 +507,7 @@ def main():
     timing=measured_voice(store,story,public,project/'artifacts')
     manifest,edit,proposal=prepare_composition(story,timing,picks,by_scene,project,public)
     movie=compose_movie(store,story,registry,project,manifest,edit,proposal)
+    movie=encode_delivery(movie)
     report=validate_movie(movie,timing,story,picks,public)
     dump(project/'artifacts/validation.json',report)
     deliver_review(store,story,picks,project,movie,report)
