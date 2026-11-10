@@ -1,5 +1,7 @@
 import unittest
-from openmontage_factory.run import parse_day, licensed_picks
+from types import SimpleNamespace
+from unittest.mock import patch
+from openmontage_factory.run import parse_day, licensed_picks, make_script
 
 
 class ProductionContract(unittest.TestCase):
@@ -15,6 +17,20 @@ class ProductionContract(unittest.TestCase):
         for changes in ({'license':'All rights reserved'},{'height':200},{'source_tags':'Roman temple Italy'}):
             self.assertEqual(licensed_picks([{**base,**changes}],'Pontcysyllte Aqueduct'),[])
         self.assertEqual(licensed_picks([base],''),[])
+
+    def test_uncertain_provider_requests_never_generate_again(self):
+        for data in ({'phase':'author_requested'}, {'phase':'review_requested'},
+                     {'phase':'editorial_rejected','editorial_review':{'passed':False}}):
+            with patch('remotion_factory.author.ask_once') as provider:
+                with self.assertRaises((ValueError, RuntimeError)):
+                    make_script(SimpleNamespace(data=data))
+                provider.assert_not_called()
+
+    def test_acknowledged_script_resumes_without_writing_again(self):
+        story={'title':'retained original'}
+        with patch('remotion_factory.author.ask_once') as provider:
+            self.assertIs(make_script(SimpleNamespace(data={'editorial_review':{'passed':True},'story':story})),story)
+            provider.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()
