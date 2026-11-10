@@ -169,5 +169,7 @@
     ],
     "cover_text": "شيشين ايتزا تراث المايا",
     "director_version": "v1.0"
-  }
+  },
+  "repair_requested": true,
+  "validation_problem": "Draft word budget fails natural-duration preflight: actual 147, required 240-370; no TTS requested"
 }
