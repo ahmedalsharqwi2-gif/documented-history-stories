@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "script_ready",
+  "phase": "voice_requested",
   "review_only": true,
   "published": false,
   "source_selection": {
