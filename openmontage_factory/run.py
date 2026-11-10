@@ -116,6 +116,8 @@ def make_script(store):
     data = store.data
     if data.get('editorial_review', {}).get('passed'):
         return data['story']
+    if data.get('editorial_review'):
+        raise ValueError('Original independent review rejected the retained draft; no repeated review or TTS')
     if data.get('phase') in ('author_requested', 'review_requested'):
         raise RuntimeError('Unacknowledged prior provider request retained; no blind repeat')
     if not data.get('draft'):
@@ -226,12 +228,14 @@ def measured_voice(store, story, public, artifacts):
 
 
 def acquire(registry, story, project):
-    picks=[]; seen=set(); by_scene={}; reports=[]
+    picks=[]; seen=set(); by_scene={}; reports=[]; searches={}
     for i,scene in enumerate(story['scenes']):
         query=scene.get('image_query') or story['source']['title']
-        result=registry.get('direct_clip_search').execute({'output_dir':str(project/f'assets/search-{i}'),
-            'queries':[{'query':query,'kind':'image','slot_id':scene['id']}],
-            'sources':['wikimedia'],'clips_per_query':3,'timeout_seconds':55})
+        if query not in searches:
+            searches[query]=registry.get('direct_clip_search').execute({'output_dir':str(project/'assets/media'),
+                'queries':[{'query':query,'kind':'image','slot_id':scene['id']}],
+                'sources':['wikimedia'],'clips_per_query':20,'timeout_seconds':90})
+        result=searches[query]
         reports.append({'query':query,'result':result.__dict__})
         dump(project/'artifacts/acquisition.json',reports)
         if not result.success:
@@ -271,8 +275,8 @@ def main():
     dump(project/'artifacts/preflight.json',registry.provider_menu_summary())
     story=make_script(store)
     dump(project/'artifacts/story.json',story)
-    timing=measured_voice(store,story,public,project/'artifacts')
     picks,by_scene=acquire(registry,story,project)
+    timing=measured_voice(store,story,public,project/'artifacts')
     music=Path('assets/music/history_stone_echoes.mp3').resolve()
     shutil.copy(music,public/'music.mp3')
     font=next(Path('/usr/share/fonts').rglob('NotoKufiArabic-Regular.ttf'))
