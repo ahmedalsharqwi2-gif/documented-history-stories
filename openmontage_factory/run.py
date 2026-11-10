@@ -104,7 +104,8 @@ def parse_day(value):
 def licensed_picks(result, query):
     from remotion_factory.visual_assets import tokens
     needed = tokens(query)
-    allowed = {'Public domain', 'CC0', 'CC BY-SA 4.0', 'CC BY-SA 3.0', 'CC BY 4.0', 'CC BY 3.0'}
+    allowed = {'Public domain', 'CC0', 'CC BY-SA 4.0', 'CC BY-SA 3.0', 'CC BY-SA 2.0',
+               'CC BY 4.0', 'CC BY 3.0', 'CC BY 2.0'}
     picks = []
     for item in result:
         w, h = item.get('width', 0), item.get('height', 0)
@@ -112,7 +113,8 @@ def licensed_picks(result, query):
         if (item.get('license') in allowed and min(w, h) >= 620 and w*h >= 700000
                 and len(matches) >= min(2, len(needed)) and needed):
             picks.append(item)
-    return sorted(picks, key=lambda x: x['width']*x['height'], reverse=True)
+    return sorted(picks, key=lambda x: (len(needed & tokens(x.get('source_tags','')+' '+x.get('source_url',''))),
+                                       x['width']*x['height']), reverse=True)
 
 
 def make_script(store):
@@ -280,7 +282,11 @@ def acquire(registry, story, project):
         if selected is None:
             raise ValueError('No distinct high-resolution licensed subject match for scene '+scene['id'])
         seen.add(selected['clip_id']); dest=project/'public'/f'scene-{i}.jpg'
-        shutil.copyfile(selected['path'],dest)
+        # Commons archives contain TIFFs as well as JPEGs. Decode the actual
+        # image and produce a browser-readable JPEG; never just rename bytes.
+        from PIL import Image, ImageOps
+        with Image.open(selected['path']) as original:
+            ImageOps.exif_transpose(original).convert('RGB').save(dest,'JPEG',quality=94)
         selected={**selected,'public_path':dest.name,'scene_id':scene['id'],'search_query':query,
                   'imagery_scope':'scene detail' if query==exact_query else 'actual site context; not evidence of the exact narrated detail'}
         picks.append(selected);by_scene[scene['id']]=selected

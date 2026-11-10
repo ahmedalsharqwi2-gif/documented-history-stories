@@ -22,6 +22,9 @@ class ProductionContract(unittest.TestCase):
         for changes in ({'license':'All rights reserved'},{'height':200},{'source_tags':'Roman temple Italy'}):
             self.assertEqual(licensed_picks([{**base,**changes}],'Pontcysyllte Aqueduct'),[])
         self.assertEqual(licensed_picks([base],''),[])
+        specific={**base,'source_tags':'Chichen Itza Nunnery building','width':1200,'height':1000}
+        generic={**base,'source_tags':'Chichen Itza Governor visit','width':4000,'height':3000}
+        self.assertIs(licensed_picks([generic,specific],'Chichen Itza Nunnery building')[0],specific)
 
     def test_uncertain_provider_requests_never_generate_again(self):
         for data in ({'phase':'author_requested'}, {'phase':'review_requested'}, {'phase':'length_repair_requested'},
