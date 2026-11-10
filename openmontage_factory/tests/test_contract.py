@@ -1,10 +1,41 @@
 import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
-from openmontage_factory.run import parse_day, licensed_picks, make_script, subject_query
+from openmontage_factory.run import parse_day, licensed_picks, make_script, subject_query, conservative_commons
 
 
 class ProductionContract(unittest.TestCase):
+    def test_metadata_selection_avoids_bulk_downloads_and_restores_adapter(self):
+        candidate=lambda ident:SimpleNamespace(clip_id=ident,width=1600,height=1200,license='CC BY 4.0',
+            source_tags='Chichen Itza',source_url='https://commons.wikimedia.org/example',extra={'mime':'image/jpeg'})
+        class Source:
+            def search(self,query,filters):return [candidate(str(i)) for i in range(20)]
+            def download(self,item,path):return path
+        old_search,old_download=Source.search,Source.download
+        seen=set()
+        with patch('openmontage_factory.run.time.monotonic',return_value=0),patch('openmontage_factory.run.time.sleep') as sleep:
+            with conservative_commons(seen,Source):
+                source=Source();rows=source.search('Chichen Itza',None)
+                self.assertEqual(len(rows),2)
+                source.download(rows[0],'one');seen.add(rows[0].clip_id)
+                rows2=source.search('Chichen Itza',None)
+                self.assertNotEqual(rows2[0].clip_id,rows[0].clip_id)
+                source.download(rows2[0],'two');sleep.assert_called_once_with(5)
+        self.assertIs(Source.search,old_search);self.assertIs(Source.download,old_download)
+
+    def test_provider_retry_after_is_honored_before_next_download(self):
+        import requests
+        class Source:
+            def search(self,query,filters):return []
+            def download(self,item,path):
+                response=requests.Response();response.status_code=429;response.headers['Retry-After']='120'
+                raise requests.HTTPError(response=response)
+        with patch('openmontage_factory.run.time.monotonic',return_value=0),patch('openmontage_factory.run.time.sleep') as sleep:
+            with conservative_commons(set(),Source):
+                for _ in range(2):
+                    with self.assertRaises(requests.HTTPError):Source().download(None,'test')
+                sleep.assert_called_once_with(120)
+
     def test_subject_query_keeps_the_actual_place_not_generic_shot_words(self):
         story={'source':{'title':'Pre-Hispanic City of Chichen-Itza'},'scenes':[
             {'image_query':'Chichen Itza cenote'}, {'image_query':'Chichen Itza Nunnery building'},
