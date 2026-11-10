@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-11-10",
-  "phase": "review_requested",
+  "phase": "script_ready",
   "review_only": true,
   "published": false,
   "source_selection": {
@@ -592,5 +592,13 @@
       "title": "Pre-Hispanic City of Chichen-Itza",
       "publisher": "UNESCO"
     }
+  },
+  "editorial_review": {
+    "supported": true,
+    "engaging": true,
+    "novel": true,
+    "visuals_match": true,
+    "issues": [],
+    "passed": true
   }
 }
