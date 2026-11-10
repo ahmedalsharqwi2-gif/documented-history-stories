@@ -24,7 +24,12 @@ Outputs: the Actions artifact contains MP4, source/ASR/compose evidence and cred
 the run summary links a downloadable MP4 on the separate review branch. This is
 photo-based production: real licensed stills with authored motion and Arabic phrase
 captions, not AI-generated video or newly recorded archival footage. Every scene
-requires its own subject-matched high-resolution image. Missing source support,
+requires its own subject-matched high-resolution image. An over-specific shot
+query can broaden to the actual named site; this is recorded as site context,
+not claimed as evidence of the exact narrated detail. Subject-match count is
+ranked before resolution. Original TIFF photographs are decoded and converted
+to JPEG, rather than being renamed and left unreadable by the browser.
+Missing source support,
 failed independent review, missing media, or insufficient measured speech stops
 the run. Automated checks do not establish human creative acceptance.
 

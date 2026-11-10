@@ -370,7 +370,7 @@ def main():
     output=Path('openmontage-output');output.mkdir(exist_ok=True)
     shutil.copy(movie,output/'sample.mp4')
     shutil.copytree(project/'artifacts',output/'evidence',dirs_exist_ok=True)
-    media_credits={'source':story['source'],'photos':[{k:p.get(k) for k in ('creator','license','source_url','search_query')} for p in picks],
+    media_credits={'source':story['source'],'photos':[{k:p.get(k) for k in ('creator','license','source_url','search_query','imagery_scope')} for p in picks],
              'adaptations':'Animated crops, grading, titles and caption overlays. Attribution retained. CC BY-SA adaptations follow the source license.',
              'voice':'New Charon from this repository credentials','music':'Original owner repository music','publication':'Review only; not submitted to social platforms'}
     dump(output/'credits.json',media_credits)
