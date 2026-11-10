@@ -1,0 +1,69 @@
+{
+  "source": {
+    "url": "https://whc.unesco.org/en/list/483/",
+    "title": "Pre-Hispanic City of Chichen-Itza",
+    "publisher": "UNESCO"
+  },
+  "photos": [
+    {
+      "creator": "Gary Todd",
+      "license": "CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Offering_from_Sacred_Cenote_of_Chichen_Itza.jpg",
+      "search_query": "Chichen Itza cenote",
+      "imagery_scope": "scene detail"
+    },
+    {
+      "creator": "edenpictures",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Building_With_Chaac_Masks_-_Chichen_Itza_2024.jpg",
+      "search_query": "Chichen Itza Nunnery building",
+      "imagery_scope": "scene detail"
+    },
+    {
+      "creator": "Jim G from Silicon Valley, CA, USA",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Can8602_43,_Chichen_Itza,_Maya_Ruins,_Yucatan_Peninsula,_Mexico_(5801467175).jpg",
+      "search_query": "Toltec warriors relief Chichen Itza",
+      "imagery_scope": "scene detail"
+    },
+    {
+      "creator": "Arian Zwegers from Brussels, Belgium",
+      "license": "CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chichen_Itza,_El_Castillo_(14180679857).jpg",
+      "search_query": "El Castillo Chichen Itza architecture",
+      "imagery_scope": "scene detail"
+    },
+    {
+      "creator": "Mariordo (Mario Roberto Duran Ortiz)",
+      "license": "CC BY-SA 3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chichen_Itza_03_2011_top_of_Kukulkan_Temple_(El_Castillo)_1404.jpg",
+      "search_query": "Temple of Kukulkan El Castillo",
+      "imagery_scope": "scene detail"
+    },
+    {
+      "creator": "Dennis G. Jarvis",
+      "license": "CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Mexico_-_Observatory_or_Caracol_at_Chichen_Itza,_2010.jpg",
+      "search_query": "El Caracol observatory Chichen Itza",
+      "imagery_scope": "scene detail"
+    },
+    {
+      "creator": "Daniel Schwen",
+      "license": "CC BY-SA 4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chichen_Itza_1.jpg",
+      "search_query": "Chichen Itza",
+      "imagery_scope": "actual site context; not evidence of the exact narrated detail"
+    },
+    {
+      "creator": "Nosferattus",
+      "license": "CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Tulum_Archaeological_Zone_Mexico_02.jpg",
+      "search_query": "INAH Mexico archaeological site sign",
+      "imagery_scope": "scene detail"
+    }
+  ],
+  "adaptations": "Animated crops, grading, titles and caption overlays. Attribution retained. CC BY-SA adaptations follow the source license.",
+  "voice": "New Charon from this repository credentials",
+  "music": "Original owner repository music",
+  "publication": "Review only; not submitted to social platforms"
+}
