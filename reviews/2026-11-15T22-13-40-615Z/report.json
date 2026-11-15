@@ -1,0 +1,28 @@
+{
+  "id": "2026-11-15T22-13-40-615Z",
+  "mode": "review",
+  "published": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.074
+    },
+    {
+      "name": "topics",
+      "status": "pass",
+      "seconds": 2.366
+    },
+    {
+      "name": "script",
+      "status": "pass",
+      "seconds": 528.977
+    }
+  ],
+  "status": "failed",
+  "limitations": [
+    "Visual semantics, pronunciation, watermark absence and copyright require human review; metrics are not proof."
+  ],
+  "failedStage": "voice",
+  "errorCode": "PROVIDER_HTTP_429"
+}

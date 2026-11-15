@@ -1,0 +1,179 @@
+{
+  "topicKey": "riparo-mochi-ice-age-re-dating",
+  "title": "أسرار كهف ريبارو موتشي في عصر الجليد",
+  "hook": "هل تتخيل إن شوية أدوات حجرية وقواقع بحرية في كهف إيطالي قديم، ممكن تقلب حسابات تاريخ الهجرة البشرية في عصر الجليد وترجع الزمن لورا آلاف السنين؟",
+  "cta": "تابعونا عشان تكتشفوا أسرار جديدة وتعرفوا إزاي الاكتشافات الأثرية البسيطة بتعيد كتابة تاريخ البشر، وشاركونا رأيكم في التعليقات عن رحلات الهجرة المدهشة دي عبر العصور القديمة!",
+  "scenes": [
+    {
+      "title": "لغز ريبارو موتشي الصخري",
+      "text": "هل تتخيل إن شوية أدوات حجرية وقواقع بحرية في كهف إيطالي قديم، ممكن تقلب حسابات تاريخ الهجرة البشرية في عصر الجليد وترجع الزمن لورا آلاف السنين؟",
+      "summary": "اكتشافات تعيد تاريخ الهجرة في العصر الجليدي",
+      "keyword": "مأوى ريبارو موتشي",
+      "template": "phenomenon",
+      "labels": [
+        "عصر الجليد",
+        "آثار إيطاليا",
+        "تاريخ الهجرة"
+      ],
+      "values": [],
+      "claim": "أدوات وقواقع بمأوى ريبارو موتشي تعيد تأريخ الوجود البشري في إيطاليا",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "Radiocarbon dating shows that the shells are between 30,000 and 30,800 years old, pushing back the timeline for Noaillian presence in northern Italy by some 2,000 to 3,000 years.",
+      "kind": "fact",
+      "expression": 1,
+      "action": "point"
+    },
+    {
+      "title": "هجرة مبكرة من إسبانيا",
+      "text": "باحثين في مأوى ريبارو موتشي الصخري قرب حدود فرنسا وإيطاليا، لقوا أدلة جديدة بتوضح إن صيادين وجامعي ثمار جايين من إسبانيا دخلوا أراضي إيطاليا في وقت أبكر بكتير من تقديراتنا القديمة.",
+      "summary": "دخول مبكر للصيادين وجامعي الثمار إلى إيطاليا",
+      "keyword": "هجرة الصيادين",
+      "template": "journey",
+      "labels": [
+        "إسبانيا",
+        "إيطاليا",
+        "صيادون"
+      ],
+      "values": [],
+      "claim": "الصيادون جامعو الثمار دخلوا إيطاليا من إسبانيا في وقت أبكر مما كان معتقداً",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "new investigations at Riparo Mochi, a rock shelter near the border of France and Italy, suggests that hunter-gatherers from Spain entered Italy earlier than previously thought.",
+      "kind": "fact",
+      "expression": 0,
+      "action": "walk"
+    },
+    {
+      "title": "آلاف القطع وموقد سليم",
+      "text": "الفريق اللي قاده الباحث فابيو سانتانيلو من جامعة ترينتو استخرج أكتر من سبع آلاف وخمسمية قطعة أثرية، كان من ضمنها موقد نار سليم تماماً ومتحاوط بمجموعة مميزة من القواقع البحرية المتجمعة حواليه.",
+      "summary": "استخراج آلاف القطع الأثرية وموقد نار سليم",
+      "keyword": "موقد نار قديم",
+      "template": "steps",
+      "labels": [
+        "فابيو سانتانيلو",
+        "قطع أثرية",
+        "موقد نار"
+      ],
+      "values": [],
+      "claim": "حفريات جديدة كشفت عن أكثر من 7500 قطعة أثرية وموقد نار سليم",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "A recent excavation at the rock shelter conducted by Fabio Santaniello of the University of Trento and his colleagues uncovered more than 7,500 artifacts, including an intact hearth surrounded by marine shells, Noailles burins, and other tools.",
+      "kind": "fact",
+      "expression": 2,
+      "action": "turn"
+    },
+    {
+      "title": "لغز أزاميل نوايل الحجرية",
+      "text": "الموقع كان مشهور زمان بأدوات حجرية مدببة اسمها أزاميل نوايل، والعلماء كانوا فاكرين إن الناس استخدموها بس عشان ينقشوا ويحفروا حزوز في العظام وقرون الحيوانات القوية والصلبة.",
+      "summary": "الاعتقاد التقليدي حول استخدام أزاميل نوايل",
+      "keyword": "أزاميل نوايل",
+      "template": "comparison",
+      "labels": [
+        "أزاميل نوايل",
+        "أدوات حجرية",
+        "حفر العظام"
+      ],
+      "values": [],
+      "claim": "كان يعتقد سابقاً أن أزاميل نوايل تستخدم فقط للحفر والنقش في العظام والقرون",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "Previous excavation of the site uncovered a type of pointed stone tool known as a Noailles burin, thought to have been used to engrave or carve grooves in hard materials such as bone and antler by the people of the Noailles culture.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "point"
+    },
+    {
+      "title": "حقيقة استخدام الأزاميل الحجرية",
+      "text": "بس الفحص المجهري الدقيق للأزاميل دي أظهر مفاجأة غريبة، السنون الحادة مفيهاش أي علامات تآكل، بينما الحواف الجانبية هي اللي كانت متآكلة ومستهلكة جداً نتيجة تقطيع جلود ولحوم الفرائس.",
+      "summary": "الفحص المجهري يكشف استخدام الأطراف لتقطيع اللحوم",
+      "keyword": "فحص مجهري",
+      "template": "phenomenon",
+      "labels": [
+        "فحص مجهري",
+        "تقطيع اللحوم",
+        "جلود الفرائس"
+      ],
+      "values": [],
+      "claim": "التحليل المجهري كشف تآكل جوانب أزاميل نوايل لتقطيع الجلود واللحوم لا أطرافها",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "Microscopic analysis of these Noailles burins found no signs of wear on the sharp tips, but revealed such marks on the sides. These edges are thought to have been used to cut animal skin and meat.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "turn"
+    },
+    {
+      "title": "الكربون المشع يعيد التاريخ",
+      "text": "تحليل الكربون المشع للقواقع البحرية كشف إن عمرها بيتراوح بين ثلاثين ألف وثلاثين ألف وثمانمية سنة، وده رجّع تاريخ وجود ثقافة نوايل في شمال إيطاليا بين ألفين وتلات آلاف سنة لورا.",
+      "summary": "تأريخ القواقع يرجع ثقافة نوايل آلاف السنين",
+      "keyword": "تأريخ إشعاعي",
+      "template": "chart",
+      "labels": [
+        "كربون مشع",
+        "قواقع بحرية",
+        "شمال إيطاليا"
+      ],
+      "values": [],
+      "claim": "الكربون المشع للقواقع أرجع وجود ثقافة نوايل في شمال إيطاليا بين ألفين وثلاثة آلاف عام",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "Radiocarbon dating shows that the shells are between 30,000 and 30,800 years old, pushing back the timeline for Noaillian presence in northern Italy by some 2,000 to 3,000 years.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "point"
+    },
+    {
+      "title": "تأثير البرد وموجات الهجرة",
+      "text": "التاريخ الجديد ده بيتماشى تماماً مع التواريخ المسجلة لنفس الثقافة في جنوب إيطاليا، وبيوضح إزاي المناخ الأوروبي اللي بقى بارد وجاف دفع البشر وقتها للهجرة شرقاً ناحية أماكن أكتر اعتدالاً ودفئاً.",
+      "summary": "المناخ البارد دفع الهجرات البشرية نحو الشرق",
+      "keyword": "مناخ بارد",
+      "template": "cause",
+      "labels": [
+        "جنوب إيطاليا",
+        "مناخ جاف",
+        "هجرة شرقية"
+      ],
+      "values": [],
+      "claim": "المناخ البارد والجاف في أوروبا دفع الهجرات البشرية شرقاً نحو طقس أكثر اعتدالاً",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "At about this time, Europe’s climate became cold and dry, and likely pushed human migration eastward, toward milder climates, the researchers suggest. The new information also brings radiocarbon dates for Noaillian culture in southern Italy, between 31,000 and 30,000 years ago, into line.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "walk"
+    },
+    {
+      "title": "أدوات متطورة لتقطيع الخشب",
+      "text": "الحفريات كشفت كمان شفرات كانت بتتركب في مقابض خشبية، ومعاها مكاشط وأوتاد حجرية استعملها الإنسان القديم بمهارة فائقة علشان يشكل مقابض الخشب القوية ويفلق بيها عظام صيده بدقة.",
+      "summary": "شفرات ومكاشط لتشكيل الخشب وفلق العظام",
+      "keyword": "شفرات ومكاشط",
+      "template": "steps",
+      "labels": [
+        "شفرات خشبية",
+        "مكاشط",
+        "فلق العظام"
+      ],
+      "values": [],
+      "claim": "تم العثور على شفرات بمقابض ومكاشط وأوتاد لتشكيل الخشب وشق العظام",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "Additional artifacts uncovered in the rock shelter include blades that had been fitted onto shafts, and scrapers and wedges used to shape wooden shafts and split bone.",
+      "kind": "fact",
+      "expression": 11,
+      "action": "turn"
+    },
+    {
+      "title": "اكتشفوا التاريخ معنا",
+      "text": "تابعونا عشان تكتشفوا أسرار جديدة وتعرفوا إزاي الاكتشافات الأثرية البسيطة بتعيد كتابة تاريخ البشر، وشاركونا رأيكم في التعليقات عن رحلات الهجرة المدهشة دي عبر العصور القديمة!",
+      "summary": "متابعة لاستكشاف أسرار تاريخ الهجرة القديمة",
+      "keyword": "متابعة الاكتشافات",
+      "template": "journey",
+      "labels": [
+        "اكتشافات أثرية",
+        "تاريخ البشرية",
+        "متابعة"
+      ],
+      "values": [],
+      "claim": "الأبحاث الأثرية الحديثة تواصل إعادة كتابة تاريخ استيطان العصر الجليدي",
+      "sourceId": "60c77c8cdc93",
+      "evidence": "Scientists Re-Date Ice Age Camp in Northern Italy",
+      "kind": "fact",
+      "expression": 0,
+      "action": "jump"
+    }
+  ]
+}
