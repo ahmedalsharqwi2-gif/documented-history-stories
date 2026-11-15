@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "path": "brand/logo/logo.jpg",
+  "sha256": "3641e6a62fa3efc6c266d230832c1a5987bdc700522d17c938c03845de4efd5a",
+  "bytes": 131986,
+  "width": 1254,
+  "height": 1254,
+  "badgeBackground": "#011435",
+  "source": "Owner supplied logos.zip / documented-history-stories.jpg",
+  "altered": false
+}
