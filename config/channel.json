@@ -1,0 +1,18 @@
+{
+  "profile": "history",
+  "name": "نقص ونروي",
+  "accent": "#edc37a",
+  "counter": "الحكاية",
+  "maxAgeHours": 720,
+  "feeds": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "official": true
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "official": false
+    }
+  ],
+  "logo": ""
+}

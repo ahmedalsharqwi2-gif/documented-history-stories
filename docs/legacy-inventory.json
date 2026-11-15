@@ -1,0 +1,106 @@
+{
+  "files": 654,
+  "python_syntax_errors": [],
+  "workflows": [
+    ".github/workflows/arabic_guard.yml",
+    ".github/workflows/replace-noon-once.yml",
+    ".github/workflows/checks.yml",
+    ".github/workflows/remotion-cleanup.yml",
+    ".github/workflows/remotion-health.yml",
+    ".github/workflows/remotion-daily.yml",
+    ".github/workflows/validation.yml"
+  ],
+  "network_publish_modules": [
+    "remotion_factory/publish.py",
+    "scripts/publish_youtube_direct.py",
+    "scripts/publish_buffer.py",
+    "scripts/reschedule_existing.py",
+    "professional_motion/correct_daily_history.py",
+    "film_factory/buffer.py",
+    "film_factory/publish.py"
+  ],
+  "secret_names": [
+    "BUFFER_API_KEY",
+    "GEMINI_API_KEY",
+    "GEMINI_TEXT_API_KEY",
+    "GEMINI_TTS_API_KEY"
+  ],
+  "main_sha": "ef22365c13afeb5037bff59dcdfe83546686cb69",
+  "preserved": [
+    {
+      "path": "config/channel_identity.json",
+      "sha256": "96714503c45a5854b2c095be4261b4e1af1ab150b7a37250e2553d4c7a1aa31a",
+      "bytes": 554
+    },
+    {
+      "path": "config/arabic_pronunciation.json",
+      "sha256": "0d86385ab789e20a6189ccc86119aeb2d0303e13d9b97b63703e562a6c1bf8fe",
+      "bytes": 1224
+    },
+    {
+      "path": "state/topic_history.json",
+      "sha256": "3e5a8816524703e6b459e7301b51134d486e41946236a9df3d53f35b7269c18e",
+      "bytes": 22445
+    },
+    {
+      "path": "professional_motion/branding.json",
+      "sha256": "6e065a88d78aa8cabfdffbb3510525ce6fc07fc44b0095176a6531aff3359c4a",
+      "bytes": 334
+    },
+    {
+      "path": "history_visual/assets/Noto-Fonts-Copyright.txt",
+      "sha256": "075f91382875da1c4b491f1facf2586f55448705133264d98ce15cab6211b125",
+      "bytes": 5208
+    },
+    {
+      "path": "history_visual/assets/NotoSansArabic-Bold.ttf",
+      "sha256": "ded6fc7359ca36d15d7aab9ef0c066e21ce48b26a069994d6602fa2cb9a1b952",
+      "bytes": 252940
+    },
+    {
+      "path": "history_visual/assets/NotoSansArabic-Regular.ttf",
+      "sha256": "504d7407d86875acf7d04dfaa0fd7524d0b8797723bc4aa18022f29db25b0b6e",
+      "bytes": 244072
+    },
+    {
+      "path": "archive/legacy-islamic/topic_history_legacy.json",
+      "sha256": "84bb2cf60838738e89e5e5b7ae9372cace950af3fca9adba0f5bde4120012aa4",
+      "bytes": 17736
+    },
+    {
+      "path": "photo_motion/assets/Noto-Fonts-Copyright.txt",
+      "sha256": "075f91382875da1c4b491f1facf2586f55448705133264d98ce15cab6211b125",
+      "bytes": 5208
+    },
+    {
+      "path": "photo_motion/assets/NotoSansArabic-Bold.ttf",
+      "sha256": "ded6fc7359ca36d15d7aab9ef0c066e21ce48b26a069994d6602fa2cb9a1b952",
+      "bytes": 252940
+    },
+    {
+      "path": "photo_motion/assets/NotoSansArabic-Regular.ttf",
+      "sha256": "504d7407d86875acf7d04dfaa0fd7524d0b8797723bc4aa18022f29db25b0b6e",
+      "bytes": 244072
+    },
+    {
+      "path": "professional_motion/fonts/OFL-IBM-Plex.txt",
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "bytes": 4456
+    },
+    {
+      "path": "professional_motion/fonts/Noto-Fonts-Copyright.txt",
+      "sha256": "075f91382875da1c4b491f1facf2586f55448705133264d98ce15cab6211b125",
+      "bytes": 5208
+    },
+    {
+      "path": "professional_motion/fonts/NotoSansArabic-Bold.ttf",
+      "sha256": "ded6fc7359ca36d15d7aab9ef0c066e21ce48b26a069994d6602fa2cb9a1b952",
+      "bytes": 252940
+    },
+    {
+      "path": "professional_motion/fonts/IBMPlexMono-Medium.ttf",
+      "sha256": "a9b4c49bb299e05b5f6c481e7fb5e78943d2793249a0c8874ab574a2d1ea6755",
+      "bytes": 136704
+    }
+  ]
+}
