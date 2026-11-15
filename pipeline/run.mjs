@@ -52,7 +52,7 @@ export async function review({mode='review',scheduled=false,topicReservationPath
   await checkpoint();
   if(mode==='review'&&lock&&process.env.RENDER_PARTIAL!=='false'){
    try{const partialOut=path.join(out,'incomplete');await mkdir(partialOut,{recursive:true});const partialProps=episode?{...episode,scenes:episode.scenes.map(s=>({...s,duration:96/episode.scenes.length,words:[]})),durationInFrames:2880,incomplete:true}:null;
-    if(partialProps)await layoutQA(partialProps,partialOut);const result=await partialReview(partialOut,config,{episode,reason:report.errorCode});report.partial={status:'rendered',path:result.file,incomplete:true};
+    const result=await partialReview(partialOut,config,{episode,reason:report.errorCode});report.partial={status:'rendered',path:result.file,incomplete:true};
    }catch(partialError){report.partial={status:'failed',code:/^[A-Z_]{3,100}$/.test(partialError.message)?partialError.message:'PARTIAL_RENDER_FAILED'};}
   }
   await checkpoint();throw Error(`${stageName}: ${report.errorCode}`);

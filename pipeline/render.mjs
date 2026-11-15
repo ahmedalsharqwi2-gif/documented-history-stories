@@ -1,6 +1,6 @@
 import path from 'node:path';import {mkdir,writeFile} from 'node:fs/promises';
 import {bundle} from '@remotion/bundler';import {selectComposition,renderMedia,renderStill} from '@remotion/renderer';
-import {run,save,probe} from './io.mjs';import {verifyBrand} from './brand.mjs';
+import {run,save,probe} from './io.mjs';import {verifyBrand} from './brand.mjs';import {layoutQA} from './layout-qa.mjs';
 export async function renderEpisode(props,out,{filename='review.mp4'}={}){
  await mkdir(out,{recursive:true});await verifyBrand();
  const serveUrl=await bundle({entryPoint:path.resolve('src/index.tsx'),publicDir:path.resolve('public')});
@@ -27,7 +27,7 @@ export async function partialReview(out,config,{episode,reason='PROVIDER_UNAVAIL
  const actual=episode?.scenes?.length?episode.scenes:safeScenes;
  const scenes=actual.map(s=>({...s,duration:96/actual.length,words:[],background:undefined}));
  const props={title:episode?.title||config.name+' — معاينة بصرية',editorialLabel:episode?.editorialLabel||null,scenes,durationInFrames:2880,preview:true,incomplete:true};
- await save(path.resolve(out,'visual-preview-props.json'),props);const result=await renderEpisode(props,out,{filename:'visual-preview-incomplete.mp4'});const qa=await visualQA(out,'visual-preview-incomplete.mp4',{incomplete:true});
+ await save(path.resolve(out,'visual-preview-props.json'),props);await layoutQA(props,out);const result=await renderEpisode(props,out,{filename:'visual-preview-incomplete.mp4'});const qa=await visualQA(out,'visual-preview-incomplete.mp4',{incomplete:true});
  await save(path.resolve(out,'INCOMPLETE.json'),{incomplete:true,published:false,reason,narration:false,wordAlignment:false,storySource:episode?'actual authored script from failed review attempt':'original template demonstration, not an editorial episode',qa});
  await writeFile(path.join(out,'README-INCOMPLETE.md'),'# معاينة بصرية غير مكتملة\n\nفيديو بدون صوت أو محاذاة كلمات، ولا يُعد حلقة جاهزة للنشر. سبب تعذر المراجعة الكاملة: `'+reason+'`. الشعار من الملف الأصلي ببصمته المسجّلة.\n');return {...result,incomplete:true};
 }

@@ -45,7 +45,7 @@ export class GeminiClient{
    try{const response=await this.fetcher('https://generativelanguage.googleapis.com/v1beta/models?pageSize=1000',{redirect:'error',signal:controller.signal,headers:{'x-goog-api-key':key}});
     if(response.status===401||response.status===403)throw new GeminiError('GEMINI_AUTHORIZATION_FAILED',this.events);
     if(response.ok){const data=await response.json();const allowed=(data.models||[]).filter(m=>m.supportedGenerationMethods?.includes('generateContent')).map(m=>m.name.replace(/^models\//,''));const accept=new RegExp(group.discover.include),reject=new RegExp(group.discover.exclude||'a^');const discovered=allowed.filter(n=>accept.test(n)&&!reject.test(n)).sort((a,b)=>b.localeCompare(a,undefined,{numeric:true}));const available=new Set(allowed);names.splice(0,names.length,...names.filter(n=>available.has(n)),...discovered.filter(n=>!names.includes(n)));this.event({type:'models_resolved',kind,models:names});}
-    else this.event({type:'discovery_unavailable',kind,status:response.status});
+    else {const wait=retryAfterMs(response.headers.get('retry-after'),this.clock());this.notBefore=Math.max(this.notBefore,this.clock()+wait);this.event({type:'discovery_unavailable',kind,status:response.status,retryAfterMs:wait});}
    }catch(e){if(e instanceof GeminiError)throw e;this.event({type:'discovery_unavailable',kind,status:0});}finally{clearTimeout(timer);}
   }
   if(!names.length)throw new GeminiError('GEMINI_NO_AVAILABLE_CONFIGURED_MODEL',this.events);this.resolved.set(kind,names);return names;

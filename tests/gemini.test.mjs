@@ -46,3 +46,9 @@ test('changing voice settings invalidates cache and long narration is split with
  const text=Array.from({length:150},(_,i)=>'كلمة'+i).join(' ');const chunks=splitSpeech(text,{maxChars:120,maxSentences:2});assert.equal(chunks.join(' '),text);assert(chunks.every(x=>x.length<=120));
 });
 test('parallel requests for the same response share one request',async t=>{let calls=0;const f=await fixture(t,async()=>{calls++;return textResponse();});await Promise.all([f.client.generate('text',{same:1}),f.client.generate('text',{same:1})]);assert.equal(calls,1);});
+
+test('model-discovery Retry-After also delays the following generation call',async t=>{
+ const config=configuration();config.models.text.discover={include:'fixture-text',exclude:'tts'};let calls=0;
+ const f=await fixture(t,async url=>{calls++;return url.includes('?pageSize=')?new Response('',{status:429,headers:{'Retry-After':'4'}}):textResponse();},config);
+ await f.client.generate('text',{contents:[]});assert.equal(calls,2);assert(f.waits.includes(4000));
+});
