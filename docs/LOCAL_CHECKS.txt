@@ -3,14 +3,14 @@ npm test
 > review-video-pipeline@2.0.0 test
 > node --test tests/*.test.mjs
 
-✔ claims require an exact excerpt from an attached source (87.004088ms)
-✔ a science script cannot relabel a legend as a verified source (0.774287ms)
-✔ publish blocked even if config edited (1.498672ms)
-✔ Cairo 17:00 covers winter and summer offset (57.248788ms)
-✔ original words and measured monotonic times required (1.784973ms)
-✔ canonical identity and source prevent changed-title duplicates (41.534727ms)
-✔ reject silent media or wrong output format (0.729549ms)
-✔ service health independent of provider and uploads closed (256.163167ms)
+✔ claims require an exact excerpt from an attached source (25.51434ms)
+✔ a science script cannot relabel a legend as a verified source (2.17253ms)
+✔ publish blocked even if config edited (1.071683ms)
+✔ Cairo 17:00 covers winter and summer offset (28.792201ms)
+✔ original words and measured monotonic times required (1.392756ms)
+✔ canonical identity and source prevent changed-title duplicates (1.627683ms)
+✔ reject silent media or wrong output format (0.447111ms)
+✔ service health independent of provider and uploads closed (96.328959ms)
 ℹ tests 8
 ℹ suites 0
 ℹ pass 8
@@ -18,7 +18,7 @@ npm test
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 5693.051438
+ℹ duration_ms 4022.567512
 npm run typecheck
 
 > review-video-pipeline@2.0.0 typecheck
