@@ -1,0 +1,180 @@
+{
+  "topicKey": "cape-trafalgar-megalithic-tombs",
+  "title": "أسرار مقابر طرف الغار الحجرية",
+  "hook": "هل ممكن مقابر حجرية ضخمة على رأس طرف الغار في إسبانيا تكشف أسرار طقوس دفن جماعية استمرت قرنين، في وقت كانت فيه القبور الفردية انتشرت وبقت هي السائدة بجنوب إيبيريا؟",
+  "cta": "تابعونا دايماً في نقص ونروي عشان تعرفوا أغرب الاكتشافات التاريخية أول بأول، وشاركونا رأيكم في التعليقات هل تتوقعوا المقابر دي اتفتحت كذا مرة ولا عاشت زمنها الأصلي بس؟",
+  "scenes": [
+    {
+      "title": "لغز المقابر في رأس طرف الغار",
+      "text": "هل ممكن مقابر حجرية ضخمة على رأس طرف الغار في إسبانيا تكشف أسرار طقوس دفن جماعية استمرت قرنين، في وقت كانت فيه القبور الفردية انتشرت وبقت هي السائدة بجنوب إيبيريا؟",
+      "summary": "اكتشاف مقابر حجرية ضخمة استخدمت قرنين في إسبانيا",
+      "keyword": "طرف الغار",
+      "template": "map",
+      "labels": [
+        "إسبانيا",
+        "مقابر حجرية",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "المقابر الحجرية برأس طرف الغار استخدمت لنحو 200 عام بين 1875 و1625 قبل الميلاد",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "radiocarbon dates for human bones found in two monumental stone tombs on Cape Trafalgar indicates they were used for about 200 years between 1875 and 1625 B.C. —centuries after individual graves became more common in the southern Iberian Peninsula.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "point"
+    },
+    {
+      "title": "تصميم المقبرة الأولى",
+      "text": "الباحث إدواردو فيخاندي فيلا من جامعة قادش وفريقه كشفوا إن المقبرة الأولى معمولة من حجرة بيضاوية منحوتة بالصخر ومتصلة بممر بألواح حجرية، ومتغطية بتل كامل من الرمل والأحجار.",
+      "summary": "المقبرة الأولى منحوتة في الصخر ولها ممر مسقوف",
+      "keyword": "المقبرة الأولى",
+      "template": "steps",
+      "labels": [
+        "حجرة بيضاوية",
+        "ممر حجري",
+        "تل ترابي"
+      ],
+      "values": [],
+      "claim": "المقبرة الأولى تتكون من حجرة بيضاوية وممر مسقوف غطيت بتل حجري ورملي",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "Eduardo Vijande-Vila of the University of Cádiz and his colleagues found that Tomb I consists of an oval chamber cut into the rock that is connected to a passage lined with rock slabs and roofed with capstones. The chamber was sealed with a stone wall, the entrance was sealed with a stone slab, and the whole structure was covered with a mound of stones and sand.",
+      "kind": "fact",
+      "expression": 1,
+      "action": "walk"
+    },
+    {
+      "title": "ترميم وتدعيم المقبرة التانية",
+      "text": "أما المقبرة التانية فكانت حجرتها دائرية مبنية بصفوف حجرية، ولما القبة الأصلية انهارت في الزمن القديم، حطوا عمود وسطي في المركز وملوا نص الغرفة بالظبط عشان يضمنوا ثباتها.",
+      "summary": "انهيار قبة المقبرة الثانية ودعمها بعمود وسطي",
+      "keyword": "المقبرة الثانية",
+      "template": "cause",
+      "labels": [
+        "قبة حجرية",
+        "عمود وسطي",
+        "تدعيم"
+      ],
+      "values": [],
+      "claim": "انهيار قبة المقبرة الثانية استدعى وضع عمود وسطي وملء نصف الحجرة لتثبيتها",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "Tomb II features a circular chamber roofed with courses of stones. When the original dome collapsed, a central pillar was installed and half of the chamber was filled to stabilize it.",
+      "kind": "fact",
+      "expression": 2,
+      "action": "hang"
+    },
+    {
+      "title": "عدد المدفونين بالمقبرتين",
+      "text": "الفحوصات الدقيقة لعظام الموتى كشفت إن المقبرة الأولى احتوت على رفات تلاتاشر شخص على الأقل، بينما المقبرة التانية كان مدفون فيها رفات سبع أفراد استقروا داخل الحجرة الدائرية دي.",
+      "summary": "العثور على رفات 13 شخصاً بالأولى و7 بالثانية",
+      "keyword": "رفات الموتى",
+      "template": "comparison",
+      "labels": [
+        "المقبرة الأولى",
+        "المقبرة الثانية",
+        "تحليل العظام"
+      ],
+      "values": [],
+      "claim": "ضمت المقبرة الأولى رفات 13 شخصاً على الأقل والثانية رفات 7 أشخاص على الأقل",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "Analysis of the bones interred within suggests that Tomb I held the remains of at least 13 people, while Tomb II held the remains of at least seven individuals.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "point"
+    },
+    {
+      "title": "لغز الهيكل الأخير للشابة",
+      "text": "العظام دي اترتبت واتجمعت في زوايا الغرفة بعد تحلل الأجساد بالكامل، ما عدا هيكل مترابط لشابة صغيرة بتبين تحاليل الكربون المشع إنها كانت آخر شخص يتدفن قبل إغلاق المقبرة.",
+      "summary": "إعادة ترتيب العظام باستثناء هيكل شابة كامل",
+      "keyword": "الهيكل المترابط",
+      "template": "phenomenon",
+      "labels": [
+        "هيكل عظمي",
+        "كربون مشع",
+        "طقوس الدفن"
+      ],
+      "values": [],
+      "claim": "أعيد ترتيب العظام باستثناء هيكل شابة مترابط كان آخر دفنة قبل الختم",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "The bones were rearranged after the bodies had decomposed, except for the articulated skeleton of one young woman in Tomb I. Radiocarbon dating of her bones indicates that her burial was the last to occur before the chamber was sealed.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "turn"
+    },
+    {
+      "title": "كنوز المقبرة الأولى الثمينة",
+      "text": "الأثريين استخرجوا من المقبرة الأولى قطع مميزة ولقى ثمينة ضمت حلقتين دهب، وتلات خرزات مصنوعين من الفضة، وقطعة من معدن الميكا الأخضر، ومشط عاجي نادر بالإضافة لقوقعتين مثقوبتين بحرفية.",
+      "summary": "ذهب وفضة وعاج ضمن مكتشفات المقبرة الأولى",
+      "keyword": "مقتنيات ذهبية",
+      "template": "steps",
+      "labels": [
+        "ذهب",
+        "فضة",
+        "عاج",
+        "ميكا"
+      ],
+      "values": [],
+      "claim": "عثر في المقبرة الأولى على أقراط ذهب وخرز فضة ومشط عاجي وقواقع مثقوبة",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "In all, two gold earrings, three silver beads, a piece of green mica, an ivory comb, and two perforated shells were recovered from Tomb I.",
+      "kind": "fact",
+      "expression": 1,
+      "action": "point"
+    },
+    {
+      "title": "محتويات المقبرة التانية",
+      "text": "بينما المقبرة التانية ضمت مقتنيات جنائزية أقل لكنها ملفتة، فعثر الباحثين جواها على حلق واحد، وسن سهم معمول من النحاس، ومعاهم كمان خرزة تانية جميلة من حجر الميكا الأخضر.",
+      "summary": "حلق وسهم نحاسي وخرزة ميكا في المقبرة الثانية",
+      "keyword": "سهم نحاسي",
+      "template": "journey",
+      "labels": [
+        "سهم نحاس",
+        "حلق",
+        "ميكا خضراء"
+      ],
+      "values": [],
+      "claim": "احتوت المقبرة الثانية على حلق وسن سهم نحاسي وخرزة ميكا خضراء",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "Tomb II yielded one earring, one copper arrowhead, and one green mica bead.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "walk"
+    },
+    {
+      "title": "فحص الضوء وسؤال إعادة الاستخدام",
+      "text": "تحاليل التلألؤ الضوئي لحبات الرمل والأحجار لسه شغالة عشان تفصل في اللغز الكبير، وتعرف إذا كانت المقابر دي اتعاد استخدامها ولا كان أصحابها آخر بناة للأضرحة الميجاليثية بالمنطقة.",
+      "summary": "تأريخ الضوء يكشف ما إذا كانت المقابر أعيد استخدامها",
+      "keyword": "التلألؤ الضوئي",
+      "template": "cause",
+      "labels": [
+        "تلألؤ ضوئي",
+        "بناة الميجاليث",
+        "تأريخ علمي"
+      ],
+      "values": [],
+      "claim": "تأريخ التلألؤ الضوئي للرمل والأحجار يحدد إن كانت المقابر أعيد استخدامها",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "Additional testing, including luminescence dating of when the sand and stones were last exposed to light, may reveal whether the tombs were reused or if the builders were among the last to build megalithic tombs in southern Iberia.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "turn"
+    },
+    {
+      "title": "دعوة للمتابعة والمشاركة",
+      "text": "تابعونا دايماً في نقص ونروي عشان تعرفوا أغرب الاكتشافات التاريخية أول بأول، وشاركونا رأيكم في التعليقات هل تتوقعوا المقابر دي اتفتحت كذا مرة ولا عاشت زمنها الأصلي بس؟",
+      "summary": "دعوة للتفاعل ومتابعة قصص التاريخ والآثار",
+      "keyword": "نقص ونروي",
+      "template": "journey",
+      "labels": [
+        "نقص ونروي",
+        "تاريخ",
+        "تفاعل"
+      ],
+      "values": [],
+      "claim": "المتابعة والمشاركة لاستكشاف أسرار التاريخ والآثار القديمة",
+      "sourceId": "e3c5ba5a3844",
+      "evidence": "Additional testing, including luminescence dating of when the sand and stones were last exposed to light, may reveal whether the tombs were reused or if the builders were among the last to build megalithic tombs in southern Iberia.",
+      "kind": "fact",
+      "expression": 11,
+      "action": "walk"
+    }
+  ]
+}
