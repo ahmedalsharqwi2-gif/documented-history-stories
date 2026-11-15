@@ -1,0 +1,209 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-0.wav",
+    "duration": 12.2,
+    "text": "هل تتخيل إن فيه مركبة فضائية بشرية بعدت عننا لدرجة إن شعاع الضوء السريع جداً محتاج أربعة وعشرين ساعة كاملة في الفراغ عشان يوصل ليها من كوكب الأرض؟",
+    "sha256": "154e076cd8f65695918772aa80adaf916626a4ac856724a0705e50972fb6ec34",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "b0579f367c21f83e3d5d8e359fbc74c4637a6ce907f75f96daf5b3bc1201c2dd",
+        "sha256": "154e076cd8f65695918772aa80adaf916626a4ac856724a0705e50972fb6ec34",
+        "text_sha256": "14e94982626bc9e5ddd41738e0780ed1a805d2bbdf14c5bfc93ddc4084fc5296",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 585678,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-1.wav",
+    "duration": 15.56,
+    "text": "مسبار فوياجر وان أطلقته وكالة ناسا سنة سبعة وسبعين، ودلوقتي بيجري بسرعة واحد وستين ألف كيلومتر في الساعة، وقطع حوالي ستة وعشرين مليار كيلومتر في رحلته المستمرة للمجهول.",
+    "sha256": "7f1e4d805c285c0818d299dcf2bb075d3c827c8515c608d747c377c5f34027df",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "3b0a783a9ae65f504a2504ed36166a42b4af6641126714a7e97f22ee93632f4b",
+        "sha256": "7f1e4d805c285c0818d299dcf2bb075d3c827c8515c608d747c377c5f34027df",
+        "text_sha256": "0796a1805240adc9dac64f88ae617f5183a356b68ea9dca5ecb2fdfae53118d8",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 746958,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-2.wav",
+    "duration": 15.48,
+    "text": "المسافة الخرافية دي خلت التواصل مع المسبار يحتاج صبر غير عادي، لأن إشارة الراديو بتاخد أربعة وعشرين ساعة كاملة رايح ومثلهم في الرجوع، يعني بنستنى يومين كاملين لأي رد.",
+    "sha256": "27c9c2390f6feb1369a9731397b0415ca7697115db8bffd4ceab69305c0301fc",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "66d9da92d0ed0be15dbf6f57948a3d1e9e19bd1e1e4e2108a626c137c194be49",
+        "sha256": "27c9c2390f6feb1369a9731397b0415ca7697115db8bffd4ceab69305c0301fc",
+        "text_sha256": "4358973d0f715d532ffe34029b2a19e8dc9e826e382b46d68c8dcaff25cc9155",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 743118,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-3.wav",
+    "duration": 15.44,
+    "text": "رغم إنه خرج من الغلاف البلازمي للشمس سنة ألفين واثنا عشر، لسه واقع تحت جاذبيتها ومحتاج حوالي ثلاثمائة سنة عشان يوصل لأطراف سحابة أورت الجليدية وثلاثين ألف سنة عشان يعبرها.",
+    "sha256": "eff1595bc09bd9e74d429cbe387d905959b88af8e9cc9144e46395d9e9b903f7",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "ec4bfc9a39343d67c3dcd4da2311760dac9cfccff3458ad4d2c6ddd4d2a98e9e",
+        "sha256": "eff1595bc09bd9e74d429cbe387d905959b88af8e9cc9144e46395d9e9b903f7",
+        "text_sha256": "a05dde4bae307b959e22f3cb0118b0a68f6b6c2084ad62c8e27fc35e4cdc2259",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 741198,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-4.wav",
+    "duration": 16.68,
+    "text": "فوياجر وتوأمه قدموا اكتشافات تاريخية أذهلت العلماء، فرصدوا براكين نشطة لأول مرة على قمر آيو سنة تسعة وسبعين، واكتشفوا ثلاثة وعشرين قمر غير حلقات المشتري وصوروا الكواكب العملاقة.",
+    "sha256": "7f5283d5290e1d4ce032f60a4a6f6b24c82ff07762e12ec51db896fb6345086e",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "e4183d189302f85068bd9cd5ef90eef17105614e3b31e80ef47fe54f064df1d9",
+        "sha256": "7f5283d5290e1d4ce032f60a4a6f6b24c82ff07762e12ec51db896fb6345086e",
+        "text_sha256": "ad62d9548a4d27762817ec8cfcf2202a454ef8dc39d4b2b004e5a3d9051b7943",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 800718,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-5.wav",
+    "duration": 16.52,
+    "text": "البطاريات النووية اللي شغالة بالبلوتونيوم طاقتها بتخلص بالتدريج، وده دفع ناسا تقفل معظم الأجهزة العلمية بالتتابع لحفظ الطاقة، ومتبقاش شغال على فوياجر وان حالياً غير جهازين اتنين فقط لقياس الفضاء.",
+    "sha256": "de2516f6ac4b3fdef34c612208a781d83bd86245d35c3f963ef37899c9e2052f",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "f0089a1a43a23e1cd75be416f911d9e04f9465807bf084b2733ac0dd168b558c",
+        "sha256": "de2516f6ac4b3fdef34c612208a781d83bd86245d35c3f963ef37899c9e2052f",
+        "text_sha256": "94249f299ed3dc7ffc02caa6c665805e9b1ea2f5b7514606833bc548601a3cdc",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 793038,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-6.wav",
+    "duration": 13.44,
+    "text": "المسبار شايل معاه القرص الذهبي الشهير اللي بيضم أصوات الأرض وخريطة لمكاننا ورسائل بخمس وخمسين لغة، كرسالة رمزية للإنسانية في حال صادفته أي حضارة ذكية في أعماق الفضاء.",
+    "sha256": "4de675c16c73d2e2d50e2c78246fbdbc23d1088886959053abf20f3946b631a7",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "72b5c5d20fe415690682230080d6abd7aa582f586fa96cee936e87cce35cbb6c",
+        "sha256": "4de675c16c73d2e2d50e2c78246fbdbc23d1088886959053abf20f3946b631a7",
+        "text_sha256": "cc624ef67d322a9902b4401ed78c3b73b13af4f93702f670a92fa769de6d4ae7",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 645198,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-7.wav",
+    "duration": 15.88,
+    "text": "متوقع المركبة تستمر في إرسال البيانات الهندسية لحد سنة ألفين وستة وثلاثين، وبعدها هتصمت تماماً لكنها هتفضل تسبح سليمة وسط النجوم كشاهد خالد على رغبة البشر في الاستكشاف.",
+    "sha256": "b0667bfe795dcf2d0a82802f7b68e53ce3d7904a364fac50f1c3d9df9f3a7d29",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "4b0a16464107293232499c6733ba8b692e6d22ff35d8bfdcf3ce4e019107fe1d",
+        "sha256": "b0667bfe795dcf2d0a82802f7b68e53ce3d7904a364fac50f1c3d9df9f3a7d29",
+        "text_sha256": "5aabd6cff7d6c02ff1193080af90a94cfbd38f82f3d80c11a69882d28090d2a2",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 762318,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-24-07-955Z/scene-8.wav",
+    "duration": 13.84,
+    "text": "لو مبهرك إنجاز فوياجر اللي وصل لأطراف الفضاء السحيق، شاركنا رأيك في التعليقات واشترك بالقناة عشان تتابع معانا أسرار وأغرب رحلات الكون العميقة أول بأول دايماً.",
+    "sha256": "30842f77b470bb72756c8187078f1d95e9af69f8ce822036a45edff4713f424e",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 8,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "a5c1b1f0584c6f8c1426a4222a15c318c0355f206c9e3fee228923b301ac18dd",
+        "sha256": "30842f77b470bb72756c8187078f1d95e9af69f8ce822036a45edff4713f424e",
+        "text_sha256": "559e1a2cf20c004c84ccb255d5ad74339cd04e7d040ff9807b4829c0af5e49fa",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 664398,
+        "reused": false
+      }
+    ]
+  }
+]
