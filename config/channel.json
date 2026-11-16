@@ -14,5 +14,67 @@
       "official": false
     }
   ],
-  "logo": "brand/logo/logo.jpg"
+  "logo": "brand/logo/logo.jpg",
+  "channelRelevance": {
+    "enabled": true,
+    "minimumMatches": 1,
+    "allowedDomains": [
+      "archaeology.org",
+      "worldhistory.org",
+      "britishmuseum.org",
+      "metmuseum.org",
+      "loc.gov",
+      "smithsonianmag.com",
+      "livescience.com"
+    ],
+    "blockedDomains": [
+      "nasa.gov",
+      "esa.int"
+    ],
+    "excludedTerms": [
+      "voyager",
+      "فويجر",
+      "فوايجر"
+    ],
+    "requiredTerms": [
+      "archaeolog",
+      "ancient",
+      "excavat",
+      "civilization",
+      "civilisation",
+      "historical",
+      "historian",
+      "dynasty",
+      "pharaoh",
+      "antiquit",
+      "medieval",
+      "bronze age",
+      "artifact",
+      "artefact",
+      "mummif",
+      "mummie",
+      "Roman",
+      "Ottoman",
+      "أثر",
+      "آثار",
+      "اثار",
+      "أثري",
+      "اثري",
+      "تاريخ",
+      "حضارة",
+      "حضاره",
+      "القدماء",
+      "القديمة",
+      "قديم",
+      "مومياء",
+      "مومياوات",
+      "فراعنة",
+      "فرعوني",
+      "فرعونية",
+      "برديات",
+      "تنقيب",
+      "الميلاد",
+      "عصور"
+    ]
+  }
 }

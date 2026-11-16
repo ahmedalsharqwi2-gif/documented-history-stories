@@ -1,0 +1,179 @@
+{
+  "topicKey": "voyager-1-one-light-day-record",
+  "title": "رحلة فوياجر وان إلى حافة اليوم الضوئي",
+  "hook": "هل تتخيل إن فيه مركبة فضائية بشرية بعدت عننا لدرجة إن شعاع الضوء السريع جداً محتاج أربعة وعشرين ساعة كاملة في الفراغ عشان يوصل ليها من كوكب الأرض؟",
+  "cta": "لو مبهرك إنجاز فوياجر اللي وصل لأطراف الفضاء السحيق، شاركنا رأيك في التعليقات واشترك بالقناة عشان تتابع معانا أسرار وأغرب رحلات الكون العميقة أول بأول دايماً.",
+  "scenes": [
+    {
+      "title": "إنجاز فوياجر وان التاريخي",
+      "text": "هل تتخيل إن فيه مركبة فضائية بشرية بعدت عننا لدرجة إن شعاع الضوء السريع جداً محتاج أربعة وعشرين ساعة كاملة في الفراغ عشان يوصل ليها من كوكب الأرض؟",
+      "summary": "وصول المسبار لمسافة يوم ضوئي كامل عن الأرض.",
+      "keyword": "يوم ضوئي",
+      "template": "phenomenon",
+      "labels": [
+        "فوياجر وان",
+        "سرعة الضوء",
+        "الفضاء السحيق"
+      ],
+      "values": [],
+      "claim": "Voyager 1 is reaching a distance where light takes a full 24 hours from Earth.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "light, the universe's ultimate speed limit , takes a full 24 hours to reach it.",
+      "kind": "fact",
+      "expression": 11,
+      "action": "point"
+    },
+    {
+      "title": "المسافة والسرعة الخارقة",
+      "text": "مسبار فوياجر وان أطلقته وكالة ناسا سنة سبعة وسبعين، ودلوقتي بيجري بسرعة واحد وستين ألف كيلومتر في الساعة، وقطع حوالي ستة وعشرين مليار كيلومتر في رحلته المستمرة للمجهول.",
+      "summary": "سرعة ومسافة فوياجر بعد عقود من الإطلاق.",
+      "keyword": "مسافة قياسية",
+      "template": "journey",
+      "labels": [
+        "ناسا",
+        "سرعة المسبار",
+        "مسافة المسبار"
+      ],
+      "values": [],
+      "claim": "Voyager 1 cruises at nearly 61,000 km/h and is almost 26 billion km from Earth.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "Voyager 1, cruising through space at nearly 38,000 mph (61,000 km/h), is just shy of 16 billion miles (about 26 billion kilometers) from Earth.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "walk"
+    },
+    {
+      "title": "صعوبة التواصل اللاسلكي",
+      "text": "المسافة الخرافية دي خلت التواصل مع المسبار يحتاج صبر غير عادي، لأن إشارة الراديو بتاخد أربعة وعشرين ساعة كاملة رايح ومثلهم في الرجوع، يعني بنستنى يومين كاملين لأي رد.",
+      "summary": "الإشارات اللاسلكية تحتاج يومين لرحلة الذهاب والعودة.",
+      "keyword": "إشارات الراديو",
+      "template": "steps",
+      "labels": [
+        "اتصالات الفضاء",
+        "تأخير الإشارة",
+        "موجات الراديو"
+      ],
+      "values": [],
+      "claim": "Radio signals take 24 hours to reach Voyager 1 and 24 hours to return.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "At a distance of one light-day, a signal sent from Earth takes 24 hours to reach Voyager 1, and a reply takes another 24 hours to make the return journey.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "turn"
+    },
+    {
+      "title": "حدود المنظومة الشمسية",
+      "text": "رغم إنه خرج من الغلاف البلازمي للشمس سنة ألفين واثنا عشر، لسه واقع تحت جاذبيتها ومحتاج حوالي ثلاثمائة سنة عشان يوصل لأطراف سحابة أورت الجليدية وثلاثين ألف سنة عشان يعبرها.",
+      "summary": "المسبار يحتاج آلاف السنين لعبور سحابة أورت.",
+      "keyword": "سحابة أورت",
+      "template": "map",
+      "labels": [
+        "سحابة أورت",
+        "جاذبية الشمس",
+        "الفضاء النجمي"
+      ],
+      "values": [],
+      "claim": "Voyager 1 will need 300 years to reach the Oort Cloud's inner edge and 30,000 to exit it.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "Voyager 1 will need about 300 more years just to reach the cloud's inner edge, and possibly 30,000 years to fly beyond it, according to NASA .",
+      "kind": "fact",
+      "expression": 4,
+      "action": "point"
+    },
+    {
+      "title": "اكتشافات علمية ثورية",
+      "text": "فوياجر وتوأمه قدموا اكتشافات تاريخية أذهلت العلماء، فرصدوا براكين نشطة لأول مرة على قمر آيو سنة تسعة وسبعين، واكتشفوا ثلاثة وعشرين قمر غير حلقات المشتري وصوروا الكواكب العملاقة.",
+      "summary": "اكتشاف براكين آيو وأقمار الكواكب العملاقة.",
+      "keyword": "براكين آيو",
+      "template": "phenomenon",
+      "labels": [
+        "قمر آيو",
+        "أقمار المشتري",
+        "براكين نشطة"
+      ],
+      "values": [],
+      "claim": "Voyager 1 discovered active volcanoes on Io in 1979 and 23 moons were discovered by the twin probes.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "Voyager 1 spotted active volcanoes on Jupiter's moon Io in 1979, the first time they had been seen on any world other than Earth.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "jump"
+    },
+    {
+      "title": "نفاد الطاقة النووية",
+      "text": "البطاريات النووية اللي شغالة بالبلوتونيوم طاقتها بتخلص بالتدريج، وده دفع ناسا تقفل معظم الأجهزة العلمية بالتتابع لحفظ الطاقة، ومتبقاش شغال على فوياجر وان حالياً غير جهازين اتنين فقط لقياس الفضاء.",
+      "summary": "استنزاف بطاريات البلوتونيوم وإغلاق الأجهزة.",
+      "keyword": "بطاريات نووية",
+      "template": "cause",
+      "labels": [
+        "طاقة البلوتونيوم",
+        "أجهزة القياس",
+        "حفظ الطاقة"
+      ],
+      "values": [],
+      "claim": "Only two science instruments remain active on Voyager 1 due to dwindling nuclear power.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "Today, only two remain active on Voyager 1 and three on Voyager 2, measuring the magnetic fields, plasma and cosmic rays of interstellar space.",
+      "kind": "fact",
+      "expression": 2,
+      "action": "fall"
+    },
+    {
+      "title": "رسالة القرص الذهبي",
+      "text": "المسبار شايل معاه القرص الذهبي الشهير اللي بيضم أصوات الأرض وخريطة لمكاننا ورسائل بخمس وخمسين لغة، كرسالة رمزية للإنسانية في حال صادفته أي حضارة ذكية في أعماق الفضاء.",
+      "summary": "القرص الذهبي يحمل تسجيلات ورسائل بـ 55 لغة.",
+      "keyword": "القرص الذهبي",
+      "template": "phenomenon",
+      "labels": [
+        "القرص الذهبي",
+        "رسالة البشر",
+        "حضارات ذكية"
+      ],
+      "values": [],
+      "claim": "The probe carries the Golden Record containing greetings in 55 languages and earth sounds.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "They hold sounds such as wind and animal calls, greetings in 55 languages, images of our planet and a celestial map pinpointing its location",
+      "kind": "fact",
+      "expression": 1,
+      "action": "turn"
+    },
+    {
+      "title": "نهاية الإشارة والخلود",
+      "text": "متوقع المركبة تستمر في إرسال البيانات الهندسية لحد سنة ألفين وستة وثلاثين، وبعدها هتصمت تماماً لكنها هتفضل تسبح سليمة وسط النجوم كشاهد خالد على رغبة البشر في الاستكشاف.",
+      "summary": "صمت المسبار بحلول 2036 وبقاؤه سليماً بين النجوم.",
+      "keyword": "نهاية الإشارة",
+      "template": "journey",
+      "labels": [
+        "سنة 2036",
+        "صمت المسبار",
+        "خلود المركبة"
+      ],
+      "values": [],
+      "claim": "The probe may send engineering updates until around 2036 before falling silent.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "both probes may still keep beaming back basic engineering updates, such as about their health and power status, until around 2036, according to NASA .",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "دعوة للمتابعة والتأمل",
+      "text": "لو مبهرك إنجاز فوياجر اللي وصل لأطراف الفضاء السحيق، شاركنا رأيك في التعليقات واشترك بالقناة عشان تتابع معانا أسرار وأغرب رحلات الكون العميقة أول بأول دايماً.",
+      "summary": "دعوة للمشاركة والاشتراك لمتابعة رحلات الفضاء.",
+      "keyword": "متابعة واستكشاف",
+      "template": "phenomenon",
+      "labels": [
+        "استكشاف الفضاء",
+        "متابعة القناة",
+        "نقاش الجمهور"
+      ],
+      "values": [],
+      "claim": "NASA continues to track and keep the spacecraft going into deep space.",
+      "sourceId": "cd85106e7b1b",
+      "evidence": "keep the spacecraft going as long as possible.",
+      "kind": "fact",
+      "expression": 11,
+      "action": "point"
+    }
+  ]
+}
