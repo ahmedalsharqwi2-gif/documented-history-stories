@@ -1,0 +1,72 @@
+{
+  "selected": {
+    "id": "46f904514b4b",
+    "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+    "url": "https://archaeology.org/news/2026/11/13/study-suggests-ancient-peruvians-adapted-to-environmental-stressors/",
+    "text": "NEW YORK, NEW YORK—According to a Science Alert report, Thomas Snyder of New York University and Haagen Klaus of George Mason University analyzed the remains of more than 1,600 individuals recovered from different sites in Peru’s Lambayeque Valley. The individuals lived between about 1500 B.C. and A.D. 1500. During this period, a series of El Niño events brought drought and flooding. Previous studies have shown that El Niño events led to mass ritual sacrifices by the Moche and Sicán peoples of the Lambayeque Valley. The researchers suggest that ecological stress may have also brought on violence between people in competition for resources, as has been observed in human remains unearthed at other archaeological sites in the Andes Mountains. Examination of the skeletal remains identified wounds on the skulls of 25 individuals that are thought to be associated with violence, and wounds on the bodies of 77 individuals that Snyder and Klaus posit are associated with accidents. They said that no statistical relationship linked environmental stress with violence or accidents in the sample, however. Rather, they suggest that communities in the Lambayeque Valley may have turned to the ocean as an alternative source of food. “In Lambayeque there’s 6,000 years of creative adaptations to El Niño and longer-term changes in climate, and widespread violence wasn’t one of them,” Snyder concluded. Read the original scholarly article about this research in Frontiers in Environmental Archaeology . To read about a ritual game played by ancient Peruvians, go to “ Bringing Back Moche Badminton .” The post Study Suggests Ancient Peruvians Adapted to Environmental Stressors appeared first on Archaeology Magazine .",
+    "published": "2026-11-13T19:00:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://www.sciencealert.com/mass-sacrifices-in-ancient-peru-coincided-with-el-nios-yet-daily-life-there-was-surprisingly-peaceful",
+      "https://doi.org/10.3389/fearc.2026.1889466",
+      "https://archaeology.org/issues/may-june-2019/features/bringing-back-moche-badminton/",
+      "https://archaeology.org/news/2026/11/13/study-suggests-ancient-peruvians-adapted-to-environmental-stressors/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "url": "https://archaeology.org/news/2026/11/13/study-suggests-ancient-peruvians-adapted-to-environmental-stressors/",
+      "text": "NEW YORK, NEW YORK—According to a Science Alert report, Thomas Snyder of New York University and Haagen Klaus of George Mason University analyzed the remains of more than 1,600 individuals recovered from different sites in Peru’s Lambayeque Valley. The individuals lived between about 1500 B.C. and A.D. 1500. During this period, a series of El Niño events brought drought and flooding. Previous studies have shown that El Niño events led to mass ritual sacrifices by the Moche and Sicán peoples of the Lambayeque Valley. The researchers suggest that ecological stress may have also brought on violence between people in competition for resources, as has been observed in human remains unearthed at other archaeological sites in the Andes Mountains. Examination of the skeletal remains identified wounds on the skulls of 25 individuals that are thought to be associated with violence, and wounds on the bodies of 77 individuals that Snyder and Klaus posit are associated with accidents. They said that no statistical relationship linked environmental stress with violence or accidents in the sample, however. Rather, they suggest that communities in the Lambayeque Valley may have turned to the ocean as an alternative source of food. “In Lambayeque there’s 6,000 years of creative adaptations to El Niño and longer-term changes in climate, and widespread violence wasn’t one of them,” Snyder concluded. Read the original scholarly article about this research in Frontiers in Environmental Archaeology . To read about a ritual game played by ancient Peruvians, go to “ Bringing Back Moche Badminton .” The post Study Suggests Ancient Peruvians Adapted to Environmental Stressors appeared first on Archaeology Magazine .",
+      "published": "2026-11-13T19:00:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://www.sciencealert.com/mass-sacrifices-in-ancient-peru-coincided-with-el-nios-yet-daily-life-there-was-surprisingly-peaceful",
+        "https://doi.org/10.3389/fearc.2026.1889466",
+        "https://archaeology.org/issues/may-june-2019/features/bringing-back-moche-badminton/",
+        "https://archaeology.org/news/2026/11/13/study-suggests-ancient-peruvians-adapted-to-environmental-stressors/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "46f904514b4b",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "46f904514b4b"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    }
+  ],
+  "trend": [],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric."
+}

@@ -1,0 +1,90 @@
+{
+  "events": [
+    {
+      "type": "models_resolved",
+      "kind": "text",
+      "models": [
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3-flash-preview",
+        "gemini-2.5-flash",
+        "gemini-omni-flash-preview",
+        "gemini-omni-1.2-flash",
+        "gemini-omni-1.1-flash",
+        "gemini-flash-lite-latest",
+        "gemini-flash-latest",
+        "gemini-3.8-flash",
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3.5-flash-lite",
+        "gemini-3.5-flash",
+        "gemini-3.1-flash-lite",
+        "gemini-2.5-flash-lite"
+      ],
+      "at": 1794826752951
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1794826786977
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 503,
+      "at": 1794826813367
+    },
+    {
+      "type": "backoff",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite-preview",
+      "status": 503,
+      "waitMs": 3814.198619696762,
+      "retryAfterMs": 0,
+      "at": 1794826813367
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite-preview",
+      "attempt": 2,
+      "totalAttempt": 2,
+      "status": 200,
+      "at": 1794826847686
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1794826879443
+    }
+  ],
+  "resolvedModels": {
+    "text": [
+      "gemini-3.1-flash-lite-preview",
+      "gemini-3-flash-preview",
+      "gemini-2.5-flash",
+      "gemini-omni-flash-preview",
+      "gemini-omni-1.2-flash",
+      "gemini-omni-1.1-flash",
+      "gemini-flash-lite-latest",
+      "gemini-flash-latest",
+      "gemini-3.8-flash",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash",
+      "gemini-3.5-flash-lite",
+      "gemini-3.5-flash",
+      "gemini-3.1-flash-lite",
+      "gemini-2.5-flash-lite"
+    ]
+  }
+}
