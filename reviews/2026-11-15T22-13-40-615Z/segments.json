@@ -1,0 +1,209 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-0.wav",
+    "duration": 12.32,
+    "text": "هل تتخيل إن شوية أدوات حجرية وقواقع بحرية في كهف إيطالي قديم، ممكن تقلب حسابات تاريخ الهجرة البشرية في عصر الجليد وترجع الزمن لورا آلاف السنين؟",
+    "sha256": "f391095917d78a42793593782a9b4e784d088433bad92b0ac72d726ff1d979db",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "abbc1140388a17a09eaf57706490ae4a0463bd8bb9ca871d500f5b726784f938",
+        "sha256": "f391095917d78a42793593782a9b4e784d088433bad92b0ac72d726ff1d979db",
+        "text_sha256": "7fc79ebb09bba8518ee3e27f12d6270a1625549e3965c849f518fbb349b1f0a4",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 591438,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-1.wav",
+    "duration": 15.32,
+    "text": "باحثين في مأوى ريبارو موتشي الصخري قرب حدود فرنسا وإيطاليا، لقوا أدلة جديدة بتوضح إن صيادين وجامعي ثمار جايين من إسبانيا دخلوا أراضي إيطاليا في وقت أبكر بكتير من تقديراتنا القديمة.",
+    "sha256": "749481dd7d10f28cf8f35a13185a2c1f8a0afa25a484b6b65317d8ec6dc8364d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "244e536c2f246040ddb3d5ef1d4924e9da585c68c1aa34d7fd3329822488a330",
+        "sha256": "749481dd7d10f28cf8f35a13185a2c1f8a0afa25a484b6b65317d8ec6dc8364d",
+        "text_sha256": "4e9c6a136a16ff5b663fdb817379adc0d5f44917fb53490a335ab09e09525172",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 735438,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-2.wav",
+    "duration": 16.56,
+    "text": "الفريق اللي قاده الباحث فابيو سانتانيلو من جامعة ترينتو استخرج أكتر من سبع آلاف وخمسمية قطعة أثرية، كان من ضمنها موقد نار سليم تماماً ومتحاوط بمجموعة مميزة من القواقع البحرية المتجمعة حواليه.",
+    "sha256": "a330285bc1af35c06b7850e6105e09ad9425de5ad329d56b7b219a6acc322c55",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "7a873617979bfd7c02281070d7c0ee56cf39c48d916a35ae02192bd0bef9ea90",
+        "sha256": "a330285bc1af35c06b7850e6105e09ad9425de5ad329d56b7b219a6acc322c55",
+        "text_sha256": "0348a446fc7d9963b19fc11ac89aaa316fd660ca7014bfbd2f792784f13e6498",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 794958,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-3.wav",
+    "duration": 13.28,
+    "text": "الموقع كان مشهور زمان بأدوات حجرية مدببة اسمها أزاميل نوايل، والعلماء كانوا فاكرين إن الناس استخدموها بس عشان ينقشوا ويحفروا حزوز في العظام وقرون الحيوانات القوية والصلبة.",
+    "sha256": "e9b1f0bb4750128c9bad54f96354510ed2725d453cea7cdc6c331c917b0ed054",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "7e4907391530cbfd1d429f99cf2402da4ad57964dff163d84ba99b6cfdbe60d2",
+        "sha256": "e9b1f0bb4750128c9bad54f96354510ed2725d453cea7cdc6c331c917b0ed054",
+        "text_sha256": "ae50f7064935bf9402e22a4f864e47130270862b3ee153efd934cb74dad50ed1",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 637518,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-4.wav",
+    "duration": 17.08,
+    "text": "بس الفحص المجهري الدقيق للأزاميل دي أظهر مفاجأة غريبة، السنون الحادة مفيهاش أي علامات تآكل، بينما الحواف الجانبية هي اللي كانت متآكلة ومستهلكة جداً نتيجة تقطيع جلود ولحوم الفرائس.",
+    "sha256": "b37c2085e40f8a77b46f928e7f3aeb2f3d5a4bf353f74c67dcbbfa6b514e1cac",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "be81e06c213f1606144d837ab8e3e768ba9a127f840c6ae9de6bebf4f643d2e0",
+        "sha256": "b37c2085e40f8a77b46f928e7f3aeb2f3d5a4bf353f74c67dcbbfa6b514e1cac",
+        "text_sha256": "4c72111e8735c6b76b51da6a20a9f6d1b7842862629f344ecff87fdee98966f5",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 819918,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-5.wav",
+    "duration": 14.92,
+    "text": "تحليل الكربون المشع للقواقع البحرية كشف إن عمرها بيتراوح بين ثلاثين ألف وثلاثين ألف وثمانمية سنة، وده رجّع تاريخ وجود ثقافة نوايل في شمال إيطاليا بين ألفين وتلات آلاف سنة لورا.",
+    "sha256": "9f8b83c44ff9a2944acd02ccdff0b59ccd46c789339562ea5df9fcd2134ca0f9",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "3874318f76699fa699a4cf805c14d3040ac59e5c6e69c83d9226d45c5563b408",
+        "sha256": "9f8b83c44ff9a2944acd02ccdff0b59ccd46c789339562ea5df9fcd2134ca0f9",
+        "text_sha256": "6bb0be3b5b9d82db26f5b0ea83fec1ca33945ff2c18c590517a876d6c7612d62",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 716238,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-6.wav",
+    "duration": 15.36,
+    "text": "التاريخ الجديد ده بيتماشى تماماً مع التواريخ المسجلة لنفس الثقافة في جنوب إيطاليا، وبيوضح إزاي المناخ الأوروبي اللي بقى بارد وجاف دفع البشر وقتها للهجرة شرقاً ناحية أماكن أكتر اعتدالاً ودفئاً.",
+    "sha256": "55d65cc3fc36ec739c313267931b51c0f6914075819f0d2eba555d216518b268",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "fba8ace2d67d88bdde44b0196fbbf1c7fcbd7af29a97f0147cec3d8868e5820c",
+        "sha256": "55d65cc3fc36ec739c313267931b51c0f6914075819f0d2eba555d216518b268",
+        "text_sha256": "58d2c4ef62ad910f957b786b2b0eb63ef3fe48a84c6e62688dbfc3a07901062b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 737358,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-7.wav",
+    "duration": 15.28,
+    "text": "الحفريات كشفت كمان شفرات كانت بتتركب في مقابض خشبية، ومعاها مكاشط وأوتاد حجرية استعملها الإنسان القديم بمهارة فائقة علشان يشكل مقابض الخشب القوية ويفلق بيها عظام صيده بدقة.",
+    "sha256": "9a93b792076b2d8361412aa495da1fa14defc759a312555a9d310f5108cd870c",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "5e0a6dba81582d28ecfca0bae3a0b966405e2ad3637ba46e8da7773756b61e05",
+        "sha256": "9a93b792076b2d8361412aa495da1fa14defc759a312555a9d310f5108cd870c",
+        "text_sha256": "94f61782cc6e9814ef48073945eb40642e832308d6403d18acb5577eabfffdc2",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 733518,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-15T22-13-40-615Z/scene-8.wav",
+    "duration": 14.36,
+    "text": "تابعونا عشان تكتشفوا أسرار جديدة وتعرفوا إزاي الاكتشافات الأثرية البسيطة بتعيد كتابة تاريخ البشر، وشاركونا رأيكم في التعليقات عن رحلات الهجرة المدهشة دي عبر العصور القديمة!",
+    "sha256": "4ae815e2d6ac647d22901927b73dcc8b08af954f9414e495bdd9d894ca23531d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 8,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "ed364da96ab0152fe52a633af3c379de71d22b58d5eaa1a605a1c1ff7d23eb35",
+        "sha256": "4ae815e2d6ac647d22901927b73dcc8b08af954f9414e495bdd9d894ca23531d",
+        "text_sha256": "511bb592e1e46e293e610546525790cad7114ee1b9e9384abc52da1bfdefd0e4",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 689358,
+        "reused": false
+      }
+    ]
+  }
+]
