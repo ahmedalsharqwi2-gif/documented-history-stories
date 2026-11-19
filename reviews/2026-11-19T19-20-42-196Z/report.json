@@ -1,0 +1,38 @@
+{
+  "id": "2026-11-19T19-20-42-196Z",
+  "attemptId": "2026-11-19T19-20-33-132Z",
+  "mode": "review",
+  "published": false,
+  "status": "running",
+  "resumed": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.473
+    },
+    {
+      "name": "roll",
+      "status": "rolled_fresh_topic",
+      "roll": 1,
+      "fromStage": "topics",
+      "code": "NO_CURRENT_VERIFIED_SOURCES"
+    },
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.032
+    }
+  ],
+  "limitations": [
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate."
+  ],
+  "rolled": [
+    {
+      "id": "2026-11-19T19-20-33-132Z",
+      "stage": "topics",
+      "code": "NO_CURRENT_VERIFIED_SOURCES",
+      "roll": 1
+    }
+  ]
+}
