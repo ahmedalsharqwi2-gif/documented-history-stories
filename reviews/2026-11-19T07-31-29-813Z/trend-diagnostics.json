@@ -1,0 +1,151 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "fc0c5ce44867",
+      "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
+      "demand": 2,
+      "recency": 0.829,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 2
+        }
+      ],
+      "score": 2.414355206321523
+    },
+    {
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "demand": 2,
+      "recency": 0.602,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 2
+        }
+      ],
+      "score": 2.301050838092591
+    },
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 2,
+      "recency": 0.598,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 2
+        }
+      ],
+      "score": 2.298967449632875
+    },
+    {
+      "id": "c169a7d2fc77",
+      "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
+      "demand": 6,
+      "recency": 0.594,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 6
+        }
+      ],
+      "score": 6.296898479028634
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 4,
+      "recency": 0.431,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 4
+        }
+      ],
+      "score": 4.215712351567822
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.428,
+      "matches": [],
+      "score": 0.21421953850434736
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 0,
+      "recency": 0.425,
+      "matches": [],
+      "score": 0.21273705628575162
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 2,
+      "recency": 0.159,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 2
+        }
+      ],
+      "score": 2.079356139348548
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 2,
+      "recency": 0.158,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "c",
+          "weight": 2
+        }
+      ],
+      "score": 2.0788069641129834
+    }
+  ]
+}

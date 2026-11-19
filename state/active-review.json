@@ -1,164 +1,164 @@
 {
   "schema": 1,
-  "id": "2026-11-19T06-30-04-811Z",
+  "id": "2026-11-19T07-31-29-813Z",
   "profile": "history",
   "episode": {
-    "topicKey": "corded-ware-social-inequality-bohemia",
-    "title": "إزاي بدأت الطبقية في المجتمعات القديمة؟",
-    "hook": "عمرك سألت نفسك إمتى بدأت الفوارق الطبقية بين الناس؟ هل كانت موجودة من زمان ولا ظهرت فجأة مع هجرات الشعوب؟ تعالوا نعرف الحكاية من مقابر بوهيميا القديمة.",
-    "cta": "لو حابب تعرف أكتر عن أسرار التاريخ والآثار، تابعنا واشترك في القناة عشان يوصلك كل جديد عن اكتشافاتنا اللي بتغير فهمنا للماضي.",
+    "topicKey": "rodhals-man-diet-transition",
+    "title": "لغز رجل رودالس.. صياد تحول لمزارع؟",
+    "hook": "ماذا لو عرفت أن شخصاً عاش قبل ستة آلاف سنة غير نظامه الغذائي بالكامل؟ هل كان مجرد صياد أم بدأ يقلد المزارعين الأوائل في الدنمارك؟ تعالوا نعرف الحكاية.",
+    "cta": "لو حابين تعرفوا أسرار تانية من تاريخ البشر، تابعونا في نقص ونروي، واشتركوا في القناة عشان يوصلكم كل جديد عن اكتشافات الآثار المذهلة.",
     "scenes": [
       {
-        "title": "بداية البحث عن الطبقية",
-        "text": "في دراسة جديدة من جامعة كوبنهاجن، الباحث ميكيل نورتوفت استخدم نظام متطور عشان يحلل مقتنيات المقابر في بوهيميا. الهدف كان فهم إزاي الناس عاشوا حياتهم من 4000 لـ 5000 سنة فاتوا.",
-        "summary": "دراسة جديدة بتحلل مقتنيات المقابر لفهم الطبقية القديمة.",
-        "keyword": "مقابر بوهيميا",
+        "title": "اكتشاف في جزيرة سيجيرو",
+        "text": "في عام ألف وتسعمائة وستة وخمسين، لقوا بقايا هيكل عظمي في جزيرة سيجيرو بالدنمارك، اتعرف باسم رجل رودالس. عاش الراجل ده قبل ستة آلاف سنة، وكان لغز كبير للعلماء.",
+        "summary": "اكتشاف هيكل عظمي قديم في الدنمارك.",
+        "keyword": "رجل رودالس",
         "template": "phenomenon",
         "labels": [
-          "بوهيميا",
-          "آثار",
-          "دراسة"
-        ],
-        "values": [],
-        "claim": "نظام جديد لتحليل الحالة الاجتماعية عبر مقتنيات القبور.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "Mikkel Nørtoft of the University of Copenhagen has developed a system using multiple sources of information to reconstruct social status from grave goods.",
-        "kind": "fact",
-        "expression": 5,
-        "action": "point"
-      },
-      {
-        "title": "تحليل 300 مقبرة قديمة",
-        "text": "الدراسة شملت تحليل 300 مقبرة من ثقافة 'كورديد وير'. الباحثين قارنوا المقتنيات دي مع الحمض النووي والجينات عشان يتتبعوا الأنساب الأبوية ويعرفوا تفاصيل أكتر عن أصحاب المقابر دي.",
-        "summary": "تحليل 300 مقبرة وربطها بالحمض النووي.",
-        "keyword": "كورديد وير",
-        "template": "steps",
-        "labels": [
-          "حمض نووي",
-          "أنساب",
-          "مقابر"
-        ],
-        "values": [],
-        "claim": "ربط المقتنيات الجنائزية بالبيانات الجينية للأفراد.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "data from some 300 Corded Ware culture graves in Bohemia dated to between 4,000 and 5,000 years ago was evaluated.",
-        "kind": "fact",
-        "expression": 6,
-        "action": "walk"
-      },
-      {
-        "title": "هجرات السهوب وتأثيرها",
-        "text": "العلماء كانوا بيتناقشوا لفترة طويلة: هل المهاجرين من السهوب جابوا معاهم نظام طبقي قاسي؟ النتائج بتقول إن التغيير حصل تدريجياً بعد وصولهم لبوهيميا، مش بشكل فوري ومفاجئ زي ما كان متوقع.",
-        "summary": "تأثير هجرات السهوب على النظام الاجتماعي.",
-        "keyword": "هجرات السهوب",
-        "template": "cause",
-        "labels": [
-          "سهوب",
-          "هجرة",
+          "الدنمارك",
+          "هيكل عظمي",
           "تاريخ"
         ],
         "values": [],
-        "claim": "ظهور الطبقية كان تدريجياً بعد هجرات السهوب.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "The study suggests that social inequality emerged over several centuries after people from the steppe migrated into Bohemia.",
+        "claim": "رجل رودالس عاش قبل ستة آلاف سنة.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956.",
         "kind": "fact",
-        "expression": 4,
-        "action": "turn"
+        "expression": 5,
+        "action": "walk"
       },
       {
-        "title": "المساواة في البدايات",
-        "text": "في أول 400 سنة، كانت الفوارق في الثروة بسيطة جداً ومرتبطة غالباً بالعمر. المكانة الاجتماعية كانت بتيجي من إنجازات الشخص في حياته، مش بالوراثة أو العائلات الكبيرة اللي بتسيطر على كل حاجة.",
-        "summary": "المكانة الاجتماعية كانت مرتبطة بالإنجازات الشخصية.",
-        "keyword": "المكانة الاجتماعية",
-        "template": "comparison",
-        "labels": [
-          "ثروة",
-          "عمر",
-          "إنجاز"
-        ],
-        "values": [],
-        "claim": "المكانة كانت تعتمد على الإنجاز لا الوراثة في البداية.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "Achieving status through life actions appears to have been more important than through inheritance, at least during the first 400 years",
-        "kind": "fact",
-        "expression": 7,
-        "action": "jump"
-      },
-      {
-        "title": "تغير الأنساب والطبقية",
-        "text": "بين سنة 2700 و2500 قبل الميلاد، ظهرت سلالة جديدة وبدأنا نشوف زيادة في الفوارق بين الجنسين. الرجالة البالغين بقوا بيدفنوا في مقابر أغنى، وده مؤشر على بداية تحول اجتماعي كبير.",
-        "summary": "ظهور فوارق طبقية وجنسية بعد 2700 ق.م.",
-        "keyword": "سلالة جديدة",
-        "template": "journey",
-        "labels": [
-          "جنس",
-          "سلالة",
-          "مقابر"
-        ],
-        "values": [],
-        "claim": "زيادة التفاوت الطبقي والجندري بعد ظهور سلالة جديدة.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "After a new lineage appeared, between about 2700 and 2500 B.C. , signs of wealth and gender inequality increased",
-        "kind": "fact",
-        "expression": 3,
-        "action": "run"
-      },
-      {
-        "title": "مرحلة السيطرة العائلية",
-        "text": "في المرحلة الأخيرة من 2500 لـ 2300 قبل الميلاد، السلالة الجديدة سيطرت على سجلات الدفن. بدأنا نشوف مظاهر ثراء واضحة حتى عند الأطفال، وده دليل على تراكم الثروة وتوريثها للعائلات.",
-        "summary": "سيطرة سلالة معينة وتوريث الثروة.",
-        "keyword": "ثروة عائلية",
+        "title": "تحليل النظائر المشعة",
+        "text": "استخدم العلماء تحليل نظائر الكربون والنيتروجين في العظام والأسنان، واكتشفوا إن تاريخه بيرجع لفترة ما بين ثلاثة آلاف وثمانمائة وتسعين وثلاثة آلاف وسبعمائة وسبعين قبل الميلاد، وقت ظهور الزراعة.",
+        "summary": "تحديد عمر الهيكل بدقة علمية.",
+        "keyword": "تأريخ كربوني",
         "template": "chart",
         "labels": [
-          "ثراء",
-          "أطفال",
-          "وراثة"
+          "كربون",
+          "نيتروجين",
+          "تاريخ"
         ],
         "values": [],
-        "claim": "ظهور مؤشرات على توريث الثروة والمنافسة الاجتماعية.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "In the final phase, roughly 2500 to 2300 B.C. , we see a few rich displays of family wealth through children",
+        "claim": "تم تأريخ البقايا بين 3890 و3770 قبل الميلاد.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "the bones were radiocarbon dated to between about 3890 and 3770 B.C.",
         "kind": "fact",
-        "expression": 8,
+        "expression": 6,
         "action": "point"
       },
       {
-        "title": "هل ده دليل قاطع؟",
-        "text": "الباحثين بيقولوا إننا محتاجين بيانات DNA أكتر عشان نتأكد من الروابط العائلية دي في مناطق تانية. العلم دايماً بيتطور، وكل اكتشاف بيفتح باب لأسئلة جديدة عن تاريخ البشرية القديم.",
-        "summary": "الحاجة لمزيد من البيانات الجينية للتأكيد.",
-        "keyword": "بيانات DNA",
-        "template": "phenomenon",
-        "labels": [
-          "علم",
-          "جينات",
-          "بحث"
-        ],
-        "values": [],
-        "claim": "الحاجة لمزيد من البيانات لتأكيد النتائج على مستوى العائلة.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "we need more DNA data to confirm this at the family level, and elsewhere",
-        "kind": "fact",
-        "expression": 2,
-        "action": "sleep"
-      },
-      {
-        "title": "خاتمة الحكاية",
-        "text": "كده عرفنا إزاي الطبقية بدأت من مقابر بسيطة وتطورت مع الوقت. التاريخ مش بس حكايات، ده علم بيحاول يفسر إزاي وصلنا للي إحنا فيه دلوقتي. شكراً لمتابعتكم، استنونا في حلقة جديدة.",
-        "summary": "ملخص رحلة تطور الطبقية عبر التاريخ.",
-        "keyword": "تطور البشرية",
+        "title": "نظام غذائي متغير",
+        "text": "في طفولته، كان بيعتمد على المحار والأسماك، لكن لما كبر في سن المراهقة، بدأ ياكل بروتين من مصادر أرضية، وده كان غريب جداً مقارنة بصيادي العصر الحجري التانيين.",
+        "summary": "تغير النظام الغذائي مع تقدم العمر.",
+        "keyword": "نظام غذائي",
         "template": "journey",
         "labels": [
-          "تاريخ",
-          "مجتمع",
-          "خاتمة"
+          "أسماك",
+          "بروتين",
+          "مراهقة"
         ],
         "values": [],
-        "claim": "فهم تطور الطبقية يوضح مسار التاريخ البشري.",
-        "sourceId": "af682a0cce4b",
-        "evidence": "We now have a correlation between changing Y-haplogroup lineages and unequal burial wealth display in one region",
+        "claim": "تغير نظامه الغذائي من الأسماك إلى مصادر أرضية.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased",
+        "kind": "fact",
+        "expression": 7,
+        "action": "turn"
+      },
+      {
+        "title": "هل أكل طعام المزارعين؟",
+        "text": "الباحثين بيعتقدوا إن الطعام الأرضي ده كان من إنتاج المزارعين، لأنه مكنش بياكل أسماك المياه العذبة زي الصيادين التانيين، فغالباً بدأ يتبادل الأكل أو يشتغل معاهم في الزراعة.",
+        "summary": "احتمالية اعتماده على طعام المزارعين.",
+        "keyword": "زراعة",
+        "template": "cause",
+        "labels": [
+          "مزارعون",
+          "صيادون",
+          "غذاء"
+        ],
+        "values": [],
+        "claim": "العلماء يرجحون أنه حصل على طعام من المزارعين.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "The researchers suggest, however, that the land food was provided by farmers",
+        "kind": "fact",
+        "expression": 8,
+        "action": "jump"
+      },
+      {
+        "title": "طريقة دفن غريبة",
+        "text": "مش بس الأكل اللي اتغير، ده حتى طريقة دفنه كانت بتشبه طريقة دفن المزارعين الأوائل، بوجود إطار من الحجارة المسطحة، وده بيوريك إنه بدأ يتبنى عاداتهم مع الحفاظ على تقاليده.",
+        "summary": "تشابه طقوس الدفن مع المزارعين.",
+        "keyword": "دفن",
+        "template": "comparison",
+        "labels": [
+          "حجارة",
+          "طقوس",
+          "تقاليد"
+        ],
+        "values": [],
+        "claim": "طريقة دفنه تشبه دفن المزارعين الأوائل.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones.",
         "kind": "fact",
         "expression": 9,
         "action": "fall"
+      },
+      {
+        "title": "تغيرات جسدية واضحة",
+        "text": "تفاصيل عظام الذراع السفلي لرجل رودالس بتظهر تغييرات عظمية بتدل على تحميل عضلي عالي، وده ممكن يكون نتيجة الشغل الشاق في الزراعة أو الصيد المستمر في حياته اليومية الصعبة.",
+        "summary": "آثار العمل الشاق على العظام.",
+        "keyword": "عظام",
+        "template": "phenomenon",
+        "labels": [
+          "عضلات",
+          "ذراع",
+          "عمل"
+        ],
+        "values": [],
+        "claim": "عظام ذراعه تظهر آثار تحميل عضلي عالي.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading.",
+        "kind": "fact",
+        "expression": 10,
+        "action": "run"
+      },
+      {
+        "title": "تداخل الحضارات",
+        "text": "القصة دي بتورينا إن الانتقال من الصيد للزراعة مكنش مفاجئ، لكنه كان عملية تدريجية، ورجل رودالس كان شاهد على العصر ده، بيجمع بين حياة أجداده وحياة المزارعين الجدد.",
+        "summary": "الانتقال التدريجي بين نمطي الحياة.",
+        "keyword": "تاريخ",
+        "template": "journey",
+        "labels": [
+          "تطور",
+          "حضارة",
+          "تاريخ"
+        ],
+        "values": [],
+        "claim": "رجل رودالس قد يكون تبنى نمط حياة المزارعين.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions.",
+        "kind": "fact",
+        "expression": 11,
+        "action": "sleep"
+      },
+      {
+        "title": "خاتمة",
+        "text": "في النهاية، رجل رودالس بيفضل لغز بيحكي قصة البشر في لحظة تحول تاريخية. هل كان مزارعاً متردداً أم صياداً ذكياً؟ العلم لسه بيكتشف أسرار حياته في كل يوم جديد.",
+        "summary": "ملخص أهمية الاكتشاف التاريخي.",
+        "keyword": "لغز",
+        "template": "phenomenon",
+        "labels": [
+          "اكتشاف",
+          "لغز",
+          "بشر"
+        ],
+        "values": [],
+        "claim": "رجل رودالس يمثل لحظة تحول تاريخية.",
+        "sourceId": "c169a7d2fc77",
+        "evidence": "The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life",
+        "kind": "fact",
+        "expression": 5,
+        "action": "walk"
       }
     ],
     "editorialMode": "daily",
@@ -167,37 +167,57 @@
   },
   "topic": {
     "selected": {
-      "id": "af682a0cce4b",
-      "title": "Wealth and Status of Early Herders Evaluated",
-      "url": "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
-      "text": "COPENHAGEN, DENMARK—According to a statement released by the University of Copenhagen , Mikkel Nørtoft of the University of Copenhagen has developed a system using multiple sources of information to reconstruct social status from grave goods. To test the method, data from some 300 Corded Ware culture graves in Bohemia dated to between 4,000 and 5,000 years ago was evaluated. The analyses of the graves were then compared with genetic ancestry and Y-chromosome patterns to track paternal lineages. The estimated ages of the individuals in the study, and their sex and known illnesses, were included as well. The study suggests that social inequality emerged over several centuries after people from the steppe migrated into Bohemia. At first, differences in wealth appear to have been small, mostly age-related, and distributed across different lineages. “Archaeologists have long debated whether steppe populations migrating across Europe from Ukraine brought with them a highly unequal social system and patriarchy,” Nørtoft said. “Achieving status through life actions appears to have been more important than through inheritance, at least during the first 400 years,” he explained. After a new lineage appeared, between about 2700 and 2500 B.C. , signs of wealth and gender inequality increased, and adult men had more richly furnished graves. “In the final phase, roughly 2500 to 2300 B.C. , we see a few rich displays of family wealth through children, and the previously new lineage now dominated the burial record,” Nørtoft said. These changes could be a sign of inherited wealth and growing social competition, he added. “We now have a correlation between changing Y-haplogroup lineages and unequal burial wealth display in one region, but we need more DNA data to confirm this at the family level, and elsewhere,” he concluded. Read the original scholarly article about this research in the Journal of Neolithic Archaeology . To read about particular kinds of artifacts in Corded Ware burials that signified wealth, go to “ Canine Couture .” The post Wealth and Status of Early Herders Evaluated appeared first on Archaeology Magazine .",
-      "published": "2026-11-18T18:30:00.000Z",
+      "id": "c169a7d2fc77",
+      "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
+      "url": "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
+      "text": "Skull of R dhals Man GOTHENBURG, SWEDEN—According to a report in La Brújula Verde , a team led by Anders Fischer of the University of Gothenburg and John Meadows of the Leibniz Centre for Archaeology has analyzed Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956. Previous genetic study of the bones revealed that Rødhals Man belonged to a group of western European hunter-gatherers. Analysis of carbon and nitrogen isotopes in his bones and teeth indicates that he ate a diet heavy in marine fish. Adjusting for the “old” carbon acquired through consumption of marine fish, the bones were radiocarbon dated to between about 3890 and 3770 B.C. , around the time that the first farmers appeared in Denmark. Layers of dentine in Rødhals Man’s teeth yielded additional information about his diet over time. During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased beyond that usually observed in the remains of other Mesolithic hunter-fishers found in Denmark. It cannot be determined if this land food came from hunting and gathering, or from eating cows, sheep, and cereals raised and grown by farmers. The researchers suggest, however, that the land food was provided by farmers, since Rødhals Man was not also consuming freshwater fish, as inland hunter-gatherers were likely to do. Additionally, the team notes that the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones. The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions. Read the original scholarly article about this research in Antiquity . To read about population shifts between the Mesolithic and Neolithic periods in Denmark, go to “ Ancient DNA Revolution: Danish Turnovers .” Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading. The post New Analysis of Hunter-Gatherer Remains Recovered on Danish Island appeared first on Archaeology Magazine .",
+      "published": "2026-11-17T18:00:00.000Z",
       "official": true,
       "dateBasis": "item_publication_or_update",
       "publisher": "www.archaeology.org",
       "primaryRefs": [
-        "https://www.eurekalert.org/news-releases/1151640",
-        "https://www.jna.uni-kiel.de/index.php/jna/article/view/1560/1746",
-        "https://archaeology.org/issues/november-december-2025/digs-discoveries/canine-couture/",
-        "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull-250x300.jpg",
+        "http://www.w3.org/2000/svg",
+        "https://www.labrujulaverde.com/en/2026/11/denmarks-last-hunter-fisher-saw-the-first-farmers-arrive-6000-years-ago-and-changed-his-diet-but-he-never-became-one-of-them/",
+        "https://doi.org/10.15184/aqy.2026.10476",
+        "https://archaeology.org/issues/september-october-2024/collection/danish-turnovers/ancient-dna-revolution/",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-300x75.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-768x191.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones.jpg",
+        "http://www.w3.org/2000/svg",
+        "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
         "https://archaeology.org"
       ]
     },
     "sources": [
       {
-        "id": "af682a0cce4b",
-        "title": "Wealth and Status of Early Herders Evaluated",
-        "url": "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
-        "text": "COPENHAGEN, DENMARK—According to a statement released by the University of Copenhagen , Mikkel Nørtoft of the University of Copenhagen has developed a system using multiple sources of information to reconstruct social status from grave goods. To test the method, data from some 300 Corded Ware culture graves in Bohemia dated to between 4,000 and 5,000 years ago was evaluated. The analyses of the graves were then compared with genetic ancestry and Y-chromosome patterns to track paternal lineages. The estimated ages of the individuals in the study, and their sex and known illnesses, were included as well. The study suggests that social inequality emerged over several centuries after people from the steppe migrated into Bohemia. At first, differences in wealth appear to have been small, mostly age-related, and distributed across different lineages. “Archaeologists have long debated whether steppe populations migrating across Europe from Ukraine brought with them a highly unequal social system and patriarchy,” Nørtoft said. “Achieving status through life actions appears to have been more important than through inheritance, at least during the first 400 years,” he explained. After a new lineage appeared, between about 2700 and 2500 B.C. , signs of wealth and gender inequality increased, and adult men had more richly furnished graves. “In the final phase, roughly 2500 to 2300 B.C. , we see a few rich displays of family wealth through children, and the previously new lineage now dominated the burial record,” Nørtoft said. These changes could be a sign of inherited wealth and growing social competition, he added. “We now have a correlation between changing Y-haplogroup lineages and unequal burial wealth display in one region, but we need more DNA data to confirm this at the family level, and elsewhere,” he concluded. Read the original scholarly article about this research in the Journal of Neolithic Archaeology . To read about particular kinds of artifacts in Corded Ware burials that signified wealth, go to “ Canine Couture .” The post Wealth and Status of Early Herders Evaluated appeared first on Archaeology Magazine .",
-        "published": "2026-11-18T18:30:00.000Z",
+        "id": "c169a7d2fc77",
+        "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
+        "url": "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
+        "text": "Skull of R dhals Man GOTHENBURG, SWEDEN—According to a report in La Brújula Verde , a team led by Anders Fischer of the University of Gothenburg and John Meadows of the Leibniz Centre for Archaeology has analyzed Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956. Previous genetic study of the bones revealed that Rødhals Man belonged to a group of western European hunter-gatherers. Analysis of carbon and nitrogen isotopes in his bones and teeth indicates that he ate a diet heavy in marine fish. Adjusting for the “old” carbon acquired through consumption of marine fish, the bones were radiocarbon dated to between about 3890 and 3770 B.C. , around the time that the first farmers appeared in Denmark. Layers of dentine in Rødhals Man’s teeth yielded additional information about his diet over time. During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased beyond that usually observed in the remains of other Mesolithic hunter-fishers found in Denmark. It cannot be determined if this land food came from hunting and gathering, or from eating cows, sheep, and cereals raised and grown by farmers. The researchers suggest, however, that the land food was provided by farmers, since Rødhals Man was not also consuming freshwater fish, as inland hunter-gatherers were likely to do. Additionally, the team notes that the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones. The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions. Read the original scholarly article about this research in Antiquity . To read about population shifts between the Mesolithic and Neolithic periods in Denmark, go to “ Ancient DNA Revolution: Danish Turnovers .” Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading. The post New Analysis of Hunter-Gatherer Remains Recovered on Danish Island appeared first on Archaeology Magazine .",
+        "published": "2026-11-17T18:00:00.000Z",
         "official": true,
         "dateBasis": "item_publication_or_update",
         "publisher": "www.archaeology.org",
         "primaryRefs": [
-          "https://www.eurekalert.org/news-releases/1151640",
-          "https://www.jna.uni-kiel.de/index.php/jna/article/view/1560/1746",
-          "https://archaeology.org/issues/november-december-2025/digs-discoveries/canine-couture/",
-          "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull-250x300.jpg",
+          "http://www.w3.org/2000/svg",
+          "https://www.labrujulaverde.com/en/2026/11/denmarks-last-hunter-fisher-saw-the-first-farmers-arrive-6000-years-ago-and-changed-his-diet-but-he-never-became-one-of-them/",
+          "https://doi.org/10.15184/aqy.2026.10476",
+          "https://archaeology.org/issues/september-october-2024/collection/danish-turnovers/ancient-dna-revolution/",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-300x75.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-768x191.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones.jpg",
+          "http://www.w3.org/2000/svg",
+          "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
           "https://archaeology.org"
         ]
       }
@@ -207,10 +227,10 @@
     "windowHours": 720,
     "verification": [
       {
-        "id": "af682a0cce4b",
+        "id": "c169a7d2fc77",
         "basis": "official_primary_source",
         "sourceIds": [
-          "af682a0cce4b"
+          "c169a7d2fc77"
         ]
       }
     ],
@@ -236,84 +256,118 @@
     ],
     "trend": [
       {
-        "id": "af682a0cce4b",
-        "title": "Wealth and Status of Early Herders Evaluated",
-        "demand": 0,
-        "recency": 0.846,
-        "matches": [],
-        "score": 0.4232183881684499
-      },
-      {
         "id": "fc0c5ce44867",
         "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-        "demand": 0,
-        "recency": 0.841,
-        "matches": [],
-        "score": 0.42028955292110043
+        "demand": 2,
+        "recency": 0.829,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 2
+          }
+        ],
+        "score": 2.414355206321523
       },
       {
         "id": "31c766677cf7",
         "title": "19th-Century Philosopher’s Head Examined",
-        "demand": 0,
-        "recency": 0.611,
-        "matches": [],
-        "score": 0.3053624528378114
+        "demand": 2,
+        "recency": 0.602,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 2
+          }
+        ],
+        "score": 2.301050838092591
       },
       {
         "id": "9c90c2ab6578",
         "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
-        "demand": 0,
-        "recency": 0.606,
-        "matches": [],
-        "score": 0.3032492263332661
+        "demand": 2,
+        "recency": 0.598,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 2
+          }
+        ],
+        "score": 2.298967449632875
       },
       {
         "id": "c169a7d2fc77",
         "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
-        "demand": 0,
-        "recency": 0.602,
-        "matches": [],
-        "score": 0.301150624175028
+        "demand": 6,
+        "recency": 0.594,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 6
+          }
+        ],
+        "score": 6.296898479028634
       },
       {
         "id": "0bcc769ad65f",
         "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
-        "demand": 0,
-        "recency": 0.438,
-        "matches": [],
-        "score": 0.2188017585319039
+        "demand": 4,
+        "recency": 0.431,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 4
+          }
+        ],
+        "score": 4.215712351567822
       },
       {
         "id": "3bc47bd494f9",
         "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
         "demand": 0,
-        "recency": 0.435,
+        "recency": 0.428,
         "matches": [],
-        "score": 0.21728756557506282
+        "score": 0.21421953850434736
       },
       {
         "id": "ec0dd8f0dcf1",
         "title": "Did Paleolithic Arabians Poison Their Weapons?",
         "demand": 0,
-        "recency": 0.432,
+        "recency": 0.425,
         "matches": [],
-        "score": 0.21578385142024747
+        "score": 0.21273705628575162
       },
       {
         "id": "46f904514b4b",
         "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
-        "demand": 0,
-        "recency": 0.161,
-        "matches": [],
-        "score": 0.08049266865604565
+        "demand": 2,
+        "recency": 0.159,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 2
+          }
+        ],
+        "score": 2.079356139348548
       },
       {
         "id": "2a9a13156b85",
         "title": "Health of Mummified Egyptian Cats Evaluated",
-        "demand": 0,
-        "recency": 0.16,
-        "matches": [],
-        "score": 0.07993562819725722
+        "demand": 2,
+        "recency": 0.158,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "c",
+            "weight": 2
+          }
+        ],
+        "score": 2.0788069641129834
       }
     ],
     "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
@@ -353,93 +407,127 @@
       "degraded": false,
       "decisions": [
         {
-          "id": "af682a0cce4b",
-          "title": "Wealth and Status of Early Herders Evaluated",
-          "demand": 0,
-          "recency": 0.846,
-          "matches": [],
-          "score": 0.4232183881684499
-        },
-        {
           "id": "fc0c5ce44867",
           "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-          "demand": 0,
-          "recency": 0.841,
-          "matches": [],
-          "score": 0.42028955292110043
+          "demand": 2,
+          "recency": 0.829,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 2
+            }
+          ],
+          "score": 2.414355206321523
         },
         {
           "id": "31c766677cf7",
           "title": "19th-Century Philosopher’s Head Examined",
-          "demand": 0,
-          "recency": 0.611,
-          "matches": [],
-          "score": 0.3053624528378114
+          "demand": 2,
+          "recency": 0.602,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 2
+            }
+          ],
+          "score": 2.301050838092591
         },
         {
           "id": "9c90c2ab6578",
           "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
-          "demand": 0,
-          "recency": 0.606,
-          "matches": [],
-          "score": 0.3032492263332661
+          "demand": 2,
+          "recency": 0.598,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 2
+            }
+          ],
+          "score": 2.298967449632875
         },
         {
           "id": "c169a7d2fc77",
           "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
-          "demand": 0,
-          "recency": 0.602,
-          "matches": [],
-          "score": 0.301150624175028
+          "demand": 6,
+          "recency": 0.594,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 6
+            }
+          ],
+          "score": 6.296898479028634
         },
         {
           "id": "0bcc769ad65f",
           "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
-          "demand": 0,
-          "recency": 0.438,
-          "matches": [],
-          "score": 0.2188017585319039
+          "demand": 4,
+          "recency": 0.431,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 4
+            }
+          ],
+          "score": 4.215712351567822
         },
         {
           "id": "3bc47bd494f9",
           "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
           "demand": 0,
-          "recency": 0.435,
+          "recency": 0.428,
           "matches": [],
-          "score": 0.21728756557506282
+          "score": 0.21421953850434736
         },
         {
           "id": "ec0dd8f0dcf1",
           "title": "Did Paleolithic Arabians Poison Their Weapons?",
           "demand": 0,
-          "recency": 0.432,
+          "recency": 0.425,
           "matches": [],
-          "score": 0.21578385142024747
+          "score": 0.21273705628575162
         },
         {
           "id": "46f904514b4b",
           "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
-          "demand": 0,
-          "recency": 0.161,
-          "matches": [],
-          "score": 0.08049266865604565
+          "demand": 2,
+          "recency": 0.159,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 2
+            }
+          ],
+          "score": 2.079356139348548
         },
         {
           "id": "2a9a13156b85",
           "title": "Health of Mummified Egyptian Cats Evaluated",
-          "demand": 0,
-          "recency": 0.16,
-          "matches": [],
-          "score": 0.07993562819725722
+          "demand": 2,
+          "recency": 0.158,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "c",
+              "weight": 2
+            }
+          ],
+          "score": 2.0788069641129834
         }
       ]
     }
   },
-  "scriptSha256": "221d333f5213a641b62453224e34d01f934539afb6d803e80f2d1528b05b426a",
+  "scriptSha256": "062b5e0af62772ab5ef3e6c0fb1647c1142c91366d9a536d61126d0cd1e6f26f",
   "state": "failed",
   "lastFailure": {
-    "stage": "align",
-    "code": "ALIGNMENT_SPEECH_MISMATCH",
-    "repeat": 1
+    "stage": "voice",
+    "code": "GEMINI_HTTP_429_EXHAUSTED",
+    "repeat": 0
   }
 }

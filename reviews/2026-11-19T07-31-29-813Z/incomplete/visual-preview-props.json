@@ -1,0 +1,178 @@
+{
+  "title": "لغز رجل رودالس.. صياد تحول لمزارع؟",
+  "editorialLabel": null,
+  "scenes": [
+    {
+      "title": "اكتشاف في جزيرة سيجيرو",
+      "text": "في عام ألف وتسعمائة وستة وخمسين، لقوا بقايا هيكل عظمي في جزيرة سيجيرو بالدنمارك، اتعرف باسم رجل رودالس. عاش الراجل ده قبل ستة آلاف سنة، وكان لغز كبير للعلماء.",
+      "summary": "اكتشاف هيكل عظمي قديم في الدنمارك.",
+      "keyword": "رجل رودالس",
+      "template": "phenomenon",
+      "labels": [
+        "الدنمارك",
+        "هيكل عظمي",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "رجل رودالس عاش قبل ستة آلاف سنة.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تحليل النظائر المشعة",
+      "text": "استخدم العلماء تحليل نظائر الكربون والنيتروجين في العظام والأسنان، واكتشفوا إن تاريخه بيرجع لفترة ما بين ثلاثة آلاف وثمانمائة وتسعين وثلاثة آلاف وسبعمائة وسبعين قبل الميلاد، وقت ظهور الزراعة.",
+      "summary": "تحديد عمر الهيكل بدقة علمية.",
+      "keyword": "تأريخ كربوني",
+      "template": "chart",
+      "labels": [
+        "كربون",
+        "نيتروجين",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "تم تأريخ البقايا بين 3890 و3770 قبل الميلاد.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "the bones were radiocarbon dated to between about 3890 and 3770 B.C.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "point",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "نظام غذائي متغير",
+      "text": "في طفولته، كان بيعتمد على المحار والأسماك، لكن لما كبر في سن المراهقة، بدأ ياكل بروتين من مصادر أرضية، وده كان غريب جداً مقارنة بصيادي العصر الحجري التانيين.",
+      "summary": "تغير النظام الغذائي مع تقدم العمر.",
+      "keyword": "نظام غذائي",
+      "template": "journey",
+      "labels": [
+        "أسماك",
+        "بروتين",
+        "مراهقة"
+      ],
+      "values": [],
+      "claim": "تغير نظامه الغذائي من الأسماك إلى مصادر أرضية.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased",
+      "kind": "fact",
+      "expression": 7,
+      "action": "turn",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "هل أكل طعام المزارعين؟",
+      "text": "الباحثين بيعتقدوا إن الطعام الأرضي ده كان من إنتاج المزارعين، لأنه مكنش بياكل أسماك المياه العذبة زي الصيادين التانيين، فغالباً بدأ يتبادل الأكل أو يشتغل معاهم في الزراعة.",
+      "summary": "احتمالية اعتماده على طعام المزارعين.",
+      "keyword": "زراعة",
+      "template": "cause",
+      "labels": [
+        "مزارعون",
+        "صيادون",
+        "غذاء"
+      ],
+      "values": [],
+      "claim": "العلماء يرجحون أنه حصل على طعام من المزارعين.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "The researchers suggest, however, that the land food was provided by farmers",
+      "kind": "fact",
+      "expression": 8,
+      "action": "jump",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "طريقة دفن غريبة",
+      "text": "مش بس الأكل اللي اتغير، ده حتى طريقة دفنه كانت بتشبه طريقة دفن المزارعين الأوائل، بوجود إطار من الحجارة المسطحة، وده بيوريك إنه بدأ يتبنى عاداتهم مع الحفاظ على تقاليده.",
+      "summary": "تشابه طقوس الدفن مع المزارعين.",
+      "keyword": "دفن",
+      "template": "comparison",
+      "labels": [
+        "حجارة",
+        "طقوس",
+        "تقاليد"
+      ],
+      "values": [],
+      "claim": "طريقة دفنه تشبه دفن المزارعين الأوائل.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "fall",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تغيرات جسدية واضحة",
+      "text": "تفاصيل عظام الذراع السفلي لرجل رودالس بتظهر تغييرات عظمية بتدل على تحميل عضلي عالي، وده ممكن يكون نتيجة الشغل الشاق في الزراعة أو الصيد المستمر في حياته اليومية الصعبة.",
+      "summary": "آثار العمل الشاق على العظام.",
+      "keyword": "عظام",
+      "template": "phenomenon",
+      "labels": [
+        "عضلات",
+        "ذراع",
+        "عمل"
+      ],
+      "values": [],
+      "claim": "عظام ذراعه تظهر آثار تحميل عضلي عالي.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "run",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تداخل الحضارات",
+      "text": "القصة دي بتورينا إن الانتقال من الصيد للزراعة مكنش مفاجئ، لكنه كان عملية تدريجية، ورجل رودالس كان شاهد على العصر ده، بيجمع بين حياة أجداده وحياة المزارعين الجدد.",
+      "summary": "الانتقال التدريجي بين نمطي الحياة.",
+      "keyword": "تاريخ",
+      "template": "journey",
+      "labels": [
+        "تطور",
+        "حضارة",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "رجل رودالس قد يكون تبنى نمط حياة المزارعين.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions.",
+      "kind": "fact",
+      "expression": 11,
+      "action": "sleep",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "خاتمة",
+      "text": "في النهاية، رجل رودالس بيفضل لغز بيحكي قصة البشر في لحظة تحول تاريخية. هل كان مزارعاً متردداً أم صياداً ذكياً؟ العلم لسه بيكتشف أسرار حياته في كل يوم جديد.",
+      "summary": "ملخص أهمية الاكتشاف التاريخي.",
+      "keyword": "لغز",
+      "template": "phenomenon",
+      "labels": [
+        "اكتشاف",
+        "لغز",
+        "بشر"
+      ],
+      "values": [],
+      "claim": "رجل رودالس يمثل لحظة تحول تاريخية.",
+      "sourceId": "c169a7d2fc77",
+      "evidence": "The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk",
+      "duration": 12,
+      "words": []
+    }
+  ],
+  "durationInFrames": 2880,
+  "incompleteMode": "silent",
+  "preview": true,
+  "incomplete": true
+}
