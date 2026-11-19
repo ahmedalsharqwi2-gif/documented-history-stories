@@ -1,0 +1,111 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "demand": 2,
+      "recency": 0.553,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "kuwait",
+          "weight": 2
+        }
+      ],
+      "score": 2.276522887208034
+    },
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 0,
+      "recency": 0.549,
+      "matches": [],
+      "score": 0.27460924167325773
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 0,
+      "recency": 0.396,
+      "matches": [],
+      "score": 0.19813730677482067
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.394,
+      "matches": [],
+      "score": 0.19676611983181377
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 2,
+      "recency": 0.391,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "kuwait",
+          "weight": 2
+        }
+      ],
+      "score": 2.1954044220338007
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 0,
+      "recency": 0.146,
+      "matches": [],
+      "score": 0.07289064169153567
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 2,
+      "recency": 0.145,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "kuwait",
+          "weight": 2
+        }
+      ],
+      "score": 2.0723862102052006
+    }
+  ]
+}

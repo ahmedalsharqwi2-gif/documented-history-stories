@@ -1,0 +1,266 @@
+{
+  "selected": {
+    "id": "31c766677cf7",
+    "title": "19th-Century Philosopher’s Head Examined",
+    "url": "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+    "text": "A researcher prepares to scan the auto-icon of Jeremy Bentham. LONDON, ENGLAND—English philosopher Jeremy Bentham suffered from painful toothaches and arthritis of the lower jaw, according to a statement released by University College London . Bentham is thought to have been the first person to have legally registered the preference for his body to be used for scientific study after death, including preservation as an “auto-icon,” or “self-image.” After his death in June 11, 1832, Bentham’s remains were dissected and his body preserved in the collections of University College London. A team of scientists led by Tim Causer of the Bentham Project carried out advanced CT scanning of Bentham’s head, revealing the poor condition of his teeth and lower jaw. “I have never been fond of having my teeth drawn, but I have more than once submitted to the momentary torment to rid myself of the enduring one,” Bentham wrote to Sir Robert Peel in 1830. The CT scans also confirmed that Bentham’s brain had been removed during the dissection, but some of the outer brain remained in the skull. The glass eyes added to the head in the creation of the auto-icon were found to have been equipped with an anatomically correct optic nerve. The scan also provided a detailed view of the hole driller in the top of the skull in order to attach it to the rest of the auto-icon. To read about some of Bentham’s theories, go to “ Alone, but Closely Watched .” The post 19th-Century Philosopher’s Head Examined appeared first on Archaeology Magazine .",
+    "published": "2026-11-17T19:00:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-300x214.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-768x549.jpg",
+      "http://www.w3.org/2000/svg",
+      "https://www.ucl.ac.uk/news/2026/nov/ct-scanning-centuries-old-head-jeremy-bentham",
+      "https://archaeology.org/issues/september-october-2014/digs-discoveries/australia-pentridge-prison-panopticon/",
+      "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "url": "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+      "text": "A researcher prepares to scan the auto-icon of Jeremy Bentham. LONDON, ENGLAND—English philosopher Jeremy Bentham suffered from painful toothaches and arthritis of the lower jaw, according to a statement released by University College London . Bentham is thought to have been the first person to have legally registered the preference for his body to be used for scientific study after death, including preservation as an “auto-icon,” or “self-image.” After his death in June 11, 1832, Bentham’s remains were dissected and his body preserved in the collections of University College London. A team of scientists led by Tim Causer of the Bentham Project carried out advanced CT scanning of Bentham’s head, revealing the poor condition of his teeth and lower jaw. “I have never been fond of having my teeth drawn, but I have more than once submitted to the momentary torment to rid myself of the enduring one,” Bentham wrote to Sir Robert Peel in 1830. The CT scans also confirmed that Bentham’s brain had been removed during the dissection, but some of the outer brain remained in the skull. The glass eyes added to the head in the creation of the auto-icon were found to have been equipped with an anatomically correct optic nerve. The scan also provided a detailed view of the hole driller in the top of the skull in order to attach it to the rest of the auto-icon. To read about some of Bentham’s theories, go to “ Alone, but Closely Watched .” The post 19th-Century Philosopher’s Head Examined appeared first on Archaeology Magazine .",
+      "published": "2026-11-17T19:00:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-300x214.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-768x549.jpg",
+        "http://www.w3.org/2000/svg",
+        "https://www.ucl.ac.uk/news/2026/nov/ct-scanning-centuries-old-head-jeremy-bentham",
+        "https://archaeology.org/issues/september-october-2014/digs-discoveries/australia-pentridge-prison-panopticon/",
+        "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "31c766677cf7",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "31c766677cf7"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    }
+  ],
+  "trend": [
+    {
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "demand": 2,
+      "recency": 0.553,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "kuwait",
+          "weight": 2
+        }
+      ],
+      "score": 2.276522887208034
+    },
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 0,
+      "recency": 0.549,
+      "matches": [],
+      "score": 0.27460924167325773
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 0,
+      "recency": 0.396,
+      "matches": [],
+      "score": 0.19813730677482067
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.394,
+      "matches": [],
+      "score": 0.19676611983181377
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 2,
+      "recency": 0.391,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "kuwait",
+          "weight": 2
+        }
+      ],
+      "score": 2.1954044220338007
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 0,
+      "recency": 0.146,
+      "matches": [],
+      "score": 0.07289064169153567
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 2,
+      "recency": 0.145,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "kuwait",
+          "weight": 2
+        }
+      ],
+      "score": 2.0723862102052006
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 40
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "31c766677cf7",
+        "title": "19th-Century Philosopher’s Head Examined",
+        "demand": 2,
+        "recency": 0.553,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "kuwait",
+            "weight": 2
+          }
+        ],
+        "score": 2.276522887208034
+      },
+      {
+        "id": "9c90c2ab6578",
+        "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+        "demand": 0,
+        "recency": 0.549,
+        "matches": [],
+        "score": 0.27460924167325773
+      },
+      {
+        "id": "0bcc769ad65f",
+        "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+        "demand": 0,
+        "recency": 0.396,
+        "matches": [],
+        "score": 0.19813730677482067
+      },
+      {
+        "id": "3bc47bd494f9",
+        "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+        "demand": 0,
+        "recency": 0.394,
+        "matches": [],
+        "score": 0.19676611983181377
+      },
+      {
+        "id": "ec0dd8f0dcf1",
+        "title": "Did Paleolithic Arabians Poison Their Weapons?",
+        "demand": 2,
+        "recency": 0.391,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "kuwait",
+            "weight": 2
+          }
+        ],
+        "score": 2.1954044220338007
+      },
+      {
+        "id": "46f904514b4b",
+        "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+        "demand": 0,
+        "recency": 0.146,
+        "matches": [],
+        "score": 0.07289064169153567
+      },
+      {
+        "id": "2a9a13156b85",
+        "title": "Health of Mummified Egyptian Cats Evaluated",
+        "demand": 2,
+        "recency": 0.145,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "kuwait",
+            "weight": 2
+          }
+        ],
+        "score": 2.0723862102052006
+      }
+    ]
+  }
+}

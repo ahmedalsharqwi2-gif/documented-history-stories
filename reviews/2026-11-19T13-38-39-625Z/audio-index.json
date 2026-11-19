@@ -1,0 +1,186 @@
+[
+  {
+    "file": "audio/scene-0.wav",
+    "duration": 15.8,
+    "text": "في عام ألف وثمانمائة واثنين وثلاثين، رحل الفيلسوف الإنجليزي جيريمي بنثام، لكنه لم يرحل تماماً. كان أول شخص يسجل قانونياً رغبته في حفظ جسده كأيقونة ذاتية للعلم، ليظل حاضراً بيننا بعد وفاته.",
+    "sha256": "ddb216f2973cc59651023c8ab30dd84d0d71e8fc8d47447cb405c2db5347927f",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "b3b9c622e79d982e4a29a388d0888d8d380d6ec8d79dc588f5a20d0e9967b29b",
+        "sha256": "ddb216f2973cc59651023c8ab30dd84d0d71e8fc8d47447cb405c2db5347927f",
+        "text_sha256": "888958c8c6bbc4fe751872c84a47b18a79e890830f17af6a141c9007c9107472",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 758478,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-1.wav",
+    "duration": 16.090958,
+    "text": "رغم شهرته، كان بنثام يعاني من آلام مبرحة في أسنانه ومفصل الفك. في رسالة كتبها عام ألف وثمانمائة وثلاثين، عبر عن كرهه لخلع الأسنان رغم أنها كانت السبيل الوحيد للتخلص من الألم.",
+    "sha256": "c7062d3e694be6322b84ea867529b2df5a40772ff9de2638a06ba604e73216da",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "a703dd94713be3f42857b3e5435cfdae8e7b049cb6db2ca4c8fc6aa9302823e7",
+        "sha256": "c7062d3e694be6322b84ea867529b2df5a40772ff9de2638a06ba604e73216da",
+        "text_sha256": "ef11224909c3d21e6e0b8fb261f1ce7c05bad6cae1ea806ac60056196d689ec9",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 772444,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-2.wav",
+    "duration": 17.210958,
+    "text": "بنثام نفسه كتب للسير روبرت بيل يصف حالته قائلاً إنه لم يحب يوماً خلع أسنانه، لكنه اضطر لتحمل العذاب اللحظي ليتخلص من الألم المستمر الذي كان يطارده في حياته اليومية الصعبة.",
+    "sha256": "db4ee02c91e1fa8ab3ca925d819fd09ae2db451e1ddc9a7c7c829937a7ccf95e",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "50dd3efa54253c918f859aa5317d205e0ee768799ddcd87a6870e52831881a14",
+        "sha256": "db4ee02c91e1fa8ab3ca925d819fd09ae2db451e1ddc9a7c7c829937a7ccf95e",
+        "text_sha256": "744cb9f6a7bfa598b622f1725f9346eac736f7cf0aee746135f89958167bb37b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 826204,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-3.wav",
+    "duration": 16.48,
+    "text": "اليوم، قام فريق بقيادة تيم كوزر من مشروع بنثام بإجراء مسح مقطعي متطور لرأس الفيلسوف. هذا الفحص كشف بدقة عن الحالة السيئة لأسنانه وفكه السفلي التي عانى منها طوال حياته الماضية.",
+    "sha256": "2ec3c16d0cb6dbe23cbb8ac86c04a66895333085d4d69b08bc4854d097dc58f4",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "10ba5ffc594762f6d282477b08db31295af54c91defb485bccc95e700e91f43b",
+        "sha256": "2ec3c16d0cb6dbe23cbb8ac86c04a66895333085d4d69b08bc4854d097dc58f4",
+        "text_sha256": "9040b1bba086219e86438e2aeb02602a0d0ea141ef3fd4bcbcf598eefd605bdc",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 791118,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-4.wav",
+    "duration": 16,
+    "text": "المسح المقطعي لم يكتفِ بالأسنان، بل أكد أن دماغ بنثام قد أزيل أثناء عملية التشريح، لكن بقايا من الجزء الخارجي للدماغ ظلت موجودة داخل الجمجمة، مما أدهش العلماء الذين فحصوا العينة.",
+    "sha256": "6f2e04abf5dc366cdd6199b4c28f4eebfff19dcfd69cbb4be4d87fcacf4d32df",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "198ed437df81835588d1f5858596a087fc777f2d4706caf9af2a89f86d893ff8",
+        "sha256": "6f2e04abf5dc366cdd6199b4c28f4eebfff19dcfd69cbb4be4d87fcacf4d32df",
+        "text_sha256": "1bb5d8309bd4fb250fa839a092c485dd42aaefbff61abf63f1822f4a403e7a8b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 768078,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-5.wav",
+    "duration": 20.24,
+    "text": "عندما صنعوا الأيقونة الذاتية، أضافوا عيوناً زجاجية للرأس. المفاجأة أن هذه العيون كانت مجهزة بعصب بصري صحيح تشريحياً، مما يظهر مدى الدقة والاهتمام بالتفاصيل التي وضعها من قاموا بحفظ جسده قديماً.",
+    "sha256": "83435403700851ca2877a47f42ce0d107354159213e592e8b2c9d39c5b5f2b38",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "4906b65e6ace2e89366c621751fe427bd0471494d4f827568ebb40fa8864860d",
+        "sha256": "83435403700851ca2877a47f42ce0d107354159213e592e8b2c9d39c5b5f2b38",
+        "text_sha256": "d51b2516f11a09fb67c0c27e29edd7e9a8d101fcc473cb14f9113358403ee793",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 971598,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-6.wav",
+    "duration": 17.12,
+    "text": "أظهر المسح أيضاً ثقباً دقيقاً تم حفره في أعلى الجمجمة. هذا الثقب كان ضرورياً لتثبيت الرأس ببقية هيكل الأيقونة الذاتية، وهو تفصيل تقني يوضح كيف تم تجميع هذا العمل الفريد والمثير للجدل.",
+    "sha256": "6581623cca2769315d1b587413866e3ed41e817b117f4c50f37f726038344e53",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "3fb6f11daea9bafa9739c6fb7bf59336ced0e6502552888232040453c3ed3611",
+        "sha256": "6581623cca2769315d1b587413866e3ed41e817b117f4c50f37f726038344e53",
+        "text_sha256": "c195a7a694f2ade6d42ea9768201b5343ad83a1afbd1cd61d3baeab17e0dfc93",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 821838,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-7.wav",
+    "duration": 17.16,
+    "text": "هكذا يظل جيريمي بنثام حاضراً في سجلات التاريخ والعلم. بفضل التكنولوجيا، عرفنا أسرار جسده ومعاناته، ليتحول من مجرد فيلسوف إلى موضوع بحثي يربط بين الماضي والحاضر في قصة علمية مذهلة.",
+    "sha256": "80b153a1a46f1c5f47e7d523713cd8ec8ff58fd5ddd401e0332d7e6c72137365",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "20df243747685664c23d2e7a1c61cd1a5c8c70c329e8c0fb597cd265b565c101",
+        "sha256": "80b153a1a46f1c5f47e7d523713cd8ec8ff58fd5ddd401e0332d7e6c72137365",
+        "text_sha256": "97f263f450ccffe1d4de201530e407a899505df432401b4ddc9325779b2d8597",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 823758,
+        "reused": true
+      }
+    ]
+  }
+]

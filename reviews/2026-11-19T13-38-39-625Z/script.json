@@ -1,0 +1,163 @@
+{
+  "topicKey": "jeremy-bentham-auto-icon-analysis",
+  "title": "أهم أخبار الأسبوع: أسرار رأس الفيلسوف جيريمي بنثام",
+  "hook": "ماذا لو قررت بعد وفاتك أن تتحول إلى تمثال يعيش بين الناس للأبد؟ هل تخيلت يوماً أن العلماء قد يفحصون رأسك بعد مائتي عام ليعرفوا كيف كنت تعاني من ألم الأسنان؟",
+  "cta": "تابعونا لنروي لكم المزيد من قصص التاريخ الغريبة، ولا تنسوا الاشتراك في قناتنا ليصلكم كل جديد عن أسرار الماضي التي تظهر بفضل العلم الحديث في كل يوم.",
+  "scenes": [
+    {
+      "title": "بداية القصة الغريبة",
+      "text": "في عام ألف وثمانمائة واثنين وثلاثين، رحل الفيلسوف الإنجليزي جيريمي بنثام، لكنه لم يرحل تماماً. كان أول شخص يسجل قانونياً رغبته في حفظ جسده كأيقونة ذاتية للعلم، ليظل حاضراً بيننا بعد وفاته.",
+      "summary": "جيريمي بنثام وأيقونته الذاتية",
+      "keyword": "جيريمي بنثام",
+      "template": "phenomenon",
+      "labels": [
+        "فلسفة",
+        "تاريخ",
+        "علم"
+      ],
+      "values": [],
+      "claim": "كان بنثام أول من سجل رغبته في حفظ جسده للدراسة العلمية.",
+      "sourceId": "31c766677cf7",
+      "evidence": "Bentham is thought to have been the first person to have legally registered the preference for his body to be used for scientific study after death",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "معاناة الفيلسوف",
+      "text": "رغم شهرته، كان بنثام يعاني من آلام مبرحة في أسنانه ومفصل الفك. في رسالة كتبها عام ألف وثمانمائة وثلاثين، عبر عن كرهه لخلع الأسنان رغم أنها كانت السبيل الوحيد للتخلص من الألم.",
+      "summary": "معاناة بنثام مع ألم الأسنان",
+      "keyword": "ألم الأسنان",
+      "template": "comparison",
+      "labels": [
+        "طب",
+        "تاريخ",
+        "معاناة"
+      ],
+      "values": [],
+      "claim": "عانى بنثام من آلام الأسنان والتهاب المفاصل.",
+      "sourceId": "31c766677cf7",
+      "evidence": "English philosopher Jeremy Bentham suffered from painful toothaches and arthritis of the lower jaw",
+      "kind": "fact",
+      "expression": 2,
+      "action": "point"
+    },
+    {
+      "title": "كلمات بنثام الخاصة",
+      "text": "بنثام نفسه كتب للسير روبرت بيل يصف حالته قائلاً إنه لم يحب يوماً خلع أسنانه، لكنه اضطر لتحمل العذاب اللحظي ليتخلص من الألم المستمر الذي كان يطارده في حياته اليومية الصعبة.",
+      "summary": "اقتباس بنثام عن ألمه",
+      "keyword": "رسالة بنثام",
+      "template": "journey",
+      "labels": [
+        "ألم",
+        "رسائل",
+        "فلسفة"
+      ],
+      "values": [],
+      "claim": "بنثام فضل الألم اللحظي على الألم المزمن.",
+      "sourceId": "31c766677cf7",
+      "evidence": "I have never been fond of having my teeth drawn, but I have more than once submitted to the momentary torment to rid myself of the enduring one",
+      "kind": "fact",
+      "expression": 3,
+      "action": "turn"
+    },
+    {
+      "title": "فحص حديث بالماسح الضوئي",
+      "text": "اليوم، قام فريق بقيادة تيم كوزر من مشروع بنثام بإجراء مسح مقطعي متطور لرأس الفيلسوف. هذا الفحص كشف بدقة عن الحالة السيئة لأسنانه وفكه السفلي التي عانى منها طوال حياته الماضية.",
+      "summary": "فحص الرأس بالأشعة المقطعية",
+      "keyword": "مسح مقطعي",
+      "template": "steps",
+      "labels": [
+        "تكنولوجيا",
+        "أبحاث",
+        "علوم"
+      ],
+      "values": [],
+      "claim": "أظهرت الأشعة المقطعية سوء حالة أسنان وفك بنثام.",
+      "sourceId": "31c766677cf7",
+      "evidence": "A team of scientists led by Tim Causer of the Bentham Project carried out advanced CT scanning of Bentham’s head, revealing the poor condition of his teeth and lower jaw.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "jump"
+    },
+    {
+      "title": "أسرار الجمجمة",
+      "text": "المسح المقطعي لم يكتفِ بالأسنان، بل أكد أن دماغ بنثام قد أزيل أثناء عملية التشريح، لكن بقايا من الجزء الخارجي للدماغ ظلت موجودة داخل الجمجمة، مما أدهش العلماء الذين فحصوا العينة.",
+      "summary": "بقايا الدماغ داخل الجمجمة",
+      "keyword": "جمجمة",
+      "template": "phenomenon",
+      "labels": [
+        "تشريح",
+        "أبحاث",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "بقي جزء من الدماغ داخل الجمجمة بعد التشريح.",
+      "sourceId": "31c766677cf7",
+      "evidence": "The CT scans also confirmed that Bentham’s brain had been removed during the dissection, but some of the outer brain remained in the skull.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "fall"
+    },
+    {
+      "title": "تفاصيل الأيقونة",
+      "text": "عندما صنعوا الأيقونة الذاتية، أضافوا عيوناً زجاجية للرأس. المفاجأة أن هذه العيون كانت مجهزة بعصب بصري صحيح تشريحياً، مما يظهر مدى الدقة والاهتمام بالتفاصيل التي وضعها من قاموا بحفظ جسده قديماً.",
+      "summary": "تفاصيل العيون الزجاجية",
+      "keyword": "عيون زجاجية",
+      "template": "map",
+      "labels": [
+        "تشريح",
+        "فن",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "العيون الزجاجية كانت مجهزة بعصب بصري صحيح.",
+      "sourceId": "31c766677cf7",
+      "evidence": "The glass eyes added to the head in the creation of the auto-icon were found to have been equipped with an anatomically correct optic nerve.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "point"
+    },
+    {
+      "title": "ثقب في الجمجمة",
+      "text": "أظهر المسح أيضاً ثقباً دقيقاً تم حفره في أعلى الجمجمة. هذا الثقب كان ضرورياً لتثبيت الرأس ببقية هيكل الأيقونة الذاتية، وهو تفصيل تقني يوضح كيف تم تجميع هذا العمل الفريد والمثير للجدل.",
+      "summary": "ثقب تثبيت الجمجمة",
+      "keyword": "تثبيت",
+      "template": "chart",
+      "labels": [
+        "هندسة",
+        "تاريخ",
+        "تقنية"
+      ],
+      "values": [],
+      "claim": "تم حفر ثقب في الجمجمة لتثبيتها بالأيقونة.",
+      "sourceId": "31c766677cf7",
+      "evidence": "The scan also provided a detailed view of the hole driller in the top of the skull in order to attach it to the rest of the auto-icon.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "run"
+    },
+    {
+      "title": "خاتمة الرحلة",
+      "text": "هكذا يظل جيريمي بنثام حاضراً في سجلات التاريخ والعلم. بفضل التكنولوجيا، عرفنا أسرار جسده ومعاناته، ليتحول من مجرد فيلسوف إلى موضوع بحثي يربط بين الماضي والحاضر في قصة علمية مذهلة.",
+      "summary": "خلاصة قصة بنثام",
+      "keyword": "تاريخ",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "علم",
+        "فلسفة"
+      ],
+      "values": [],
+      "claim": "قصة بنثام تربط بين التاريخ والعلم الحديث.",
+      "sourceId": "31c766677cf7",
+      "evidence": "Bentham’s remains were dissected and his body preserved in the collections of University College London.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

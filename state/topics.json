@@ -33,7 +33,13 @@
   {
     "topicKey": "menorca-ancient-vessels-analysis",
     "value": "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
-    "status": "reserved",
+    "status": "retired",
     "run": "2026-11-19T08-56-56-019Z"
+  },
+  {
+    "topicKey": "jeremy-bentham-auto-icon-analysis",
+    "value": "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+    "status": "reserved",
+    "run": "2026-11-19T13-38-39-625Z"
   }
 ]

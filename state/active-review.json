@@ -1,211 +1,211 @@
 {
   "schema": 1,
-  "id": "2026-11-19T08-56-56-019Z",
+  "id": "2026-11-19T13-38-39-625Z",
   "profile": "history",
   "episode": {
-    "topicKey": "menorca-ancient-vessels-analysis",
-    "title": "أسرار أواني مينوركا القديمة",
-    "hook": "ماذا لو اكتشفنا أن أجدادنا قبل ألفي سنة كانوا بيستخدموا أواني فخارية عشان يشربوا اللبن والنبيذ في طقوس غامضة داخل كهوف جزيرة مينوركا الإسبانية؟ هل ده بيغير نظرتنا لحياتهم اليومية؟",
-    "cta": "لو حابب تعرف أكتر عن أسرار التاريخ اللي بتكشفها الحفريات، تابعنا واشترك في القناة عشان يوصلك كل جديد عن اكتشافاتنا الأثرية المذهلة، وشاركنا رأيك في التعليقات عن أغرب اكتشاف أثري سمعت عنه.",
+    "topicKey": "jeremy-bentham-auto-icon-analysis",
+    "title": "أهم أخبار الأسبوع: أسرار رأس الفيلسوف جيريمي بنثام",
+    "hook": "ماذا لو قررت بعد وفاتك أن تتحول إلى تمثال يعيش بين الناس للأبد؟ هل تخيلت يوماً أن العلماء قد يفحصون رأسك بعد مائتي عام ليعرفوا كيف كنت تعاني من ألم الأسنان؟",
+    "cta": "تابعونا لنروي لكم المزيد من قصص التاريخ الغريبة، ولا تنسوا الاشتراك في قناتنا ليصلكم كل جديد عن أسرار الماضي التي تظهر بفضل العلم الحديث في كل يوم.",
     "scenes": [
       {
-        "title": "اكتشاف في كهوف مينوركا",
-        "text": "في جزيرة مينوركا بإسبانيا، العلماء لقوا أربعة وثلاثين إناء فخاري في مجمع كهوف قديم. الأواني دي بترجع لألفي سنة، وكانت بتستخدم في طقوس ومناسبات اجتماعية، وده كشف تفاصيل مدهشة عن حياة الناس زمان.",
-        "summary": "اكتشاف أربعة وثلاثين إناء فخاري في كهوف مينوركا.",
-        "keyword": "كهوف مينوركا",
+        "title": "بداية القصة الغريبة",
+        "text": "في عام ألف وثمانمائة واثنين وثلاثين، رحل الفيلسوف الإنجليزي جيريمي بنثام، لكنه لم يرحل تماماً. كان أول شخص يسجل قانونياً رغبته في حفظ جسده كأيقونة ذاتية للعلم، ليظل حاضراً بيننا بعد وفاته.",
+        "summary": "جيريمي بنثام وأيقونته الذاتية",
+        "keyword": "جيريمي بنثام",
         "template": "phenomenon",
         "labels": [
-          "كهوف",
-          "فخار",
-          "مينوركا"
+          "فلسفة",
+          "تاريخ",
+          "علم"
         ],
         "values": [],
-        "claim": "residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago.",
+        "claim": "كان بنثام أول من سجل رغبته في حفظ جسده للدراسة العلمية.",
+        "sourceId": "31c766677cf7",
+        "evidence": "Bentham is thought to have been the first person to have legally registered the preference for his body to be used for scientific study after death",
         "kind": "fact",
         "expression": 5,
         "action": "walk"
       },
       {
-        "title": "تصميم الأواني الفريد",
-        "text": "الأواني دي بتتميز بطراز مينوركي خاص، ليها قاع عالي وسعة محدودة. التصميم ده مش بس كان للزينة، لكنه كان بيخدم أغراض عملية في حفظ السوائل زي اللبن والنبيذ اللي تم رصده في البقايا.",
-        "summary": "تصميم الأواني المينوركية بقاع عالي وسعة محدودة.",
-        "keyword": "تصميم فخاري",
+        "title": "معاناة الفيلسوف",
+        "text": "رغم شهرته، كان بنثام يعاني من آلام مبرحة في أسنانه ومفصل الفك. في رسالة كتبها عام ألف وثمانمائة وثلاثين، عبر عن كرهه لخلع الأسنان رغم أنها كانت السبيل الوحيد للتخلص من الألم.",
+        "summary": "معاناة بنثام مع ألم الأسنان",
+        "keyword": "ألم الأسنان",
         "template": "comparison",
         "labels": [
-          "تصميم",
-          "فخار",
-          "تاريخ"
+          "طب",
+          "تاريخ",
+          "معاناة"
         ],
         "values": [],
-        "claim": "These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity.",
+        "claim": "عانى بنثام من آلام الأسنان والتهاب المفاصل.",
+        "sourceId": "31c766677cf7",
+        "evidence": "English philosopher Jeremy Bentham suffered from painful toothaches and arthritis of the lower jaw",
         "kind": "fact",
-        "expression": 6,
+        "expression": 2,
         "action": "point"
       },
       {
-        "title": "النبيذ والتبادل الثقافي",
-        "text": "المفاجأة إن بقايا النبيذ المستورد ظهرت في أواني محلية وأواني تانية من ثقافات متوسطية مختلفة. ده بيأكد وجود علاقات متشابكة ومعقدة بين سكان الجزيرة وشعوب تانية في البحر المتوسط من ألفي سنة.",
-        "summary": "وجود نبيذ مستورد في أواني محلية وأجنبية.",
-        "keyword": "تبادل تجاري",
-        "template": "map",
+        "title": "كلمات بنثام الخاصة",
+        "text": "بنثام نفسه كتب للسير روبرت بيل يصف حالته قائلاً إنه لم يحب يوماً خلع أسنانه، لكنه اضطر لتحمل العذاب اللحظي ليتخلص من الألم المستمر الذي كان يطارده في حياته اليومية الصعبة.",
+        "summary": "اقتباس بنثام عن ألمه",
+        "keyword": "رسالة بنثام",
+        "template": "journey",
         "labels": [
-          "نبيذ",
-          "تجارة",
-          "بحر متوسط"
+          "ألم",
+          "رسائل",
+          "فلسفة"
         ],
         "values": [],
-        "claim": "Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures.",
+        "claim": "بنثام فضل الألم اللحظي على الألم المزمن.",
+        "sourceId": "31c766677cf7",
+        "evidence": "I have never been fond of having my teeth drawn, but I have more than once submitted to the momentary torment to rid myself of the enduring one",
         "kind": "fact",
-        "expression": 7,
+        "expression": 3,
         "action": "turn"
       },
       {
-        "title": "استخدامات الأواني المتنوعة",
-        "text": "سوني كاربونيل من مركز برشلونة للحوسبة الفائقة بتقول إن السكان استعملوا الأواني دي للنبيذ، زي ما كانت مصممة أصلاً. كمان لقوا دهون حيوانية وزيوت نباتية، وده بيوضح تنوع استخدامات الأواني في الوجبات المشتركة.",
-        "summary": "تنوع البقايا بين دهون حيوانية وزيوت ونبيذ.",
-        "keyword": "تحليل كيميائي",
-        "template": "chart",
+        "title": "فحص حديث بالماسح الضوئي",
+        "text": "اليوم، قام فريق بقيادة تيم كوزر من مشروع بنثام بإجراء مسح مقطعي متطور لرأس الفيلسوف. هذا الفحص كشف بدقة عن الحالة السيئة لأسنانه وفكه السفلي التي عانى منها طوال حياته الماضية.",
+        "summary": "فحص الرأس بالأشعة المقطعية",
+        "keyword": "مسح مقطعي",
+        "template": "steps",
         "labels": [
-          "دهون",
-          "زيوت",
-          "نبيذ"
+          "تكنولوجيا",
+          "أبحاث",
+          "علوم"
         ],
         "values": [],
-        "claim": "While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed.",
+        "claim": "أظهرت الأشعة المقطعية سوء حالة أسنان وفك بنثام.",
+        "sourceId": "31c766677cf7",
+        "evidence": "A team of scientists led by Tim Causer of the Bentham Project carried out advanced CT scanning of Bentham’s head, revealing the poor condition of his teeth and lower jaw.",
         "kind": "fact",
-        "expression": 4,
-        "action": "run"
-      },
-      {
-        "title": "طقوس ووجبات جماعية",
-        "text": "الأواني دي كانت موجودة في فناء مدخل الكهف، والباحثين بيعتقدوا إنها كانت بتستخدم كقرابين أو في وجبات جماعية. ده بيعكس جانب اجتماعي وروحاني مهم في حياة الناس اللي عاشوا في الجزيرة قديماً.",
-        "summary": "الأواني كانت تستخدم كقرابين أو في وجبات جماعية.",
-        "keyword": "طقوس قديمة",
-        "template": "journey",
-        "labels": [
-          "قرابين",
-          "طقوس",
-          "اجتماع"
-        ],
-        "values": [],
-        "claim": "The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices.",
-        "kind": "fact",
-        "expression": 8,
+        "expression": 6,
         "action": "jump"
       },
       {
-        "title": "ببرونة من ألفي سنة",
-        "text": "أغرب اكتشاف كان إناء صغير جوه حجرة الدفن، بيعتقدوا إنه كان ببرونة للأطفال. مارجاليدا كول بتقول إن الببرونة دي بتكلمنا عن رعاية الأطفال وإزاي الممارسات دي دخلت في طقوس الجنازة بشكل مؤثر جداً.",
-        "summary": "اكتشاف إناء يعتقد أنه ببرونة أطفال داخل حجرة دفن.",
-        "keyword": "ببرونة أثرية",
+        "title": "أسرار الجمجمة",
+        "text": "المسح المقطعي لم يكتفِ بالأسنان، بل أكد أن دماغ بنثام قد أزيل أثناء عملية التشريح، لكن بقايا من الجزء الخارجي للدماغ ظلت موجودة داخل الجمجمة، مما أدهش العلماء الذين فحصوا العينة.",
+        "summary": "بقايا الدماغ داخل الجمجمة",
+        "keyword": "جمجمة",
         "template": "phenomenon",
         "labels": [
-          "رعاية",
-          "أطفال",
-          "دفن"
-        ],
-        "values": [],
-        "claim": "Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber.",
-        "kind": "fact",
-        "expression": 3,
-        "action": "fall"
-      },
-      {
-        "title": "تطور البحث العلمي",
-        "text": "الدراسة دي بتفتح أبواب جديدة لفهم التاريخ، والباحثين نشروا تفاصيلها في مجلة العلوم الأثرية. المقارنة مع أواني تانية لقوها في ألمانيا بتورينا إزاي كانت العادات دي منتشرة في عصور البرونز والحديد في أوروبا.",
-        "summary": "نشر البحث في مجلة العلوم الأثرية والمقارنة بألمانيا.",
-        "keyword": "بحث علمي",
-        "template": "steps",
-        "labels": [
-          "بحث",
-          "مجلة",
-          "ألمانيا"
-        ],
-        "values": [],
-        "claim": "Read the original scholarly article about this research in the Journal of Archaeological Science.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "Read the original scholarly article about this research in the Journal of Archaeological Science.",
-        "kind": "fact",
-        "expression": 9,
-        "action": "hang"
-      },
-      {
-        "title": "خاتمة الاكتشاف",
-        "text": "في النهاية، الأواني دي مش مجرد فخار مكسور، دي قصص حية عن ناس عاشوا، أكلوا، شربوا، واهتموا بأطفالهم قبل ألفي سنة. التاريخ دايماً بيفاجئنا بتفاصيل إنسانية بسيطة بتجمعنا بكل اللي سبقونا في الزمن.",
-        "summary": "الاكتشافات تعكس تفاصيل إنسانية من الماضي البعيد.",
-        "keyword": "تاريخ إنساني",
-        "template": "cause",
-        "labels": [
-          "قصص",
-          "إنسانية",
+          "تشريح",
+          "أبحاث",
           "تاريخ"
         ],
         "values": [],
-        "claim": "“This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University.",
-        "sourceId": "fc0c5ce44867",
-        "evidence": "“This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University.",
-        "kind": "illustration",
+        "claim": "بقي جزء من الدماغ داخل الجمجمة بعد التشريح.",
+        "sourceId": "31c766677cf7",
+        "evidence": "The CT scans also confirmed that Bentham’s brain had been removed during the dissection, but some of the outer brain remained in the skull.",
+        "kind": "fact",
+        "expression": 8,
+        "action": "fall"
+      },
+      {
+        "title": "تفاصيل الأيقونة",
+        "text": "عندما صنعوا الأيقونة الذاتية، أضافوا عيوناً زجاجية للرأس. المفاجأة أن هذه العيون كانت مجهزة بعصب بصري صحيح تشريحياً، مما يظهر مدى الدقة والاهتمام بالتفاصيل التي وضعها من قاموا بحفظ جسده قديماً.",
+        "summary": "تفاصيل العيون الزجاجية",
+        "keyword": "عيون زجاجية",
+        "template": "map",
+        "labels": [
+          "تشريح",
+          "فن",
+          "تاريخ"
+        ],
+        "values": [],
+        "claim": "العيون الزجاجية كانت مجهزة بعصب بصري صحيح.",
+        "sourceId": "31c766677cf7",
+        "evidence": "The glass eyes added to the head in the creation of the auto-icon were found to have been equipped with an anatomically correct optic nerve.",
+        "kind": "fact",
+        "expression": 4,
+        "action": "point"
+      },
+      {
+        "title": "ثقب في الجمجمة",
+        "text": "أظهر المسح أيضاً ثقباً دقيقاً تم حفره في أعلى الجمجمة. هذا الثقب كان ضرورياً لتثبيت الرأس ببقية هيكل الأيقونة الذاتية، وهو تفصيل تقني يوضح كيف تم تجميع هذا العمل الفريد والمثير للجدل.",
+        "summary": "ثقب تثبيت الجمجمة",
+        "keyword": "تثبيت",
+        "template": "chart",
+        "labels": [
+          "هندسة",
+          "تاريخ",
+          "تقنية"
+        ],
+        "values": [],
+        "claim": "تم حفر ثقب في الجمجمة لتثبيتها بالأيقونة.",
+        "sourceId": "31c766677cf7",
+        "evidence": "The scan also provided a detailed view of the hole driller in the top of the skull in order to attach it to the rest of the auto-icon.",
+        "kind": "fact",
+        "expression": 7,
+        "action": "run"
+      },
+      {
+        "title": "خاتمة الرحلة",
+        "text": "هكذا يظل جيريمي بنثام حاضراً في سجلات التاريخ والعلم. بفضل التكنولوجيا، عرفنا أسرار جسده ومعاناته، ليتحول من مجرد فيلسوف إلى موضوع بحثي يربط بين الماضي والحاضر في قصة علمية مذهلة.",
+        "summary": "خلاصة قصة بنثام",
+        "keyword": "تاريخ",
+        "template": "journey",
+        "labels": [
+          "تاريخ",
+          "علم",
+          "فلسفة"
+        ],
+        "values": [],
+        "claim": "قصة بنثام تربط بين التاريخ والعلم الحديث.",
+        "sourceId": "31c766677cf7",
+        "evidence": "Bentham’s remains were dissected and his body preserved in the collections of University College London.",
+        "kind": "fact",
         "expression": 10,
         "action": "sleep"
       }
     ],
     "editorialMode": "daily",
     "editorialLabel": null,
-    "scriptModel": "gemini-3.1-flash-lite-preview"
+    "scriptModel": "gemini-3.1-flash-lite"
   },
   "topic": {
     "selected": {
-      "id": "fc0c5ce44867",
-      "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-      "url": "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
-      "text": "A high-bottomed vessel (top) and a single-handled jar (above) were unearthed at the Calescoves site in Menorca, Spain. BARCELONA, SPAIN—According to a statement released by the Autonomous University of Barcelona , residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago. These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity. Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures. “These findings reveal the complex, interwoven relationships between local communities and people from other regions,” said Sònia Carbonell of the Barcelona Supercomputing Center. “While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed,” she explained. Animal fats and vegetable oils were also identified in the residues. The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices. Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber. “This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University. Read the original scholarly article about this research in the Journal of Archaeological Science . To read about ancient baby bottles found in Germany, go to “ Artifact: Bronze and Iron Age Drinking Vessels .” The post Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca appeared first on Archaeology Magazine .",
-      "published": "2026-11-18T18:00:00.000Z",
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "url": "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+      "text": "A researcher prepares to scan the auto-icon of Jeremy Bentham. LONDON, ENGLAND—English philosopher Jeremy Bentham suffered from painful toothaches and arthritis of the lower jaw, according to a statement released by University College London . Bentham is thought to have been the first person to have legally registered the preference for his body to be used for scientific study after death, including preservation as an “auto-icon,” or “self-image.” After his death in June 11, 1832, Bentham’s remains were dissected and his body preserved in the collections of University College London. A team of scientists led by Tim Causer of the Bentham Project carried out advanced CT scanning of Bentham’s head, revealing the poor condition of his teeth and lower jaw. “I have never been fond of having my teeth drawn, but I have more than once submitted to the momentary torment to rid myself of the enduring one,” Bentham wrote to Sir Robert Peel in 1830. The CT scans also confirmed that Bentham’s brain had been removed during the dissection, but some of the outer brain remained in the skull. The glass eyes added to the head in the creation of the auto-icon were found to have been equipped with an anatomically correct optic nerve. The scan also provided a detailed view of the hole driller in the top of the skull in order to attach it to the rest of the auto-icon. To read about some of Bentham’s theories, go to “ Alone, but Closely Watched .” The post 19th-Century Philosopher’s Head Examined appeared first on Archaeology Magazine .",
+      "published": "2026-11-17T19:00:00.000Z",
       "official": true,
       "dateBasis": "item_publication_or_update",
       "publisher": "www.archaeology.org",
       "primaryRefs": [
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels-257x300.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-300x214.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-768x549.jpg",
         "http://www.w3.org/2000/svg",
-        "https://www.uab.cat/en/prehistory/news/20261116/lletivi-menorca-en",
-        "https://doi.org/10.1016/j.jas.2026.106719",
-        "https://archaeology.org/issues/january-february-2020/artifacts/artifact-germany-bronze-age-ceramic-vessels/",
-        "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
+        "https://www.ucl.ac.uk/news/2026/nov/ct-scanning-centuries-old-head-jeremy-bentham",
+        "https://archaeology.org/issues/september-october-2014/digs-discoveries/australia-pentridge-prison-panopticon/",
+        "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
         "https://archaeology.org"
       ]
     },
     "sources": [
       {
-        "id": "fc0c5ce44867",
-        "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-        "url": "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
-        "text": "A high-bottomed vessel (top) and a single-handled jar (above) were unearthed at the Calescoves site in Menorca, Spain. BARCELONA, SPAIN—According to a statement released by the Autonomous University of Barcelona , residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago. These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity. Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures. “These findings reveal the complex, interwoven relationships between local communities and people from other regions,” said Sònia Carbonell of the Barcelona Supercomputing Center. “While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed,” she explained. Animal fats and vegetable oils were also identified in the residues. The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices. Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber. “This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University. Read the original scholarly article about this research in the Journal of Archaeological Science . To read about ancient baby bottles found in Germany, go to “ Artifact: Bronze and Iron Age Drinking Vessels .” The post Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca appeared first on Archaeology Magazine .",
-        "published": "2026-11-18T18:00:00.000Z",
+        "id": "31c766677cf7",
+        "title": "19th-Century Philosopher’s Head Examined",
+        "url": "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
+        "text": "A researcher prepares to scan the auto-icon of Jeremy Bentham. LONDON, ENGLAND—English philosopher Jeremy Bentham suffered from painful toothaches and arthritis of the lower jaw, according to a statement released by University College London . Bentham is thought to have been the first person to have legally registered the preference for his body to be used for scientific study after death, including preservation as an “auto-icon,” or “self-image.” After his death in June 11, 1832, Bentham’s remains were dissected and his body preserved in the collections of University College London. A team of scientists led by Tim Causer of the Bentham Project carried out advanced CT scanning of Bentham’s head, revealing the poor condition of his teeth and lower jaw. “I have never been fond of having my teeth drawn, but I have more than once submitted to the momentary torment to rid myself of the enduring one,” Bentham wrote to Sir Robert Peel in 1830. The CT scans also confirmed that Bentham’s brain had been removed during the dissection, but some of the outer brain remained in the skull. The glass eyes added to the head in the creation of the auto-icon were found to have been equipped with an anatomically correct optic nerve. The scan also provided a detailed view of the hole driller in the top of the skull in order to attach it to the rest of the auto-icon. To read about some of Bentham’s theories, go to “ Alone, but Closely Watched .” The post 19th-Century Philosopher’s Head Examined appeared first on Archaeology Magazine .",
+        "published": "2026-11-17T19:00:00.000Z",
         "official": true,
         "dateBasis": "item_publication_or_update",
         "publisher": "www.archaeology.org",
         "primaryRefs": [
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels-257x300.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-300x214.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-England-Jeremy-Bentham-Head-768x549.jpg",
           "http://www.w3.org/2000/svg",
-          "https://www.uab.cat/en/prehistory/news/20261116/lletivi-menorca-en",
-          "https://doi.org/10.1016/j.jas.2026.106719",
-          "https://archaeology.org/issues/january-february-2020/artifacts/artifact-germany-bronze-age-ceramic-vessels/",
-          "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
+          "https://www.ucl.ac.uk/news/2026/nov/ct-scanning-centuries-old-head-jeremy-bentham",
+          "https://archaeology.org/issues/september-october-2014/digs-discoveries/australia-pentridge-prison-panopticon/",
+          "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
           "https://archaeology.org"
         ]
       }
@@ -215,10 +215,10 @@
     "windowHours": 720,
     "verification": [
       {
-        "id": "fc0c5ce44867",
+        "id": "31c766677cf7",
         "basis": "official_primary_source",
         "sourceIds": [
-          "fc0c5ce44867"
+          "31c766677cf7"
         ]
       }
     ],
@@ -244,68 +244,78 @@
     ],
     "trend": [
       {
-        "id": "fc0c5ce44867",
-        "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-        "demand": 0,
-        "recency": 0.812,
-        "matches": [],
-        "score": 0.4062409336897066
-      },
-      {
         "id": "31c766677cf7",
         "title": "19th-Century Philosopher’s Head Examined",
-        "demand": 0,
-        "recency": 0.59,
-        "matches": [],
-        "score": 0.2951553924965133
+        "demand": 2,
+        "recency": 0.553,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "kuwait",
+            "weight": 2
+          }
+        ],
+        "score": 2.276522887208034
       },
       {
         "id": "9c90c2ab6578",
         "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
         "demand": 0,
-        "recency": 0.586,
+        "recency": 0.549,
         "matches": [],
-        "score": 0.29311280280486457
+        "score": 0.27460924167325773
       },
       {
         "id": "0bcc769ad65f",
         "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
         "demand": 0,
-        "recency": 0.423,
+        "recency": 0.396,
         "matches": [],
-        "score": 0.21148808020844784
+        "score": 0.19813730677482067
       },
       {
         "id": "3bc47bd494f9",
         "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
         "demand": 0,
-        "recency": 0.42,
+        "recency": 0.394,
         "matches": [],
-        "score": 0.21002450073972623
+        "score": 0.19676611983181377
       },
       {
         "id": "ec0dd8f0dcf1",
         "title": "Did Paleolithic Arabians Poison Their Weapons?",
-        "demand": 0,
-        "recency": 0.417,
-        "matches": [],
-        "score": 0.20857104980807945
+        "demand": 2,
+        "recency": 0.391,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "kuwait",
+            "weight": 2
+          }
+        ],
+        "score": 2.1954044220338007
       },
       {
         "id": "46f904514b4b",
         "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
         "demand": 0,
-        "recency": 0.156,
+        "recency": 0.146,
         "matches": [],
-        "score": 0.07780211676150496
+        "score": 0.07289064169153567
       },
       {
         "id": "2a9a13156b85",
         "title": "Health of Mummified Egyptian Cats Evaluated",
-        "demand": 0,
-        "recency": 0.155,
-        "matches": [],
-        "score": 0.07726369596444166
+        "demand": 2,
+        "recency": 0.145,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "kuwait",
+            "weight": 2
+          }
+        ],
+        "score": 2.0723862102052006
       }
     ],
     "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
@@ -345,77 +355,87 @@
       "degraded": false,
       "decisions": [
         {
-          "id": "fc0c5ce44867",
-          "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-          "demand": 0,
-          "recency": 0.812,
-          "matches": [],
-          "score": 0.4062409336897066
-        },
-        {
           "id": "31c766677cf7",
           "title": "19th-Century Philosopher’s Head Examined",
-          "demand": 0,
-          "recency": 0.59,
-          "matches": [],
-          "score": 0.2951553924965133
+          "demand": 2,
+          "recency": 0.553,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "kuwait",
+              "weight": 2
+            }
+          ],
+          "score": 2.276522887208034
         },
         {
           "id": "9c90c2ab6578",
           "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
           "demand": 0,
-          "recency": 0.586,
+          "recency": 0.549,
           "matches": [],
-          "score": 0.29311280280486457
+          "score": 0.27460924167325773
         },
         {
           "id": "0bcc769ad65f",
           "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
           "demand": 0,
-          "recency": 0.423,
+          "recency": 0.396,
           "matches": [],
-          "score": 0.21148808020844784
+          "score": 0.19813730677482067
         },
         {
           "id": "3bc47bd494f9",
           "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
           "demand": 0,
-          "recency": 0.42,
+          "recency": 0.394,
           "matches": [],
-          "score": 0.21002450073972623
+          "score": 0.19676611983181377
         },
         {
           "id": "ec0dd8f0dcf1",
           "title": "Did Paleolithic Arabians Poison Their Weapons?",
-          "demand": 0,
-          "recency": 0.417,
-          "matches": [],
-          "score": 0.20857104980807945
+          "demand": 2,
+          "recency": 0.391,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "kuwait",
+              "weight": 2
+            }
+          ],
+          "score": 2.1954044220338007
         },
         {
           "id": "46f904514b4b",
           "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
           "demand": 0,
-          "recency": 0.156,
+          "recency": 0.146,
           "matches": [],
-          "score": 0.07780211676150496
+          "score": 0.07289064169153567
         },
         {
           "id": "2a9a13156b85",
           "title": "Health of Mummified Egyptian Cats Evaluated",
-          "demand": 0,
-          "recency": 0.155,
-          "matches": [],
-          "score": 0.07726369596444166
+          "demand": 2,
+          "recency": 0.145,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "kuwait",
+              "weight": 2
+            }
+          ],
+          "score": 2.0723862102052006
         }
       ]
     }
   },
-  "scriptSha256": "9269bc8167903c27363b2194f6c75840a27237a1fc96a5de0cc3c4771a8345ff",
+  "scriptSha256": "979b4e5f943d401b94cd83c80032bcadd36f51b7f73983f0759789d788997f5a",
   "state": "failed",
   "lastFailure": {
     "stage": "align-repair-1",
     "code": "ALIGNMENT_INVALID_MEASURED_SPAN",
-    "repeat": 1
+    "repeat": 0
   }
 }
