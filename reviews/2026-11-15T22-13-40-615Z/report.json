@@ -1,6 +1,6 @@
 {
   "id": "2026-11-15T22-13-40-615Z",
-  "attemptId": "2026-11-19T04-21-27-485Z",
+  "attemptId": "2026-11-19T04-32-04-118Z",
   "mode": "review",
   "published": false,
   "status": "failed",
@@ -9,7 +9,7 @@
     {
       "name": "preflight",
       "status": "pass",
-      "seconds": 0.122
+      "seconds": 0.087
     },
     {
       "name": "topics",
@@ -22,7 +22,7 @@
     {
       "name": "voice",
       "status": "pass",
-      "seconds": 0.817
+      "seconds": 0.935
     }
   ],
   "limitations": [
@@ -31,7 +31,8 @@
   "failedStage": "align",
   "errorCode": "ALIGNMENT_SPEECH_MISMATCH",
   "partial": {
-    "status": "failed",
-    "code": "PARTIAL_RENDER_FAILED"
+    "status": "rendered",
+    "path": "/home/runner/work/documented-history-stories/documented-history-stories/out/2026-11-15T22-13-40-615Z/incomplete-with-voice/review-with-voice-INCOMPLETE.mp4",
+    "incomplete": true
   }
 }
