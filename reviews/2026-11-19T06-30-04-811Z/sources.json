@@ -1,0 +1,270 @@
+{
+  "selected": {
+    "id": "af682a0cce4b",
+    "title": "Wealth and Status of Early Herders Evaluated",
+    "url": "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
+    "text": "COPENHAGEN, DENMARK—According to a statement released by the University of Copenhagen , Mikkel Nørtoft of the University of Copenhagen has developed a system using multiple sources of information to reconstruct social status from grave goods. To test the method, data from some 300 Corded Ware culture graves in Bohemia dated to between 4,000 and 5,000 years ago was evaluated. The analyses of the graves were then compared with genetic ancestry and Y-chromosome patterns to track paternal lineages. The estimated ages of the individuals in the study, and their sex and known illnesses, were included as well. The study suggests that social inequality emerged over several centuries after people from the steppe migrated into Bohemia. At first, differences in wealth appear to have been small, mostly age-related, and distributed across different lineages. “Archaeologists have long debated whether steppe populations migrating across Europe from Ukraine brought with them a highly unequal social system and patriarchy,” Nørtoft said. “Achieving status through life actions appears to have been more important than through inheritance, at least during the first 400 years,” he explained. After a new lineage appeared, between about 2700 and 2500 B.C. , signs of wealth and gender inequality increased, and adult men had more richly furnished graves. “In the final phase, roughly 2500 to 2300 B.C. , we see a few rich displays of family wealth through children, and the previously new lineage now dominated the burial record,” Nørtoft said. These changes could be a sign of inherited wealth and growing social competition, he added. “We now have a correlation between changing Y-haplogroup lineages and unequal burial wealth display in one region, but we need more DNA data to confirm this at the family level, and elsewhere,” he concluded. Read the original scholarly article about this research in the Journal of Neolithic Archaeology . To read about particular kinds of artifacts in Corded Ware burials that signified wealth, go to “ Canine Couture .” The post Wealth and Status of Early Herders Evaluated appeared first on Archaeology Magazine .",
+    "published": "2026-11-18T18:30:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://www.eurekalert.org/news-releases/1151640",
+      "https://www.jna.uni-kiel.de/index.php/jna/article/view/1560/1746",
+      "https://archaeology.org/issues/november-december-2025/digs-discoveries/canine-couture/",
+      "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "af682a0cce4b",
+      "title": "Wealth and Status of Early Herders Evaluated",
+      "url": "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
+      "text": "COPENHAGEN, DENMARK—According to a statement released by the University of Copenhagen , Mikkel Nørtoft of the University of Copenhagen has developed a system using multiple sources of information to reconstruct social status from grave goods. To test the method, data from some 300 Corded Ware culture graves in Bohemia dated to between 4,000 and 5,000 years ago was evaluated. The analyses of the graves were then compared with genetic ancestry and Y-chromosome patterns to track paternal lineages. The estimated ages of the individuals in the study, and their sex and known illnesses, were included as well. The study suggests that social inequality emerged over several centuries after people from the steppe migrated into Bohemia. At first, differences in wealth appear to have been small, mostly age-related, and distributed across different lineages. “Archaeologists have long debated whether steppe populations migrating across Europe from Ukraine brought with them a highly unequal social system and patriarchy,” Nørtoft said. “Achieving status through life actions appears to have been more important than through inheritance, at least during the first 400 years,” he explained. After a new lineage appeared, between about 2700 and 2500 B.C. , signs of wealth and gender inequality increased, and adult men had more richly furnished graves. “In the final phase, roughly 2500 to 2300 B.C. , we see a few rich displays of family wealth through children, and the previously new lineage now dominated the burial record,” Nørtoft said. These changes could be a sign of inherited wealth and growing social competition, he added. “We now have a correlation between changing Y-haplogroup lineages and unequal burial wealth display in one region, but we need more DNA data to confirm this at the family level, and elsewhere,” he concluded. Read the original scholarly article about this research in the Journal of Neolithic Archaeology . To read about particular kinds of artifacts in Corded Ware burials that signified wealth, go to “ Canine Couture .” The post Wealth and Status of Early Herders Evaluated appeared first on Archaeology Magazine .",
+      "published": "2026-11-18T18:30:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://www.eurekalert.org/news-releases/1151640",
+        "https://www.jna.uni-kiel.de/index.php/jna/article/view/1560/1746",
+        "https://archaeology.org/issues/november-december-2025/digs-discoveries/canine-couture/",
+        "https://archaeology.org/news/2026/11/18/wealth-and-status-of-early-herders-evaluated/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "af682a0cce4b",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "af682a0cce4b"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    }
+  ],
+  "trend": [
+    {
+      "id": "af682a0cce4b",
+      "title": "Wealth and Status of Early Herders Evaluated",
+      "demand": 0,
+      "recency": 0.846,
+      "matches": [],
+      "score": 0.4232183881684499
+    },
+    {
+      "id": "fc0c5ce44867",
+      "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
+      "demand": 0,
+      "recency": 0.841,
+      "matches": [],
+      "score": 0.42028955292110043
+    },
+    {
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "demand": 0,
+      "recency": 0.611,
+      "matches": [],
+      "score": 0.3053624528378114
+    },
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 0,
+      "recency": 0.606,
+      "matches": [],
+      "score": 0.3032492263332661
+    },
+    {
+      "id": "c169a7d2fc77",
+      "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
+      "demand": 0,
+      "recency": 0.602,
+      "matches": [],
+      "score": 0.301150624175028
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 0,
+      "recency": 0.438,
+      "matches": [],
+      "score": 0.2188017585319039
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.435,
+      "matches": [],
+      "score": 0.21728756557506282
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 0,
+      "recency": 0.432,
+      "matches": [],
+      "score": 0.21578385142024747
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 0,
+      "recency": 0.161,
+      "matches": [],
+      "score": 0.08049266865604565
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 0,
+      "recency": 0.16,
+      "matches": [],
+      "score": 0.07993562819725722
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 40
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "af682a0cce4b",
+        "title": "Wealth and Status of Early Herders Evaluated",
+        "demand": 0,
+        "recency": 0.846,
+        "matches": [],
+        "score": 0.4232183881684499
+      },
+      {
+        "id": "fc0c5ce44867",
+        "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
+        "demand": 0,
+        "recency": 0.841,
+        "matches": [],
+        "score": 0.42028955292110043
+      },
+      {
+        "id": "31c766677cf7",
+        "title": "19th-Century Philosopher’s Head Examined",
+        "demand": 0,
+        "recency": 0.611,
+        "matches": [],
+        "score": 0.3053624528378114
+      },
+      {
+        "id": "9c90c2ab6578",
+        "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+        "demand": 0,
+        "recency": 0.606,
+        "matches": [],
+        "score": 0.3032492263332661
+      },
+      {
+        "id": "c169a7d2fc77",
+        "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
+        "demand": 0,
+        "recency": 0.602,
+        "matches": [],
+        "score": 0.301150624175028
+      },
+      {
+        "id": "0bcc769ad65f",
+        "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+        "demand": 0,
+        "recency": 0.438,
+        "matches": [],
+        "score": 0.2188017585319039
+      },
+      {
+        "id": "3bc47bd494f9",
+        "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+        "demand": 0,
+        "recency": 0.435,
+        "matches": [],
+        "score": 0.21728756557506282
+      },
+      {
+        "id": "ec0dd8f0dcf1",
+        "title": "Did Paleolithic Arabians Poison Their Weapons?",
+        "demand": 0,
+        "recency": 0.432,
+        "matches": [],
+        "score": 0.21578385142024747
+      },
+      {
+        "id": "46f904514b4b",
+        "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+        "demand": 0,
+        "recency": 0.161,
+        "matches": [],
+        "score": 0.08049266865604565
+      },
+      {
+        "id": "2a9a13156b85",
+        "title": "Health of Mummified Egyptian Cats Evaluated",
+        "demand": 0,
+        "recency": 0.16,
+        "matches": [],
+        "score": 0.07993562819725722
+      }
+    ]
+  }
+}

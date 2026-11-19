@@ -1,0 +1,199 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-0.wav",
+    "duration": 15.32,
+    "text": "في دراسة جديدة من جامعة كوبنهاجن، الباحث ميكيل نورتوفت استخدم نظام متطور عشان يحلل مقتنيات المقابر في بوهيميا. الهدف كان فهم إزاي الناس عاشوا حياتهم من 4000 لـ 5000 سنة فاتوا.",
+    "sha256": "cc84cabb6594b4ab7162cf2232549e823dc912ddc1cdc4b37751542661127909",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "e38d36d6c4ad6c30a61a9f6a95be5127fa3a8a37410301616dbb93a7437a33e8",
+        "sha256": "cc84cabb6594b4ab7162cf2232549e823dc912ddc1cdc4b37751542661127909",
+        "text_sha256": "fd8359d29545c1bed1501a49173c4e4059ee2bf88f1429f07b31afcf689bc628",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 735438,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-1.wav",
+    "duration": 14.88,
+    "text": "الدراسة شملت تحليل 300 مقبرة من ثقافة 'كورديد وير'. الباحثين قارنوا المقتنيات دي مع الحمض النووي والجينات عشان يتتبعوا الأنساب الأبوية ويعرفوا تفاصيل أكتر عن أصحاب المقابر دي.",
+    "sha256": "867dca24be45267972fcfc2f08ed2d9f9d242e6a9fdf30d84c037b1270619632",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "3f9203ab41f560144190d450bb9f8dfdbab2ca4b1f65ca5614677cfad92ce149",
+        "sha256": "867dca24be45267972fcfc2f08ed2d9f9d242e6a9fdf30d84c037b1270619632",
+        "text_sha256": "da8f4e097fdaafa4b657b987207020dfb557da4fc8f09f8b16c303df6fc013cf",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 714318,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-2.wav",
+    "duration": 15.24,
+    "text": "العلماء كانوا بيتناقشوا لفترة طويلة: هل المهاجرين من السهوب جابوا معاهم نظام طبقي قاسي؟ النتائج بتقول إن التغيير حصل تدريجياً بعد وصولهم لبوهيميا، مش بشكل فوري ومفاجئ زي ما كان متوقع.",
+    "sha256": "0d972f62f204ce4998a967c592e66d567dd2b5153b8b9d02cc112a3db499a3ca",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "2fa8777fd09e1732615824631b02e2417f77217024d923e70306fce957db6e76",
+        "sha256": "0d972f62f204ce4998a967c592e66d567dd2b5153b8b9d02cc112a3db499a3ca",
+        "text_sha256": "c810d43f05784797bd0502eb07f6687478d9487327f925dbe4d6a2a76718abd2",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 731598,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-3.wav",
+    "duration": 14.56,
+    "text": "في أول 400 سنة، كانت الفوارق في الثروة بسيطة جداً ومرتبطة غالباً بالعمر. المكانة الاجتماعية كانت بتيجي من إنجازات الشخص في حياته، مش بالوراثة أو العائلات الكبيرة اللي بتسيطر على كل حاجة.",
+    "sha256": "c9f87b4ad6342b538836e18bc08f55ba54a1ab643c798a6805837eb6466da395",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "e25ee6886cf0a371c409be4c46735a7ba9fe53137b2fc26cac5abcb3b1d8442b",
+        "sha256": "c9f87b4ad6342b538836e18bc08f55ba54a1ab643c798a6805837eb6466da395",
+        "text_sha256": "d4552db77ef2d460d22930b98f56d0767addb9ff4f5ed38904979bab0c03c71d",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 698958,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-4.wav",
+    "duration": 15.88,
+    "text": "بين سنة 2700 و2500 قبل الميلاد، ظهرت سلالة جديدة وبدأنا نشوف زيادة في الفوارق بين الجنسين. الرجالة البالغين بقوا بيدفنوا في مقابر أغنى، وده مؤشر على بداية تحول اجتماعي كبير.",
+    "sha256": "44c7cb31fc106b955f3b533a8e19961e87bf83920b2c71b951dac56bc3bd1396",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "93ab1b1645122bd87fc01ce2ceee33c56c927e855fccc6176c8bec8148d49a39",
+        "sha256": "44c7cb31fc106b955f3b533a8e19961e87bf83920b2c71b951dac56bc3bd1396",
+        "text_sha256": "769aa0162820aca3c9f8aa68d7203a51ad77c4f618314c5358c5b45ee59352aa",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 762318,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-5.wav",
+    "duration": 16.6,
+    "text": "في المرحلة الأخيرة من 2500 لـ 2300 قبل الميلاد، السلالة الجديدة سيطرت على سجلات الدفن. بدأنا نشوف مظاهر ثراء واضحة حتى عند الأطفال، وده دليل على تراكم الثروة وتوريثها للعائلات.",
+    "sha256": "9af9d02b292bd45f378a8b9293b9711c47062531f43eb786221bb5eada3da93d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "47317ed85b42723212ea9884425214aba7dfc0a6e2c8418c089792abdd7e5a06",
+        "sha256": "9af9d02b292bd45f378a8b9293b9711c47062531f43eb786221bb5eada3da93d",
+        "text_sha256": "38ec5944e59e65fff7fa2a92753712be5dbb1396d65be6a560a11807282668e5",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 796878,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-6.wav",
+    "duration": 13.850958,
+    "text": "الباحثين بيقولوا إننا محتاجين بيانات DNA أكتر عشان نتأكد من الروابط العائلية دي في مناطق تانية. العلم دايماً بيتطور، وكل اكتشاف بيفتح باب لأسئلة جديدة عن تاريخ البشرية القديم.",
+    "sha256": "cddfd1489a1997302bf252d61163001d624d5736f1e26b57a26ab4455f7d47fe",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "7eedfa225ed0a4888b98b1ca87db879a773cc989dcee9bd44434a879b81f6165",
+        "sha256": "cddfd1489a1997302bf252d61163001d624d5736f1e26b57a26ab4455f7d47fe",
+        "text_sha256": "65a32c4ee6731baa6d78edfda2014fc4af2e754929c2dd59e5f69c8120ca5e3a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 664924,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T06-30-04-811Z/scene-7.wav",
+    "duration": 14.890958,
+    "text": "كده عرفنا إزاي الطبقية بدأت من مقابر بسيطة وتطورت مع الوقت. التاريخ مش بس حكايات، ده علم بيحاول يفسر إزاي وصلنا للي إحنا فيه دلوقتي. شكراً لمتابعتكم، استنونا في حلقة جديدة.",
+    "sha256": "1d0969ab5d103b482cface135e3fed0113930078770d1a2bd33d4fad2b65745c",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "728d19f70af5154a393e3b382ac042b0d387c398ca1bdabce8491b84a3d6bd11",
+        "sha256": "f44e7dd6224f5a103b999d9c7baf93fef57df461fab035585b7a51a1121d9c1b",
+        "text_sha256": "d3c640779fbda2c84eea9c262a9c7a6944f89a905515f07b2b95ff1ebb406897",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 551118,
+        "reused": false
+      },
+      {
+        "scene": 7,
+        "chunk": 1,
+        "schema": 1,
+        "cacheKey": "c95e0612bec246b56c3114c4b66138523a42372509281606df4f419f290196d5",
+        "sha256": "a639abfb59f9cd72e8b0ba95c7a6efd3b0d296da4c601a863be1835af4c31c21",
+        "text_sha256": "5891f5d8be21106d84921c4d58e3dab5bc5e62872c10368e9391064b3fad61dd",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 163804,
+        "reused": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,163 @@
+{
+  "topicKey": "corded-ware-social-inequality-bohemia",
+  "title": "إزاي بدأت الطبقية في المجتمعات القديمة؟",
+  "hook": "عمرك سألت نفسك إمتى بدأت الفوارق الطبقية بين الناس؟ هل كانت موجودة من زمان ولا ظهرت فجأة مع هجرات الشعوب؟ تعالوا نعرف الحكاية من مقابر بوهيميا القديمة.",
+  "cta": "لو حابب تعرف أكتر عن أسرار التاريخ والآثار، تابعنا واشترك في القناة عشان يوصلك كل جديد عن اكتشافاتنا اللي بتغير فهمنا للماضي.",
+  "scenes": [
+    {
+      "title": "بداية البحث عن الطبقية",
+      "text": "في دراسة جديدة من جامعة كوبنهاجن، الباحث ميكيل نورتوفت استخدم نظام متطور عشان يحلل مقتنيات المقابر في بوهيميا. الهدف كان فهم إزاي الناس عاشوا حياتهم من 4000 لـ 5000 سنة فاتوا.",
+      "summary": "دراسة جديدة بتحلل مقتنيات المقابر لفهم الطبقية القديمة.",
+      "keyword": "مقابر بوهيميا",
+      "template": "phenomenon",
+      "labels": [
+        "بوهيميا",
+        "آثار",
+        "دراسة"
+      ],
+      "values": [],
+      "claim": "نظام جديد لتحليل الحالة الاجتماعية عبر مقتنيات القبور.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "Mikkel Nørtoft of the University of Copenhagen has developed a system using multiple sources of information to reconstruct social status from grave goods.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "point"
+    },
+    {
+      "title": "تحليل 300 مقبرة قديمة",
+      "text": "الدراسة شملت تحليل 300 مقبرة من ثقافة 'كورديد وير'. الباحثين قارنوا المقتنيات دي مع الحمض النووي والجينات عشان يتتبعوا الأنساب الأبوية ويعرفوا تفاصيل أكتر عن أصحاب المقابر دي.",
+      "summary": "تحليل 300 مقبرة وربطها بالحمض النووي.",
+      "keyword": "كورديد وير",
+      "template": "steps",
+      "labels": [
+        "حمض نووي",
+        "أنساب",
+        "مقابر"
+      ],
+      "values": [],
+      "claim": "ربط المقتنيات الجنائزية بالبيانات الجينية للأفراد.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "data from some 300 Corded Ware culture graves in Bohemia dated to between 4,000 and 5,000 years ago was evaluated.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "walk"
+    },
+    {
+      "title": "هجرات السهوب وتأثيرها",
+      "text": "العلماء كانوا بيتناقشوا لفترة طويلة: هل المهاجرين من السهوب جابوا معاهم نظام طبقي قاسي؟ النتائج بتقول إن التغيير حصل تدريجياً بعد وصولهم لبوهيميا، مش بشكل فوري ومفاجئ زي ما كان متوقع.",
+      "summary": "تأثير هجرات السهوب على النظام الاجتماعي.",
+      "keyword": "هجرات السهوب",
+      "template": "cause",
+      "labels": [
+        "سهوب",
+        "هجرة",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "ظهور الطبقية كان تدريجياً بعد هجرات السهوب.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "The study suggests that social inequality emerged over several centuries after people from the steppe migrated into Bohemia.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "turn"
+    },
+    {
+      "title": "المساواة في البدايات",
+      "text": "في أول 400 سنة، كانت الفوارق في الثروة بسيطة جداً ومرتبطة غالباً بالعمر. المكانة الاجتماعية كانت بتيجي من إنجازات الشخص في حياته، مش بالوراثة أو العائلات الكبيرة اللي بتسيطر على كل حاجة.",
+      "summary": "المكانة الاجتماعية كانت مرتبطة بالإنجازات الشخصية.",
+      "keyword": "المكانة الاجتماعية",
+      "template": "comparison",
+      "labels": [
+        "ثروة",
+        "عمر",
+        "إنجاز"
+      ],
+      "values": [],
+      "claim": "المكانة كانت تعتمد على الإنجاز لا الوراثة في البداية.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "Achieving status through life actions appears to have been more important than through inheritance, at least during the first 400 years",
+      "kind": "fact",
+      "expression": 7,
+      "action": "jump"
+    },
+    {
+      "title": "تغير الأنساب والطبقية",
+      "text": "بين سنة 2700 و2500 قبل الميلاد، ظهرت سلالة جديدة وبدأنا نشوف زيادة في الفوارق بين الجنسين. الرجالة البالغين بقوا بيدفنوا في مقابر أغنى، وده مؤشر على بداية تحول اجتماعي كبير.",
+      "summary": "ظهور فوارق طبقية وجنسية بعد 2700 ق.م.",
+      "keyword": "سلالة جديدة",
+      "template": "journey",
+      "labels": [
+        "جنس",
+        "سلالة",
+        "مقابر"
+      ],
+      "values": [],
+      "claim": "زيادة التفاوت الطبقي والجندري بعد ظهور سلالة جديدة.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "After a new lineage appeared, between about 2700 and 2500 B.C. , signs of wealth and gender inequality increased",
+      "kind": "fact",
+      "expression": 3,
+      "action": "run"
+    },
+    {
+      "title": "مرحلة السيطرة العائلية",
+      "text": "في المرحلة الأخيرة من 2500 لـ 2300 قبل الميلاد، السلالة الجديدة سيطرت على سجلات الدفن. بدأنا نشوف مظاهر ثراء واضحة حتى عند الأطفال، وده دليل على تراكم الثروة وتوريثها للعائلات.",
+      "summary": "سيطرة سلالة معينة وتوريث الثروة.",
+      "keyword": "ثروة عائلية",
+      "template": "chart",
+      "labels": [
+        "ثراء",
+        "أطفال",
+        "وراثة"
+      ],
+      "values": [],
+      "claim": "ظهور مؤشرات على توريث الثروة والمنافسة الاجتماعية.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "In the final phase, roughly 2500 to 2300 B.C. , we see a few rich displays of family wealth through children",
+      "kind": "fact",
+      "expression": 8,
+      "action": "point"
+    },
+    {
+      "title": "هل ده دليل قاطع؟",
+      "text": "الباحثين بيقولوا إننا محتاجين بيانات DNA أكتر عشان نتأكد من الروابط العائلية دي في مناطق تانية. العلم دايماً بيتطور، وكل اكتشاف بيفتح باب لأسئلة جديدة عن تاريخ البشرية القديم.",
+      "summary": "الحاجة لمزيد من البيانات الجينية للتأكيد.",
+      "keyword": "بيانات DNA",
+      "template": "phenomenon",
+      "labels": [
+        "علم",
+        "جينات",
+        "بحث"
+      ],
+      "values": [],
+      "claim": "الحاجة لمزيد من البيانات لتأكيد النتائج على مستوى العائلة.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "we need more DNA data to confirm this at the family level, and elsewhere",
+      "kind": "fact",
+      "expression": 2,
+      "action": "sleep"
+    },
+    {
+      "title": "خاتمة الحكاية",
+      "text": "كده عرفنا إزاي الطبقية بدأت من مقابر بسيطة وتطورت مع الوقت. التاريخ مش بس حكايات، ده علم بيحاول يفسر إزاي وصلنا للي إحنا فيه دلوقتي. شكراً لمتابعتكم، استنونا في حلقة جديدة.",
+      "summary": "ملخص رحلة تطور الطبقية عبر التاريخ.",
+      "keyword": "تطور البشرية",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "مجتمع",
+        "خاتمة"
+      ],
+      "values": [],
+      "claim": "فهم تطور الطبقية يوضح مسار التاريخ البشري.",
+      "sourceId": "af682a0cce4b",
+      "evidence": "We now have a correlation between changing Y-haplogroup lineages and unequal burial wealth display in one region",
+      "kind": "fact",
+      "expression": 9,
+      "action": "fall"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite-preview"
+}
