@@ -13,7 +13,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 710478,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/2c4a1dfc4cfe460798debd7f98deff5dcb5984c02b0adf5ab446c4070d0e39c7.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 1,
@@ -27,7 +27,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 737358,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/e9ad565d69e8b01e2460c51cc2efa81aa84c697dff8611c9e533b7247f5388fb.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 2,
@@ -41,7 +41,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 599118,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/6307d5adf846a175e169d6399e1866c3dfdaf5384fd6095ec5329671278b6347.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 3,
@@ -55,7 +55,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 629838,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/0b6d90a86431acf4e61219249930696063b80786effc2af34f95e115e96232e6.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 4,
@@ -69,7 +69,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 685518,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/4501907a3256831cf862ad17ba94f61ee9ca13c15ab75feacebfcaa21405f8e2.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 5,
@@ -83,7 +83,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 677838,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/4b1d3624b015b15ac1a3e402d286a7dd2efa961c24645c1588d88f6ea6cf2ddb.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 6,
@@ -97,7 +97,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 720078,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/8a967f549758c76d2ff83b9821204082c14620dd561bba421a492fdf21379cf2.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 7,
@@ -111,7 +111,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 545358,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/5bd63900f1caf9bb2e4ddc7a3ea661c5bdc3ab598b933ffb20e14fd6d92296fb.wav",
-      "reused": false
+      "reused": true
     },
     {
       "scene": 7,
@@ -125,7 +125,7 @@
       "model": "gemini-3.1-flash-tts-preview",
       "bytes": 190158,
       "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/c606bd41449dff8f2a953024e9cfc74db5d06ad82744f210f630deaad24cf7cb.wav",
-      "reused": false
+      "reused": true
     }
   ]
 }

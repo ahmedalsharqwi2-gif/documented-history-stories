@@ -528,6 +528,6 @@
   "lastFailure": {
     "stage": "align",
     "code": "ALIGNMENT_SPEECH_MISMATCH",
-    "repeat": 0
+    "repeat": 1
   }
 }
