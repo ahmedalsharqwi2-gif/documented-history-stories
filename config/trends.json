@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "mode": "rerank",
+  "googleTrends": { "geo": "EG" },
+  "autocompleteSeeds": ["تاريخ", "حضارة قديمة", "قصة حقيقية من التاريخ", "ماذا حدث في"],
+  "competitorChannelIds": [],
+  "onThisDay": { "enabled": true, "lang": "ar" },
+  "hackerNews": { "enabled": false },
+  "redditSubreddits": [],
+  "weights": { "demand": 1.0, "recency": 0.5 },
+  "excludedTerms": []
+}
