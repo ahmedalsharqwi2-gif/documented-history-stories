@@ -12,6 +12,14 @@
     {
       "url": "https://www.livescience.com/feeds/all",
       "official": false
+    },
+    {
+      "url": "https://www.worldhistory.org/rss/",
+      "official": false
+    },
+    {
+      "url": "https://www.smithsonianmag.com/rss/history/",
+      "official": false
     }
   ],
   "logo": "brand/logo/logo.jpg",
