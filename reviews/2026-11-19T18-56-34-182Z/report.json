@@ -1,0 +1,91 @@
+{
+  "id": "2026-11-19T18-56-34-182Z",
+  "attemptId": "2026-11-19T18-56-23-017Z",
+  "mode": "review",
+  "published": false,
+  "status": "failed",
+  "resumed": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.121
+    },
+    {
+      "name": "roll",
+      "status": "rolled_fresh_topic",
+      "roll": 1,
+      "fromStage": "topics",
+      "code": "NO_CURRENT_VERIFIED_SOURCES"
+    },
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.031
+    },
+    {
+      "name": "roll",
+      "status": "rolled_fresh_topic",
+      "roll": 2,
+      "fromStage": "topics",
+      "code": "NO_CURRENT_VERIFIED_SOURCES"
+    },
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.033
+    }
+  ],
+  "limitations": [
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate."
+  ],
+  "rolled": [
+    {
+      "id": "2026-11-19T18-56-23-017Z",
+      "stage": "topics",
+      "code": "NO_CURRENT_VERIFIED_SOURCES",
+      "roll": 1
+    },
+    {
+      "id": "2026-11-19T18-56-34-006Z",
+      "stage": "topics",
+      "code": "NO_CURRENT_VERIFIED_SOURCES",
+      "roll": 2
+    }
+  ],
+  "failedStage": "topics",
+  "errorCode": "NO_CURRENT_VERIFIED_SOURCES",
+  "sourceDiagnostics": {
+    "feeds": [
+      {
+        "url": "https://www.archaeology.org/feed/",
+        "items": 10,
+        "valid": 10,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.livescience.com/feeds/all",
+        "items": 50,
+        "valid": 50,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      }
+    ],
+    "windowHours": 720,
+    "weeklyWindowHours": null,
+    "parsed": 31,
+    "reasons": [
+      "No unused, dated, corroborated or official source inside the permitted windows."
+    ]
+  },
+  "partial": {
+    "status": "rendered",
+    "path": "/home/runner/work/documented-history-stories/documented-history-stories/out/2026-11-19T18-56-34-182Z/incomplete/visual-preview-incomplete.mp4",
+    "incomplete": true
+  }
+}
