@@ -1,28 +1,66 @@
 {
   "id": "2026-11-15T22-06-49-870Z",
+  "attemptId": "2026-11-19T04-51-43-728Z",
   "mode": "review",
   "published": false,
+  "status": "review_ready",
+  "resumed": true,
   "stages": [
     {
       "name": "preflight",
       "status": "pass",
-      "seconds": 0.046
+      "seconds": 0.66
     },
     {
       "name": "topics",
-      "status": "pass",
-      "seconds": 3.121
+      "status": "resumed_from_saved_source_manifest"
     },
     {
       "name": "script",
+      "status": "resumed_from_hash_verified_script"
+    },
+    {
+      "name": "voice",
       "status": "pass",
-      "seconds": 109.817
+      "seconds": 817.648
+    },
+    {
+      "name": "align",
+      "status": "pass",
+      "seconds": 159.56
+    },
+    {
+      "name": "assets",
+      "status": "pass",
+      "seconds": 0.001
+    },
+    {
+      "name": "mix",
+      "status": "pass",
+      "seconds": 5.131
+    },
+    {
+      "name": "layout-qa",
+      "status": "pass",
+      "seconds": 27.755
+    },
+    {
+      "name": "render",
+      "status": "pass",
+      "seconds": 192.946
+    },
+    {
+      "name": "qa",
+      "status": "pass",
+      "seconds": 6.535
+    },
+    {
+      "name": "package",
+      "status": "pass",
+      "seconds": 0.008
     }
   ],
-  "status": "failed",
   "limitations": [
-    "Visual semantics, pronunciation, watermark absence and copyright require human review; metrics are not proof."
-  ],
-  "failedStage": "voice",
-  "errorCode": "PROVIDER_HTTP_429"
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate."
+  ]
 }

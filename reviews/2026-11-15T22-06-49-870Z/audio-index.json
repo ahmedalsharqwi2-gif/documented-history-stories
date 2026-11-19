@@ -1,0 +1,209 @@
+[
+  {
+    "file": "audio/scene-0.wav",
+    "duration": 14.28,
+    "text": "هل ممكن مقابر حجرية ضخمة على رأس طرف الغار في إسبانيا تكشف أسرار طقوس دفن جماعية استمرت قرنين، في وقت كانت فيه القبور الفردية انتشرت وبقت هي السائدة بجنوب إيبيريا؟",
+    "sha256": "8a596866bcd05291e8782ff5f354542c5400e13ecb187364e23715fd62e41218",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "d6a8e28a032ae752f0cbedf77e7b26ce2d9158dba97d5c157de4b2f6644eacd7",
+        "sha256": "8a596866bcd05291e8782ff5f354542c5400e13ecb187364e23715fd62e41218",
+        "text_sha256": "46c55e5c092fc9f102f6fece88d2d8154f7b1ec3869d8ed8fd8c041e3fb40f70",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 685518,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-1.wav",
+    "duration": 14.32,
+    "text": "الباحث إدواردو فيخاندي فيلا من جامعة قادش وفريقه كشفوا إن المقبرة الأولى معمولة من حجرة بيضاوية منحوتة بالصخر ومتصلة بممر بألواح حجرية، ومتغطية بتل كامل من الرمل والأحجار.",
+    "sha256": "a3bbde21626d1b8b8bcead0f025179069b7201bb80e725493bc597847b3d60d5",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "d8b2f38a68d2c6d72612927bf25382546d8691fa631e4859a33a5a9410af6da7",
+        "sha256": "a3bbde21626d1b8b8bcead0f025179069b7201bb80e725493bc597847b3d60d5",
+        "text_sha256": "78b48f4425fa1bb482e7f6d65ff5bbc5a39087c20f4937f29f5609958384b4fa",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 687438,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-2.wav",
+    "duration": 14.130958,
+    "text": "أما المقبرة التانية فكانت حجرتها دائرية مبنية بصفوف حجرية، ولما القبة الأصلية انهارت في الزمن القديم، حطوا عمود وسطي في المركز وملوا نص الغرفة بالظبط عشان يضمنوا ثباتها.",
+    "sha256": "5f1c9f65501ff50450a11b6cf0e7dee893b96bbcbc50dc43e19f554371a56407",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "3d4dca65ec6050a2538f3c2d64595024a65dd2b9b3c78f11838b113c25bf98f2",
+        "sha256": "5f1c9f65501ff50450a11b6cf0e7dee893b96bbcbc50dc43e19f554371a56407",
+        "text_sha256": "ef683d20e6568cb4defe14ed2f9aeab622cd54d4c05416eb93f4fba20b8f255c",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 678364,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-3.wav",
+    "duration": 15.16,
+    "text": "الفحوصات الدقيقة لعظام الموتى كشفت إن المقبرة الأولى احتوت على رفات تلاتاشر شخص على الأقل، بينما المقبرة التانية كان مدفون فيها رفات سبع أفراد استقروا داخل الحجرة الدائرية دي.",
+    "sha256": "4b123f36a694830c56e552fb465b3e77dd6c28226ce12e4e28bf28fc3dbb8702",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "cee818fd47f647e3656ed78bc08b136763ad30cff10a2a594b9c2a3c1b915315",
+        "sha256": "4b123f36a694830c56e552fb465b3e77dd6c28226ce12e4e28bf28fc3dbb8702",
+        "text_sha256": "021fc3c427ed2f997c03f59bac65d3613510011179aad8e005bd4a4aa8217f58",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 727758,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-4.wav",
+    "duration": 14.130958,
+    "text": "العظام دي اترتبت واتجمعت في زوايا الغرفة بعد تحلل الأجساد بالكامل، ما عدا هيكل مترابط لشابة صغيرة بتبين تحاليل الكربون المشع إنها كانت آخر شخص يتدفن قبل إغلاق المقبرة.",
+    "sha256": "558b1837cb97c44aa86ba0ffa23d52b59625ba7a4d2df36c570abd2174748d4b",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "77d796320fa6345b5b99351e9f2bbfe2f626ee580d08ab74cbf893a7fea17334",
+        "sha256": "558b1837cb97c44aa86ba0ffa23d52b59625ba7a4d2df36c570abd2174748d4b",
+        "text_sha256": "2038c9038b5c56343357bd3f0b34305ed9e38f1f2db6888fee4ecb48e071fafe",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 678364,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-5.wav",
+    "duration": 17.08,
+    "text": "الأثريين استخرجوا من المقبرة الأولى قطع مميزة ولقى ثمينة ضمت حلقتين دهب، وتلات خرزات مصنوعين من الفضة، وقطعة من معدن الميكا الأخضر، ومشط عاجي نادر بالإضافة لقوقعتين مثقوبتين بحرفية.",
+    "sha256": "2b2d7b7223454a1554598b23c4d388f26bbdf22630573b481d682b6d2c09e76d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c06f88285172f521fe374b7258ca4f52894610992b74802677d2be4c001345cb",
+        "sha256": "2b2d7b7223454a1554598b23c4d388f26bbdf22630573b481d682b6d2c09e76d",
+        "text_sha256": "5644f2069d704e33a28e989f59c09070ea560503a7f782a7d4404c8d643d566d",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 819918,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-6.wav",
+    "duration": 14.610958,
+    "text": "بينما المقبرة التانية ضمت مقتنيات جنائزية أقل لكنها ملفتة، فعثر الباحثين جواها على حلق واحد، وسن سهم معمول من النحاس، ومعاهم كمان خرزة تانية جميلة من حجر الميكا الأخضر.",
+    "sha256": "6604a704b7d1ea87bd3fbc572897ad5d70fd472b4523702af66ecf7a70fb8a6e",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "f6e77ee6f0d62cc8366f408560d501a6c2331db8d317b0c89ac1a9b838514d47",
+        "sha256": "6604a704b7d1ea87bd3fbc572897ad5d70fd472b4523702af66ecf7a70fb8a6e",
+        "text_sha256": "0e1d0906571e32250817597829e28f6d01f7efb6f05609328fb526f1554b98eb",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 701404,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-7.wav",
+    "duration": 14.050958,
+    "text": "تحاليل التلألؤ الضوئي لحبات الرمل والأحجار لسه شغالة عشان تفصل في اللغز الكبير، وتعرف إذا كانت المقابر دي اتعاد استخدامها ولا كان أصحابها آخر بناة للأضرحة الميجاليثية بالمنطقة.",
+    "sha256": "92c6defeb8eb54b25ff4b6b3d2427f6d2c2dcf017346c13f90f10db8c4fa0965",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "712613dbb9ba0dea0feec82c74dce8579aad3c5de1f72840a14d27b66782f9af",
+        "sha256": "92c6defeb8eb54b25ff4b6b3d2427f6d2c2dcf017346c13f90f10db8c4fa0965",
+        "text_sha256": "4e1a4bd151ae39d375daaba9a6516c83af55f990b4e4b530f21d9565af1e05e7",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 674524,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-8.wav",
+    "duration": 13.370958,
+    "text": "تابعونا دايماً في نقص ونروي عشان تعرفوا أغرب الاكتشافات التاريخية أول بأول، وشاركونا رأيكم في التعليقات هل تتوقعوا المقابر دي اتفتحت كذا مرة ولا عاشت زمنها الأصلي بس؟",
+    "sha256": "5c93db007f4869bca9ee9baba696c3e02ac9b172eb1b0f6e99b8b6713590b4c7",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 8,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "8590b1f87773dfc513308d8e93001a536b0dcd063d16ebfa0b53277d355f0814",
+        "sha256": "5c93db007f4869bca9ee9baba696c3e02ac9b172eb1b0f6e99b8b6713590b4c7",
+        "text_sha256": "8a2d7a2bba3649a29899dae31e2be54d23b59cf2bf9fb02733c5bce99fe9f21b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 641884,
+        "reused": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "passed": true,
+  "complete": true,
+  "published": false,
+  "video_sha256": "c32f1b73cac28771e7af9f08d968da4a75194c8ea3cf1e8eb6cdfd820eed1b07",
+  "logo_sha256": "3641e6a62fa3efc6c266d230832c1a5987bdc700522d17c938c03845de4efd5a",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 131.179,
+  "integratedLUFS": -14.66,
+  "truePeak": -4.33,
+  "transcript": "original script, strict measured word timing",
+  "layout": "all caption cues and representative scene frames passed",
+  "watermark": {
+    "knownTextScan": "no_known_foreign_watermark_detected",
+    "assetPolicy": "Only original vectors, owner-supplied immutable logos and documented generated backgrounds; listening/visual approval remains separate."
+  },
+  "manualArtReview": "pending"
+}
