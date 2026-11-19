@@ -1,0 +1,163 @@
+{
+  "topicKey": "paleolithic-souvenir-collection-israel",
+  "title": "أهم أخبار الأسبوع: هل عرف الإنسان القديم الهدايا التذكارية؟",
+  "hook": "ماذا لو قلت لك إن البشر من حوالي خمسمائة ألف سنة كانوا بيجمعوا هدايا تذكارية زيك بالظبط؟ هل ممكن يكونوا بدأوا يجمعوا حاجات عشان يفتكروا أماكن معينة أو تجارب شخصية عاشوها زمان؟",
+  "cta": "لو حابب تعرف أكتر عن أسرار الإنسان القديم وتطور عقله، تابعنا واشترك في القناة عشان يوصلك كل جديد عن اكتشافات التاريخ اللي بتغير نظرتنا للماضي البعيد كل يوم.",
+  "scenes": [
+    {
+      "title": "بداية الحكاية",
+      "text": "تخيل إنسان بدائي بيمشي في كهف وبدل ما يدور على أكل بس، لقى حجر ملون لفت نظره وشاله معاه. ده مش خيال، ده احتمال علمي جديد بيغير فهمنا لتطور العقل البشري القديم.",
+      "summary": "اكتشافات جديدة تشير لجمع الإنسان القديم للهدايا التذكارية.",
+      "keyword": "كهف قسيم",
+      "template": "phenomenon",
+      "labels": [
+        "إنسان قديم",
+        "آثار",
+        "تطور"
+      ],
+      "values": [],
+      "claim": "الإنسان القديم بدأ بجمع المقتنيات منذ خمسمائة ألف عام.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "Hominins may have begun collecting relics and keepsakes some 500,000 years ago, according to a statement released by Tel Aviv University .",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "أدوات مش مجرد أدوات",
+      "text": "الباحثين في جامعة تل أبيب لقوا أدوات صوان قديمة، مش بس مستخدمة في الصيد، لكنها بتحتوي على حفريات أو أشكال جيولوجية غريبة، وده معناه إنها كانت أكتر من مجرد أداة شغل عادية.",
+      "summary": "أدوات صوان تحتوي على حفريات وأشكال غريبة.",
+      "keyword": "أدوات صوان",
+      "template": "comparison",
+      "labels": [
+        "صوان",
+        "حفريات",
+        "جامعة تل أبيب"
+      ],
+      "values": [],
+      "claim": "الأدوات كانت تحتوي على حفريات وتكوينات جيولوجية غير معتادة.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "These possible souvenirs include small, colorful pebbles unearthed in Israel’s Qesem Cave, and handaxes made from flint containing fossils or unusual geological formations that were recovered in the Sakhnin Valley.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "point"
+    },
+    {
+      "title": "أماكن الاكتشاف",
+      "text": "الاكتشافات دي ظهرت في مواقع كتير زي كهف قسيم، وموقع ريفاديم، وجلجولية. الأدوات دي كانت بتظهر عليها علامات استخدام تقيل، ومع ذلك فضلوا محتفظين بيها، يمكن عشان شكلها القديم المميز اللي بيجذب العين.",
+      "summary": "مواقع أثرية في إسرائيل شهدت اكتشاف هذه الأدوات.",
+      "keyword": "مواقع أثرية",
+      "template": "map",
+      "labels": [
+        "كهف قسيم",
+        "ريفاديم",
+        "جلجولية"
+      ],
+      "values": [],
+      "claim": "تم العثور على أدوات مستخدمة بكثافة في مواقع متعددة.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "These objects may have been kept for their aged appearance, the researchers explained.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "turn"
+    },
+    {
+      "title": "الهدف من الاحتفاظ",
+      "text": "زي ما إحنا بنحتفظ بذكرى من رحلة أو هدية من حد بنحبه، العلماء بيعتقدوا إن الإنسان القديم كان بيحتفظ بالأشياء دي عشان يفتكر أماكن معينة أو تجارب شخصية مر بيها في حياته.",
+      "summary": "الاحتفاظ بالأشياء كان وسيلة لاسترجاع الذكريات.",
+      "keyword": "ذكريات",
+      "template": "journey",
+      "labels": [
+        "تجربة شخصية",
+        "ذاكرة",
+        "سلوك"
+      ],
+      "values": [],
+      "claim": "الأشياء قد تكون احتُفظ بها لتحفيز ذكريات المكان أو التجربة الشخصية.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "Just like modern keepsakes, the objects may have been retained in order to trigger memories of a place or personal experience.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "jump"
+    },
+    {
+      "title": "تطور العقل",
+      "text": "الاستمرار في السلوك ده عبر أجيال كتير ممكن يكون زود الضغوط التطورية على آليات المخ المسؤولة عن الذاكرة والإحساس بالذات، وده نقلة نوعية في فهمنا لكيفية تطور عقل الإنسان عبر الزمن الطويل.",
+      "summary": "تأثير جمع المقتنيات على تطور آليات المخ.",
+      "keyword": "تطور العقل",
+      "template": "cause",
+      "labels": [
+        "تطور",
+        "مخ",
+        "ذاكرة"
+      ],
+      "values": [],
+      "claim": "استخدام هذه الأشياء قد زاد الضغوط التطورية على آليات الذاكرة.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "Use of such items over many generations may have increased evolutionary pressures on brain mechanisms involved with memory and sense of self, the researchers argue.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "run"
+    },
+    {
+      "title": "بحث علمي رصين",
+      "text": "الدراسة دي اتنشرت في مجلة علمية متخصصة، وبتقدم رؤية جديدة ومثيرة عن حياة أسلافنا. مش مجرد صدفة، لكنه سلوك واعي بدأ من مئات الآلاف من السنين وشكل جزء من هويتنا الإنسانية الحالية.",
+      "summary": "الدراسة تقدم رؤية جديدة حول السلوك الإنساني القديم.",
+      "keyword": "دراسة علمية",
+      "template": "phenomenon",
+      "labels": [
+        "بحث",
+        "مجلة علمية",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "البحث منشور في دورية علمية حول الأنثروبولوجيا التطورية.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "Read the original scholarly article about this research in Evolutionary Anthropology .",
+      "kind": "fact",
+      "expression": 6,
+      "action": "point"
+    },
+    {
+      "title": "تساؤلات مستمرة",
+      "text": "هل كان فيه دافع تاني غير الذاكرة؟ العلماء لسه بيدرسوا الموضوع، وكل قطعة حجر أو أداة صوان بتتحول لقطعة بازل بتكمل صورة الإنسان اللي كان عايش قبلنا بمئات الآلاف من السنين.",
+      "summary": "استمرار البحث لفهم دوافع الإنسان القديم.",
+      "keyword": "بحث مستمر",
+      "template": "steps",
+      "labels": [
+        "ألغاز",
+        "تاريخ",
+        "علم"
+      ],
+      "values": [],
+      "claim": "الباحثون يواصلون دراسة هذه المقتنيات لفهم دوافع الإنسان القديم.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "These objects may have been kept for their aged appearance, the researchers explained.",
+      "kind": "fact",
+      "expression": 3,
+      "action": "hang"
+    },
+    {
+      "title": "خاتمة",
+      "text": "في النهاية، التاريخ مش بس حروب وملوك، التاريخ هو حجر ملون شاله إنسان قديم في جيبه عشان يفتكر لحظة حلوة. شاركونا في التعليقات، إيه أكتر حاجة بتحتفظوا بيها عشان ذكرياتها؟",
+      "summary": "دعوة للمشاهدين للتفاعل حول مفهوم الذكريات.",
+      "keyword": "ذكريات",
+      "template": "phenomenon",
+      "labels": [
+        "تفاعل",
+        "تاريخ",
+        "خاتمة"
+      ],
+      "values": [],
+      "claim": "الاحتفاظ بالأشياء جزء من التجربة الإنسانية الممتدة.",
+      "sourceId": "0bcc769ad65f",
+      "evidence": "Just like modern keepsakes, the objects may have been retained in order to trigger memories of a place or personal experience.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

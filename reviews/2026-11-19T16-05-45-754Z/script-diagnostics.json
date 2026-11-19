@@ -1,0 +1,6 @@
+{
+  "code": "SCRIPT_LINT",
+  "attempt": 2,
+  "zodIssues": null,
+  "detail": "scene[6].text spelled_out_number_run: 4 consecutive number-words in: كمان أشارت الدراسة إن موجة جفاف شديدة حصلت بين سنة ألف ومائة وأربعة وتسعين وسنة ألف ومائة واثنين وتسعين قبل الميلاد،"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "2026-11-19T16-05-45-754Z",
+  "attemptId": "2026-11-19T16-02-32-746Z",
+  "mode": "review",
+  "published": false,
+  "status": "running",
+  "resumed": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.569
+    },
+    {
+      "name": "topics",
+      "status": "pass",
+      "seconds": 8.953
+    },
+    {
+      "name": "roll",
+      "status": "rolled_fresh_topic",
+      "roll": 1,
+      "fromStage": "script",
+      "code": "STAGE_FAILED_SEE_RUNBOOK"
+    },
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.031
+    },
+    {
+      "name": "topics",
+      "status": "pass",
+      "seconds": 0.174
+    }
+  ],
+  "limitations": [
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate."
+  ],
+  "retiredEpisode": {
+    "id": "2026-11-19T13-38-39-625Z",
+    "stage": "align-repair-1",
+    "code": "ALIGNMENT_INVALID_MEASURED_SPAN",
+    "reason": "Same stage and code failed on consecutive resumed attempts; retained audio and hash-locked script are immutable, so the deterministic failure cannot clear. Episode retired; a fresh episode is rolled through the same gates."
+  },
+  "rolled": [
+    {
+      "id": "2026-11-19T16-02-32-746Z",
+      "stage": "script",
+      "code": "STAGE_FAILED_SEE_RUNBOOK",
+      "roll": 1
+    }
+  ]
+}

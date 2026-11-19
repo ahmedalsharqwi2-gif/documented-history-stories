@@ -39,7 +39,25 @@
   {
     "topicKey": "jeremy-bentham-auto-icon-analysis",
     "value": "https://archaeology.org/news/2026/11/17/19th-century-philosophers-head-examined/",
-    "status": "reserved",
+    "status": "retired",
     "run": "2026-11-19T13-38-39-625Z"
+  },
+  {
+    "value": "https://archaeology.org/news/2026/11/16/did-paleolithic-arabians-poison-their-weapons/",
+    "status": "retired",
+    "reason": "STAGE_FAILED_SEE_RUNBOOK",
+    "run": "2026-11-19T16-02-32-746Z"
+  },
+  {
+    "value": "https://archaeology.org/news/2026/11/17/mesopotamian-chronology-refined-with-tree-rings-and-ice-cores/",
+    "status": "retired",
+    "reason": "STAGE_FAILED_SEE_RUNBOOK",
+    "run": "2026-11-19T16-05-45-754Z"
+  },
+  {
+    "topicKey": "paleolithic-souvenir-collection-israel",
+    "value": "https://archaeology.org/news/2026/11/16/souvenir-collection-may-have-begun-500000-years-ago/",
+    "status": "reserved",
+    "run": "2026-11-19T16-06-58-973Z"
   }
 ]

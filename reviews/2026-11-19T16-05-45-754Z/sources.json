@@ -1,0 +1,248 @@
+{
+  "selected": {
+    "id": "9c90c2ab6578",
+    "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+    "url": "https://archaeology.org/news/2026/11/17/mesopotamian-chronology-refined-with-tree-rings-and-ice-cores/",
+    "text": "TUCSON, ARIZONA— Phys.org reports that a team of researchers led by Charlotte Pearson of the University of Arizona has refined the timeline for historical events in ancient Mesopotamia. First, the team members radiocarbon dated individual tree rings and analyzed tree ring data from timbers unearthed at archaeological sites in Turkey, in order to calculate precise dates for when the trees were felled. These dates helped the researchers to determine when the buildings had been constructed. Then those dates were linked to historical records from the sites that were tied to specific years in the Assyrian calendar. The scientists also evaluated Babylonian records of Venus, noting that sometimes the planet was hard to see because of haze in the atmosphere. They compared these observations with evidence of volcanic eruptions preserved in polar ice cores. The strongest match was found to be an eruption of the Aniakchak volcano in Alaska around 1628 or 1628 B.C. Combining the data, the researchers suggest that Babylon fell around 1587 B.C. , while severe drought between 1194 and 1192 B.C. may have contributed to the collapse of the Hittite Empire. “Single-year measurements of radiocarbon from calendar-dated tree rings offer new opportunities to refine and improve chronologies,” the researchers concluded. To read about evidence of spy craft in Mesopotamia, go to “ In His Majesty’s Secret Service .” The post Mesopotamian Chronology Refined with Tree Rings and Ice Cores appeared first on Archaeology Magazine .",
+    "published": "2026-11-17T18:30:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://phys.org/news/2026-11-ancient-tree-ice-cores-pin.html",
+      "https://archaeology.org/issues/november-december-2025/digs-discoveries/in-his-majestys-secret-service/",
+      "https://archaeology.org/news/2026/11/17/mesopotamian-chronology-refined-with-tree-rings-and-ice-cores/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "url": "https://archaeology.org/news/2026/11/17/mesopotamian-chronology-refined-with-tree-rings-and-ice-cores/",
+      "text": "TUCSON, ARIZONA— Phys.org reports that a team of researchers led by Charlotte Pearson of the University of Arizona has refined the timeline for historical events in ancient Mesopotamia. First, the team members radiocarbon dated individual tree rings and analyzed tree ring data from timbers unearthed at archaeological sites in Turkey, in order to calculate precise dates for when the trees were felled. These dates helped the researchers to determine when the buildings had been constructed. Then those dates were linked to historical records from the sites that were tied to specific years in the Assyrian calendar. The scientists also evaluated Babylonian records of Venus, noting that sometimes the planet was hard to see because of haze in the atmosphere. They compared these observations with evidence of volcanic eruptions preserved in polar ice cores. The strongest match was found to be an eruption of the Aniakchak volcano in Alaska around 1628 or 1628 B.C. Combining the data, the researchers suggest that Babylon fell around 1587 B.C. , while severe drought between 1194 and 1192 B.C. may have contributed to the collapse of the Hittite Empire. “Single-year measurements of radiocarbon from calendar-dated tree rings offer new opportunities to refine and improve chronologies,” the researchers concluded. To read about evidence of spy craft in Mesopotamia, go to “ In His Majesty’s Secret Service .” The post Mesopotamian Chronology Refined with Tree Rings and Ice Cores appeared first on Archaeology Magazine .",
+      "published": "2026-11-17T18:30:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://phys.org/news/2026-11-ancient-tree-ice-cores-pin.html",
+        "https://archaeology.org/issues/november-december-2025/digs-discoveries/in-his-majestys-secret-service/",
+        "https://archaeology.org/news/2026/11/17/mesopotamian-chronology-refined-with-tree-rings-and-ice-cores/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "9c90c2ab6578",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "9c90c2ab6578"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    }
+  ],
+  "trend": [
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 4,
+      "recency": 0.531,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.265424213647905
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 4,
+      "recency": 0.383,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.191510083654049
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 4,
+      "recency": 0.38,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.1901847596631505
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 4,
+      "recency": 0.141,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.070452622553348
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 4,
+      "recency": 0.14,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.069965063104205
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 40
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "9c90c2ab6578",
+        "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+        "demand": 4,
+        "recency": 0.531,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.265424213647905
+      },
+      {
+        "id": "0bcc769ad65f",
+        "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+        "demand": 4,
+        "recency": 0.383,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.191510083654049
+      },
+      {
+        "id": "3bc47bd494f9",
+        "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+        "demand": 4,
+        "recency": 0.38,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.1901847596631505
+      },
+      {
+        "id": "46f904514b4b",
+        "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+        "demand": 4,
+        "recency": 0.141,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.070452622553348
+      },
+      {
+        "id": "2a9a13156b85",
+        "title": "Health of Mummified Egyptian Cats Evaluated",
+        "demand": 4,
+        "recency": 0.14,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.069965063104205
+      }
+    ]
+  }
+}

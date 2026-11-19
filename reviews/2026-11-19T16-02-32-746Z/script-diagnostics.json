@@ -1,0 +1,6 @@
+{
+  "code": "SCRIPT_LINT",
+  "attempt": 2,
+  "zodIssues": null,
+  "detail": "hook spelled_out_number_run: 4 consecutive number-words in: ماذا لو قلت لك إن البشر من مائة وخمسة وعشرين ألف سنة كانوا بيستخدموا سموم متطورة في صيدهم؟ | scene[1].text spelled_out_year: year-like number words in: الباحثون لقوا أكتر من خمسة آلاف قطعة أثرية وحفريات لحيوانات ضخمة زي الجمال والجاموس."
+}

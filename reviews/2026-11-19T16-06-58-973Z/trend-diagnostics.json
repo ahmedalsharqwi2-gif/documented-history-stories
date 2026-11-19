@@ -1,0 +1,93 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 4,
+      "recency": 0.383,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.191456006685313
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 4,
+      "recency": 0.38,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.190131056927994
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 4,
+      "recency": 0.141,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.070432728748309
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 4,
+      "recency": 0.14,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.069945306972007
+    }
+  ]
+}

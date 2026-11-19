@@ -1,0 +1,121 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 4,
+      "recency": 0.531,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.265612385393548
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 4,
+      "recency": 0.383,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.191645854186263
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 4,
+      "recency": 0.381,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.190319590610669
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 10,
+      "recency": 0.378,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 10
+        }
+      ],
+      "score": 10.18900250529296
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 4,
+      "recency": 0.141,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.070502569740866
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 4,
+      "recency": 0.14,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.070014664637831
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "selected": {
+    "id": "ec0dd8f0dcf1",
+    "title": "Did Paleolithic Arabians Poison Their Weapons?",
+    "url": "https://archaeology.org/news/2026/11/16/did-paleolithic-arabians-poison-their-weapons/",
+    "text": "Fossil fragment on the surface of the ancient Mundafan lake bed at Uruq Aljelibah, Saudi Arabia QUEENSLAND, AUSTRALIA—According to a Gizmodo report, people living at Uruq Aljelibah, a 125,000-year-old site in Saudi Arabia, may have poisoned their stone points. An excavation conducted by Chris Clarkson of Griffith University, in collaboration with King Abdullah University of Science and Technology and the Saudi Heritage Commission, has uncovered more than 5,000 artifacts and fossils of hippopotamuses, buffalos, camels, gazelles, and oryx on the shores of what had been a large freshwater lake. Organic residues have survived on the sophisticated stone-tipped weapons, and show that these people used adhesives, plant-fiber technologies, and perhaps plant poisons to make hunting more effective, Clarson explained. “It gives us an unusually detailed picture of early human life in what is now one of the driest regions on Earth,” he added. The study also suggests that some of the early humans who migrated out of Africa stayed in “Green Arabia,” while other moved on into Asia. To read about life-size reliefs dating to the sixth millennium B.C. in northern Saudi Arabia, go to “ Oldest Animal Art ,” one of A RCHAEOLOGY ’s Top 10 Discoveries of 2021. The post Did Paleolithic Arabians Poison Their Weapons? appeared first on Archaeology Magazine .",
+    "published": "2026-11-16T18:00:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-1024x682.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-1024x682.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-300x200.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-768x512.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil.jpg",
+      "http://www.w3.org/2000/svg",
+      "https://gizmodo.com/prehistoric-humans-living-around-arabian-lake-may-have-crafted-poisonous-weapons-2000838919",
+      "https://archaeology.org/issues/january-february-2022/collection/saudi-arabia-animal-carvings/top-10-discoveries-of-2021/",
+      "https://archaeology.org/news/2026/11/16/did-paleolithic-arabians-poison-their-weapons/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "url": "https://archaeology.org/news/2026/11/16/did-paleolithic-arabians-poison-their-weapons/",
+      "text": "Fossil fragment on the surface of the ancient Mundafan lake bed at Uruq Aljelibah, Saudi Arabia QUEENSLAND, AUSTRALIA—According to a Gizmodo report, people living at Uruq Aljelibah, a 125,000-year-old site in Saudi Arabia, may have poisoned their stone points. An excavation conducted by Chris Clarkson of Griffith University, in collaboration with King Abdullah University of Science and Technology and the Saudi Heritage Commission, has uncovered more than 5,000 artifacts and fossils of hippopotamuses, buffalos, camels, gazelles, and oryx on the shores of what had been a large freshwater lake. Organic residues have survived on the sophisticated stone-tipped weapons, and show that these people used adhesives, plant-fiber technologies, and perhaps plant poisons to make hunting more effective, Clarson explained. “It gives us an unusually detailed picture of early human life in what is now one of the driest regions on Earth,” he added. The study also suggests that some of the early humans who migrated out of Africa stayed in “Green Arabia,” while other moved on into Asia. To read about life-size reliefs dating to the sixth millennium B.C. in northern Saudi Arabia, go to “ Oldest Animal Art ,” one of A RCHAEOLOGY ’s Top 10 Discoveries of 2021. The post Did Paleolithic Arabians Poison Their Weapons? appeared first on Archaeology Magazine .",
+      "published": "2026-11-16T18:00:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-1024x682.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-1024x682.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-300x200.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil-768x512.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Saudi-Arabia-Uruq-Aljelibah-Fossil.jpg",
+        "http://www.w3.org/2000/svg",
+        "https://gizmodo.com/prehistoric-humans-living-around-arabian-lake-may-have-crafted-poisonous-weapons-2000838919",
+        "https://archaeology.org/issues/january-february-2022/collection/saudi-arabia-animal-carvings/top-10-discoveries-of-2021/",
+        "https://archaeology.org/news/2026/11/16/did-paleolithic-arabians-poison-their-weapons/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "ec0dd8f0dcf1",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "ec0dd8f0dcf1"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    }
+  ],
+  "trend": [
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 4,
+      "recency": 0.531,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.265612385393548
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 4,
+      "recency": 0.383,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.191645854186263
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 4,
+      "recency": 0.381,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.190319590610669
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 10,
+      "recency": 0.378,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 10
+        }
+      ],
+      "score": 10.18900250529296
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 4,
+      "recency": 0.141,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.070502569740866
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 4,
+      "recency": 0.14,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "gta vice city",
+          "weight": 4
+        }
+      ],
+      "score": 4.070014664637831
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 40
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "9c90c2ab6578",
+        "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+        "demand": 4,
+        "recency": 0.531,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.265612385393548
+      },
+      {
+        "id": "0bcc769ad65f",
+        "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+        "demand": 4,
+        "recency": 0.383,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.191645854186263
+      },
+      {
+        "id": "3bc47bd494f9",
+        "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+        "demand": 4,
+        "recency": 0.381,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.190319590610669
+      },
+      {
+        "id": "ec0dd8f0dcf1",
+        "title": "Did Paleolithic Arabians Poison Their Weapons?",
+        "demand": 10,
+        "recency": 0.378,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 10
+          }
+        ],
+        "score": 10.18900250529296
+      },
+      {
+        "id": "46f904514b4b",
+        "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+        "demand": 4,
+        "recency": 0.141,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.070502569740866
+      },
+      {
+        "id": "2a9a13156b85",
+        "title": "Health of Mummified Egyptian Cats Evaluated",
+        "demand": 4,
+        "recency": 0.14,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "gta vice city",
+            "weight": 4
+          }
+        ],
+        "score": 4.070014664637831
+      }
+    ]
+  }
+}

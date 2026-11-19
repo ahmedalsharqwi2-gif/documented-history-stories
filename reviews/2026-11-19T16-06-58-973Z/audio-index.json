@@ -1,0 +1,186 @@
+[
+  {
+    "file": "audio/scene-0.wav",
+    "duration": 15.72,
+    "text": "تخيل إنسان بدائي بيمشي في كهف وبدل ما يدور على أكل بس، لقى حجر ملون لفت نظره وشاله معاه. ده مش خيال، ده احتمال علمي جديد بيغير فهمنا لتطور العقل البشري القديم.",
+    "sha256": "523c213cfd9bff1c4bb5005905e595e91d5d4c32ebb378733bfff150d600aef3",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "aa1ed70c23ed0cf422af632043e7d3ff186e9668efb24b7966ea882357ffcb8a",
+        "sha256": "523c213cfd9bff1c4bb5005905e595e91d5d4c32ebb378733bfff150d600aef3",
+        "text_sha256": "a1ee6d52eeca27f5304b1f613a9e0584a191b305834e62b597d442191c36205a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 754638,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-1.wav",
+    "duration": 13.770958,
+    "text": "الباحثين في جامعة تل أبيب لقوا أدوات صوان قديمة، مش بس مستخدمة في الصيد، لكنها بتحتوي على حفريات أو أشكال جيولوجية غريبة، وده معناه إنها كانت أكتر من مجرد أداة شغل عادية.",
+    "sha256": "d7c6b761aec65da732acff6595e4415a4c7845b44dd44e14859472ddbb1c9a27",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "8fdd6bbb387748ab550c50c5ef6bf38dac5fd3c53f20be13efa1e4aa984cbef4",
+        "sha256": "d7c6b761aec65da732acff6595e4415a4c7845b44dd44e14859472ddbb1c9a27",
+        "text_sha256": "2258306c22bc07af006cf1628058261026dac9d6edfc180a65b037f5cd16e23a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 661084,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-2.wav",
+    "duration": 17.72,
+    "text": "الاكتشافات دي ظهرت في مواقع كتير زي كهف قسيم، وموقع ريفاديم، وجلجولية. الأدوات دي كانت بتظهر عليها علامات استخدام تقيل، ومع ذلك فضلوا محتفظين بيها، يمكن عشان شكلها القديم المميز اللي بيجذب العين.",
+    "sha256": "f45f5a9a64c3295a83abb5307c81e675513311dc291c3dfbb2a9cb8c386ce9dc",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "2cf03b203fac714e9b0d93c2719f3414e2ac94a2d4ccc2ece7c974b7d906b193",
+        "sha256": "f45f5a9a64c3295a83abb5307c81e675513311dc291c3dfbb2a9cb8c386ce9dc",
+        "text_sha256": "bd6288050ba986a1e91a55d738e27a1708c54f3217ae0bb05a9d2672d0cc42c6",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 850638,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-3.wav",
+    "duration": 13.730958,
+    "text": "زي ما إحنا بنحتفظ بذكرى من رحلة أو هدية من حد بنحبه، العلماء بيعتقدوا إن الإنسان القديم كان بيحتفظ بالأشياء دي عشان يفتكر أماكن معينة أو تجارب شخصية مر بيها في حياته.",
+    "sha256": "6893993b700c1fae18d58a1574610c445a6a6d2efcf9de62828204ce990183eb",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "ec355db8c6a83759a06393b45f3de0c8a51e4edcf5a26a9aed72339bb5593b7f",
+        "sha256": "6893993b700c1fae18d58a1574610c445a6a6d2efcf9de62828204ce990183eb",
+        "text_sha256": "87002b2a784f4a173423d888f2af629d228f947ecc2511d1b7c0089fe29fd94a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 659164,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-4.wav",
+    "duration": 16.04,
+    "text": "الاستمرار في السلوك ده عبر أجيال كتير ممكن يكون زود الضغوط التطورية على آليات المخ المسؤولة عن الذاكرة والإحساس بالذات، وده نقلة نوعية في فهمنا لكيفية تطور عقل الإنسان عبر الزمن الطويل.",
+    "sha256": "5747541af558766ed9db5c4c3ff09cc65631ed6be7eee97c037b0e307b813861",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "b962515f3211b0883459cd6996bbae4964be3808dd28fdf29862feae4f9ca1a4",
+        "sha256": "5747541af558766ed9db5c4c3ff09cc65631ed6be7eee97c037b0e307b813861",
+        "text_sha256": "2b0127829ffee4a22463186b2d30a42f8847061357de515968ca33fe1667c861",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 769998,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-5.wav",
+    "duration": 16.04,
+    "text": "الدراسة دي اتنشرت في مجلة علمية متخصصة، وبتقدم رؤية جديدة ومثيرة عن حياة أسلافنا. مش مجرد صدفة، لكنه سلوك واعي بدأ من مئات الآلاف من السنين وشكل جزء من هويتنا الإنسانية الحالية.",
+    "sha256": "bde5962512fcd05986938491d34aa088ef657d1ef43f79d1c40df096f94eeb3a",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "820f3b483ff1de19532f278ccb223ced0562fae2e3fa24834e920019bb1bd823",
+        "sha256": "bde5962512fcd05986938491d34aa088ef657d1ef43f79d1c40df096f94eeb3a",
+        "text_sha256": "0be380c292e1a7d13ed409bb4c0ffd3ddaf435724738fc951204a16548f89f06",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 769998,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-6.wav",
+    "duration": 15.68,
+    "text": "هل كان فيه دافع تاني غير الذاكرة؟ العلماء لسه بيدرسوا الموضوع، وكل قطعة حجر أو أداة صوان بتتحول لقطعة بازل بتكمل صورة الإنسان اللي كان عايش قبلنا بمئات الآلاف من السنين.",
+    "sha256": "5452368881a1d90f212518da71410867d31a7a01e334501ac23a66502b19c16c",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "ab2283d5150d77f1dbad9311727e6f4d23cfdf839d9d0ab677b5343bcf30abc9",
+        "sha256": "5452368881a1d90f212518da71410867d31a7a01e334501ac23a66502b19c16c",
+        "text_sha256": "f7a24f3fdea11fd73b9336815316e58fb92b1e0c75b9c85155bf49d6f5ad0a85",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 752718,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-7.wav",
+    "duration": 15,
+    "text": "في النهاية، التاريخ مش بس حروب وملوك، التاريخ هو حجر ملون شاله إنسان قديم في جيبه عشان يفتكر لحظة حلوة. شاركونا في التعليقات، إيه أكتر حاجة بتحتفظوا بيها عشان ذكرياتها؟",
+    "sha256": "b838084a6bb6f41d024ed97083dea6374206aa7c61d006cbb15dacf599c50387",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "9472ed4e7cfbe50ffd7dcf00b50fa08868f7614256e5743425c45ea566201f3d",
+        "sha256": "b838084a6bb6f41d024ed97083dea6374206aa7c61d006cbb15dacf599c50387",
+        "text_sha256": "879b01b8c8305c575a1a45d969e7ed84c7af05ab94dcbfd441ac8e5f164b3d51",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 720078,
+        "reused": true
+      }
+    ]
+  }
+]
