@@ -39,7 +39,7 @@
   "scene": 3,
   "errorType": "AlignmentError",
   "details": {
-    "characterSimilarity": 0.9501661129568106,
+    "characterSimilarity": 0.9533333333333334,
     "wordCoverage": 0.84375,
     "sourceWords": 32,
     "recognizedWords": 31,
