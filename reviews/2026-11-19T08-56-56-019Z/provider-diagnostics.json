@@ -2,37 +2,6 @@
   "events": [
     {
       "type": "models_resolved",
-      "kind": "text",
-      "models": [
-        "gemini-3.1-flash-lite-preview",
-        "gemini-3-flash-preview",
-        "gemini-2.5-flash",
-        "gemini-omni-flash-preview",
-        "gemini-omni-1.2-flash",
-        "gemini-omni-1.1-flash",
-        "gemini-flash-lite-latest",
-        "gemini-flash-latest",
-        "gemini-3.8-flash",
-        "gemini-3.7-flash",
-        "gemini-3.6-flash",
-        "gemini-3.5-flash-lite",
-        "gemini-3.5-flash",
-        "gemini-3.1-flash-lite",
-        "gemini-2.5-flash-lite"
-      ],
-      "at": 1795078626161
-    },
-    {
-      "type": "attempt",
-      "kind": "text",
-      "model": "gemini-3.1-flash-lite-preview",
-      "attempt": 1,
-      "totalAttempt": 1,
-      "status": 200,
-      "at": 1795078665403
-    },
-    {
-      "type": "models_resolved",
       "kind": "voice",
       "models": [
         "gemini-3.1-flash-tts-preview",
@@ -41,25 +10,7 @@
         "gemini-3.8-flash-tts",
         "gemini-3.8-flash-lite-tts"
       ],
-      "at": 1795078686166
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 1,
-      "totalAttempt": 1,
-      "status": 200,
-      "at": 1795078723900
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 1,
-      "totalAttempt": 1,
-      "status": 200,
-      "at": 1795078753216
+      "at": 1795089187369
     },
     {
       "type": "attempt",
@@ -68,16 +19,16 @@
       "attempt": 1,
       "totalAttempt": 1,
       "status": 429,
-      "at": 1795078776238
+      "at": 1795089217432
     },
     {
       "type": "backoff",
       "kind": "voice",
       "model": "gemini-3.1-flash-tts-preview",
       "status": 429,
-      "waitMs": 3805.017103782712,
+      "waitMs": 3132.218533248451,
       "retryAfterMs": 0,
-      "at": 1795078776238
+      "at": 1795089217432
     },
     {
       "type": "attempt",
@@ -86,16 +37,16 @@
       "attempt": 2,
       "totalAttempt": 2,
       "status": 429,
-      "at": 1795078806270
+      "at": 1795089247446
     },
     {
       "type": "backoff",
       "kind": "voice",
       "model": "gemini-3.1-flash-tts-preview",
       "status": 429,
-      "waitMs": 7942.131893564392,
+      "waitMs": 6508.694473139624,
       "retryAfterMs": 0,
-      "at": 1795078806270
+      "at": 1795089247446
     },
     {
       "type": "attempt",
@@ -104,7 +55,7 @@
       "attempt": 3,
       "totalAttempt": 3,
       "status": 429,
-      "at": 1795078836290
+      "at": 1795089277439
     },
     {
       "type": "attempt",
@@ -113,7 +64,7 @@
       "attempt": 1,
       "totalAttempt": 4,
       "status": 200,
-      "at": 1795078876021
+      "at": 1795089314248
     },
     {
       "type": "attempt",
@@ -121,53 +72,8 @@
       "model": "gemini-3.1-flash-tts-preview",
       "attempt": 1,
       "totalAttempt": 1,
-      "status": 429,
-      "at": 1795078896330
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 3960.6620608075714,
-      "retryAfterMs": 0,
-      "at": 1795078896330
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 2,
-      "totalAttempt": 2,
-      "status": 429,
-      "at": 1795078926361
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 7075.992882027093,
-      "retryAfterMs": 0,
-      "at": 1795078926361
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 3,
-      "totalAttempt": 3,
-      "status": 429,
-      "at": 1795078956351
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "attempt": 1,
-      "totalAttempt": 4,
       "status": 200,
-      "at": 1795078995007
+      "at": 1795089345139
     },
     {
       "type": "attempt",
@@ -175,136 +81,59 @@
       "model": "gemini-3.1-flash-tts-preview",
       "attempt": 1,
       "totalAttempt": 1,
-      "status": 429,
-      "at": 1795079016390
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 3506.377252997701,
-      "retryAfterMs": 0,
-      "at": 1795079016390
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 2,
-      "totalAttempt": 2,
       "status": 200,
-      "at": 1795079053763
+      "at": 1795089376087
     },
     {
-      "type": "attempt",
-      "kind": "voice",
+      "type": "cache_hit",
+      "id": "c648b9c6bf68a1e03bb03006c0f2e1b7554a43e48843c703f9073e1632e36fb7",
       "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 1,
-      "totalAttempt": 1,
-      "status": 429,
-      "at": 1795079076413
+      "at": 1795089398853
     },
     {
-      "type": "backoff",
-      "kind": "voice",
+      "type": "cache_hit",
+      "id": "459e575c8ba7ce841ca2f4d626b6af289a82e6b97b934ec8be8aa0699e23a322",
       "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 3201.9676299097982,
-      "retryAfterMs": 0,
-      "at": 1795079076413
+      "at": 1795089399013
     },
     {
-      "type": "attempt",
-      "kind": "voice",
+      "type": "cache_hit",
+      "id": "ffb5cbba5e50b290d19522c1164bfe71b7ace24dbc82db3238a816c07d721fc0",
+      "model": "gemini-2.5-flash-preview-tts",
+      "at": 1795089399175
+    },
+    {
+      "type": "cache_hit",
+      "id": "d271db873a1d79a1f1c288ba924f538bd4a576e8f8a16174e9e6cb1501b7a7e1",
+      "model": "gemini-2.5-flash-preview-tts",
+      "at": 1795089399343
+    },
+    {
+      "type": "cache_hit",
+      "id": "5ce50c8bdc4f9162ae8fc81781972fdcd87623c94e0f072d20ca95b3042b85f3",
       "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 2,
-      "totalAttempt": 2,
-      "status": 429,
-      "at": 1795079106469
+      "at": 1795089399481
     },
     {
-      "type": "backoff",
-      "kind": "voice",
+      "type": "cache_hit",
+      "id": "9850ff2cdb5508924e671f60c4c1542cc6e8bd9ac6c8c04c72a499890d0d8a98",
+      "model": "gemini-2.5-flash-preview-tts",
+      "at": 1795089399620
+    },
+    {
+      "type": "cache_hit",
+      "id": "56efda4e748cd5efe42b520d9d6ee8b774a223a48b6d1c7ec0c43a921b245ad9",
       "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 6443.887367237894,
-      "retryAfterMs": 0,
-      "at": 1795079106469
+      "at": 1795089399791
     },
     {
-      "type": "attempt",
-      "kind": "voice",
+      "type": "cache_hit",
+      "id": "39fe7d51bf89a829397286ed41f0e5b790f68834e1c1afcb4972544aaf474be5",
       "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 3,
-      "totalAttempt": 3,
-      "status": 429,
-      "at": 1795079136464
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "attempt": 1,
-      "totalAttempt": 4,
-      "status": 429,
-      "at": 1795079166516
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "status": 429,
-      "waitMs": 3313.0808841565986,
-      "retryAfterMs": 0,
-      "at": 1795079166516
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "attempt": 2,
-      "totalAttempt": 5,
-      "status": 429,
-      "at": 1795079196540
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "status": 429,
-      "waitMs": 7442.946869479283,
-      "retryAfterMs": 0,
-      "at": 1795079196540
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "attempt": 3,
-      "totalAttempt": 6,
-      "status": 429,
-      "at": 1795079226599
+      "at": 1795089399955
     }
   ],
   "resolvedModels": {
-    "text": [
-      "gemini-3.1-flash-lite-preview",
-      "gemini-3-flash-preview",
-      "gemini-2.5-flash",
-      "gemini-omni-flash-preview",
-      "gemini-omni-1.2-flash",
-      "gemini-omni-1.1-flash",
-      "gemini-flash-lite-latest",
-      "gemini-flash-latest",
-      "gemini-3.8-flash",
-      "gemini-3.7-flash",
-      "gemini-3.6-flash",
-      "gemini-3.5-flash-lite",
-      "gemini-3.5-flash",
-      "gemini-3.1-flash-lite",
-      "gemini-2.5-flash-lite"
-    ],
     "voice": [
       "gemini-3.1-flash-tts-preview",
       "gemini-2.5-flash-preview-tts",

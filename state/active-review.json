@@ -414,8 +414,8 @@
   "scriptSha256": "9269bc8167903c27363b2194f6c75840a27237a1fc96a5de0cc3c4771a8345ff",
   "state": "failed",
   "lastFailure": {
-    "stage": "voice",
-    "code": "GEMINI_HTTP_429_EXHAUSTED",
+    "stage": "align-repair-1",
+    "code": "ALIGNMENT_INVALID_MEASURED_SPAN",
     "repeat": 0
   }
 }
