@@ -27,7 +27,13 @@
   {
     "topicKey": "rodhals-man-diet-transition",
     "value": "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
-    "status": "reserved",
+    "status": "retired",
     "run": "2026-11-19T07-31-29-813Z"
+  },
+  {
+    "topicKey": "menorca-ancient-vessels-analysis",
+    "value": "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
+    "status": "reserved",
+    "run": "2026-11-19T08-56-56-019Z"
   }
 ]

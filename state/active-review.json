@@ -1,164 +1,164 @@
 {
   "schema": 1,
-  "id": "2026-11-19T07-31-29-813Z",
+  "id": "2026-11-19T08-56-56-019Z",
   "profile": "history",
   "episode": {
-    "topicKey": "rodhals-man-diet-transition",
-    "title": "لغز رجل رودالس.. صياد تحول لمزارع؟",
-    "hook": "ماذا لو عرفت أن شخصاً عاش قبل ستة آلاف سنة غير نظامه الغذائي بالكامل؟ هل كان مجرد صياد أم بدأ يقلد المزارعين الأوائل في الدنمارك؟ تعالوا نعرف الحكاية.",
-    "cta": "لو حابين تعرفوا أسرار تانية من تاريخ البشر، تابعونا في نقص ونروي، واشتركوا في القناة عشان يوصلكم كل جديد عن اكتشافات الآثار المذهلة.",
+    "topicKey": "menorca-ancient-vessels-analysis",
+    "title": "أسرار أواني مينوركا القديمة",
+    "hook": "ماذا لو اكتشفنا أن أجدادنا قبل ألفي سنة كانوا بيستخدموا أواني فخارية عشان يشربوا اللبن والنبيذ في طقوس غامضة داخل كهوف جزيرة مينوركا الإسبانية؟ هل ده بيغير نظرتنا لحياتهم اليومية؟",
+    "cta": "لو حابب تعرف أكتر عن أسرار التاريخ اللي بتكشفها الحفريات، تابعنا واشترك في القناة عشان يوصلك كل جديد عن اكتشافاتنا الأثرية المذهلة، وشاركنا رأيك في التعليقات عن أغرب اكتشاف أثري سمعت عنه.",
     "scenes": [
       {
-        "title": "اكتشاف في جزيرة سيجيرو",
-        "text": "في عام ألف وتسعمائة وستة وخمسين، لقوا بقايا هيكل عظمي في جزيرة سيجيرو بالدنمارك، اتعرف باسم رجل رودالس. عاش الراجل ده قبل ستة آلاف سنة، وكان لغز كبير للعلماء.",
-        "summary": "اكتشاف هيكل عظمي قديم في الدنمارك.",
-        "keyword": "رجل رودالس",
+        "title": "اكتشاف في كهوف مينوركا",
+        "text": "في جزيرة مينوركا بإسبانيا، العلماء لقوا أربعة وثلاثين إناء فخاري في مجمع كهوف قديم. الأواني دي بترجع لألفي سنة، وكانت بتستخدم في طقوس ومناسبات اجتماعية، وده كشف تفاصيل مدهشة عن حياة الناس زمان.",
+        "summary": "اكتشاف أربعة وثلاثين إناء فخاري في كهوف مينوركا.",
+        "keyword": "كهوف مينوركا",
         "template": "phenomenon",
         "labels": [
-          "الدنمارك",
-          "هيكل عظمي",
-          "تاريخ"
+          "كهوف",
+          "فخار",
+          "مينوركا"
         ],
         "values": [],
-        "claim": "رجل رودالس عاش قبل ستة آلاف سنة.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956.",
+        "claim": "residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago.",
         "kind": "fact",
         "expression": 5,
         "action": "walk"
       },
       {
-        "title": "تحليل النظائر المشعة",
-        "text": "استخدم العلماء تحليل نظائر الكربون والنيتروجين في العظام والأسنان، واكتشفوا إن تاريخه بيرجع لفترة ما بين ثلاثة آلاف وثمانمائة وتسعين وثلاثة آلاف وسبعمائة وسبعين قبل الميلاد، وقت ظهور الزراعة.",
-        "summary": "تحديد عمر الهيكل بدقة علمية.",
-        "keyword": "تأريخ كربوني",
-        "template": "chart",
+        "title": "تصميم الأواني الفريد",
+        "text": "الأواني دي بتتميز بطراز مينوركي خاص، ليها قاع عالي وسعة محدودة. التصميم ده مش بس كان للزينة، لكنه كان بيخدم أغراض عملية في حفظ السوائل زي اللبن والنبيذ اللي تم رصده في البقايا.",
+        "summary": "تصميم الأواني المينوركية بقاع عالي وسعة محدودة.",
+        "keyword": "تصميم فخاري",
+        "template": "comparison",
         "labels": [
-          "كربون",
-          "نيتروجين",
+          "تصميم",
+          "فخار",
           "تاريخ"
         ],
         "values": [],
-        "claim": "تم تأريخ البقايا بين 3890 و3770 قبل الميلاد.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "the bones were radiocarbon dated to between about 3890 and 3770 B.C.",
+        "claim": "These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity.",
         "kind": "fact",
         "expression": 6,
         "action": "point"
       },
       {
-        "title": "نظام غذائي متغير",
-        "text": "في طفولته، كان بيعتمد على المحار والأسماك، لكن لما كبر في سن المراهقة، بدأ ياكل بروتين من مصادر أرضية، وده كان غريب جداً مقارنة بصيادي العصر الحجري التانيين.",
-        "summary": "تغير النظام الغذائي مع تقدم العمر.",
-        "keyword": "نظام غذائي",
-        "template": "journey",
+        "title": "النبيذ والتبادل الثقافي",
+        "text": "المفاجأة إن بقايا النبيذ المستورد ظهرت في أواني محلية وأواني تانية من ثقافات متوسطية مختلفة. ده بيأكد وجود علاقات متشابكة ومعقدة بين سكان الجزيرة وشعوب تانية في البحر المتوسط من ألفي سنة.",
+        "summary": "وجود نبيذ مستورد في أواني محلية وأجنبية.",
+        "keyword": "تبادل تجاري",
+        "template": "map",
         "labels": [
-          "أسماك",
-          "بروتين",
-          "مراهقة"
+          "نبيذ",
+          "تجارة",
+          "بحر متوسط"
         ],
         "values": [],
-        "claim": "تغير نظامه الغذائي من الأسماك إلى مصادر أرضية.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased",
+        "claim": "Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures.",
         "kind": "fact",
         "expression": 7,
         "action": "turn"
       },
       {
-        "title": "هل أكل طعام المزارعين؟",
-        "text": "الباحثين بيعتقدوا إن الطعام الأرضي ده كان من إنتاج المزارعين، لأنه مكنش بياكل أسماك المياه العذبة زي الصيادين التانيين، فغالباً بدأ يتبادل الأكل أو يشتغل معاهم في الزراعة.",
-        "summary": "احتمالية اعتماده على طعام المزارعين.",
-        "keyword": "زراعة",
-        "template": "cause",
+        "title": "استخدامات الأواني المتنوعة",
+        "text": "سوني كاربونيل من مركز برشلونة للحوسبة الفائقة بتقول إن السكان استعملوا الأواني دي للنبيذ، زي ما كانت مصممة أصلاً. كمان لقوا دهون حيوانية وزيوت نباتية، وده بيوضح تنوع استخدامات الأواني في الوجبات المشتركة.",
+        "summary": "تنوع البقايا بين دهون حيوانية وزيوت ونبيذ.",
+        "keyword": "تحليل كيميائي",
+        "template": "chart",
         "labels": [
-          "مزارعون",
-          "صيادون",
-          "غذاء"
+          "دهون",
+          "زيوت",
+          "نبيذ"
         ],
         "values": [],
-        "claim": "العلماء يرجحون أنه حصل على طعام من المزارعين.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "The researchers suggest, however, that the land food was provided by farmers",
+        "claim": "While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed.",
+        "kind": "fact",
+        "expression": 4,
+        "action": "run"
+      },
+      {
+        "title": "طقوس ووجبات جماعية",
+        "text": "الأواني دي كانت موجودة في فناء مدخل الكهف، والباحثين بيعتقدوا إنها كانت بتستخدم كقرابين أو في وجبات جماعية. ده بيعكس جانب اجتماعي وروحاني مهم في حياة الناس اللي عاشوا في الجزيرة قديماً.",
+        "summary": "الأواني كانت تستخدم كقرابين أو في وجبات جماعية.",
+        "keyword": "طقوس قديمة",
+        "template": "journey",
+        "labels": [
+          "قرابين",
+          "طقوس",
+          "اجتماع"
+        ],
+        "values": [],
+        "claim": "The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices.",
         "kind": "fact",
         "expression": 8,
         "action": "jump"
       },
       {
-        "title": "طريقة دفن غريبة",
-        "text": "مش بس الأكل اللي اتغير، ده حتى طريقة دفنه كانت بتشبه طريقة دفن المزارعين الأوائل، بوجود إطار من الحجارة المسطحة، وده بيوريك إنه بدأ يتبنى عاداتهم مع الحفاظ على تقاليده.",
-        "summary": "تشابه طقوس الدفن مع المزارعين.",
-        "keyword": "دفن",
-        "template": "comparison",
+        "title": "ببرونة من ألفي سنة",
+        "text": "أغرب اكتشاف كان إناء صغير جوه حجرة الدفن، بيعتقدوا إنه كان ببرونة للأطفال. مارجاليدا كول بتقول إن الببرونة دي بتكلمنا عن رعاية الأطفال وإزاي الممارسات دي دخلت في طقوس الجنازة بشكل مؤثر جداً.",
+        "summary": "اكتشاف إناء يعتقد أنه ببرونة أطفال داخل حجرة دفن.",
+        "keyword": "ببرونة أثرية",
+        "template": "phenomenon",
         "labels": [
-          "حجارة",
-          "طقوس",
-          "تقاليد"
+          "رعاية",
+          "أطفال",
+          "دفن"
         ],
         "values": [],
-        "claim": "طريقة دفنه تشبه دفن المزارعين الأوائل.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones.",
+        "claim": "Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber.",
         "kind": "fact",
-        "expression": 9,
+        "expression": 3,
         "action": "fall"
       },
       {
-        "title": "تغيرات جسدية واضحة",
-        "text": "تفاصيل عظام الذراع السفلي لرجل رودالس بتظهر تغييرات عظمية بتدل على تحميل عضلي عالي، وده ممكن يكون نتيجة الشغل الشاق في الزراعة أو الصيد المستمر في حياته اليومية الصعبة.",
-        "summary": "آثار العمل الشاق على العظام.",
-        "keyword": "عظام",
-        "template": "phenomenon",
+        "title": "تطور البحث العلمي",
+        "text": "الدراسة دي بتفتح أبواب جديدة لفهم التاريخ، والباحثين نشروا تفاصيلها في مجلة العلوم الأثرية. المقارنة مع أواني تانية لقوها في ألمانيا بتورينا إزاي كانت العادات دي منتشرة في عصور البرونز والحديد في أوروبا.",
+        "summary": "نشر البحث في مجلة العلوم الأثرية والمقارنة بألمانيا.",
+        "keyword": "بحث علمي",
+        "template": "steps",
         "labels": [
-          "عضلات",
-          "ذراع",
-          "عمل"
+          "بحث",
+          "مجلة",
+          "ألمانيا"
         ],
         "values": [],
-        "claim": "عظام ذراعه تظهر آثار تحميل عضلي عالي.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading.",
+        "claim": "Read the original scholarly article about this research in the Journal of Archaeological Science.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "Read the original scholarly article about this research in the Journal of Archaeological Science.",
         "kind": "fact",
-        "expression": 10,
-        "action": "run"
+        "expression": 9,
+        "action": "hang"
       },
       {
-        "title": "تداخل الحضارات",
-        "text": "القصة دي بتورينا إن الانتقال من الصيد للزراعة مكنش مفاجئ، لكنه كان عملية تدريجية، ورجل رودالس كان شاهد على العصر ده، بيجمع بين حياة أجداده وحياة المزارعين الجدد.",
-        "summary": "الانتقال التدريجي بين نمطي الحياة.",
-        "keyword": "تاريخ",
-        "template": "journey",
+        "title": "خاتمة الاكتشاف",
+        "text": "في النهاية، الأواني دي مش مجرد فخار مكسور، دي قصص حية عن ناس عاشوا، أكلوا، شربوا، واهتموا بأطفالهم قبل ألفي سنة. التاريخ دايماً بيفاجئنا بتفاصيل إنسانية بسيطة بتجمعنا بكل اللي سبقونا في الزمن.",
+        "summary": "الاكتشافات تعكس تفاصيل إنسانية من الماضي البعيد.",
+        "keyword": "تاريخ إنساني",
+        "template": "cause",
         "labels": [
-          "تطور",
-          "حضارة",
+          "قصص",
+          "إنسانية",
           "تاريخ"
         ],
         "values": [],
-        "claim": "رجل رودالس قد يكون تبنى نمط حياة المزارعين.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions.",
-        "kind": "fact",
-        "expression": 11,
+        "claim": "“This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University.",
+        "sourceId": "fc0c5ce44867",
+        "evidence": "“This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University.",
+        "kind": "illustration",
+        "expression": 10,
         "action": "sleep"
-      },
-      {
-        "title": "خاتمة",
-        "text": "في النهاية، رجل رودالس بيفضل لغز بيحكي قصة البشر في لحظة تحول تاريخية. هل كان مزارعاً متردداً أم صياداً ذكياً؟ العلم لسه بيكتشف أسرار حياته في كل يوم جديد.",
-        "summary": "ملخص أهمية الاكتشاف التاريخي.",
-        "keyword": "لغز",
-        "template": "phenomenon",
-        "labels": [
-          "اكتشاف",
-          "لغز",
-          "بشر"
-        ],
-        "values": [],
-        "claim": "رجل رودالس يمثل لحظة تحول تاريخية.",
-        "sourceId": "c169a7d2fc77",
-        "evidence": "The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life",
-        "kind": "fact",
-        "expression": 5,
-        "action": "walk"
       }
     ],
     "editorialMode": "daily",
@@ -167,57 +167,45 @@
   },
   "topic": {
     "selected": {
-      "id": "c169a7d2fc77",
-      "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
-      "url": "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
-      "text": "Skull of R dhals Man GOTHENBURG, SWEDEN—According to a report in La Brújula Verde , a team led by Anders Fischer of the University of Gothenburg and John Meadows of the Leibniz Centre for Archaeology has analyzed Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956. Previous genetic study of the bones revealed that Rødhals Man belonged to a group of western European hunter-gatherers. Analysis of carbon and nitrogen isotopes in his bones and teeth indicates that he ate a diet heavy in marine fish. Adjusting for the “old” carbon acquired through consumption of marine fish, the bones were radiocarbon dated to between about 3890 and 3770 B.C. , around the time that the first farmers appeared in Denmark. Layers of dentine in Rødhals Man’s teeth yielded additional information about his diet over time. During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased beyond that usually observed in the remains of other Mesolithic hunter-fishers found in Denmark. It cannot be determined if this land food came from hunting and gathering, or from eating cows, sheep, and cereals raised and grown by farmers. The researchers suggest, however, that the land food was provided by farmers, since Rødhals Man was not also consuming freshwater fish, as inland hunter-gatherers were likely to do. Additionally, the team notes that the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones. The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions. Read the original scholarly article about this research in Antiquity . To read about population shifts between the Mesolithic and Neolithic periods in Denmark, go to “ Ancient DNA Revolution: Danish Turnovers .” Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading. The post New Analysis of Hunter-Gatherer Remains Recovered on Danish Island appeared first on Archaeology Magazine .",
-      "published": "2026-11-17T18:00:00.000Z",
+      "id": "fc0c5ce44867",
+      "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
+      "url": "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
+      "text": "A high-bottomed vessel (top) and a single-handled jar (above) were unearthed at the Calescoves site in Menorca, Spain. BARCELONA, SPAIN—According to a statement released by the Autonomous University of Barcelona , residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago. These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity. Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures. “These findings reveal the complex, interwoven relationships between local communities and people from other regions,” said Sònia Carbonell of the Barcelona Supercomputing Center. “While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed,” she explained. Animal fats and vegetable oils were also identified in the residues. The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices. Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber. “This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University. Read the original scholarly article about this research in the Journal of Archaeological Science . To read about ancient baby bottles found in Germany, go to “ Artifact: Bronze and Iron Age Drinking Vessels .” The post Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca appeared first on Archaeology Magazine .",
+      "published": "2026-11-18T18:00:00.000Z",
       "official": true,
       "dateBasis": "item_publication_or_update",
       "publisher": "www.archaeology.org",
       "primaryRefs": [
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull-250x300.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels-257x300.jpg",
         "http://www.w3.org/2000/svg",
-        "https://www.labrujulaverde.com/en/2026/11/denmarks-last-hunter-fisher-saw-the-first-farmers-arrive-6000-years-ago-and-changed-his-diet-but-he-never-became-one-of-them/",
-        "https://doi.org/10.15184/aqy.2026.10476",
-        "https://archaeology.org/issues/september-october-2024/collection/danish-turnovers/ancient-dna-revolution/",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-300x75.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-768x191.jpg",
-        "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones.jpg",
-        "http://www.w3.org/2000/svg",
-        "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
+        "https://www.uab.cat/en/prehistory/news/20261116/lletivi-menorca-en",
+        "https://doi.org/10.1016/j.jas.2026.106719",
+        "https://archaeology.org/issues/january-february-2020/artifacts/artifact-germany-bronze-age-ceramic-vessels/",
+        "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
         "https://archaeology.org"
       ]
     },
     "sources": [
       {
-        "id": "c169a7d2fc77",
-        "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
-        "url": "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
-        "text": "Skull of R dhals Man GOTHENBURG, SWEDEN—According to a report in La Brújula Verde , a team led by Anders Fischer of the University of Gothenburg and John Meadows of the Leibniz Centre for Archaeology has analyzed Rødhals Man, the 6,000-year-old skeletal remains recovered from a midden on the Danish island of Sejerø in 1956. Previous genetic study of the bones revealed that Rødhals Man belonged to a group of western European hunter-gatherers. Analysis of carbon and nitrogen isotopes in his bones and teeth indicates that he ate a diet heavy in marine fish. Adjusting for the “old” carbon acquired through consumption of marine fish, the bones were radiocarbon dated to between about 3890 and 3770 B.C. , around the time that the first farmers appeared in Denmark. Layers of dentine in Rødhals Man’s teeth yielded additional information about his diet over time. During childhood, he consumed marine shellfish, flatfish, and eels. But in adolescence, the amount of protein from land sources in his diet increased beyond that usually observed in the remains of other Mesolithic hunter-fishers found in Denmark. It cannot be determined if this land food came from hunting and gathering, or from eating cows, sheep, and cereals raised and grown by farmers. The researchers suggest, however, that the land food was provided by farmers, since Rødhals Man was not also consuming freshwater fish, as inland hunter-gatherers were likely to do. Additionally, the team notes that the burial of Rødhals Man resembles that of the first farmers, including a frame made of flat stones. The researchers concluded that Rødhals Man may have adopted some of the farmers’ way of life, though he kept many of his ancestors’ traditions. Read the original scholarly article about this research in Antiquity . To read about population shifts between the Mesolithic and Neolithic periods in Denmark, go to “ Ancient DNA Revolution: Danish Turnovers .” Details of R dhals Man s lower arm bones show osteological changes indicative of high muscle loading. The post New Analysis of Hunter-Gatherer Remains Recovered on Danish Island appeared first on Archaeology Magazine .",
-        "published": "2026-11-17T18:00:00.000Z",
+        "id": "fc0c5ce44867",
+        "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
+        "url": "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
+        "text": "A high-bottomed vessel (top) and a single-handled jar (above) were unearthed at the Calescoves site in Menorca, Spain. BARCELONA, SPAIN—According to a statement released by the Autonomous University of Barcelona , residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago. These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity. Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures. “These findings reveal the complex, interwoven relationships between local communities and people from other regions,” said Sònia Carbonell of the Barcelona Supercomputing Center. “While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed,” she explained. Animal fats and vegetable oils were also identified in the residues. The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices. Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber. “This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University. Read the original scholarly article about this research in the Journal of Archaeological Science . To read about ancient baby bottles found in Germany, go to “ Artifact: Bronze and Iron Age Drinking Vessels .” The post Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca appeared first on Archaeology Magazine .",
+        "published": "2026-11-18T18:00:00.000Z",
         "official": true,
         "dateBasis": "item_publication_or_update",
         "publisher": "www.archaeology.org",
         "primaryRefs": [
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Skull-250x300.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels.jpg",
+          "https://archaeology.org/wp-content/uploads/2026/11/News-20261118-Spain-Menorca-Vessels-257x300.jpg",
           "http://www.w3.org/2000/svg",
-          "https://www.labrujulaverde.com/en/2026/11/denmarks-last-hunter-fisher-saw-the-first-farmers-arrive-6000-years-ago-and-changed-his-diet-but-he-never-became-one-of-them/",
-          "https://doi.org/10.15184/aqy.2026.10476",
-          "https://archaeology.org/issues/september-october-2024/collection/danish-turnovers/ancient-dna-revolution/",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-1024x255.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-300x75.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones-768x191.jpg",
-          "https://archaeology.org/wp-content/uploads/2026/11/News-20261117-Denmark-Rodhals-Man-Arm-Bones.jpg",
-          "http://www.w3.org/2000/svg",
-          "https://archaeology.org/news/2026/11/17/new-analysis-of-hunter-gatherer-remains-recovered-on-danish-island/",
+          "https://www.uab.cat/en/prehistory/news/20261116/lletivi-menorca-en",
+          "https://doi.org/10.1016/j.jas.2026.106719",
+          "https://archaeology.org/issues/january-february-2020/artifacts/artifact-germany-bronze-age-ceramic-vessels/",
+          "https://archaeology.org/news/2026/11/18/milk-and-wine-detected-in-2000-year-old-vessels-on-menorca/",
           "https://archaeology.org"
         ]
       }
@@ -227,10 +215,10 @@
     "windowHours": 720,
     "verification": [
       {
-        "id": "c169a7d2fc77",
+        "id": "fc0c5ce44867",
         "basis": "official_primary_source",
         "sourceIds": [
-          "c169a7d2fc77"
+          "fc0c5ce44867"
         ]
       }
     ],
@@ -258,116 +246,66 @@
       {
         "id": "fc0c5ce44867",
         "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-        "demand": 2,
-        "recency": 0.829,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 2
-          }
-        ],
-        "score": 2.414355206321523
+        "demand": 0,
+        "recency": 0.812,
+        "matches": [],
+        "score": 0.4062409336897066
       },
       {
         "id": "31c766677cf7",
         "title": "19th-Century Philosopher’s Head Examined",
-        "demand": 2,
-        "recency": 0.602,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 2
-          }
-        ],
-        "score": 2.301050838092591
+        "demand": 0,
+        "recency": 0.59,
+        "matches": [],
+        "score": 0.2951553924965133
       },
       {
         "id": "9c90c2ab6578",
         "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
-        "demand": 2,
-        "recency": 0.598,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 2
-          }
-        ],
-        "score": 2.298967449632875
-      },
-      {
-        "id": "c169a7d2fc77",
-        "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
-        "demand": 6,
-        "recency": 0.594,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 6
-          }
-        ],
-        "score": 6.296898479028634
+        "demand": 0,
+        "recency": 0.586,
+        "matches": [],
+        "score": 0.29311280280486457
       },
       {
         "id": "0bcc769ad65f",
         "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
-        "demand": 4,
-        "recency": 0.431,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 4
-          }
-        ],
-        "score": 4.215712351567822
+        "demand": 0,
+        "recency": 0.423,
+        "matches": [],
+        "score": 0.21148808020844784
       },
       {
         "id": "3bc47bd494f9",
         "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
         "demand": 0,
-        "recency": 0.428,
+        "recency": 0.42,
         "matches": [],
-        "score": 0.21421953850434736
+        "score": 0.21002450073972623
       },
       {
         "id": "ec0dd8f0dcf1",
         "title": "Did Paleolithic Arabians Poison Their Weapons?",
         "demand": 0,
-        "recency": 0.425,
+        "recency": 0.417,
         "matches": [],
-        "score": 0.21273705628575162
+        "score": 0.20857104980807945
       },
       {
         "id": "46f904514b4b",
         "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
-        "demand": 2,
-        "recency": 0.159,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 2
-          }
-        ],
-        "score": 2.079356139348548
+        "demand": 0,
+        "recency": 0.156,
+        "matches": [],
+        "score": 0.07780211676150496
       },
       {
         "id": "2a9a13156b85",
         "title": "Health of Mummified Egyptian Cats Evaluated",
-        "demand": 2,
-        "recency": 0.158,
-        "matches": [
-          {
-            "kind": "google_trend",
-            "label": "c",
-            "weight": 2
-          }
-        ],
-        "score": 2.0788069641129834
+        "demand": 0,
+        "recency": 0.155,
+        "matches": [],
+        "score": 0.07726369596444166
       }
     ],
     "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
@@ -409,125 +347,75 @@
         {
           "id": "fc0c5ce44867",
           "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
-          "demand": 2,
-          "recency": 0.829,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 2
-            }
-          ],
-          "score": 2.414355206321523
+          "demand": 0,
+          "recency": 0.812,
+          "matches": [],
+          "score": 0.4062409336897066
         },
         {
           "id": "31c766677cf7",
           "title": "19th-Century Philosopher’s Head Examined",
-          "demand": 2,
-          "recency": 0.602,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 2
-            }
-          ],
-          "score": 2.301050838092591
+          "demand": 0,
+          "recency": 0.59,
+          "matches": [],
+          "score": 0.2951553924965133
         },
         {
           "id": "9c90c2ab6578",
           "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
-          "demand": 2,
-          "recency": 0.598,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 2
-            }
-          ],
-          "score": 2.298967449632875
-        },
-        {
-          "id": "c169a7d2fc77",
-          "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
-          "demand": 6,
-          "recency": 0.594,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 6
-            }
-          ],
-          "score": 6.296898479028634
+          "demand": 0,
+          "recency": 0.586,
+          "matches": [],
+          "score": 0.29311280280486457
         },
         {
           "id": "0bcc769ad65f",
           "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
-          "demand": 4,
-          "recency": 0.431,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 4
-            }
-          ],
-          "score": 4.215712351567822
+          "demand": 0,
+          "recency": 0.423,
+          "matches": [],
+          "score": 0.21148808020844784
         },
         {
           "id": "3bc47bd494f9",
           "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
           "demand": 0,
-          "recency": 0.428,
+          "recency": 0.42,
           "matches": [],
-          "score": 0.21421953850434736
+          "score": 0.21002450073972623
         },
         {
           "id": "ec0dd8f0dcf1",
           "title": "Did Paleolithic Arabians Poison Their Weapons?",
           "demand": 0,
-          "recency": 0.425,
+          "recency": 0.417,
           "matches": [],
-          "score": 0.21273705628575162
+          "score": 0.20857104980807945
         },
         {
           "id": "46f904514b4b",
           "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
-          "demand": 2,
-          "recency": 0.159,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 2
-            }
-          ],
-          "score": 2.079356139348548
+          "demand": 0,
+          "recency": 0.156,
+          "matches": [],
+          "score": 0.07780211676150496
         },
         {
           "id": "2a9a13156b85",
           "title": "Health of Mummified Egyptian Cats Evaluated",
-          "demand": 2,
-          "recency": 0.158,
-          "matches": [
-            {
-              "kind": "google_trend",
-              "label": "c",
-              "weight": 2
-            }
-          ],
-          "score": 2.0788069641129834
+          "demand": 0,
+          "recency": 0.155,
+          "matches": [],
+          "score": 0.07726369596444166
         }
       ]
     }
   },
-  "scriptSha256": "062b5e0af62772ab5ef3e6c0fb1647c1142c91366d9a536d61126d0cd1e6f26f",
+  "scriptSha256": "9269bc8167903c27363b2194f6c75840a27237a1fc96a5de0cc3c4771a8345ff",
   "state": "failed",
   "lastFailure": {
-    "stage": "align",
-    "code": "ALIGNMENT_SPEECH_MISMATCH",
-    "repeat": 1
+    "stage": "voice",
+    "code": "GEMINI_HTTP_429_EXHAUSTED",
+    "repeat": 0
   }
 }

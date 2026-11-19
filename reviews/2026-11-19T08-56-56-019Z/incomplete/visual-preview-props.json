@@ -1,0 +1,178 @@
+{
+  "title": "أسرار أواني مينوركا القديمة",
+  "editorialLabel": null,
+  "scenes": [
+    {
+      "title": "اكتشاف في كهوف مينوركا",
+      "text": "في جزيرة مينوركا بإسبانيا، العلماء لقوا أربعة وثلاثين إناء فخاري في مجمع كهوف قديم. الأواني دي بترجع لألفي سنة، وكانت بتستخدم في طقوس ومناسبات اجتماعية، وده كشف تفاصيل مدهشة عن حياة الناس زمان.",
+      "summary": "اكتشاف أربعة وثلاثين إناء فخاري في كهوف مينوركا.",
+      "keyword": "كهوف مينوركا",
+      "template": "phenomenon",
+      "labels": [
+        "كهوف",
+        "فخار",
+        "مينوركا"
+      ],
+      "values": [],
+      "claim": "residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "residues in 34 ceramic vessels recovered from a cave complex on the island of Menorca indicate that most of the pots contained dairy products some 2,000 years ago.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تصميم الأواني الفريد",
+      "text": "الأواني دي بتتميز بطراز مينوركي خاص، ليها قاع عالي وسعة محدودة. التصميم ده مش بس كان للزينة، لكنه كان بيخدم أغراض عملية في حفظ السوائل زي اللبن والنبيذ اللي تم رصده في البقايا.",
+      "summary": "تصميم الأواني المينوركية بقاع عالي وسعة محدودة.",
+      "keyword": "تصميم فخاري",
+      "template": "comparison",
+      "labels": [
+        "تصميم",
+        "فخار",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "These vessels were made in the characteristic Menorcan style, with a high bottom and a limited capacity.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "point",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "النبيذ والتبادل الثقافي",
+      "text": "المفاجأة إن بقايا النبيذ المستورد ظهرت في أواني محلية وأواني تانية من ثقافات متوسطية مختلفة. ده بيأكد وجود علاقات متشابكة ومعقدة بين سكان الجزيرة وشعوب تانية في البحر المتوسط من ألفي سنة.",
+      "summary": "وجود نبيذ مستورد في أواني محلية وأجنبية.",
+      "keyword": "تبادل تجاري",
+      "template": "map",
+      "labels": [
+        "نبيذ",
+        "تجارة",
+        "بحر متوسط"
+      ],
+      "values": [],
+      "claim": "Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "Residues of imported wine were detected on a few pottery fragments that had been made locally, but also in vessels of styles that originated in other Mediterranean cultures.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "turn",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "استخدامات الأواني المتنوعة",
+      "text": "سوني كاربونيل من مركز برشلونة للحوسبة الفائقة بتقول إن السكان استعملوا الأواني دي للنبيذ، زي ما كانت مصممة أصلاً. كمان لقوا دهون حيوانية وزيوت نباتية، وده بيوضح تنوع استخدامات الأواني في الوجبات المشتركة.",
+      "summary": "تنوع البقايا بين دهون حيوانية وزيوت ونبيذ.",
+      "keyword": "تحليل كيميائي",
+      "template": "chart",
+      "labels": [
+        "دهون",
+        "زيوت",
+        "نبيذ"
+      ],
+      "values": [],
+      "claim": "While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "While the island’s inhabitants adopted foreign ceramic forms, they continued to use them for wine—the very substance for which these vessels were originally designed.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "run",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "طقوس ووجبات جماعية",
+      "text": "الأواني دي كانت موجودة في فناء مدخل الكهف، والباحثين بيعتقدوا إنها كانت بتستخدم كقرابين أو في وجبات جماعية. ده بيعكس جانب اجتماعي وروحاني مهم في حياة الناس اللي عاشوا في الجزيرة قديماً.",
+      "summary": "الأواني كانت تستخدم كقرابين أو في وجبات جماعية.",
+      "keyword": "طقوس قديمة",
+      "template": "journey",
+      "labels": [
+        "قرابين",
+        "طقوس",
+        "اجتماع"
+      ],
+      "values": [],
+      "claim": "The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "The vessels were found in the courtyard at the cave’s entrance, and are thought to have been used as offerings, in shared meals, or as part of commemorative practices.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "jump",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "ببرونة من ألفي سنة",
+      "text": "أغرب اكتشاف كان إناء صغير جوه حجرة الدفن، بيعتقدوا إنه كان ببرونة للأطفال. مارجاليدا كول بتقول إن الببرونة دي بتكلمنا عن رعاية الأطفال وإزاي الممارسات دي دخلت في طقوس الجنازة بشكل مؤثر جداً.",
+      "summary": "اكتشاف إناء يعتقد أنه ببرونة أطفال داخل حجرة دفن.",
+      "keyword": "ببرونة أثرية",
+      "template": "phenomenon",
+      "labels": [
+        "رعاية",
+        "أطفال",
+        "دفن"
+      ],
+      "values": [],
+      "claim": "Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "Milk was also identified in a vessel thought to have been used as a baby bottle. This vessel was found inside the cave’s burial chamber.",
+      "kind": "fact",
+      "expression": 3,
+      "action": "fall",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تطور البحث العلمي",
+      "text": "الدراسة دي بتفتح أبواب جديدة لفهم التاريخ، والباحثين نشروا تفاصيلها في مجلة العلوم الأثرية. المقارنة مع أواني تانية لقوها في ألمانيا بتورينا إزاي كانت العادات دي منتشرة في عصور البرونز والحديد في أوروبا.",
+      "summary": "نشر البحث في مجلة العلوم الأثرية والمقارنة بألمانيا.",
+      "keyword": "بحث علمي",
+      "template": "steps",
+      "labels": [
+        "بحث",
+        "مجلة",
+        "ألمانيا"
+      ],
+      "values": [],
+      "claim": "Read the original scholarly article about this research in the Journal of Archaeological Science.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "Read the original scholarly article about this research in the Journal of Archaeological Science.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "hang",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "خاتمة الاكتشاف",
+      "text": "في النهاية، الأواني دي مش مجرد فخار مكسور، دي قصص حية عن ناس عاشوا، أكلوا، شربوا، واهتموا بأطفالهم قبل ألفي سنة. التاريخ دايماً بيفاجئنا بتفاصيل إنسانية بسيطة بتجمعنا بكل اللي سبقونا في الزمن.",
+      "summary": "الاكتشافات تعكس تفاصيل إنسانية من الماضي البعيد.",
+      "keyword": "تاريخ إنساني",
+      "template": "cause",
+      "labels": [
+        "قصص",
+        "إنسانية",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "“This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University.",
+      "sourceId": "fc0c5ce44867",
+      "evidence": "“This baby bottle speaks to us of child-rearing and care: of people feeding infants, and of practices that were also incorporated into funerary rituals,” said Margalida Coll of Pompeu Fabra University.",
+      "kind": "illustration",
+      "expression": 10,
+      "action": "sleep",
+      "duration": 12,
+      "words": []
+    }
+  ],
+  "durationInFrames": 2880,
+  "incompleteMode": "silent",
+  "preview": true,
+  "incomplete": true
+}
