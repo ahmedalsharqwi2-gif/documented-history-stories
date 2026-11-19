@@ -1,0 +1,6 @@
+{
+  "code": "SCRIPT_LINT",
+  "attempt": 2,
+  "zodIssues": null,
+  "detail": "hook spelled_out_number_run: 3 consecutive number-words in: تعالوا نكتشف سوا إزاي أجدادنا القدماء في فلسطين كانوا بيبدعوا في تشكيل الطين من حوالي خمسة عشر ألف سنة. | scene[0].text spelled_out_number_run: 3 consecutive number-words in: والتحليلات بتقول إنها بترجع لفترة ما بين خمسة عشر ألف وأحد عشر ألف وخمسمائة سنة، | scene[6].text spelled_out_number_run: 3 consecutive number-words in: ماذا لو كان أجدادنا من خمسة عشر ألف سنة بيستخدموا التكنولوجيا البسيطة دي عشان يوثقوا حياتهم؟ | scene[7].text spelled_out_number_run: 3 consecutive number-words in: دي كانت رحلتنا في عالم التاريخ القديم مع تماثيل الطين اللي حكت لنا قصص من خمسة عشر ألف سنة،"
+}

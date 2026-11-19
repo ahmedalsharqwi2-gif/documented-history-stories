@@ -1,0 +1,125 @@
+{
+  "events": [
+    {
+      "type": "cache_hit",
+      "id": "aa1ed70c23ed0cf422af632043e7d3ff186e9668efb24b7966ea882357ffcb8a",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795106659873
+    },
+    {
+      "type": "cache_hit",
+      "id": "8fdd6bbb387748ab550c50c5ef6bf38dac5fd3c53f20be13efa1e4aa984cbef4",
+      "model": "gemini-2.5-flash-preview-tts",
+      "at": 1795106660020
+    },
+    {
+      "type": "cache_hit",
+      "id": "2cf03b203fac714e9b0d93c2719f3414e2ac94a2d4ccc2ece7c974b7d906b193",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795106660162
+    },
+    {
+      "type": "cache_hit",
+      "id": "ec355db8c6a83759a06393b45f3de0c8a51e4edcf5a26a9aed72339bb5593b7f",
+      "model": "gemini-2.5-flash-preview-tts",
+      "at": 1795106660323
+    },
+    {
+      "type": "cache_hit",
+      "id": "b962515f3211b0883459cd6996bbae4964be3808dd28fdf29862feae4f9ca1a4",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795106660472
+    },
+    {
+      "type": "cache_hit",
+      "id": "820f3b483ff1de19532f278ccb223ced0562fae2e3fa24834e920019bb1bd823",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795106660616
+    },
+    {
+      "type": "cache_hit",
+      "id": "ab2283d5150d77f1dbad9311727e6f4d23cfdf839d9d0ab677b5343bcf30abc9",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795106660759
+    },
+    {
+      "type": "cache_hit",
+      "id": "9472ed4e7cfbe50ffd7dcf00b50fa08868f7614256e5743425c45ea566201f3d",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795106660905
+    },
+    {
+      "type": "models_resolved",
+      "kind": "text",
+      "models": [
+        "gemini-3.1-flash-lite",
+        "gemini-3.5-flash-lite",
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3.8-flash",
+        "gemini-3.5-flash",
+        "gemini-4-hydrogen",
+        "gemini-flash-lite-latest",
+        "gemini-flash-latest",
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3-flash-preview",
+        "gemini-2.5-flash-lite",
+        "gemini-2.5-flash"
+      ],
+      "at": 1795106726287
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795106767071
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795106793277
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795106821766
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795106854245
+    }
+  ],
+  "resolvedModels": {
+    "text": [
+      "gemini-3.1-flash-lite",
+      "gemini-3.5-flash-lite",
+      "gemini-3.1-flash-lite-preview",
+      "gemini-3.8-flash",
+      "gemini-3.5-flash",
+      "gemini-4-hydrogen",
+      "gemini-flash-lite-latest",
+      "gemini-flash-latest",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash",
+      "gemini-3-flash-preview",
+      "gemini-2.5-flash-lite",
+      "gemini-2.5-flash"
+    ]
+  }
+}

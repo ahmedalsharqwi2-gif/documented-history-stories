@@ -1,0 +1,67 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.377,
+      "matches": [],
+      "score": 0.18844628859041712
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 2,
+      "recency": 0.14,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "anthropic stock",
+          "weight": 2
+        }
+      ],
+      "score": 2.0698086180257285
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 0,
+      "recency": 0.139,
+      "matches": [],
+      "score": 0.06932551533747501
+    }
+  ]
+}

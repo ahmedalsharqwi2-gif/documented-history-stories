@@ -1,0 +1,6 @@
+{
+  "code": "SCRIPT_LINT",
+  "attempt": 2,
+  "zodIssues": null,
+  "detail": "scene[6].text spelled_out_year: year-like number words in: الباحثون أكدوا إن المنطقة شهدت ستة آلاف سنة من التكيف الإبداعي مع تغيرات المناخ،"
+}

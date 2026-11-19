@@ -57,7 +57,13 @@
   {
     "topicKey": "paleolithic-souvenir-collection-israel",
     "value": "https://archaeology.org/news/2026/11/16/souvenir-collection-may-have-begun-500000-years-ago/",
-    "status": "reserved",
+    "status": "retired",
     "run": "2026-11-19T16-06-58-973Z"
+  },
+  {
+    "value": "https://archaeology.org/news/2026/11/13/study-suggests-ancient-peruvians-adapted-to-environmental-stressors/",
+    "status": "retired",
+    "reason": "STAGE_FAILED_SEE_RUNBOOK",
+    "run": "2026-11-19T16-45-16-852Z"
   }
 ]

@@ -1,0 +1,154 @@
+{
+  "selected": {
+    "id": "3bc47bd494f9",
+    "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+    "url": "https://archaeology.org/news/2026/11/16/natufian-clay-figurines-dated-to-15000-years-ago/",
+    "text": "This fragment of a Natufian clay figurine depicts a gazelle head and was painted red with engobe to represent the animal s eyes and fur pattern. JERUSALEM, ISRAEL—According to a statement released by the Public Library of Science , an evaluation of clay figurines unearthed at three sites in Israel suggests that Natufians made more complex objects than previously thought between 15,000 and 11,500 years ago. Laurent Davin of the Hebrew University of Jerusalem said that it had been previously thought that the first Natufian figurines were made mostly of stone or bone, and that clay only became more common as people began farming some 11,500 years ago. The objects represent birds, mammals, and humans. Orange and red coloring has been detected on some of the figures. The study also analyzed fingerprints on the clay figurines, revealing that children were involved with crafting them. “These discoveries change how we understand the beginnings of artistic expression in the first villages of humanity,” Davin said. “Thousands of years before agriculture and pottery emerged, people were already using clay to create figures, as part of the beliefs and knowledge of the natural world,” he explained. Read the original scholarly article about this research in PLOS One . To read about a 12,000-year-old figurine that Davin analyzed as part of the study, go to “ An Avian Connection .” The post Natufian Clay Figurines Dated to 15,000 Years Ago appeared first on Archaeology Magazine .",
+    "published": "2026-11-16T18:30:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-892x1024.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-892x1024.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-261x300.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-768x882.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment.jpg",
+      "http://www.w3.org/2000/svg",
+      "https://www.eurekalert.org/news-releases/1150485",
+      "https://dx.doi.org/10.1371/journal.pone.0360388",
+      "https://archaeology.org/issues/may-june-2026/digs-discoveries/an-avian-connection/",
+      "https://archaeology.org/news/2026/11/16/natufian-clay-figurines-dated-to-15000-years-ago/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "url": "https://archaeology.org/news/2026/11/16/natufian-clay-figurines-dated-to-15000-years-ago/",
+      "text": "This fragment of a Natufian clay figurine depicts a gazelle head and was painted red with engobe to represent the animal s eyes and fur pattern. JERUSALEM, ISRAEL—According to a statement released by the Public Library of Science , an evaluation of clay figurines unearthed at three sites in Israel suggests that Natufians made more complex objects than previously thought between 15,000 and 11,500 years ago. Laurent Davin of the Hebrew University of Jerusalem said that it had been previously thought that the first Natufian figurines were made mostly of stone or bone, and that clay only became more common as people began farming some 11,500 years ago. The objects represent birds, mammals, and humans. Orange and red coloring has been detected on some of the figures. The study also analyzed fingerprints on the clay figurines, revealing that children were involved with crafting them. “These discoveries change how we understand the beginnings of artistic expression in the first villages of humanity,” Davin said. “Thousands of years before agriculture and pottery emerged, people were already using clay to create figures, as part of the beliefs and knowledge of the natural world,” he explained. Read the original scholarly article about this research in PLOS One . To read about a 12,000-year-old figurine that Davin analyzed as part of the study, go to “ An Avian Connection .” The post Natufian Clay Figurines Dated to 15,000 Years Ago appeared first on Archaeology Magazine .",
+      "published": "2026-11-16T18:30:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-892x1024.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-892x1024.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-261x300.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment-768x882.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261116-Natufian-Gazelle-Figurine-Fragment.jpg",
+        "http://www.w3.org/2000/svg",
+        "https://www.eurekalert.org/news-releases/1150485",
+        "https://dx.doi.org/10.1371/journal.pone.0360388",
+        "https://archaeology.org/issues/may-june-2026/digs-discoveries/an-avian-connection/",
+        "https://archaeology.org/news/2026/11/16/natufian-clay-figurines-dated-to-15000-years-ago/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "3bc47bd494f9",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "3bc47bd494f9"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    }
+  ],
+  "trend": [
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.377,
+      "matches": [],
+      "score": 0.18839736942794819
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 0,
+      "recency": 0.139,
+      "matches": [],
+      "score": 0.06930751898332337
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 40
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "3bc47bd494f9",
+        "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+        "demand": 0,
+        "recency": 0.377,
+        "matches": [],
+        "score": 0.18839736942794819
+      },
+      {
+        "id": "2a9a13156b85",
+        "title": "Health of Mummified Egyptian Cats Evaluated",
+        "demand": 0,
+        "recency": 0.139,
+        "matches": [],
+        "score": 0.06930751898332337
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "2026-11-19T16-45-16-852Z",
+  "attemptId": "2026-11-19T16-43-15-966Z",
+  "mode": "review",
+  "published": false,
+  "status": "running",
+  "resumed": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.254
+    },
+    {
+      "name": "topics",
+      "status": "resumed_from_saved_source_manifest"
+    },
+    {
+      "name": "script",
+      "status": "resumed_from_hash_verified_script"
+    },
+    {
+      "name": "voice",
+      "status": "pass",
+      "seconds": 0.669
+    },
+    {
+      "name": "voice-repair-1",
+      "status": "pass",
+      "seconds": 1.18
+    },
+    {
+      "name": "roll",
+      "status": "rolled_fresh_topic",
+      "roll": 1,
+      "fromStage": "align-repair-1",
+      "code": "ALIGNMENT_INVALID_MEASURED_SPAN"
+    }
+  ],
+  "limitations": [
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate.",
+    "align failed (ALIGNMENT_INVALID_MEASURED_SPAN); re-narrating once with fresh synthesis",
+    "align repair failed (ALIGNMENT_INVALID_MEASURED_SPAN); repair budget exhausted"
+  ],
+  "rolled": [
+    {
+      "id": "2026-11-19T16-06-58-973Z",
+      "stage": "align-repair-1",
+      "code": "ALIGNMENT_INVALID_MEASURED_SPAN",
+      "roll": 1
+    }
+  ]
+}
