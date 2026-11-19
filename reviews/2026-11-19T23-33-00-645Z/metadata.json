@@ -1,0 +1,22 @@
+{
+  "title": "أسرار مدينة كاراكول المفقودة في غابات بيليز",
+  "topicKey": "maya-caracol-archaeology",
+  "voice": "Charon",
+  "provider": "Gemini",
+  "sources": [
+    {
+      "id": "d2f5d52aed10",
+      "title": "Archaeologists at This Ancient Maya Metropolis in the Forest of Belize Are Debunking Long-Held Myths About the Mesoamerican Civilization",
+      "url": "https://www.smithsonianmag.com/history/archaeologists-ancient-maya-metropolist-forest-belize-debunking-long-held-myth-about-mesoamerican-civilization-180989648/",
+      "published": "2026-10-26T10:00:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.smithsonianmag.com",
+      "primaryRefs": []
+    }
+  ],
+  "editorialMode": "daily",
+  "video_sha256": "d99467ec834a651bc4ca66bfd2482b9e527623e8cd702ce0ea2ed932215c42fd",
+  "reviewOnly": true,
+  "approved": false
+}

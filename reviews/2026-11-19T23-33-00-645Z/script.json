@@ -1,0 +1,163 @@
+{
+  "topicKey": "maya-caracol-archaeology",
+  "title": "أسرار مدينة كاراكول المفقودة في غابات بيليز",
+  "hook": "عمرك سألت نفسك إزاي حضارة كاملة ممكن تختفي وسط الغابات وتغير كل اللي نعرفه عن التاريخ؟ تعالوا نكتشف مع بعض إيه اللي بيحصل في مدينة كاراكول العظيمة اللي بتغير مفاهيمنا عن المايا.",
+  "cta": "لو حابب تعرف أكتر عن أسرار الحضارات القديمة اللي لسه بنكتشفها، تابعنا واشترك في القناة عشان يوصلك كل جديد عن حكايات التاريخ اللي مش بنسمعها في الكتب المدرسية العادية، استنونا المرة الجاية.",
+  "scenes": [
+    {
+      "title": "بداية الرحلة في غابات بيليز",
+      "text": "في قلب غابات بيليز الكثيفة، فيه مدينة قديمة اسمها كاراكول، المدينة دي مش مجرد أطلال، دي مكان بيحكي قصة حضارة المايا اللي كانت متطورة جداً ومختلفة تماماً عن كل اللي كنا متخيلينه قبل كده.",
+      "summary": "اكتشاف مدينة كاراكول القديمة في غابات بيليز.",
+      "keyword": "كاراكول",
+      "template": "phenomenon",
+      "labels": [
+        "المايا",
+        "بيليز",
+        "آثار"
+      ],
+      "values": [],
+      "claim": "المدينة بتغير فهمنا لحضارة المايا.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Diane and Arlen Chase have spent a good portion of their lives uncovering the once-great city of Caracol.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "الباحثون وراء الاكتشاف",
+      "text": "ديان وأرلن تشيس قضوا جزء كبير من حياتهم في التنقيب عن المدينة دي، مجهودهم البحثي الكبير ده هو اللي خلى العالم يعيد التفكير في كل المعلومات اللي كانت عندنا عن شعب المايا القديم.",
+      "summary": "جهود ديان وأرلن تشيس في كاراكول.",
+      "keyword": "باحثون",
+      "template": "journey",
+      "labels": [
+        "بحث",
+        "تاريخ",
+        "علماء"
+      ],
+      "values": [],
+      "claim": "الباحثون قضوا حياتهم في كاراكول.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Diane and Arlen Chase have spent a good portion of their lives uncovering the once-great city of Caracol.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "point"
+    },
+    {
+      "title": "تغيير مفاهيم التاريخ",
+      "text": "الأبحاث اللي اتعملت في كاراكول بتعتبر ثورية، لأنها ببساطة بتنسف الأفكار القديمة اللي كانت بتقول إن المايا كانوا مجرد قبائل بسيطة، الحقيقة طلعت أعقد بكتير وأكثر تنظيماً مما كنا نتوقع في السنين اللي فاتت.",
+      "summary": "الأبحاث تعيد كتابة تاريخ المايا.",
+      "keyword": "أبحاث",
+      "template": "comparison",
+      "labels": [
+        "تطور",
+        "حضارة",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "الأبحاث تعيد كتابة ما نعرفه عن المايا.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Their groundbreaking research is rewriting everything we thought we knew about the Maya",
+      "kind": "fact",
+      "expression": 4,
+      "action": "turn"
+    },
+    {
+      "title": "ماذا لو كانت المدينة أكبر؟",
+      "text": "تخيل لو المدينة دي كانت مركز تجاري وسياسي ضخم بيتحكم في مساحات شاسعة، ده اللي الأبحاث الجديدة بتلمح له، إن كاراكول كانت قلب نابض لحضارة قوية جداً وسط الغابات اللي كانت بتبان صعبة ومعزولة.",
+      "summary": "كاراكول كمركز حضاري ضخم.",
+      "keyword": "تخيل",
+      "template": "phenomenon",
+      "labels": [
+        "خيال",
+        "تاريخ",
+        "توسع"
+      ],
+      "values": [],
+      "claim": "المدينة كانت مركزاً حضارياً مهماً.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Their groundbreaking research is rewriting everything we thought we knew about the Maya",
+      "kind": "illustration",
+      "expression": 2,
+      "action": "jump"
+    },
+    {
+      "title": "تحدي الأساطير القديمة",
+      "text": "كتير من الأساطير اللي سمعناها عن المايا بتتحطم قدام الاكتشافات دي، العلماء بيلاقوا أدلة ملموسة بتثبت إن المدينة كانت بتدار بنظام إداري وهندسي متقدم جداً، وده بيخلينا نسأل إيه تاني مخبياه الغابات دي.",
+      "summary": "تحطيم الأساطير عن حضارة المايا.",
+      "keyword": "أساطير",
+      "template": "cause",
+      "labels": [
+        "أدلة",
+        "هندسة",
+        "إدارة"
+      ],
+      "values": [],
+      "claim": "الاكتشافات تدحض الأساطير القديمة.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Their groundbreaking research is rewriting everything we thought we knew about the Maya",
+      "kind": "fact",
+      "expression": 9,
+      "action": "run"
+    },
+    {
+      "title": "هندسة المايا المذهلة",
+      "text": "لما نبص على المباني اللي اكتشفوها، بنشوف دقة في التصميم بتنافس أعظم الحضارات، كاراكول بتثبت إن المايا كانوا مهندسين بارعين قدروا يطوعوا الطبيعة الصعبة عشان يبنوا مدن بتعيش لآلاف السنين وسط الغابات الموحشة.",
+      "summary": "براعة المايا في الهندسة والبناء.",
+      "keyword": "هندسة",
+      "template": "steps",
+      "labels": [
+        "بناء",
+        "تصميم",
+        "مهارة"
+      ],
+      "values": [],
+      "claim": "المدينة تظهر مهارات هندسية متقدمة.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Diane and Arlen Chase have spent a good portion of their lives uncovering the once-great city of Caracol.",
+      "kind": "fact",
+      "expression": 3,
+      "action": "point"
+    },
+    {
+      "title": "مستقبل البحث في كاراكول",
+      "text": "لسه فيه كتير من أجزاء المدينة متغطية بالأشجار، والعلماء بيستخدموا تكنولوجيا حديثة عشان يكشفوا اللي باقي، كل يوم بيمر بيطلع لنا تفاصيل جديدة بتخلينا نحترم أكتر العقول اللي عاشت وبنت المكان العظيم ده.",
+      "summary": "استمرار البحث باستخدام التكنولوجيا.",
+      "keyword": "تكنولوجيا",
+      "template": "map",
+      "labels": [
+        "استكشاف",
+        "مستقبل",
+        "تكنولوجيا"
+      ],
+      "values": [],
+      "claim": "البحث مستمر لكشف المزيد.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Their groundbreaking research is rewriting everything we thought we knew about the Maya",
+      "kind": "fact",
+      "expression": 7,
+      "action": "walk"
+    },
+    {
+      "title": "خلاصة القول",
+      "text": "في النهاية، كاراكول بتعلمنا إن التاريخ مش دايماً زي ما بنقراه، أحياناً بيكون فيه تفاصيل مخفية تحت الأرض ومحتاجة ناس مخلصين زي ديان وأرلن عشان يرجعوا يكتبوا التاريخ من جديد ويصححوا مفاهيمنا.",
+      "summary": "أهمية إعادة كتابة التاريخ.",
+      "keyword": "تاريخ",
+      "template": "phenomenon",
+      "labels": [
+        "خلاصة",
+        "تعلم",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "التاريخ يحتاج لإعادة تقييم مستمرة.",
+      "sourceId": "d2f5d52aed10",
+      "evidence": "Their groundbreaking research is rewriting everything we thought we knew about the Maya",
+      "kind": "fact",
+      "expression": 10,
+      "action": "turn"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

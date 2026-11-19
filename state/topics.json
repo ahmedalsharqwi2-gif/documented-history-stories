@@ -93,7 +93,13 @@
   {
     "topicKey": "global-conflict-20th-century",
     "value": "https://www.worldhistory.org/collection/336/ap-world-history-unit-7/",
-    "status": "reserved",
+    "status": "retired",
     "run": "2026-11-19T23-15-28-117Z"
+  },
+  {
+    "topicKey": "maya-caracol-archaeology",
+    "value": "https://www.smithsonianmag.com/history/archaeologists-ancient-maya-metropolist-forest-belize-debunking-long-held-myth-about-mesoamerican-civilization-180989648/",
+    "status": "review",
+    "run": "2026-11-19T23-33-00-645Z"
   }
 ]
