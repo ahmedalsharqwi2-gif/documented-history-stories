@@ -1,0 +1,117 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "af682a0cce4b",
+      "title": "Wealth and Status of Early Herders Evaluated",
+      "demand": 0,
+      "recency": 0.852,
+      "matches": [],
+      "score": 0.42612089063652486
+    },
+    {
+      "id": "fc0c5ce44867",
+      "title": "Milk and Wine Detected in 2,000-Year-Old Vessels on Menorca",
+      "demand": 0,
+      "recency": 0.846,
+      "matches": [],
+      "score": 0.42317196894734843
+    },
+    {
+      "id": "31c766677cf7",
+      "title": "19th-Century Philosopher’s Head Examined",
+      "demand": 0,
+      "recency": 0.615,
+      "matches": [],
+      "score": 0.3074566795959039
+    },
+    {
+      "id": "9c90c2ab6578",
+      "title": "Mesopotamian Chronology Refined with Tree Rings and Ice Cores",
+      "demand": 0,
+      "recency": 0.611,
+      "matches": [],
+      "score": 0.3053289602306595
+    },
+    {
+      "id": "c169a7d2fc77",
+      "title": "New Analysis of Hunter-Gatherer Remains Recovered on Danish Island",
+      "demand": 0,
+      "recency": 0.606,
+      "matches": [],
+      "score": 0.3032159655079344
+    },
+    {
+      "id": "0bcc769ad65f",
+      "title": "Souvenir Collection May Have Begun 500,000 Years Ago",
+      "demand": 0,
+      "recency": 0.441,
+      "matches": [],
+      "score": 0.22030233757551862
+    },
+    {
+      "id": "3bc47bd494f9",
+      "title": "Natufian Clay Figurines Dated to 15,000 Years Ago",
+      "demand": 0,
+      "recency": 0.438,
+      "matches": [],
+      "score": 0.21877776003020682
+    },
+    {
+      "id": "ec0dd8f0dcf1",
+      "title": "Did Paleolithic Arabians Poison Their Weapons?",
+      "demand": 0,
+      "recency": 0.435,
+      "matches": [],
+      "score": 0.2172637331522971
+    },
+    {
+      "id": "46f904514b4b",
+      "title": "Study Suggests Ancient Peruvians Adapted to Environmental Stressors",
+      "demand": 0,
+      "recency": 0.162,
+      "matches": [],
+      "score": 0.08104470083604423
+    },
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 0,
+      "recency": 0.161,
+      "matches": [],
+      "score": 0.08048384010065239
+    }
+  ]
+}
