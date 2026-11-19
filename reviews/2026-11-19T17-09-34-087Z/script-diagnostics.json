@@ -1,0 +1,6 @@
+{
+  "code": "SCRIPT_LINT",
+  "attempt": 2,
+  "zodIssues": null,
+  "detail": "hook spelled_out_number_run: 3 consecutive number-words in: ماذا لو قلت لك إن أطفالاً عاشوا قبل خمسة عشر ألف سنة كانوا فنانين محترفين؟ | scene[0].text spelled_out_number_run: 3 consecutive number-words in: هذه القطع الفنية تعود لما بين خمسة عشر ألف وأحد عشر ألف وخمسمائة سنة، | scene[5].text spelled_out_number_run: 3 consecutive number-words in: تخيل طفلاً قبل خمسة عشر ألف سنة وهو يمسك بقطعة طين ويشكلها لتصبح رأس غزال."
+}

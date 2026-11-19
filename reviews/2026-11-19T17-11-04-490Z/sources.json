@@ -1,0 +1,126 @@
+{
+  "selected": {
+    "id": "2a9a13156b85",
+    "title": "Health of Mummified Egyptian Cats Evaluated",
+    "url": "https://archaeology.org/news/2026/11/13/health-of-mummified-egyptian-cats-evaluated/",
+    "text": "VIENNA, AUSTRIA—Zooarchaeologist Wim Van Neer of the Royal Belgian Institute of Natural Sciences and his colleagues examined a collection of 131 ancient Egyptian cat skulls held at the Natural History Museum in Vienna, according to a ZME Science report. The skulls came from mummified felines removed in the nineteenth century from the cemetery site of Beni Hassan in central Egypt. Analysis revealed that 26 of the cats had periodontitis and 24 had missing teeth. Pitting was found on 35 of the skulls, while 19 had perforations in the eye sockets, consistent with infections or nutritional stress. Traumatic injuries such as fractures and puncture wounds were found on 14 of the skulls. Some of the wounds may have been caused by blows from a sharp metal implement or blunt force trauma, while some of the puncture wounds may have been inflicted by other cats, the researchers suggest. The wounds that show signs of healing may have been caused by punishments or fights between animals, they explained. Fatal wounds may have been inflicted as the first step in the mummification process, the researchers added. Van Neer and his colleagues conclude that the animals may have been kept in crowded conditions that contributed to this evidence of disease and violence. Read the original scholarly article about this research in the Journal of Archaeological Science . To read about tomb paintings from Beni Hassan, go to “ Emblems for the Afterlife .” The post Health of Mummified Egyptian Cats Evaluated appeared first on Archaeology Magazine .",
+    "published": "2026-11-13T18:30:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://www.zmescience.com/science/news-science/ancient-egyptians-worshipped-cats-but-their-skulls-reveal-a-much-darker-story/",
+      "https://doi.org/10.1016/j.jas.2026.106733",
+      "https://archaeology.org/issues/may-june-2018/features/egypt-middle-kingdom-tomb-paintings/",
+      "https://archaeology.org/news/2026/11/13/health-of-mummified-egyptian-cats-evaluated/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "url": "https://archaeology.org/news/2026/11/13/health-of-mummified-egyptian-cats-evaluated/",
+      "text": "VIENNA, AUSTRIA—Zooarchaeologist Wim Van Neer of the Royal Belgian Institute of Natural Sciences and his colleagues examined a collection of 131 ancient Egyptian cat skulls held at the Natural History Museum in Vienna, according to a ZME Science report. The skulls came from mummified felines removed in the nineteenth century from the cemetery site of Beni Hassan in central Egypt. Analysis revealed that 26 of the cats had periodontitis and 24 had missing teeth. Pitting was found on 35 of the skulls, while 19 had perforations in the eye sockets, consistent with infections or nutritional stress. Traumatic injuries such as fractures and puncture wounds were found on 14 of the skulls. Some of the wounds may have been caused by blows from a sharp metal implement or blunt force trauma, while some of the puncture wounds may have been inflicted by other cats, the researchers suggest. The wounds that show signs of healing may have been caused by punishments or fights between animals, they explained. Fatal wounds may have been inflicted as the first step in the mummification process, the researchers added. Van Neer and his colleagues conclude that the animals may have been kept in crowded conditions that contributed to this evidence of disease and violence. Read the original scholarly article about this research in the Journal of Archaeological Science . To read about tomb paintings from Beni Hassan, go to “ Emblems for the Afterlife .” The post Health of Mummified Egyptian Cats Evaluated appeared first on Archaeology Magazine .",
+      "published": "2026-11-13T18:30:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://www.zmescience.com/science/news-science/ancient-egyptians-worshipped-cats-but-their-skulls-reveal-a-much-darker-story/",
+        "https://doi.org/10.1016/j.jas.2026.106733",
+        "https://archaeology.org/issues/may-june-2018/features/egypt-middle-kingdom-tomb-paintings/",
+        "https://archaeology.org/news/2026/11/13/health-of-mummified-egyptian-cats-evaluated/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "2a9a13156b85",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "2a9a13156b85"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    }
+  ],
+  "trend": [
+    {
+      "id": "2a9a13156b85",
+      "title": "Health of Mummified Egyptian Cats Evaluated",
+      "demand": 0,
+      "recency": 0.138,
+      "matches": [],
+      "score": 0.0689152364442304
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 40
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "2a9a13156b85",
+        "title": "Health of Mummified Egyptian Cats Evaluated",
+        "demand": 0,
+        "recency": 0.138,
+        "matches": [],
+        "score": 0.0689152364442304
+      }
+    ]
+  }
+}

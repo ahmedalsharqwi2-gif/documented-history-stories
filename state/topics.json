@@ -65,5 +65,17 @@
     "status": "retired",
     "reason": "STAGE_FAILED_SEE_RUNBOOK",
     "run": "2026-11-19T16-45-16-852Z"
+  },
+  {
+    "value": "https://archaeology.org/news/2026/11/16/natufian-clay-figurines-dated-to-15000-years-ago/",
+    "status": "retired",
+    "reason": "STAGE_FAILED_SEE_RUNBOOK",
+    "run": "2026-11-19T17-09-34-087Z"
+  },
+  {
+    "value": "https://archaeology.org/news/2026/11/13/health-of-mummified-egyptian-cats-evaluated/",
+    "status": "retired",
+    "reason": "UNSUPPORTED_CLAIM",
+    "run": "2026-11-19T17-11-04-490Z"
   }
 ]
