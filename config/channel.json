@@ -15,11 +15,11 @@
     },
     {
       "url": "https://www.worldhistory.org/rss/",
-      "official": false
+      "official": true
     },
     {
       "url": "https://www.smithsonianmag.com/rss/history/",
-      "official": false
+      "official": true
     }
   ],
   "logo": "brand/logo/logo.jpg",
