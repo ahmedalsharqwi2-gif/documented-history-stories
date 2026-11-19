@@ -1,0 +1,6 @@
+{
+  "code": "SCRIPT_LINT",
+  "attempt": 2,
+  "zodIssues": null,
+  "detail": "scene[2].text spelled_out_year: year-like number words in: وبتغطي فترة زمنية طويلة من ألفين ومائتين لحد ألف قبل الميلاد."
+}

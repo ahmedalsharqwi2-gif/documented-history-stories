@@ -1,0 +1,186 @@
+[
+  {
+    "file": "audio/scene-0.wav",
+    "duration": 14.570958,
+    "text": "مع بداية القرن العشرين، كانت قوى غربية قليلة هي اللي بتتحكم في السياسة العالمية. العالم كان ماشي بنظام معين، لكن الأمور كانت على وشك إنها تتغير بشكل جذري ومفاجئ للجميع.",
+    "sha256": "79793af16986913038f6bc64e16854390983739bef2069c93d7ea71deb11d1bb",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c9e0de903a0d69cb67af07e915941f32686397bbe3b61887e2aa000393a88c17",
+        "sha256": "79793af16986913038f6bc64e16854390983739bef2069c93d7ea71deb11d1bb",
+        "text_sha256": "df9964c8c478df23f7dfe0d1f0123231c5198d309cad1e5b081256e83f46708a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 699484,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-1.wav",
+    "duration": 16.450958,
+    "text": "في فترة زمنية قصيرة لا تتعدى الخمسين سنة، النظام العالمي القديم اتنسف تماماً بسبب حربين عالميتين. الحروب دي كانت بحجم غير مسبوق وغيرت خريطة العالم السياسية والجغرافية بشكل كامل ومستمر.",
+    "sha256": "587988857f7184d47c895953e0d1720d63ad958078c93069b6d2658509a63d85",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "320bc0043b280236fc951a9112f48556ef0bb008ea5446cb81f1c8d0789923ae",
+        "sha256": "587988857f7184d47c895953e0d1720d63ad958078c93069b6d2658509a63d85",
+        "text_sha256": "13e9bb80c26ebf8002e46fad8137f2a036f5d69c63432c17e2e28b7f242e9890",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 789724,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-2.wav",
+    "duration": 18.330958,
+    "text": "التكنولوجيا اللي كانت بتبني السكك الحديدية والمصانع، اتحولت فجأة لإنتاج أسلحة دمار. الرشاشات، الغاز السام، الطيارات الحربية، وحتى القنبلة الذرية، كلها بقت أدوات في إيد الدول عشان تحسم صراعاتها العنيفة والمستمرة.",
+    "sha256": "510a71766e294e138d8b5f8937dcccc809ab91c246606a05c2fd1aa9df08512d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "4a372e2dd77c431b0885e2b702eb69bdfbb957b3eb614c9276080fc1cbe00969",
+        "sha256": "510a71766e294e138d8b5f8937dcccc809ab91c246606a05c2fd1aa9df08512d",
+        "text_sha256": "223591174bbdf53584ffe57ce062e23432b0873be29a4f363acc5b96a0c254c9",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 879964,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-3.wav",
+    "duration": 15.650958,
+    "text": "الحكومات بدأت تستخدم الدعاية والقومية المتطرفة عشان تحشد الشعوب بالكامل. ده ماكانش بس جوه الدول، لكن كمان امتد للمستعمرات، عشان الكل يشارك في المجهود الحربي اللي كان بيستهلك موارد وملايين البشر.",
+    "sha256": "278aa7b845dd9365addbd02b66da09b4b8a2c0653da151de30e0d746c6dcd833",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "2299efef47ea8d8e452f22c6c21bdd58801f93e498eccb61c96b9b0c05dbeeef",
+        "sha256": "278aa7b845dd9365addbd02b66da09b4b8a2c0653da151de30e0d746c6dcd833",
+        "text_sha256": "61d8fc224761cfce62800f44b8b63e04fc4c126dd18a0cd33fbda71cef5a0aad",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 751324,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-4.wav",
+    "duration": 14.370958,
+    "text": "الإمبراطوريات الكبيرة زي العثمانيين وروسيا وسلالة تشينج انهاروا تماماً. التغييرات دي فتحت الباب لظهور أنظمة سياسية جديدة تماماً، وغيرت موازين القوى في مناطق واسعة من العالم القديم والجديد في وقت واحد.",
+    "sha256": "d1d50a77e54acc2502e3c823d85920755e8b342007a80a2b7fb7600a6c376f85",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "9385fe86c959da4f758aa33159b8a7acd5dc8b6f80880f74c9e754e360504aa5",
+        "sha256": "d1d50a77e54acc2502e3c823d85920755e8b342007a80a2b7fb7600a6c376f85",
+        "text_sha256": "63d9c4055d8eba54b7118397c3b2d6fefd9c32833de31181220db6ce1a29830a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 689884,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-5.wav",
+    "duration": 15.770958,
+    "text": "الثورة جابت الشيوعية للحكم في روسيا، والاتفاقيات اللي ما اتحلتش بعد الحرب العالمية الأولى ساعدت في صعود أنظمة فاشية وشمولية. الأنظمة دي كانت السبب المباشر في اندلاع الحرب العالمية الثانية اللي دمرت العالم.",
+    "sha256": "972d527a6928611f90e22c0501c73f1043d8b63dd73c95badf2627aba3265df0",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "d923e7bd8b7d8efd479949b1dc1fe0a735153699c5cc94db5873145b5ee12033",
+        "sha256": "972d527a6928611f90e22c0501c73f1043d8b63dd73c95badf2627aba3265df0",
+        "text_sha256": "994106df3b366d60831400f29b28b0d093a6d0bbdf5ba5fbe6d9c187f05ff8e9",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 757084,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-6.wav",
+    "duration": 19.410958,
+    "text": "في الفترة دي، الدول بدأت تستخدم آلات الحرب الحديثة ضد المدنيين. من الإبادة الجماعية للأرمن لحد الهولوكوست، العالم شاف مآسي إنسانية كبيرة جداً بسبب توظيف التكنولوجيا في تدمير حياة البشر الأبرياء في كل مكان.",
+    "sha256": "e89e63e2558c93848f0dd756bba64d71cdd3de30bc2c6bd3f1a0dadfb0a9412b",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c9cec7550e34db157cab4d0b6d3e0bc9a7e0d6f11846a70f6641b3780bac5a2c",
+        "sha256": "e89e63e2558c93848f0dd756bba64d71cdd3de30bc2c6bd3f1a0dadfb0a9412b",
+        "text_sha256": "3ab9a3c6a36b742f1db3acb426dbd10204d0b069de2d0d0596fd01b66e499e44",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 931804,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-7.wav",
+    "duration": 14.890958,
+    "text": "التاريخ بيعلمنا إن التكنولوجيا والسياسة سلاح ذو حدين. بعد ما عرفنا إزاي العالم اتغير في القرن العشرين، لازم نفكر إزاي نستخدم قوتنا عشان نبني مستقبل أفضل بعيد عن الحروب والدمار اللي شفناه.",
+    "sha256": "736ab34e5c2d5293c6e95be25f1112843e38f1a40cd73afeb13fb08fe059f0e7",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "af26af88d0ede073128b7d5f0d4c63fcaf8139284c9d7a351495c8890deb0e47",
+        "sha256": "736ab34e5c2d5293c6e95be25f1112843e38f1a40cd73afeb13fb08fe059f0e7",
+        "text_sha256": "9415fa0a137fe6c58240abf00ae47373b3835590ec5648bbacab7f1dba346031",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 714844,
+        "reused": false
+      }
+    ]
+  }
+]

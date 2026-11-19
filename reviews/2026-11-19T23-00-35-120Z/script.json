@@ -1,0 +1,163 @@
+{
+  "topicKey": "homo-erectus-china-rainforest",
+  "title": "اكتشاف مذهل: الإنسان المنتصب في غابات الصين",
+  "hook": "عمرك تخيلت إن أجدادنا القدامى عاشوا في غابات استوائية كثيفة؟",
+  "cta": "تابعونا عشان تعرفوا كل جديد في عالم الآثار والاكتشافات التاريخية اللي بتغير فهمنا للماضي.",
+  "scenes": [
+    {
+      "title": "بداية الحكاية",
+      "text": "زمان كان العلماء فاكرين إن الإنسان المنتصب مكنش بيعرف يعيش غير في السهول المفتوحة والغابات الخفيفة، وإن الإنسان الحديث بس هو اللي كان بيقدر يتأقلم مع ظروف الغابات الاستوائية القاسية والصعبة دي.",
+      "summary": "اعتقاد العلماء القديم عن سكن الإنسان المنتصب",
+      "keyword": "إنسان منتصب",
+      "template": "phenomenon",
+      "labels": [
+        "إنسان",
+        "تاريخ",
+        "غابات"
+      ],
+      "values": [],
+      "claim": "It had been previously thought that Homo erectus relied solely upon open grasslands or woodlands",
+      "sourceId": "6102d11782b2",
+      "evidence": "It had been previously thought that Homo erectus relied solely upon open grasslands or woodlands",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "اكتشاف في الكهوف",
+      "text": "فريق دولي من العلماء لقى أسنان وحفريات تانية في كهوف في جنوب الصين، المنطقة دي معروفة بتضاريسها الصخرية وتلال الحجر الجيري والغابات الاستوائية الكثيفة اللي بتغطي المكان كله بشكل مذهل جداً.",
+      "summary": "اكتشاف حفريات في كهوف جنوب الصين",
+      "keyword": "كهوف",
+      "template": "journey",
+      "labels": [
+        "كهوف",
+        "صين",
+        "حفريات"
+      ],
+      "values": [],
+      "claim": "An international team of scientists examined eight teeth and other fossils recovered from Baxian and Naxian",
+      "sourceId": "6102d11782b2",
+      "evidence": "An international team of scientists examined eight teeth and other fossils recovered from Baxian and Naxian",
+      "kind": "fact",
+      "expression": 6,
+      "action": "point"
+    },
+    {
+      "title": "تحديد الهوية",
+      "text": "العلماء قدروا يحددوا إن الأسنان دي فعلاً تخص الإنسان المنتصب، وده من خلال دراسة الخصائص الفيزيائية للأسنان وكمان البصمات الجينية اللي أكدت لينا النوع ده من البشر القدامى اللي عاشوا في المنطقة دي.",
+      "summary": "تحديد هوية الأسنان المكتشفة",
+      "keyword": "بصمات جينية",
+      "template": "comparison",
+      "labels": [
+        "أسنان",
+        "جينات",
+        "تحليل"
+      ],
+      "values": [],
+      "claim": "The teeth were identified as belonging to Homo erectus through their physical characteristics and their genetic signatures.",
+      "sourceId": "6102d11782b2",
+      "evidence": "The teeth were identified as belonging to Homo erectus through their physical characteristics and their genetic signatures.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "turn"
+    },
+    {
+      "title": "تاريخ الوجود",
+      "text": "الدراسات أثبتت إن الإنسان المنتصب عاش في الغابات دي من حوالي ثلاثمائة وأربعة وعشرين ألف سنة لحد مائة وأربعة وثمانين ألف سنة، في وقت كان العلماء فاكرين فيه إن النوع ده انقرض تماماً.",
+      "summary": "تاريخ وجود الإنسان المنتصب في الغابات",
+      "keyword": "تاريخ",
+      "template": "chart",
+      "labels": [
+        "زمن",
+        "انقراض",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "Homo erectus lived in dense tropical forests in southern China between 324,000 and 184,000 years ago",
+      "sourceId": "6102d11782b2",
+      "evidence": "Homo erectus lived in dense tropical forests in southern China between 324,000 and 184,000 years ago",
+      "kind": "fact",
+      "expression": 8,
+      "action": "jump"
+    },
+    {
+      "title": "تحليل كيميائي",
+      "text": "التحليل الكيميائي لنظائر السترونتيوم في الأسنان أكد إن الأفراد دول عاشوا فعلاً في نظام بيئي للغابات الاستوائية، وكانوا بيتحركوا ويتجولوا في مساحات واسعة جداً داخل المنطقة دي من جنوب الصين القديمة.",
+      "summary": "تأكيد العيش في الغابات عبر التحليل الكيميائي",
+      "keyword": "سترونتيوم",
+      "template": "cause",
+      "labels": [
+        "كيمياء",
+        "بيئة",
+        "غابات"
+      ],
+      "values": [],
+      "claim": "Chemical analysis of strontium isotopes in the teeth confirmed that these Homo erectus individuals lived in a rainforest ecosystem",
+      "sourceId": "6102d11782b2",
+      "evidence": "Chemical analysis of strontium isotopes in the teeth confirmed that these Homo erectus individuals lived in a rainforest ecosystem",
+      "kind": "fact",
+      "expression": 9,
+      "action": "run"
+    },
+    {
+      "title": "رأي العلماء",
+      "text": "الباحثة كايرا ويستواي من جامعة ماكواير قالت إن الاكتشاف ده رائع ومذهل، لأنه بيأكد وجود الإنسان المنتصب في مكان ووقت مكنش حد يتوقع وجوده فيه، وده بيغير فهمنا لتاريخ انقراضهم تماماً.",
+      "summary": "تصريحات العلماء حول أهمية الاكتشاف",
+      "keyword": "اكتشاف",
+      "template": "phenomenon",
+      "labels": [
+        "علماء",
+        "جامعة",
+        "بحث"
+      ],
+      "values": [],
+      "claim": "“This is a fascinating discovery because it confirms the presence of Homo erectus in a location we were not expecting and at a time we hadn’t considered,” said Kira Westaway",
+      "sourceId": "6102d11782b2",
+      "evidence": "“This is a fascinating discovery because it confirms the presence of Homo erectus in a location we were not expecting and at a time we hadn’t considered,”",
+      "kind": "fact",
+      "expression": 10,
+      "action": "sleep"
+    },
+    {
+      "title": "تأثير الاكتشاف",
+      "text": "الاكتشاف ده ليه تأثيرات كبيرة على الجدول الزمني لحياة الإنسان المنتصب، وبيساعد العلماء في محاولة فهم الأسباب الحقيقية وراء انقراضهم، وده بيفتح أبواب جديدة للبحث العلمي في مستقبل دراسات التطور البشري.",
+      "summary": "تأثير الاكتشاف على فهم انقراض الإنسان المنتصب",
+      "keyword": "انقراض",
+      "template": "steps",
+      "labels": [
+        "تطور",
+        "بحث",
+        "انقراض"
+      ],
+      "values": [],
+      "claim": "“This has huge implications for the timeline of Homo erectus as we attempt to understand the causes of its extinction,”",
+      "sourceId": "6102d11782b2",
+      "evidence": "“This has huge implications for the timeline of Homo erectus as we attempt to understand the causes of its extinction,”",
+      "kind": "fact",
+      "expression": 11,
+      "action": "fall"
+    },
+    {
+      "title": "خاتمة",
+      "text": "العلم دايماً بيفاجئنا بحقائق جديدة بتغير كل اللي كنا فاكرينه عن الماضي، تابعونا عشان تعرفوا كل جديد في عالم الآثار والاكتشافات التاريخية اللي بتغير فهمنا للماضي.",
+      "summary": "دعوة للمتابعة",
+      "keyword": "آثار",
+      "template": "phenomenon",
+      "labels": [
+        "تاريخ",
+        "علوم",
+        "آثار"
+      ],
+      "values": [],
+      "claim": "العلم يغير فهمنا للماضي",
+      "sourceId": "6102d11782b2",
+      "evidence": "This is a fascinating discovery because it confirms the presence of Homo erectus in a location we were not expecting and at a time we hadn’t considered",
+      "kind": "illustration",
+      "expression": 5,
+      "action": "walk"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

@@ -1,0 +1,186 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-0.wav",
+    "duration": 15.170958,
+    "text": "زمان كان العلماء فاكرين إن الإنسان المنتصب مكنش بيعرف يعيش غير في السهول المفتوحة والغابات الخفيفة، وإن الإنسان الحديث بس هو اللي كان بيقدر يتأقلم مع ظروف الغابات الاستوائية القاسية والصعبة دي.",
+    "sha256": "d4f6679d8d99b34353156fc1075accc5eabb5e79880d1fe7d4a4a00842613f38",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "32e88260001a172d278ab5b0c361a56e32f5ee205a7a1dc37ff68f40345643bd",
+        "sha256": "d4f6679d8d99b34353156fc1075accc5eabb5e79880d1fe7d4a4a00842613f38",
+        "text_sha256": "1be3cf45a970f8c6f7b702af816febd81d075f50773331cd9c0c24af22bdb51e",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 728284,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-1.wav",
+    "duration": 14.970958,
+    "text": "فريق دولي من العلماء لقى أسنان وحفريات تانية في كهوف في جنوب الصين، المنطقة دي معروفة بتضاريسها الصخرية وتلال الحجر الجيري والغابات الاستوائية الكثيفة اللي بتغطي المكان كله بشكل مذهل جداً.",
+    "sha256": "d1740e8b0387303162f8b935b6fad31c5b18f4b95ab1a1857ae20d5e5259e5a1",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c522e8921f14a3c3cb60c8b51a09fed5473f141a62163c09933c7da6a370b887",
+        "sha256": "d1740e8b0387303162f8b935b6fad31c5b18f4b95ab1a1857ae20d5e5259e5a1",
+        "text_sha256": "73a0034239c7aab18c68625274f3bdac7694be51fb3c33a3dc6f194c6395c1c3",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 718684,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-2.wav",
+    "duration": 14.290958,
+    "text": "العلماء قدروا يحددوا إن الأسنان دي فعلاً تخص الإنسان المنتصب، وده من خلال دراسة الخصائص الفيزيائية للأسنان وكمان البصمات الجينية اللي أكدت لينا النوع ده من البشر القدامى اللي عاشوا في المنطقة دي.",
+    "sha256": "d5d9018ba5b14f17e73c90748c4f60b8bdaec4223fd29a757bf4318dfdc0c776",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "209386b1e3a84dec201e14ce383647ad2ace223bcaad392e67b40564e5c2c1fd",
+        "sha256": "d5d9018ba5b14f17e73c90748c4f60b8bdaec4223fd29a757bf4318dfdc0c776",
+        "text_sha256": "6127e8303be2dc2c52a90736afb176ab8530c02975a1d888e64e1257024441ed",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 686044,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-3.wav",
+    "duration": 13.410958,
+    "text": "الدراسات أثبتت إن الإنسان المنتصب عاش في الغابات دي من حوالي ثلاثمائة وأربعة وعشرين ألف سنة لحد مائة وأربعة وثمانين ألف سنة، في وقت كان العلماء فاكرين فيه إن النوع ده انقرض تماماً.",
+    "sha256": "aa9cef6aa76f8898a59fce6e38f6f62e95c2c3f869f2070f4b10999d55254890",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "223e025f93374f1c1abba961bd866f9a89c73903fd0dff233eea5a6364a37462",
+        "sha256": "aa9cef6aa76f8898a59fce6e38f6f62e95c2c3f869f2070f4b10999d55254890",
+        "text_sha256": "5bb66b1a195240e1aee5ab28a9070857a6a1a835a5cca68b8c9556e28be7712f",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 643804,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-4.wav",
+    "duration": 13.450958,
+    "text": "التحليل الكيميائي لنظائر السترونتيوم في الأسنان أكد إن الأفراد دول عاشوا فعلاً في نظام بيئي للغابات الاستوائية، وكانوا بيتحركوا ويتجولوا في مساحات واسعة جداً داخل المنطقة دي من جنوب الصين القديمة.",
+    "sha256": "c6bc9d5dd9235c9ac8d2fc724a89419877a5290c3ed1af2e6f41c659d0deeb8a",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "d51b38855918678aa0f905280ffb30ed3b543fb8291f9886c6541a2b6ae31ca0",
+        "sha256": "c6bc9d5dd9235c9ac8d2fc724a89419877a5290c3ed1af2e6f41c659d0deeb8a",
+        "text_sha256": "34fb5936687434ce460fcd71014ddaf7b19208da55e20001b550c53b15996b38",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 645724,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-5.wav",
+    "duration": 15.850958,
+    "text": "الباحثة كايرا ويستواي من جامعة ماكواير قالت إن الاكتشاف ده رائع ومذهل، لأنه بيأكد وجود الإنسان المنتصب في مكان ووقت مكنش حد يتوقع وجوده فيه، وده بيغير فهمنا لتاريخ انقراضهم تماماً.",
+    "sha256": "b3c7b1498f35e3452cfe94fc8cf01e220c1b3d7d52fc71365db8ba18442486b0",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "8453e1f6c30d47ed97518cff040833088e6e334ffbfe02b796537b357c43d3c3",
+        "sha256": "b3c7b1498f35e3452cfe94fc8cf01e220c1b3d7d52fc71365db8ba18442486b0",
+        "text_sha256": "a8b41a455165dac1ecd1a42e65748f691f4df19dd0bf7104f22af41087c4f0da",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 760924,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-6.wav",
+    "duration": 15.690958,
+    "text": "الاكتشاف ده ليه تأثيرات كبيرة على الجدول الزمني لحياة الإنسان المنتصب، وبيساعد العلماء في محاولة فهم الأسباب الحقيقية وراء انقراضهم، وده بيفتح أبواب جديدة للبحث العلمي في مستقبل دراسات التطور البشري.",
+    "sha256": "7b0c3bcae81f5bdac6f3e6bb8768df4c62699487a804f371f92cd4e2109a8d8d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "59fda4360cce70d806a7b944923470361d3a96c1c33582bab67813397c7afa48",
+        "sha256": "7b0c3bcae81f5bdac6f3e6bb8768df4c62699487a804f371f92cd4e2109a8d8d",
+        "text_sha256": "982ffdbb35157a5c80fcef5939706a99cd12f254b861da260544dd11a2532e9e",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 753244,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-19T23-00-35-120Z/scene-7.wav",
+    "duration": 13.850958,
+    "text": "العلم دايماً بيفاجئنا بحقائق جديدة بتغير كل اللي كنا فاكرينه عن الماضي، تابعونا عشان تعرفوا كل جديد في عالم الآثار والاكتشافات التاريخية اللي بتغير فهمنا للماضي.",
+    "sha256": "13ec7946351bf70d148046440b44224e44131e04b5e6d4416fe887e3da18a0ad",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "61d390272134e62a9c415ea2b7e7af1b815312ebd9f88da60b9fd50b13efb98c",
+        "sha256": "13ec7946351bf70d148046440b44224e44131e04b5e6d4416fe887e3da18a0ad",
+        "text_sha256": "e04712188866a9a72da87ac262669b09a3c9596b9b41b886f8ddf1285e758eaa",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 664924,
+        "reused": false
+      }
+    ]
+  }
+]

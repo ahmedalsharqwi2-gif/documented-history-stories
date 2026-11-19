@@ -1,0 +1,252 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 40
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "721957d71139",
+      "title": "Ancient Cemetery Discovered in Northern Egypt",
+      "demand": 8,
+      "recency": 0.939,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 4
+        }
+      ],
+      "score": 8.469642699509928
+    },
+    {
+      "id": "6102d11782b2",
+      "title": "Homo Erectus Survived in Southern China’s Tropical Rainforests",
+      "demand": 16,
+      "recency": 0.933,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "alexander zverev",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 6
+        }
+      ],
+      "score": 16.466392590038225
+    },
+    {
+      "id": "0350c1bdfc98",
+      "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+      "demand": 6,
+      "recency": 0.858,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 2
+        }
+      ],
+      "score": 6.429101897489172
+    },
+    {
+      "id": "5300ddcb4d54",
+      "title": "Francis I of France: The Knight King of the French Renaissance",
+      "demand": 12,
+      "recency": 0.835,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "alexander zverev",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 4
+        }
+      ],
+      "score": 12.41734964691515
+    },
+    {
+      "id": "e1516a713d69",
+      "title": "The Country's Oldest Operating Lighthouse Predates the American Revolution and Still Shines on New York Harbor After More Than 260 Years",
+      "demand": 10,
+      "recency": 0.619,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "alexander zverev",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 4
+        }
+      ],
+      "score": 10.309607549193963
+    },
+    {
+      "id": "a7d234382515",
+      "title": "Stalin's Great Purge: State Oppression in the USSR",
+      "demand": 6,
+      "recency": 0.081,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 2
+        }
+      ],
+      "score": 6.040471216548877
+    },
+    {
+      "id": "d25f8deacb64",
+      "title": "AP World History Unit 7: Global Conflict (c. 1900 to the Present)",
+      "demand": 14,
+      "recency": 0.031,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "alexander zverev",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 4
+        }
+      ],
+      "score": 14.015739076585106
+    },
+    {
+      "id": "a13869da4325",
+      "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+      "demand": 8,
+      "recency": 0.004,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 4
+        }
+      ],
+      "score": 8.002093375316663
+    },
+    {
+      "id": "d2f5d52aed10",
+      "title": "Archaeologists at This Ancient Maya Metropolis in the Forest of Belize Are Debunking Long-Held Myths About the Mesoamerican Civilization",
+      "demand": 8,
+      "recency": 0,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 2
+        }
+      ],
+      "score": 8.000140004129026
+    },
+    {
+      "id": "3541392f4838",
+      "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+      "demand": 10,
+      "recency": 0,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "fast",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "alexander zverev",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "hunger games",
+          "weight": 6
+        }
+      ],
+      "score": 10.000027093959439
+    }
+  ]
+}

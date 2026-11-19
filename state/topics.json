@@ -77,5 +77,23 @@
     "status": "retired",
     "reason": "UNSUPPORTED_CLAIM",
     "run": "2026-11-19T17-11-04-490Z"
+  },
+  {
+    "value": "https://archaeology.org/news/2026/11/19/study-pushes-back-cultivation-of-millet-in-bronze-age-poland/",
+    "status": "retired",
+    "reason": "STAGE_FAILED_SEE_RUNBOOK",
+    "run": "2026-11-19T22-59-11-026Z"
+  },
+  {
+    "topicKey": "homo-erectus-china-rainforest",
+    "value": "https://archaeology.org/news/2026/11/19/homo-erectus-survived-in-southern-chinas-tropical-rainforests/",
+    "status": "retired",
+    "run": "2026-11-19T23-00-35-120Z"
+  },
+  {
+    "topicKey": "global-conflict-20th-century",
+    "value": "https://www.worldhistory.org/collection/336/ap-world-history-unit-7/",
+    "status": "reserved",
+    "run": "2026-11-19T23-15-28-117Z"
   }
 ]

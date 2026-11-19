@@ -1,0 +1,667 @@
+{
+  "schema": 1,
+  "id": "2026-11-19T23-15-28-117Z",
+  "profile": "history",
+  "episode": {
+    "topicKey": "global-conflict-20th-century",
+    "title": "إزاي العالم اتغير في خمسين سنة؟",
+    "hook": "عمرك سألت نفسك إزاي العالم اتحول من سيطرة قوى غربية لساحة حروب عالمية في أقل من خمسين سنة؟ تعالوا نعرف إزاي التكنولوجيا قلبت موازين القوى وغيرت شكل التاريخ البشري كله.",
+    "cta": "لو عايز تعرف أكتر عن أسرار التاريخ اللي غيرت حياتنا، تابعنا واشترك في القناة عشان يوصلك كل جديد ونروي حكايات تانية كتير.",
+    "scenes": [
+      {
+        "title": "بداية القرن العشرين",
+        "text": "مع بداية القرن العشرين، كانت قوى غربية قليلة هي اللي بتتحكم في السياسة العالمية. العالم كان ماشي بنظام معين، لكن الأمور كانت على وشك إنها تتغير بشكل جذري ومفاجئ للجميع.",
+        "summary": "سيطرة القوى الغربية في بداية القرن",
+        "keyword": "القرن العشرين",
+        "template": "phenomenon",
+        "labels": [
+          "سياسة",
+          "تاريخ"
+        ],
+        "values": [],
+        "claim": "At the dawn of the 20th century, a few Western powers dominated global politics.",
+        "sourceId": "d25f8deacb64",
+        "evidence": "At the dawn of the 20th century, a few Western powers dominated global politics.",
+        "kind": "fact",
+        "expression": 5,
+        "action": "walk"
+      },
+      {
+        "title": "خمسين سنة من التغيير",
+        "text": "في فترة زمنية قصيرة لا تتعدى الخمسين سنة، النظام العالمي القديم اتنسف تماماً بسبب حربين عالميتين. الحروب دي كانت بحجم غير مسبوق وغيرت خريطة العالم السياسية والجغرافية بشكل كامل ومستمر.",
+        "summary": "تغير النظام العالمي في خمسين سنة",
+        "keyword": "حروب عالمية",
+        "template": "comparison",
+        "labels": [
+          "حروب",
+          "تغيير"
+        ],
+        "values": [
+          50
+        ],
+        "claim": "Within only 50 years, that order was remade by two world wars of unprecedented scale.",
+        "sourceId": "d25f8deacb64",
+        "evidence": "Within only 50 years, that order was remade by two world wars of unprecedented scale.",
+        "kind": "fact",
+        "expression": 8,
+        "action": "turn"
+      },
+      {
+        "title": "تطور التكنولوجيا العسكرية",
+        "text": "التكنولوجيا اللي كانت بتبني السكك الحديدية والمصانع، اتحولت فجأة لإنتاج أسلحة دمار. الرشاشات، الغاز السام، الطيارات الحربية، وحتى القنبلة الذرية، كلها بقت أدوات في إيد الدول عشان تحسم صراعاتها العنيفة والمستمرة.",
+        "summary": "تحول التكنولوجيا للصناعات العسكرية",
+        "keyword": "تكنولوجيا",
+        "template": "steps",
+        "labels": [
+          "صناعة",
+          "سلاح"
+        ],
+        "values": [],
+        "claim": "Industrial technology that had built railways and factories now produced machine guns, poison gas, warplanes, and finally the atomic bomb",
+        "sourceId": "d25f8deacb64",
+        "evidence": "Industrial technology that had built railways and factories now produced machine guns, poison gas, warplanes, and finally the atomic bomb",
+        "kind": "fact",
+        "expression": 10,
+        "action": "point"
+      },
+      {
+        "title": "حشد الشعوب",
+        "text": "الحكومات بدأت تستخدم الدعاية والقومية المتطرفة عشان تحشد الشعوب بالكامل. ده ماكانش بس جوه الدول، لكن كمان امتد للمستعمرات، عشان الكل يشارك في المجهود الحربي اللي كان بيستهلك موارد وملايين البشر.",
+        "summary": "استخدام الدعاية والقومية",
+        "keyword": "دعاية",
+        "template": "cause",
+        "labels": [
+          "سياسة",
+          "حشد"
+        ],
+        "values": [],
+        "claim": "governments mobilised whole populations through propaganda and intensified nationalism – both at home and across their colonies.",
+        "sourceId": "d25f8deacb64",
+        "evidence": "governments mobilised whole populations through propaganda and intensified nationalism – both at home and across their colonies.",
+        "kind": "fact",
+        "expression": 7,
+        "action": "run"
+      },
+      {
+        "title": "سقوط الإمبراطوريات",
+        "text": "الإمبراطوريات الكبيرة زي العثمانيين وروسيا وسلالة تشينج انهاروا تماماً. التغييرات دي فتحت الباب لظهور أنظمة سياسية جديدة تماماً، وغيرت موازين القوى في مناطق واسعة من العالم القديم والجديد في وقت واحد.",
+        "summary": "انهيار الإمبراطوريات الكبرى",
+        "keyword": "إمبراطوريات",
+        "template": "journey",
+        "labels": [
+          "تاريخ",
+          "سقوط"
+        ],
+        "values": [],
+        "claim": "The land empires of the Ottomans, Russia, and the Qing dynasty collapsed.",
+        "sourceId": "d25f8deacb64",
+        "evidence": "The land empires of the Ottomans, Russia, and the Qing dynasty collapsed.",
+        "kind": "fact",
+        "expression": 9,
+        "action": "fall"
+      },
+      {
+        "title": "ظهور الشيوعية والفاشية",
+        "text": "الثورة جابت الشيوعية للحكم في روسيا، والاتفاقيات اللي ما اتحلتش بعد الحرب العالمية الأولى ساعدت في صعود أنظمة فاشية وشمولية. الأنظمة دي كانت السبب المباشر في اندلاع الحرب العالمية الثانية اللي دمرت العالم.",
+        "summary": "صعود الشيوعية والفاشية",
+        "keyword": "أنظمة سياسية",
+        "template": "cause",
+        "labels": [
+          "سياسة",
+          "ثورة"
+        ],
+        "values": [],
+        "claim": "Revolution brought communism to power in Russia, and the unresolved settlement after the First World War helped bring fascist and totalitarian regimes to power, causing the Second World War.",
+        "sourceId": "d25f8deacb64",
+        "evidence": "Revolution brought communism to power in Russia, and the unresolved settlement after the First World War helped bring fascist and totalitarian regimes to power, causing the Second World War.",
+        "kind": "fact",
+        "expression": 11,
+        "action": "jump"
+      },
+      {
+        "title": "استهداف المدنيين",
+        "text": "في الفترة دي، الدول بدأت تستخدم آلات الحرب الحديثة ضد المدنيين. من الإبادة الجماعية للأرمن لحد الهولوكوست، العالم شاف مآسي إنسانية كبيرة جداً بسبب توظيف التكنولوجيا في تدمير حياة البشر الأبرياء في كل مكان.",
+        "summary": "استخدام التكنولوجيا ضد المدنيين",
+        "keyword": "إبادة",
+        "template": "phenomenon",
+        "labels": [
+          "إنسانية",
+          "تاريخ"
+        ],
+        "values": [],
+        "claim": "It was in this period that states turned the machinery of the modern world against civilian populations, from the Armenian genocide to the Holocaust.",
+        "sourceId": "d25f8deacb64",
+        "evidence": "It was in this period that states turned the machinery of the modern world against civilian populations, from the Armenian genocide to the Holocaust.",
+        "kind": "fact",
+        "expression": 0,
+        "action": "hang"
+      },
+      {
+        "title": "خاتمة",
+        "text": "التاريخ بيعلمنا إن التكنولوجيا والسياسة سلاح ذو حدين. بعد ما عرفنا إزاي العالم اتغير في القرن العشرين، لازم نفكر إزاي نستخدم قوتنا عشان نبني مستقبل أفضل بعيد عن الحروب والدمار اللي شفناه.",
+        "summary": "دروس من التاريخ",
+        "keyword": "مستقبل",
+        "template": "journey",
+        "labels": [
+          "تفكير",
+          "تاريخ"
+        ],
+        "values": [],
+        "claim": "It was in this period that states turned the machinery of the modern world against civilian populations",
+        "sourceId": "d25f8deacb64",
+        "evidence": "It was in this period that states turned the machinery of the modern world against civilian populations",
+        "kind": "illustration",
+        "expression": 6,
+        "action": "sleep"
+      }
+    ],
+    "editorialMode": "daily",
+    "editorialLabel": null,
+    "scriptModel": "gemini-3.1-flash-lite"
+  },
+  "topic": {
+    "selected": {
+      "id": "d25f8deacb64",
+      "title": "AP World History Unit 7: Global Conflict (c. 1900 to the Present)",
+      "url": "https://www.worldhistory.org/collection/336/ap-world-history-unit-7/",
+      "text": "At the dawn of the 20th century, a few Western powers dominated global politics. Within only 50 years, that order was remade by two world wars of unprecedented scale. Industrial technology that had built railways and factories now produced machine guns, poison gas, warplanes, and finally the atomic bomb, while governments mobilised whole populations through propaganda and intensified nationalism – both at home and across their colonies. The land empires of the Ottomans, Russia, and the Qing dynasty collapsed. Revolution brought communism to power in Russia, and the unresolved settlement after the First World War helped bring fascist and totalitarian regimes to power, causing the Second World War. It was in this period that states turned the machinery of the modern world against civilian populations, from the Armenian genocide to the Holocaust.",
+      "published": "2026-11-09T14:00:02.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.worldhistory.org",
+      "primaryRefs": []
+    },
+    "sources": [
+      {
+        "id": "d25f8deacb64",
+        "title": "AP World History Unit 7: Global Conflict (c. 1900 to the Present)",
+        "url": "https://www.worldhistory.org/collection/336/ap-world-history-unit-7/",
+        "text": "At the dawn of the 20th century, a few Western powers dominated global politics. Within only 50 years, that order was remade by two world wars of unprecedented scale. Industrial technology that had built railways and factories now produced machine guns, poison gas, warplanes, and finally the atomic bomb, while governments mobilised whole populations through propaganda and intensified nationalism – both at home and across their colonies. The land empires of the Ottomans, Russia, and the Qing dynasty collapsed. Revolution brought communism to power in Russia, and the unresolved settlement after the First World War helped bring fascist and totalitarian regimes to power, causing the Second World War. It was in this period that states turned the machinery of the modern world against civilian populations, from the Armenian genocide to the Holocaust.",
+        "published": "2026-11-09T14:00:02.000Z",
+        "official": true,
+        "dateBasis": "item_publication_or_update",
+        "publisher": "www.worldhistory.org",
+        "primaryRefs": []
+      }
+    ],
+    "editorialMode": "daily",
+    "editorialLabel": null,
+    "windowHours": 720,
+    "verification": [
+      {
+        "id": "d25f8deacb64",
+        "basis": "official_primary_source",
+        "sourceIds": [
+          "d25f8deacb64"
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "url": "https://www.archaeology.org/feed/",
+        "items": 10,
+        "valid": 10,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.livescience.com/feeds/all",
+        "items": 50,
+        "valid": 50,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.worldhistory.org/rss/",
+        "items": 20,
+        "valid": 20,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.smithsonianmag.com/rss/history/",
+        "items": 20,
+        "valid": 20,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      }
+    ],
+    "trend": [
+      {
+        "id": "721957d71139",
+        "title": "Ancient Cemetery Discovered in Northern Egypt",
+        "demand": 8,
+        "recency": 0.936,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 4
+          }
+        ],
+        "score": 8.468027488240475
+      },
+      {
+        "id": "0350c1bdfc98",
+        "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+        "demand": 6,
+        "recency": 0.855,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 2
+          }
+        ],
+        "score": 6.427626115535591
+      },
+      {
+        "id": "5300ddcb4d54",
+        "title": "Francis I of France: The Knight King of the French Renaissance",
+        "demand": 12,
+        "recency": 0.832,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "alexander zverev",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 4
+          }
+        ],
+        "score": 12.41591428370456
+      },
+      {
+        "id": "e1516a713d69",
+        "title": "The Country's Oldest Operating Lighthouse Predates the American Revolution and Still Shines on New York Harbor After More Than 260 Years",
+        "demand": 10,
+        "recency": 0.617,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "alexander zverev",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 4
+          }
+        ],
+        "score": 10.308542736298781
+      },
+      {
+        "id": "a7d234382515",
+        "title": "Stalin's Great Purge: State Oppression in the USSR",
+        "demand": 6,
+        "recency": 0.081,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 2
+          }
+        ],
+        "score": 6.040332026553745
+      },
+      {
+        "id": "d25f8deacb64",
+        "title": "AP World History Unit 7: Global Conflict (c. 1900 to the Present)",
+        "demand": 14,
+        "recency": 0.031,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 6
+          },
+          {
+            "kind": "google_trend",
+            "label": "alexander zverev",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 4
+          }
+        ],
+        "score": 14.015684946213447
+      },
+      {
+        "id": "a13869da4325",
+        "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+        "demand": 8,
+        "recency": 0.004,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 4
+          }
+        ],
+        "score": 8.002086175708524
+      },
+      {
+        "id": "d2f5d52aed10",
+        "title": "Archaeologists at This Ancient Maya Metropolis in the Forest of Belize Are Debunking Long-Held Myths About the Mesoamerican Civilization",
+        "demand": 8,
+        "recency": 0,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 6
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 2
+          }
+        ],
+        "score": 8.000139522622026
+      },
+      {
+        "id": "3541392f4838",
+        "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+        "demand": 10,
+        "recency": 0,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "fast",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "alexander zverev",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "hunger games",
+            "weight": 6
+          }
+        ],
+        "score": 10.000027000776965
+      }
+    ],
+    "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+    "trendDiagnostics": {
+      "sources": [
+        {
+          "source": "trends",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 2
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "onThisDay",
+          "status": "ok",
+          "items": 40
+        }
+      ],
+      "degraded": false,
+      "decisions": [
+        {
+          "id": "721957d71139",
+          "title": "Ancient Cemetery Discovered in Northern Egypt",
+          "demand": 8,
+          "recency": 0.936,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 4
+            }
+          ],
+          "score": 8.468027488240475
+        },
+        {
+          "id": "0350c1bdfc98",
+          "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+          "demand": 6,
+          "recency": 0.855,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 2
+            }
+          ],
+          "score": 6.427626115535591
+        },
+        {
+          "id": "5300ddcb4d54",
+          "title": "Francis I of France: The Knight King of the French Renaissance",
+          "demand": 12,
+          "recency": 0.832,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "alexander zverev",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 4
+            }
+          ],
+          "score": 12.41591428370456
+        },
+        {
+          "id": "e1516a713d69",
+          "title": "The Country's Oldest Operating Lighthouse Predates the American Revolution and Still Shines on New York Harbor After More Than 260 Years",
+          "demand": 10,
+          "recency": 0.617,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "alexander zverev",
+              "weight": 2
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 4
+            }
+          ],
+          "score": 10.308542736298781
+        },
+        {
+          "id": "a7d234382515",
+          "title": "Stalin's Great Purge: State Oppression in the USSR",
+          "demand": 6,
+          "recency": 0.081,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 2
+            }
+          ],
+          "score": 6.040332026553745
+        },
+        {
+          "id": "d25f8deacb64",
+          "title": "AP World History Unit 7: Global Conflict (c. 1900 to the Present)",
+          "demand": 14,
+          "recency": 0.031,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 6
+            },
+            {
+              "kind": "google_trend",
+              "label": "alexander zverev",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 4
+            }
+          ],
+          "score": 14.015684946213447
+        },
+        {
+          "id": "a13869da4325",
+          "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+          "demand": 8,
+          "recency": 0.004,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 4
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 4
+            }
+          ],
+          "score": 8.002086175708524
+        },
+        {
+          "id": "d2f5d52aed10",
+          "title": "Archaeologists at This Ancient Maya Metropolis in the Forest of Belize Are Debunking Long-Held Myths About the Mesoamerican Civilization",
+          "demand": 8,
+          "recency": 0,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 6
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 2
+            }
+          ],
+          "score": 8.000139522622026
+        },
+        {
+          "id": "3541392f4838",
+          "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+          "demand": 10,
+          "recency": 0,
+          "matches": [
+            {
+              "kind": "google_trend",
+              "label": "fast",
+              "weight": 2
+            },
+            {
+              "kind": "google_trend",
+              "label": "alexander zverev",
+              "weight": 2
+            },
+            {
+              "kind": "google_trend",
+              "label": "hunger games",
+              "weight": 6
+            }
+          ],
+          "score": 10.000027000776965
+        }
+      ]
+    }
+  },
+  "scriptSha256": "e626c4fa2e01066016d12bd0a603dd0aef9007361168582ac1ca2f6874061c4f",
+  "state": "failed",
+  "lastFailure": {
+    "stage": "voice-repair-1",
+    "code": "STAGE_FAILED_SEE_RUNBOOK",
+    "repeat": 0
+  }
+}

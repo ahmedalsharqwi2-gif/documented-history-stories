@@ -1,0 +1,157 @@
+{
+  "topicKey": "global-conflict-20th-century",
+  "title": "إزاي العالم اتغير في خمسين سنة؟",
+  "hook": "عمرك سألت نفسك إزاي العالم اتحول من سيطرة قوى غربية لساحة حروب عالمية في أقل من خمسين سنة؟ تعالوا نعرف إزاي التكنولوجيا قلبت موازين القوى وغيرت شكل التاريخ البشري كله.",
+  "cta": "لو عايز تعرف أكتر عن أسرار التاريخ اللي غيرت حياتنا، تابعنا واشترك في القناة عشان يوصلك كل جديد ونروي حكايات تانية كتير.",
+  "scenes": [
+    {
+      "title": "بداية القرن العشرين",
+      "text": "مع بداية القرن العشرين، كانت قوى غربية قليلة هي اللي بتتحكم في السياسة العالمية. العالم كان ماشي بنظام معين، لكن الأمور كانت على وشك إنها تتغير بشكل جذري ومفاجئ للجميع.",
+      "summary": "سيطرة القوى الغربية في بداية القرن",
+      "keyword": "القرن العشرين",
+      "template": "phenomenon",
+      "labels": [
+        "سياسة",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "At the dawn of the 20th century, a few Western powers dominated global politics.",
+      "sourceId": "d25f8deacb64",
+      "evidence": "At the dawn of the 20th century, a few Western powers dominated global politics.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "خمسين سنة من التغيير",
+      "text": "في فترة زمنية قصيرة لا تتعدى الخمسين سنة، النظام العالمي القديم اتنسف تماماً بسبب حربين عالميتين. الحروب دي كانت بحجم غير مسبوق وغيرت خريطة العالم السياسية والجغرافية بشكل كامل ومستمر.",
+      "summary": "تغير النظام العالمي في خمسين سنة",
+      "keyword": "حروب عالمية",
+      "template": "comparison",
+      "labels": [
+        "حروب",
+        "تغيير"
+      ],
+      "values": [
+        50
+      ],
+      "claim": "Within only 50 years, that order was remade by two world wars of unprecedented scale.",
+      "sourceId": "d25f8deacb64",
+      "evidence": "Within only 50 years, that order was remade by two world wars of unprecedented scale.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "turn"
+    },
+    {
+      "title": "تطور التكنولوجيا العسكرية",
+      "text": "التكنولوجيا اللي كانت بتبني السكك الحديدية والمصانع، اتحولت فجأة لإنتاج أسلحة دمار. الرشاشات، الغاز السام، الطيارات الحربية، وحتى القنبلة الذرية، كلها بقت أدوات في إيد الدول عشان تحسم صراعاتها العنيفة والمستمرة.",
+      "summary": "تحول التكنولوجيا للصناعات العسكرية",
+      "keyword": "تكنولوجيا",
+      "template": "steps",
+      "labels": [
+        "صناعة",
+        "سلاح"
+      ],
+      "values": [],
+      "claim": "Industrial technology that had built railways and factories now produced machine guns, poison gas, warplanes, and finally the atomic bomb",
+      "sourceId": "d25f8deacb64",
+      "evidence": "Industrial technology that had built railways and factories now produced machine guns, poison gas, warplanes, and finally the atomic bomb",
+      "kind": "fact",
+      "expression": 10,
+      "action": "point"
+    },
+    {
+      "title": "حشد الشعوب",
+      "text": "الحكومات بدأت تستخدم الدعاية والقومية المتطرفة عشان تحشد الشعوب بالكامل. ده ماكانش بس جوه الدول، لكن كمان امتد للمستعمرات، عشان الكل يشارك في المجهود الحربي اللي كان بيستهلك موارد وملايين البشر.",
+      "summary": "استخدام الدعاية والقومية",
+      "keyword": "دعاية",
+      "template": "cause",
+      "labels": [
+        "سياسة",
+        "حشد"
+      ],
+      "values": [],
+      "claim": "governments mobilised whole populations through propaganda and intensified nationalism – both at home and across their colonies.",
+      "sourceId": "d25f8deacb64",
+      "evidence": "governments mobilised whole populations through propaganda and intensified nationalism – both at home and across their colonies.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "run"
+    },
+    {
+      "title": "سقوط الإمبراطوريات",
+      "text": "الإمبراطوريات الكبيرة زي العثمانيين وروسيا وسلالة تشينج انهاروا تماماً. التغييرات دي فتحت الباب لظهور أنظمة سياسية جديدة تماماً، وغيرت موازين القوى في مناطق واسعة من العالم القديم والجديد في وقت واحد.",
+      "summary": "انهيار الإمبراطوريات الكبرى",
+      "keyword": "إمبراطوريات",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "سقوط"
+      ],
+      "values": [],
+      "claim": "The land empires of the Ottomans, Russia, and the Qing dynasty collapsed.",
+      "sourceId": "d25f8deacb64",
+      "evidence": "The land empires of the Ottomans, Russia, and the Qing dynasty collapsed.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "fall"
+    },
+    {
+      "title": "ظهور الشيوعية والفاشية",
+      "text": "الثورة جابت الشيوعية للحكم في روسيا، والاتفاقيات اللي ما اتحلتش بعد الحرب العالمية الأولى ساعدت في صعود أنظمة فاشية وشمولية. الأنظمة دي كانت السبب المباشر في اندلاع الحرب العالمية الثانية اللي دمرت العالم.",
+      "summary": "صعود الشيوعية والفاشية",
+      "keyword": "أنظمة سياسية",
+      "template": "cause",
+      "labels": [
+        "سياسة",
+        "ثورة"
+      ],
+      "values": [],
+      "claim": "Revolution brought communism to power in Russia, and the unresolved settlement after the First World War helped bring fascist and totalitarian regimes to power, causing the Second World War.",
+      "sourceId": "d25f8deacb64",
+      "evidence": "Revolution brought communism to power in Russia, and the unresolved settlement after the First World War helped bring fascist and totalitarian regimes to power, causing the Second World War.",
+      "kind": "fact",
+      "expression": 11,
+      "action": "jump"
+    },
+    {
+      "title": "استهداف المدنيين",
+      "text": "في الفترة دي، الدول بدأت تستخدم آلات الحرب الحديثة ضد المدنيين. من الإبادة الجماعية للأرمن لحد الهولوكوست، العالم شاف مآسي إنسانية كبيرة جداً بسبب توظيف التكنولوجيا في تدمير حياة البشر الأبرياء في كل مكان.",
+      "summary": "استخدام التكنولوجيا ضد المدنيين",
+      "keyword": "إبادة",
+      "template": "phenomenon",
+      "labels": [
+        "إنسانية",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "It was in this period that states turned the machinery of the modern world against civilian populations, from the Armenian genocide to the Holocaust.",
+      "sourceId": "d25f8deacb64",
+      "evidence": "It was in this period that states turned the machinery of the modern world against civilian populations, from the Armenian genocide to the Holocaust.",
+      "kind": "fact",
+      "expression": 0,
+      "action": "hang"
+    },
+    {
+      "title": "خاتمة",
+      "text": "التاريخ بيعلمنا إن التكنولوجيا والسياسة سلاح ذو حدين. بعد ما عرفنا إزاي العالم اتغير في القرن العشرين، لازم نفكر إزاي نستخدم قوتنا عشان نبني مستقبل أفضل بعيد عن الحروب والدمار اللي شفناه.",
+      "summary": "دروس من التاريخ",
+      "keyword": "مستقبل",
+      "template": "journey",
+      "labels": [
+        "تفكير",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "It was in this period that states turned the machinery of the modern world against civilian populations",
+      "sourceId": "d25f8deacb64",
+      "evidence": "It was in this period that states turned the machinery of the modern world against civilian populations",
+      "kind": "illustration",
+      "expression": 6,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}
