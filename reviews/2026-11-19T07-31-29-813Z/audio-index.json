@@ -1,0 +1,199 @@
+[
+  {
+    "file": "audio/scene-0.wav",
+    "duration": 14.8,
+    "text": "في عام ألف وتسعمائة وستة وخمسين، لقوا بقايا هيكل عظمي في جزيرة سيجيرو بالدنمارك، اتعرف باسم رجل رودالس. عاش الراجل ده قبل ستة آلاف سنة، وكان لغز كبير للعلماء.",
+    "sha256": "6fd2491beea6e6590662ee03eed1882463f86349c0332e9d1adc72086e4d4425",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "2c4a1dfc4cfe460798debd7f98deff5dcb5984c02b0adf5ab446c4070d0e39c7",
+        "sha256": "6fd2491beea6e6590662ee03eed1882463f86349c0332e9d1adc72086e4d4425",
+        "text_sha256": "2b1fe94e7887b59234789ba4364da1945a04d152180bd2602c73714c05770d0c",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 710478,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-1.wav",
+    "duration": 15.36,
+    "text": "استخدم العلماء تحليل نظائر الكربون والنيتروجين في العظام والأسنان، واكتشفوا إن تاريخه بيرجع لفترة ما بين ثلاثة آلاف وثمانمائة وتسعين وثلاثة آلاف وسبعمائة وسبعين قبل الميلاد، وقت ظهور الزراعة.",
+    "sha256": "de949451be5157d3d45899aa7230ea34aec8d99d5c553469a287a1502f020345",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "e9ad565d69e8b01e2460c51cc2efa81aa84c697dff8611c9e533b7247f5388fb",
+        "sha256": "de949451be5157d3d45899aa7230ea34aec8d99d5c553469a287a1502f020345",
+        "text_sha256": "834c4df89f83eb707b85797db102c7f0922b531cfe7ec05391877d56ff254450",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 737358,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-2.wav",
+    "duration": 12.48,
+    "text": "في طفولته، كان بيعتمد على المحار والأسماك، لكن لما كبر في سن المراهقة، بدأ ياكل بروتين من مصادر أرضية، وده كان غريب جداً مقارنة بصيادي العصر الحجري التانيين.",
+    "sha256": "e08b950c3acb2a9ebb71556842d1e60f730073e559937be04b0d14f256b69972",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "6307d5adf846a175e169d6399e1866c3dfdaf5384fd6095ec5329671278b6347",
+        "sha256": "e08b950c3acb2a9ebb71556842d1e60f730073e559937be04b0d14f256b69972",
+        "text_sha256": "2f6700ee2f798ec84d43566914efc6b2d469a916e70a769afeae1d66b9caa1f5",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 599118,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-3.wav",
+    "duration": 13.12,
+    "text": "الباحثين بيعتقدوا إن الطعام الأرضي ده كان من إنتاج المزارعين، لأنه مكنش بياكل أسماك المياه العذبة زي الصيادين التانيين، فغالباً بدأ يتبادل الأكل أو يشتغل معاهم في الزراعة.",
+    "sha256": "30267dbcee71b6323c7072b3ba8406f5ddb62fbf8756f71ba1814395e6693b3c",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "0b6d90a86431acf4e61219249930696063b80786effc2af34f95e115e96232e6",
+        "sha256": "30267dbcee71b6323c7072b3ba8406f5ddb62fbf8756f71ba1814395e6693b3c",
+        "text_sha256": "194856ff56b05478392f0a83c9d2589affc094140a855847988093d399b0970b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 629838,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-4.wav",
+    "duration": 14.28,
+    "text": "مش بس الأكل اللي اتغير، ده حتى طريقة دفنه كانت بتشبه طريقة دفن المزارعين الأوائل، بوجود إطار من الحجارة المسطحة، وده بيوريك إنه بدأ يتبنى عاداتهم مع الحفاظ على تقاليده.",
+    "sha256": "04c92332b118e312e0be879c7d688af0abe0786487bc2b7e2197aa997bd96bb6",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "4501907a3256831cf862ad17ba94f61ee9ca13c15ab75feacebfcaa21405f8e2",
+        "sha256": "04c92332b118e312e0be879c7d688af0abe0786487bc2b7e2197aa997bd96bb6",
+        "text_sha256": "2c26531a49d6331b0883a8a1951c49feb4aaf63ca4ed0484293dd08c789c1d73",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 685518,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-5.wav",
+    "duration": 14.12,
+    "text": "تفاصيل عظام الذراع السفلي لرجل رودالس بتظهر تغييرات عظمية بتدل على تحميل عضلي عالي، وده ممكن يكون نتيجة الشغل الشاق في الزراعة أو الصيد المستمر في حياته اليومية الصعبة.",
+    "sha256": "79c61c3f346b2e52b0cf790adf725e92a2fc563f0f07ed186971e5c111537708",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "4b1d3624b015b15ac1a3e402d286a7dd2efa961c24645c1588d88f6ea6cf2ddb",
+        "sha256": "79c61c3f346b2e52b0cf790adf725e92a2fc563f0f07ed186971e5c111537708",
+        "text_sha256": "7a20fce597bccfd25ac6b048157bac9595777e4547ee7f6abfb5b6c07de6b985",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 677838,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-6.wav",
+    "duration": 15,
+    "text": "القصة دي بتورينا إن الانتقال من الصيد للزراعة مكنش مفاجئ، لكنه كان عملية تدريجية، ورجل رودالس كان شاهد على العصر ده، بيجمع بين حياة أجداده وحياة المزارعين الجدد.",
+    "sha256": "f391d3b9a8e77b39ca7080183e7a353696cf6a5f8317cf4225c7c48de283a186",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "8a967f549758c76d2ff83b9821204082c14620dd561bba421a492fdf21379cf2",
+        "sha256": "f391d3b9a8e77b39ca7080183e7a353696cf6a5f8317cf4225c7c48de283a186",
+        "text_sha256": "f8749e35468b1dd2b614541770888777d0972d456b80376a9af432baba9b5829",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 720078,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-7.wav",
+    "duration": 15.32,
+    "text": "في النهاية، رجل رودالس بيفضل لغز بيحكي قصة البشر في لحظة تحول تاريخية. هل كان مزارعاً متردداً أم صياداً ذكياً؟ العلم لسه بيكتشف أسرار حياته في كل يوم جديد.",
+    "sha256": "40a53229e335d2cb5af7541d30c24450d6105b107ef4125feaff3c364a28b0fa",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "5bd63900f1caf9bb2e4ddc7a3ea661c5bdc3ab598b933ffb20e14fd6d92296fb",
+        "sha256": "5f3be1e9d6434d32af1d21c342957f71a765b19760dcd2203dee5903b6ef6f18",
+        "text_sha256": "e4e60f4459157e3a9490840a4e3ed0ffb0b694734b654a8acb40508677d443f3",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 545358,
+        "reused": false
+      },
+      {
+        "scene": 7,
+        "chunk": 1,
+        "schema": 1,
+        "cacheKey": "c606bd41449dff8f2a953024e9cfc74db5d06ad82744f210f630deaad24cf7cb",
+        "sha256": "3c779ac170702557b81f690643e1323e778402266794ea7b1555ce7108b9b822",
+        "text_sha256": "c3c85e48536c3bc56182e586e082430635fe9aef6d200d8d4e5ae3240d9c804a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 190158,
+        "reused": false
+      }
+    ]
+  }
+]

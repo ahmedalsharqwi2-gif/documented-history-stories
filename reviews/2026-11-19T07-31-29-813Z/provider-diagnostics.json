@@ -2,37 +2,6 @@
   "events": [
     {
       "type": "models_resolved",
-      "kind": "text",
-      "models": [
-        "gemini-3.1-flash-lite-preview",
-        "gemini-3-flash-preview",
-        "gemini-2.5-flash",
-        "gemini-omni-flash-preview",
-        "gemini-omni-1.2-flash",
-        "gemini-omni-1.1-flash",
-        "gemini-flash-lite-latest",
-        "gemini-flash-latest",
-        "gemini-3.8-flash",
-        "gemini-3.7-flash",
-        "gemini-3.6-flash",
-        "gemini-3.5-flash-lite",
-        "gemini-3.5-flash",
-        "gemini-3.1-flash-lite",
-        "gemini-2.5-flash-lite"
-      ],
-      "at": 1795073499924
-    },
-    {
-      "type": "attempt",
-      "kind": "text",
-      "model": "gemini-3.1-flash-lite-preview",
-      "attempt": 1,
-      "totalAttempt": 1,
-      "status": 200,
-      "at": 1795073536664
-    },
-    {
-      "type": "models_resolved",
       "kind": "voice",
       "models": [
         "gemini-3.1-flash-tts-preview",
@@ -41,7 +10,7 @@
         "gemini-3.8-flash-tts",
         "gemini-3.8-flash-lite-tts"
       ],
-      "at": 1795073559931
+      "at": 1795076915136
     },
     {
       "type": "attempt",
@@ -49,109 +18,83 @@
       "model": "gemini-3.1-flash-tts-preview",
       "attempt": 1,
       "totalAttempt": 1,
-      "status": 429,
-      "at": 1795073589972
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 3620.8179529919103,
-      "retryAfterMs": 0,
-      "at": 1795073589972
+      "status": 200,
+      "at": 1795076952751
     },
     {
       "type": "attempt",
       "kind": "voice",
       "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 2,
-      "totalAttempt": 2,
-      "status": 429,
-      "at": 1795073619995
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "status": 429,
-      "waitMs": 6990.113162958683,
-      "retryAfterMs": 0,
-      "at": 1795073619995
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-3.1-flash-tts-preview",
-      "attempt": 3,
-      "totalAttempt": 3,
-      "status": 429,
-      "at": 1795073650000
-    },
-    {
-      "type": "attempt",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
       "attempt": 1,
-      "totalAttempt": 4,
-      "status": 429,
-      "at": 1795073680004
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "status": 429,
-      "waitMs": 3890.01993845236,
-      "retryAfterMs": 0,
-      "at": 1795073680004
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795076982232
     },
     {
       "type": "attempt",
       "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "attempt": 2,
-      "totalAttempt": 5,
-      "status": 429,
-      "at": 1795073710020
-    },
-    {
-      "type": "backoff",
-      "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "status": 429,
-      "waitMs": 7109.9986578083135,
-      "retryAfterMs": 0,
-      "at": 1795073710020
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077011336
     },
     {
       "type": "attempt",
       "kind": "voice",
-      "model": "gemini-2.5-flash-preview-tts",
-      "attempt": 3,
-      "totalAttempt": 6,
-      "status": 429,
-      "at": 1795073740049
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077041870
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077072144
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077101861
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077133104
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077161021
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795077188368
     }
   ],
   "resolvedModels": {
-    "text": [
-      "gemini-3.1-flash-lite-preview",
-      "gemini-3-flash-preview",
-      "gemini-2.5-flash",
-      "gemini-omni-flash-preview",
-      "gemini-omni-1.2-flash",
-      "gemini-omni-1.1-flash",
-      "gemini-flash-lite-latest",
-      "gemini-flash-latest",
-      "gemini-3.8-flash",
-      "gemini-3.7-flash",
-      "gemini-3.6-flash",
-      "gemini-3.5-flash-lite",
-      "gemini-3.5-flash",
-      "gemini-3.1-flash-lite",
-      "gemini-2.5-flash-lite"
-    ],
     "voice": [
       "gemini-3.1-flash-tts-preview",
       "gemini-2.5-flash-preview-tts",
