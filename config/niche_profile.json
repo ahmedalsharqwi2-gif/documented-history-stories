@@ -1,0 +1,95 @@
+{
+  "channel": "نقص ونروي",
+  "audience": "Arabic-speaking history and archaeology enthusiasts",
+  "searchIntent": "قصة…، إزاي سقطت…، ليه حصل…",
+  "tone": "storytelling, sourced, states historians' disagreements",
+  "pillars": [
+    {
+      "id": "ancient_egypt",
+      "title": "مصر القديمة والآثار",
+      "keywords": [
+        "فرعون",
+        "مصر القديمة",
+        "هرم",
+        "مومياء",
+        "آثار",
+        "توت عنخ آمون",
+        "معبد",
+        "pharaoh",
+        "pyramid",
+        "sphinx",
+        "أبو الهول"
+      ]
+    },
+    {
+      "id": "arab_islamic_history",
+      "title": "التاريخ المصري والعربي والإسلامي الموثق",
+      "keywords": [
+        "خلافة",
+        "سلطان",
+        "فتح",
+        "دولة",
+        "حملة",
+        "caliphate",
+        "sultan",
+        "empire"
+      ]
+    },
+    {
+      "id": "decisive_battles",
+      "title": "معارك حاسمة",
+      "keywords": [
+        "معركة",
+        "سقوط",
+        "حصار",
+        "حطين",
+        "عين جالوت",
+        "battle",
+        "siege"
+      ]
+    },
+    {
+      "id": "obscure_figures",
+      "title": "شخصيات مغمورة وقصص منسية",
+      "keywords": [
+        "شخصية",
+        "مغمور",
+        "قصة منسية",
+        "رحالة",
+        "مخترع منسي",
+        "historical figure"
+      ]
+    },
+    {
+      "id": "on_this_day",
+      "title": "مناسبات في مثل هذا اليوم",
+      "keywords": [
+        "في مثل هذا اليوم",
+        "ذكرى",
+        "مناسبة تاريخية",
+        "anniversary"
+      ]
+    }
+  ],
+  "questionPatterns": [
+    "قصة",
+    "إزاي سقطت",
+    "ليه حصل"
+  ],
+  "bannedTopics": [
+    "استقطاب سياسي حاد",
+    "استقطاب ديني حاد"
+  ],
+  "rules": [
+    "every event sourced",
+    "historians' disagreements stated",
+    "no sharp political or religious polarization",
+    "occasion topics and recent archaeological finds get a bonus"
+  ],
+  "bankMix": {
+    "evergreen": 65,
+    "trending": 35
+  },
+  "visualFilmabilityDefault": 0.5,
+  "aiDisclosure": "محتوى مُنشأ بمساعدة الذكاء الاصطناعي"
+}
