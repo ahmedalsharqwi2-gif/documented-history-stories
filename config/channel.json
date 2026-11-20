@@ -100,5 +100,7 @@
       "reddit.com",
       "youtube.com"
     ]
-  }
+  },
+  "paperTheme": "paper-technical",
+  "paperCitations": true
 }
