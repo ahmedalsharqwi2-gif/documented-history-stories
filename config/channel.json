@@ -1,0 +1,106 @@
+{
+  "profile": "history",
+  "name": "نقص ونروي",
+  "accent": "#edc37a",
+  "counter": "الحكاية",
+  "maxAgeHours": 720,
+  "feeds": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "official": true
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "official": false
+    },
+    {
+      "url": "https://www.worldhistory.org/rss/",
+      "official": true
+    },
+    {
+      "url": "https://www.smithsonianmag.com/rss/history/",
+      "official": true
+    }
+  ],
+  "logo": "brand/logo/logo.jpg",
+  "channelRelevance": {
+    "enabled": true,
+    "minimumMatches": 1,
+    "allowedDomains": [
+      "archaeology.org",
+      "worldhistory.org",
+      "britishmuseum.org",
+      "metmuseum.org",
+      "loc.gov",
+      "smithsonianmag.com",
+      "livescience.com"
+    ],
+    "blockedDomains": [
+      "nasa.gov",
+      "esa.int"
+    ],
+    "excludedTerms": [
+      "voyager",
+      "فويجر",
+      "فوايجر"
+    ],
+    "requiredTerms": [
+      "archaeolog",
+      "ancient",
+      "excavat",
+      "civilization",
+      "civilisation",
+      "historical",
+      "historian",
+      "dynasty",
+      "pharaoh",
+      "antiquit",
+      "medieval",
+      "bronze age",
+      "artifact",
+      "artefact",
+      "mummif",
+      "mummie",
+      "Roman",
+      "Ottoman",
+      "أثر",
+      "آثار",
+      "اثار",
+      "أثري",
+      "اثري",
+      "تاريخ",
+      "حضارة",
+      "حضاره",
+      "القدماء",
+      "القديمة",
+      "قديم",
+      "مومياء",
+      "مومياوات",
+      "فراعنة",
+      "فرعوني",
+      "فرعونية",
+      "برديات",
+      "تنقيب",
+      "الميلاد",
+      "عصور"
+    ]
+  },
+  "paper": true,
+  "mascot": false,
+  "grounding": {
+    "enabled": true,
+    "useWhen": "fallback",
+    "mode": "strict",
+    "maxCandidates": 6,
+    "blockedDomains": [
+      "facebook.com",
+      "tiktok.com",
+      "pinterest.com",
+      "quora.com",
+      "reddit.com",
+      "youtube.com"
+    ]
+  },
+  "paperTheme": "paper-technical",
+  "paperCitations": true
+}

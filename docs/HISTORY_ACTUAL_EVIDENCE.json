@@ -1,0 +1,83 @@
+{
+  "run_id": 43772039383,
+  "report": {
+    "id": "2026-11-15T22-24-07-955Z",
+    "attemptId": "2026-11-15T23-02-04-812Z",
+    "mode": "review",
+    "published": false,
+    "status": "failed",
+    "resumed": true,
+    "stages": [
+      {
+        "name": "preflight",
+        "status": "pass",
+        "seconds": 0.57
+      },
+      {
+        "name": "topics",
+        "status": "resumed_from_saved_source_manifest"
+      },
+      {
+        "name": "script",
+        "status": "resumed_from_hash_verified_script"
+      },
+      {
+        "name": "voice",
+        "status": "pass",
+        "seconds": 0.987
+      }
+    ],
+    "limitations": [
+      "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate."
+    ],
+    "failedStage": "align",
+    "errorCode": "STAGE_FAILED_SEE_RUNBOOK",
+    "partial": {
+      "status": "rendered",
+      "path": "/home/runner/work/documented-history-stories/documented-history-stories/out/2026-11-15T22-24-07-955Z/incomplete/visual-preview-incomplete.mp4",
+      "incomplete": true
+    }
+  },
+  "visual": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration": 96,
+    "geometryPassed": true,
+    "logo": {
+      "path": "brand/logo/logo.jpg",
+      "sha256": "3641e6a62fa3efc6c266d230832c1a5987bdc700522d17c938c03845de4efd5a",
+      "bytes": 131986,
+      "original": true,
+      "renderedPixelsChecked": true
+    },
+    "watermark": {
+      "knownTextScan": "no_known_foreign_watermark_detected",
+      "assetPolicy": "Only original vectors, owner-supplied immutable logos and documented generated backgrounds; listening/visual approval remains separate."
+    },
+    "audioRequired": false,
+    "complete": false,
+    "approved": false
+  },
+  "layout": {
+    "passed": true,
+    "framesChecked": 29,
+    "textBoxesChecked": 220,
+    "forbiddenTop": 150,
+    "forbiddenBottomFrom": 1670,
+    "failures": []
+  },
+  "logo": {
+    "mean_absolute_rgb_error": 3.6973619329388563,
+    "threshold": 15,
+    "passed": true,
+    "region": [
+      868,
+      170,
+      1000,
+      302
+    ],
+    "source_sha256": "3641e6a62fa3efc6c266d230832c1a5987bdc700522d17c938c03845de4efd5a",
+    "note": "Rendered thumbnail pixel check, excluding rounded border; exact source bytes are separately hash-verified."
+  }
+}
