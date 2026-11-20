@@ -101,5 +101,17 @@
     "value": "https://www.smithsonianmag.com/history/archaeologists-ancient-maya-metropolist-forest-belize-debunking-long-held-myth-about-mesoamerican-civilization-180989648/",
     "status": "review",
     "run": "2026-11-19T23-33-00-645Z"
+  },
+  {
+    "value": "https://www.smithsonianmag.com/history/countrys-oldest-operating-lightouse-predates-american-revolution-still-shines-new-york-harbor-after-260-years-180989832/",
+    "status": "retired",
+    "reason": "UNSUPPORTED_CLAIM",
+    "run": "2026-11-20T00-10-44-851Z"
+  },
+  {
+    "topicKey": "francis-i-france-renaissance",
+    "value": "https://www.worldhistory.org/Francis_I_of_France/",
+    "status": "review",
+    "run": "2026-11-20T00-12-33-153Z"
   }
 ]

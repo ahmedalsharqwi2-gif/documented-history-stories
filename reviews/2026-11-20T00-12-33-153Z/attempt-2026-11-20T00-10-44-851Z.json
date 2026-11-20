@@ -1,0 +1,94 @@
+{
+  "id": "2026-11-20T00-12-33-153Z",
+  "attemptId": "2026-11-20T00-10-44-851Z",
+  "mode": "review",
+  "published": false,
+  "status": "review_ready",
+  "resumed": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.068
+    },
+    {
+      "name": "topics",
+      "status": "pass",
+      "seconds": 10.785
+    },
+    {
+      "name": "roll",
+      "status": "rolled_fresh_topic",
+      "roll": 1,
+      "fromStage": "script",
+      "code": "UNSUPPORTED_CLAIM"
+    },
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.035
+    },
+    {
+      "name": "topics",
+      "status": "pass",
+      "seconds": 0.194
+    },
+    {
+      "name": "script",
+      "status": "pass",
+      "seconds": 90.039
+    },
+    {
+      "name": "voice",
+      "status": "pass",
+      "seconds": 572.101
+    },
+    {
+      "name": "align",
+      "status": "pass",
+      "seconds": 101.447
+    },
+    {
+      "name": "assets",
+      "status": "pass",
+      "seconds": 0
+    },
+    {
+      "name": "mix",
+      "status": "pass",
+      "seconds": 3.543
+    },
+    {
+      "name": "layout-qa",
+      "status": "pass",
+      "seconds": 24.598
+    },
+    {
+      "name": "render",
+      "status": "pass",
+      "seconds": 162.919
+    },
+    {
+      "name": "qa",
+      "status": "pass",
+      "seconds": 5.406
+    },
+    {
+      "name": "package",
+      "status": "pass",
+      "seconds": 0.001
+    }
+  ],
+  "limitations": [
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate.",
+    "drawplan failed (DRAWPLAN_SCHEMA_INVALID); rendered with the classic template instead."
+  ],
+  "rolled": [
+    {
+      "id": "2026-11-20T00-10-44-851Z",
+      "stage": "script",
+      "code": "UNSUPPORTED_CLAIM",
+      "roll": 1
+    }
+  ]
+}

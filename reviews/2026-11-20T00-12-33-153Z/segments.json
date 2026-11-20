@@ -1,0 +1,199 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-0.wav",
+    "duration": 14.04,
+    "text": "فرانسوا الأول كان ملك فرنسا في فترة مهمة جداً من التاريخ، تحديداً في عصر النهضة. الراجل ده ما كانش مجرد حاكم عادي، ده كان عاشق للفنون وداعم كبير لكل المبدعين في زمانه.",
+    "sha256": "1284b3b0145f1eb95b8f42d080231e7812461c952169147ece6552a0449fd51b",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c165815370b79d47264483890ff562d3a04bacc5f725c0db3a2f7c8065e787fb",
+        "sha256": "1284b3b0145f1eb95b8f42d080231e7812461c952169147ece6552a0449fd51b",
+        "text_sha256": "1f66d14959e9e6ab59639541f8e7fbe3a9419ac462fffe9993fc3cf79d239878",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 673998,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-1.wav",
+    "duration": 16.56,
+    "text": "الملك ده كان معروف إنه إنسان مثقف جداً وبيحب القراءة والكتابة. اهتمامه بالآداب خلاه يجمع حواليه نخبة من الكتاب والمفكرين، وده اللي خلى بلاطه الملكي منارة للعلم والثقافة في كل أوروبا.",
+    "sha256": "9dd66a1e4da3c3cf6e16cf1fdde4448596e2e7b9b97c30fff8929c9f04a67650",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "88c8b9ac13058d1e72434f0b1280cf87ff21ff2cee95feb5672efbd002d70986",
+        "sha256": "9dd66a1e4da3c3cf6e16cf1fdde4448596e2e7b9b97c30fff8929c9f04a67650",
+        "text_sha256": "3c54466ea199d3d8be3c3bc8b5a03a98272bb2a69d5ce5fdb906cab1ec517dc2",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 794958,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-2.wav",
+    "duration": 16.88,
+    "text": "بفضل دعم الملك، باريس اتحولت لمركز عالمي للفن. جاب فنانين إيطاليين كتير عشان يزينوا القصور الفرنسية، وبكده قدر يدمج الفن الإيطالي بالروح الفرنسية ويخلق طفرة فنية ما حصلتش قبل كده أبداً.",
+    "sha256": "07adb3b8ec3cf320b1757a29d95bea77bfc9e8bce41373095e1bf1a740edede9",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c62964cb79988137a92f354c62e53659def37b1f072223b904902d880eb89a90",
+        "sha256": "07adb3b8ec3cf320b1757a29d95bea77bfc9e8bce41373095e1bf1a740edede9",
+        "text_sha256": "8fde17d957b81fbe17f019e442ca11254a306960dfe1194002f89349f843d803",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 810318,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-3.wav",
+    "duration": 15,
+    "text": "لكن حياة الملك ما كانتش كلها فن ورسم. فرانسوا شارك في حروب إيطاليا اللي استمرت سنين طويلة. الصراعات دي كانت جزء كبير من حياته السياسية ومواجهاته مع القوى العظمى في وقته.",
+    "sha256": "ed0df88cc880b3db01668f82aca08271bf70bce2b66e29d3616d512cef0778fd",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "94c5eb444fce2e4118c8a40c2c724ff6955d2e06dd36ade95eae077d1507d753",
+        "sha256": "2f8c6ac5328922e8d044048b88ebf4661c62d92e3a2180078f18172f33d4085e",
+        "text_sha256": "6b0bcdde562eff362e34823ba2eccb5128fa86e3958f455ab1618a02d57b5403",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 405198,
+        "reused": false
+      },
+      {
+        "scene": 3,
+        "chunk": 1,
+        "schema": 1,
+        "cacheKey": "4ffd799bf54333c872381a157cf5b89eda26b6811b45019e45137e86259da418",
+        "sha256": "748af795f17655f4b71a29d8b1546bf471dface00bc3a96a0157827c7911945a",
+        "text_sha256": "f6622ddce1226179be7a482fb2d25728a2fbf9ca97180e8113c5592a50fabe7b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 314958,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-4.wav",
+    "duration": 16.44,
+    "text": "أكبر منافس لفرانسوا كان الإمبراطور شارل الخامس. الصراع بينهم كان صراع على النفوذ والسيطرة في أوروبا، وده خلى فترة حكم فرانسوا مليانة بالتوترات السياسية والتحالفات العسكرية اللي غيرت خريطة القارة وقتها.",
+    "sha256": "26b48a70ffbcf78bffb91184f2a9dc7ee7eeef8d63986a5802572f034ce43aa1",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "927a1c61169b559b40d4926cad72456b201cd1effcef92ad39a9756bc5258d63",
+        "sha256": "26b48a70ffbcf78bffb91184f2a9dc7ee7eeef8d63986a5802572f034ce43aa1",
+        "text_sha256": "84a588be47c473040aafc8982c72eefd852c1d1ece7a8bab212fc3ad23dce8cd",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 789198,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-5.wav",
+    "duration": 16.28,
+    "text": "بسبب شجاعته في المعارك وحبه للفروسية، الناس أطلقوا عليه لقب الملك الفارس. اللقب ده فضل ملازمه طول حياته وحتى بعد وفاته، كرمز للجمع بين القوة العسكرية والذوق الرفيع في الفنون.",
+    "sha256": "e0ff23135fc7cc3272afa3af8eaaac0b31f2907963da9e6b849cb393474edf74",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "dcd1cc4f92a1843692dd3b69d58159087ecd514fb4b2c6105d0782a34452fd8d",
+        "sha256": "e0ff23135fc7cc3272afa3af8eaaac0b31f2907963da9e6b849cb393474edf74",
+        "text_sha256": "113f27070487f3a5fdd8d51c27d1c66d57e4a096889d93c0246ba4a0b929541f",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 781518,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-6.wav",
+    "duration": 15.36,
+    "text": "فرانسوا الأول ساب بصمة كبيرة في تاريخ فرنسا. النهضة اللي رعاها خلت فرنسا وجهة لكل المبدعين، والقصور اللي بناها لسه موجودة لحد النهاردة بتشهد على عظمة العصر ده وجمال الفن الفرنسي.",
+    "sha256": "48d7da2486be45a15519993825bf949d0ba8b38bf31e57f308c421df16f27178",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "8d04c37f4585e7e691d5773d751a80d5fce667be0876517ef2aa9901de8332ee",
+        "sha256": "48d7da2486be45a15519993825bf949d0ba8b38bf31e57f308c421df16f27178",
+        "text_sha256": "9f8cbcb73fa99a52f82094b7b1e07817c36ced7c74e8a62d4f460564e5ab113b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 737358,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T00-12-33-153Z/scene-7.wav",
+    "duration": 17.32,
+    "text": "حكاية فرانسوا الأول بتعلمنا إن الحاكم ممكن يكون محارب قوي وفي نفس الوقت فنان مرهف الحس. التاريخ دايماً بيفاجئنا بشخصيات قدرت تجمع بين المتناقضات وتصنع حضارة تعيش لقرون طويلة بعد رحيلهم.",
+    "sha256": "dc51f2a876baa3fa01714f396e93982a19325a96a2d6b00c9742cfc8a9f4e0d8",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c5839d7a133734dad9938cac9b428d16be5a02cf0daad5591170d6b1f6acb7f3",
+        "sha256": "dc51f2a876baa3fa01714f396e93982a19325a96a2d6b00c9742cfc8a9f4e0d8",
+        "text_sha256": "bd02a70bea0a0f833c2f762f4b18b47e35cbea07bcc5d6aed2aa159bff704803",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 831438,
+        "reused": false
+      }
+    ]
+  }
+]

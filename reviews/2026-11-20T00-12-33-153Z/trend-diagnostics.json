@@ -1,0 +1,281 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 34
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "721957d71139",
+      "title": "Ancient Cemetery Discovered in Northern Egypt",
+      "demand": 26,
+      "recency": 0.924,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "pif tower riyadh",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "riot",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "test",
+          "weight": 8
+        }
+      ],
+      "score": 26.46188370425494
+    },
+    {
+      "id": "0350c1bdfc98",
+      "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+      "demand": 18,
+      "recency": 0.844,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "riot",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "test",
+          "weight": 4
+        }
+      ],
+      "score": 18.422012679260085
+    },
+    {
+      "id": "5300ddcb4d54",
+      "title": "Francis I of France: The Knight King of the French Renaissance",
+      "demand": 30,
+      "recency": 0.821,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "twitch",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "riot",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "test",
+          "weight": 6
+        }
+      ],
+      "score": 30.410454588323876
+    },
+    {
+      "id": "a7d234382515",
+      "title": "Stalin's Great Purge: State Oppression in the USSR",
+      "demand": 18,
+      "recency": 0.08,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "twitch",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "test",
+          "weight": 6
+        }
+      ],
+      "score": 18.039802589148742
+    },
+    {
+      "id": "a13869da4325",
+      "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+      "demand": 16,
+      "recency": 0.004,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "riot",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "test",
+          "weight": 4
+        }
+      ],
+      "score": 16.002058790537287
+    },
+    {
+      "id": "3541392f4838",
+      "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+      "demand": 24,
+      "recency": 0,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "pif tower riyadh",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "riot",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "test",
+          "weight": 8
+        }
+      ],
+      "score": 24.000026646338508
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "topicKey": "francis-i-france-renaissance",
+  "title": "أهم أخبار الأسبوع: ملك فرنسا وفن النهضة",
+  "hook": "عمرك سمعت عن ملك كان بيحارب بالسيف وبيرعى الفنون في نفس الوقت؟ تعالوا نعرف حكاية فرانسوا الأول، ملك فرنسا اللي غير شكل باريس وخلاها مركز للفن والثقافة في عصره الذهبي.",
+  "cta": "لو حابب تعرف أكتر عن ملوك التاريخ وحكاياتهم المثيرة، تابعنا واشترك في القناة عشان يوصلك كل جديد عن أسرار الماضي اللي لسه بتأثر في حياتنا لحد النهاردة، نقص ونروي.",
+  "scenes": [
+    {
+      "title": "بداية الحكاية",
+      "text": "فرانسوا الأول كان ملك فرنسا في فترة مهمة جداً من التاريخ، تحديداً في عصر النهضة. الراجل ده ما كانش مجرد حاكم عادي، ده كان عاشق للفنون وداعم كبير لكل المبدعين في زمانه.",
+      "summary": "فرانسوا الأول ملك فرنسا وعاشق الفنون",
+      "keyword": "فرانسوا الأول",
+      "template": "phenomenon",
+      "labels": [
+        "فرنسا",
+        "عصر النهضة",
+        "ملوك"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول كان ملكاً لفرنسا في عصر النهضة",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "Francis I (1494-1547) reigned as King of France from 1515 until his death in 1547, at the height of the French Renaissance.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "ملك مثقف",
+      "text": "الملك ده كان معروف إنه إنسان مثقف جداً وبيحب القراءة والكتابة. اهتمامه بالآداب خلاه يجمع حواليه نخبة من الكتاب والمفكرين، وده اللي خلى بلاطه الملكي منارة للعلم والثقافة في كل أوروبا.",
+      "summary": "فرانسوا الأول كان إنساناً مثقفاً",
+      "keyword": "ثقافة",
+      "template": "phenomenon",
+      "labels": [
+        "ثقافة",
+        "أدب",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول كان إنساناً مثقفاً ومحباً للآداب",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "A humanist, man of letters, and great lover of the arts, Francis patronized many Italian artists during his rule",
+      "kind": "fact",
+      "expression": 8,
+      "action": "point"
+    },
+    {
+      "title": "باريس وجمالها",
+      "text": "بفضل دعم الملك، باريس اتحولت لمركز عالمي للفن. جاب فنانين إيطاليين كتير عشان يزينوا القصور الفرنسية، وبكده قدر يدمج الفن الإيطالي بالروح الفرنسية ويخلق طفرة فنية ما حصلتش قبل كده أبداً.",
+      "summary": "تحويل باريس لمركز فني",
+      "keyword": "باريس",
+      "template": "journey",
+      "labels": [
+        "باريس",
+        "فن",
+        "عمارة"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول حول باريس لمركز للفن",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "transformed Paris into a hub of Renaissance art and culture.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "turn"
+    },
+    {
+      "title": "حروب إيطاليا",
+      "text": "لكن حياة الملك ما كانتش كلها فن ورسم. فرانسوا شارك في حروب إيطاليا اللي استمرت سنين طويلة. الصراعات دي كانت جزء كبير من حياته السياسية ومواجهاته مع القوى العظمى في وقته.",
+      "summary": "مشاركة فرانسوا في حروب إيطاليا",
+      "keyword": "حروب",
+      "template": "cause",
+      "labels": [
+        "حروب",
+        "سياسة",
+        "إيطاليا"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول شارك في حروب إيطاليا",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "He was also known for his role in the Italian Wars (1494-1559)",
+      "kind": "fact",
+      "expression": 3,
+      "action": "jump"
+    },
+    {
+      "title": "المنافسة الكبرى",
+      "text": "أكبر منافس لفرانسوا كان الإمبراطور شارل الخامس. الصراع بينهم كان صراع على النفوذ والسيطرة في أوروبا، وده خلى فترة حكم فرانسوا مليانة بالتوترات السياسية والتحالفات العسكرية اللي غيرت خريطة القارة وقتها.",
+      "summary": "صراع فرانسوا مع شارل الخامس",
+      "keyword": "منافسة",
+      "template": "comparison",
+      "labels": [
+        "سياسة",
+        "صراع",
+        "أوروبا"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول كان في منافسة مع شارل الخامس",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "as well as for his rivalry with Charles V, Holy Roman Emperor.",
+      "kind": "fact",
+      "expression": 2,
+      "action": "run"
+    },
+    {
+      "title": "لقب الملك الفارس",
+      "text": "بسبب شجاعته في المعارك وحبه للفروسية، الناس أطلقوا عليه لقب الملك الفارس. اللقب ده فضل ملازمه طول حياته وحتى بعد وفاته، كرمز للجمع بين القوة العسكرية والذوق الرفيع في الفنون.",
+      "summary": "لقب الملك الفارس",
+      "keyword": "فروسية",
+      "template": "phenomenon",
+      "labels": [
+        "لقب",
+        "فروسية",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول كان يلقب بالملك الفارس",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "In his own lifetime and afterwards, Francis was known as le Roi-Chevalier, or the \"Knight King.\"",
+      "kind": "fact",
+      "expression": 10,
+      "action": "point"
+    },
+    {
+      "title": "إرث لا ينسى",
+      "text": "فرانسوا الأول ساب بصمة كبيرة في تاريخ فرنسا. النهضة اللي رعاها خلت فرنسا وجهة لكل المبدعين، والقصور اللي بناها لسه موجودة لحد النهاردة بتشهد على عظمة العصر ده وجمال الفن الفرنسي.",
+      "summary": "إرث فرانسوا الأول الفني",
+      "keyword": "إرث",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "عمارة",
+        "إرث"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول ترك إرثاً فنياً كبيراً",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "Francis patronized many Italian artists during his rule and transformed Paris into a hub of Renaissance art and culture.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "walk"
+    },
+    {
+      "title": "خاتمة الحكاية",
+      "text": "حكاية فرانسوا الأول بتعلمنا إن الحاكم ممكن يكون محارب قوي وفي نفس الوقت فنان مرهف الحس. التاريخ دايماً بيفاجئنا بشخصيات قدرت تجمع بين المتناقضات وتصنع حضارة تعيش لقرون طويلة بعد رحيلهم.",
+      "summary": "خلاصة حياة فرانسوا الأول",
+      "keyword": "تاريخ",
+      "template": "phenomenon",
+      "labels": [
+        "تاريخ",
+        "حكمة",
+        "ملوك"
+      ],
+      "values": [],
+      "claim": "فرانسوا الأول كان شخصية تاريخية فريدة",
+      "sourceId": "5300ddcb4d54",
+      "evidence": "Francis I (1494-1547) reigned as King of France from 1515 until his death in 1547",
+      "kind": "illustration",
+      "expression": 11,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

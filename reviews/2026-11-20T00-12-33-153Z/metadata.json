@@ -1,0 +1,22 @@
+{
+  "title": "أهم أخبار الأسبوع: ملك فرنسا وفن النهضة",
+  "topicKey": "francis-i-france-renaissance",
+  "voice": "Charon",
+  "provider": "Gemini",
+  "sources": [
+    {
+      "id": "5300ddcb4d54",
+      "title": "Francis I of France: The Knight King of the French Renaissance",
+      "url": "https://www.worldhistory.org/Francis_I_of_France/",
+      "published": "2026-11-19T10:00:02.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.worldhistory.org",
+      "primaryRefs": []
+    }
+  ],
+  "editorialMode": "daily",
+  "video_sha256": "40a054fae4e3aeb0855a7c4ae5d67ee5b1752ace5614c88dd50b0a3a6cca9ac2",
+  "reviewOnly": true,
+  "approved": false
+}
