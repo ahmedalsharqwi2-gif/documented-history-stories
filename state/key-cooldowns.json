@@ -1,7 +1,9 @@
 {
   "schema": 1,
   "cooldowns": {
-    "voice:a2a76904fc3a": 1795161600147,
-    "voice:cf4efb8a7ab9": 1795161600254
+    "voice:a2a76904fc3a": 1795161600752,
+    "voice:cf4efb8a7ab9": 1795161600852,
+    "text:a2a76904fc3a": 1795161600060,
+    "text:cf4efb8a7ab9": 1795161600185
   }
 }

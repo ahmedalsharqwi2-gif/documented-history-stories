@@ -137,5 +137,11 @@
     "status": "retired",
     "reason": "UNSUPPORTED_CLAIM",
     "run": "2026-11-20T01-27-38-547Z"
+  },
+  {
+    "topicKey": "akrotiri-thera-volcano-eruption",
+    "value": "https://www.smithsonianmag.com/history/greece-has-its-own-pompeii-and-the-ruins-tell-a-captivating-story-of-a-sophisticated-seafaring-bronze-age-society-180989747/",
+    "status": "retired",
+    "run": "2026-11-20T01-59-14-796Z"
   }
 ]

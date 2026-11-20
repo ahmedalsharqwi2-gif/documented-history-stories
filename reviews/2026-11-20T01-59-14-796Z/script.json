@@ -1,0 +1,163 @@
+{
+  "topicKey": "akrotiri-thera-volcano-eruption",
+  "title": "بومبي اليونان.. مدينة اختفت في لحظة",
+  "hook": "عمرك سمعت عن مدينة يونانية قديمة اختفت تماماً تحت الرماد البركاني؟",
+  "cta": "لو حابب تعرف أكتر عن أسرار الحضارات اللي اختفت، تابعنا واشترك في القناة عشان يوصلك كل جديد عن تاريخنا الغامض.",
+  "scenes": [
+    {
+      "title": "بداية الحكاية",
+      "text": "تخيل مدينة متطورة جداً، ناسها بحارة شطار، عايشين في رفاهية، وفجأة في لحظة واحدة كل ده يختفي تحت طبقات من الرماد، دي مش قصة خيالية، دي حقيقة حصلت في جزيرة سانتوريني اليونانية من زمان.",
+      "summary": "مدينة يونانية متطورة اختفت تحت الرماد البركاني.",
+      "keyword": "أكرتيري",
+      "template": "phenomenon",
+      "labels": [
+        "أكرتيري",
+        "سانتوريني",
+        "بركان"
+      ],
+      "values": [],
+      "claim": "المدينة دفنت في الرماد بسبب بركان ثيرا.",
+      "sourceId": "a13869da4325",
+      "evidence": "The Thera volcano, on modern-day Santorini, buried Akrotiri in ash in the 17th or 16th century B.C.E.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "قوة الطبيعة",
+      "text": "البركان اللي دمر المدينة دي كان واحد من أقوى الانفجارات اللي سجلها التاريخ كله، تخيل حجم الدمار اللي ممكن يسببه انفجار بركاني ضخم يغطي مدينة كاملة ويحفظها تحت الرماد لآلاف السنين من غير ما حد يعرف.",
+      "summary": "انفجار بركاني ضخم غير وجه التاريخ.",
+      "keyword": "بركان ثيرا",
+      "template": "cause",
+      "labels": [
+        "بركان",
+        "تاريخ",
+        "دمار"
+      ],
+      "values": [],
+      "claim": "كان انفجار بركان ثيرا من أكبر الانفجارات في التاريخ.",
+      "sourceId": "a13869da4325",
+      "evidence": "The eruption was one of the largest in recorded history",
+      "kind": "fact",
+      "expression": 8,
+      "action": "fall"
+    },
+    {
+      "title": "اكتشاف الأسرار",
+      "text": "العلماء لما بدأوا يحفروا في المكان، لقوا مدينة كاملة متجمدة في الزمن، بيوت، أواني، وحتى رسومات على الحيطان، كل حاجة كانت لسه في مكانها، كأن الناس سابوا المدينة وخرجوا من دقايق، بس الحقيقة عدى آلاف السنين.",
+      "summary": "اكتشاف مدينة متجمدة في الزمن تحت الرماد.",
+      "keyword": "آثار",
+      "template": "journey",
+      "labels": [
+        "آثار",
+        "اكتشاف",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "مدينة أكرتيري تم الحفاظ عليها تحت الرماد.",
+      "sourceId": "a13869da4325",
+      "evidence": "The Thera volcano, on modern-day Santorini, buried Akrotiri in ash in the 17th or 16th century B.C.E.",
+      "kind": "illustration",
+      "expression": 3,
+      "action": "point"
+    },
+    {
+      "title": "حضارة متقدمة",
+      "text": "الناس اللي عاشوا هناك كانوا سابقين عصرهم، تجارة بحرية، فنون، وعمارة، كل ده بيخلينا نسأل، إيه اللي كان ممكن يحصل لو المدينة دي مكنتش اختفت؟ هل كانت هتغير شكل العالم القديم كله؟ ده لغز كبير.",
+      "summary": "حضارة بحرية متطورة اختفت فجأة.",
+      "keyword": "حضارة",
+      "template": "comparison",
+      "labels": [
+        "حضارة",
+        "تجارة",
+        "بحر"
+      ],
+      "values": [],
+      "claim": "كانت أكرتيري مجتمعاً بحرياً متطوراً.",
+      "sourceId": "a13869da4325",
+      "evidence": "The Thera volcano, on modern-day Santorini, buried Akrotiri in ash in the 17th or 16th century B.C.E.",
+      "kind": "illustration",
+      "expression": 4,
+      "action": "turn"
+    },
+    {
+      "title": "لغز الرماد",
+      "text": "الرماد البركاني مش بس دمر المدينة، ده كان السبب في حفظها، زي ما حصل في بومبي، الرماد منع الهواء والرطوبة يوصلوا للآثار، ففضلت زي ما هي، بتورينا تفاصيل حياة ناس عاشوا من آلاف السنين بكل دقة.",
+      "summary": "الرماد البركاني حفظ المدينة عبر الزمن.",
+      "keyword": "حفظ الآثار",
+      "template": "phenomenon",
+      "labels": [
+        "رماد",
+        "حفظ",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "الرماد البركاني دفن المدينة وحفظها.",
+      "sourceId": "a13869da4325",
+      "evidence": "The Thera volcano, on modern-day Santorini, buried Akrotiri in ash in the 17th or 16th century B.C.E.",
+      "kind": "fact",
+      "expression": 2,
+      "action": "sleep"
+    },
+    {
+      "title": "مقارنة تاريخية",
+      "text": "كتير بيسموا أكرتيري بومبي اليونان، لأنها بتشبه بومبي في طريقة اختفائها وحفظها، لكن الفرق إن أكرتيري أقدم بكتير، وبتحكي قصة مجتمع بحري كان بيسيطر على طرق التجارة في البحر المتوسط قبل ما البركان ينهي كل ده.",
+      "summary": "أكرتيري وبومبي، قصص متشابهة في التاريخ.",
+      "keyword": "بومبي",
+      "template": "comparison",
+      "labels": [
+        "بومبي",
+        "تاريخ",
+        "يونان"
+      ],
+      "values": [],
+      "claim": "أكرتيري تشبه بومبي في حفظها تحت الرماد.",
+      "sourceId": "a13869da4325",
+      "evidence": "The Thera volcano, on modern-day Santorini, buried Akrotiri in ash in the 17th or 16th century B.C.E.",
+      "kind": "illustration",
+      "expression": 6,
+      "action": "run"
+    },
+    {
+      "title": "الدرس المستفاد",
+      "text": "قصة أكرتيري بتفكرنا إن الطبيعة أقوى من أي حضارة، مهما وصلنا من تقدم، الأرض ممكن في لحظة تغير كل حاجة، والآثار اللي بنلاقيها هي الطريقة الوحيدة اللي بتخلينا نفتكر الناس اللي عاشوا قبلنا.",
+      "summary": "الطبيعة أقوى من أي حضارة بشرية.",
+      "keyword": "طبيعة",
+      "template": "cause",
+      "labels": [
+        "طبيعة",
+        "تاريخ",
+        "درس"
+      ],
+      "values": [],
+      "claim": "كان البركان حدثاً مدمراً في التاريخ.",
+      "sourceId": "a13869da4325",
+      "evidence": "The eruption was one of the largest in recorded history",
+      "kind": "illustration",
+      "expression": 10,
+      "action": "jump"
+    },
+    {
+      "title": "ختام الرحلة",
+      "text": "دي كانت حكاية مدينة أكرتيري، جوهرة اليونان اللي خباها البركان، لو عجبك الفيديو، متنساش تعمل لايك وتشاركنا رأيك في التعليقات، إيه أكتر مدينة تاريخية بتحب تقرأ عنها؟ مستنيين ردودكم في الحلقة الجاية.",
+      "summary": "خاتمة ودعوة للمتابعين.",
+      "keyword": "خاتمة",
+      "template": "steps",
+      "labels": [
+        "تفاعل",
+        "تاريخ",
+        "نهاية"
+      ],
+      "values": [],
+      "claim": "المدينة كانت جزءاً من تاريخ اليونان.",
+      "sourceId": "a13869da4325",
+      "evidence": "The Thera volcano, on modern-day Santorini, buried Akrotiri in ash in the 17th or 16th century B.C.E.",
+      "kind": "illustration",
+      "expression": 11,
+      "action": "hang"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

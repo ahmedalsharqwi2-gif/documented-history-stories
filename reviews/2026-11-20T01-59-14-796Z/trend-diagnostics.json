@@ -1,0 +1,61 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 9
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 34
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "a13869da4325",
+      "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+      "demand": 8,
+      "recency": 0.004,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "twitch",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        }
+      ],
+      "score": 8.002008477568763
+    }
+  ]
+}
