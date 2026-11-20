@@ -29,18 +29,18 @@ const meta = [
 const DUR = 8;
 const scenes = sceneTexts.map((text, i) => {
   const ws = text.split(' ');
-  return {...meta[i], text, duration: DUR, words: ws.map((w, k) => ({text: w, start: k * (DUR - 1) / ws.length, end: (k + 1) * (DUR - 1) / ws.length})), labels: meta[i].labels};
+  return {...meta[i], text, duration: DUR, words: ws.map((w, k) => ({text: w, start: k * (DUR - 1) / ws.length, end: (k + 1) * (DUR - 1) / ws.length})), labels: meta[i].labels, kind: i===5?'legend':'fact', sourceLabel: ['unesco.org','britannica.com','nature.com','nasa.gov','cambridge.org','chase1985','metmuseum.org'][i]};
 });
 const props = {
   title: 'إزاي مدينة كاراكول اختفت جوه الغابة؟',
   seriesLabel: 'وثائقي تاريخ', channelName: 'نقص ونروي',
   scenes, durationInFrames: scenes.length * DUR * 30, mascot: false,
-  paper: {theme: 'paper-technical'},
+  paper: {theme: 'paper-technical', citations: true},
 };
 const storyboard = buildStoryboard(props);
 const sbProblems = validateStoryboard(storyboard);
 if (sbProblems.length) { console.error('STORYBOARD INVALID:', sbProblems); process.exit(1); }
-await writeFile('/tmp/history-slice-out2/storyboard.json', JSON.stringify(storyboard, null, 2));
+await writeFile('/tmp/history-slice-out3/storyboard.json', JSON.stringify(storyboard, null, 2));
 console.log('storyboard ok:', storyboard.scenes.map(s => s.template).join(', '));
 
 const plan = {
@@ -91,9 +91,9 @@ const violations = zoneViolations(windows, layers, targets);
 if (violations.length) { console.error('ZONE VIOLATIONS:', violations.slice(0, 10)); process.exit(1); }
 console.log('zone check clean; scales:', targets.map(t => t.s.toFixed(2)).join(', '));
 const t0 = Date.now();
-const result = await renderEpisode(props, '/tmp/history-slice-out2', {filename: 'vertical-slice.mp4'});
+const result = await renderEpisode(props, '/tmp/history-slice-out3', {filename: 'vertical-slice.mp4'});
 const secs = (Date.now() - t0) / 1000;
 console.log('rendered', result.file, 'in', secs, 's');
-const qa = motionCheck(result.file, scenes.map(() => ({duration: DUR})), {out: '/tmp/history-slice-out2/motion-qa.json'});
+const qa = motionCheck(result.file, scenes.map(() => ({duration: DUR})), {out: '/tmp/history-slice-out3/motion-qa.json'});
 console.log('motion-qa passed:', qa.passed, qa.scenes.map(s => s.meanDiff).join(','));
 if (!qa.passed) process.exit(1);
