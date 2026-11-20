@@ -125,5 +125,17 @@
     "value": "https://archaeology.org/news/2026/11/19/ancient-cemetery-discovered-in-northern-egypt/",
     "status": "retired",
     "run": "2026-11-20T01-01-32-401Z"
+  },
+  {
+    "topicKey": "chinese-astronomers-eclipse-myth",
+    "value": "https://www.smithsonianmag.com/history/were-two-chinese-astronomers-were-beheaded-for-failing-to-predict-an-eclipse-2134-bce-the-story-may-be-a-myth-but-it-underscores-the-real-risks-of-interpreting-celestial-events-180989715/",
+    "status": "retired",
+    "run": "2026-11-20T01-11-10-028Z"
+  },
+  {
+    "value": "https://www.smithsonianmag.com/history/scandinavian-countries-slowly-converted-christianity-crusades-took-form-viking-raids-180989836/",
+    "status": "retired",
+    "reason": "UNSUPPORTED_CLAIM",
+    "run": "2026-11-20T01-27-38-547Z"
   }
 ]

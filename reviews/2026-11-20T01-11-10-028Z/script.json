@@ -1,0 +1,163 @@
+{
+  "topicKey": "chinese-astronomers-eclipse-myth",
+  "title": "أسطورة الفلكيين الصينيين وكسوف الشمس",
+  "hook": "هل ممكن فعلاً إن اتنين من علماء الفلك اتعدموا بسبب غلطة في توقع كسوف الشمس من حوالي أربعة آلاف سنة؟ تعالوا نعرف الحقيقة ورا الحكاية دي وهل هي مجرد خرافة قديمة ولا فيها جزء حقيقي؟",
+  "cta": "لو حابين تعرفوا قصص تاريخية تانية غريبة ومثيرة، اشتركوا في القناة وفعلوا الجرس عشان يوصلكم كل جديد من فيديوهاتنا، وشاركونا في التعليقات إيه أكتر قصة تاريخية حيرتكم قبل كده؟",
+  "scenes": [
+    {
+      "title": "بداية الحكاية",
+      "text": "بتبدأ القصة بأسطورة بتقول إن فيه فلكيين اتنين في الصين القديمة كانوا بيشربوا خمرة لدرجة إنهم نسوا يراقبوا السما، وفشلوا في توقع كسوف الشمس، وده خلى الإمبراطور يغضب جداً ويقرر إعدامهم فوراً كعقاب.",
+      "summary": "أسطورة الفلكيين الذين فشلوا في توقع الكسوف",
+      "keyword": "أسطورة",
+      "template": "phenomenon",
+      "labels": [
+        "تاريخ",
+        "صين",
+        "أسطورة"
+      ],
+      "values": [],
+      "claim": "القصة المنتشرة عن إعدام فلكيين بسبب الكسوف هي أسطورة",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "legend",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "حقيقة الأسطورة",
+      "text": "الخبراء بيقولوا إن القصة دي رغم إنها مشهورة جداً، إلا إنها غالباً مجرد حكاية شعبية، لكنها بتعكس أهمية علم الفلك في العصور القديمة، وإزاي كان الحكام بيعتمدوا على التوقعات الفلكية في إدارة شؤون البلاد.",
+      "summary": "الخبراء يحللون مصداقية القصة الشعبية",
+      "keyword": "خبراء",
+      "template": "comparison",
+      "labels": [
+        "علم",
+        "تاريخ",
+        "فلك"
+      ],
+      "values": [],
+      "claim": "القصة تحتوي على تلميحات للحقيقة",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "fact",
+      "expression": 2,
+      "action": "point"
+    },
+    {
+      "title": "أهمية الفلك قديماً",
+      "text": "في الصين القديمة، كان الكسوف بيعتبر علامة سماوية خطيرة، وكان الإمبراطور بيعتبر نفسه ابن السما، فلو حصل كسوف من غير ما يتم التنبيه ليه، ده كان بيعتبر فشل كبير في حماية النظام الكوني والسياسي.",
+      "summary": "الكسوف كعلامة سياسية في الصين القديمة",
+      "keyword": "كسوف",
+      "template": "cause",
+      "labels": [
+        "سياسة",
+        "فلك",
+        "صين"
+      ],
+      "values": [],
+      "claim": "الكسوف كان حدثاً ذا أهمية سياسية كبرى",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "fact",
+      "expression": 8,
+      "action": "turn"
+    },
+    {
+      "title": "مخاطر التفسير",
+      "text": "القصة دي بتورينا إزاي كان التفسير الخاطئ للأحداث السماوية ممكن يسبب مشاكل كبيرة، مش بس للعلماء، لكن كمان للنظام الحاكم كله، لأن السما كانت بتعتبر مرجع أساسي لكل القرارات اللي بياخدها الإمبراطور في حياته اليومية.",
+      "summary": "مخاطر تفسير الأحداث السماوية قديماً",
+      "keyword": "تفسير",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "سلطة",
+        "فلك"
+      ],
+      "values": [],
+      "claim": "القصة تسلط الضوء على مخاطر تفسير الأحداث السماوية",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "fact",
+      "expression": 4,
+      "action": "jump"
+    },
+    {
+      "title": "هل هي حقيقة؟",
+      "text": "رغم إن مفيش دليل تاريخي قاطع على إعدام الفلكيين دول، لكن العلماء بيشوفوا إن الحكاية فيها جزء من الحقيقة، لأنها بتعبر عن التوتر اللي كان موجود بين العلم والسياسة في المجتمعات القديمة بشكل عام.",
+      "summary": "غياب الأدلة التاريخية القاطعة",
+      "keyword": "توتر",
+      "template": "chart",
+      "labels": [
+        "بحث",
+        "تاريخ",
+        "علم"
+      ],
+      "values": [],
+      "claim": "القصة قد تحتوي على تلميحات للحقيقة",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "fact",
+      "expression": 3,
+      "action": "fall"
+    },
+    {
+      "title": "تطور علم الفلك",
+      "text": "مع مرور الوقت، اتطور علم الفلك وبقى أكثر دقة، وبطل الحكام يعتمدوا على الخرافات، لكن قصص زي دي بتفضل موجودة عشان تفكرنا إزاي كان أجدادنا بيحاولوا يفهموا الكون من حواليهم بكل الطرق المتاحة ليهم.",
+      "summary": "تطور فهمنا للكون عبر العصور",
+      "keyword": "تطور",
+      "template": "steps",
+      "labels": [
+        "تاريخ",
+        "علم",
+        "تطور"
+      ],
+      "values": [],
+      "claim": "القصة تعكس محاولات فهم الكون",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "fact",
+      "expression": 6,
+      "action": "run"
+    },
+    {
+      "title": "الدروس المستفادة",
+      "text": "الدرس الحقيقي هنا مش في إعدام الفلكيين، لكن في إزاي القصص بتتنقل عبر الأجيال عشان توصل رسالة معينة، والرسالة هنا هي إن العلم كان دايماً سلاح ذو حدين في يد السلطة في العصور القديمة.",
+      "summary": "العلم والسلطة في العصور القديمة",
+      "keyword": "سلطة",
+      "template": "map",
+      "labels": [
+        "تاريخ",
+        "سلطة",
+        "علم"
+      ],
+      "values": [],
+      "claim": "القصة تعكس العلاقة بين العلم والسلطة",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "fact",
+      "expression": 9,
+      "action": "hang"
+    },
+    {
+      "title": "خاتمة القصة",
+      "text": "في النهاية، سواء كانت القصة حقيقية أو مجرد خيال، هي بتفضل جزء ممتع من تاريخنا البشري، وبتخلينا نقدر العلم اللي وصلنا ليه النهاردة، ونفهم أكتر إزاي اتغيرت نظرتنا للسما والنجوم والكسوف عبر السنين.",
+      "summary": "الخلاصة حول أهمية القصص التاريخية",
+      "keyword": "خاتمة",
+      "template": "phenomenon",
+      "labels": [
+        "تاريخ",
+        "علم",
+        "فلك"
+      ],
+      "values": [],
+      "claim": "القصة جزء ممتع من التاريخ البشري",
+      "sourceId": "3541392f4838",
+      "evidence": "an oft-circulated anecdote about two royal astronomers drunkenly failing to foresee an eclipse thousands of years ago contains hints of truth",
+      "kind": "illustration",
+      "expression": 10,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

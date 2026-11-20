@@ -1,0 +1,186 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-0.wav",
+    "duration": 17.730958,
+    "text": "بتبدأ القصة بأسطورة بتقول إن فيه فلكيين اتنين في الصين القديمة كانوا بيشربوا خمرة لدرجة إنهم نسوا يراقبوا السما، وفشلوا في توقع كسوف الشمس، وده خلى الإمبراطور يغضب جداً ويقرر إعدامهم فوراً كعقاب.",
+    "sha256": "cb653b7fec25bc8a02313ffef60cc1ef62b924169f610268efcd52bc541a2874",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "73cca99ea94d1a3a39811aa157b2debd025d6fc5a8d2db5f1861238dd5a3016e",
+        "sha256": "cb653b7fec25bc8a02313ffef60cc1ef62b924169f610268efcd52bc541a2874",
+        "text_sha256": "254a80e040ab45db0ff5a237cd4652b24b54a7b3d86c121bf2a4898e64967c77",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 851164,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-1.wav",
+    "duration": 16.930958,
+    "text": "الخبراء بيقولوا إن القصة دي رغم إنها مشهورة جداً، إلا إنها غالباً مجرد حكاية شعبية، لكنها بتعكس أهمية علم الفلك في العصور القديمة، وإزاي كان الحكام بيعتمدوا على التوقعات الفلكية في إدارة شؤون البلاد.",
+    "sha256": "15dfc0fd8951cfb753a20f14812de95cd5de8cf70ddc9ed132089283fa1ae2f6",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c2132d25c645b7f1e4d40e48bc1ae7bdcdabb5d332853e11c12bea469192ab73",
+        "sha256": "15dfc0fd8951cfb753a20f14812de95cd5de8cf70ddc9ed132089283fa1ae2f6",
+        "text_sha256": "07dcfdc17f5a80063f2286d28b288e951bd27edfa787030b84b36546973de89e",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 812764,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-2.wav",
+    "duration": 15.370958,
+    "text": "في الصين القديمة، كان الكسوف بيعتبر علامة سماوية خطيرة، وكان الإمبراطور بيعتبر نفسه ابن السما، فلو حصل كسوف من غير ما يتم التنبيه ليه، ده كان بيعتبر فشل كبير في حماية النظام الكوني والسياسي.",
+    "sha256": "d6ab7b85dda2225bcb0812251a94804e59f9d6a123dd55ae2127e88c0919b553",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "6eb9a7480b55039f83854021b135c4a2e040b1cafde39a3334102fa4146fb94c",
+        "sha256": "d6ab7b85dda2225bcb0812251a94804e59f9d6a123dd55ae2127e88c0919b553",
+        "text_sha256": "e5d0ae5a094f0050c60e34d2803255d48f6c0e89a938b1c05c9368eb5ff65619",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 737884,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-3.wav",
+    "duration": 16.650958,
+    "text": "القصة دي بتورينا إزاي كان التفسير الخاطئ للأحداث السماوية ممكن يسبب مشاكل كبيرة، مش بس للعلماء، لكن كمان للنظام الحاكم كله، لأن السما كانت بتعتبر مرجع أساسي لكل القرارات اللي بياخدها الإمبراطور في حياته اليومية.",
+    "sha256": "c819c84b6aa4ac1c02721ccc896e98fcb37ad6d6ab4c596d321f1de42148aa24",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "e21c20ee94b12cc60367b02860732224731f938732317b2397717b01598507b8",
+        "sha256": "c819c84b6aa4ac1c02721ccc896e98fcb37ad6d6ab4c596d321f1de42148aa24",
+        "text_sha256": "98a73ed731499ff31e331b811f2aec4199d93cc58c5ef52546c9984e98795721",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 799324,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-4.wav",
+    "duration": 13.770958,
+    "text": "رغم إن مفيش دليل تاريخي قاطع على إعدام الفلكيين دول، لكن العلماء بيشوفوا إن الحكاية فيها جزء من الحقيقة، لأنها بتعبر عن التوتر اللي كان موجود بين العلم والسياسة في المجتمعات القديمة بشكل عام.",
+    "sha256": "3891b4820a7bc3e9601f7fee9924ff40a77281b06e54afcb67de9f7c07f6146f",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c950a3edf435b8c5debd852aa4f77b839943ee5912b54de2c55e997225649803",
+        "sha256": "3891b4820a7bc3e9601f7fee9924ff40a77281b06e54afcb67de9f7c07f6146f",
+        "text_sha256": "119eaf26a4906197145757d30175ddc6e82fc980674627f894d60cfcd2dba9cc",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 661084,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-5.wav",
+    "duration": 14.610958,
+    "text": "مع مرور الوقت، اتطور علم الفلك وبقى أكثر دقة، وبطل الحكام يعتمدوا على الخرافات، لكن قصص زي دي بتفضل موجودة عشان تفكرنا إزاي كان أجدادنا بيحاولوا يفهموا الكون من حواليهم بكل الطرق المتاحة ليهم.",
+    "sha256": "db50c4959916e402f876891317de0d5c5b458eaef1287160892796b7ccf804de",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "b64df852af5672955ecdb78d32d5223393468266d6253864258d1f32f67a342c",
+        "sha256": "db50c4959916e402f876891317de0d5c5b458eaef1287160892796b7ccf804de",
+        "text_sha256": "ac96d8f9922091cbe98a20c3fe4538573d5ac80e4d6bbc8417078760f7ce9ef1",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 701404,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-6.wav",
+    "duration": 15.810958,
+    "text": "الدرس الحقيقي هنا مش في إعدام الفلكيين، لكن في إزاي القصص بتتنقل عبر الأجيال عشان توصل رسالة معينة، والرسالة هنا هي إن العلم كان دايماً سلاح ذو حدين في يد السلطة في العصور القديمة.",
+    "sha256": "40198ecbea67416d68b9dc6fdb61812c6caf73c231e22f6a9837ed4246beafdb",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "5c614fd778642db8d5530b536575db9a72a06d3bac2a3f289061d811b6c9092a",
+        "sha256": "40198ecbea67416d68b9dc6fdb61812c6caf73c231e22f6a9837ed4246beafdb",
+        "text_sha256": "56d07776488eb959f18322453d09588412c52a44cc571cffd80ed96eef5d6215",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 759004,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-20T01-11-10-028Z/scene-7.wav",
+    "duration": 15.090958,
+    "text": "في النهاية، سواء كانت القصة حقيقية أو مجرد خيال، هي بتفضل جزء ممتع من تاريخنا البشري، وبتخلينا نقدر العلم اللي وصلنا ليه النهاردة، ونفهم أكتر إزاي اتغيرت نظرتنا للسما والنجوم والكسوف عبر السنين.",
+    "sha256": "9525b46e5d3185fee02a00097b7055ef2f5485e8fd9e524489b777afd7583d83",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "c1d83a2bca1866d5e82b90a0a8d997470bb63fe5a2bd9b02aa8618dea5016112",
+        "sha256": "9525b46e5d3185fee02a00097b7055ef2f5485e8fd9e524489b777afd7583d83",
+        "text_sha256": "df2155e4e62cf0abcce9e0d4b61d2d99fc8e0ba61d0d1b1ca8efc382e903d060",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-2.5-flash-preview-tts",
+        "bytes": 724444,
+        "reused": false
+      }
+    ]
+  }
+]
