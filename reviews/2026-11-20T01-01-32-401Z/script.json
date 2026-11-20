@@ -1,0 +1,163 @@
+{
+  "topicKey": "ancient-cemetery-teranothis-egypt",
+  "title": "اكتشاف مقبرة أثرية في شمال مصر",
+  "hook": "عمرك سألت نفسك إيه اللي ممكن نلاقيه تحت رمل الصحراء في شمال مصر؟",
+  "cta": "تابعونا عشان تعرفوا كل جديد عن كنوز مصر القديمة اللي بتظهر كل يوم.",
+  "scenes": [
+    {
+      "title": "اكتشاف أثري جديد",
+      "text": "في محافظة المنوفية، اكتشف علماء الآثار مقبرة قديمة جداً في مدينة تيرانوتيس الأثرية، المكان ده كان قريب من وادي النطرون، اللي كان مصدر أساسي لمادة النطرون اللي استخدمها المصريين القدماء في عمليات التحنيط.",
+      "summary": "اكتشاف مقبرة أثرية في مدينة تيرانوتيس بشمال مصر.",
+      "keyword": "تيرانوتيس",
+      "template": "phenomenon",
+      "labels": [
+        "آثار",
+        "مصر",
+        "تيرانوتيس"
+      ],
+      "values": [],
+      "claim": "تم اكتشاف مقبرة في مدينة تيرانوتيس الأثرية.",
+      "sourceId": "721957d71139",
+      "evidence": "a cemetery has been discovered within the ancient city of Teranothis at northern Egypt’s Tell Atrib Abu Bello archaeological site.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "تاريخ المقبرة",
+      "text": "المقابر دي بترجع للعصور المتأخرة والعصر البطلمي، والعلماء لقوا فيها أنواع كتير من التوابيت، منها اللي مصنوع من الحجر، ومنها الفخار، وحتى توابيت خشبية، ده غير الهياكل المقببة اللي اتبنت من الطوب اللبن.",
+      "summary": "تنوع التوابيت والمقابر المكتشفة في الموقع.",
+      "keyword": "توابيت",
+      "template": "comparison",
+      "labels": [
+        "تاريخ",
+        "توابيت",
+        "عصور"
+      ],
+      "values": [],
+      "claim": "تتنوع التوابيت بين الحجر والفخار والخشب.",
+      "sourceId": "721957d71139",
+      "evidence": "the tombs range from stone, pottery, and wooden coffins to vaulted structures made of mudbrick.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "point"
+    },
+    {
+      "title": "تصريح المسؤولين",
+      "text": "هشام الليثي من المجلس الأعلى للآثار قال إن الاكتشاف ده فريد من نوعه، خصوصاً بسبب العدد الكبير من التوابيت والدفنات اللي لقوها في فناء مفتوح، وده بيعتبر أول اكتشاف من نوعه في الموقع.",
+      "summary": "أهمية الاكتشاف حسب المجلس الأعلى للآثار.",
+      "keyword": "المجلس الأعلى للآثار",
+      "template": "phenomenon",
+      "labels": [
+        "آثار",
+        "اكتشاف",
+        "مسؤولين"
+      ],
+      "values": [],
+      "claim": "الاكتشاف فريد بسبب كثرة التوابيت في فناء مفتوح.",
+      "sourceId": "721957d71139",
+      "evidence": "“The discovery is the first of its kind at the site in terms of the large number of burials and coffins found in an open burial courtyard,”",
+      "kind": "fact",
+      "expression": 7,
+      "action": "turn"
+    },
+    {
+      "title": "حالة المقابر",
+      "text": "للأسف، كتير من المقابر دي اتعرضت للنهب في العصور القديمة، لكن لما فحصوا التوابيت اللي فضلت، لقوا آثار لمواد التحنيط والراتنجات، وكمان بقايا كرتوناج ملون وجبس، وده بيورينا تفاصيل دقيقة عن طقوس الدفن.",
+      "summary": "حالة المقابر المنهوبة وبقايا مواد التحنيط.",
+      "keyword": "تحنيط",
+      "template": "cause",
+      "labels": [
+        "تحنيط",
+        "تاريخ",
+        "نهب"
+      ],
+      "values": [],
+      "claim": "تعرضت المقابر للنهب قديماً مع بقاء آثار للتحنيط.",
+      "sourceId": "721957d71139",
+      "evidence": "Many of the burials had been looted in antiquity, but examination of the coffins revealed traces of embalming materials and resins, as well as painted cartonnage and plaster.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "jump"
+    },
+    {
+      "title": "كنوز ذهبية",
+      "text": "العلماء لقوا كنوز حقيقية جوه المقابر، زي تمائم اللسان الذهبية، وأقراط، وقلادات ذهبية، وكمان رقائق ذهب، وجعارين، وتماثيل أوشابتي من الفيانس، وتماثيل صغيرة لأبو الهول، كل ده بيعكس ثراء الدفنات اللي كانت موجودة.",
+      "summary": "المقتنيات الذهبية والتماثيل المكتشفة في الموقع.",
+      "keyword": "ذهب",
+      "template": "phenomenon",
+      "labels": [
+        "ذهب",
+        "كنوز",
+        "تماثيل"
+      ],
+      "values": [],
+      "claim": "تم العثور على ذهب وتمائم وتماثيل متنوعة.",
+      "sourceId": "721957d71139",
+      "evidence": "Gold tongue amulets; an earring; a gold necklace pendant; gold sheets; scarabs; faience ushabti figurines; small sphinx figurines;",
+      "kind": "fact",
+      "expression": 8,
+      "action": "run"
+    },
+    {
+      "title": "رموز دينية",
+      "text": "مش بس ذهب، لقوا كمان تماثيل للإله حورس، ودفنات لصقور، وتماثيل تراكوتا للإلهة إيزيس، الحاجات دي بتأكد أهمية الموقع الدينية في العصور القديمة، وبتفتح باب جديد لفهم معتقدات الناس اللي عاشوا في المنطقة دي.",
+      "summary": "اكتشاف تماثيل دينية ودفنات صقور.",
+      "keyword": "إيزيس",
+      "template": "phenomenon",
+      "labels": [
+        "دين",
+        "أساطير",
+        "تماثيل"
+      ],
+      "values": [],
+      "claim": "تم العثور على تماثيل للإله حورس وإيزيس.",
+      "sourceId": "721957d71139",
+      "evidence": "statues of the falcon god Horus; two falcon burials; and terracotta figurines of the goddess Isis were also recovered.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "point"
+    },
+    {
+      "title": "تخيل الاكتشاف",
+      "text": "تخيل لو كنا هناك وقت الاكتشاف، وشوفنا التوابيت وهي بتخرج من تحت الرمل بعد آلاف السنين، أكيد كان شعور لا يوصف، والعلماء لسه بيحللوا كل قطعة عشان يجمعوا تاريخ المكان ده بدقة كبيرة جداً.",
+      "summary": "تخيل لحظة اكتشاف التوابيت تحت الرمال.",
+      "keyword": "تخيل",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "خيال",
+        "اكتشاف"
+      ],
+      "values": [],
+      "claim": "الاكتشاف يفتح آفاقاً جديدة لفهم التاريخ.",
+      "sourceId": "721957d71139",
+      "evidence": "Aerial view of coffins unearthed in the necropolis at Tell Atrib Abu Bello, Egypt",
+      "kind": "illustration",
+      "expression": 10,
+      "action": "walk"
+    },
+    {
+      "title": "خاتمة",
+      "text": "مصر لسه مخبية أسرار كتير تحت رملها، وكل اكتشاف جديد بيخلينا نفهم أكتر عن أجدادنا العظماء، تابعونا عشان تعرفوا كل جديد عن كنوز مصر القديمة اللي بتظهر كل يوم في كل مكان.",
+      "summary": "دعوة للمتابعة لمعرفة المزيد عن الآثار.",
+      "keyword": "أسرار",
+      "template": "journey",
+      "labels": [
+        "مصر",
+        "تاريخ",
+        "أسرار"
+      ],
+      "values": [],
+      "claim": "مصر لا تزال تخفي الكثير من الأسرار.",
+      "sourceId": "721957d71139",
+      "evidence": "The post Ancient Cemetery Discovered in Northern Egypt appeared first on Archaeology Magazine .",
+      "kind": "fact",
+      "expression": 11,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

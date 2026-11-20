@@ -1,0 +1,186 @@
+[
+  {
+    "file": "audio/scene-0.wav",
+    "duration": 15.48,
+    "text": "في فترة من حوالي تسعين سنة، عاش الاتحاد السوفيتي أيام صعبة جداً اتعرفت باسم فترة الرعب، ودي كانت أكتر الأوقات قسوة وظلم في تاريخ الدولة دي، والناس كانت عايشة في خوف دائم ومستمر.",
+    "sha256": "4f85c38f83f7a9b18ac3a9fa31b75278bf4327bdfe8e05319e93c66d7793876a",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "81fd7a59a7d31c065f34bc32051f5626001f8895c25f093eadebc164a7611a0b",
+        "sha256": "4f85c38f83f7a9b18ac3a9fa31b75278bf4327bdfe8e05319e93c66d7793876a",
+        "text_sha256": "2e3c43b33dc5c70cdd8587011a73bb567d70c4efcc113bfad33c79038967ed70",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 743118,
+        "reused": true
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-1.wav",
+    "duration": 14.2,
+    "text": "الأرقام اللي خرجت من الفترة دي مرعبة بكل المقاييس، حيث تم القبض على حوالي ثمانية مليون مواطن، وتم إعدام حوالي ثمانمائة ألف شخص، وده رقم ضخم جداً بيعكس حجم الظلم اللي حصل وقتها.",
+    "sha256": "b7ebd57f5348661838c0dc10968f87be05b4d8a97d92c867549e485a30c80c62",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "e82af2b68a11facfdcdd38f5ac034dcd654d567912294a144f9e8a4065a13d9d",
+        "sha256": "b7ebd57f5348661838c0dc10968f87be05b4d8a97d92c867549e485a30c80c62",
+        "text_sha256": "67e2113cac8b09fafaa6045453ef8bb5880886832d0b4ca2d6dfb92fdcf54113",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 681678,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-2.wav",
+    "duration": 18.32,
+    "text": "أي حد كان ممكن يكون هدف، لكن المجموعات اللي اتعرضت للاستهداف بشكل خاص شملت قادة الحزب الشيوعي، وضباط الجيش، والمزارعين الأغنياء، والمثقفين، والعلماء، والقادة الدينيين، يعني الكل كان في خطر حقيقي ومستمر طول الوقت.",
+    "sha256": "91010fe204473a094cf14a84a2511f72e63e5a53cf13d086fea2b81f3bf4688b",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "9d761d6d628b5508aab7221850ea9dcaee014c8c10682fd7c2b9191518389cfe",
+        "sha256": "91010fe204473a094cf14a84a2511f72e63e5a53cf13d086fea2b81f3bf4688b",
+        "text_sha256": "5b0d774e272aebd0cad44326de01b6d1df8aac065fcca0893cedf95a8adf581a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 879438,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-3.wav",
+    "duration": 16,
+    "text": "لحد النهاردة، لسه فيه نقاشات كبيرة حول الأسباب والدوافع الحقيقية ورا اللي حصل، والباحثين بيشوفوا إن الأفعال دي كانت عشوائية جداً لدرجة إنها بتصعب على أي حد إنه يفسرها أو يفهم منطقها.",
+    "sha256": "bd9211b481e642662d58ee87ecfe31febbe068f433aa9882e191ad8ce95005ea",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "92bae49766aed2ff12155e7547c5d74b097a230a4dc58646d6827a04aeba6265",
+        "sha256": "bd9211b481e642662d58ee87ecfe31febbe068f433aa9882e191ad8ce95005ea",
+        "text_sha256": "fc6be5eac0d6a77a455347cb4b6f56d6bfff2afdb243aea6308782f4a9d5774a",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 768078,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-4.wav",
+    "duration": 16.36,
+    "text": "المؤرخ الشهير فريز وصف الحالة دي بكلمات دقيقة، وقال إن عمليات التطهير كانت عشوائية جداً في اختيار ضحاياها، وكانت غامضة في دوافعها لدرجة إنها بتعجز أي حد عن تقديم تفسير منطقي ومقنع.",
+    "sha256": "a14080afe80d3ab43e766463ecf9ba9435545e871d4bf78539411fc4b7936dd3",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "bad4ad709ec0cacc077e434c5710d06d4fb9f25d4d9a3ac041c8e1469af1f267",
+        "sha256": "a14080afe80d3ab43e766463ecf9ba9435545e871d4bf78539411fc4b7936dd3",
+        "text_sha256": "6292489cfbf3f9b1e1af442e3dbf3f144ef66c0e070891dd8d121d21c5657759",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 785358,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-5.wav",
+    "duration": 16.16,
+    "text": "تخيل إنك ممكن تتقبض عليك لمجرد إنك بتنتمي لفئة معينة أو حتى لمجرد الشك، ده كان الواقع اليومي لملايين الناس، والكل كان بيحاول يهرب من المصير المحتوم اللي كان بيطارد الجميع.",
+    "sha256": "434ed411c44cdc3131063adcb60456706c5e64651f7cf3da776b1f2c3b7ae53c",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "5a759188de3add8232f39696bf780b00ebeaaf59d1a9b5282ead2cc1600faf18",
+        "sha256": "434ed411c44cdc3131063adcb60456706c5e64651f7cf3da776b1f2c3b7ae53c",
+        "text_sha256": "549b36f51847f4bbc864c9ab28c9f96e6b8551dad3ca4b81e44345ed9804463f",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 775758,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-6.wav",
+    "duration": 16.4,
+    "text": "التطهير ده مش بس أثر على الأفراد، ده غير وجه المجتمع السوفيتي بالكامل، وفضل أثره موجود لسنين طويلة، والناس لسه بتحاول تفهم إزاي دولة ممكن تعمل في مواطنيها كل ده في وقت واحد.",
+    "sha256": "333545dc6483490d8afc5607690dbc78daef671e153fe47aae5720203d50e72b",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "b3e1b82f27ed7aa36b192457fb9a6a8a3c15ef5a51b282bd83ba9c5eaa4eecfc",
+        "sha256": "333545dc6483490d8afc5607690dbc78daef671e153fe47aae5720203d50e72b",
+        "text_sha256": "2a50bff8791cdedaf5959a97d590d48fa1f7ab132ccfaf438b9d03142fdc5a1b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 787278,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "audio/scene-7.wav",
+    "duration": 15.8,
+    "text": "التاريخ بيعلمنا دروس قاسية، وفترة الرعب دي بتفضل ذكرى مؤلمة عن اللي ممكن يحصل لما السلطة تسيطر على كل حاجة، شكراً لمتابعتكم معانا، وما تنسوش تشتركوا في القناة عشان يوصلكم كل جديد.",
+    "sha256": "33239d99a7b1cf17f03a68e0cb80681944b935aa21bc3558ae6066eef99931a2",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "9f1e068d221496368b8a3a3586fc38b063b0cc93641ff0b04a4f24812c176064",
+        "sha256": "33239d99a7b1cf17f03a68e0cb80681944b935aa21bc3558ae6066eef99931a2",
+        "text_sha256": "003486e00fb19348b93fc3795cdd78d5da20561f7e335acba81cb4fa71081bac",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 758478,
+        "reused": false
+      }
+    ]
+  }
+]

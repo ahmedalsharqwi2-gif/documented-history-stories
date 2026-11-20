@@ -1,0 +1,19 @@
+{
+  "complete": false,
+  "chunks": [
+    {
+      "scene": 0,
+      "chunk": 0,
+      "schema": 1,
+      "cacheKey": "8068d0e2a6a11e46cd253759617caf1dfa45165f21171c3c83438caa09b541ba",
+      "sha256": "df4718e0edc26dabc6cdfb80a43b3f9ad6421f4e777b960d10b6e02a46264575",
+      "text_sha256": "50fe439df48ef92b44f4a328d2cf767e2ef08057033a4ecedbbcee91f25b385c",
+      "voice": "Charon",
+      "provider": "Gemini",
+      "model": "gemini-3.1-flash-tts-preview",
+      "bytes": 745038,
+      "file": "/home/runner/work/documented-history-stories/documented-history-stories/.cache/voice/8068d0e2a6a11e46cd253759617caf1dfa45165f21171c3c83438caa09b541ba.wav",
+      "reused": false
+    }
+  ]
+}

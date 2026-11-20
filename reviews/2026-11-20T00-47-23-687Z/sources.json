@@ -1,0 +1,416 @@
+{
+  "selected": {
+    "id": "a7d234382515",
+    "title": "Stalin's Great Purge: State Oppression in the USSR",
+    "url": "https://www.worldhistory.org/article/3028/stalins-great-purge/",
+    "text": "Joseph Stalin's Great Purge, also known as the Great Terror of 1936-8, was the most manic part of a decade of state oppression in the USSR. The purges saw the arrest of around 8 million Soviet citizens and around 800,000 executions. Anyone could be suspected of being an 'enemy of the state,' but specific groups targeted included leaders within the Communist Party, officers in the military, wealthier farmers, intellectuals, scientists, nationalists, and religious leaders. Still today, the motivations, scale, and consequences of the Great Purge continue to cause debate. As the historian G. L. Freeze notes: \"The Great Purges…of 1936-8 seem to have been so arbitrary in victimization, so elusive in motivation as to defy explanation\" (127).",
+    "published": "2026-11-12T10:00:02.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.worldhistory.org",
+    "primaryRefs": []
+  },
+  "sources": [
+    {
+      "id": "a7d234382515",
+      "title": "Stalin's Great Purge: State Oppression in the USSR",
+      "url": "https://www.worldhistory.org/article/3028/stalins-great-purge/",
+      "text": "Joseph Stalin's Great Purge, also known as the Great Terror of 1936-8, was the most manic part of a decade of state oppression in the USSR. The purges saw the arrest of around 8 million Soviet citizens and around 800,000 executions. Anyone could be suspected of being an 'enemy of the state,' but specific groups targeted included leaders within the Communist Party, officers in the military, wealthier farmers, intellectuals, scientists, nationalists, and religious leaders. Still today, the motivations, scale, and consequences of the Great Purge continue to cause debate. As the historian G. L. Freeze notes: \"The Great Purges…of 1936-8 seem to have been so arbitrary in victimization, so elusive in motivation as to defy explanation\" (127).",
+      "published": "2026-11-12T10:00:02.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.worldhistory.org",
+      "primaryRefs": []
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "a7d234382515",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "a7d234382515"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.worldhistory.org/rss/",
+      "items": 20,
+      "valid": 20,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    },
+    {
+      "url": "https://www.smithsonianmag.com/rss/history/",
+      "items": 20,
+      "valid": 20,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "miss"
+    }
+  ],
+  "trend": [
+    {
+      "id": "721957d71139",
+      "title": "Ancient Cemetery Discovered in Northern Egypt",
+      "demand": 12,
+      "recency": 0.916,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 12.458152777997489
+    },
+    {
+      "id": "0350c1bdfc98",
+      "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+      "demand": 12,
+      "recency": 0.837,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 12.418603816441316
+    },
+    {
+      "id": "a7d234382515",
+      "title": "Stalin's Great Purge: State Oppression in the USSR",
+      "demand": 14,
+      "recency": 0.079,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "twitch",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "tradingview",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 14.039481078509587
+    },
+    {
+      "id": "a13869da4325",
+      "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+      "demand": 10,
+      "recency": 0.004,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 10.002042160386441
+    },
+    {
+      "id": "3541392f4838",
+      "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+      "demand": 12,
+      "recency": 0,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 4
+        }
+      ],
+      "score": 12.00002643109921
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 34
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "721957d71139",
+        "title": "Ancient Cemetery Discovered in Northern Egypt",
+        "demand": 12,
+        "recency": 0.916,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "microsoft",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 6
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 2
+          }
+        ],
+        "score": 12.458152777997489
+      },
+      {
+        "id": "0350c1bdfc98",
+        "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+        "demand": 12,
+        "recency": 0.837,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "microsoft",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 6
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 2
+          }
+        ],
+        "score": 12.418603816441316
+      },
+      {
+        "id": "a7d234382515",
+        "title": "Stalin's Great Purge: State Oppression in the USSR",
+        "demand": 14,
+        "recency": 0.079,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "microsoft",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "twitch",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "tradingview",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 2
+          }
+        ],
+        "score": 14.039481078509587
+      },
+      {
+        "id": "a13869da4325",
+        "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+        "demand": 10,
+        "recency": 0.004,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "microsoft",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 2
+          }
+        ],
+        "score": 10.002042160386441
+      },
+      {
+        "id": "3541392f4838",
+        "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+        "demand": 12,
+        "recency": 0,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 4
+          }
+        ],
+        "score": 12.00002643109921
+      }
+    ]
+  }
+}

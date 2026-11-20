@@ -1,0 +1,39 @@
+{
+  "id": "2026-11-20T00-47-23-687Z",
+  "attemptId": "2026-11-20T00-47-23-687Z",
+  "mode": "review",
+  "published": false,
+  "status": "running",
+  "resumed": false,
+  "stages": [
+    {
+      "name": "preflight",
+      "status": "pass",
+      "seconds": 0.172
+    },
+    {
+      "name": "topics",
+      "status": "pass",
+      "seconds": 11.755
+    },
+    {
+      "name": "script",
+      "status": "pass",
+      "seconds": 66.817
+    },
+    {
+      "name": "voice",
+      "status": "pass",
+      "seconds": 540.68
+    },
+    {
+      "name": "voice-repair-1",
+      "status": "pass",
+      "seconds": 188.709
+    }
+  ],
+  "limitations": [
+    "Incomplete visual previews never pass narrated-film acceptance. Human pronunciation and art-direction approval are separate.",
+    "align failed (ALIGNMENT_INVALID_MEASURED_SPAN); re-narrating once with fresh synthesis"
+  ]
+}

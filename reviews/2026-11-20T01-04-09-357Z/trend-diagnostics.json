@@ -1,0 +1,119 @@
+{
+  "sources": [
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 34
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "0350c1bdfc98",
+      "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+      "demand": 12,
+      "recency": 0.834,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 12.417001631999591
+    },
+    {
+      "id": "a13869da4325",
+      "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+      "demand": 10,
+      "recency": 0.004,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 10.00203434412326
+    },
+    {
+      "id": "3541392f4838",
+      "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+      "demand": 12,
+      "recency": 0,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 4
+        }
+      ],
+      "score": 12.000026329935546
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "selected": {
+    "id": "0350c1bdfc98",
+    "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+    "url": "https://www.smithsonianmag.com/history/scandinavian-countries-slowly-converted-christianity-crusades-took-form-viking-raids-180989836/",
+    "text": "A new book by historian Thomas Williams closes the gap between the two cultures and brings some otherwise unfamiliar medieval figures and events to life",
+    "published": "2026-11-19T12:00:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.smithsonianmag.com",
+    "primaryRefs": []
+  },
+  "sources": [
+    {
+      "id": "0350c1bdfc98",
+      "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+      "url": "https://www.smithsonianmag.com/history/scandinavian-countries-slowly-converted-christianity-crusades-took-form-viking-raids-180989836/",
+      "text": "A new book by historian Thomas Williams closes the gap between the two cultures and brings some otherwise unfamiliar medieval figures and events to life",
+      "published": "2026-11-19T12:00:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.smithsonianmag.com",
+      "primaryRefs": []
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "0350c1bdfc98",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "0350c1bdfc98"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.worldhistory.org/rss/",
+      "items": 20,
+      "valid": 20,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.smithsonianmag.com/rss/history/",
+      "items": 20,
+      "valid": 20,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    }
+  ],
+  "trend": [
+    {
+      "id": "0350c1bdfc98",
+      "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+      "demand": 12,
+      "recency": 0.834,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 6
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 12.417001631999591
+    },
+    {
+      "id": "a13869da4325",
+      "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+      "demand": 10,
+      "recency": 0.004,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "microsoft",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 2
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 2
+        }
+      ],
+      "score": 10.00203434412326
+    },
+    {
+      "id": "3541392f4838",
+      "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+      "demand": 12,
+      "recency": 0,
+      "matches": [
+        {
+          "kind": "google_trend",
+          "label": "netflix",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "google",
+          "weight": 4
+        },
+        {
+          "kind": "google_trend",
+          "label": "epic games",
+          "weight": 4
+        }
+      ],
+      "score": 12.000026329935546
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 34
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "0350c1bdfc98",
+        "title": "As Scandinavian Countries Slowly Converted to Christianity, Crusades Often Took on the Form of Viking Raids",
+        "demand": 12,
+        "recency": 0.834,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "microsoft",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 6
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 2
+          }
+        ],
+        "score": 12.417001631999591
+      },
+      {
+        "id": "a13869da4325",
+        "title": "Greece Has Its Own Pompeii, and the Ruins Tell a Captivating Story of a Sophisticated, Seafaring Bronze Age Society",
+        "demand": 10,
+        "recency": 0.004,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "microsoft",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 2
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 2
+          }
+        ],
+        "score": 10.00203434412326
+      },
+      {
+        "id": "3541392f4838",
+        "title": "Were Two Ancient Chinese Astronomers Beheaded for Failing to Predict an Eclipse in 2134 B.C.E.? The Story May Be a Myth, but It Underscores the Real Risks of Interpreting Celestial Events",
+        "demand": 12,
+        "recency": 0,
+        "matches": [
+          {
+            "kind": "google_trend",
+            "label": "netflix",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "google",
+            "weight": 4
+          },
+          {
+            "kind": "google_trend",
+            "label": "epic games",
+            "weight": 4
+          }
+        ],
+        "score": 12.000026329935546
+      }
+    ]
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "topicKey": "stalin-great-purge-history",
+  "title": "أهم أخبار الأسبوع: حقائق عن فترة الرعب في الاتحاد السوفيتي",
+  "hook": "هل تتخيل إنك ممكن تلاقي نفسك فجأة متهم بالخيانة من غير أي سبب واضح؟ ده اللي حصل لملايين الناس في فترة مظلمة من التاريخ، تعالوا نعرف إيه اللي حصل في الاتحاد السوفيتي.",
+  "cta": "لو حابين تعرفوا تفاصيل أكتر عن أحداث التاريخ الغامضة، تابعونا واشتركوا في القناة عشان يوصلكم كل جديد من قصصنا، ونشوفكم في حلقة تانية قريبة جداً.",
+  "scenes": [
+    {
+      "title": "بداية فترة الرعب",
+      "text": "في فترة من حوالي تسعين سنة، عاش الاتحاد السوفيتي أيام صعبة جداً اتعرفت باسم فترة الرعب، ودي كانت أكتر الأوقات قسوة وظلم في تاريخ الدولة دي، والناس كانت عايشة في خوف دائم ومستمر.",
+      "summary": "مقدمة عن فترة الرعب في الاتحاد السوفيتي",
+      "keyword": "الاتحاد السوفيتي",
+      "template": "phenomenon",
+      "labels": [
+        "تاريخ",
+        "سياسة"
+      ],
+      "values": [],
+      "claim": "فترة الرعب كانت جزءاً من قمع الدولة.",
+      "sourceId": "a7d234382515",
+      "evidence": "Joseph Stalin's Great Purge, also known as the Great Terror of 1936-8, was the most manic part of a decade of state oppression in the USSR.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "حجم المأساة",
+      "text": "الأرقام اللي خرجت من الفترة دي مرعبة بكل المقاييس، حيث تم القبض على حوالي ثمانية مليون مواطن، وتم إعدام حوالي ثمانمائة ألف شخص، وده رقم ضخم جداً بيعكس حجم الظلم اللي حصل وقتها.",
+      "summary": "إحصائيات الاعتقالات والإعدامات",
+      "keyword": "إعدامات",
+      "template": "chart",
+      "labels": [
+        "إحصائيات",
+        "ضحايا"
+      ],
+      "values": [],
+      "claim": "تم القبض على ملايين وإعدام مئات الآلاف.",
+      "sourceId": "a7d234382515",
+      "evidence": "The purges saw the arrest of around 8 million Soviet citizens and around 800,000 executions.",
+      "kind": "fact",
+      "expression": 2,
+      "action": "fall"
+    },
+    {
+      "title": "مين كان المستهدف؟",
+      "text": "أي حد كان ممكن يكون هدف، لكن المجموعات اللي اتعرضت للاستهداف بشكل خاص شملت قادة الحزب الشيوعي، وضباط الجيش، والمزارعين الأغنياء، والمثقفين، والعلماء، والقادة الدينيين، يعني الكل كان في خطر حقيقي ومستمر طول الوقت.",
+      "summary": "الفئات المستهدفة في التطهير",
+      "keyword": "استهداف",
+      "template": "map",
+      "labels": [
+        "نخبة",
+        "مجتمع"
+      ],
+      "values": [],
+      "claim": "تم استهداف مجموعات متنوعة من المجتمع.",
+      "sourceId": "a7d234382515",
+      "evidence": "specific groups targeted included leaders within the Communist Party, officers in the military, wealthier farmers, intellectuals, scientists, nationalists, and religious leaders.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "point"
+    },
+    {
+      "title": "غموض الدوافع",
+      "text": "لحد النهاردة، لسه فيه نقاشات كبيرة حول الأسباب والدوافع الحقيقية ورا اللي حصل، والباحثين بيشوفوا إن الأفعال دي كانت عشوائية جداً لدرجة إنها بتصعب على أي حد إنه يفسرها أو يفهم منطقها.",
+      "summary": "استمرار الجدل التاريخي",
+      "keyword": "نقاش",
+      "template": "comparison",
+      "labels": [
+        "بحث",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "دوافع التطهير لا تزال محل جدل.",
+      "sourceId": "a7d234382515",
+      "evidence": "Still today, the motivations, scale, and consequences of the Great Purge continue to cause debate.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "turn"
+    },
+    {
+      "title": "رأي المؤرخين",
+      "text": "المؤرخ الشهير فريز وصف الحالة دي بكلمات دقيقة، وقال إن عمليات التطهير كانت عشوائية جداً في اختيار ضحاياها، وكانت غامضة في دوافعها لدرجة إنها بتعجز أي حد عن تقديم تفسير منطقي ومقنع.",
+      "summary": "تحليل المؤرخين للفترة",
+      "keyword": "تفسير",
+      "template": "phenomenon",
+      "labels": [
+        "تحليل",
+        "مؤرخ"
+      ],
+      "values": [],
+      "claim": "التطهير كان عشوائياً وغامضاً.",
+      "sourceId": "a7d234382515",
+      "evidence": "The Great Purges…of 1936-8 seem to have been so arbitrary in victimization, so elusive in motivation as to defy explanation",
+      "kind": "fact",
+      "expression": 3,
+      "action": "jump"
+    },
+    {
+      "title": "الخوف من المجهول",
+      "text": "تخيل إنك ممكن تتقبض عليك لمجرد إنك بتنتمي لفئة معينة أو حتى لمجرد الشك، ده كان الواقع اليومي لملايين الناس، والكل كان بيحاول يهرب من المصير المحتوم اللي كان بيطارد الجميع.",
+      "summary": "حالة الخوف العام",
+      "keyword": "خوف",
+      "template": "journey",
+      "labels": [
+        "معاناة",
+        "واقع"
+      ],
+      "values": [],
+      "claim": "الجميع كان معرضاً لخطر الاعتقال.",
+      "sourceId": "a7d234382515",
+      "evidence": "Anyone could be suspected of being an 'enemy of the state,'",
+      "kind": "fact",
+      "expression": 1,
+      "action": "run"
+    },
+    {
+      "title": "تأثير التطهير",
+      "text": "التطهير ده مش بس أثر على الأفراد، ده غير وجه المجتمع السوفيتي بالكامل، وفضل أثره موجود لسنين طويلة، والناس لسه بتحاول تفهم إزاي دولة ممكن تعمل في مواطنيها كل ده في وقت واحد.",
+      "summary": "الأثر طويل المدى",
+      "keyword": "تأثير",
+      "template": "cause",
+      "labels": [
+        "مجتمع",
+        "تغيير"
+      ],
+      "values": [],
+      "claim": "التطهير أثر على المجتمع السوفيتي.",
+      "sourceId": "a7d234382515",
+      "evidence": "Still today, the motivations, scale, and consequences of the Great Purge continue to cause debate.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "hang"
+    },
+    {
+      "title": "خاتمة",
+      "text": "التاريخ بيعلمنا دروس قاسية، وفترة الرعب دي بتفضل ذكرى مؤلمة عن اللي ممكن يحصل لما السلطة تسيطر على كل حاجة، شكراً لمتابعتكم معانا، وما تنسوش تشتركوا في القناة عشان يوصلكم كل جديد.",
+      "summary": "خاتمة ودعوة للمتابعة",
+      "keyword": "تاريخ",
+      "template": "steps",
+      "labels": [
+        "خاتمة",
+        "اشتراك"
+      ],
+      "values": [],
+      "claim": "التاريخ يقدم دروساً قاسية.",
+      "sourceId": "a7d234382515",
+      "evidence": "Joseph Stalin's Great Purge, also known as the Great Terror of 1936-8, was the most manic part of a decade of state oppression in the USSR.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

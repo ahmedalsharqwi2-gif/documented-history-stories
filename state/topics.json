@@ -113,5 +113,17 @@
     "value": "https://www.worldhistory.org/Francis_I_of_France/",
     "status": "review",
     "run": "2026-11-20T00-12-33-153Z"
+  },
+  {
+    "topicKey": "stalin-great-purge-history",
+    "value": "https://www.worldhistory.org/article/3028/stalins-great-purge/",
+    "status": "retired",
+    "run": "2026-11-20T00-47-23-687Z"
+  },
+  {
+    "topicKey": "ancient-cemetery-teranothis-egypt",
+    "value": "https://archaeology.org/news/2026/11/19/ancient-cemetery-discovered-in-northern-egypt/",
+    "status": "retired",
+    "run": "2026-11-20T01-01-32-401Z"
   }
 ]
