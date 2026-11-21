@@ -1,0 +1,178 @@
+{
+  "title": "أسرار مدافن الأطفال في إستونيا القديمة",
+  "editorialLabel": null,
+  "scenes": [
+    {
+      "title": "اكتشافات في مقابر إستونيا",
+      "text": "في إستونيا، الباحثين فحصوا بقايا أطفال من العصور القديمة، وتحديداً من العصر الحديدي والعصور الوسطى. التحاليل دي ركزت على بروتينات موجودة في مينا الأسنان عشان يفهموا طبيعة المدافن دي وتطورها مع مرور الوقت.",
+      "summary": "فحص بقايا أطفال من العصور القديمة في إستونيا.",
+      "keyword": "مدافن",
+      "template": "phenomenon",
+      "labels": [
+        "إستونيا",
+        "آثار",
+        "مقابر"
+      ],
+      "values": [],
+      "claim": "تحليل البروتينات في أسنان الأطفال كشف عن تغيرات في مدافنهم.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10.",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "نقطة التحول عند سن العاشرة",
+      "text": "النتائج الأولية بتشير إن سن العاشرة كان نقطة تحول حقيقية في حياة الأطفال. عند السن ده، بدأت تظهر فروق واضحة في كمية وتعقيد الأدوات اللي بتتحط مع الطفل في قبره، وده شيء مثير جداً.",
+      "summary": "سن العاشرة هو نقطة تحول في مدافن الأطفال.",
+      "keyword": "تحول",
+      "template": "comparison",
+      "labels": [
+        "تاريخ",
+        "أطفال",
+        "تحليل"
+      ],
+      "values": [],
+      "claim": "سن العاشرة يمثل نقطة تحول في تعقيد المدافن.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "“From my initial results, it seems that around the age of ten is a turning point, where the quantity and complexity of grave goods changes,”",
+      "kind": "fact",
+      "expression": 8,
+      "action": "point",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "الأدوات والمجوهرات",
+      "text": "كان فيه اعتقاد سائد إن الولاد بيتدفنوا مع أسلحة وأدوات، والبنات مع مجوهرات. التحاليل الجديدة أكدت إن الأطفال الأصغر سناً كانوا بيتدفنوا مع حاجات بسيطة زي الخرز، لكن الوضع اتغير تماماً لما كبروا شوية.",
+      "summary": "تغير نوعية الأدوات المدفونة مع الأطفال.",
+      "keyword": "أدوات",
+      "template": "steps",
+      "labels": [
+        "أدوات",
+        "مجوهرات",
+        "تقاليد"
+      ],
+      "values": [],
+      "claim": "الاعتقاد السائد كان أن الأولاد يدفنون مع أسلحة والبنات مع مجوهرات.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "“The assumption has been that boys have more weapons and tools, and girls more jewelry,”",
+      "kind": "fact",
+      "expression": 4,
+      "action": "turn",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "مدافن البنات",
+      "text": "البنات اللي وصلوا لسن العاشرة تقريباً، بدأوا يتدفنوا مع مجوهرات أكتر، وده بيشبه جداً المدافن الخاصة بالستات البالغين. ده بيخلينا نفكر في المكانة الاجتماعية اللي كانت بتتحط فيها البنت في المجتمع القديم ده.",
+      "summary": "مدافن البنات تشبه مدافن النساء البالغات.",
+      "keyword": "بنات",
+      "template": "comparison",
+      "labels": [
+        "بنات",
+        "مجتمع",
+        "مدافن"
+      ],
+      "values": [],
+      "claim": "البنات في سن العاشرة يدفن مع مجوهرات تشبه مدافن النساء.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "But around age 10, girls were buried with more jewelry, similar to the grave goods interred with adult women.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "jump",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "مدافن الولاد",
+      "text": "أما الولاد، فكانوا بيتدفنوا مع أدوات ورؤوس رماح، وده بيشبه مدافن الرجالة الكبار. الباحثين بيعتقدوا إن ده ممكن يكون معناه إنهم بدأوا يتدربوا على القتال، أو إنها كانت رمز لمستقبلهم كرجالة محاربين في المجتمع.",
+      "summary": "الولاد يدفنون مع أدوات تشبه مدافن الرجال.",
+      "keyword": "ولاد",
+      "template": "cause",
+      "labels": [
+        "محاربين",
+        "أدوات",
+        "رماح"
+      ],
+      "values": [],
+      "claim": "الولاد يدفنون مع أدوات ورؤوس رماح تشبه مدافن الرجال.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "Boys were buried with tools and spearheads around the same age, similar to the grave goods buried with grown men.",
+      "kind": "fact",
+      "expression": 7,
+      "action": "run",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تفسير وجود الرماح",
+      "text": "ممكن يكون الولد كان بيتدرب فعلاً على القتال في السن ده، أو إن وجود الرمح كان مجرد أمنية من الأهل إن لو كان الولد كبر، كان ممكن يبقى محارب شجاع ومدافع عن قبيلته في المستقبل.",
+      "summary": "تفسيرات وجود الرماح في مدافن الأطفال.",
+      "keyword": "رماح",
+      "template": "phenomenon",
+      "labels": [
+        "محارب",
+        "تدريب",
+        "تفسير"
+      ],
+      "values": [],
+      "claim": "وجود الرمح قد يعني أن الولد كان سيصبح محارباً.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "“The second option is simply that a spearhead was placed in the grave with the thought that had the boy grown up, he could have become a warrior,”",
+      "kind": "fact",
+      "expression": 9,
+      "action": "point",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "تطور المدافن",
+      "text": "الدراسة دي بتورينا قد إيه المجتمع القديم كان مهتم بتحديد الأدوار الاجتماعية للأطفال في سن مبكرة. المدافن ما كانتش مجرد مكان للدفن، لكنها كانت رسالة عن هوية الطفل ومكانته في العالم اللي عاش فيه.",
+      "summary": "المدافن تعكس الهوية والمكانة الاجتماعية.",
+      "keyword": "هوية",
+      "template": "map",
+      "labels": [
+        "مجتمع",
+        "تطور",
+        "هوية"
+      ],
+      "values": [],
+      "claim": "المدافن تعكس الأدوار الاجتماعية للأطفال.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10.",
+      "kind": "fact",
+      "expression": 3,
+      "action": "walk",
+      "duration": 12,
+      "words": []
+    },
+    {
+      "title": "خاتمة",
+      "text": "العلم بيقدر يفتح لنا أبواب مقفولة من آلاف السنين، وبيخلينا نفهم تفاصيل حياة الناس اللي عاشوا قبلنا. كل قطعة صغيرة في القبر بتحكي قصة كبيرة عن البشر، وعن إزاي كانوا بيشوفوا ولادهم ومستقبلهم.",
+      "summary": "العلم يكشف أسرار الماضي.",
+      "keyword": "علم",
+      "template": "journey",
+      "labels": [
+        "علم",
+        "تاريخ",
+        "قصص"
+      ],
+      "values": [],
+      "claim": "العلم يكشف تفاصيل حياة الناس في الماضي.",
+      "sourceId": "8ab3ce01a696",
+      "evidence": "analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10.",
+      "kind": "fact",
+      "expression": 10,
+      "action": "sleep",
+      "duration": 12,
+      "words": []
+    }
+  ],
+  "durationInFrames": 2880,
+  "incompleteMode": "silent",
+  "preview": true,
+  "incomplete": true
+}

@@ -1,0 +1,349 @@
+{
+  "schema": 1,
+  "id": "2026-11-21T08-26-19-690Z",
+  "profile": "history",
+  "episode": {
+    "topicKey": "estonian-children-grave-goods-analysis",
+    "title": "أسرار مدافن الأطفال في إستونيا القديمة",
+    "hook": "عمرك سألت نفسك ليه الأطفال في العصور القديمة كانوا بيدفنوا بأدوات معينة؟ هل كان ده مجرد تقليد ولا بيعكس أدوارهم في المجتمع؟ تعالوا نعرف إيه اللي كشفته تحاليل البروتين الحديثة في إستونيا.",
+    "cta": "لو حابب تعرف أكتر عن أسرار التاريخ اللي بتكشفها العلوم الحديثة، تابعنا في نقص ونروي، واعمل اشتراك عشان يوصلك كل جديد عن حكايات الماضي اللي لسه بتندهش منها لحد النهاردة.",
+    "scenes": [
+      {
+        "title": "اكتشافات في مقابر إستونيا",
+        "text": "في إستونيا، الباحثين فحصوا بقايا أطفال من العصور القديمة، وتحديداً من العصر الحديدي والعصور الوسطى. التحاليل دي ركزت على بروتينات موجودة في مينا الأسنان عشان يفهموا طبيعة المدافن دي وتطورها مع مرور الوقت.",
+        "summary": "فحص بقايا أطفال من العصور القديمة في إستونيا.",
+        "keyword": "مدافن",
+        "template": "phenomenon",
+        "labels": [
+          "إستونيا",
+          "آثار",
+          "مقابر"
+        ],
+        "values": [],
+        "claim": "تحليل البروتينات في أسنان الأطفال كشف عن تغيرات في مدافنهم.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10.",
+        "kind": "fact",
+        "expression": 5,
+        "action": "walk"
+      },
+      {
+        "title": "نقطة التحول عند سن العاشرة",
+        "text": "النتائج الأولية بتشير إن سن العاشرة كان نقطة تحول حقيقية في حياة الأطفال. عند السن ده، بدأت تظهر فروق واضحة في كمية وتعقيد الأدوات اللي بتتحط مع الطفل في قبره، وده شيء مثير جداً.",
+        "summary": "سن العاشرة هو نقطة تحول في مدافن الأطفال.",
+        "keyword": "تحول",
+        "template": "comparison",
+        "labels": [
+          "تاريخ",
+          "أطفال",
+          "تحليل"
+        ],
+        "values": [],
+        "claim": "سن العاشرة يمثل نقطة تحول في تعقيد المدافن.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "“From my initial results, it seems that around the age of ten is a turning point, where the quantity and complexity of grave goods changes,”",
+        "kind": "fact",
+        "expression": 8,
+        "action": "point"
+      },
+      {
+        "title": "الأدوات والمجوهرات",
+        "text": "كان فيه اعتقاد سائد إن الولاد بيتدفنوا مع أسلحة وأدوات، والبنات مع مجوهرات. التحاليل الجديدة أكدت إن الأطفال الأصغر سناً كانوا بيتدفنوا مع حاجات بسيطة زي الخرز، لكن الوضع اتغير تماماً لما كبروا شوية.",
+        "summary": "تغير نوعية الأدوات المدفونة مع الأطفال.",
+        "keyword": "أدوات",
+        "template": "steps",
+        "labels": [
+          "أدوات",
+          "مجوهرات",
+          "تقاليد"
+        ],
+        "values": [],
+        "claim": "الاعتقاد السائد كان أن الأولاد يدفنون مع أسلحة والبنات مع مجوهرات.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "“The assumption has been that boys have more weapons and tools, and girls more jewelry,”",
+        "kind": "fact",
+        "expression": 4,
+        "action": "turn"
+      },
+      {
+        "title": "مدافن البنات",
+        "text": "البنات اللي وصلوا لسن العاشرة تقريباً، بدأوا يتدفنوا مع مجوهرات أكتر، وده بيشبه جداً المدافن الخاصة بالستات البالغين. ده بيخلينا نفكر في المكانة الاجتماعية اللي كانت بتتحط فيها البنت في المجتمع القديم ده.",
+        "summary": "مدافن البنات تشبه مدافن النساء البالغات.",
+        "keyword": "بنات",
+        "template": "comparison",
+        "labels": [
+          "بنات",
+          "مجتمع",
+          "مدافن"
+        ],
+        "values": [],
+        "claim": "البنات في سن العاشرة يدفن مع مجوهرات تشبه مدافن النساء.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "But around age 10, girls were buried with more jewelry, similar to the grave goods interred with adult women.",
+        "kind": "fact",
+        "expression": 6,
+        "action": "jump"
+      },
+      {
+        "title": "مدافن الولاد",
+        "text": "أما الولاد، فكانوا بيتدفنوا مع أدوات ورؤوس رماح، وده بيشبه مدافن الرجالة الكبار. الباحثين بيعتقدوا إن ده ممكن يكون معناه إنهم بدأوا يتدربوا على القتال، أو إنها كانت رمز لمستقبلهم كرجالة محاربين في المجتمع.",
+        "summary": "الولاد يدفنون مع أدوات تشبه مدافن الرجال.",
+        "keyword": "ولاد",
+        "template": "cause",
+        "labels": [
+          "محاربين",
+          "أدوات",
+          "رماح"
+        ],
+        "values": [],
+        "claim": "الولاد يدفنون مع أدوات ورؤوس رماح تشبه مدافن الرجال.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "Boys were buried with tools and spearheads around the same age, similar to the grave goods buried with grown men.",
+        "kind": "fact",
+        "expression": 7,
+        "action": "run"
+      },
+      {
+        "title": "تفسير وجود الرماح",
+        "text": "ممكن يكون الولد كان بيتدرب فعلاً على القتال في السن ده، أو إن وجود الرمح كان مجرد أمنية من الأهل إن لو كان الولد كبر، كان ممكن يبقى محارب شجاع ومدافع عن قبيلته في المستقبل.",
+        "summary": "تفسيرات وجود الرماح في مدافن الأطفال.",
+        "keyword": "رماح",
+        "template": "phenomenon",
+        "labels": [
+          "محارب",
+          "تدريب",
+          "تفسير"
+        ],
+        "values": [],
+        "claim": "وجود الرمح قد يعني أن الولد كان سيصبح محارباً.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "“The second option is simply that a spearhead was placed in the grave with the thought that had the boy grown up, he could have become a warrior,”",
+        "kind": "fact",
+        "expression": 9,
+        "action": "point"
+      },
+      {
+        "title": "تطور المدافن",
+        "text": "الدراسة دي بتورينا قد إيه المجتمع القديم كان مهتم بتحديد الأدوار الاجتماعية للأطفال في سن مبكرة. المدافن ما كانتش مجرد مكان للدفن، لكنها كانت رسالة عن هوية الطفل ومكانته في العالم اللي عاش فيه.",
+        "summary": "المدافن تعكس الهوية والمكانة الاجتماعية.",
+        "keyword": "هوية",
+        "template": "map",
+        "labels": [
+          "مجتمع",
+          "تطور",
+          "هوية"
+        ],
+        "values": [],
+        "claim": "المدافن تعكس الأدوار الاجتماعية للأطفال.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10.",
+        "kind": "fact",
+        "expression": 3,
+        "action": "walk"
+      },
+      {
+        "title": "خاتمة",
+        "text": "العلم بيقدر يفتح لنا أبواب مقفولة من آلاف السنين، وبيخلينا نفهم تفاصيل حياة الناس اللي عاشوا قبلنا. كل قطعة صغيرة في القبر بتحكي قصة كبيرة عن البشر، وعن إزاي كانوا بيشوفوا ولادهم ومستقبلهم.",
+        "summary": "العلم يكشف أسرار الماضي.",
+        "keyword": "علم",
+        "template": "journey",
+        "labels": [
+          "علم",
+          "تاريخ",
+          "قصص"
+        ],
+        "values": [],
+        "claim": "العلم يكشف تفاصيل حياة الناس في الماضي.",
+        "sourceId": "8ab3ce01a696",
+        "evidence": "analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10.",
+        "kind": "fact",
+        "expression": 10,
+        "action": "sleep"
+      }
+    ],
+    "editorialMode": "daily",
+    "editorialLabel": null,
+    "scriptModel": "gemini-3.1-flash-lite"
+  },
+  "topic": {
+    "selected": {
+      "id": "8ab3ce01a696",
+      "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+      "url": "https://archaeology.org/news/2026/11/20/protein-analysis-used-to-test-ideas-about-childrens-grave-goods-in-estonia/",
+      "text": "TARTU, ESTONIA— Estonian Public Radio reports that analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10. In these two cemeteries, the children’s burials were placed in the same areas as the adults. “From my initial results, it seems that around the age of ten is a turning point, where the quantity and complexity of grave goods changes,” said Karin Rannaäär of the University of Tartu. “The assumption has been that boys have more weapons and tools, and girls more jewelry,” she explained. Younger children were buried with jewelry and items related to clothing, such as bronze studs and spirals, necklaces, bracelets, and beads. But around age 10, girls were buried with more jewelry, similar to the grave goods interred with adult women. Boys were buried with tools and spearheads around the same age, similar to the grave goods buried with grown men. Boys may have been practicing combat at that age, Rannaäär explained. “The second option is simply that a spearhead was placed in the grave with the thought that had the boy grown up, he could have become a warrior,” she added. To read about a boy’s burial in medieval Germany, go to “ Good Night, Sweet Prince .” The post Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia appeared first on Archaeology Magazine .",
+      "published": "2026-11-20T18:30:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://news.err.ee/1610199226/ancient-proteins-confirm-gender-specific-grave-goods-in-estonian-child-burials",
+        "https://archaeology.org/issues/september-october-2025/digs-discoveries/good-night-sweet-prince/",
+        "https://archaeology.org/news/2026/11/20/protein-analysis-used-to-test-ideas-about-childrens-grave-goods-in-estonia/",
+        "https://archaeology.org"
+      ]
+    },
+    "sources": [
+      {
+        "id": "8ab3ce01a696",
+        "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+        "url": "https://archaeology.org/news/2026/11/20/protein-analysis-used-to-test-ideas-about-childrens-grave-goods-in-estonia/",
+        "text": "TARTU, ESTONIA— Estonian Public Radio reports that analysis of proteins recovered from the dental enamel of children interred at two cemeteries in Estonia during the late Iron Age and early medieval period suggests that children’s burials became more complex and differentiated by gender around the age of 10. In these two cemeteries, the children’s burials were placed in the same areas as the adults. “From my initial results, it seems that around the age of ten is a turning point, where the quantity and complexity of grave goods changes,” said Karin Rannaäär of the University of Tartu. “The assumption has been that boys have more weapons and tools, and girls more jewelry,” she explained. Younger children were buried with jewelry and items related to clothing, such as bronze studs and spirals, necklaces, bracelets, and beads. But around age 10, girls were buried with more jewelry, similar to the grave goods interred with adult women. Boys were buried with tools and spearheads around the same age, similar to the grave goods buried with grown men. Boys may have been practicing combat at that age, Rannaäär explained. “The second option is simply that a spearhead was placed in the grave with the thought that had the boy grown up, he could have become a warrior,” she added. To read about a boy’s burial in medieval Germany, go to “ Good Night, Sweet Prince .” The post Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia appeared first on Archaeology Magazine .",
+        "published": "2026-11-20T18:30:00.000Z",
+        "official": true,
+        "dateBasis": "item_publication_or_update",
+        "publisher": "www.archaeology.org",
+        "primaryRefs": [
+          "https://news.err.ee/1610199226/ancient-proteins-confirm-gender-specific-grave-goods-in-estonian-child-burials",
+          "https://archaeology.org/issues/september-october-2025/digs-discoveries/good-night-sweet-prince/",
+          "https://archaeology.org/news/2026/11/20/protein-analysis-used-to-test-ideas-about-childrens-grave-goods-in-estonia/",
+          "https://archaeology.org"
+        ]
+      }
+    ],
+    "editorialMode": "daily",
+    "editorialLabel": null,
+    "windowHours": 720,
+    "verification": [
+      {
+        "id": "8ab3ce01a696",
+        "basis": "official_primary_source",
+        "sourceIds": [
+          "8ab3ce01a696"
+        ]
+      }
+    ],
+    "diagnostics": [
+      {
+        "url": "https://www.archaeology.org/feed/",
+        "items": 10,
+        "valid": 10,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.livescience.com/feeds/all",
+        "items": 50,
+        "valid": 50,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.worldhistory.org/rss/",
+        "items": 20,
+        "valid": 20,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      },
+      {
+        "url": "https://www.smithsonianmag.com/rss/history/",
+        "items": 21,
+        "valid": 21,
+        "invalid": 0,
+        "future": 0,
+        "status": "ok",
+        "cache": "hit"
+      }
+    ],
+    "trend": [
+      {
+        "id": "8ab3ce01a696",
+        "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+        "demand": 0,
+        "recency": 0.824,
+        "matches": [],
+        "score": 0.41199580207142367
+      },
+      {
+        "id": "19f0037a6923",
+        "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+        "demand": 0,
+        "recency": 0.818,
+        "matches": [],
+        "score": 0.40914463146872637
+      },
+      {
+        "id": "2de39066c2ce",
+        "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+        "demand": 0,
+        "recency": 0.761,
+        "matches": [],
+        "score": 0.3803728854336754
+      }
+    ],
+    "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+    "trendDiagnostics": {
+      "sources": [
+        {
+          "source": "trends",
+          "status": "ok",
+          "items": 9
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 2
+        },
+        {
+          "source": "suggestions",
+          "status": "ok",
+          "items": 10
+        },
+        {
+          "source": "onThisDay",
+          "status": "ok",
+          "items": 33
+        }
+      ],
+      "degraded": false,
+      "decisions": [
+        {
+          "id": "8ab3ce01a696",
+          "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+          "demand": 0,
+          "recency": 0.824,
+          "matches": [],
+          "score": 0.41199580207142367
+        },
+        {
+          "id": "19f0037a6923",
+          "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+          "demand": 0,
+          "recency": 0.818,
+          "matches": [],
+          "score": 0.40914463146872637
+        },
+        {
+          "id": "2de39066c2ce",
+          "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+          "demand": 0,
+          "recency": 0.761,
+          "matches": [],
+          "score": 0.3803728854336754
+        }
+      ]
+    }
+  },
+  "scriptSha256": "675db783d614c0eb09536d7db114b6a26003c0e46746eda5c328d79f43bd07de",
+  "state": "failed",
+  "lastFailure": {
+    "stage": "voice",
+    "code": "STAGE_FAILED_SEE_RUNBOOK",
+    "repeat": 0
+  }
+}

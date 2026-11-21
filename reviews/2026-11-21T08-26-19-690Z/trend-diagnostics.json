@@ -1,0 +1,61 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 9
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 33
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "8ab3ce01a696",
+      "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+      "demand": 0,
+      "recency": 0.824,
+      "matches": [],
+      "score": 0.41199580207142367
+    },
+    {
+      "id": "19f0037a6923",
+      "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+      "demand": 0,
+      "recency": 0.818,
+      "matches": [],
+      "score": 0.40914463146872637
+    },
+    {
+      "id": "2de39066c2ce",
+      "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+      "demand": 0,
+      "recency": 0.761,
+      "matches": [],
+      "score": 0.3803728854336754
+    }
+  ]
+}

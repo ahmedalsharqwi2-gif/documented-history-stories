@@ -1,0 +1,163 @@
+{
+  "topicKey": "ancient-tavern-tell-muhammad",
+  "title": "حانة قديمة في العراق",
+  "hook": "عمرك سألت نفسك إزاي كان بيقضي الناس وقتهم من حوالي أربعة آلاف سنة؟",
+  "cta": "تابعونا عشان تعرفوا أكتر عن أسرار التاريخ اللي لسه بنكتشفها كل يوم.",
+  "scenes": [
+    {
+      "title": "اكتشاف مذهل في العراق",
+      "text": "في موقع تل محمد بالعراق، اكتشف باحثون مبنى عمره حوالي ثلاثة آلاف وثمانمائة سنة، بيعتقدوا إنه كان حانة قديمة، المكان ده بيحكي قصص عن الحياة اليومية للناس في العصور القديمة.",
+      "summary": "اكتشاف مبنى قديم في العراق قد يكون حانة.",
+      "keyword": "تل محمد",
+      "template": "phenomenon",
+      "labels": [
+        "العراق",
+        "آثار",
+        "تل محمد"
+      ],
+      "values": [],
+      "claim": "Researchers are continuing to excavate the site of a 3,800-year-old building at Tell Muhammad",
+      "sourceId": "007b382a0991",
+      "evidence": "researchers led by Nicola Laneri of the University of Catania are continuing to excavate the site of a 3,800-year-old building at Tell Muhammad",
+      "kind": "fact",
+      "expression": 5,
+      "action": "walk"
+    },
+    {
+      "title": "عقد قانوني قديم",
+      "text": "لقوا لوح طيني مكتوب عليه اتفاقية لاستعارة الشعير والبيرة، العقد ده كان متوثق قدام شاهدين، وده بيورينا إن النظام والقانون كان موجود من زمان جداً في التعاملات اليومية بين الناس.",
+      "summary": "لوح طيني يوثق اتفاقية تجارية قديمة.",
+      "keyword": "لوح مسماري",
+      "template": "phenomenon",
+      "labels": [
+        "عقود",
+        "تاريخ",
+        "تجارة"
+      ],
+      "values": [],
+      "claim": "A cuneiform tablet recording an agreement to borrow barley and beer was found in one of the building’s rooms.",
+      "sourceId": "007b382a0991",
+      "evidence": "A cuneiform tablet recording an agreement to borrow barley and beer was found in one of the building’s rooms.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "point"
+    },
+    {
+      "title": "تصميم المكان",
+      "text": "المكان فيه كاونتر نص دائري من الطوب اللبن بيواجه الشارع، وفيه حوض صغير ممكن يكون استخدموه في صناعة الخبز أو تخمير المشروبات، تصميم بيشبه الحانات اللي بنشوفها في وقتنا الحالي.",
+      "summary": "تصميم المكان يشبه الحانات الحديثة.",
+      "keyword": "طوب لبن",
+      "template": "comparison",
+      "labels": [
+        "عمارة",
+        "تصميم",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "The space where the tablet was uncovered features a semicircular mudbrick counter facing the street",
+      "sourceId": "007b382a0991",
+      "evidence": "The space where the tablet was uncovered features a semicircular mudbrick counter facing the street",
+      "kind": "fact",
+      "expression": 4,
+      "action": "turn"
+    },
+    {
+      "title": "أسوار المدينة العظيمة",
+      "text": "عند طرف الغرفة، اكتشف الباحثون جزء من سور المدينة الخارجي اللي بيوصل سمكه لستة عشر قدماً، وفي المجمل كشفوا عن أكثر من ثلاثمائة قدم من السور وبوابة ثانوية صغيرة.",
+      "summary": "اكتشاف أجزاء ضخمة من سور المدينة القديم.",
+      "keyword": "سور المدينة",
+      "template": "map",
+      "labels": [
+        "أسوار",
+        "تحصينات",
+        "تل محمد"
+      ],
+      "values": [],
+      "claim": "In all, more than 300 feet of the wall and a small secondary gate have been uncovered.",
+      "sourceId": "007b382a0991",
+      "evidence": "In all, more than 300 feet of the wall and a small secondary gate have been uncovered.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "jump"
+    },
+    {
+      "title": "نظام مياه متطور",
+      "text": "العلماء لقوا مواسير مصنوعة من حصير القصب والطين، كانت بتستخدم لنقل الميه لخزان كبير مبني جوه سور المدينة، ده بيبين براعة المهندسين القدماء في إدارة الموارد المائية في مدينتهم.",
+      "summary": "نظام مياه متطور داخل أسوار المدينة.",
+      "keyword": "مواسير",
+      "template": "steps",
+      "labels": [
+        "هندسة",
+        "مياه",
+        "تكنولوجيا"
+      ],
+      "values": [],
+      "claim": "The excavation also revealed piping made of reed mats and clay that was used to carry water into a large cistern",
+      "sourceId": "007b382a0991",
+      "evidence": "The excavation also revealed piping made of reed mats and clay that was used to carry water into a large cistern",
+      "kind": "fact",
+      "expression": 3,
+      "action": "run"
+    },
+    {
+      "title": "خيال تاريخي",
+      "text": "تخيل لو كنت ماشي في الشارع ده من آلاف السنين، وشفت الناس واقفة بتشرب وبتاكل قدام الكاونتر ده، التاريخ مش بس كتب، ده حياة حقيقية كانت بتنبض في المكان ده.",
+      "summary": "تخيل الحياة اليومية في الحانة القديمة.",
+      "keyword": "حياة قديمة",
+      "template": "journey",
+      "labels": [
+        "خيال",
+        "تاريخ",
+        "حياة"
+      ],
+      "values": [],
+      "claim": "The building was likely a tavern used by ancient people.",
+      "sourceId": "007b382a0991",
+      "evidence": "The post Possible Ancient Tavern Investigated Near Baghdad",
+      "kind": "illustration",
+      "expression": 10,
+      "action": "walk"
+    },
+    {
+      "title": "أهمية الاكتشاف",
+      "text": "الاكتشافات دي بتساعدنا نفهم إزاي كانت المجتمعات القديمة بتنظم حياتها، مش بس في القصور، لكن كمان في الأماكن العامة اللي بيجتمع فيها الناس العاديين عشان يتبادلوا السلع والأخبار اليومية.",
+      "summary": "فهم المجتمعات القديمة من خلال الأماكن العامة.",
+      "keyword": "مجتمع",
+      "template": "cause",
+      "labels": [
+        "مجتمع",
+        "ثقافة",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "The site provides insight into daily life in ancient Iraq.",
+      "sourceId": "007b382a0991",
+      "evidence": "The post Possible Ancient Tavern Investigated Near Baghdad",
+      "kind": "fact",
+      "expression": 7,
+      "action": "point"
+    },
+    {
+      "title": "خاتمة",
+      "text": "التاريخ لسه مخبي لينا كنوز كتير تحت الرمل، كل حجر بنلاقيه بيفتح باب جديد لمعرفة أجدادنا، تابعونا عشان تعرفوا أكتر عن أسرار التاريخ اللي لسه بنكتشفها كل يوم.",
+      "summary": "دعوة لمتابعة المزيد من الاكتشافات التاريخية.",
+      "keyword": "كنوز",
+      "template": "journey",
+      "labels": [
+        "تاريخ",
+        "اكتشاف",
+        "آثار"
+      ],
+      "values": [],
+      "claim": "Archaeology continues to reveal new information about the past.",
+      "sourceId": "007b382a0991",
+      "evidence": "The post Possible Ancient Tavern Investigated Near Baghdad",
+      "kind": "fact",
+      "expression": 11,
+      "action": "turn"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

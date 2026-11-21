@@ -1,0 +1,200 @@
+{
+  "selected": {
+    "id": "0ee579cef28f",
+    "title": "Students Recover Roman Military Artifacts in Northern England",
+    "url": "https://archaeology.org/news/2026/11/20/students-recover-roman-military-artifacts-in-northern-england/",
+    "text": "Roman cavalry dangler REDESDALE, ENGLAND—A student excavation at a site on the Roman frontier in northeastern England uncovered several artifacts linked to Roman elites and military service, according to a statement released by Newcastle University . The first, a piece of gold chain measuring almost three inches long, is made of individual rings that were pinched into figure-eight shapes, folded, and then interwoven. A small lead sheet bearing a Latin inscription may have been used as a personal message, a curse tablet, or a commercial seal. A gilded bronze fitting in a crescent shape could have been attached to a military belt, a horse harness, or a scabbard. A carved carnelian intaglio depicting the god Jupiter holding a scepter, a figure of Victory, and an eagle is the fourth intaglio unearthed at the site to date. The students also recovered coins, spearheads, dress accessories, and a bowl inscribed with the partial name “Martin,” likely for “Martinus.” To read about a Roman artifact found in the northern English town of Corbridge, go to “ Hero Worship .” The post Students Recover Roman Military Artifacts in Northern England appeared first on Archaeology Magazine .",
+    "published": "2026-11-20T19:00:00.000Z",
+    "official": true,
+    "dateBasis": "item_publication_or_update",
+    "publisher": "www.archaeology.org",
+    "primaryRefs": [
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate-300x157.jpg",
+      "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate-768x402.jpg",
+      "http://www.w3.org/2000/svg",
+      "https://www.ncl.ac.uk/press/articles/latest/2026/11/archaeologystudentsredesdale2026/",
+      "https://archaeology.org/issues/may-june-2025/digs-discoveries/hero-worship/",
+      "https://archaeology.org/news/2026/11/20/students-recover-roman-military-artifacts-in-northern-england/",
+      "https://archaeology.org"
+    ]
+  },
+  "sources": [
+    {
+      "id": "0ee579cef28f",
+      "title": "Students Recover Roman Military Artifacts in Northern England",
+      "url": "https://archaeology.org/news/2026/11/20/students-recover-roman-military-artifacts-in-northern-england/",
+      "text": "Roman cavalry dangler REDESDALE, ENGLAND—A student excavation at a site on the Roman frontier in northeastern England uncovered several artifacts linked to Roman elites and military service, according to a statement released by Newcastle University . The first, a piece of gold chain measuring almost three inches long, is made of individual rings that were pinched into figure-eight shapes, folded, and then interwoven. A small lead sheet bearing a Latin inscription may have been used as a personal message, a curse tablet, or a commercial seal. A gilded bronze fitting in a crescent shape could have been attached to a military belt, a horse harness, or a scabbard. A carved carnelian intaglio depicting the god Jupiter holding a scepter, a figure of Victory, and an eagle is the fourth intaglio unearthed at the site to date. The students also recovered coins, spearheads, dress accessories, and a bowl inscribed with the partial name “Martin,” likely for “Martinus.” To read about a Roman artifact found in the northern English town of Corbridge, go to “ Hero Worship .” The post Students Recover Roman Military Artifacts in Northern England appeared first on Archaeology Magazine .",
+      "published": "2026-11-20T19:00:00.000Z",
+      "official": true,
+      "dateBasis": "item_publication_or_update",
+      "publisher": "www.archaeology.org",
+      "primaryRefs": [
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate-300x157.jpg",
+        "https://archaeology.org/wp-content/uploads/2026/11/News-20261120-England-Roman-Peltate-768x402.jpg",
+        "http://www.w3.org/2000/svg",
+        "https://www.ncl.ac.uk/press/articles/latest/2026/11/archaeologystudentsredesdale2026/",
+        "https://archaeology.org/issues/may-june-2025/digs-discoveries/hero-worship/",
+        "https://archaeology.org/news/2026/11/20/students-recover-roman-military-artifacts-in-northern-england/",
+        "https://archaeology.org"
+      ]
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "windowHours": 720,
+  "verification": [
+    {
+      "id": "0ee579cef28f",
+      "basis": "official_primary_source",
+      "sourceIds": [
+        "0ee579cef28f"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "url": "https://www.archaeology.org/feed/",
+      "items": 10,
+      "valid": 10,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.livescience.com/feeds/all",
+      "items": 50,
+      "valid": 50,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.worldhistory.org/rss/",
+      "items": 20,
+      "valid": 20,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    },
+    {
+      "url": "https://www.smithsonianmag.com/rss/history/",
+      "items": 21,
+      "valid": 21,
+      "invalid": 0,
+      "future": 0,
+      "status": "ok",
+      "cache": "hit"
+    }
+  ],
+  "trend": [
+    {
+      "id": "0ee579cef28f",
+      "title": "Students Recover Roman Military Artifacts in Northern England",
+      "demand": 0,
+      "recency": 0.831,
+      "matches": [],
+      "score": 0.4155399512928136
+    },
+    {
+      "id": "8ab3ce01a696",
+      "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+      "demand": 0,
+      "recency": 0.825,
+      "matches": [],
+      "score": 0.41266425380411215
+    },
+    {
+      "id": "19f0037a6923",
+      "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+      "demand": 0,
+      "recency": 0.82,
+      "matches": [],
+      "score": 0.40980845725639314
+    },
+    {
+      "id": "2de39066c2ce",
+      "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+      "demand": 0,
+      "recency": 0.762,
+      "matches": [],
+      "score": 0.3809900298634426
+    }
+  ],
+  "scoring": "Source authority, verified freshness and unused canonical source URL; no invented trend-volume metric.",
+  "trendDiagnostics": {
+    "sources": [
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "trends",
+        "status": "ok",
+        "items": 9
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 2
+      },
+      {
+        "source": "suggestions",
+        "status": "ok",
+        "items": 10
+      },
+      {
+        "source": "onThisDay",
+        "status": "ok",
+        "items": 33
+      }
+    ],
+    "degraded": false,
+    "decisions": [
+      {
+        "id": "0ee579cef28f",
+        "title": "Students Recover Roman Military Artifacts in Northern England",
+        "demand": 0,
+        "recency": 0.831,
+        "matches": [],
+        "score": 0.4155399512928136
+      },
+      {
+        "id": "8ab3ce01a696",
+        "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+        "demand": 0,
+        "recency": 0.825,
+        "matches": [],
+        "score": 0.41266425380411215
+      },
+      {
+        "id": "19f0037a6923",
+        "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+        "demand": 0,
+        "recency": 0.82,
+        "matches": [],
+        "score": 0.40980845725639314
+      },
+      {
+        "id": "2de39066c2ce",
+        "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+        "demand": 0,
+        "recency": 0.762,
+        "matches": [],
+        "score": 0.3809900298634426
+      }
+    ]
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "events": [
+    {
+      "type": "models_resolved",
+      "kind": "text",
+      "models": [
+        "gemini-3.1-flash-lite",
+        "gemini-3.5-flash-lite",
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3.8-flash",
+        "gemini-3.5-flash",
+        "gemini-4-hydrogen",
+        "gemini-flash-lite-latest",
+        "gemini-flash-latest",
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3-flash-preview",
+        "gemini-2.5-flash-lite",
+        "gemini-2.5-flash"
+      ],
+      "at": 1795248744038
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795248816482
+    },
+    {
+      "type": "models_resolved",
+      "kind": "voice",
+      "models": [
+        "gemini-3.1-flash-tts-preview",
+        "gemini-2.5-flash-preview-tts",
+        "gemini-2.5-pro-preview-tts",
+        "gemini-3.8-flash-tts",
+        "gemini-3.8-flash-lite-tts"
+      ],
+      "at": 1795248816558
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795248854493
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795248883804
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795248913584
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795248943581
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795248974261
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795249003323
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795249033510
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795249063637
+    },
+    {
+      "type": "cache_hit",
+      "id": "48bdec423cc2a5980e7b230727279623cfd4b9172a9a59047a7e8460ca6e66ff",
+      "model": "gemini-3.1-flash-tts-preview",
+      "at": 1795249090763
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795249099491
+    },
+    {
+      "type": "voice_key_pacing",
+      "kind": "voice",
+      "keyId": "cf4efb8a7ab9",
+      "waitMs": 11254,
+      "at": 1795249099716
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-3.1-flash-tts-preview",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 429,
+      "quotaKind": "day",
+      "retryAfterMs": 0,
+      "quotaMessage": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. * Quota exceeded for metric: generativelanguage.googleapis.com/ge",
+      "at": 1795249121069
+    },
+    {
+      "type": "voice_key_pacing",
+      "kind": "voice",
+      "keyId": "cf4efb8a7ab9",
+      "waitMs": 9908,
+      "at": 1795249121069
+    },
+    {
+      "type": "attempt",
+      "kind": "voice",
+      "model": "gemini-2.5-flash-preview-tts",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 2,
+      "status": 200,
+      "at": 1795249159473
+    },
+    {
+      "type": "attempt",
+      "kind": "text",
+      "model": "gemini-3.1-flash-lite",
+      "keyId": "cf4efb8a7ab9",
+      "attempt": 1,
+      "totalAttempt": 1,
+      "status": 200,
+      "at": 1795249186668
+    }
+  ],
+  "resolvedModels": {
+    "text": [
+      "gemini-3.1-flash-lite",
+      "gemini-3.5-flash-lite",
+      "gemini-3.1-flash-lite-preview",
+      "gemini-3.8-flash",
+      "gemini-3.5-flash",
+      "gemini-4-hydrogen",
+      "gemini-flash-lite-latest",
+      "gemini-flash-latest",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash",
+      "gemini-3-flash-preview",
+      "gemini-2.5-flash-lite",
+      "gemini-2.5-flash"
+    ],
+    "voice": [
+      "gemini-3.1-flash-tts-preview",
+      "gemini-2.5-flash-preview-tts",
+      "gemini-2.5-pro-preview-tts",
+      "gemini-3.8-flash-tts",
+      "gemini-3.8-flash-lite-tts"
+    ]
+  },
+  "modelAttempts": {
+    "text:gemini-3.1-flash-lite": 2,
+    "voice:gemini-3.1-flash-tts-preview": 10,
+    "voice:gemini-2.5-flash-preview-tts": 1
+  }
+}

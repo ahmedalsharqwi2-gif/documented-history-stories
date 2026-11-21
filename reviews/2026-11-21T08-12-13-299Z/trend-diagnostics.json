@@ -1,0 +1,77 @@
+{
+  "sources": [
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 9
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 33
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "007b382a0991",
+      "title": "Possible Ancient Tavern Investigated Near Baghdad",
+      "demand": 0,
+      "recency": 0.841,
+      "matches": [],
+      "score": 0.4205539790636216
+    },
+    {
+      "id": "0ee579cef28f",
+      "title": "Students Recover Roman Military Artifacts in Northern England",
+      "demand": 0,
+      "recency": 0.832,
+      "matches": [],
+      "score": 0.4162071859552998
+    },
+    {
+      "id": "8ab3ce01a696",
+      "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+      "demand": 0,
+      "recency": 0.827,
+      "matches": [],
+      "score": 0.4133268709441741
+    },
+    {
+      "id": "19f0037a6923",
+      "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+      "demand": 0,
+      "recency": 0.821,
+      "matches": [],
+      "score": 0.4104664888290752
+    },
+    {
+      "id": "2de39066c2ce",
+      "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+      "demand": 0,
+      "recency": 0.763,
+      "matches": [],
+      "score": 0.38160178753727314
+    }
+  ]
+}

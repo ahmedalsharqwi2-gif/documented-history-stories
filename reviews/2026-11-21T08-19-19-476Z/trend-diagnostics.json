@@ -1,0 +1,69 @@
+{
+  "sources": [
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "trends",
+      "status": "ok",
+      "items": 9
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 2
+    },
+    {
+      "source": "suggestions",
+      "status": "ok",
+      "items": 10
+    },
+    {
+      "source": "onThisDay",
+      "status": "ok",
+      "items": 33
+    }
+  ],
+  "degraded": false,
+  "decisions": [
+    {
+      "id": "0ee579cef28f",
+      "title": "Students Recover Roman Military Artifacts in Northern England",
+      "demand": 0,
+      "recency": 0.831,
+      "matches": [],
+      "score": 0.4155399512928136
+    },
+    {
+      "id": "8ab3ce01a696",
+      "title": "Protein Analysis Used to Test Ideas About Children’s Grave Goods in Estonia",
+      "demand": 0,
+      "recency": 0.825,
+      "matches": [],
+      "score": 0.41266425380411215
+    },
+    {
+      "id": "19f0037a6923",
+      "title": "Well-Preserved Murals Uncovered at Roman Residence in Spain",
+      "demand": 0,
+      "recency": 0.82,
+      "matches": [],
+      "score": 0.40980845725639314
+    },
+    {
+      "id": "2de39066c2ce",
+      "title": "In Peacock's 'Dig,' Amy Poehler Plays an Archaeologist Who Discovers an Extraordinary Statue in Greece. What Do Real Experts Think of the TV Series?",
+      "demand": 0,
+      "recency": 0.762,
+      "matches": [],
+      "score": 0.3809900298634426
+    }
+  ]
+}

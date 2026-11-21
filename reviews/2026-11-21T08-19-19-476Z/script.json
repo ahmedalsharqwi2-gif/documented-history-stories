@@ -1,0 +1,163 @@
+{
+  "topicKey": "roman-artifacts-redesdale-england",
+  "title": "أهم أخبار الأسبوع: اكتشافات رومانية في إنجلترا",
+  "hook": "عمرك تخيلت إنك ممكن تلاقي كنز روماني وأنت بتتمشى في حقل عادي؟ ده اللي حصل فعلاً لطلاب في إنجلترا لما اكتشفوا قطع أثرية من العصر الروماني مدفونة تحت الأرض من حوالي ألفي سنة.",
+  "cta": "لو حابب تعرف أكتر عن أسرار التاريخ اللي لسه بنكتشفها كل يوم، تابعنا واشترك في القناة عشان يوصلك كل جديد عن حكايات الماضي اللي بتنور لنا الطريق.",
+  "scenes": [
+    {
+      "title": "اكتشاف مفاجئ في إنجلترا",
+      "text": "في منطقة شمال إنجلترا، طلاب من جامعة نيوكاسل كانوا بيعملوا حفريات روتينية، وفجأة لقوا مجموعة قطع أثرية بترجع للعصر الروماني، بتكشف تفاصيل جديدة عن حياة النخبة والجنود اللي عاشوا هناك زمان.",
+      "summary": "طلاب يكتشفون آثاراً رومانية في شمال إنجلترا.",
+      "keyword": "آثار رومانية",
+      "template": "phenomenon",
+      "labels": [
+        "آثار",
+        "إنجلترا",
+        "رومان"
+      ],
+      "values": [],
+      "claim": "A student excavation at a site on the Roman frontier in northeastern England uncovered several artifacts linked to Roman elites and military service",
+      "sourceId": "0ee579cef28f",
+      "evidence": "A student excavation at a site on the Roman frontier in northeastern England uncovered several artifacts linked to Roman elites and military service",
+      "kind": "fact",
+      "expression": 5,
+      "action": "point"
+    },
+    {
+      "title": "سلسلة ذهبية دقيقة",
+      "text": "من ضمن الحاجات اللي لقوها، قطعة من سلسلة ذهبية طولها حوالي تلات بوصات، مصنوعة من حلقات صغيرة جداً متداخلة بشكل احترافي، بتبين مهارة الصنعة اللي كانت موجودة عند الرومان في الوقت ده.",
+      "summary": "العثور على سلسلة ذهبية رومانية دقيقة الصنع.",
+      "keyword": "سلسلة ذهبية",
+      "template": "phenomenon",
+      "labels": [
+        "ذهب",
+        "صناعة",
+        "رومان"
+      ],
+      "values": [],
+      "claim": "The first, a piece of gold chain measuring almost three inches long, is made of individual rings that were pinched into figure-eight shapes, folded, and then interwoven.",
+      "sourceId": "0ee579cef28f",
+      "evidence": "The first, a piece of gold chain measuring almost three inches long, is made of individual rings that were pinched into figure-eight shapes, folded, and then interwoven.",
+      "kind": "fact",
+      "expression": 8,
+      "action": "walk"
+    },
+    {
+      "title": "لوح الرصاص الغامض",
+      "text": "لقوا كمان لوح صغير من الرصاص عليه كتابة باللغة اللاتينية، العلماء بيعتقدوا إنه ممكن يكون رسالة شخصية، أو حتى تعويذة سحرية، أو يمكن ختم تجاري كان بيستخدم في المعاملات اليومية للناس هناك.",
+      "summary": "اكتشاف لوح رصاصي عليه نقوش لاتينية غامضة.",
+      "keyword": "لوح رصاص",
+      "template": "phenomenon",
+      "labels": [
+        "رصاص",
+        "لاتينية",
+        "نقوش"
+      ],
+      "values": [],
+      "claim": "A small lead sheet bearing a Latin inscription may have been used as a personal message, a curse tablet, or a commercial seal.",
+      "sourceId": "0ee579cef28f",
+      "evidence": "A small lead sheet bearing a Latin inscription may have been used as a personal message, a curse tablet, or a commercial seal.",
+      "kind": "fact",
+      "expression": 4,
+      "action": "turn"
+    },
+    {
+      "title": "قطعة برونزية مزخرفة",
+      "text": "كمان لقوا قطعة برونزية مذهبة على شكل هلال، القطعة دي كانت غالباً جزء من حزام عسكري أو زينة لحصان، أو حتى غمد لسيف، وده بيأكد إن المكان كان فيه نشاط عسكري روماني مكثف.",
+      "summary": "قطعة برونزية هلالية الشكل من العصر الروماني.",
+      "keyword": "برونز",
+      "template": "phenomenon",
+      "labels": [
+        "برونز",
+        "عسكرية",
+        "رومان"
+      ],
+      "values": [],
+      "claim": "A gilded bronze fitting in a crescent shape could have been attached to a military belt, a horse harness, or a scabbard.",
+      "sourceId": "0ee579cef28f",
+      "evidence": "A gilded bronze fitting in a crescent shape could have been attached to a military belt, a horse harness, or a scabbard.",
+      "kind": "fact",
+      "expression": 6,
+      "action": "point"
+    },
+    {
+      "title": "خاتم الإله جوبيتر",
+      "text": "أجمل قطعة لقوها كانت فص من حجر العقيق، عليه نقش للإله جوبيتر وهو ماسك صولجان، ومعاه تمثال للنصر ونسر، ودي رابع قطعة من النوع ده تظهر في نفس الموقع لحد النهاردة.",
+      "summary": "اكتشاف فص عقيق منقوش عليه الإله جوبيتر.",
+      "keyword": "عقيق",
+      "template": "phenomenon",
+      "labels": [
+        "عقيق",
+        "جوبيتر",
+        "نقش"
+      ],
+      "values": [],
+      "claim": "A carved carnelian intaglio depicting the god Jupiter holding a scepter, a figure of Victory, and an eagle is the fourth intaglio unearthed at the site to date.",
+      "sourceId": "0ee579cef28f",
+      "evidence": "A carved carnelian intaglio depicting the god Jupiter holding a scepter, a figure of Victory, and an eagle is the fourth intaglio unearthed at the site to date.",
+      "kind": "fact",
+      "expression": 9,
+      "action": "jump"
+    },
+    {
+      "title": "أدوات الحياة اليومية",
+      "text": "الطلاب ما اكتفوش بالقطع الثمينة بس، دول لقوا كمان عملات معدنية، ورؤوس رماح، وإكسسوارات للبس، وحتى طبق عليه اسم مكتوب جزئياً هو مارتن، اللي غالباً كان اختصار لاسم مارتينوس الروماني القديم.",
+      "summary": "العثور على أدوات يومية وعملات تعود للرومان.",
+      "keyword": "أدوات",
+      "template": "phenomenon",
+      "labels": [
+        "عملات",
+        "أدوات",
+        "تاريخ"
+      ],
+      "values": [],
+      "claim": "The students also recovered coins, spearheads, dress accessories, and a bowl inscribed with the partial name “Martin,” likely for “Martinus.”",
+      "sourceId": "0ee579cef28f",
+      "evidence": "The students also recovered coins, spearheads, dress accessories, and a bowl inscribed with the partial name “Martin,” likely for “Martinus.”",
+      "kind": "fact",
+      "expression": 7,
+      "action": "walk"
+    },
+    {
+      "title": "تاريخ بيحكي حكايات",
+      "text": "كل قطعة من دول مش مجرد جماد، دي حكايات من الماضي بتورينا إزاي الناس كانت بتعيش وتفكر، وإزاي الإمبراطورية الرومانية سابت بصمتها في كل حتة وصلت لها، حتى في شمال إنجلترا البعيد.",
+      "summary": "الآثار المكتشفة تعكس تفاصيل الحياة الرومانية.",
+      "keyword": "تاريخ",
+      "template": "phenomenon",
+      "labels": [
+        "حكايات",
+        "ماضي",
+        "حضارة"
+      ],
+      "values": [],
+      "claim": "The post Students Recover Roman Military Artifacts in Northern England appeared first on Archaeology Magazine .",
+      "sourceId": "0ee579cef28f",
+      "evidence": "The post Students Recover Roman Military Artifacts in Northern England appeared first on Archaeology Magazine .",
+      "kind": "illustration",
+      "expression": 10,
+      "action": "point"
+    },
+    {
+      "title": "خاتمة الحكاية",
+      "text": "إيه أكتر قطعة أثرية تمنيت تلاقيها لو كنت مكان الطلاب دول؟ التاريخ لسه مخبي كنوز كتير تحت رجلينا، وممكن في أي لحظة نكتشف حاجة تغير فهمنا للماضي تماماً. شاركونا رأيكم في التعليقات.",
+      "summary": "دعوة للمشاهدين للتفاعل حول الاكتشافات الأثرية.",
+      "keyword": "خاتمة",
+      "template": "phenomenon",
+      "labels": [
+        "تفاعل",
+        "تاريخ",
+        "كنوز"
+      ],
+      "values": [],
+      "claim": "The post Students Recover Roman Military Artifacts in Northern England appeared first on Archaeology Magazine .",
+      "sourceId": "0ee579cef28f",
+      "evidence": "The post Students Recover Roman Military Artifacts in Northern England appeared first on Archaeology Magazine .",
+      "kind": "illustration",
+      "expression": 11,
+      "action": "sleep"
+    }
+  ],
+  "editorialMode": "daily",
+  "editorialLabel": null,
+  "scriptModel": "gemini-3.1-flash-lite"
+}

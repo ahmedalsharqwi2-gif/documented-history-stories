@@ -143,5 +143,23 @@
     "value": "https://www.smithsonianmag.com/history/greece-has-its-own-pompeii-and-the-ruins-tell-a-captivating-story-of-a-sophisticated-seafaring-bronze-age-society-180989747/",
     "status": "retired",
     "run": "2026-11-20T01-59-14-796Z"
+  },
+  {
+    "topicKey": "ancient-tavern-tell-muhammad",
+    "value": "https://archaeology.org/news/2026/11/20/possible-ancient-tavern-investigated-near-baghdad/",
+    "status": "retired",
+    "run": "2026-11-21T08-12-13-299Z"
+  },
+  {
+    "topicKey": "roman-artifacts-redesdale-england",
+    "value": "https://archaeology.org/news/2026/11/20/students-recover-roman-military-artifacts-in-northern-england/",
+    "status": "retired",
+    "run": "2026-11-21T08-19-19-476Z"
+  },
+  {
+    "topicKey": "estonian-children-grave-goods-analysis",
+    "value": "https://archaeology.org/news/2026/11/20/protein-analysis-used-to-test-ideas-about-childrens-grave-goods-in-estonia/",
+    "status": "reserved",
+    "run": "2026-11-21T08-26-19-690Z"
   }
 ]

@@ -1,0 +1,186 @@
+[
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-0.wav",
+    "duration": 14.48,
+    "text": "في موقع تل محمد بالعراق، اكتشف باحثون مبنى عمره حوالي ثلاثة آلاف وثمانمائة سنة، بيعتقدوا إنه كان حانة قديمة، المكان ده بيحكي قصص عن الحياة اليومية للناس في العصور القديمة.",
+    "sha256": "12bfad28eeb50cd06c560bf8d73346f8aa508afb42cb95e5dfee1a455e0a8d14",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 0,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "48bdec423cc2a5980e7b230727279623cfd4b9172a9a59047a7e8460ca6e66ff",
+        "sha256": "12bfad28eeb50cd06c560bf8d73346f8aa508afb42cb95e5dfee1a455e0a8d14",
+        "text_sha256": "f5389ff55a3c40ba03d1127e49d3469ef5dfe209aeed5b9881940be8cc3527bb",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 695118,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-1.wav",
+    "duration": 14.08,
+    "text": "لقوا لوح طيني مكتوب عليه اتفاقية لاستعارة الشعير والبيرة، العقد ده كان متوثق قدام شاهدين، وده بيورينا إن النظام والقانون كان موجود من زمان جداً في التعاملات اليومية بين الناس.",
+    "sha256": "ea2c54389ae5205aa894808a5199cf26841ecac74d6720f5c78e1979ca3dec75",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 1,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "25717d2a60fe6d8587b8f675597c2c974083b033dd48196e72714a65db49699f",
+        "sha256": "ea2c54389ae5205aa894808a5199cf26841ecac74d6720f5c78e1979ca3dec75",
+        "text_sha256": "09949790a022454e3331c36e7fbb457fcb8b838ba1a7e8bb61c26cfab25d49d5",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 675918,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-2.wav",
+    "duration": 13.92,
+    "text": "المكان فيه كاونتر نص دائري من الطوب اللبن بيواجه الشارع، وفيه حوض صغير ممكن يكون استخدموه في صناعة الخبز أو تخمير المشروبات، تصميم بيشبه الحانات اللي بنشوفها في وقتنا الحالي.",
+    "sha256": "ce45df5f6703098541dd51d7de64ae3906be28e48e543685d17bfcfe265a263d",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 2,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "3eb6b7d85ed1f577c53dc9e694c7ee41e5887195d4872005732870a0468f7c5d",
+        "sha256": "ce45df5f6703098541dd51d7de64ae3906be28e48e543685d17bfcfe265a263d",
+        "text_sha256": "3eb8073aaa4ddd5e49d9e5787bbc36fad907b6367e89a254ec153134556348a1",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 668238,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-3.wav",
+    "duration": 14.28,
+    "text": "عند طرف الغرفة، اكتشف الباحثون جزء من سور المدينة الخارجي اللي بيوصل سمكه لستة عشر قدماً، وفي المجمل كشفوا عن أكثر من ثلاثمائة قدم من السور وبوابة ثانوية صغيرة.",
+    "sha256": "b3865c7856162846cb64d62ee635d9cf726f715d1d4201931a3617c03e53ee31",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 3,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "de09fdb137fcd4c6f02a3f7fef77bb2deba69e408c8efe247c1126f49a25b771",
+        "sha256": "b3865c7856162846cb64d62ee635d9cf726f715d1d4201931a3617c03e53ee31",
+        "text_sha256": "b476be18f680b7abeccc1f827c1ea4aec33b999f6dc4e4602932a75c759268be",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 685518,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-4.wav",
+    "duration": 14.76,
+    "text": "العلماء لقوا مواسير مصنوعة من حصير القصب والطين، كانت بتستخدم لنقل الميه لخزان كبير مبني جوه سور المدينة، ده بيبين براعة المهندسين القدماء في إدارة الموارد المائية في مدينتهم.",
+    "sha256": "71007bb64ce26a6acfadfcae314199944df80ec2e94a1689e9c8c7ceea5c8a2b",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 4,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "a843a3b2a3add2cf303984f0a406d5f198bb4fd83e682477fc3798af33571627",
+        "sha256": "71007bb64ce26a6acfadfcae314199944df80ec2e94a1689e9c8c7ceea5c8a2b",
+        "text_sha256": "f272861fbb97b7fe365455a88798c993c448d0d34ec4060b5be2a9474359f54b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 708558,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-5.wav",
+    "duration": 12.6,
+    "text": "تخيل لو كنت ماشي في الشارع ده من آلاف السنين، وشفت الناس واقفة بتشرب وبتاكل قدام الكاونتر ده، التاريخ مش بس كتب، ده حياة حقيقية كانت بتنبض في المكان ده.",
+    "sha256": "b83b58abcf4cc7902eeab86e19584589e72b80894761580bfbdeb3d1e54d2ddc",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 5,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "180b8d08c5521b2c7659438702790beeefc2ba58d975174f3e1327ba7ca9a31e",
+        "sha256": "b83b58abcf4cc7902eeab86e19584589e72b80894761580bfbdeb3d1e54d2ddc",
+        "text_sha256": "3b708f017354842e3abf333ece1fe11086438218dceca5c7148c0bc92148afc6",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 604878,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-6.wav",
+    "duration": 13.4,
+    "text": "الاكتشافات دي بتساعدنا نفهم إزاي كانت المجتمعات القديمة بتنظم حياتها، مش بس في القصور، لكن كمان في الأماكن العامة اللي بيجتمع فيها الناس العاديين عشان يتبادلوا السلع والأخبار اليومية.",
+    "sha256": "d4584757a8a7d426c33ab2f5ea91f94a23e2e1bc2b683a25a3391e8e243d1cf7",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 6,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "8362239f188a6761339006fe444a69ffff4fbe0ecd63defbcbd8857685454910",
+        "sha256": "d4584757a8a7d426c33ab2f5ea91f94a23e2e1bc2b683a25a3391e8e243d1cf7",
+        "text_sha256": "4bc08935d0b915135c13a7429413eb0ccee953eac12ac5704bb9e7c5495e3f1b",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 643278,
+        "reused": false
+      }
+    ]
+  },
+  {
+    "file": "/home/runner/work/documented-history-stories/documented-history-stories/public/generated/2026-11-21T08-12-13-299Z/scene-7.wav",
+    "duration": 14.08,
+    "text": "التاريخ لسه مخبي لينا كنوز كتير تحت الرمل، كل حجر بنلاقيه بيفتح باب جديد لمعرفة أجدادنا، تابعونا عشان تعرفوا أكتر عن أسرار التاريخ اللي لسه بنكتشفها كل يوم.",
+    "sha256": "e34dcee5afbdd4e673dc7e600e84b4fb1a71feb1cda6960e36d5444c6fea08f9",
+    "provider": "Gemini",
+    "voice": "Charon",
+    "chunks": [
+      {
+        "scene": 7,
+        "chunk": 0,
+        "schema": 1,
+        "cacheKey": "31c5c4a7759ca0293b68f1823cebf1356e94047d8b5faf533c6d068174dfcadd",
+        "sha256": "e34dcee5afbdd4e673dc7e600e84b4fb1a71feb1cda6960e36d5444c6fea08f9",
+        "text_sha256": "b252b0e21fb46965bd040835fa57397a0223045c28b4a2aa2beda97315651816",
+        "voice": "Charon",
+        "provider": "Gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "bytes": 675918,
+        "reused": false
+      }
+    ]
+  }
+]
